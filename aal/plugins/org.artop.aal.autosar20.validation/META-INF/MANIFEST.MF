@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.artop.aal.autosar20.validation;singleton:=true
+Bundle-Version: 1.2.0.qualifier
+Bundle-Activator: org.artop.aal.autosar20.validation.Activator
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Require-Bundle: org.artop.aal.validation;visibility:=reexport,
+ org.artop.aal.autosar20;visibility:=reexport
+Bundle-ActivationPolicy: lazy
+Export-Package: org.artop.aal.autosar20.validation,
+ org.artop.aal.autosar20.validation.listeners
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         point="org.artop.ecl.emf.validation.registration">
+      <model
+            id="autosar20"
+            filter="_20"
+            Name="AUTOSAR 2.0"
+            NsURI="http://autosar.org/2.0.0/8"
+            class="autosar20.genericstructure.infrastructure.ARObject">
+      </model>
+   </extension>
+ 
+    <extension point="org.eclipse.emf.validation.constraintBindings">
+        <clientContext id="autosar20.ARObject.context">
+            <enablement>
+                <instanceof value="autosar20.genericstructure.infrastructure.ARObject"/>
+            </enablement>
+        </clientContext>
+   </extension>
+  
+   <extension point="org.eclipse.emf.transaction.listeners">
+      <listener class="org.artop.aal.autosar20.validation.listeners.ProblemMarkerIntegrity20Listener"/>
+      <listener class="org.artop.aal.autosar20.validation.listeners.AutomaticValidation20Listener"/>
+   </extension>
+   
+</plugin>

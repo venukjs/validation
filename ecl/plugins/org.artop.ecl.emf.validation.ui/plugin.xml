@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+
+<!--
+ <copyright>
+ 
+ Copyright (c) Geensys and others.
+ All rights reserved. This program and the accompanying materials are made
+ available under the terms of the Artop Software License Based on Released
+ AUTOSAR Material (ASLR) which accompanies this distribution, and is available
+ at http://www.artop.org/aslr.html
+ 
+ Contributors: 
+     Geensys - Initial API and implementation
+ 
+ </copyright>
+-->
+
+<!-- org.artop.ecl.emf.validation.ui -->
+
+<plugin>
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            id="org.artop.ecl.emf.validation.ui.actionSet1"
+            label="%validation_actionSet"
+            visible="true">
+         <menu
+               id="validationMenu"
+               label="%ValidateMenu_title">
+            <groupMarker
+                  name="group">
+            </groupMarker>
+         </menu>
+         <action
+               class="org.artop.ecl.emf.validation.ui.actions.contributor.AutomaticValidationActionContributor"
+               id="org.artop.ecl.emf.validation.ui.action.validateAutomatically"
+               label="%ValidateAutomaticallyMenu_label"
+               menubarPath="validationMenu/group"
+               style="toggle">
+         </action>
+      </actionSet>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.decorators">
+      <decorator
+            adaptable="true"
+            class="org.artop.ecl.emf.validation.ui.decorators.BasicLightweightValidationDecorator"
+            icon="icons/ovr16/error_co.gif"
+            id="org.artop.ecl.emf.validation.ui.decorator"
+            label="%ValidationDecorator.label"
+            lightweight="true"
+            location="BOTTOM_LEFT"
+            state="true">          
+           <description>%ValidationDecorator.desc</description>
+            <enablement>
+               <or>
+                  <objectClass
+                        name="org.eclipse.emf.common.notify.Notifier">
+                  </objectClass>
+                  <objectClass
+                        name="org.eclipse.core.resources.IResource">
+                  </objectClass>
+               </or>
+            </enablement>        
+      </decorator>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.ide.markerSupport">
+      <markerGroupingEntry
+            id="org.artop.ecl.emf.validation.markerErrorGroupingEntry"
+            label="Errors"
+            markerGrouping="org.eclipse.ui.ide.severity"
+            priority="2">
+      </markerGroupingEntry>
+      <markerGroupingEntry
+            id="org.artop.ecl.emf.validation.markerWarningGroupingEntry"
+            label="Warnings"
+            markerGrouping="org.eclipse.ui.ide.severity"
+            priority="1">
+      </markerGroupingEntry>
+      <markerGroupingEntry
+            id="org.artop.ecl.emf.validation.markerInfoGroupingEntry"
+            label="Infos"
+            markerGrouping="org.eclipse.ui.ide.severity"
+            priority="0">
+      </markerGroupingEntry>
+      <markerAttributeGrouping
+            attribute="severity"
+            markerType="ecl.emf.validation.problem.marker">
+         <markerAttributeMapping
+               markerGroupingEntry="org.artop.ecl.emf.validation.markerErrorGroupingEntry"
+               value="2">
+         </markerAttributeMapping>
+         <markerAttributeMapping
+               markerGroupingEntry="org.artop.ecl.emf.validation.markerWarningGroupingEntry"
+               value="1">
+         </markerAttributeMapping>
+         <markerAttributeMapping
+               markerGroupingEntry="org.artop.ecl.emf.validation.markerInfoGroupingEntry"
+               value="0">
+         </markerAttributeMapping>
+      </markerAttributeGrouping>
+      <markerAttributeGrouping
+            attribute="severity"
+            markerType="org.eclipse.xsd.diagnostic">
+         <markerAttributeMapping
+               markerGroupingEntry="org.artop.ecl.emf.validation.markerErrorGroupingEntry"
+               value="2">
+         </markerAttributeMapping>
+         <markerAttributeMapping
+               markerGroupingEntry="org.artop.ecl.emf.validation.markerWarningGroupingEntry"
+               value="1">
+         </markerAttributeMapping>
+         <markerAttributeMapping
+               markerGroupingEntry="org.artop.ecl.emf.validation.markerInfoGroupingEntry"
+               value="0">
+         </markerAttributeMapping>
+      </markerAttributeGrouping>
+      <markerAttributeGrouping
+            attribute="severity"
+            markerType="org.artop.ecl.emf.xmlproblemmarker">
+         <markerAttributeMapping
+               markerGroupingEntry="org.artop.ecl.emf.validation.markerErrorGroupingEntry"
+               value="2">
+         </markerAttributeMapping>
+      </markerAttributeGrouping>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <actionProvider 
+            id="org.artop.ecl.emf.validation.ui.actions.basicValidationActions"
+            class="org.artop.ecl.emf.validation.ui.actions.providers.BasicValidationActionProvider">
+         <enablement>
+            <or>
+               <instanceof value="org.eclipse.core.resources.IResource" />
+               <instanceof value="org.eclipse.emf.ecore.EObject" />
+            </or>
+         </enablement>
+      </actionProvider>
+   </extension>
+</plugin>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+  <extension point="org.eclipse.ui.views">
+    <view allowMultiple="false"
+          name="%ecl.examples.validation.ui.views.validation.name"
+          icon="$nl$/icons/full/eview16/validation_view.gif"
+          category="org.artop.ecl.examples.common.ui.views.category.artopExampleViews"
+          class="org.artop.ecl.emf.validation.ui.views.ValidationView"
+          id="org.artop.ecl.examples.validation.ui.views.validation" />
+  </extension>
+  <extension point="org.eclipse.ui.navigator.navigatorContent">
+    <actionProvider id="org.artop.ecl.examples.validation.ui.actions.basicValidationExampleActions"
+                    class="org.artop.ecl.examples.validation.ui.actions.providers.BasicValidationExampleActionProvider">
+      <enablement>
+        <or>
+          <instanceof value="org.eclipse.core.resources.IResource" />
+          <instanceof value="org.eclipse.emf.ecore.EObject" />
+        </or>
+      </enablement>
+    </actionProvider>
+  </extension>
+</plugin>

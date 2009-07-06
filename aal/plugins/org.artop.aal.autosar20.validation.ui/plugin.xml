@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.artop.aal.validation.ui.preferences.validation"
+            class="org.artop.aal.autosar20.validation.ui.preferences.Constraint20PreferencePage"
+            id="org.artop.aal.autosar20.validation.ui.autosar20"
+            name="%UI_org.artop.aal.autosar20.validation.ui.autosar20">
+      </page>
+   </extension>
+
+</plugin>

@@ -1,0 +1,51 @@
+/**
+ * <copyright>
+ * 
+ * Copyright (c) BMW Car IT, Geensys and others.
+ * All rights reserved. This program and the accompanying materials are made
+ * available under the terms of the Artop Software License Based on Released
+ * AUTOSAR Material (ASLR) which accompanies this distribution, and is available
+ * at http://www.artop.org/aslr.html
+ * 
+ * Contributors: 
+ *     Geensys - Initial API and implementation
+ * 
+ * </copyright>
+ */
+package org.artop.ecl.emf.validation.stats;
+
+import org.artop.ecl.emf.validation.Activator;
+import org.artop.ecl.platform.stats.AbstractPerformanceStats;
+import org.artop.ecl.platform.stats.IEventTypeEnumerator;
+
+/**
+ * 
+ */
+public class ValidationPerformanceStats extends AbstractPerformanceStats<ValidationPerformanceStats.ValidationEvent> {
+
+	public static ValidationPerformanceStats INSTANCE = new ValidationPerformanceStats();
+
+	/*
+	 * "applying constraints" et "updating problem markers"; il y en aura de nouveau à plusieurs niveaux (à distinguer
+	 * par le blame) : EObject, fichier, folder, project validation.Apply_Contraints validation.Update_Problem_Markers
+	 */
+	public enum ValidationEvent implements IEventTypeEnumerator {
+		EVENT_APPLY_CONSTRAINTS("ApplyContraints"), EVENT_UPDATE_PROBLEM_MARKERS("UpdateProblemMarkers"), EVENT_LABEL_DECORATION("LabelDecoration");
+		private String name;
+
+		private ValidationEvent(String EventName) {
+			name = EventName;
+		}
+
+		public String getName() {
+			// TODO Auto-generated method stub
+			return name;
+		}
+
+	}
+
+	@Override
+	protected String getPluginId() {
+		return Activator.PLUGIN_ID;
+	}
+}
