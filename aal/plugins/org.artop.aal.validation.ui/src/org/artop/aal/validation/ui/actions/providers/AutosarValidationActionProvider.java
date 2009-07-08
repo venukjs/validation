@@ -42,6 +42,7 @@ public class AutosarValidationActionProvider extends BasicValidationActionProvid
 	 */
 	@Override
 	public void doInit() {
+		super.doInit();
 		fixUuidConflictsAction = createFixUuidConflictsAction();
 	}
 
@@ -59,6 +60,8 @@ public class AutosarValidationActionProvider extends BasicValidationActionProvid
 	 */
 	@Override
 	protected void populateActions(IMenuManager menu, IStructuredSelection selection, boolean enabled) {
+		super.populateActions(menu, selection, enabled);
+
 		if (fixUuidConflictsAction != null) {
 			fixUuidConflictsAction.selectionChanged(selection);
 			fixUuidConflictsAction.setEnabled(enabled);

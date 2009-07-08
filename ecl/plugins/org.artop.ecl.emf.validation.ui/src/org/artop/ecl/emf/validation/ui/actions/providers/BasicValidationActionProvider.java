@@ -37,8 +37,17 @@ import org.eclipse.ui.views.navigator.ResourceSelectionUtil;
  * <li>a {@linkplain BasicGenerateValidationReportAction generate validation report action} that generates a report once
  * a validation of the selected model has been performed.</li>
  * </ul>
+ * <p>
  * Actions are populated to contextual menu under item "<b>{@linkplain IValidationMenuConstants#MENU_VALIDATION_LABEL
  * Validation}</b>".
+ * <p>
+ * <table>
+ * <tr valign=top>
+ * <td><b>Note</b>&nbsp;&nbsp;</td>
+ * <td>This action provider is not contributed by the hosting plug-in in order to avoid duplicate entries of actions. If
+ * any client application is really interested in this action provider, it should contribute it by itself.</td>
+ * </tr>
+ * </table>
  */
 public class BasicValidationActionProvider extends AbstractValidationActionProvider {
 
@@ -101,6 +110,10 @@ public class BasicValidationActionProvider extends AbstractValidationActionProvi
 	 */
 	@Override
 	protected void populateActions(IMenuManager menu, IStructuredSelection selection, boolean enabled) {
+		// Optimization:
+		// 1] Enablement is computed only once by AbstractValidationActionProvider;
+		// 2] Selection is given to each action so that getStructuredSelection() can be used (inside action).
+
 		if (validateAction != null) {
 			validateAction.selectionChanged(selection);
 			validateAction.setEnabled(enabled);

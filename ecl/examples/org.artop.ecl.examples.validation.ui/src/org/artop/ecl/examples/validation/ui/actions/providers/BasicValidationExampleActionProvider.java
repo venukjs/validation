@@ -18,6 +18,7 @@ import org.artop.ecl.emf.validation.ui.actions.providers.AbstractValidationActio
 import org.artop.ecl.examples.common.ui.IArtopExampleMenuConstants;
 import org.artop.ecl.examples.validation.ui.IValidationExampleMenuConstants;
 import org.artop.ecl.examples.validation.ui.actions.BasicValidateSelectedCategoriesAction;
+import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
@@ -80,7 +81,6 @@ public class BasicValidationExampleActionProvider extends AbstractValidationActi
 	protected void populateActions(IMenuManager menu, IStructuredSelection selection, boolean enabled) {
 		validateCategoriesAction.selectionChanged(selection);
 		validateCategoriesAction.setEnabled(enabled);
-		// TODO Uncomment following line when action has been finished
-		// menu.add(new ActionContributionItem(validateCategoriesAction));
+		menu.add(new ActionContributionItem(validateCategoriesAction));
 	}
 }

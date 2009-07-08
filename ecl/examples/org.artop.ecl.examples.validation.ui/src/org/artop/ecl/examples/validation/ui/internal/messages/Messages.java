@@ -24,7 +24,11 @@ public class Messages extends NLS {
 	private static final String BUNDLE_NAME = "org.artop.ecl.examples.validation.ui.internal.messages.messages"; //$NON-NLS-1$
 
 	public static String action_validateSelectedCategories_label;
+
 	public static String menu_validation_label;
+
+	public static String dialog_SelectConstraintCategories_title;
+	public static String dialog_SelectConstraintCategories_description;
 
 	static {
 		// initialize resource bundle

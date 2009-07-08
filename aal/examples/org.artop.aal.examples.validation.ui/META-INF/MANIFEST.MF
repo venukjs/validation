@@ -6,7 +6,8 @@ Bundle-Version: 1.2.0.qualifier
 Bundle-Activator: org.artop.aal.examples.validation.ui.internal.Activator$Implementation
 Bundle-Vendor: %providerName
 Require-Bundle: org.artop.aal.validation.ui;visibility:=reexport,
- org.artop.ecl.examples.validation.ui
+ org.artop.aal.examples.validation;visibility:=reexport,
+ org.artop.ecl.examples.validation.ui;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.artop.aal.examples.validation.ui.actions,

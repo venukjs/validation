@@ -7,23 +7,25 @@
     <extension point="org.eclipse.emf.validation.constraintBindings">    
         <binding
             context="autosar3x.ARObject.context"
-            category="autosar3x.constraint.category_test"/>
+            category="org.artop.aal.examples.constraints.category.autosar3x"/>
     </extension>
   
-    <extension point="org.eclipse.emf.validation.constraintProviders">
- 
+   <extension point="org.eclipse.emf.validation.constraintProviders">
       <category
-            name="%category_test.name"
-            id="autosar3x.constraint.category_test">
-            %category_test.description
+            name="%constraintsCategory_examples_autosar3x.name"
+            id="org.artop.aal.examples.constraints.category.autosar3x">
+         %constraintsCategory_examples_autosar3x.description
       </category>
-
       <category
-            name="%category_test_testGroup1.name"
-            id="autosar3x.constraint.category_test/testGroup1">
-            %category_test_testGroup1.description
+            name="%constraintsCategory_examples_autosar3x_dynamic.name"
+            id="org.artop.aal.examples.constraints.category.autosar3x/dynamic">
+         %constraintsCategory_examples_autosar3x_dynamic.description
       </category>
-   
+      <category
+            name="%constraintsCategory_examples_autosar3x_static.name"
+            id="org.artop.aal.examples.constraints.category.autosar3x/static">
+         %constraintsCategory_examples_autosar3x_static.description
+      </category>
    </extension> 
 
    <!-- The example contraints themselves -->
@@ -34,7 +36,7 @@
        <package namespaceUri="http://autosar.org/3.1.1/11"/>
        <package namespaceUri="http://autosar.org/3.1.1/99"/>
  
-        <constraints categories="autosar3x.constraint.category_test/testGroup1">
+        <constraints categories="org.artop.aal.examples.constraints.category.autosar3x/static">
             <constraint
                   class="org.artop.aal.examples.validation.constraints.ModuleDefMultiplicityShouldBeTheSame3xConstraint"
                   id="ModuleDefMultiplicityShouldBeTheSame_3x"

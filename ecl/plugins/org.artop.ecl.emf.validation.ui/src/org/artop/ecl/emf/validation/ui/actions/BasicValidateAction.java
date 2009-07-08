@@ -51,6 +51,20 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.BaseSelectionListenerAction;
 import org.eclipse.ui.actions.WorkspaceModifyDelegatingOperation;
 
+/**
+ * Basic implementation of validate action. A <em>Validate</em> action is supposed to ask for the validation of a
+ * selected model, <em>i.e.</em> for verifying constraints that are applicable to the selected model's objects.
+ * <p>
+ * <table>
+ * <tr valign=top>
+ * <td><b>Note</b>&nbsp;&nbsp;</td>
+ * <td>Action's enablement is not computed by action itself. This is due to an optimization that has been made at the
+ * parent action provider level; indeed
+ * {@linkplain org.artop.ecl.emf.validation.ui.actions.providers.BasicValidationActionProvider
+ * BasicValidationActionProvider} computes enablement (for all actions it owns) only once.</td>
+ * </tr>
+ * </table>
+ */
 public class BasicValidateAction extends BaseSelectionListenerAction {
 
 	private boolean displayBriefReport = false;
@@ -78,12 +92,8 @@ public class BasicValidateAction extends BaseSelectionListenerAction {
 						public void run() {
 							if (progressMonitor.isCanceled()) {
 								handleDiagnostic(selectedModelObjects, Diagnostic.CANCEL_INSTANCE);
-							} else {
-								if (diagnostics != null) {
-									handleDiagnosticMulti(selectedModelObjects, diagnostics, displayBriefReport);
-
-								}
-
+							} else if (diagnostics != null) {
+								handleDiagnosticMulti(selectedModelObjects, diagnostics, displayBriefReport);
 							}
 
 							try {
@@ -138,7 +148,9 @@ public class BasicValidateAction extends BaseSelectionListenerAction {
 			}
 
 			return result;
-		} else if (selectedModelObjects.size() > 1) {
+		}
+
+		else if (selectedModelObjects.size() > 1) {
 
 			int count = 0;
 			int[] subCount = new int[selectedModelObjects.size()];
@@ -226,12 +238,9 @@ public class BasicValidateAction extends BaseSelectionListenerAction {
 		WorkspaceJob job = new WorkspaceJob(Messages._Job_HandleDiagnostic) {
 			@Override
 			public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
-
-				ValidationMarkerManager markerManager = ValidationMarkerManager.getInstance();
 				for (Diagnostic diag : diagnostics) {
-					markerManager.handleDiagnostic(diag);
+					ValidationMarkerManager.getInstance().handleDiagnostic(diag);
 				}
-
 				return Status.OK_STATUS;
 			}
 
@@ -251,7 +260,6 @@ public class BasicValidateAction extends BaseSelectionListenerAction {
 		job.setPriority(Job.BUILD);
 		job.schedule();
 		ValidationPerformanceStats.INSTANCE.endEvent(ValidationPerformanceStats.ValidationEvent.EVENT_UPDATE_PROBLEM_MARKERS, "UpdateMarkers");
-
 	}
 
 	/**
@@ -269,14 +277,16 @@ public class BasicValidateAction extends BaseSelectionListenerAction {
 	}
 
 	/**
-	 * Due to performance overhead, its just called before running the action to init the list of selected model objects
+	 * Due to performance overhead, its just called before running the action to initialize the list of selected model
+	 * objects.
 	 * 
 	 * @param selection
 	 *            the current selection
 	 */
-
 	private List<EObject> getSelectedModelObjects() {
+		// Just retrieve the selection that has been given to this action by the parent action provider
 		IStructuredSelection selection = getStructuredSelection();
+
 		List<EObject> result = new ArrayList<EObject>();
 		List<IFile> files = new ArrayList<IFile>();
 		for (Object selectedObject : selection.toList()) {

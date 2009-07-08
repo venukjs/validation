@@ -72,7 +72,7 @@ public class ExtendedDiagnostician extends Diagnostician {
 	}
 
 	/**
-	 * Method which Embeds validation with setting for filter and validation depth.
+	 * Method which embeds validation with setting for filter and validation depth.
 	 * 
 	 * @param eObject
 	 *            the object to validate
@@ -110,7 +110,7 @@ public class ExtendedDiagnostician extends Diagnostician {
 	}
 
 	/**
-	 * Method which Embeds validation with setting for filter and validation depth.
+	 * Method which embeds validation with setting for filter and validation depth.
 	 * 
 	 * @param eObject
 	 *            the object to validate
@@ -134,7 +134,7 @@ public class ExtendedDiagnostician extends Diagnostician {
 	}
 
 	/**
-	 * Method which Embeds validation with setting for filter.
+	 * Method which embeds validation with setting for filter.
 	 * 
 	 * @param eObject
 	 *            the object to validate
@@ -148,7 +148,7 @@ public class ExtendedDiagnostician extends Diagnostician {
 	}
 
 	/**
-	 * Method which Embeds validation with setting for filter. The validation depth is set to default value (infinite
+	 * Method which embeds validation with setting for filter. The validation depth is set to default value (infinite
 	 * one.)
 	 * 
 	 * @param eObject
@@ -164,7 +164,7 @@ public class ExtendedDiagnostician extends Diagnostician {
 	}
 
 	/**
-	 * Method which Embeds validation with setting for filter and validation depth.
+	 * Method which embeds validation with setting for filter and validation depth.
 	 * 
 	 * @param eObject
 	 * @param cfv
@@ -181,7 +181,7 @@ public class ExtendedDiagnostician extends Diagnostician {
 	}
 
 	/**
-	 * Method which Embeds validation with setting for filter
+	 * Method which embeds validation with setting for filter
 	 * 
 	 * @param eObject
 	 * @param cfv
