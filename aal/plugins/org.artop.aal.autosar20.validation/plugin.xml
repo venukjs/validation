@@ -8,7 +8,7 @@
             id="autosar20"
             filter="_20"
             Name="AUTOSAR 2.0"
-            NsURI="http://autosar.org/2.0.0/8"
+            NsURI="http://autosar.org/2.0.0/autosar20/gs/i"
             class="autosar20.genericstructure.infrastructure.ARObject">
       </model>
    </extension>
