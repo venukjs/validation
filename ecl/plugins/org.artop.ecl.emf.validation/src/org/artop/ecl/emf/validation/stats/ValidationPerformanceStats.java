@@ -25,10 +25,6 @@ public class ValidationPerformanceStats extends AbstractPerformanceStats<Validat
 
 	public static ValidationPerformanceStats INSTANCE = new ValidationPerformanceStats();
 
-	/*
-	 * "applying constraints" et "updating problem markers"; il y en aura de nouveau à plusieurs niveaux (à distinguer
-	 * par le blame) : EObject, fichier, folder, project validation.Apply_Contraints validation.Update_Problem_Markers
-	 */
 	public enum ValidationEvent implements IEventTypeEnumerator {
 		EVENT_APPLY_CONSTRAINTS("ApplyContraints"), EVENT_UPDATE_PROBLEM_MARKERS("UpdateProblemMarkers"), EVENT_LABEL_DECORATION("LabelDecoration");
 		private String name;
