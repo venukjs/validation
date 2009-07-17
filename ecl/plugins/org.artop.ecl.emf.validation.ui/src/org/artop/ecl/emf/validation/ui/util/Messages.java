@@ -58,17 +58,6 @@ public class Messages extends NLS {
 	public static String _UI_Validate_menu_item;
 	public static String _UI_Validate_simple_description;
 
-	@Deprecated
-	public static String _UI_FixUuidConflicts_item = "Fix UUID Conflicts"; //$NON-NLS-1$
-	@Deprecated
-	public static String _UI_FixUuidConflicts_desc = "Generates a new UUID for objects whose UUID already exists."; //$NON-NLS-1$
-	@Deprecated
-	public static String _UI_FixUuidConflicts_command = "Fixing UUID conflicts..."; //$NON-NLS-1$
-	@Deprecated
-	public static String _UI_FixUuidConflicts_commandDesc = "Analyses UUIDs and generate new ones if needed"; //$NON-NLS-1$
-	@Deprecated
-	public static String _UI_FixUuidConflicts_result = "Fixed {0} UUID conflicts."; //$NON-NLS-1$
-
 	public static String _UI_Wizard_Report_Default_File_Pattern;
 
 	public static String _UI_Wizard_Report_ShellTitle;
