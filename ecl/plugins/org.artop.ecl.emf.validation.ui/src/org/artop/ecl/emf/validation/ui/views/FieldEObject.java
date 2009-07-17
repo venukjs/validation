@@ -6,10 +6,15 @@
 
 package org.artop.ecl.emf.validation.ui.views;
 
+import org.artop.ecl.emf.metamodel.IMetaModelDescriptor;
+import org.artop.ecl.emf.metamodel.MetaModelDescriptorRegistry;
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
@@ -81,65 +86,27 @@ public class FieldEObject extends AbstractField {
 		}
 		ConcreteMarker marker = (ConcreteMarker) obj;
 
-		EObject eo = null;
-
-		// TODO Replace all this by use of Meta-Model Descriptors.
-
-		// FIXME NBD remove these ugly algo and hard-coded strings
-		EPackage autosarPackage = EPackage.Registry.INSTANCE.getEPackage("http://autosar.org/2.1.4"); //$NON-NLS-1$
-		if (autosarPackage != null) {
-			EClassifier eClassifier = autosarPackage.getEClassifier(marker.getEObjectType());
-			EClass eClass = null;
-			if (eClassifier != null && eClassifier instanceof EClass) {
-				eClass = (EClass) eClassifier;
-				eo = autosarPackage.getEFactoryInstance().create(eClass);
-			}
-		}
-		if (eo == null) {
-			autosarPackage = EPackage.Registry.INSTANCE.getEPackage("http://autosar.org/3.1.1"); //$NON-NLS-1$
-			if (autosarPackage != null) {
-				EClassifier eClassifier = autosarPackage.getEClassifier(marker.getEObjectType());
-				EClass eClass = null;
-				if (eClassifier != null && eClassifier instanceof EClass) {
-					eClass = (EClass) eClassifier;
-					eo = autosarPackage.getEFactoryInstance().create(eClass);
+		EObject eObject = null;
+		IResource resource = marker.getResource();
+		if (resource instanceof IFile) {
+			IMetaModelDescriptor descriptor = MetaModelDescriptorRegistry.INSTANCE.getDescriptor((IFile) resource);
+			if (descriptor != null) {
+				EPackage ePackage = descriptor.getEPackage();
+				if (ePackage != null) {
+					EClassifier eClassifier = ePackage.getEClassifier(marker.getEObjectType());
+					if (eClassifier != null && eClassifier instanceof EClass) {
+						EClass eClass = (EClass) eClassifier;
+						eObject = ePackage.getEFactoryInstance().create(eClass);
+						if (eObject != null) {
+							ComposeableAdapterFactory adaptarFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+							IItemLabelProvider provider = (IItemLabelProvider) adaptarFactory.adapt(eObject, IItemLabelProvider.class);
+							return ExtendedImageRegistry.getInstance().getImage(provider.getImage(eObject));
+						}
+					}
 				}
 			}
 		}
-		if (eo == null) {
-			autosarPackage = EPackage.Registry.INSTANCE.getEPackage("http://autosar.org/4.0.0"); //$NON-NLS-1$
-			if (autosarPackage != null) {
-				EClassifier eClassifier = autosarPackage.getEClassifier(marker.getEObjectType());
-				EClass eClass = null;
-				if (eClassifier != null && eClassifier instanceof EClass) {
-					eClass = (EClass) eClassifier;
-					eo = autosarPackage.getEFactoryInstance().create(eClass);
-				}
-			}
-		}
-		if (eo == null) {
-			autosarPackage = EPackage.Registry.INSTANCE.getEPackage("http://autosar.org/2.0.0"); //$NON-NLS-1$
-			if (autosarPackage != null) {
-				EClassifier eClassifier = autosarPackage.getEClassifier(marker.getEObjectType());
-				EClass eClass = null;
-				if (eClassifier != null && eClassifier instanceof EClass) {
-					eClass = (EClass) eClassifier;
-					eo = autosarPackage.getEFactoryInstance().create(eClass);
-				}
-			}
-		}
-
-		// EObject eo = MarkerUtil.getConnectedEObjectFromMarker(marker.getMarker());
-
-		Object o = null;
-		if (eo != null) {
-			ComposedAdapterFactory factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-			IItemLabelProvider ilp = (IItemLabelProvider) factory.adapt(eo, IItemLabelProvider.class);
-			o = ilp.getImage(eo);
-		}
-		Image img = ExtendedImageRegistry.getInstance().getImage(o);
-
-		return img;
+		return ExtendedImageRegistry.getInstance().getImage(obj);
 	}
 
 	/*
