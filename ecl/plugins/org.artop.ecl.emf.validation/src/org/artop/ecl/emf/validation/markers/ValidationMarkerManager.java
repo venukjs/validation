@@ -49,7 +49,6 @@ import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.xsd.XSDDiagnostic;
 
 /**
  * This singleton class manage the validation marker
@@ -231,7 +230,19 @@ public class ValidationMarkerManager {
 	}
 
 	/**
-	 * Remove all markers of type {@link XSDDiagnostic.MARKER} present on the resource.
+	 * Remove all markers of type {@linkplain IXMLMarker.XML_INTEGRITY_PROBLEM} present on the resource.
+	 * 
+	 * @param resource
+	 *            the target {@link IResource}
+	 * @see IMarker#getType()
+	 */
+	private void removeXMLIntegrityProblemMarker(final IResource resource) throws CoreException {
+		Assert.isNotNull(resource);
+		resource.deleteMarkers(IXMLMarker.XML_INTEGRITY_PROBLEM, true, IResource.DEPTH_INFINITE);
+	}
+
+	/**
+	 * Remove all markers of type {@linkplain IXMLMarker.XML_VALIDITY_PROBLEM} present on the resource.
 	 * 
 	 * @param resource
 	 *            the target {@link IResource}
@@ -239,19 +250,19 @@ public class ValidationMarkerManager {
 	 */
 	private void removeXSDDiagnosticMarker(final IResource resource) throws CoreException {
 		Assert.isNotNull(resource);
-		resource.deleteMarkers(XSDDiagnostic.MARKER, true, IResource.DEPTH_INFINITE);
+		resource.deleteMarkers(IXMLMarker.XML_VALIDITY_PROBLEM, true, IResource.DEPTH_INFINITE);
 	}
 
 	/**
-	 * Remove all markers of type {@link IXMLMarker.XML_PROBLEM} present on the resource.
+	 * Remove all markers of type {@link IXMLMarker.XML_WELLFORMEDNESS_PROBLEM} present on the resource.
 	 * 
 	 * @param resource
 	 *            the target {@link IResource}
 	 * @see IMarker#getType()
 	 */
-	private void removeXMLProblemMarker(final IResource resource) throws CoreException {
+	private void removeXMLWellFormednessProblemMarker(final IResource resource) throws CoreException {
 		Assert.isNotNull(resource);
-		resource.deleteMarkers(IXMLMarker.XML_PROBLEM, true, IResource.DEPTH_INFINITE);
+		resource.deleteMarkers(IXMLMarker.XML_WELLFORMEDNESS_PROBLEM, true, IResource.DEPTH_INFINITE);
 	}
 
 	/**
@@ -294,8 +305,10 @@ public class ValidationMarkerManager {
 			EObject rootObject = resource.getContents().get(0);
 			if (rootObject == eObject && depth == EObjectUtil.DEPTH_INFINITE) {
 				removeEclValidationProblemMarker(file);
-				removeXMLProblemMarker(file);
+				removeXMLWellFormednessProblemMarker(file);
 				removeXSDDiagnosticMarker(file);
+				removeXMLIntegrityProblemMarker(file);
+
 				// Notify IValidationProblemMarkerChangedListeners
 				fireValidationProblemMarkersChanged(rootObject);
 				return;

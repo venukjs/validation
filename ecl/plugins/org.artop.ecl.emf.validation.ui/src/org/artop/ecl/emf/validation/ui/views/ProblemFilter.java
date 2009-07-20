@@ -19,7 +19,6 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.activities.IIdentifier;
 import org.eclipse.ui.activities.WorkbenchActivityHelper;
-import org.eclipse.xsd.XSDDiagnostic;
 
 /**
  * ProblemFilters are the filters used in the problems view.
@@ -76,7 +75,8 @@ public class ProblemFilter extends MarkerFilter {
 	 *            A human readable name for the filter.
 	 */
 	public ProblemFilter(String filterName) {
-		super(filterName, new String[] { IValidationMarker.ECL_VALIDATION_PROBLEM, XSDDiagnostic.MARKER, IXMLMarker.XML_PROBLEM });
+		super(filterName, new String[] { IValidationMarker.ECL_VALIDATION_PROBLEM, IXMLMarker.XML_WELLFORMEDNESS_PROBLEM,
+				IXMLMarker.XML_INTEGRITY_PROBLEM, IXMLMarker.XML_VALIDITY_PROBLEM });
 		if (PlatformUI.getPreferenceStore().getBoolean(IWorkbenchPreferenceConstants.USE_WINDOW_WORKING_SET_BY_DEFAULT)) {
 			IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
 			if (window != null) {
