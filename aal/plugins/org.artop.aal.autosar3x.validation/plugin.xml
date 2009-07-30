@@ -20,10 +20,15 @@
             </enablement>
         </clientContext>
    </extension>
-  
-   <extension point="org.eclipse.emf.transaction.listeners">
-      <listener class="org.artop.aal.autosar3x.validation.listeners.ProblemMarkerIntegrity3xListener"/>
-      <listener class="org.artop.aal.autosar3x.validation.listeners.AutomaticValidation3xListener"/>
+
+   <extension
+         point="org.artop.ecl.emf.editingDomainFactoryListeners">
+      <listener
+            id="org.artop.aal.autosar3x.validation.internal.ValidationEditingDomainFactoryListener"
+            class="org.artop.aal.autosar3x.validation.internal.ValidationEditingDomainFactoryListener">
+         <applicableFor
+               metaModelDescriptorIdPattern="org.artop.aal.autosar3x" />
+      </listener>
    </extension>
-  
+
 </plugin>
