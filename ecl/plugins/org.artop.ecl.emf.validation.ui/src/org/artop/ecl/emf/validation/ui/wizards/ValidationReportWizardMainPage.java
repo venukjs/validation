@@ -12,8 +12,6 @@ import java.util.List;
 import org.artop.ecl.emf.validation.ui.util.Messages;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.jface.dialogs.IDialogPage;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.wizard.WizardPage;
@@ -167,21 +165,6 @@ public class ValidationReportWizardMainPage extends WizardPage {
 			}
 		}
 		return new File(outputDir);
-	}
-
-	/**
-	 * @deprecated Use {@link #getReportFileDirectory()} instead.
-	 */
-	@Deprecated
-	protected IContainer getReportFileContainer() {
-		if (!containerLocationText.isDisposed()) {
-			String location = containerLocationText.getText();
-			IContainer containerForLocation = ResourcesPlugin.getWorkspace().getRoot().getContainerForLocation(new Path(location));
-			if (containerForLocation != null) {
-				return containerForLocation;
-			}
-		}
-		return ResourcesPlugin.getWorkspace().getRoot().getContainerForLocation(new Path(outputDir));
 	}
 
 	/**
