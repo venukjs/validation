@@ -377,8 +377,6 @@ public class ValidationMarkerManager {
 	 * @throws CoreException
 	 */
 	public void updateMarkersURI(IResource resource) throws CoreException {
-		boolean oldActive = ValidationPerformanceStats.INSTANCE.isActive();
-		ValidationPerformanceStats.INSTANCE.setActive(true);
 
 		ValidationPerformanceStats.INSTANCE.startNewEvent(ValidationPerformanceStats.ValidationEvent.EVENT_UPDATE_PROBLEM_MARKERS, resource
 				.getFullPath());
@@ -419,7 +417,6 @@ public class ValidationMarkerManager {
 			}
 		}
 		ValidationPerformanceStats.INSTANCE.endEvent(ValidationPerformanceStats.ValidationEvent.EVENT_UPDATE_PROBLEM_MARKERS, resource.getFullPath());
-		ValidationPerformanceStats.INSTANCE.setActive(oldActive);
 	}
 
 	/**

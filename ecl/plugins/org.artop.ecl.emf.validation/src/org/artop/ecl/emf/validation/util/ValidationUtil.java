@@ -190,7 +190,6 @@ public class ValidationUtil {
 		// Retrieve underlying model objects
 		List<EObject> modelObjects = getModelObjects(objects);
 
-		ValidationPerformanceStats.INSTANCE.setActive(true);
 		ValidationPerformanceStats.INSTANCE.openContext("Validation of " + modelObjects.get(0)); //$NON-NLS-1$
 
 		List<Diagnostic> diagnostics = validate(modelObjects, filters, monitor);
