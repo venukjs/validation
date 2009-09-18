@@ -1195,7 +1195,7 @@ public abstract class MarkerView extends TableView {
 	 * 
 	 * @param elements
 	 */
-	void updateFocusMarkers(Object[] elements) {
+	protected void updateFocusMarkers(Object[] elements) {
 
 		boolean updateNeeded = updateNeeded(focusElements, elements);
 		if (updateNeeded) {
@@ -1469,7 +1469,7 @@ public abstract class MarkerView extends TableView {
 	 * 
 	 * @return MarkerFilter[]
 	 */
-	MarkerFilter[] getEnabledFilters() {
+	protected MarkerFilter[] getEnabledFilters() {
 
 		if (enabledFilters == null) {
 			Collection filters = findEnabledFilters();

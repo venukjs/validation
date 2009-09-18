@@ -29,7 +29,7 @@ public interface IValidationPreferences {
 	public final String PREF_LIMIT_PROBLEMS = "limit_problems"; //$NON-NLS-1$
 
 	public final String PREF_MAX_NUMBER_OF_ERRORS = "pref_max_number_of_errors"; //$NON-NLS-1$
-	public final int PREF_MAX_NUMBER_OF_ERRORS_DEFAULT = 1000;
+	public final int PREF_MAX_NUMBER_OF_ERRORS_DEFAULT = 10000;
 
 	// Problem limits
 	public final String PREF_PROBLEMS_LIMIT = "problems_limit"; //$NON-NLS-1$
