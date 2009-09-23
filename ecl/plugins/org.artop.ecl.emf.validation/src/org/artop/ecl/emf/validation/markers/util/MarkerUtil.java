@@ -97,7 +97,7 @@ public class MarkerUtil {
 				EditingDomain editingDomain = WorkspaceEditingDomainUtil.getEditingDomain(resource);
 				String uriAttribute = marker.getAttribute(EValidator.URI_ATTRIBUTE, null);
 				if (editingDomain != null && uriAttribute != null) {
-					URI uri = URI.createURI(uriAttribute);
+					URI uri = URI.createURI(uriAttribute, true);
 					if (EcoreResourceUtil.exists(uri)) {
 						return editingDomain.getResourceSet().getEObject(uri, true);
 					}

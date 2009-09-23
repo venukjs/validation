@@ -105,7 +105,7 @@ public class RulesExtReader {
 			}
 
 			if (element.getAttribute(ATT_RULE_EXT_NSURI) != null) {
-				tgt.setNsURI(URI.createURI(element.getAttribute(ATT_RULE_EXT_NSURI)));
+				tgt.setNsURI(URI.createURI(element.getAttribute(ATT_RULE_EXT_NSURI), true));
 			} else {
 				logMissingAttribute(element, ATT_RULE_EXT_NSURI);
 				r++;

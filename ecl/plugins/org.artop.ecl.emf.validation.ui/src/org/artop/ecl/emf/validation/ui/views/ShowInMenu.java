@@ -273,9 +273,9 @@ public class ShowInMenu extends ContributionItem {
 				IViewDescriptor desc = reg.find(id);
 				if (desc != null) {
 					// construct EObject from targetObjectURI
-					TransactionalEditingDomain editingDomain = WorkspaceEditingDomainUtil.getEditingDomain(URI.createURI(targetObjectURI));
+					TransactionalEditingDomain editingDomain = WorkspaceEditingDomainUtil.getEditingDomain(URI.createURI(targetObjectURI, true));
 					if (editingDomain != null) {
-						EObject targetObject = editingDomain.getResourceSet().getEObject(URI.createURI(targetObjectURI), false);
+						EObject targetObject = editingDomain.getResourceSet().getEObject(URI.createURI(targetObjectURI, true), false);
 						if (targetObject != null) {
 							INavigatorContentService contentService = NavigatorContentServiceFactory.INSTANCE.createContentService(id);
 							INavigatorContentDescriptor[] navigatorContentDesList = contentService.getVisibleExtensions();
