@@ -84,7 +84,6 @@ public class BasicValidateAction extends BaseSelectionListenerAction {
 			public void run(final IProgressMonitor progressMonitor) throws InvocationTargetException, InterruptedException {
 				try {
 					// FIXME Shouldn't this profiling be started and stopped inside 'asyncExec'?
-					ValidationPerformanceStats.INSTANCE.setActive(true);
 					ValidationPerformanceStats.INSTANCE.openContext("Validation of " + selectedModelObjects.get(0));
 
 					final List<Diagnostic> diagnostics = validateMulti(selectedModelObjects, progressMonitor);
