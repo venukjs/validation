@@ -83,7 +83,6 @@ public class BasicValidateAction extends BaseSelectionListenerAction {
 		IRunnableWithProgress runnableWithProgress = new IRunnableWithProgress() {
 			public void run(final IProgressMonitor progressMonitor) throws InvocationTargetException, InterruptedException {
 				try {
-					ValidationPerformanceStats.INSTANCE.setActive(true);
 					ValidationPerformanceStats.INSTANCE.openContext("Validation of " + selectedModelObjects.get(0));
 
 					final List<Diagnostic> diagnostics = validateMulti(selectedModelObjects, progressMonitor);
