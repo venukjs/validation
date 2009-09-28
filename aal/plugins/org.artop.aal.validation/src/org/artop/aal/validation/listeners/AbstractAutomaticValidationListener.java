@@ -167,7 +167,7 @@ public abstract class AbstractAutomaticValidationListener extends ResourceSetLis
 					Resource resource = (Resource) notification.getNotifier();
 					if (resource.getContents() != null && !resource.getContents().isEmpty() && resource.getContents().get(0) != null) {
 						IFile file = EcorePlatformUtil.getFile(resource);
-						if (file != null && !URI.createURI(file.getLocationURI().toString()).isPlatformPlugin()) {
+						if (file != null && !URI.createURI(file.getLocationURI().toString(), true).isPlatformPlugin()) {
 							eObjectRootToValidate.add(resource.getContents().get(0));
 						}
 					}
