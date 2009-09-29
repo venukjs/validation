@@ -105,7 +105,7 @@
       </markerAttributeGrouping>
       <markerAttributeGrouping
             attribute="severity"
-            markerType="org.eclipse.xsd.diagnostic">
+            markerType="org.artop.ecl.emf.xmlwellformednessproblemmarker">
          <markerAttributeMapping
                markerGroupingEntry="org.artop.ecl.emf.validation.markerErrorGroupingEntry"
                value="2">
@@ -121,10 +121,34 @@
       </markerAttributeGrouping>
       <markerAttributeGrouping
             attribute="severity"
-            markerType="org.artop.ecl.emf.xmlproblemmarker">
+            markerType="org.artop.ecl.emf.xmlvalidityproblemmarker">
          <markerAttributeMapping
                markerGroupingEntry="org.artop.ecl.emf.validation.markerErrorGroupingEntry"
                value="2">
+         </markerAttributeMapping>
+         <markerAttributeMapping
+               markerGroupingEntry="org.artop.ecl.emf.validation.markerWarningGroupingEntry"
+               value="1">
+         </markerAttributeMapping>
+         <markerAttributeMapping
+               markerGroupingEntry="org.artop.ecl.emf.validation.markerInfoGroupingEntry"
+               value="0">
+         </markerAttributeMapping>
+      </markerAttributeGrouping>
+      <markerAttributeGrouping
+            attribute="severity"
+            markerType="org.artop.ecl.emf.xmlintegrityproblemmarker">
+         <markerAttributeMapping
+               markerGroupingEntry="org.artop.ecl.emf.validation.markerErrorGroupingEntry"
+               value="2">
+         </markerAttributeMapping>
+         <markerAttributeMapping
+               markerGroupingEntry="org.artop.ecl.emf.validation.markerWarningGroupingEntry"
+               value="1">
+         </markerAttributeMapping>
+         <markerAttributeMapping
+               markerGroupingEntry="org.artop.ecl.emf.validation.markerInfoGroupingEntry"
+               value="0">
          </markerAttributeMapping>
       </markerAttributeGrouping>
    </extension>
