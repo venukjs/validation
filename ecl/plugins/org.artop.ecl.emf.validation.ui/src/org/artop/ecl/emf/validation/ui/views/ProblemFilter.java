@@ -6,7 +6,7 @@
 
 package org.artop.ecl.emf.validation.ui.views;
 
-import org.artop.ecl.emf.util.IXMLMarker;
+import org.artop.ecl.emf.resource.IXMLMarker;
 import org.artop.ecl.emf.validation.markers.IValidationMarker;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.IConfigurationElement;

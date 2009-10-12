@@ -83,7 +83,6 @@ public class BasicValidateAction extends BaseSelectionListenerAction {
 		IRunnableWithProgress runnableWithProgress = new IRunnableWithProgress() {
 			public void run(final IProgressMonitor progressMonitor) throws InvocationTargetException, InterruptedException {
 				try {
-					// FIXME Shouldn't this profiling be started and stopped inside 'asyncExec'?
 					ValidationPerformanceStats.INSTANCE.openContext("Validation of " + selectedModelObjects.get(0));
 
 					final List<Diagnostic> diagnostics = validateMulti(selectedModelObjects, progressMonitor);
@@ -104,9 +103,8 @@ public class BasicValidateAction extends BaseSelectionListenerAction {
 							}
 						}
 					});
-
-					ValidationPerformanceStats.INSTANCE.closeAndLogCurrentContext();
 				} finally {
+					ValidationPerformanceStats.INSTANCE.closeAndLogCurrentContext();
 					progressMonitor.done();
 				}
 			}

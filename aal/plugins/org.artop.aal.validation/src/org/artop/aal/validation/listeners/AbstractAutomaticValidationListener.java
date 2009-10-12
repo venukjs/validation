@@ -228,7 +228,8 @@ public abstract class AbstractAutomaticValidationListener extends ResourceSetLis
 
 		// Only validate when there is only one workspace job left
 		int modelLoadingJobCount = jobManager.find(IExtendedPlatformConstants.FAMILY_MODEL_LOADING).length;
-		if (modelLoadingJobCount > 1) {
+		int resourceLoadingJobCount = jobManager.find(IExtendedPlatformConstants.FAMILY_RESOURCE_LOADING).length;
+		if (modelLoadingJobCount + resourceLoadingJobCount > 1) {
 			return;
 		}
 		final Set<EObject> objects = new HashSet<EObject>(rootObjectsToValidate);
@@ -304,7 +305,8 @@ public abstract class AbstractAutomaticValidationListener extends ResourceSetLis
 	protected void validateObjects(final HashSet<EOD> targets) {
 		final IJobManager jobManager = Job.getJobManager();
 		boolean wait = false;
-		if (jobManager.find(IExtendedPlatformConstants.FAMILY_MODEL_LOADING).length > 0) {
+		if (jobManager.find(IExtendedPlatformConstants.FAMILY_RESOURCE_LOADING).length > 0
+				|| jobManager.find(IExtendedPlatformConstants.FAMILY_MODEL_LOADING).length > 0) {
 			wait = true; // If there are load jobs running, we wait for!
 		}
 		final boolean waitInJob = wait;
@@ -321,6 +323,7 @@ public abstract class AbstractAutomaticValidationListener extends ResourceSetLis
 				try {
 					if (waitInJob) {
 						try {
+							jobManager.join(IExtendedPlatformConstants.FAMILY_RESOURCE_LOADING, new SubProgressMonitor(monitor, 3));
 							jobManager.join(IExtendedPlatformConstants.FAMILY_MODEL_LOADING, new SubProgressMonitor(monitor, 3));
 						} catch (InterruptedException iEx) {
 							// TODO

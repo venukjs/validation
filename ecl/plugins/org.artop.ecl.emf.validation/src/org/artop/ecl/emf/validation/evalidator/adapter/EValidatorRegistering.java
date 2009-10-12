@@ -103,11 +103,30 @@ public class EValidatorRegistering {
 				EPackage targetPackage = eClass.getEPackage();
 				if (targetPackage == null) {
 					PlatformLogUtil.logAsError(Activator.getDefault(), NLS.bind(Messages.__EValidatorRegstering_NoSuchPackage, new Object[] {
-							r.getNsURI(), r.getModelId() }));
+							r.getNsURI(), r.getModelId() })
+
+					);
 				} else { // All is OK
 					EValidator.Registry.INSTANCE.put(r.getRootModelClass().getEPackage(), new EValidatorAdapter());
 				}
 			}
 		}
+
 	}
+
+	/**
+	 * Add EValidator for each registered model to the EValidator registry. Ensure that all model have been loaded
+	 * before to use it.
+	 * 
+	 * @deprecated
+	 */
+	@Deprecated
+	protected void eValidatorSetting() {
+		HashMap<String, RulesExtInternal> extRuleCacheMap = RulesExtCache.getSingleton().getRulesExtInternals();
+
+		for (RulesExtInternal r : extRuleCacheMap.values()) {
+			EValidator.Registry.INSTANCE.put(r.getRootModelClass().getEPackage(), new EValidatorAdapter());
+		}
+	}
+
 }

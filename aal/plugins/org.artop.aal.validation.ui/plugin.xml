@@ -43,10 +43,9 @@
                </and>
                <and>
                   <instanceof value="org.eclipse.core.resources.IFile" />
-                  <test 
-                      forcePluginActivation="true"
-                      property="org.artop.ecl.emf.metaModelIdMatches"
-                      value="org.artop.aal.autosar\d\w" />
+                  <test forcePluginActivation="true"
+                			property="org.artop.ecl.emf.metaModelIdMatches"
+                			value="org.artop.aal.autosar\d\w" />
                </and>
                <and>
                   <instanceof value="org.eclipse.emf.ecore.EObject" />
