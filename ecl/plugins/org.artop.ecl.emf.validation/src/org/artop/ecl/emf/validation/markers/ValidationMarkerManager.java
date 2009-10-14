@@ -23,9 +23,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.artop.ecl.emf.resource.IXMLMarker;
 import org.artop.ecl.emf.util.EObjectUtil;
 import org.artop.ecl.emf.util.EcorePlatformUtil;
-import org.artop.ecl.emf.util.IXMLMarker;
 import org.artop.ecl.emf.validation.Activator;
 import org.artop.ecl.emf.validation.diagnostic.ExtendedDiagnostic;
 import org.artop.ecl.emf.validation.markers.util.FeatureAttUtil;
