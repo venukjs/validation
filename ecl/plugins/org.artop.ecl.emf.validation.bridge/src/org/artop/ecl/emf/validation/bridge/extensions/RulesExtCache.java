@@ -143,10 +143,6 @@ public class RulesExtCache implements IRegistryChangeListener {
 
 		if (r != null) {
 			rulesExtInternal.put(r.getMarker(), r);
-
-			// UNPLUGED
-			// ContributeToValidation.contributeToValidation(r);
-
 		}
 
 		IContributor ic = ext.getContributor();
