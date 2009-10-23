@@ -31,14 +31,9 @@ public class ModuleDefMultiplicityShouldBeTheSame3xConstraint extends AbstractMo
 
 	@Override
 	public IStatus validate(IValidationContext ctx) {
-		if (ctx == null) {
-			return ctx.createFailureStatus(new Object[] { "---" }); //$NON-NLS-1$
-		}
-
 		// Retrieve target object and see if we have to do anything with it
 		EObject targetObject = ctx.getTarget();
-		if (targetObject != null && isApplicable(targetObject)) {
-
+		if (isApplicable(targetObject)) {
 			ModuleDef targetModuleDef = (ModuleDef) targetObject;
 			if (!isOK(targetModuleDef)) {
 				return ctx.createFailureStatus(new Object[] { targetModuleDef.getARPackage().getShortName(), targetModuleDef.getShortName() });
