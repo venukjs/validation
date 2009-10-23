@@ -3,12 +3,6 @@
 <plugin>
 
     <!-- Example contraint categroy definition -->
-
-    <extension point="org.eclipse.emf.validation.constraintBindings">    
-        <binding
-            context="autosar3x.ARObject.context"
-            category="org.artop.aal.examples.constraints.category.autosar3x"/>
-    </extension>
   
    <extension point="org.eclipse.emf.validation.constraintProviders">
       <category
@@ -33,42 +27,11 @@
    <extension point="org.eclipse.emf.validation.constraintProviders">
       <constraintProvider cache="true">
       
-       <package namespaceUri="http://autosar.org/3.1.2/autosar3x/gs/i/a"/>
-       <package namespaceUri="http://autosar.org/3.1.2/autosar3x/ecucpd"/>
+       <package namespaceUri="http://autosar.org/3.1.1/autosar3x/gs/i/a"/>
+       <package namespaceUri="http://autosar.org/3.1.1/autosar3x/gs/i/i"/>
+       <package namespaceUri="http://autosar.org/3.1.1/autosar3x/ecucpd"/>
  
         <constraints categories="org.artop.aal.examples.constraints.category.autosar3x/static">
-            <constraint
-                  class="org.artop.aal.examples.validation.constraints.ModuleDefMultiplicityShouldBeTheSame3xConstraint"
-                  id="ModuleDefMultiplicityShouldBeTheSame_3x"
-                  lang="Java"
-                  mode="Live"
-                  name="%ModuleDefMultiplicityShouldBeTheSame_3x.name"
-                  severity="ERROR"
-                  statusCode="101">
-               <description>%ModuleDefMultiplicityShouldBeTheSame_3x.desc</description>
-               <message>%ModuleDefMultiplicityShouldBeTheSame_3x.msg</message>
-               <target
-                     class="ModuleDef">
-                  <event
-                        name="Set">
-                     <feature
-                           name="lowerMultiplicity">
-                     </feature>
-                     <feature
-                           name="upperMultiplicity">
-                     </feature>
-                  </event>
-                  <event name="Unset">
-                    <feature 
-                          name="lowerMultiplicity">
-                    </feature>
-                    <feature
-                           name="upperMultiplicity">
-                     </feature>
-                  </event>
-               </target>
-            </constraint>
-
             <constraint
                   class="org.artop.aal.examples.validation.constraints.ARPackageSpecificNamingConvention3xConstraint"
                   id="ARPackageSpecificNamingConvention_3x"
@@ -79,22 +42,96 @@
                   statusCode="101">
                <description>%ARPackageSpecificNamingConvention_3x.desc</description>
                <message>%ARPackageSpecificNamingConvention_3x.msg</message>
-               <target
-                     class="ARPackage">
-                  <event
-                        name="Set">
-                     <feature
-                           name="shortName">
-                     </feature>
+               <target class="ARPackage">
+                  <event name="Set">
+                     <feature name="shortName" />
                   </event>
                   <event name="Unset">
-                    <feature 
-                          name="shortName">
-                    </feature>
+                    <feature name="shortName" />
                   </event>
                </target>
-            </constraint>                         
+            </constraint>             
+            
+            <!-- TUTO: Modify this constraint such that checks the uniqueness of Identifable shortNames rather than ModuleDef muliplicities -->
+            <constraint
+                  class="org.artop.aal.examples.validation.constraints.ModuleDefMultiplicityShouldBeTheSame3xConstraint"
+                  id="ModuleDefMultiplicityShouldBeTheSame_3x"
+                  lang="Java"
+                  mode="Live"
+                  name="%ModuleDefMultiplicityShouldBeTheSame_3x.name"
+                  severity="ERROR"
+                  statusCode="101">
+               <description>%ModuleDefMultiplicityShouldBeTheSame_3x.desc</description>
+               <message>%ModuleDefMultiplicityShouldBeTheSame_3x.msg</message>
+               <target class="ModuleDef">
+                  <event name="Set">
+                     <feature name="lowerMultiplicity" />
+                     <feature name="upperMultiplicity" />
+                  </event>
+                  <event name="Unset">
+                     <feature name="lowerMultiplicity" />
+                     <feature name="upperMultiplicity" />
+                  </event>
+               </target>
+            </constraint>
+            
+            <constraint
+                  lang="OCL"
+                  severity="ERROR"
+                  mode="Live"
+                  name="Identifiable elements must have a valid shortName"
+                  id="IdentifiableElementsMustHaveAValidShortName_3x"
+                  statusCode="1">
+               <description>All Identifiable elements must have a shortName with at least one but no more than 32 characters.</description>
+               <message>The Identifiable \"{0}\" has no shortName or a shortName which is longer than 32 characters.</message>
+               <target class="Identifiable">
+                  <event name="Set">
+                     <feature name="shortName"/>
+                  </event>
+                  <event name="Unset">
+                    <feature name="shortName" />
+                  </event>
+               </target>
+         
+               <!-- TUTO: Modify this constraint such that it checks if shortName length is greater than 0 but less than or equal to 32 -->
+               <![CDATA[
+                  shortName.size() > 0 and shortName.size() <= 32
+               ]]>
+        
+            </constraint>
+            
+            <!-- TOTO: Modify constraint such that shortName length is greater than 0 but less than or equal to 32 -->
+            
+            <constraint
+                  lang="OCL"
+                  severity="ERROR"
+                  mode="Live"
+                  name="shortName of Identifiable elements must be unique"
+                  id="ShortNameOfIdentifiableElementsMustBeUnique_3x"
+                  statusCode="1">
+               <description>The shortNames of Identifiable elements within the same ARPackage must be unique.</description>
+               <message>The Identifiable \"{0}\" has the same shortName as another Identifiable element within same ARPackage.</message>
+               <target class="PackageableElement">
+                  <event name="Set">
+                     <feature name="shortName"/>
+                  </event>
+                  <event name="Unset">
+                    <feature name="shortName" />
+                  </event>
+               </target>
+
+               <![CDATA[
+                  self.aRPackage.elements->select(e | e <> self and e.shortName = self.shortName)->isEmpty()
+               ]]>
+        
+            </constraint>
          </constraints>    
       </constraintProvider>           
+    </extension>
+
+    <extension point="org.eclipse.emf.validation.constraintBindings">    
+        <binding
+            context="autosar3x.ARObject.context"
+            category="org.artop.aal.examples.constraints.category.autosar3x"/>
     </extension>
 </plugin>

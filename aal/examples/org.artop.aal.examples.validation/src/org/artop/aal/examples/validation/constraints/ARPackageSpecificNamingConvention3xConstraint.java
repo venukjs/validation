@@ -24,21 +24,16 @@ import autosar3x.genericstructure.infrastructure.autosar.ARPackage;
 
 public class ARPackageSpecificNamingConvention3xConstraint extends AbstractModelConstraint {
 
-	public static final String ARPACKAGE_PREFIX = "ARPackage"; //$NON-NLS-1$
+	public static final String ARPACKAGE_PREFIX = "arp"; //$NON-NLS-1$
 
 	public ARPackageSpecificNamingConvention3xConstraint() {
 	}
 
 	@Override
 	public IStatus validate(IValidationContext ctx) {
-		if (ctx == null) {
-			return ctx.createFailureStatus(new Object[] { "---" }); //$NON-NLS-1$
-		}
-
 		// Retrieve target object and see if we have to do anything with it
 		EObject targetObject = ctx.getTarget();
-		if (targetObject != null && isApplicable(targetObject)) {
-
+		if (isApplicable(targetObject)) {
 			ARPackage targetARPackage = (ARPackage) targetObject;
 			if (!isOK(targetARPackage)) {
 				return ctx.createFailureStatus(new Object[] { targetARPackage.getShortName() });
@@ -56,10 +51,18 @@ public class ARPackageSpecificNamingConvention3xConstraint extends AbstractModel
 	 * @return true if given {@link EObject} is applicable to this constraint, false otherwise.
 	 */
 	private boolean isApplicable(EObject eObject) {
-		Assert.isNotNull(eObject);
-
 		// The EObject object must be an ARPackage
-		return eObject instanceof ARPackage;
+		if (!(eObject instanceof ARPackage)) {
+			return false;
+		}
+
+		// Ignore ARPackages without short name
+		String shortName = ((ARPackage) eObject).getShortName();
+		if (shortName == null || shortName.length() == 0) {
+			return false;
+		}
+
+		return true;
 	}
 
 	/**
@@ -72,10 +75,6 @@ public class ARPackageSpecificNamingConvention3xConstraint extends AbstractModel
 	private boolean isOK(ARPackage arPackage) {
 		Assert.isNotNull(arPackage);
 
-		// ARPackage has "null" name will be skipped
-		if (arPackage.getShortName() != null && !arPackage.getShortName().equals("")) { //$NON-NLS-1$
-			return arPackage.getShortName().startsWith(ARPACKAGE_PREFIX);
-		}
-		return true;
+		return arPackage.getShortName().startsWith(ARPACKAGE_PREFIX);
 	}
 }
