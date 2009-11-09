@@ -22,7 +22,15 @@
          version="0.0.0"/>
 
    <includes
+         id="org.artop.validation.ecl.examples.source"
+         version="0.0.0"/>
+
+   <includes
          id="org.artop.validation.aal.examples"
+         version="0.0.0"/>
+
+   <includes
+         id="org.artop.validation.aal.examples.source"
          version="0.0.0"/>
 
 </feature>

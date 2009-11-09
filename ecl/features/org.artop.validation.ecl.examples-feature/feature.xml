@@ -21,10 +21,6 @@
       <import feature="org.artop.validation.ecl" version="2.0.0"/>
    </requires>
 
-   <includes
-         id="org.artop.validation.ecl.examples.source"
-         version="0.0.0"/>
-
    <plugin
          id="org.artop.ecl.examples.validation.ui"
          download-size="0"
