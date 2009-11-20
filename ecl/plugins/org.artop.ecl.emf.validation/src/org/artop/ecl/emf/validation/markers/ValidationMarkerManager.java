@@ -341,7 +341,9 @@ public class ValidationMarkerManager {
 	 * @throws CoreException
 	 */
 	public void modifyMarkersURI(IResource resource, String oldUri, String newUri) throws CoreException {
-		Assert.isNotNull(resource);
+		if (resource == null) {
+			return;
+		}
 
 		String[] oldInfo = ValidationUtil.splitURI(oldUri);
 		String[] newInfo = ValidationUtil.splitURI(newUri);
