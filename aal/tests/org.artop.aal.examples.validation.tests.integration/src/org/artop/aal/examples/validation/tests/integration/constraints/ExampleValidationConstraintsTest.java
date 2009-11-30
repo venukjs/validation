@@ -15,18 +15,20 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.validation.IValidationContext;
 
+import autosar3x.ecucparameterdef.ModuleDef;
 import autosar3x.ecuresource.ECU;
 import autosar3x.genericstructure.infrastructure.ARObject;
 import autosar3x.genericstructure.infrastructure.autosar.ARPackage;
+import autosar3x.system.fibex.fibexcore.coretopology.EcuInstance;
 
 // Warning ! This test class is based on precise model structure from arFile3x_3xA_5.arxml resource any
 // changes in that resource could lead to a test failures.
 public class ExampleValidationConstraintsTest extends DefaultTestCase {
 
 	private static int ARPACKAGE_SPECIFIQUE_NAMING_CONVENTION_3x_CONSTRAINT_CODE = 101;
-	private static int MODULE_DEF_MULTIPLICITY_SHOULD_BE_THE_SAME_3x_CONSTRAINT_CODE = 101;
-	private static int SHORTNAME_OF_IDENTIFIABLE_ELEMENTS_MUST_BE_UNIQUE_3x_CONSTRAINT_CODE = 1;
-	private static int IDENTIABLE_ELEMENTS_MUST_HAVE_A_VALID_SHORT_NAME_3x_CONSTRAINT_CODE = 1;
+	private static int MODULE_DEF_MULTIPLICITY_SHOULD_BE_THE_SAME_3x_CONSTRAINT_CODE = 102;
+	private static int IDENTIABLE_ELEMENTS_MUST_HAVE_A_VALID_SHORT_NAME_3x_CONSTRAINT_CODE = 103;
+	private static int SHORTNAME_OF_IDENTIFIABLE_ELEMENTS_MUST_BE_UNIQUE_3x_CONSTRAINT_CODE = 104;
 
 	// / ShortNameOfIdentifiableElementsMustBeUnique_3x code 1
 	// IdentifiableElementsMustHaveAValidShortName_3x code 1
@@ -47,13 +49,52 @@ public class ExampleValidationConstraintsTest extends DefaultTestCase {
 	 * Test method for OCL constraint{@link IdentifiableElementsMustHaveAValidShortName_3x }
 	 */
 	public void testValidationConstraint_IdentifiableElementsMustHaveAValidShortName_3x() {
-
+		// we retrieve arFile3x_3xA_4.arxml file from arProject3x_A
+		IFile arProject3xAFile3x_4 = refWks.getReferenceFile(DefaultTestReferenceWorkspace.AR_PROJECT_NAME_3x_A,
+				DefaultTestReferenceWorkspace.AR_FILE_NAME_3x_3xA_4);
+		// We retrieve ARPackage named arpackage1
+		ARPackage arPackage1 = getArObject(arProject3xAFile3x_4.getFullPath(), "/arpackage1", ARPackage.class); //$NON-NLS-1$
+		assertNotNull(arPackage1);
+		// This ARPackage contains an identifiable object with a ShortName field violating size limit i.e longer than 32
+		// characters
+		// We create diagnostician instance and perform validation of model object
+		ExtendedDiagnostician diagnostician = new ExtendedDiagnostician();
+		Diagnostic diagnostic = diagnostician.validate(arPackage1);
+		assertNotNull(diagnostic);
+		List<?> data = diagnostic.getData();
+		assertNotNull(data);
+		assertEquals(1, data.size());
+		assertEquals(arPackage1, data.get(0));
+		// We check that expected ERROR severity was correctly set to diagnostic object
+		assertEquals(Diagnostic.ERROR, diagnostic.getSeverity());
+		// We ensure that ERROR severity is not due to error on arpackage1 object itself
+		assertEquals(0, diagnostic.getCode());
+		List<Diagnostic> diagnosticChildren = diagnostic.getChildren();
+		assertNotNull(diagnosticChildren);
+		assertEquals(2, diagnosticChildren.size());
+		for (Diagnostic childDiagnostic : diagnosticChildren) {
+			if (childDiagnostic instanceof ExtendedDiagnostic) {
+				assertNotNull(childDiagnostic);
+				assertTrue(childDiagnostic.getChildren().isEmpty());
+				assertEquals(IDENTIABLE_ELEMENTS_MUST_HAVE_A_VALID_SHORT_NAME_3x_CONSTRAINT_CODE, childDiagnostic.getCode());
+				assertEquals("org.artop.aal.examples.validation.constraints.ARPackageSpecificNamingConvention3xConstraint",
+						((ExtendedDiagnostic) childDiagnostic).getConstraintId());
+				List<?> childData = childDiagnostic.getData();
+				assertNotNull(childData);
+				assertFalse(childData.isEmpty());
+				assertTrue(childData.get(0) instanceof EcuInstance);
+				EcuInstance ecuInstance = (EcuInstance) childData.get(0);
+				String shortName = ecuInstance.getShortName();
+				assertTrue(shortName.length() > 32);
+			}
+		}
 	}
 
 	/**
 	 * Test method for OCL constraint{@link ShortNameOfIdentifiableElementsMustBeUnique_3x }
 	 */
 	public void testValidationConstraint_ShortNameOfIdentifiableElementsMustBeUnique_3x() {
+		// we retrieve arFile3x_3xA_4.arxml file from arProject3x_A
 		IFile arProject3xAFile3x_4 = refWks.getReferenceFile(DefaultTestReferenceWorkspace.AR_PROJECT_NAME_3x_A,
 				DefaultTestReferenceWorkspace.AR_FILE_NAME_3x_3xA_4);
 
@@ -65,7 +106,6 @@ public class ExampleValidationConstraintsTest extends DefaultTestCase {
 		ExtendedDiagnostician diagnostician = new ExtendedDiagnostician();
 		Diagnostic diagnostic = diagnostician.validate(arPackage2);
 		assertNotNull(diagnostic);
-		// We retrieve Children Diagnostics and check that expected number have been created
 
 		// we check that data point by root diagnostic is previously validated model object
 		List<?> data = diagnostic.getData();
@@ -79,6 +119,7 @@ public class ExampleValidationConstraintsTest extends DefaultTestCase {
 		// We ensure that ERROR severity is not due to error on arpackage2 object itself
 		assertEquals(0, diagnostic.getCode());
 
+		// We retrieve Children Diagnostics and check that expected number have been created
 		List<Diagnostic> diagnosticChildren = diagnostic.getChildren();
 		assertEquals(3, diagnosticChildren.size());
 		// We now check constraints for each diagnostic child
@@ -103,7 +144,7 @@ public class ExampleValidationConstraintsTest extends DefaultTestCase {
 	 * Test method for {@link ARPackageSpecificNamingConvention3xConstraint#validate(IValidationContext)}
 	 */
 	public void testValidationConstraint_ARPackageSpecificNamingConvention3xConstraint() {
-
+		// we retrieve arFile3x_3xA_4.arxml file from arProject3x_A
 		IFile arProject3xAFile3x_4 = refWks.getReferenceFile(DefaultTestReferenceWorkspace.AR_PROJECT_NAME_3x_A,
 				DefaultTestReferenceWorkspace.AR_FILE_NAME_3x_3xA_4);
 		ExtendedDiagnostician diagnostician = new ExtendedDiagnostician();
@@ -119,7 +160,7 @@ public class ExampleValidationConstraintsTest extends DefaultTestCase {
 		assertFalse(data.isEmpty());
 		assertEquals(badPackage, data.get(0));
 		assertEquals(Diagnostic.WARNING, diagnostic.getSeverity());
-		// assertEquals(ARPACKAGE_SPECIFIQUE_NAMING_CONVENTION_3x_CONSTRAINT_CODE, diagnostic.getCode());
+		assertEquals(0, diagnostic.getCode());
 		// List<Diagnostic> childrenDiagnostics = diagnostic.getChildren();
 		// assertEquals(1, childrenDiagnostics.size());
 		// Diagnostic childDiagnostic = childrenDiagnostics.get(0);
@@ -128,34 +169,49 @@ public class ExampleValidationConstraintsTest extends DefaultTestCase {
 	}
 
 	public void testValidationConstraint_ModuleDefMultiplicityShouldBeTheSame3xConstraint() {
+		// we retrieve arFile3x_3xA_4.arxml file from arProject3x_A
+		IFile arProject3xAFile3x_4 = refWks.getReferenceFile(DefaultTestReferenceWorkspace.AR_PROJECT_NAME_3x_A,
+				DefaultTestReferenceWorkspace.AR_FILE_NAME_3x_3xA_4);
+		// We retrieve ARPackage named arpackage3
+		ARPackage arPackage3 = getArObject(arProject3xAFile3x_4.getFullPath(), "/arpackage3", ARPackage.class); //$NON-NLS-1$
+		assertNotNull(arPackage3);
+		// We create diagnostician instance and perform validation of model object
+		ExtendedDiagnostician diagnostician = new ExtendedDiagnostician();
+		Diagnostic diagnostic = diagnostician.validate(arPackage3);
+		assertNotNull(diagnostic);
 
-		// IFile arProject3xAFile3x_4 = refWks.getReferenceFile(DefaultTestReferenceWorkspace.AR_PROJECT_NAME_3x_A,
-		// DefaultTestReferenceWorkspace.AR_FILE_NAME_3x_3xA_4);
-		// // we retrieve ARPackage named badpackage
-		//		AUTOSAR autosarRoot = getArObject(arProject3xAFile3x_4.getFullPath(), "/", AUTOSAR.class); //$NON-NLS-1$
-		// assertNotNull(autosarRoot);
-		// ExtendedDiagnostician diagnostician = new ExtendedDiagnostician();
-		// Diagnostic diagnostic = diagnostician.validate(autosarRoot);
-		//		
-		// ARPackage arpackage1 = null;
-		// ARPackage arpackage2 = null;
-		// ARPackage badpackage = null;
-		//
-		// // we retrieve ARpackages under Autosar root
-		// for (ARPackage arpackage : topLevelPackages) {
-		// if (arpackage.getShortName().equals("arpackage1")) {
-		// arpackage1 = arpackage;
-		// } else if (arpackage.getShortName().equals("arpackage2")) {
-		// arpackage2 = arpackage;
-		// } else if (arpackage.getShortName().equals("badpackage")) {
-		// badpackage = arpackage;
-		// }
-		//
-		// }
-		// // we ensure that retrieved Arpackages exist
-		// assertNotNull(arpackage1);
-		// assertNotNull(arpackage2);
-		// assertNotNull(badpackage);
+		// we check that data point by root diagnostic is previously validated model object
+		List<?> data = diagnostic.getData();
+		assertNotNull(data);
+		assertEquals(1, data.size());
+		assertEquals(arPackage3, data.get(0));
+
+		// We check that expected ERROR severity was correctly set to diagnostic object
+		assertEquals(Diagnostic.ERROR, diagnostic.getSeverity());
+
+		// We ensure that ERROR severity is not due to error on arpackage2 object itself
+		assertEquals(0, diagnostic.getCode());
+
+		// We retrieve Children Diagnostics and check that expected number have been created
+		List<Diagnostic> diagnosticChildren = diagnostic.getChildren();
+		assertEquals(3, diagnosticChildren.size());
+		// We now check constraints for each diagnostic child
+		for (Diagnostic childDiagnostic : diagnosticChildren) {
+			if (childDiagnostic instanceof ExtendedDiagnostic) {
+				assertNotNull(childDiagnostic);
+				assertTrue(childDiagnostic.getChildren().isEmpty());
+				assertEquals(Diagnostic.ERROR, childDiagnostic.getSeverity());
+				assertEquals(MODULE_DEF_MULTIPLICITY_SHOULD_BE_THE_SAME_3x_CONSTRAINT_CODE, childDiagnostic.getCode());
+				assertEquals("org.artop.aal.examples.validation.ModuleDefMultiplicityShouldBeTheSame_3x", ((ExtendedDiagnostic) childDiagnostic)
+						.getConstraintId());
+				List<?> childData = childDiagnostic.getData();
+				assertNotNull(childData);
+				assertFalse(childData.isEmpty());
+				assertTrue(childData.get(0) instanceof ModuleDef);
+
+			}
+		}
+
 	}
 
 }
