@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.artop.ecl.emf.validation.tests.integration
+Bundle-Version: 2.0.0.qualifier
+Bundle-Activator: org.artop.ecl.emf.validation.tests.integration.internal.Activator$Implementation
+Require-Bundle: org.eclipse.core.runtime,
+ org.junit,
+ org.jdom,
+ org.artop.aal.examples.converter,
+ org.artop.ecl.testutils
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %providerName
