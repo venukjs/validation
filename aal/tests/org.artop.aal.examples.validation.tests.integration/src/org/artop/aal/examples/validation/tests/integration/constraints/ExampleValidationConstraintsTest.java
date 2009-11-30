@@ -1,15 +1,23 @@
 package org.artop.aal.examples.validation.tests.integration.constraints;
 
+import java.util.List;
+
 import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.examples.validation.constraints.ARPackageSpecificNamingConvention3xConstraint;
 import org.artop.ecl.emf.util.EcorePlatformUtil;
+import org.artop.ecl.emf.validation.diagnostic.ExtendedDiagnostic;
+import org.artop.ecl.emf.validation.diagnostic.ExtendedDiagnostician;
 import org.artop.ecl.testutils.DefaultTestCase;
 import org.artop.ecl.testutils.DefaultTestReferenceWorkspace;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.validation.IValidationContext;
 
+import autosar3x.ecuresource.ECU;
 import autosar3x.genericstructure.infrastructure.ARObject;
+import autosar3x.genericstructure.infrastructure.autosar.ARPackage;
 
 // Warning ! This test class is based on precise model structure from arFile3x_3xA_5.arxml resource any
 // changes in that resource could lead to a test failures.
@@ -46,49 +54,48 @@ public class ExampleValidationConstraintsTest extends DefaultTestCase {
 	 * Test method for OCL constraint{@link ShortNameOfIdentifiableElementsMustBeUnique_3x }
 	 */
 	public void testValidationConstraint_ShortNameOfIdentifiableElementsMustBeUnique_3x() {
-		// IFile arProject3xAFile3x_4 = refWks.getReferenceFile(DefaultTestReferenceWorkspace.AR_PROJECT_NAME_3x_A,
-		// DefaultTestReferenceWorkspace.AR_FILE_NAME_3x_3xA_4);
-		//
-		// // We retrieve ARPackage named arpackage2
-		//		ARPackage arPackage2 = getArObject(arProject3xAFile3x_4.getFullPath(), "/arpackage2", ARPackage.class); //$NON-NLS-1$
-		// assertNotNull(arPackage2);
-		//
-		// // We create diagnostician instance and perform validation of model object
-		// ExtendedDiagnostician diagnostician = new ExtendedDiagnostician();
-		// Diagnostic diagnostic = diagnostician.validate(arPackage2);
-		// assertNotNull(diagnostic);
-		// // We retrieve Children Diagnostics and check that expected number have been created
-		//
-		// // we check that data point by root diagnostic is previously validated model object
-		// List<?> data = diagnostic.getData();
-		// assertNotNull(data);
-		// assertEquals(1, data.size());
-		// assertEquals(arPackage2, data.get(0));
-		//
-		// // We check that expected ERROR severity was correctly set to diagnostic object
-		// assertEquals(Diagnostic.ERROR, diagnostic.getSeverity());
-		//
-		// // We ensure that ERROR severity is not due to error on arpackage2 object itself
-		// assertEquals(0, diagnostic.getCode());
-		//
-		// List<Diagnostic> diagnosticChildren = diagnostic.getChildren();
-		// assertEquals(3, diagnosticChildren.size());
-		// // We now check constraints for each diagnostic child
-		// for (Diagnostic childDiagnostic : diagnosticChildren) {
-		// if (childDiagnostic instanceof ExtendedDiagnostic) {
-		// assertNotNull(childDiagnostic);
-		// assertTrue(childDiagnostic.getChildren().isEmpty());
-		// assertEquals(Diagnostic.ERROR, childDiagnostic.getSeverity());
-		// assertEquals(SHORTNAME_OF_IDENTIFIABLE_ELEMENTS_MUST_BE_UNIQUE_3x_CONSTRAINT_CODE,
-		// childDiagnostic.getCode());
-		// assertEquals("org.artop.aal.examples.validation.ShortNameOfIdentifiableElementsMustBeUnique_3x",
-		// ((ExtendedDiagnostic) childDiagnostic).getConstraintId());
-		// List<?> childData = childDiagnostic.getData();
-		// assertNotNull(childData);
-		// assertFalse(childData.isEmpty());
-		// assertTrue(childData.get(0) instanceof ECU);
-		// }
-		// }
+		IFile arProject3xAFile3x_4 = refWks.getReferenceFile(DefaultTestReferenceWorkspace.AR_PROJECT_NAME_3x_A,
+				DefaultTestReferenceWorkspace.AR_FILE_NAME_3x_3xA_4);
+
+		// We retrieve ARPackage named arpackage2
+		ARPackage arPackage2 = getArObject(arProject3xAFile3x_4.getFullPath(), "/arpackage2", ARPackage.class); //$NON-NLS-1$
+		assertNotNull(arPackage2);
+
+		// We create diagnostician instance and perform validation of model object
+		ExtendedDiagnostician diagnostician = new ExtendedDiagnostician();
+		Diagnostic diagnostic = diagnostician.validate(arPackage2);
+		assertNotNull(diagnostic);
+		// We retrieve Children Diagnostics and check that expected number have been created
+
+		// we check that data point by root diagnostic is previously validated model object
+		List<?> data = diagnostic.getData();
+		assertNotNull(data);
+		assertEquals(1, data.size());
+		assertEquals(arPackage2, data.get(0));
+
+		// We check that expected ERROR severity was correctly set to diagnostic object
+		assertEquals(Diagnostic.ERROR, diagnostic.getSeverity());
+
+		// We ensure that ERROR severity is not due to error on arpackage2 object itself
+		assertEquals(0, diagnostic.getCode());
+
+		List<Diagnostic> diagnosticChildren = diagnostic.getChildren();
+		assertEquals(3, diagnosticChildren.size());
+		// We now check constraints for each diagnostic child
+		for (Diagnostic childDiagnostic : diagnosticChildren) {
+			if (childDiagnostic instanceof ExtendedDiagnostic) {
+				assertNotNull(childDiagnostic);
+				assertTrue(childDiagnostic.getChildren().isEmpty());
+				assertEquals(Diagnostic.ERROR, childDiagnostic.getSeverity());
+				assertEquals(SHORTNAME_OF_IDENTIFIABLE_ELEMENTS_MUST_BE_UNIQUE_3x_CONSTRAINT_CODE, childDiagnostic.getCode());
+				assertEquals("org.artop.aal.examples.validation.ShortNameOfIdentifiableElementsMustBeUnique_3x",
+						((ExtendedDiagnostic) childDiagnostic).getConstraintId());
+				List<?> childData = childDiagnostic.getData();
+				assertNotNull(childData);
+				assertFalse(childData.isEmpty());
+				assertTrue(childData.get(0) instanceof ECU);
+			}
+		}
 
 	}
 
@@ -97,26 +104,26 @@ public class ExampleValidationConstraintsTest extends DefaultTestCase {
 	 */
 	public void testValidationConstraint_ARPackageSpecificNamingConvention3xConstraint() {
 
-		// IFile arProject3xAFile3x_4 = refWks.getReferenceFile(DefaultTestReferenceWorkspace.AR_PROJECT_NAME_3x_A,
-		// DefaultTestReferenceWorkspace.AR_FILE_NAME_3x_3xA_4);
-		// ExtendedDiagnostician diagnostician = new ExtendedDiagnostician();
-		// // we retrieve ARPackage named badpackage
-		//		ARPackage badPackage = getArObject(arProject3xAFile3x_4.getFullPath(), "/badPackage", ARPackage.class); //$NON-NLS-1$
-		// assertNotNull(badPackage);
-		// // we ensure that retrieved Arpackage exist
-		//
-		// Diagnostic diagnostic = diagnostician.validate(badPackage);
-		// assertNotNull(diagnostic);
-		// List<?> data = diagnostic.getData();
-		// assertNotNull(data);
-		// assertFalse(data.isEmpty());
-		// assertEquals(badPackage, data.get(0));
-		// assertEquals(Diagnostic.WARNING, diagnostic.getSeverity());
-		// // assertEquals(ARPACKAGE_SPECIFIQUE_NAMING_CONVENTION_3x_CONSTRAINT_CODE, diagnostic.getCode());
-		// // List<Diagnostic> childrenDiagnostics = diagnostic.getChildren();
-		// // assertEquals(1, childrenDiagnostics.size());
-		// // Diagnostic childDiagnostic = childrenDiagnostics.get(0);
-		// // assertNotNull(childDiagnostic);
+		IFile arProject3xAFile3x_4 = refWks.getReferenceFile(DefaultTestReferenceWorkspace.AR_PROJECT_NAME_3x_A,
+				DefaultTestReferenceWorkspace.AR_FILE_NAME_3x_3xA_4);
+		ExtendedDiagnostician diagnostician = new ExtendedDiagnostician();
+		// we retrieve ARPackage named badpackage
+		ARPackage badPackage = getArObject(arProject3xAFile3x_4.getFullPath(), "/badPackage", ARPackage.class); //$NON-NLS-1$
+		assertNotNull(badPackage);
+		// we ensure that retrieved Arpackage exist
+
+		Diagnostic diagnostic = diagnostician.validate(badPackage);
+		assertNotNull(diagnostic);
+		List<?> data = diagnostic.getData();
+		assertNotNull(data);
+		assertFalse(data.isEmpty());
+		assertEquals(badPackage, data.get(0));
+		assertEquals(Diagnostic.WARNING, diagnostic.getSeverity());
+		// assertEquals(ARPACKAGE_SPECIFIQUE_NAMING_CONVENTION_3x_CONSTRAINT_CODE, diagnostic.getCode());
+		// List<Diagnostic> childrenDiagnostics = diagnostic.getChildren();
+		// assertEquals(1, childrenDiagnostics.size());
+		// Diagnostic childDiagnostic = childrenDiagnostics.get(0);
+		// assertNotNull(childDiagnostic);
 
 	}
 
