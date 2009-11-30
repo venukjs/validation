@@ -60,7 +60,7 @@
                   mode="Live"
                   name="%ModuleDefMultiplicityShouldBeTheSame_3x.name"
                   severity="ERROR"
-                  statusCode="101">
+                  statusCode="102">
                <description>%ModuleDefMultiplicityShouldBeTheSame_3x.desc</description>
                <message>%ModuleDefMultiplicityShouldBeTheSame_3x.msg</message>
                <target class="ModuleDef">
@@ -81,7 +81,7 @@
                   mode="Live"
                   name="Identifiable elements must have a valid shortName"
                   id="IdentifiableElementsMustHaveAValidShortName_3x"
-                  statusCode="1">
+                  statusCode="103">
                <description>All Identifiable elements must have a shortName with at least one but no more than 32 characters.</description>
                <message>The Identifiable \"{0}\" has no shortName or a shortName which is longer than 32 characters.</message>
                <target class="Identifiable">
@@ -100,14 +100,13 @@
         
             </constraint>
             
-            <!--
             <constraint
                   lang="OCL"
                   severity="ERROR"
                   mode="Live"
-                  name="shortName of Identifiable elements must be unique"
+                  name="The shortName of Identifiable elements must be unique"
                   id="ShortNameOfIdentifiableElementsMustBeUnique_3x"
-                  statusCode="1">
+                  statusCode="104">
                <description>The shortNames of Identifiable elements within the same ARPackage must be unique.</description>
                <message>The Identifiable \"{0}\" has the same shortName as another Identifiable element within same ARPackage.</message>
                <target class="PackageableElement">
@@ -124,7 +123,6 @@
                ]]>
         
             </constraint>
-            -->
          </constraints>    
       </constraintProvider>           
     </extension>
