@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+    <!-- The example contraint category -->
+  
+   <extension point="org.eclipse.emf.validation.constraintProviders">
+      <category
+            name="%ecl.examples.sphinx.validation.constraintProviders.category.sphinx.name"
+            id="org.artop.ecl.examples.sphinx.validation.constraintProviders.category.sphinx">
+         %ecl.examples.sphinx.validation.constraintProviders.category.sphinx.desc
+      </category>
+   </extension> 
+
+   <!-- The example contraints themselves -->
+
+   <extension point="org.eclipse.emf.validation.constraintProviders">
+      <constraintProvider cache="true">
+      
+       <package namespaceUri="http://www.artop.org/sphinx"/>
+ 
+        <constraints categories="org.artop.ecl.examples.sphinx.validation.constraintProviders.category.sphinx">
+            <constraint
+                  class="org.artop.ecl.examples.sphinx.validation.constraints.SInterfaceNamingConventionConstraint"
+                  id="org.artop.ecl.examples.sphinx.validation.constraints.sInterfaceNamingConventionConstraint"
+                  lang="Java"
+                  mode="Live"
+                  name="%ecl.examples.sphinx.validation.constraints.sInterfaceNamingConventionConstraint.name"
+                  severity="WARNING"
+                  statusCode="101">
+               <description>%ecl.examples.sphinx.validation.constraints.sInterfaceNamingConventionConstraint.desc</description>
+               <message>%ecl.examples.sphinx.validation.constraints.sInterfaceNamingConventionConstraint.msg</message>
+               <target class="SInterface">
+                  <event name="Set">
+                     <feature name="name" />
+                  </event>
+                  <event name="Unset">
+                    <feature name="name" />
+                  </event>
+               </target>
+            </constraint>             
+         </constraints>    
+      </constraintProvider>           
+    </extension>
+
+   <!-- The client context for the example meta model -->
+
+    <extension point="org.eclipse.emf.validation.constraintBindings">    
+        <clientContext id="org.artop.ecl.examples.sphinx.validation.constraintBindings.clientContext.sphinx">
+            <enablement>
+               <and>
+                  <instanceof value="org.eclipse.emf.ecore.EObject" />
+                  <test
+                        property="org.artop.ecl.emf.classNameMatches"
+                        value="org\.artop\.ecl\.examples\.sphinx\..*"/>
+               </and>
+            </enablement>
+        </clientContext>
+    </extension>
+
+   <!-- The binding of the example constraint category to the example client context -->
+
+    <extension point="org.eclipse.emf.validation.constraintBindings">    
+        <binding
+            context="org.artop.ecl.examples.sphinx.validation.constraintBindings.clientContext.sphinx"
+            category="org.artop.ecl.examples.sphinx.validation.constraintProviders.category.sphinx"/>
+    </extension>
+
+</plugin>

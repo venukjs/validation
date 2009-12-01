@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.artop.ecl.examples.sphinx.validation.ui;singleton:=true
+Bundle-Version: 2.0.0.qualifier
+Bundle-Vendor: %providerName
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Localization: plugin
+Require-Bundle: org.artop.ecl.emf.validation.ui
