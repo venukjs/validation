@@ -20,6 +20,9 @@ import java.util.List;
 import java.util.Set;
 
 import org.artop.aal.validation.util.Messages;
+import org.artop.ecl.emf.model.IModelDescriptorChangeListener;
+import org.artop.ecl.emf.model.ModelDescriptor;
+import org.artop.ecl.emf.model.ModelDescriptorRegistry;
 import org.artop.ecl.emf.util.EObjectUtil;
 import org.artop.ecl.emf.util.EcorePlatformUtil;
 import org.artop.ecl.emf.validation.diagnostic.ExtendedDiagnostician;
@@ -55,7 +58,7 @@ import org.eclipse.emf.validation.service.IConstraintFilter;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.osgi.util.NLS;
 
-public abstract class AbstractAutomaticValidationListener extends ResourceSetListenerImpl {
+public abstract class AbstractAutomaticValidationListener extends ResourceSetListenerImpl implements IModelDescriptorChangeListener {
 
 	/**
 	 * The notification filter to apply.
@@ -107,6 +110,13 @@ public abstract class AbstractAutomaticValidationListener extends ResourceSetLis
 
 	protected AbstractAutomaticValidationListener(NotificationFilter filter) {
 		super(filter);
+		ModelDescriptorRegistry.INSTANCE.addModelDescriptorChangeListener(this);
+	}
+
+	@Override
+	protected void finalize() throws Throwable {
+		super.finalize();
+		ModelDescriptorRegistry.INSTANCE.removeModelDescriptorChangeListener(this);
 	}
 
 	/**
@@ -415,6 +425,18 @@ public abstract class AbstractAutomaticValidationListener extends ResourceSetLis
 	@Override
 	public boolean isPostcommitOnly() {
 		return true;
+	}
+
+	protected void handleModelChange(ModelDescriptor modelDescriptor) {
+		// optimise behavior
+	}
+
+	public void handleModelAdded(ModelDescriptor modelDescriptor) {
+		handleModelChange(modelDescriptor);
+	}
+
+	public void handleModelRemoved(ModelDescriptor modelDescriptor) {
+		handleModelChange(modelDescriptor);
 	}
 
 }
