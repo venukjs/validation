@@ -37,6 +37,7 @@ public final class Activator extends EMFPlugin {
 	 */
 	public Activator() {
 		super(new ResourceLocator[] {});
+
 	}
 
 	/**

@@ -2,6 +2,7 @@
 <?eclipse version="3.2"?>
 <plugin>
 
+ 
     <!-- The example contraint category -->
   
    <extension point="org.eclipse.emf.validation.constraintProviders">
@@ -64,6 +65,11 @@
         <binding
             context="org.artop.ecl.examples.sphinx.validation.constraintBindings.clientContext.sphinx"
             category="org.artop.ecl.examples.sphinx.validation.constraintProviders.category.sphinx"/>
+    </extension>
+    <extension
+          point="org.eclipse.ui.startup">
+       <startup
+             class="org.artop.ecl.examples.sphinx.validation.internal.Startup"></startup>
     </extension>
 
 </plugin>
