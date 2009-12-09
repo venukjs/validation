@@ -59,10 +59,9 @@ public class ExampleValidationConstraintsTest extends DefaultTestCase {
 	// TODO move this method to AutosarAbstractTestCase when this classes will be created (i.e after test framework
 	// refactoring performed)
 	private <T extends ARObject> T getArObject(IPath modelFilePath, String absoluteQualifiedName, Class<T> modelElementType) {
-		URI arProject3xAFile3x_4_Uri = EcorePlatformUtil.createURI(modelFilePath);
-
+		URI modelFileURI = EcorePlatformUtil.createURI(modelFilePath);
 		String uriFragment = AutosarURIFactory.createURIFragment(absoluteQualifiedName, modelElementType.getSimpleName());
-		return modelElementType.cast(refWks.editingDomain3x.getResourceSet().getEObject(arProject3xAFile3x_4_Uri.appendFragment(uriFragment), false));
+		return modelElementType.cast(refWks.editingDomain3x.getResourceSet().getEObject(modelFileURI.appendFragment(uriFragment), false));
 	}
 
 	/**
