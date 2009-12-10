@@ -20,4 +20,26 @@
       </enablement>
     </actionProvider>
   </extension>
+  <extension
+        point="org.eclipse.ui.actionSets">
+     <actionSet
+           id="org.artop.ecl.examples.validation.ui.actionSet1"
+           label="%validation_actionSet"
+           visible="true">
+        <menu
+              id="validationMenu"
+              label="%ValidateMenu_title">
+           <groupMarker
+                 name="group">
+           </groupMarker>
+        </menu>
+        <action
+              class="org.artop.ecl.emf.validation.ui.actions.contributor.AutomaticValidationActionContributor"
+              id="org.artop.ecl.examples.validation.ui.action..validateAutomatically"
+              label="%ValidateAutomaticallyMenu_label"
+              menubarPath="validationMenu/group"
+              style="toggle">
+        </action>
+     </actionSet>
+  </extension>
 </plugin>
