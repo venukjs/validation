@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         point="org.artop.ecl.emf.validation.registration">
+      <model
+            id="autosar40"
+            filter="_40"
+            Name="AUTOSAR 4.0"
+            NsURI="http://autosar.org/4.0.0/autosar40/gs/gtc/ao"
+            class="autosar40.genericstructure.generaltemplateclasses.arobject.ARObject">
+      </model>
+   </extension>
+
+   <extension point="org.eclipse.emf.validation.constraintBindings">
+        <clientContext id="autosar40.ARObject.context">
+            <enablement>
+                <instanceof value="autosar40.genericstructure.generaltemplateclasses.arobject.ARObject"/>
+            </enablement>
+        </clientContext>
+   </extension>
+
+   <extension
+         point="org.artop.ecl.emf.editingDomainFactoryListeners">
+      <listener
+            id="org.artop.aal.autosar40.validation.internal.ValidationEditingDomainFactoryListener"
+            class="org.artop.aal.autosar40.validation.internal.ValidationEditingDomainFactoryListener">
+         <applicableFor
+               metaModelDescriptorIdPattern="org.artop.aal.autosar40" />
+      </listener>
+   </extension>
+
+</plugin>
