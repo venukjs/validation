@@ -8,7 +8,7 @@
             id="autosar40"
             filter="_40"
             Name="AUTOSAR 4.0"
-            NsURI="http://autosar.org/4.0.0/autosar40/gs/gtc/ao"
+            NsURI="http://autosar.org/schema/r4.0/autosar40/gs/gtc/ao"
             class="autosar40.genericstructure.generaltemplateclasses.arobject.ARObject">
       </model>
    </extension>
