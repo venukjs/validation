@@ -19,6 +19,7 @@ import junit.framework.TestSuite;
 
 public class AalExamplesValidationTestIntegrationTestSuite {
 
+	@SuppressWarnings("nls")
 	public static Test suite() {
 		TestSuite suite = new TestSuite("Test for org.artop.ecl.emf.tests.testsuite");
 		// $JUnit-BEGIN$

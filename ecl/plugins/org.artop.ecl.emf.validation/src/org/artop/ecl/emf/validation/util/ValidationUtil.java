@@ -293,8 +293,7 @@ public class ValidationUtil {
 			return result;
 		}
 
-		// TODO Create and use NLS message.
-		PlatformLogUtil.logAsWarning(Activator.getDefault(), new RuntimeException("Cannot perform validation on empty element selection."));
+		PlatformLogUtil.logAsWarning(Activator.getDefault(), new RuntimeException("Cannot perform validation on empty element selection.")); //$NON-NLS-1$
 		return null;
 	}
 

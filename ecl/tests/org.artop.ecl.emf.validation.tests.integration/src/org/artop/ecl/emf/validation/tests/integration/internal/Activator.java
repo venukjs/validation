@@ -15,9 +15,7 @@
 package org.artop.ecl.emf.validation.tests.integration.internal;
 
 import org.eclipse.emf.common.EMFPlugin;
-import org.eclipse.emf.common.EMFPlugin.EclipsePlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
-
 
 /**
  * The activator class controls the plug-in life cycle

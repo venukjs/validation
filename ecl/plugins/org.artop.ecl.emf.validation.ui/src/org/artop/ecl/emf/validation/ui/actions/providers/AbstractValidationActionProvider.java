@@ -27,10 +27,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.IWrapperItemProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.ui.navigator.CommonActionProvider;
 
 /**
  * An abstract base class for {@linkplain BasicActionProvider action provider}s that are dedicated to validation related

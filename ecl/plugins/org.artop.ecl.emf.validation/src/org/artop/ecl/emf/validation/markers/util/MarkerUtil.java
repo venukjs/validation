@@ -19,7 +19,6 @@ import java.util.Set;
 import org.artop.ecl.emf.util.EcoreResourceUtil;
 import org.artop.ecl.emf.util.WorkspaceEditingDomainUtil;
 import org.artop.ecl.emf.validation.Activator;
-import org.artop.ecl.emf.validation.markers.IValidationMarker;
 import org.artop.ecl.platform.util.PlatformLogUtil;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;

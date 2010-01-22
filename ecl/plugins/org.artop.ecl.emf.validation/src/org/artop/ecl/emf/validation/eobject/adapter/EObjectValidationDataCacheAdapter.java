@@ -14,7 +14,6 @@
  */
 package org.artop.ecl.emf.validation.eobject.adapter;
 
-import org.artop.ecl.emf.validation.markers.ValidationStatusCode;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 
 /**

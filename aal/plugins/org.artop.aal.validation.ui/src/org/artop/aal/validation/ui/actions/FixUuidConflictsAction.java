@@ -36,7 +36,6 @@ import org.artop.ecl.platform.util.ExtendedPlatform;
 import org.artop.ecl.platform.util.PlatformLogUtil;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.IOperationHistory;
-import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
