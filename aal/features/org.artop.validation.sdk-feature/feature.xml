@@ -18,8 +18,8 @@
    </license>
 
    <requires>
-      <import feature="org.artop.ecl" version="2.0.0"/>
-      <import feature="org.artop.aal" version="2.0.0"/>
+      <import feature="org.artop.ecl" version="2.1.0"/>
+      <import feature="org.artop.aal" version="2.1.0"/>
    </requires>
 
    <includes
