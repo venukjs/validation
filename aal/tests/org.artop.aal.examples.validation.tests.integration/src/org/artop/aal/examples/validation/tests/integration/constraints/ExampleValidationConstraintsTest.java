@@ -17,15 +17,17 @@ package org.artop.aal.examples.validation.tests.integration.constraints;
 import java.util.List;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
+import org.artop.aal.examples.validation.constraints.ARPackageSpecificNamingConvention3xConstraint;
 import org.artop.ecl.emf.util.EcorePlatformUtil;
 import org.artop.ecl.emf.validation.diagnostic.ExtendedDiagnostic;
 import org.artop.ecl.emf.validation.diagnostic.ExtendedDiagnostician;
-import org.artop.ecl.testutils.DefaultTestCase;
-import org.artop.ecl.testutils.DefaultTestReferenceWorkspace;
+import org.artop.ecl.testutils.referenceworkspace.DefaultTestCase;
+import org.artop.ecl.testutils.referenceworkspace.DefaultTestReferenceWorkspace;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.validation.IValidationContext;
 
 import autosar3x.ecucparameterdef.ModuleDef;
 import autosar3x.ecuresource.ECU;

@@ -11,7 +11,8 @@ Require-Bundle: org.junit,
  org.eclipse.core.runtime,
  org.artop.ecl.testutils,
  org.artop.ecl.emf.validation,
- org.artop.aal.examples.validation
+ org.artop.aal.examples.validation,
+ org.artop.ecl.testutils.referenceworkspace;bundle-version="2.1.0"
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.artop.aal.examples.validation.tests.integration.internal.Activator$Implementation
 Export-Package: org.artop.aal.examples.validation.tests.integration.constraints,
