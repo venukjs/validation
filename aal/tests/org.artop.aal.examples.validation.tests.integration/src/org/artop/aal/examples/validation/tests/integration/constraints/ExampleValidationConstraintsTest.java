@@ -18,11 +18,11 @@ import java.util.List;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.examples.validation.constraints.ARPackageSpecificNamingConvention3xConstraint;
+import org.artop.aal.testutils.referenceworkspace.AutosarTestCase;
+import org.artop.aal.testutils.referenceworkspace.AutosarTestReferenceWorkspace;
 import org.artop.ecl.emf.util.EcorePlatformUtil;
 import org.artop.ecl.emf.validation.diagnostic.ExtendedDiagnostic;
 import org.artop.ecl.emf.validation.diagnostic.ExtendedDiagnostician;
-import org.artop.ecl.testutils.referenceworkspace.DefaultTestCase;
-import org.artop.ecl.testutils.referenceworkspace.DefaultTestReferenceWorkspace;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -38,7 +38,7 @@ import autosar3x.system.fibex.fibexcore.coretopology.EcuInstance;
 // Warning ! This test class is based on precise model structure from arFile3x_3xA_5.arxml resource any
 // changes in that resource could lead to a test failures.
 @SuppressWarnings("nls")
-public class ExampleValidationConstraintsTest extends DefaultTestCase {
+public class ExampleValidationConstraintsTest extends AutosarTestCase {
 	private static String ARPACKAGE_SPECIFIQUE_NAMING_CONVENTION_3x_CONSTRAINT_ID = "org.artop.aal.examples.validation.ARPackageSpecificNamingConvention_3x";
 	private static int ARPACKAGE_SPECIFIQUE_NAMING_CONVENTION_3x_CONSTRAINT_CODE = 101;
 
@@ -54,7 +54,7 @@ public class ExampleValidationConstraintsTest extends DefaultTestCase {
 	@Override
 	protected String[] getProjectsToLoad() {
 
-		return new String[] { DefaultTestReferenceWorkspace.AR_PROJECT_NAME_3x_A };
+		return new String[] { AutosarTestReferenceWorkspace.AR_PROJECT_NAME_3x_A };
 	}
 
 	// TODO move this method to AutosarAbstractTestCase when this classes will be created (i.e after test framework
@@ -70,8 +70,9 @@ public class ExampleValidationConstraintsTest extends DefaultTestCase {
 	 */
 	public void testValidationConstraint_ARPackageSpecificNamingConvention3xConstraint() {
 		// we retrieve arFile3x_3xA_4.arxml file from arProject3x_A
-		IFile arProject3xAFile3x_4 = refWks.getReferenceFile(DefaultTestReferenceWorkspace.AR_PROJECT_NAME_3x_A,
-				DefaultTestReferenceWorkspace.AR_FILE_NAME_3x_3xA_4);
+		IFile arProject3xAFile3x_4 = refWks.getReferenceFile(AutosarTestReferenceWorkspace.AR_PROJECT_NAME_3x_A,
+				AutosarTestReferenceWorkspace.AR_FILE_NAME_3x_3xA_4);
+		// ExtendedDiagnostician diagnostician = new ExtendedDiagnostician();
 		ExtendedDiagnostician diagnostician = new ExtendedDiagnostician();
 		// we retrieve ARPackage named badpackage
 		ARPackage badPackage = getArObject(arProject3xAFile3x_4.getFullPath(), "/badPackage", ARPackage.class); //$NON-NLS-1$
@@ -108,8 +109,8 @@ public class ExampleValidationConstraintsTest extends DefaultTestCase {
 
 	public void testValidationConstraint_ModuleDefMultiplicityShouldBeTheSame3xConstraint() {
 		// we retrieve arFile3x_3xA_4.arxml file from arProject3x_A
-		IFile arProject3xAFile3x_4 = refWks.getReferenceFile(DefaultTestReferenceWorkspace.AR_PROJECT_NAME_3x_A,
-				DefaultTestReferenceWorkspace.AR_FILE_NAME_3x_3xA_4);
+		IFile arProject3xAFile3x_4 = refWks.getReferenceFile(AutosarTestReferenceWorkspace.AR_PROJECT_NAME_3x_A,
+				AutosarTestReferenceWorkspace.AR_FILE_NAME_3x_3xA_4);
 		// We retrieve ARPackage named arpackage3
 		ARPackage arPackage3 = getArObject(arProject3xAFile3x_4.getFullPath(), "/arpackage3", ARPackage.class); //$NON-NLS-1$
 		assertNotNull(arPackage3);
@@ -160,8 +161,8 @@ public class ExampleValidationConstraintsTest extends DefaultTestCase {
 	 */
 	public void testValidationConstraint_IdentifiableElementsMustHaveAValidShortName_3x() {
 		// we retrieve arFile3x_3xA_4.arxml file from arProject3x_A
-		IFile arProject3xAFile3x_4 = refWks.getReferenceFile(DefaultTestReferenceWorkspace.AR_PROJECT_NAME_3x_A,
-				DefaultTestReferenceWorkspace.AR_FILE_NAME_3x_3xA_4);
+		IFile arProject3xAFile3x_4 = refWks.getReferenceFile(AutosarTestReferenceWorkspace.AR_PROJECT_NAME_3x_A,
+				AutosarTestReferenceWorkspace.AR_FILE_NAME_3x_3xA_4);
 		// We retrieve ARPackage named arpackage1
 		ARPackage arPackage1 = getArObject(arProject3xAFile3x_4.getFullPath(), "/arpackage1", ARPackage.class); //$NON-NLS-1$
 		assertNotNull(arPackage1);
@@ -212,8 +213,8 @@ public class ExampleValidationConstraintsTest extends DefaultTestCase {
 	 */
 	public void testValidationConstraint_ShortNameOfIdentifiableElementsMustBeUnique_3x() {
 		// we retrieve arFile3x_3xA_4.arxml file from arProject3x_A
-		IFile arProject3xAFile3x_4 = refWks.getReferenceFile(DefaultTestReferenceWorkspace.AR_PROJECT_NAME_3x_A,
-				DefaultTestReferenceWorkspace.AR_FILE_NAME_3x_3xA_4);
+		IFile arProject3xAFile3x_4 = refWks.getReferenceFile(AutosarTestReferenceWorkspace.AR_PROJECT_NAME_3x_A,
+				AutosarTestReferenceWorkspace.AR_FILE_NAME_3x_3xA_4);
 
 		// We retrieve ARPackage named arpackage2
 		ARPackage arPackage2 = getArObject(arProject3xAFile3x_4.getFullPath(), "/arpackage2", ARPackage.class); //$NON-NLS-1$
