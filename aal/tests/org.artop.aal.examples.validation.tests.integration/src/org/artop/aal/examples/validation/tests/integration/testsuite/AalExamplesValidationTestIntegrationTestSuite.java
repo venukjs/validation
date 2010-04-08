@@ -21,7 +21,7 @@ public class AalExamplesValidationTestIntegrationTestSuite {
 
 	@SuppressWarnings("nls")
 	public static Test suite() {
-		TestSuite suite = new TestSuite("Test for org.artop.ecl.emf.tests.testsuite");
+		TestSuite suite = new TestSuite("Test for  org.artop.aal.examples.validation.tests.integration");
 		// $JUnit-BEGIN$
 		suite.addTestSuite(org.artop.aal.examples.validation.tests.integration.constraints.ExampleValidationConstraintsTest.class);
 		// $JUnit-END$
