@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="genDoc.xsl"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension point="org.eclipse.emf.validation.constraintProviders">
+      <category
+            id="org.artop.aal.autosar3x.validation.ecuc"
+            mandatory="true"
+            name="Autosar Validation of Ecuc Description">
+      The constraints of this category check the ECUC description
+      </category>
+      
+      <constraintProvider
+            cache="true"
+            mode="Batch">
+         <package namespaceUri="http://autosar.org/3.1.2/autosar3x/ecucd"/>
+
+         <constraints categories="org.artop.aal.autosar3x.validation.ecuc">
+            <constraint
+                  class="org.artop.aal.autosar3x.validation.ecuc.StringValueConstraint"
+                  id="org.artop.aal.autosar3x.validation.ecuc.StringValueConstraint_3x"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="StringValue"
+                  severity="ERROR"
+                  statusCode="0010001">
+               <message>
+                  {0}
+               </message>
+               <description>
+                
+               </description>
+               <target
+                     class="StringValue">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.artop.aal.autosar3x.validation.ecuc.IntegerValueConstraint"
+                  id="org.artop.aal.autosar3x.validation.ecuc.IntegerValueConstraint_3x"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="IntegerValue"
+                  severity="ERROR"
+                  statusCode="0010002">
+               <message>
+                  {0}
+               </message>
+               <description>
+               </description>
+               <target
+                     class="IntegerValue">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.artop.aal.autosar3x.validation.ecuc.BooleanValueConstraint"
+                  id="org.artop.aal.autosar3x.validation.ecuc.BooleanValueConstraint_3x"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="BooleanValue"
+                  severity="ERROR"
+                  statusCode="0010002">
+               <message>
+                  {0}
+               </message>
+               <description>
+               </description>
+               <target
+                     class="BooleanValue">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.artop.aal.autosar3x.validation.ecuc.FloatValueConstraint"
+                  id="org.artop.aal.autosar3x.validation.ecuc.FloatValueConstraint_3x"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="FloatValue"
+                  severity="ERROR"
+                  statusCode="0010002">
+               <message>
+                  {0}
+               </message>
+               <description>
+               </description>
+               <target
+                     class="FloatValue">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.artop.aal.autosar3x.validation.ecuc.EnumerationValueConstraint"
+                  id="org.artop.aal.autosar3x.validation.ecuc.EnumerationValueConstraint_3x"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="EnumerationValue"
+                  severity="ERROR"
+                  statusCode="0010002">
+               <message>
+                  {0}
+               </message>
+               <description>
+               </description>
+               <target
+                     class="EnumerationValue">
+               </target>
+            </constraint>
+            
+            <constraint
+                  class="org.artop.aal.autosar3x.validation.ecuc.ReferenceValueConstraint"
+                  id="org.artop.aal.autosar3x.validation.ecuc.ReferenceValueConstraint_3x"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="ReferenceValue"
+                  severity="ERROR"
+                  statusCode="0010002">
+               <message>
+                  {0}
+               </message>
+               <description>
+               </description>
+               <target
+                     class="ReferenceValue">
+               </target>
+            </constraint>
+            
+         </constraints>     
+      </constraintProvider>
+   </extension>
+   <extension point="org.eclipse.emf.validation.constraintBindings">    
+        <binding
+            context="autosar3x.ARObject.context"
+            category="org.artop.aal.autosar3x.validation.ecuc"/>
+   </extension>
+
+</plugin>
