@@ -35,7 +35,7 @@ public class AutosarValidationActionProvider extends BasicValidationActionProvid
 	/**
 	 * Action responsible for fixing UUID conflicts on Identifiable objects.
 	 */
-	private FixUuidConflictsAction fixUuidConflictsAction;
+	protected FixUuidConflictsAction fixUuidConflictsAction;
 
 	/*
 	 * @see org.artop.ecl.emf.validation.ui.actions.providers.BasicValidationActionProvider#doInit()
