@@ -62,7 +62,7 @@ public abstract class AbstractParameterValueConstraint extends AbstractModelCons
 					if (parentParamConfContainerDef.getParameters().contains(configParameter)) {
 						status = ctx.createSuccessStatus(); // reference is valid
 					} else {
-						status = ctx.createFailureStatus("containement problem: parameter value with definition " + configParameter.getShortName()
+						status = ctx.createFailureStatus("containment problem: parameter value with definition " + configParameter.getShortName()
 								+ " not allowed here");
 					}
 				} else if (parentContainerDef instanceof ChoiceContainerDef) {
