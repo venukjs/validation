@@ -19,6 +19,7 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import org.artop.aal.autosar3x.validation.ecuc.tests.BooleanValueTests;
+import org.artop.aal.autosar3x.validation.ecuc.tests.ContainerTests;
 import org.artop.aal.autosar3x.validation.ecuc.tests.EnumerationValueTests;
 import org.artop.aal.autosar3x.validation.ecuc.tests.FloatValueTests;
 import org.artop.aal.autosar3x.validation.ecuc.tests.InstanceReferenceValueTests;
@@ -46,6 +47,7 @@ public class AalAutosar3xValidationEcucTestSuite {
 		suite.addTestSuite(ReferenceValueTests.class);
 		suite.addTestSuite(InstanceReferenceValueTests.class);
 		suite.addTestSuite(ModuleConfigurationTests.class);
+		suite.addTestSuite(ContainerTests.class);
 
 		return suite;
 	}
