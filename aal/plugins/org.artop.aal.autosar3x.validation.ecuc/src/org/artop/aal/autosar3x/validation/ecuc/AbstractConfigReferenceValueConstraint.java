@@ -21,8 +21,12 @@ import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 
 import autosar3x.ecucdescription.ConfigReferenceValue;
+import autosar3x.ecucdescription.Container;
 import autosar3x.ecucdescription.EcucdescriptionPackage;
+import autosar3x.ecucparameterdef.ChoiceContainerDef;
 import autosar3x.ecucparameterdef.ConfigReference;
+import autosar3x.ecucparameterdef.ContainerDef;
+import autosar3x.ecucparameterdef.ParamConfContainerDef;
 
 public abstract class AbstractConfigReferenceValueConstraint extends AbstractModelConstraint {
 
@@ -34,14 +38,48 @@ public abstract class AbstractConfigReferenceValueConstraint extends AbstractMod
 		} else if (configReferenceValue.getDefinition().eIsProxy()) {
 			status = ctx.createFailureStatus("reference to definition could not be resolved");
 		} else {
-			status = ctx.createSuccessStatus();
+			status = validateContainmentStructure(ctx, configReferenceValue);
 		}
 		return status;
 	}
 
-	protected IStatus validateConfigReferenceValue(IValidationContext ctx, ConfigReferenceValue configReferenceValue, ConfigReference configReference) {
-		assert false; // we should never
-		return ctx.createSuccessStatus();
+	private IStatus validateContainmentStructure(IValidationContext ctx, ConfigReferenceValue configReferenceValue) {
+		final IStatus status;
+
+		EObject parent = configReferenceValue.eContainer();
+
+		if (null == parent) {
+			status = ctx.createFailureStatus("element has no parent");
+		} else {
+			ConfigReference configReference = configReferenceValue.getDefinition();
+			if (parent instanceof Container) {
+				// the current Container is contained in another Container
+				Container parentContainer = (Container) parent;
+				ContainerDef parentContainerDef = parentContainer.getDefinition();
+
+				if (parentContainerDef instanceof ParamConfContainerDef) {
+					// the parent containers definition is a ParamConfContainerDef
+					ParamConfContainerDef parentParamConfContainerDef = (ParamConfContainerDef) parentContainerDef;
+					if (parentParamConfContainerDef.getReferences().contains(configReference)) {
+						status = ctx.createSuccessStatus(); // reference is valid
+					} else {
+						status = ctx.createFailureStatus("containement problem: reference with definition " + configReference.getShortName()
+								+ " not allowed here");
+					}
+				} else if (parentContainerDef instanceof ChoiceContainerDef) {
+					// TODO: create testcase
+					status = ctx.createFailureStatus("ReferenceValue not allowed in choice containers");
+				} else {
+					status = ctx.createSuccessStatus();
+				}
+			} else {
+				// we only expect an object of type Container
+				status = ctx.createSuccessStatus();
+			}
+
+		}
+		return status;
+
 	}
 
 	protected boolean isInstanceOfDestinationType(EObject instance, String destinationTypeName) {
