@@ -23,6 +23,7 @@ import org.artop.aal.autosar3x.validation.ecuc.tests.EnumerationValueTests;
 import org.artop.aal.autosar3x.validation.ecuc.tests.FloatValueTests;
 import org.artop.aal.autosar3x.validation.ecuc.tests.InstanceReferenceValueTests;
 import org.artop.aal.autosar3x.validation.ecuc.tests.IntegerValueTests;
+import org.artop.aal.autosar3x.validation.ecuc.tests.ModuleConfigurationTests;
 import org.artop.aal.autosar3x.validation.ecuc.tests.ReferenceValueTests;
 import org.artop.aal.autosar3x.validation.ecuc.tests.StringValueTests;
 
@@ -44,6 +45,7 @@ public class AalAutosar3xValidationEcucTestSuite {
 		suite.addTestSuite(EnumerationValueTests.class);
 		suite.addTestSuite(ReferenceValueTests.class);
 		suite.addTestSuite(InstanceReferenceValueTests.class);
+		suite.addTestSuite(ModuleConfigurationTests.class);
 
 		return suite;
 	}
