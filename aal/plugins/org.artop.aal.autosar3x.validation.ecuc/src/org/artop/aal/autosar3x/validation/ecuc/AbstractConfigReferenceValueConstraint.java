@@ -15,6 +15,8 @@
 package org.artop.aal.autosar3x.validation.ecuc;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 
@@ -40,6 +42,28 @@ public abstract class AbstractConfigReferenceValueConstraint extends AbstractMod
 	protected IStatus validateConfigReferenceValue(IValidationContext ctx, ConfigReferenceValue configReferenceValue, ConfigReference configReference) {
 		assert false; // we should never
 		return ctx.createSuccessStatus();
+	}
+
+	protected boolean isInstanceOfDestinationType(EObject instance, String destinationTypeName) {
+		boolean isInstanceOfDestinationType = false;
+
+		EClass metaClass = instance.eClass();
+		String metaClassName = metaClass.getName();
+
+		if (metaClassName.equals(destinationTypeName)) {
+			isInstanceOfDestinationType = true;
+		} else {
+			// get all super types of the metaClass and check if destination type is a
+			// super type
+			for (EClass superType : metaClass.getESuperTypes()) {
+				// check if destination type is a super type of value class
+				if (superType.getName().equals(destinationTypeName)) {
+					isInstanceOfDestinationType = true;
+					break;
+				}
+			}
+		}
+		return isInstanceOfDestinationType;
 	}
 
 }

@@ -139,6 +139,24 @@
                </target>
             </constraint>
             
+            <constraint
+                  class="org.artop.aal.autosar3x.validation.ecuc.ModuleConfigurationConstraint"
+                  id="org.artop.aal.autosar3x.validation.ecuc.ModuleConfigurationConstraint_3x"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="ModuleConfiguration"
+                  severity="ERROR"
+                  statusCode="0010002">
+               <message>
+                  {0}
+               </message>
+               <description>
+               </description>
+               <target
+                     class="ModuleConfiguration">
+               </target>
+            </constraint>
+            
          </constraints>     
       </constraintProvider>
    </extension>

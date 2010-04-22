@@ -16,7 +16,6 @@ package org.artop.aal.autosar3x.validation.ecuc;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.IValidationContext;
 
@@ -60,24 +59,29 @@ public class ReferenceValueConstraint extends AbstractConfigReferenceValueConstr
 	}
 
 	protected IStatus validateValue(IValidationContext ctx, ReferenceValue referenceValue) {
-		// default
-		IStatus status = ctx.createSuccessStatus();
 
+		final IStatus status;
 		if (false == referenceValue.eIsSet(EcucdescriptionPackage.eINSTANCE.getReferenceValue_Value())) {
 			status = ctx.createFailureStatus("value not available");
-		} else if (null == referenceValue.getValue()) {
-			status = ctx.createFailureStatus("value not available");
 		} else {
-			ConfigReference configReference = referenceValue.getDefinition();
-			if (configReference instanceof ChoiceReferenceParamDef) {
-				status = validateReferenceValue_ChoiceReference(ctx, referenceValue);
-			} else if (configReference instanceof ReferenceParamDef) {
-				status = validateReferenceValue_Reference(ctx, referenceValue);
-			} else if (configReference instanceof ForeignReferenceParamDef) {
-				status = validateReferenceValue_ForeignReference(ctx, referenceValue);
+			EObject valueObject = referenceValue.getValue();
+			if (null == valueObject) {
+				status = ctx.createFailureStatus("value not available");
+			} else if (valueObject.eIsProxy()) {
+				status = ctx.createFailureStatus("value coul not be resolved");
+			} else {
+				ConfigReference configReference = referenceValue.getDefinition();
+				if (configReference instanceof ChoiceReferenceParamDef) {
+					status = validateReferenceValue_ChoiceReference(ctx, referenceValue);
+				} else if (configReference instanceof ReferenceParamDef) {
+					status = validateReferenceValue_Reference(ctx, referenceValue);
+				} else if (configReference instanceof ForeignReferenceParamDef) {
+					status = validateReferenceValue_ForeignReference(ctx, referenceValue);
+				} else {
+					status = ctx.createSuccessStatus();
+				}
 			}
 		}
-
 		return status;
 	}
 
@@ -163,40 +167,16 @@ public class ReferenceValueConstraint extends AbstractConfigReferenceValueConstr
 
 		final IStatus status;
 
-		// get value type
-		String valueClassName = valueObject.eClass().getName();
-
-		// CHECK if destinationType available
-		String destinationType = foreignReferenceDef.getDestinationType();
-		if (null == destinationType || destinationType.length() == 0) {
+		// CHECK if reference element is of correct type
+		String destinationTypeName = foreignReferenceDef.getDestinationType();
+		if (null == destinationTypeName || destinationTypeName.length() == 0) {
 			status = ctx.createFailureStatus("foreign destinationType not available"); //$NON-NLS-1$
+		} else if (!isInstanceOfDestinationType(valueObject, destinationTypeName)) {
+			status = ctx.createFailureStatus("type of value don't correspond with DestinationType");
 		} else {
-			// get value class
-			EClass clas = valueObject.eClass();
-
-			if (valueClassName.equals(destinationType)) {
-				// no error found it is the right destination type
-				status = ctx.createSuccessStatus();
-			} else {
-				// get all super types of value class and check if destination type is a
-				// super type of value
-				EList<EClass> superTypes = clas.getESuperTypes();
-				Boolean destinationTypeInSuperTypes = false;
-				for (int i = 0; i < superTypes.size(); i++) {
-					EClass c = superTypes.get(i);
-					// check if destination type is a super type of value class
-					if (c.getName().equals(destinationType)) {
-						destinationTypeInSuperTypes = true;
-					}
-				}
-				if (destinationTypeInSuperTypes) {
-					status = ctx.createSuccessStatus();
-				} else {
-					status = ctx.createFailureStatus("type of value don't correspond with DestinationType");
-				}
-			}
-
+			status = ctx.createSuccessStatus();
 		}
+
 		return status;
 	}
 

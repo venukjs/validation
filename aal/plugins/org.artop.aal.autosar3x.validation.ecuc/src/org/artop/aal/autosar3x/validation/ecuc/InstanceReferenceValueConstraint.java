@@ -18,15 +18,14 @@ import org.artop.aal.autosar3x.validation.ecuc.internal.Activator;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.IValidationContext;
 
 import autosar3x.ecucdescription.ConfigReferenceValue;
 import autosar3x.ecucdescription.EcucdescriptionPackage;
 import autosar3x.ecucdescription.InstanceReferenceValue;
 import autosar3x.ecucdescription.instanceref.InstanceReferenceValueValue;
+import autosar3x.ecucdescription.instanceref.InstancerefPackage;
 import autosar3x.ecucparameterdef.ConfigReference;
 import autosar3x.ecucparameterdef.InstanceReferenceParamDef;
 import autosar3x.genericstructure.infrastructure.identifiable.Identifiable;
@@ -87,31 +86,40 @@ public class InstanceReferenceValueConstraint extends AbstractConfigReferenceVal
 			InstanceReferenceValueValue instanceReferenceValueValue) {
 		final IStatus status;
 
-		InstanceReferenceParamDef referenceDef = (InstanceReferenceParamDef) instanceReferenceValue.getDefinition();
+		assert null != instanceReferenceValue;
+		assert null != instanceReferenceValueValue;
 
-		// CHECK if destination type available
-		String destinationType = referenceDef.getDestinationType();
-		if (null == destinationType || 0 == destinationType.length()) {
-			status = ctx.createFailureStatus("destinationType not found in reference definition"); //$NON-NLS-1$
+		if (!instanceReferenceValueValue.eIsSet(InstancerefPackage.eINSTANCE.getInstanceReferenceValueValue_Value())) {
+			// TODO: create testcase
+			status = ctx.createFailureStatus("target is not set");
 		} else {
+			InstanceReferenceParamDef referenceDef = (InstanceReferenceParamDef) instanceReferenceValue.getDefinition();
+			assert null != referenceDef; // this should have been checked before
+			String destinationTypeName = referenceDef.getDestinationType();
 
-			// CHECK if value type corresponds to destinationType
-			Identifiable target = instanceReferenceValueValue.getValue();
-			String valueClassName = target.eClass().getName();
-			if (!valueClassName.equals(destinationType)) {
-				// TODO: make sure this works with supertypes
-				status = ctx.createFailureStatus("type of value does not correspond with destinationType"); //$NON-NLS-1$
+			EObject valueObject = instanceReferenceValueValue.getValue();
+			if (null == valueObject) {
+				// TODO: create testcase
+				status = ctx.createFailureStatus("target is not set");
+			} else if (valueObject.eIsProxy()) {
+				// TODO: create testcase
+				status = ctx.createFailureStatus("target could not be resolved");
+			} else if (null == destinationTypeName || destinationTypeName.length() == 0) {
+				status = ctx.createFailureStatus("target destinationType not available"); //$NON-NLS-1$
+			} else if (!isInstanceOfDestinationType(valueObject, destinationTypeName)) {
+				status = ctx.createFailureStatus("type of value don't correspond with DestinationType");
 			} else {
 				status = ctx.createSuccessStatus();
 			}
 		}
-
 		return status;
 
 	}
 
 	private IStatus valiateInstanceReferenceContextDestination(IValidationContext ctx, InstanceReferenceValue instanceReferenceValue,
 			InstanceReferenceValueValue instanceReferenceValueValue) {
+		// TODO: CAUTION this algorithm only works in case no inheritance is used
+
 		final IStatus status;
 
 		// Assert that definition of InstanceReferenceValue is available
@@ -150,30 +158,6 @@ public class InstanceReferenceValueConstraint extends AbstractConfigReferenceVal
 		}
 
 		return status;
-	}
-
-	private boolean isAtpPrototoype(EClass eClass) {
-		boolean isAtpPrototype = false;
-
-		String stereotype = EcoreUtil.getAnnotation(eClass, "Stereotype", "Stereotype");
-		if ("atpPrototype".equals(stereotype)) {
-			isAtpPrototype = true;
-		} else {
-			// Check whether a reference exists (either in the type itself or in
-			// one of its supertypes) that is stereotyped/annotated with "isOfType"
-			EList<EStructuralFeature> featureList = eClass.getEAllStructuralFeatures();
-
-			for (int j = 0; j < featureList.size(); j++) {
-				stereotype = EcoreUtil.getAnnotation(featureList.get(j), "Stereotype", "Stereotype"); //$NON-NLS-1$ //$NON-NLS-2$
-				if ("isOfType".equals(stereotype)) { //$NON-NLS-1$
-					isAtpPrototype = true;
-					// leave the inner loop
-					break;
-				}
-			}
-		}
-
-		return isAtpPrototype;
 	}
 
 	private String getDestinationContextRegex(String destinationContext) {
