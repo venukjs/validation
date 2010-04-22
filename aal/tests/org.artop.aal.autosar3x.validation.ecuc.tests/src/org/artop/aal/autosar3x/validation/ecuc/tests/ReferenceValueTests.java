@@ -92,6 +92,11 @@ public class ReferenceValueTests extends ValidationTestCase {
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
 	}
 
+	public void testInvalidReferenceValue_notContainedInDefinitionOfParentContainer() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/ReferenceValue/notContainedInDefinitionOfParentContainer.arxml");
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
+	}
+
 	// test valid
 	public void testValidReferenceValue() throws Exception {
 		EObject validModel = loadInputFile("ecuc/ReferenceValue/valid.arxml");
