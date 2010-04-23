@@ -14,7 +14,7 @@
               <PARAMETER-VALUES>
                 <BOOLEAN-VALUE>
                   <!-- wrong DEFINITION-REF below -->                                  
-                  <DEFINITION-REF DEST="STRING-PARAM-DEF">/AUTOSAR/Os/OsAlarm2/OsAppErrorHook2</DEFINITION-REF>
+                  <DEFINITION-REF DEST="BOOLEAN-PARAM-DEF">/AUTOSAR/Os/OsAlarm2/OsAppErrorHook2</DEFINITION-REF>
                   <VALUE>true</VALUE>
                 </BOOLEAN-VALUE>
               </PARAMETER-VALUES>
