@@ -26,7 +26,7 @@ public class FloatValueConstraintTests extends ValidationTestCase {
 
 	@Override
 	protected String getConstraintID() {
-		return "org.artop.aal.autosar3x.validation.ecuc.FloatValueConstraint_3x";
+		return "org.artop.aal.autosar3x.constraints.ecuc.FloatValueConstraint_3x";
 	}
 
 	// test completeness

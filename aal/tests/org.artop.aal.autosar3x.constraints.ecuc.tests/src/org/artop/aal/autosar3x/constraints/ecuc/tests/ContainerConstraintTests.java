@@ -26,7 +26,7 @@ public class ContainerConstraintTests extends ValidationTestCase {
 
 	@Override
 	protected String getConstraintID() {
-		return "org.artop.aal.autosar3x.validation.ecuc.ContainerConstraint_3x";//$NON-NLS-1$
+		return "org.artop.aal.autosar3x.constraints.ecuc.ContainerConstraint_3x";//$NON-NLS-1$
 	}
 
 	// completeness

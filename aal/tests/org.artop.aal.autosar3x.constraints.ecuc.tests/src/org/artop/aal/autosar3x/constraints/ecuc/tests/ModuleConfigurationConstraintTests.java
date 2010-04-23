@@ -26,7 +26,7 @@ public class ModuleConfigurationConstraintTests extends ValidationTestCase {
 
 	@Override
 	protected String getConstraintID() {
-		return "org.artop.aal.autosar3x.validation.ecuc.ModuleConfigurationConstraint_3x";//$NON-NLS-1$
+		return "org.artop.aal.autosar3x.constraints.ecuc.ModuleConfigurationConstraint_3x";//$NON-NLS-1$
 	}
 
 	// completeness
