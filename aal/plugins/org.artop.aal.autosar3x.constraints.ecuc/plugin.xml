@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="genDoc.xsl"?>
 <?eclipse version="3.2"?>
 <plugin>
    <extension point="org.eclipse.emf.validation.constraintProviders">
