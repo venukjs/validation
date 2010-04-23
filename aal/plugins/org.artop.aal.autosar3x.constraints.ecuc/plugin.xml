@@ -4,9 +4,9 @@
 <plugin>
    <extension point="org.eclipse.emf.validation.constraintProviders">
       <category
-            id="org.artop.aal.autosar3x.validation.ecuc"
-            mandatory="true"
-            name="Autosar Validation of Ecuc Description">
+            id="org.artop.aal.autosar3x.constraints.ecuc"
+            mandatory="false"
+            name="AAL Constraints for Ecuc Descriptions">
       The constraints of this category check the ECUC description
       </category>
       
@@ -15,10 +15,10 @@
             mode="Batch">
          <package namespaceUri="http://autosar.org/3.1.2/autosar3x/ecucd"/>
 
-         <constraints categories="org.artop.aal.autosar3x.validation.ecuc">
+         <constraints categories="org.artop.aal.autosar3x.constraints.ecuc">
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.StringValueConstraint"
-                  id="org.artop.aal.autosar3x.validation.ecuc.StringValueConstraint_3x"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.StringValueConstraint_3x"
                   lang="JAVA"
                   mode="Batch"
                   name="StringValue"
@@ -36,7 +36,7 @@
             </constraint>
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.IntegerValueConstraint"
-                  id="org.artop.aal.autosar3x.validation.ecuc.IntegerValueConstraint_3x"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.IntegerValueConstraint_3x"
                   lang="JAVA"
                   mode="Batch"
                   name="IntegerValue"
@@ -53,7 +53,7 @@
             </constraint>
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.BooleanValueConstraint"
-                  id="org.artop.aal.autosar3x.validation.ecuc.BooleanValueConstraint_3x"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.BooleanValueConstraint_3x"
                   lang="JAVA"
                   mode="Batch"
                   name="BooleanValue"
@@ -70,7 +70,7 @@
             </constraint>
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.FloatValueConstraint"
-                  id="org.artop.aal.autosar3x.validation.ecuc.FloatValueConstraint_3x"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.FloatValueConstraint_3x"
                   lang="JAVA"
                   mode="Batch"
                   name="FloatValue"
@@ -87,7 +87,7 @@
             </constraint>
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.EnumerationValueConstraint"
-                  id="org.artop.aal.autosar3x.validation.ecuc.EnumerationValueConstraint_3x"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.EnumerationValueConstraint_3x"
                   lang="JAVA"
                   mode="Batch"
                   name="EnumerationValue"
@@ -105,7 +105,7 @@
             
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.ReferenceValueConstraint"
-                  id="org.artop.aal.autosar3x.validation.ecuc.ReferenceValueConstraint_3x"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.ReferenceValueConstraint_3x"
                   lang="JAVA"
                   mode="Batch"
                   name="ReferenceValue"
@@ -123,7 +123,7 @@
             
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.InstanceReferenceValueConstraint"
-                  id="org.artop.aal.autosar3x.validation.ecuc.InstanceReferenceValueConstraint_3x"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.InstanceReferenceValueConstraint_3x"
                   lang="JAVA"
                   mode="Batch"
                   name="InstanceReferenceValue"
@@ -141,7 +141,7 @@
             
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.ModuleConfigurationConstraint"
-                  id="org.artop.aal.autosar3x.validation.ecuc.ModuleConfigurationConstraint_3x"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.ModuleConfigurationConstraint_3x"
                   lang="JAVA"
                   mode="Batch"
                   name="ModuleConfiguration"
@@ -158,7 +158,7 @@
             </constraint>
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.ContainerConstraint"
-                  id="org.artop.aal.autosar3x.validation.ecuc.ContainerConstraint_3x"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.ContainerConstraint_3x"
                   lang="JAVA"
                   mode="Batch"
                   name="Container"
@@ -180,7 +180,7 @@
    <extension point="org.eclipse.emf.validation.constraintBindings">    
         <binding
             context="autosar3x.ARObject.context"
-            category="org.artop.aal.autosar3x.validation.ecuc"/>
+            category="org.artop.aal.autosar3x.constraints.ecuc"/>
    </extension>
 
 </plugin>
