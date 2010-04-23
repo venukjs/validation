@@ -59,7 +59,7 @@ public abstract class AbstractParameterValueConstraint extends AbstractModelCons
 				if (parentContainerDef instanceof ParamConfContainerDef) {
 					// the parent containers definition is a ParamConfContainerDef
 					ParamConfContainerDef parentParamConfContainerDef = (ParamConfContainerDef) parentContainerDef;
-					if (parentParamConfContainerDef.getParameters().contains(configParameter)) {
+					if (EcucUtil.getAllParametersOf(parentParamConfContainerDef).contains(configParameter)) {
 						status = ctx.createSuccessStatus(); // reference is valid
 					} else {
 						status = ctx.createFailureStatus("containment problem: parameter value with definition " + configParameter.getShortName()

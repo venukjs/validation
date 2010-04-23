@@ -77,7 +77,7 @@ public class ContainerConstraint extends AbstractModelConstraint {
 				// the current Container is directly contained in a ModuleConfiguration
 				ModuleConfiguration parentModule = (ModuleConfiguration) parent;
 				ModuleDef parentModuleDef = parentModule.getDefinition();
-				containerDefList.addAll(parentModuleDef.getContainers());
+				containerDefList.addAll(EcucUtil.getAllContainersOf(parentModuleDef));
 
 			} else if (parent instanceof Container) {
 				// the current Container is contained in another Container
@@ -87,11 +87,11 @@ public class ContainerConstraint extends AbstractModelConstraint {
 				if (parentContainerDef instanceof ParamConfContainerDef) {
 					// the parent containers definition is a ParamConfContainerDef
 					ParamConfContainerDef parentParamConfContainerDef = (ParamConfContainerDef) parentContainerDef;
-					containerDefList.addAll(parentParamConfContainerDef.getSubContainers());
+					containerDefList.addAll(EcucUtil.getAllSubContainersOf(parentParamConfContainerDef));
 				} else if (parentContainerDef instanceof ChoiceContainerDef) {
 					// the parent containers definition is a ChoiceContainerDef
 					ChoiceContainerDef parentChoiceContainerDef = (ChoiceContainerDef) parentContainerDef;
-					containerDefList.addAll(parentChoiceContainerDef.getChoices());
+					containerDefList.addAll(EcucUtil.getAllChoicesOf(parentChoiceContainerDef));
 				}
 			}
 
@@ -105,7 +105,6 @@ public class ContainerConstraint extends AbstractModelConstraint {
 
 		}
 		return status;
-
 	}
 
 }

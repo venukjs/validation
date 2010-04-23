@@ -60,7 +60,7 @@ public abstract class AbstractConfigReferenceValueConstraint extends AbstractMod
 				if (parentContainerDef instanceof ParamConfContainerDef) {
 					// the parent containers definition is a ParamConfContainerDef
 					ParamConfContainerDef parentParamConfContainerDef = (ParamConfContainerDef) parentContainerDef;
-					if (parentParamConfContainerDef.getReferences().contains(configReference)) {
+					if (EcucUtil.getAllReferencesOf(parentParamConfContainerDef).contains(configReference)) {
 						status = ctx.createSuccessStatus(); // reference is valid
 					} else {
 						status = ctx.createFailureStatus("containement problem: reference with definition " + configReference.getShortName()
