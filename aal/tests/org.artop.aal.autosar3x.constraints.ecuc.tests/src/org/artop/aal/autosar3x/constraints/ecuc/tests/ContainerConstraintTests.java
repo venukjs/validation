@@ -36,10 +36,6 @@ public class ContainerConstraintTests extends ValidationTestCase {
 	}
 
 	// consistency
-	public void testInvalidContainer_containerDefinitionNotInParentDef() throws Exception {
-		EObject invalidModel = loadInputFile("ecuc/Container/containerDefinitionNotInParentDef.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
-	}
 
 	// correctness
 
