@@ -45,7 +45,7 @@ public abstract class ValidationTestCase extends TestCase {
 
 	public ValidationTestCase() {
 		super();
-		fFileAccessor = new TestFileAccessor(Activator.getPlugin().getSymbolicName());
+		fFileAccessor = new TestFileAccessor(Activator.getPlugin());
 
 		validator = ModelValidationService.getInstance().newValidator(EvaluationMode.BATCH);
 		validator.setReportSuccesses(true);
