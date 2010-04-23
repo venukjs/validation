@@ -1,9 +1,9 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.artop.aal.autosar3x.validation.ecuc;singleton:=true
+Bundle-SymbolicName: org.artop.aal.autosar3x.constraints.ecuc;singleton:=true
 Bundle-Version: 2.0.0.qualifier
-Bundle-Activator: org.artop.aal.autosar3x.validation.ecuc.internal.Activator
+Bundle-Activator: org.artop.aal.autosar3x.constraints.ecuc.internal.Activator
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.emf.validation.ocl,
  org.apache.commons.logging,
@@ -13,4 +13,4 @@ Require-Bundle: org.eclipse.emf.validation.ocl,
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Export-Package: org.artop.aal.autosar3x.validation.ecuc
+Export-Package: org.artop.aal.autosar3x.constraints.ecuc

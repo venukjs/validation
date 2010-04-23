@@ -12,7 +12,7 @@
  * 
  * </copyright>
  */
-package org.artop.aal.autosar3x.validation.ecuc;
+package org.artop.aal.autosar3x.constraints.ecuc;
 
 import java.math.BigInteger;
 

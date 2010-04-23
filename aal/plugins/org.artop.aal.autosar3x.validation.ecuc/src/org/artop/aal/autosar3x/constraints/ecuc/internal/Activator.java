@@ -12,7 +12,7 @@
  * 
  * </copyright>
  */
-package org.artop.aal.autosar3x.validation.ecuc.internal;
+package org.artop.aal.autosar3x.constraints.ecuc.internal;
 
 import org.artop.ecl.emf.validation.evalidator.adapter.EValidatorRegistering;
 import org.eclipse.core.runtime.Plugin;
