@@ -28,7 +28,7 @@ import org.artop.aal.autosar3x.constraints.ecuc.tests.ModuleConfigurationTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ReferenceValueTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.StringValueTests;
 
-public class AalAutosar3xValidationEcucTestSuite {
+public class AalAutosar3xConstraintsEcucTestSuite {
 
 	/**
 	 * Suite.
