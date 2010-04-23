@@ -12,7 +12,7 @@
  * 
  * </copyright>
  */
-package org.artop.aal.autosar3x.validation.ecuc.tests;
+package org.artop.aal.autosar3x.constraints.ecuc.tests;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;

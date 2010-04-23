@@ -13,20 +13,20 @@
  * </copyright>
  */
 
-package org.artop.aal.autosar3x.validation.ecuc.tests.testsuite;
+package org.artop.aal.autosar3x.constraints.ecuc.tests.testsuite;
 
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import org.artop.aal.autosar3x.validation.ecuc.tests.BooleanValueTests;
-import org.artop.aal.autosar3x.validation.ecuc.tests.ContainerTests;
-import org.artop.aal.autosar3x.validation.ecuc.tests.EnumerationValueTests;
-import org.artop.aal.autosar3x.validation.ecuc.tests.FloatValueTests;
-import org.artop.aal.autosar3x.validation.ecuc.tests.InstanceReferenceValueTests;
-import org.artop.aal.autosar3x.validation.ecuc.tests.IntegerValueTests;
-import org.artop.aal.autosar3x.validation.ecuc.tests.ModuleConfigurationTests;
-import org.artop.aal.autosar3x.validation.ecuc.tests.ReferenceValueTests;
-import org.artop.aal.autosar3x.validation.ecuc.tests.StringValueTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.BooleanValueTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.EnumerationValueTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.FloatValueTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.InstanceReferenceValueTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.IntegerValueTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.ModuleConfigurationTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.ReferenceValueTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.StringValueTests;
 
 public class AalAutosar3xValidationEcucTestSuite {
 

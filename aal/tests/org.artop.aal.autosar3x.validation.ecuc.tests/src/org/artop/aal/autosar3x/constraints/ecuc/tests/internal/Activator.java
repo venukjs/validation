@@ -12,7 +12,7 @@
  * 
  * </copyright>
  */
-package org.artop.aal.autosar3x.validation.ecuc.tests.internal;
+package org.artop.aal.autosar3x.constraints.ecuc.tests.internal;
 
 /**
  * 

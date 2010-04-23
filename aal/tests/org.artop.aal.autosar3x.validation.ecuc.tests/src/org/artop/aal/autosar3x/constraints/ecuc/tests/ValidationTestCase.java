@@ -12,11 +12,11 @@
  * 
  * </copyright>
  */
-package org.artop.aal.autosar3x.validation.ecuc.tests;
+package org.artop.aal.autosar3x.constraints.ecuc.tests;
 
 import junit.framework.TestCase;
 
-import org.artop.aal.autosar3x.validation.ecuc.tests.internal.Activator;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.internal.Activator;
 import org.artop.aal.common.resource.impl.AutosarResourceSetImpl;
 import org.artop.ecl.testutils.TestFileAccessor;
 import org.eclipse.emf.common.util.URI;
