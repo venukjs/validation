@@ -18,21 +18,15 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
 @SuppressWarnings("nls")
-public class ContainerConstraintTests extends ValidationTestCase {
+public class ContainerStructuralIntegrityConstraintTests extends ValidationTestCase {
 
-	public ContainerConstraintTests() {
+	public ContainerStructuralIntegrityConstraintTests() {
 		super();
 	}
 
 	@Override
 	protected String getConstraintID() {
-		return "org.artop.aal.autosar3x.constraints.ecuc.ContainerConstraint_3x";//$NON-NLS-1$
-	}
-
-	// completeness
-	public void testInvalidContainer_noDefinition() throws Exception {
-		EObject invalidModel = loadInputFile("ecuc/Container/noDefinition.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
+		return "org.artop.aal.autosar3x.constraints.ecuc.ContainerStructuralIntegrityConstraint_3x";//$NON-NLS-1$
 	}
 
 	// consistency
@@ -40,8 +34,6 @@ public class ContainerConstraintTests extends ValidationTestCase {
 		EObject invalidModel = loadInputFile("ecuc/Container/containerDefinitionNotInParentDef.arxml");
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
 	}
-
-	// correctness
 
 	// valid
 	public void testValidContainer() throws Exception {

@@ -18,34 +18,25 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
 @SuppressWarnings("nls")
-public class ContainerConstraintTests extends ValidationTestCase {
+public class ConfigReferenceValueStructuralIntegrityConstraintTests extends ValidationTestCase {
 
-	public ContainerConstraintTests() {
+	public ConfigReferenceValueStructuralIntegrityConstraintTests() {
 		super();
 	}
 
 	@Override
 	protected String getConstraintID() {
-		return "org.artop.aal.autosar3x.constraints.ecuc.ContainerConstraint_3x";//$NON-NLS-1$
+		return "org.artop.aal.autosar3x.constraints.ecuc.ConfigReferenceValueStructuralIntegrityConstraint_3x";//$NON-NLS-1$
 	}
 
-	// completeness
-	public void testInvalidContainer_noDefinition() throws Exception {
-		EObject invalidModel = loadInputFile("ecuc/Container/noDefinition.arxml");
+	public void testInvalidConfigReferenceValue_notContainedInDefinitionOfParentContainer() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/ConfigReferenceValue/notContainedInDefinitionOfParentContainer.arxml");
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
 	}
 
-	// consistency
-	public void testInvalidContainer_containerDefinitionNotInParentDef() throws Exception {
-		EObject invalidModel = loadInputFile("ecuc/Container/containerDefinitionNotInParentDef.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
-	}
-
-	// correctness
-
-	// valid
-	public void testValidContainer() throws Exception {
-		EObject validModel = loadInputFile("ecuc/Container/valid.arxml");
+	// test valid
+	public void testValidConfigReferenceValue() throws Exception {
+		EObject validModel = loadInputFile("ecuc/ConfigReferenceValue/valid.arxml");
 		ValidationTestUtil.validateModel(validModel, validator, IStatus.OK);
 	}
 }

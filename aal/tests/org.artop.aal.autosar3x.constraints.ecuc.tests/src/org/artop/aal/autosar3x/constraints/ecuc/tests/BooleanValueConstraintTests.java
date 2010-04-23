@@ -51,11 +51,6 @@ public class BooleanValueConstraintTests extends ValidationTestCase {
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
 	}
 
-	public void testInvalidBooleanValue_notContainedInDefinitionOfParentContaine() throws Exception {
-		EObject invalidModel = loadInputFile("ecuc/BooleanValue/notContainedInDefinitionOfParentContainer.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
-	}
-
 	// correctness
 
 	// valid

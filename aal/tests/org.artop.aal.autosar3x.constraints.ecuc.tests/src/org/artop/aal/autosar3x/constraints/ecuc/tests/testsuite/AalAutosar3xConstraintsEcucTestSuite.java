@@ -19,12 +19,14 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import org.artop.aal.autosar3x.constraints.ecuc.tests.BooleanValueConstraintTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.ConfigReferenceValueStructuralIntegrityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.EnumerationValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.FloatValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.InstanceReferenceValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.IntegerValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ModuleConfigurationConstraintTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.ParameterValueStructuralIntegrityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ReferenceValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.StringValueConstraintTests;
 
@@ -48,6 +50,8 @@ public class AalAutosar3xConstraintsEcucTestSuite {
 		suite.addTestSuite(InstanceReferenceValueConstraintTests.class);
 		suite.addTestSuite(ModuleConfigurationConstraintTests.class);
 		suite.addTestSuite(ContainerConstraintTests.class);
+		suite.addTestSuite(ConfigReferenceValueStructuralIntegrityConstraintTests.class);
+		suite.addTestSuite(ParameterValueStructuralIntegrityConstraintTests.class);
 
 		return suite;
 	}
