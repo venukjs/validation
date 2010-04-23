@@ -173,6 +173,60 @@
                </target>
             </constraint>
             
+            <constraint
+                  class="org.artop.aal.autosar3x.constraints.ecuc.ConfigReferenceValueStructuralIntegrityConstraint"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.ConfigReferenceValueStructuralIntegrityConstraint_3x"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="ConfigReferenceValueStructuralIntegrityConstraint"
+                  severity="ERROR"
+                  statusCode="0010002">
+               <message>
+                  {0}
+               </message>
+               <description>
+               </description>
+               <target
+                     class="ConfigReferenceValue">
+               </target>
+            </constraint>  
+            
+           <constraint
+                  class="org.artop.aal.autosar3x.constraints.ecuc.ParameterValueStructuralIntegrityConstraint"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.ParameterValueStructuralIntegrityConstraint_3x"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="ParameterValueStructuralIntegrityConstraint"
+                  severity="ERROR"
+                  statusCode="0010002">
+               <message>
+                  {0}
+               </message>
+               <description>
+               </description>
+               <target
+                     class="ParameterValue">
+               </target>
+            </constraint>     
+            
+            <constraint
+                  class="org.artop.aal.autosar3x.constraints.ecuc.ContainerStructuralIntegrityConstraint"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.ContainerStructuralIntegrityConstraint_3x"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="ContainerStructuralIntegrityConstraint"
+                  severity="ERROR"
+                  statusCode="0010002">
+               <message>
+                  {0}
+               </message>
+               <description>
+               </description>
+               <target
+                     class="Container">
+               </target>
+            </constraint> 
+                    
          </constraints>     
       </constraintProvider>
    </extension>
