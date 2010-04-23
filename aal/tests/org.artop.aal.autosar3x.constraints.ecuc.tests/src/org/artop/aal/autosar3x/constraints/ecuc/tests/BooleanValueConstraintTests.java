@@ -18,9 +18,9 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
 @SuppressWarnings("nls")
-public class BooleanValueTests extends ValidationTestCase {
+public class BooleanValueConstraintTests extends ValidationTestCase {
 
-	public BooleanValueTests() {
+	public BooleanValueConstraintTests() {
 		super();
 	}
 

@@ -18,9 +18,9 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
 @SuppressWarnings("nls")
-public class FloatValueTests extends ValidationTestCase {
+public class FloatValueConstraintTests extends ValidationTestCase {
 
-	public FloatValueTests() {
+	public FloatValueConstraintTests() {
 		super();
 	}
 

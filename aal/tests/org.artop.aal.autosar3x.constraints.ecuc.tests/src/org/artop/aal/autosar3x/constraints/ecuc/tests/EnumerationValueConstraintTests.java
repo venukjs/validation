@@ -18,9 +18,9 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
 @SuppressWarnings("nls")
-public class EnumerationValueTests extends ValidationTestCase {
+public class EnumerationValueConstraintTests extends ValidationTestCase {
 
-	public EnumerationValueTests() {
+	public EnumerationValueConstraintTests() {
 		super();
 	}
 

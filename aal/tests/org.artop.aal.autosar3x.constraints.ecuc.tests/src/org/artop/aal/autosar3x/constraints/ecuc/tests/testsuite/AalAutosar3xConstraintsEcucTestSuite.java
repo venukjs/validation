@@ -18,15 +18,15 @@ package org.artop.aal.autosar3x.constraints.ecuc.tests.testsuite;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import org.artop.aal.autosar3x.constraints.ecuc.tests.BooleanValueTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.EnumerationValueTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.FloatValueTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.InstanceReferenceValueTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.IntegerValueTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.ModuleConfigurationTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.ReferenceValueTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.StringValueTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.BooleanValueConstraintTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerConstraintTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.EnumerationValueConstraintTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.FloatValueConstraintTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.InstanceReferenceValueConstraintTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.IntegerValueConstraintTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.ModuleConfigurationConstraintTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.ReferenceValueConstraintTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.StringValueConstraintTests;
 
 public class AalAutosar3xConstraintsEcucTestSuite {
 
@@ -39,15 +39,15 @@ public class AalAutosar3xConstraintsEcucTestSuite {
 		TestSuite suite = new TestSuite("Tests for org.artop.aal.autosar3x.validation.ecuc"); //$NON-NLS-1$
 
 		// ecuc
-		suite.addTestSuite(IntegerValueTests.class);
-		suite.addTestSuite(StringValueTests.class);
-		suite.addTestSuite(BooleanValueTests.class);
-		suite.addTestSuite(FloatValueTests.class);
-		suite.addTestSuite(EnumerationValueTests.class);
-		suite.addTestSuite(ReferenceValueTests.class);
-		suite.addTestSuite(InstanceReferenceValueTests.class);
-		suite.addTestSuite(ModuleConfigurationTests.class);
-		suite.addTestSuite(ContainerTests.class);
+		suite.addTestSuite(IntegerValueConstraintTests.class);
+		suite.addTestSuite(StringValueConstraintTests.class);
+		suite.addTestSuite(BooleanValueConstraintTests.class);
+		suite.addTestSuite(FloatValueConstraintTests.class);
+		suite.addTestSuite(EnumerationValueConstraintTests.class);
+		suite.addTestSuite(ReferenceValueConstraintTests.class);
+		suite.addTestSuite(InstanceReferenceValueConstraintTests.class);
+		suite.addTestSuite(ModuleConfigurationConstraintTests.class);
+		suite.addTestSuite(ContainerConstraintTests.class);
 
 		return suite;
 	}
