@@ -43,7 +43,7 @@ public class StringValueConstraintTests extends ValidationTestCase {
 	// consistency
 	public void testInvalidStringValue_wrongParamDefType() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/StringValue/wrongParamDefType.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, "[ecuc sws 3003]");
 	}
 
 	// correctness

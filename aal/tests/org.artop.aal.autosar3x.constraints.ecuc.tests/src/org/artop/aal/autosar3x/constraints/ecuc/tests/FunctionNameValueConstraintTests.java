@@ -43,7 +43,7 @@ public class FunctionNameValueConstraintTests extends ValidationTestCase {
 	// consistency
 	public void testInvalidFunctionNameValue_wrongParamDefType() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/FunctionNameValue/wrongParamDefType.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, "[ecuc sws 3005]");
 	}
 
 	// correctness
@@ -55,13 +55,13 @@ public class FunctionNameValueConstraintTests extends ValidationTestCase {
 	// should be reported by LinkerSymbolConstraint and not reported again
 	public void testInvalidFunctionNameValue_valueNoIdentifier() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/FunctionNameValue/valueNoIdentifier.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.OK);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
 	}
 
 	// should be reported by LinkerSymbolConstraint and not reported again
 	public void testInvalidFunctionNameValue_valueTooLong() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/FunctionNameValue/valueTooLong.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.OK);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
 	}
 
 	public void testValidFunctionNameValue() throws Exception {
