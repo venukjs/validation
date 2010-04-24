@@ -19,19 +19,20 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.emf.validation.IValidationContext;
 
+import autosar3x.ecucdescription.LinkerSymbolValue;
 import autosar3x.ecucdescription.ParameterValue;
-import autosar3x.ecucdescription.StringValue;
-import autosar3x.ecucparameterdef.StringParamDef;
+import autosar3x.ecucparameterdef.LinkerSymbolDef;
 
-public class StringValueConstraint extends AbstractParameterValueConstraint {
+public class LinkerSymbolValueConstraint extends AbstractParameterValueConstraint {
 	final String STRING_PATTERN = "[a-zA-Z]([a-zA-Z0-9_])*"; //$NON-NLS-1$
 
 	@Override
 	public IStatus validate(IValidationContext ctx) {
-		assert ctx.getTarget() instanceof StringValue;
+		assert ctx.getTarget() instanceof LinkerSymbolValue;
+
+		LinkerSymbolValue stringValue = (LinkerSymbolValue) ctx.getTarget();
 
 		MultiStatus status = new MultiStatus(Activator.PLUGIN_ID, 0, this.getClass().getName(), null);
-		StringValue stringValue = (StringValue) ctx.getTarget();
 
 		status.add(validateDefinitionRef(ctx, stringValue));
 		status.add(validateValue(ctx, stringValue));
@@ -44,21 +45,32 @@ public class StringValueConstraint extends AbstractParameterValueConstraint {
 		// check if definition is set and available
 		IStatus status = super.validateDefinitionRef(ctx, parameterValue);
 		if (status.isOK()) {
-			if (!(parameterValue.getDefinition() instanceof StringParamDef)) {
+			if (!(parameterValue.getDefinition() instanceof LinkerSymbolDef)) {
 				status = ctx
-						.createFailureStatus("[ecuc sws 3003] A StringValue stores a configuration value that is of definition type StringParamDef.");
+						.createFailureStatus("[ecuc sws 3041] A LinkerSymbolValue stores a configuration value that is of definition type LinkerSymbolParameter.");
 			}
 		}
 		return status;
 	}
 
-	protected IStatus validateValue(IValidationContext ctx, StringValue stringValue) {
+	protected IStatus validateValue(IValidationContext ctx, LinkerSymbolValue linkerSymbolValue) {
+
 		final IStatus status;
-		if (false == stringValue.isSetValue() || null == stringValue.getValue()) {
+		if (false == linkerSymbolValue.isSetValue() || null == linkerSymbolValue.getValue()) {
 			status = ctx
-					.createFailureStatus("[ecuc sws 3034] each StringValue needs to have a value specified even if it is just copied from the defaultValue of the ECU Configuration Definition");
+					.createFailureStatus("[ecuc sws 3034] each LinkerSymbolValue needs to have a value specified even if it is just copied from the defaultValue of the ECU Configuration Definition");
 		} else {
-			status = ctx.createSuccessStatus();
+			String value = linkerSymbolValue.getValue();
+			// check that value length is between 1 and 255 characters
+			if (0 == value.length()) {
+				status = ctx.createFailureStatus("empty value"); //$NON-NLS-1$
+			} else if (255 < value.length()) {
+				status = ctx.createFailureStatus("length of value is greater than 255 characters"); //$NON-NLS-1$
+			} else if (false == value.matches(STRING_PATTERN)) {
+				status = ctx.createFailureStatus("value is not a \"common programming language identifier\"");
+			} else {
+				status = ctx.createSuccessStatus();
+			}
 		}
 
 		return status;

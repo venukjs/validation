@@ -6,7 +6,19 @@
             id="org.artop.aal.autosar3x.constraints.ecuc"
             mandatory="false"
             name="AAL Constraints for Ecuc Descriptions">
-      The constraints of this category check the ECUC description
+      Constraints for validating ECUC descriptions.
+      </category>
+      <category
+            id="org.artop.aal.autosar3x.constraints.ecuc/StructuralIntegrity"
+            mandatory="false"
+            name="Structural Integrity">
+      Constraints for validating the structural integrity of ECUC descriptions.
+      </category>
+      <category
+            id="org.artop.aal.autosar3x.constraints.ecuc/Basic"
+            mandatory="false"
+            name="Basic Completeness and Consistency">
+      Constraints for validating basic completeness and consistency of ECUC descriptions.
       </category>
       
       <constraintProvider
@@ -14,7 +26,7 @@
             mode="Batch">
          <package namespaceUri="http://autosar.org/3.1.2/autosar3x/ecucd"/>
 
-         <constraints categories="org.artop.aal.autosar3x.constraints.ecuc">
+         <constraints categories="org.artop.aal.autosar3x.constraints.ecuc/Basic">
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.StringValueConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.StringValueConstraint_3x"
@@ -27,10 +39,46 @@
                   {0}
                </message>
                <description>
-                
+               Validates 'value' and 'definition' of a StringValue.         
                </description>
                <target
                      class="StringValue">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.artop.aal.autosar3x.constraints.ecuc.FunctionNameValueConstraint"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.FunctionNameValueConstraint_3x"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="FunctionNameValue"
+                  severity="ERROR"
+                  statusCode="0010001">
+               <message>
+                  {0}
+               </message>
+               <description>
+               Validates 'value' and 'definition' of a FunctionNameValue.         
+               </description>
+               <target
+                     class="FunctionNameValue">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.artop.aal.autosar3x.constraints.ecuc.LinkerSymbolValueConstraint"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.LinkerSymbolValueConstraint_3x"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="LinkerSymbolValue"
+                  severity="ERROR"
+                  statusCode="0010001">
+               <message>
+                  {0}
+               </message>
+               <description>
+               Validates 'value' and 'definition' of a LinkerSymbolValue.         
+               </description>
+               <target
+                     class="LinkerSymbolValue">
                </target>
             </constraint>
             <constraint
@@ -173,6 +221,8 @@
                </target>
             </constraint>
             
+      </constraints>
+      <constraints categories="org.artop.aal.autosar3x.constraints.ecuc/StructuralIntegrity">      
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.ConfigReferenceValueStructuralIntegrityConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.ConfigReferenceValueStructuralIntegrityConstraint_3x"
@@ -226,7 +276,6 @@
                      class="Container">
                </target>
             </constraint> 
-                    
          </constraints>     
       </constraintProvider>
    </extension>
