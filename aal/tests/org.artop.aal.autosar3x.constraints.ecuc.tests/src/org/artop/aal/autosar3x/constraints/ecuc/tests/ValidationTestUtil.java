@@ -40,8 +40,8 @@ public class ValidationTestUtil {
 		}
 	}
 
-	private static boolean findErrorMessage(String errorMessage, IStatus status) {
-		assert null != errorMessage;
+	private static boolean findErrorMessage(String expectedErrorMessage, IStatus status) {
+		assert null != expectedErrorMessage;
 		assert null != status;
 
 		boolean errorMessageFound = false;
@@ -49,16 +49,17 @@ public class ValidationTestUtil {
 		// we are only interested in error messages
 		if (IStatus.ERROR == status.getSeverity()) {
 			// try to find the expected message in IStatus directly
-			if (errorMessage.contains(status.getMessage())) {
+			String statusErrorMessage = status.getMessage();
+			if (null != statusErrorMessage && -1 < statusErrorMessage.indexOf(expectedErrorMessage)) {
 				errorMessageFound = true;
-			}
+			} else {
 
-			// find error message in children
-			for (IStatus substatus : status.getChildren()) {
-				if (false == errorMessageFound) {
-					errorMessageFound = findErrorMessage(errorMessage, substatus);
-				} else {
-					break; // leave the loop. We have found the error message
+				// find error message in children
+				for (IStatus substatus : status.getChildren()) {
+					errorMessageFound = findErrorMessage(expectedErrorMessage, substatus);
+					if (true == errorMessageFound) {
+						break; // leave the loop. We have found the error message
+					}
 				}
 			}
 		}

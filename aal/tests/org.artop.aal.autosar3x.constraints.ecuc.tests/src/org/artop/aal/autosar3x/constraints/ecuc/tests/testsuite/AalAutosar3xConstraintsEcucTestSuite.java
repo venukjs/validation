@@ -24,8 +24,10 @@ import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerStructuralIntegrityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.EnumerationValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.FloatValueConstraintTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.FunctionNameValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.InstanceReferenceValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.IntegerValueConstraintTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.LinkerSymbolValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ModuleConfigurationConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ParameterValueStructuralIntegrityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ReferenceValueConstraintTests;
@@ -51,6 +53,8 @@ public class AalAutosar3xConstraintsEcucTestSuite {
 		suite.addTestSuite(InstanceReferenceValueConstraintTests.class);
 		suite.addTestSuite(ModuleConfigurationConstraintTests.class);
 		suite.addTestSuite(ContainerConstraintTests.class);
+		suite.addTestSuite(LinkerSymbolValueConstraintTests.class);
+		suite.addTestSuite(FunctionNameValueConstraintTests.class);
 
 		// structural integrity
 		suite.addTestSuite(ConfigReferenceValueStructuralIntegrityConstraintTests.class);

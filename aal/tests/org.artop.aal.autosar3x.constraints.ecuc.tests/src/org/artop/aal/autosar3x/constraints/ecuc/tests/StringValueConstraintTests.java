@@ -47,19 +47,21 @@ public class StringValueConstraintTests extends ValidationTestCase {
 	}
 
 	// correctness
+
+	// valid
 	public void testInvalidStringValue_emptyValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/StringValue/emptyValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.OK);
 	}
 
 	public void testInvalidStringValue_valueNoIdentifier() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/StringValue/valueNoIdentifier.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.OK);
 	}
 
 	public void testInvalidStringValue_valueTooLong() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/StringValue/valueTooLong.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.OK);
 	}
 
 	public void testValidStringValue() throws Exception {
