@@ -19,32 +19,37 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.emf.validation.IValidationContext;
 
+import autosar3x.ecucdescription.EcucdescriptionPackage;
 import autosar3x.ecucdescription.FunctionNameValue;
-import autosar3x.ecucdescription.LinkerSymbolValue;
-import autosar3x.ecucdescription.ParameterValue;
 import autosar3x.ecucparameterdef.FunctionNameDef;
 
-public class FunctionNameValueConstraint extends AbstractParameterValueConstraint {
+public class FunctionNameValueConstraint extends LinkerSymbolValueConstraint {
 	@Override
 	public IStatus validate(IValidationContext ctx) {
 		assert ctx.getTarget() instanceof FunctionNameValue;
 
+		final IStatus status;
+
 		FunctionNameValue functionNameValue = (FunctionNameValue) ctx.getTarget();
 
-		MultiStatus status = new MultiStatus(Activator.PLUGIN_ID, 0, this.getClass().getName(), null);
-
-		status.add(validateDefinitionRef(ctx, functionNameValue));
-		status.add(validateValue(ctx, functionNameValue));
+		// apply this constraint to FunctionNameValues but not to its sub types
+		if (EcucdescriptionPackage.eINSTANCE.getFunctionNameValue().equals(functionNameValue.eClass())) {
+			MultiStatus multiStatus = new MultiStatus(Activator.PLUGIN_ID, 0, this.getClass().getName(), null);
+			multiStatus.add(validateDefinition(ctx, functionNameValue));
+			multiStatus.add(validateValue(ctx, functionNameValue));
+			status = multiStatus;
+		} else {
+			status = ctx.createSuccessStatus();
+		}
 
 		return status;
 	}
 
-	@Override
-	protected IStatus validateDefinitionRef(IValidationContext ctx, ParameterValue parameterValue) {
+	protected IStatus validateDefinition(IValidationContext ctx, FunctionNameValue functionNameValue) {
 		// check if definition is set and available
-		IStatus status = super.validateDefinitionRef(ctx, parameterValue);
+		IStatus status = super.validateDefinitionRef(ctx, functionNameValue);
 		if (status.isOK()) {
-			if (!(parameterValue.getDefinition() instanceof FunctionNameDef)) {
+			if (!(functionNameValue.getDefinition() instanceof FunctionNameDef)) {
 				status = ctx
 						.createFailureStatus("[ecuc sws 3005] A FunctionNameValue stores a configuration value that is of definition type FunctionNameParamDef.");
 			}
@@ -52,16 +57,4 @@ public class FunctionNameValueConstraint extends AbstractParameterValueConstrain
 		return status;
 	}
 
-	protected IStatus validateValue(IValidationContext ctx, LinkerSymbolValue linkerSymbolValue) {
-
-		final IStatus status;
-		if (false == linkerSymbolValue.isSetValue() || null == linkerSymbolValue.getValue()) {
-			status = ctx
-					.createFailureStatus("[ecuc sws 3034] each FunctionNameValue needs to have a value specified even if it is just copied from the defaultValue of the ECU Configuration Definition");
-		} else {
-			status = ctx.createSuccessStatus();
-		}
-
-		return status;
-	}
 }

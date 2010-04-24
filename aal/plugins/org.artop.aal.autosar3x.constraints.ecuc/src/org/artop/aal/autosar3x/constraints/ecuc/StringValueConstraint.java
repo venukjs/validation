@@ -19,28 +19,35 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.emf.validation.IValidationContext;
 
+import autosar3x.ecucdescription.EcucdescriptionPackage;
 import autosar3x.ecucdescription.ParameterValue;
 import autosar3x.ecucdescription.StringValue;
 import autosar3x.ecucparameterdef.StringParamDef;
 
 public class StringValueConstraint extends AbstractParameterValueConstraint {
-	final String STRING_PATTERN = "[a-zA-Z]([a-zA-Z0-9_])*"; //$NON-NLS-1$
 
 	@Override
 	public IStatus validate(IValidationContext ctx) {
 		assert ctx.getTarget() instanceof StringValue;
 
-		MultiStatus status = new MultiStatus(Activator.PLUGIN_ID, 0, this.getClass().getName(), null);
+		final IStatus status;
+
 		StringValue stringValue = (StringValue) ctx.getTarget();
 
-		status.add(validateDefinitionRef(ctx, stringValue));
-		status.add(validateValue(ctx, stringValue));
+		// apply this constraint to StringValues but not to its sub types
+		if (EcucdescriptionPackage.eINSTANCE.getStringValue().equals(stringValue.eClass())) {
+			MultiStatus multiStatus = new MultiStatus(Activator.PLUGIN_ID, 0, this.getClass().getName(), null);
+			multiStatus.add(validateDefinition(ctx, stringValue));
+			multiStatus.add(validateValue(ctx, stringValue));
+			status = multiStatus;
+		} else {
+			status = ctx.createSuccessStatus();
+		}
 
 		return status;
 	}
 
-	@Override
-	protected IStatus validateDefinitionRef(IValidationContext ctx, ParameterValue parameterValue) {
+	protected IStatus validateDefinition(IValidationContext ctx, ParameterValue parameterValue) {
 		// check if definition is set and available
 		IStatus status = super.validateDefinitionRef(ctx, parameterValue);
 		if (status.isOK()) {

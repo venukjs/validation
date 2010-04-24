@@ -19,33 +19,39 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.emf.validation.IValidationContext;
 
+import autosar3x.ecucdescription.EcucdescriptionPackage;
 import autosar3x.ecucdescription.LinkerSymbolValue;
-import autosar3x.ecucdescription.ParameterValue;
 import autosar3x.ecucparameterdef.LinkerSymbolDef;
 
-public class LinkerSymbolValueConstraint extends AbstractParameterValueConstraint {
+public class LinkerSymbolValueConstraint extends StringValueConstraint {
 	final String STRING_PATTERN = "[a-zA-Z]([a-zA-Z0-9_])*"; //$NON-NLS-1$
 
 	@Override
 	public IStatus validate(IValidationContext ctx) {
 		assert ctx.getTarget() instanceof LinkerSymbolValue;
 
-		LinkerSymbolValue stringValue = (LinkerSymbolValue) ctx.getTarget();
+		final IStatus status;
 
-		MultiStatus status = new MultiStatus(Activator.PLUGIN_ID, 0, this.getClass().getName(), null);
+		LinkerSymbolValue linkerSymbolValue = (LinkerSymbolValue) ctx.getTarget();
 
-		status.add(validateDefinitionRef(ctx, stringValue));
-		status.add(validateValue(ctx, stringValue));
+		// apply this constraint to LinkerSymbolValues but not to its sub types
+		if (EcucdescriptionPackage.eINSTANCE.getLinkerSymbolValue().equals(linkerSymbolValue.eClass())) {
+			MultiStatus multiStatus = new MultiStatus(Activator.PLUGIN_ID, 0, this.getClass().getName(), null);
+			multiStatus.add(validateDefinition(ctx, linkerSymbolValue));
+			multiStatus.add(validateValue(ctx, linkerSymbolValue));
+			status = multiStatus;
+		} else {
+			status = ctx.createSuccessStatus();
+		}
 
 		return status;
 	}
 
-	@Override
-	protected IStatus validateDefinitionRef(IValidationContext ctx, ParameterValue parameterValue) {
+	private IStatus validateDefinition(IValidationContext ctx, LinkerSymbolValue linkerSymbolValue) {
 		// check if definition is set and available
-		IStatus status = super.validateDefinitionRef(ctx, parameterValue);
+		IStatus status = super.validateDefinitionRef(ctx, linkerSymbolValue);
 		if (status.isOK()) {
-			if (!(parameterValue.getDefinition() instanceof LinkerSymbolDef)) {
+			if (!(linkerSymbolValue.getDefinition() instanceof LinkerSymbolDef)) {
 				status = ctx
 						.createFailureStatus("[ecuc sws 3041] A LinkerSymbolValue stores a configuration value that is of definition type LinkerSymbolParameter.");
 			}
@@ -55,11 +61,8 @@ public class LinkerSymbolValueConstraint extends AbstractParameterValueConstrain
 
 	protected IStatus validateValue(IValidationContext ctx, LinkerSymbolValue linkerSymbolValue) {
 
-		final IStatus status;
-		if (false == linkerSymbolValue.isSetValue() || null == linkerSymbolValue.getValue()) {
-			status = ctx
-					.createFailureStatus("[ecuc sws 3034] each LinkerSymbolValue needs to have a value specified even if it is just copied from the defaultValue of the ECU Configuration Definition");
-		} else {
+		IStatus status = super.validateValue(ctx, linkerSymbolValue);
+		if (status.isOK()) {
 			String value = linkerSymbolValue.getValue();
 			// check that value length is between 1 and 255 characters
 			if (0 == value.length()) {
