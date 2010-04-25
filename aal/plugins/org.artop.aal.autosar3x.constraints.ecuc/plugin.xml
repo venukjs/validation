@@ -306,6 +306,24 @@
                      class="Container">
                </target>
             </constraint> 
+               <constraint
+                  class="org.artop.aal.autosar3x.constraints.ecuc.ModuleConfigurationSubContainerMultiplicityConstraint"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.ModuleConfigurationSubContainerMultiplicityConstraint_3x"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="ModuleConfigurationSubContainerMultiplicityConstraint"
+                  severity="ERROR"
+                  statusCode="0010002">
+               <message>
+                  {0}
+               </message>
+               <description>
+               Valiates the multiplicity of the containers of a ModuleConfiguration.
+               </description>
+               <target
+                     class="ModuleConfiguration">
+               </target>
+            </constraint> 
             
          </constraints>     
       </constraintProvider>
