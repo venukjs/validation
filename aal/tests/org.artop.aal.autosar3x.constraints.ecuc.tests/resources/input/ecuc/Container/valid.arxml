@@ -27,6 +27,12 @@
                   <DEFINITION-REF DEST="PARAM-CONF-CONTAINER-DEF">/AUTOSAR/Os/ParamConfContainerDef1/SubContainerDef1</DEFINITION-REF>
                 </CONTAINER>
               </SUB-CONTAINERS>
+              <PARAMETER-VALUES>
+                <BOOLEAN-VALUE>
+                  <DEFINITION-REF DEST="BOOLEAN-PARAM-DEF">/AUTOSAR/Os/ParamConfContainerDef1/BooleanParameter1</DEFINITION-REF>
+                  <VALUE>true</VALUE>
+                </BOOLEAN-VALUE>
+              </PARAMETER-VALUES>
             </CONTAINER>
           </CONTAINERS>
         </MODULE-CONFIGURATION>
@@ -60,6 +66,15 @@
                   <SHORT-NAME>SubContainerDef1</SHORT-NAME>
                 </PARAM-CONF-CONTAINER-DEF>
               </SUB-CONTAINERS>
+              <PARAMETERS>
+                <BOOLEAN-PARAM-DEF>
+                  <SHORT-NAME>BooleanParameter</SHORT-NAME>
+	              <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+       		      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>              
+                  <DEFAULT-VALUE>false</DEFAULT-VALUE>
+                </BOOLEAN-PARAM-DEF>  
+              </PARAMETERS>         
+
             </PARAM-CONF-CONTAINER-DEF>
           </CONTAINERS>
         </MODULE-DEF>
