@@ -18,19 +18,24 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
 @SuppressWarnings("nls")
-public class ContainerMultiplicityConstraintTests extends ValidationTestCase {
+public class ContainerSubContainerMultiplicityConstraintTests extends ValidationTestCase {
 
-	public ContainerMultiplicityConstraintTests() {
+	public ContainerSubContainerMultiplicityConstraintTests() {
 		super();
 	}
 
 	@Override
 	protected String getConstraintID() {
-		return "org.artop.aal.autosar3x.constraints.ecuc.ContainerMultiplicityConstraint_3x";//$NON-NLS-1$
+		return "org.artop.aal.autosar3x.constraints.ecuc.ContainerSubContainerMultiplicityConstraint_3x";//$NON-NLS-1$
 	}
 
 	public void testInvalidContainer_choiceContainerMoreThanOneChoiceSelected() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/Container/choiceContainerMoreThanOneChoiceSelected.arxml");
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
+	}
+
+	public void testInvalidContainer_choiceContainerMoreThanOneChoiceSelected_splitted() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/Container/choiceContainerMoreThanOneChoiceSelected_splitted.arxml");
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
 	}
 
@@ -52,6 +57,11 @@ public class ContainerMultiplicityConstraintTests extends ValidationTestCase {
 	// valid
 	public void testValidContainer() throws Exception {
 		EObject validModel = loadInputFile("ecuc/Container/valid.arxml");
+		ValidationTestUtil.validateModel(validModel, validator, IStatus.OK);
+	}
+
+	public void testValidContainer_splitted() throws Exception {
+		EObject validModel = loadInputFile("ecuc/Container/valid_splitted.arxml");
 		ValidationTestUtil.validateModel(validModel, validator, IStatus.OK);
 	}
 }
