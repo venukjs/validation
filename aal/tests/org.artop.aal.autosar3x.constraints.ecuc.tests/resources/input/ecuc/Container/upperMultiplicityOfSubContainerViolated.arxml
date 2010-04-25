@@ -9,23 +9,22 @@
           <IMPLEMENTATION-CONFIG-VARIANT>VARIANT-PRE-COMPILE</IMPLEMENTATION-CONFIG-VARIANT>
           <CONTAINERS>
             <CONTAINER>
-              <SHORT-NAME>OS_ChoiceContainer</SHORT-NAME>
-              <DEFINITION-REF DEST="CHOICE-CONTAINER-DEF">/AUTOSAR/Os/ChoiceContainerDef</DEFINITION-REF>
-              <SUB-CONTAINERS>
-                <CONTAINER>
-                  <SHORT-NAME>OS_Choice</SHORT-NAME>
-                  <DEFINITION-REF DEST="PARAM-CONF-CONTAINER-DEF">/AUTOSAR/Os/ChoiceContainerDef/Alternative1</DEFINITION-REF>
-                </CONTAINER>
-              </SUB-CONTAINERS>
-            </CONTAINER>
-            <CONTAINER>
               <SHORT-NAME>OS_Container</SHORT-NAME>
               <DEFINITION-REF DEST="PARAM-CONF-CONTAINER-DEF">/AUTOSAR/Os/ParamConfContainerDef</DEFINITION-REF>
               <SUB-CONTAINERS>
+                <!-- only 2 subcontainers are allowed here -->
                 <CONTAINER>
-                  <SHORT-NAME>OS_SubContainer</SHORT-NAME>
+                  <SHORT-NAME>OS_SubContainer1</SHORT-NAME>
                   <DEFINITION-REF DEST="PARAM-CONF-CONTAINER-DEF">/AUTOSAR/Os/ParamConfContainerDef/SubContainerDef</DEFINITION-REF>
                 </CONTAINER>   
+                <CONTAINER>
+                  <SHORT-NAME>OS_SubContainer2</SHORT-NAME>
+                  <DEFINITION-REF DEST="PARAM-CONF-CONTAINER-DEF">/AUTOSAR/Os/ParamConfContainerDef/SubContainerDef</DEFINITION-REF>
+                </CONTAINER>
+                <CONTAINER>
+                  <SHORT-NAME>OS_SubContainer3</SHORT-NAME>
+                  <DEFINITION-REF DEST="PARAM-CONF-CONTAINER-DEF">/AUTOSAR/Os/ParamConfContainerDef/SubContainerDef</DEFINITION-REF>
+                </CONTAINER>
               </SUB-CONTAINERS>
             </CONTAINER>
           </CONTAINERS>
@@ -38,25 +37,13 @@
          <MODULE-DEF>
           <SHORT-NAME>Os</SHORT-NAME>
           <CONTAINERS>
-            <CHOICE-CONTAINER-DEF>
-              <SHORT-NAME>ChoiceContainerDef</SHORT-NAME>
-              <CHOICES>
-                 <PARAM-CONF-CONTAINER-DEF>
-                    <SHORT-NAME>Alternative1</SHORT-NAME>
-                 </PARAM-CONF-CONTAINER-DEF>
-                 <PARAM-CONF-CONTAINER-DEF>
-                    <SHORT-NAME>Alternative2</SHORT-NAME>
-                 </PARAM-CONF-CONTAINER-DEF>
-             </CHOICES>
-           </CHOICE-CONTAINER-DEF>
            <PARAM-CONF-CONTAINER-DEF>
              <SHORT-NAME>ParamConfContainerDef</SHORT-NAME>
              <SUB-CONTAINERS>
                 <PARAM-CONF-CONTAINER-DEF>
                   <SHORT-NAME>SubContainerDef</SHORT-NAME>
-                  <!-- wrong multiplicity inserted below -->
                   <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
-                  <UPPER-MULTIPLICITY>0</UPPER-MULTIPLICITY>
+                  <UPPER-MULTIPLICITY>2</UPPER-MULTIPLICITY>
                 </PARAM-CONF-CONTAINER-DEF>  
               </SUB-CONTAINERS>
             </PARAM-CONF-CONTAINER-DEF> 

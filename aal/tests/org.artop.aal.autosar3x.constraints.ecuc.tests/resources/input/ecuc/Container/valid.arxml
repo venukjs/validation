@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<AUTOSAR xmlns="http://autosar.org/3.1.1"><TOP-LEVEL-PACKAGES>
+<AUTOSAR xmlns="http://autosar.org/3.1.2"><TOP-LEVEL-PACKAGES>
     <AR-PACKAGE>
       <SHORT-NAME>OS_Package1</SHORT-NAME>
       <ELEMENTS>
@@ -10,22 +10,22 @@
           <CONTAINERS>
             <CONTAINER>
               <SHORT-NAME>OS_ChoiceContainer</SHORT-NAME>
-              <DEFINITION-REF DEST="CHOICE-CONTAINER-DEF">/AUTOSAR/Os/ChoiceContainerDef</DEFINITION-REF>
+              <DEFINITION-REF DEST="CHOICE-CONTAINER-DEF">/AUTOSAR/Os/ChoiceContainerDef1</DEFINITION-REF>
               <SUB-CONTAINERS>
                 <CONTAINER>
                   <SHORT-NAME>OS_Choice</SHORT-NAME>
-                  <DEFINITION-REF DEST="PARAM-CONF-CONTAINER-DEF">/AUTOSAR/Os/ChoiceContainerDef/Alternative1</DEFINITION-REF>
+                  <DEFINITION-REF DEST="PARAM-CONF-CONTAINER-DEF">/AUTOSAR/Os/ChoiceContainerDef1/Alternative1</DEFINITION-REF>
                 </CONTAINER>
               </SUB-CONTAINERS>
             </CONTAINER>
             <CONTAINER>
               <SHORT-NAME>OS_Container</SHORT-NAME>
-              <DEFINITION-REF DEST="PARAM-CONF-CONTAINER-DEF">/AUTOSAR/Os/ParamConfContainerDef</DEFINITION-REF>
+              <DEFINITION-REF DEST="PARAM-CONF-CONTAINER-DEF">/AUTOSAR/Os/ParamConfContainerDef1</DEFINITION-REF>
               <SUB-CONTAINERS>
                 <CONTAINER>
                   <SHORT-NAME>OS_SubContainer</SHORT-NAME>
-                  <DEFINITION-REF DEST="PARAM-CONF-CONTAINER-DEF">/AUTOSAR/Os/ParamConfContainerDef/SubContainerDef</DEFINITION-REF>
-                </CONTAINER>   
+                  <DEFINITION-REF DEST="PARAM-CONF-CONTAINER-DEF">/AUTOSAR/Os/ParamConfContainerDef1/SubContainerDef1</DEFINITION-REF>
+                </CONTAINER>
               </SUB-CONTAINERS>
             </CONTAINER>
           </CONTAINERS>
@@ -33,34 +33,34 @@
       </ELEMENTS>
     </AR-PACKAGE>
     <AR-PACKAGE>
-    <SHORT-NAME>AUTOSAR</SHORT-NAME>
+      <SHORT-NAME>AUTOSAR</SHORT-NAME>
       <ELEMENTS>
-         <MODULE-DEF>
+        <MODULE-DEF>
           <SHORT-NAME>Os</SHORT-NAME>
           <CONTAINERS>
             <CHOICE-CONTAINER-DEF>
-              <SHORT-NAME>ChoiceContainerDef</SHORT-NAME>
+              <SHORT-NAME>ChoiceContainerDef1</SHORT-NAME>
               <CHOICES>
-                 <PARAM-CONF-CONTAINER-DEF>
-                    <SHORT-NAME>Alternative1</SHORT-NAME>
-   		            <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
-          		    <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>                                  
-                 </PARAM-CONF-CONTAINER-DEF>
-                 <PARAM-CONF-CONTAINER-DEF>
-                    <SHORT-NAME>Alternative2</SHORT-NAME>
-   		            <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
-          		    <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>              
-                 </PARAM-CONF-CONTAINER-DEF>
-             </CHOICES>
-           </CHOICE-CONTAINER-DEF>
-           <PARAM-CONF-CONTAINER-DEF>
-             <SHORT-NAME>ParamConfContainerDef</SHORT-NAME>
-             <SUB-CONTAINERS>
                 <PARAM-CONF-CONTAINER-DEF>
-                  <SHORT-NAME>SubContainerDef</SHORT-NAME>
-                </PARAM-CONF-CONTAINER-DEF>  
+                  <SHORT-NAME>Alternative1</SHORT-NAME>
+                  <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                </PARAM-CONF-CONTAINER-DEF>
+                <PARAM-CONF-CONTAINER-DEF>
+                  <SHORT-NAME>Alternative2</SHORT-NAME>
+                  <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                </PARAM-CONF-CONTAINER-DEF>
+              </CHOICES>
+            </CHOICE-CONTAINER-DEF>
+            <PARAM-CONF-CONTAINER-DEF>
+              <SHORT-NAME>ParamConfContainerDef1</SHORT-NAME>
+              <SUB-CONTAINERS>
+                <PARAM-CONF-CONTAINER-DEF>
+                  <SHORT-NAME>SubContainerDef1</SHORT-NAME>
+                </PARAM-CONF-CONTAINER-DEF>
               </SUB-CONTAINERS>
-            </PARAM-CONF-CONTAINER-DEF> 
+            </PARAM-CONF-CONTAINER-DEF>
           </CONTAINERS>
         </MODULE-DEF>
       </ELEMENTS>

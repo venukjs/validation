@@ -21,6 +21,7 @@ import junit.framework.TestSuite;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.BooleanValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ConfigReferenceValueStructuralIntegrityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerConstraintTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerMultiplicityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerStructuralIntegrityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.EnumerationValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.FloatValueConstraintTests;
@@ -60,6 +61,7 @@ public class AalAutosar3xConstraintsEcucTestSuite {
 		suite.addTestSuite(ConfigReferenceValueStructuralIntegrityConstraintTests.class);
 		suite.addTestSuite(ParameterValueStructuralIntegrityConstraintTests.class);
 		suite.addTestSuite(ContainerStructuralIntegrityConstraintTests.class);
+		suite.addTestSuite(ContainerMultiplicityConstraintTests.class);
 
 		return suite;
 	}
