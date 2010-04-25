@@ -21,8 +21,8 @@ import junit.framework.TestSuite;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.BooleanValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ConfigReferenceValueStructuralIntegrityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerSubContainerMultiplicityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerStructuralIntegrityConstraintTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerSubContainerMultiplicityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.EnumerationValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.FloatValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.FunctionNameValueConstraintTests;
@@ -30,6 +30,7 @@ import org.artop.aal.autosar3x.constraints.ecuc.tests.InstanceReferenceValueCons
 import org.artop.aal.autosar3x.constraints.ecuc.tests.IntegerValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.LinkerSymbolValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ModuleConfigurationConstraintTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.ModuleConfigurationSubContainerMultiplicityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ParameterValueStructuralIntegrityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ReferenceValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.StringValueConstraintTests;
@@ -62,6 +63,7 @@ public class AalAutosar3xConstraintsEcucTestSuite {
 		suite.addTestSuite(ParameterValueStructuralIntegrityConstraintTests.class);
 		suite.addTestSuite(ContainerStructuralIntegrityConstraintTests.class);
 		suite.addTestSuite(ContainerSubContainerMultiplicityConstraintTests.class);
+		suite.addTestSuite(ModuleConfigurationSubContainerMultiplicityConstraintTests.class);
 
 		return suite;
 	}

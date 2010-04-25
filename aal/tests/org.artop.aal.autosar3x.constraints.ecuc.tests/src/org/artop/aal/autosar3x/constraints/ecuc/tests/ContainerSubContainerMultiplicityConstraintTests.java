@@ -49,6 +49,11 @@ public class ContainerSubContainerMultiplicityConstraintTests extends Validation
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
 	}
 
+	public void testInvalidContainer_mandatorySubContainerMissing() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/Container/mandatorySubContainerMissing.arxml");
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
+	}
+
 	public void testInvalidContainer_upperMultiplicityOfSubContainerViolated() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/Container/upperMultiplicityOfSubContainerViolated.arxml");
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);

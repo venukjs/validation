@@ -9,16 +9,6 @@
           <IMPLEMENTATION-CONFIG-VARIANT>VARIANT-PRE-COMPILE</IMPLEMENTATION-CONFIG-VARIANT>
           <CONTAINERS>
             <CONTAINER>
-              <SHORT-NAME>OS_ChoiceContainer</SHORT-NAME>
-              <DEFINITION-REF DEST="CHOICE-CONTAINER-DEF">/AUTOSAR/Os/ChoiceContainerDef</DEFINITION-REF>
-              <SUB-CONTAINERS>
-                <CONTAINER>
-                  <SHORT-NAME>OS_Choice</SHORT-NAME>
-                  <DEFINITION-REF DEST="PARAM-CONF-CONTAINER-DEF">/AUTOSAR/Os/ChoiceContainerDef/Alternative1</DEFINITION-REF>
-                </CONTAINER>
-              </SUB-CONTAINERS>
-            </CONTAINER>
-            <CONTAINER>
               <SHORT-NAME>OS_Container</SHORT-NAME>
               <DEFINITION-REF DEST="PARAM-CONF-CONTAINER-DEF">/AUTOSAR/Os/ParamConfContainerDef</DEFINITION-REF>
               <!-- SUB-CONTAINER missing below -->
@@ -33,23 +23,11 @@
          <MODULE-DEF>
           <SHORT-NAME>Os</SHORT-NAME>
           <CONTAINERS>
-            <CHOICE-CONTAINER-DEF>
-              <SHORT-NAME>ChoiceContainerDef</SHORT-NAME>
-              <CHOICES>
-                 <PARAM-CONF-CONTAINER-DEF>
-                    <SHORT-NAME>Alternative1</SHORT-NAME>
-                 </PARAM-CONF-CONTAINER-DEF>
-                 <PARAM-CONF-CONTAINER-DEF>
-                    <SHORT-NAME>Alternative2</SHORT-NAME>
-                 </PARAM-CONF-CONTAINER-DEF>
-             </CHOICES>
-           </CHOICE-CONTAINER-DEF>
-           <PARAM-CONF-CONTAINER-DEF>
+            <PARAM-CONF-CONTAINER-DEF>
              <SHORT-NAME>ParamConfContainerDef</SHORT-NAME>
              <SUB-CONTAINERS>
                 <PARAM-CONF-CONTAINER-DEF>
                   <SHORT-NAME>SubContainerDef</SHORT-NAME>
-                  <!-- wrong multiplicity inserted below -->
                   <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
                   <UPPER-MULTIPLICITY>*</UPPER-MULTIPLICITY>
                 </PARAM-CONF-CONTAINER-DEF>  
