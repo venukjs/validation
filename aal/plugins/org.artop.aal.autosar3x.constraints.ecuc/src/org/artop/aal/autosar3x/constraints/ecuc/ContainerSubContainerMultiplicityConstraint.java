@@ -29,7 +29,7 @@ import autosar3x.ecucparameterdef.ContainerDef;
 import autosar3x.ecucparameterdef.ParamConfContainerDef;
 import autosar3x.genericstructure.infrastructure.identifiable.Identifiable;
 
-public class ContainerMultiplicityConstraint extends AbstractModelConstraint {
+public class ContainerSubContainerMultiplicityConstraint extends AbstractModelConstraint {
 
 	@Override
 	public IStatus validate(IValidationContext ctx) {
