@@ -324,6 +324,42 @@
                      class="ModuleConfiguration">
                </target>
             </constraint> 
+            <constraint
+                  class="org.artop.aal.autosar3x.constraints.ecuc.ContainerParameterValueMultiplicityConstraint"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.ContainerParameterValueMultiplicityConstraint_3x"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="ContainerParameterValueMultiplicityConstraint"
+                  severity="ERROR"
+                  statusCode="0010002">
+               <message>
+                  {0}
+               </message>
+               <description>
+               Valiates the multiplicity of the parameterValues of a Container.
+               </description>
+               <target
+                     class="Container">
+               </target>
+            </constraint> 
+            <constraint
+                  class="org.artop.aal.autosar3x.constraints.ecuc.ContainerReferenceValueMultiplicityConstraint"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.ContainerReferenceValueMultiplicityConstraint_3x"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="ContainerReferenceValueMultiplicityConstraint"
+                  severity="ERROR"
+                  statusCode="0010002">
+               <message>
+                  {0}
+               </message>
+               <description>
+               Valiates the multiplicity of the referenceValues of a Container.
+               </description>
+               <target
+                     class="Container">
+               </target>
+            </constraint> 
             
          </constraints>     
       </constraintProvider>

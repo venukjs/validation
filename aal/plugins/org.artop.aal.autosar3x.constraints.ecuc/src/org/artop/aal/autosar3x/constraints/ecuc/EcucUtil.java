@@ -25,14 +25,17 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.validation.IValidationContext;
 
+import autosar3x.ecucdescription.ConfigReferenceValue;
 import autosar3x.ecucdescription.Container;
 import autosar3x.ecucdescription.ModuleConfiguration;
+import autosar3x.ecucdescription.ParameterValue;
 import autosar3x.ecucparameterdef.ChoiceContainerDef;
 import autosar3x.ecucparameterdef.ConfigParameter;
 import autosar3x.ecucparameterdef.ConfigReference;
 import autosar3x.ecucparameterdef.ContainerDef;
 import autosar3x.ecucparameterdef.ModuleDef;
 import autosar3x.ecucparameterdef.ParamConfContainerDef;
+import autosar3x.ecucparameterdef.ParamConfMultiplicity;
 import autosar3x.genericstructure.infrastructure.ARObject;
 import autosar3x.genericstructure.infrastructure.identifiable.Identifiable;
 
@@ -65,6 +68,24 @@ public class EcucUtil {
 			allContainers.addAll(equivalentModuleConguration.getContainers());
 		}
 		return allContainers;
+	}
+
+	public static List<ParameterValue> getAllParameterValuesOf(Container container) {
+		List<ParameterValue> allParameterValues = new ArrayList<ParameterValue>();
+		List<Container> equivalentContainers = getAllEquivalentInstancesOf(container, Container.class);
+		for (Container equivalentContainer : equivalentContainers) {
+			allParameterValues.addAll(equivalentContainer.getParameterValues());
+		}
+		return allParameterValues;
+	}
+
+	public static List<ConfigReferenceValue> getAllReferenceValuesOf(Container container) {
+		List<ConfigReferenceValue> allReferenceValues = new ArrayList<ConfigReferenceValue>();
+		List<Container> equivalentContainers = getAllEquivalentInstancesOf(container, Container.class);
+		for (Container equivalentContainer : equivalentContainers) {
+			allReferenceValues.addAll(equivalentContainer.getReferenceValues());
+		}
+		return allReferenceValues;
 	}
 
 	public static List<ContainerDef> getAllContainersOf(ModuleDef moduleConfiguration) {
@@ -146,7 +167,39 @@ public class EcucUtil {
 		return numberOfUniqueContainersByDefinition;
 	}
 
-	public static IStatus validateLowerMultiplicity(IValidationContext ctx, int numberOfSubContainers, ContainerDef containerDef) {
+	public static List<ParameterValue> filterParameterValuesByDefinition(List<ParameterValue> parameterValues, ConfigParameter configParameter)
+			throws IllegalArgumentException {
+		List<ParameterValue> filteredParameterValues = new ArrayList<ParameterValue>();
+
+		if (null == parameterValues || null == configParameter) {
+			throw new IllegalArgumentException("parameters must not be null");
+		} else {
+			for (ParameterValue currentParameterValue : parameterValues) {
+				if (configParameter.equals(currentParameterValue.getDefinition())) {
+					filteredParameterValues.add(currentParameterValue);
+				}
+			}
+		}
+		return filteredParameterValues;
+	}
+
+	public static List<ConfigReferenceValue> filterConfigReferenceValuesByDefinition(List<ConfigReferenceValue> configReferenceValues,
+			ConfigReference configReference) throws IllegalArgumentException {
+		List<ConfigReferenceValue> filteredConfigReferenceValues = new ArrayList<ConfigReferenceValue>();
+
+		if (null == configReferenceValues || null == configReference) {
+			throw new IllegalArgumentException("parameters must not be null");
+		} else {
+			for (ConfigReferenceValue currentConfigReferenceValue : configReferenceValues) {
+				if (configReference.equals(currentConfigReferenceValue.getDefinition())) {
+					filteredConfigReferenceValues.add(currentConfigReferenceValue);
+				}
+			}
+		}
+		return filteredConfigReferenceValues;
+	}
+
+	public static IStatus validateLowerMultiplicity(IValidationContext ctx, int numberOfSubContainers, ParamConfMultiplicity containerDef) {
 		final IStatus status;
 
 		// by default the multiplicity is 1
@@ -160,8 +213,7 @@ public class EcucUtil {
 		}
 
 		if (numberOfSubContainers < lowerMultiplicity) {
-			status = ctx.createFailureStatus("Expected " + lowerMultiplicity + " subcontainers with definition '" + containerDef.getShortName()
-					+ "'. Only " + numberOfSubContainers + " found.");
+			status = ctx.createFailureStatus("Expected " + lowerMultiplicity + " subcontainers. Only " + numberOfSubContainers + " found.");
 		} else {
 			status = ctx.createSuccessStatus();
 		}
@@ -169,7 +221,7 @@ public class EcucUtil {
 		return status;
 	}
 
-	public static IStatus validateUpperMultiplicity(IValidationContext ctx, int numberOfSubContainers, ContainerDef containerDef) {
+	public static IStatus validateUpperMultiplicity(IValidationContext ctx, int numberOfSubContainers, ParamConfMultiplicity containerDef) {
 		final IStatus status;
 
 		if ("*".equals(containerDef.getUpperMultiplicity())) {
@@ -185,8 +237,8 @@ public class EcucUtil {
 			}
 
 			if (upperMultiplicity < numberOfSubContainers) {
-				status = ctx.createFailureStatus("Expected max " + upperMultiplicity + " subcontainers with definition '"
-						+ containerDef.getShortName() + "'. However " + numberOfSubContainers + " found.");
+				status = ctx
+						.createFailureStatus("Expected max " + upperMultiplicity + " subcontainers. However " + numberOfSubContainers + " found.");
 			} else {
 				status = ctx.createSuccessStatus();
 			}
