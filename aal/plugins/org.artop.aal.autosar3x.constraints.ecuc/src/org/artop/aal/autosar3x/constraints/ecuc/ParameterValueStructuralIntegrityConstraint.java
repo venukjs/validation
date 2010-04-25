@@ -15,8 +15,6 @@
 package org.artop.aal.autosar3x.constraints.ecuc;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 
 import autosar3x.ecucdescription.Container;
@@ -26,24 +24,33 @@ import autosar3x.ecucparameterdef.ConfigParameter;
 import autosar3x.ecucparameterdef.ContainerDef;
 import autosar3x.ecucparameterdef.ParamConfContainerDef;
 
-public class ParameterValueStructuralIntegrityConstraint extends AbstractModelConstraint {
+public class ParameterValueStructuralIntegrityConstraint extends AbstractModelConstraintWithPrecondition {
 	@Override
-	public IStatus validate(IValidationContext ctx) {
-		assert ctx.getTarget() instanceof ParameterValue;
+	protected boolean isApplicable(IValidationContext ctx) {
+		boolean isApplicable = false;
 
-		final IStatus status;
-		ParameterValue parameterValue = (ParameterValue) ctx.getTarget();
+		if (ctx.getTarget() instanceof ParameterValue) {
+			// required ECUC description objects
+			ParameterValue parameterValue = (ParameterValue) ctx.getTarget();
+			Container parentContainer = (Container) parameterValue.eContainer();
 
-		EObject parent = parameterValue.eContainer();
-
-		if (null == parent) {
-			status = ctx.createFailureStatus("element has no parent");
-		} else {
-			assert parent instanceof Container;
-			Container parentContainer = (Container) parent;
-			status = validateStructuralIntegrity(ctx, parameterValue, parentContainer);
+			if (null != parentContainer) {
+				// required ECUC definition objects
+				ContainerDef parentContainerDef = parentContainer.getDefinition();
+				ConfigParameter configReference = parameterValue.getDefinition();
+				isApplicable = null != parentContainerDef && false == parentContainerDef.eIsProxy();
+				isApplicable &= null != configReference && false == configReference.eIsProxy();
+			}
 		}
-		return status;
+		return isApplicable;
+	}
+
+	@Override
+	public IStatus doValidate(IValidationContext ctx) {
+		ParameterValue parameterValue = (ParameterValue) ctx.getTarget();
+		Container parentContainer = (Container) parameterValue.eContainer();
+
+		return validateStructuralIntegrity(ctx, parameterValue, parentContainer);
 
 	}
 
@@ -53,10 +60,7 @@ public class ParameterValueStructuralIntegrityConstraint extends AbstractModelCo
 		ContainerDef parentContainerDef = parentContainer.getDefinition();
 		ConfigParameter configParameter = parameterValue.getDefinition();
 
-		if (null == configParameter || configParameter.eIsProxy() || null == parentContainerDef || parentContainerDef.eIsProxy()) {
-			// error in the definitions are REPORTED in other constraints
-			status = ctx.createSuccessStatus();
-		} else if (parentContainerDef instanceof ChoiceContainerDef) {
+		if (parentContainerDef instanceof ChoiceContainerDef) {
 			// TODO: create testcase
 			status = ctx.createFailureStatus("ReferenceValue not allowed in choice containers");
 		} else if (parentContainerDef instanceof ParamConfContainerDef) {

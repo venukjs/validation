@@ -24,11 +24,13 @@ import autosar3x.ecucdescription.ParameterValue;
 import autosar3x.ecucparameterdef.IntegerParamDef;
 
 public class IntegerValueConstraint extends AbstractParameterValueConstraint {
+	@Override
+	protected boolean isApplicable(IValidationContext ctx) {
+		return ctx.getTarget() instanceof IntegerValue;
+	}
 
 	@Override
-	public IStatus validate(IValidationContext ctx) {
-		assert ctx.getTarget() instanceof IntegerValue;
-
+	protected IStatus doValidate(IValidationContext ctx) {
 		IntegerValue integerValue = (IntegerValue) ctx.getTarget();
 		IStatus status = validateDefinitionRef(ctx, integerValue);
 		if (status.isOK()) {

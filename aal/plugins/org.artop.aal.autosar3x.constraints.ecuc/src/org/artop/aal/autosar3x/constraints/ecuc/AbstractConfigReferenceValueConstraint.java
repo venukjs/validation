@@ -17,13 +17,12 @@ package org.artop.aal.autosar3x.constraints.ecuc;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 
 import autosar3x.ecucdescription.ConfigReferenceValue;
 import autosar3x.ecucdescription.EcucdescriptionPackage;
 
-public abstract class AbstractConfigReferenceValueConstraint extends AbstractModelConstraint {
+public abstract class AbstractConfigReferenceValueConstraint extends AbstractModelConstraintWithPrecondition {
 
 	protected IStatus validateDefinitionRef(IValidationContext ctx, ConfigReferenceValue configReferenceValue) {
 		// check if definition is set and available

@@ -19,30 +19,22 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.emf.validation.IValidationContext;
 
-import autosar3x.ecucdescription.EcucdescriptionPackage;
 import autosar3x.ecucdescription.FunctionNameValue;
 import autosar3x.ecucparameterdef.FunctionNameDef;
 
 public class FunctionNameValueConstraint extends LinkerSymbolValueConstraint {
 	@Override
-	public IStatus validate(IValidationContext ctx) {
-		assert ctx.getTarget() instanceof FunctionNameValue;
+	protected boolean isApplicable(IValidationContext ctx) {
+		return ctx.getTarget() instanceof FunctionNameValue;
+	}
 
-		final IStatus status;
-
+	@Override
+	public IStatus doValidate(IValidationContext ctx) {
 		FunctionNameValue functionNameValue = (FunctionNameValue) ctx.getTarget();
-
-		// apply this constraint to FunctionNameValues but not to its sub types
-		if (EcucdescriptionPackage.eINSTANCE.getFunctionNameValue().equals(functionNameValue.eClass())) {
-			MultiStatus multiStatus = new MultiStatus(Activator.PLUGIN_ID, 0, this.getClass().getName(), null);
-			multiStatus.add(validateDefinition(ctx, functionNameValue));
-			multiStatus.add(validateValue(ctx, functionNameValue));
-			status = multiStatus;
-		} else {
-			status = ctx.createSuccessStatus();
-		}
-
-		return status;
+		MultiStatus multiStatus = new MultiStatus(Activator.PLUGIN_ID, 0, this.getClass().getName(), null);
+		multiStatus.add(validateDefinition(ctx, functionNameValue));
+		multiStatus.add(validateValue(ctx, functionNameValue));
+		return multiStatus;
 	}
 
 	protected IStatus validateDefinition(IValidationContext ctx, FunctionNameValue functionNameValue) {

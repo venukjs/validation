@@ -25,26 +25,18 @@ import autosar3x.ecucdescription.StringValue;
 import autosar3x.ecucparameterdef.StringParamDef;
 
 public class StringValueConstraint extends AbstractParameterValueConstraint {
+	@Override
+	protected boolean isApplicable(IValidationContext ctx) {
+		return EcucdescriptionPackage.eINSTANCE.getStringValue().equals(ctx.getTarget().eClass());
+	}
 
 	@Override
-	public IStatus validate(IValidationContext ctx) {
-		assert ctx.getTarget() instanceof StringValue;
-
-		final IStatus status;
-
+	public IStatus doValidate(IValidationContext ctx) {
 		StringValue stringValue = (StringValue) ctx.getTarget();
-
-		// apply this constraint to StringValues but not to its sub types
-		if (EcucdescriptionPackage.eINSTANCE.getStringValue().equals(stringValue.eClass())) {
-			MultiStatus multiStatus = new MultiStatus(Activator.PLUGIN_ID, 0, this.getClass().getName(), null);
-			multiStatus.add(validateDefinition(ctx, stringValue));
-			multiStatus.add(validateValue(ctx, stringValue));
-			status = multiStatus;
-		} else {
-			status = ctx.createSuccessStatus();
-		}
-
-		return status;
+		MultiStatus multiStatus = new MultiStatus(Activator.PLUGIN_ID, 0, this.getClass().getName(), null);
+		multiStatus.add(validateDefinition(ctx, stringValue));
+		multiStatus.add(validateValue(ctx, stringValue));
+		return multiStatus;
 	}
 
 	protected IStatus validateDefinition(IValidationContext ctx, ParameterValue parameterValue) {

@@ -33,9 +33,12 @@ import autosar3x.genericstructure.infrastructure.identifiable.Identifiable;
 public class InstanceReferenceValueConstraint extends AbstractConfigReferenceValueConstraint {
 
 	@Override
-	public IStatus validate(IValidationContext ctx) {
-		assert ctx.getTarget() instanceof InstanceReferenceValue;
+	protected boolean isApplicable(IValidationContext ctx) {
+		return ctx.getTarget() instanceof InstanceReferenceValue;
+	}
 
+	@Override
+	public IStatus doValidate(IValidationContext ctx) {
 		InstanceReferenceValue instanceReferenceValue = (InstanceReferenceValue) ctx.getTarget();
 		IStatus status = validateDefinitionRef(ctx, instanceReferenceValue);
 		if (status.isOK()) {

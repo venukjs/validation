@@ -32,9 +32,12 @@ import autosar3x.ecucparameterdef.ReferenceParamDef;
 public class ReferenceValueConstraint extends AbstractConfigReferenceValueConstraint {
 
 	@Override
-	public IStatus validate(IValidationContext ctx) {
-		assert ctx.getTarget() instanceof ReferenceValue;
+	protected boolean isApplicable(IValidationContext ctx) {
+		return ctx.getTarget() instanceof ReferenceValue;
+	}
 
+	@Override
+	public IStatus doValidate(IValidationContext ctx) {
 		ReferenceValue referenceValue = (ReferenceValue) ctx.getTarget();
 		IStatus status = validateDefinitionRef(ctx, referenceValue);
 		if (status.isOK()) {

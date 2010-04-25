@@ -16,7 +16,6 @@ package org.artop.aal.autosar3x.constraints.ecuc;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 
 import autosar3x.ecucdescription.Container;
@@ -27,7 +26,7 @@ import autosar3x.ecucparameterdef.ConfigParameter;
 import autosar3x.ecucparameterdef.ContainerDef;
 import autosar3x.ecucparameterdef.ParamConfContainerDef;
 
-public abstract class AbstractParameterValueConstraint extends AbstractModelConstraint {
+public abstract class AbstractParameterValueConstraint extends AbstractModelConstraintWithPrecondition {
 
 	protected IStatus validateDefinitionRef(IValidationContext ctx, ParameterValue parameterValue) {
 		// check if definition is set and available

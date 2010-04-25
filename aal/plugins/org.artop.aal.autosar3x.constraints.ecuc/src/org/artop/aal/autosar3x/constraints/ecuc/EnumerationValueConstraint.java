@@ -27,7 +27,12 @@ import autosar3x.ecucparameterdef.EnumerationParamDef;
 public class EnumerationValueConstraint extends AbstractParameterValueConstraint {
 
 	@Override
-	public IStatus validate(IValidationContext ctx) {
+	protected boolean isApplicable(IValidationContext ctx) {
+		return ctx.getTarget() instanceof EnumerationValue;
+	}
+
+	@Override
+	protected IStatus doValidate(IValidationContext ctx) {
 		assert ctx.getTarget() instanceof EnumerationValue;
 
 		EnumerationValue enumerationValue = (EnumerationValue) ctx.getTarget();

@@ -27,24 +27,17 @@ public class LinkerSymbolValueConstraint extends StringValueConstraint {
 	final String STRING_PATTERN = "[a-zA-Z]([a-zA-Z0-9_])*"; //$NON-NLS-1$
 
 	@Override
-	public IStatus validate(IValidationContext ctx) {
-		assert ctx.getTarget() instanceof LinkerSymbolValue;
+	protected boolean isApplicable(IValidationContext ctx) {
+		return EcucdescriptionPackage.eINSTANCE.getLinkerSymbolValue().equals(ctx.getTarget().eClass());
+	}
 
-		final IStatus status;
-
+	@Override
+	public IStatus doValidate(IValidationContext ctx) {
 		LinkerSymbolValue linkerSymbolValue = (LinkerSymbolValue) ctx.getTarget();
-
-		// apply this constraint to LinkerSymbolValues but not to its sub types
-		if (EcucdescriptionPackage.eINSTANCE.getLinkerSymbolValue().equals(linkerSymbolValue.eClass())) {
-			MultiStatus multiStatus = new MultiStatus(Activator.PLUGIN_ID, 0, this.getClass().getName(), null);
-			multiStatus.add(validateDefinition(ctx, linkerSymbolValue));
-			multiStatus.add(validateValue(ctx, linkerSymbolValue));
-			status = multiStatus;
-		} else {
-			status = ctx.createSuccessStatus();
-		}
-
-		return status;
+		MultiStatus multiStatus = new MultiStatus(Activator.PLUGIN_ID, 0, this.getClass().getName(), null);
+		multiStatus.add(validateDefinition(ctx, linkerSymbolValue));
+		multiStatus.add(validateValue(ctx, linkerSymbolValue));
+		return multiStatus;
 	}
 
 	private IStatus validateDefinition(IValidationContext ctx, LinkerSymbolValue linkerSymbolValue) {

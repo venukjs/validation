@@ -24,9 +24,12 @@ import autosar3x.ecucparameterdef.FloatParamDef;
 public class FloatValueConstraint extends AbstractParameterValueConstraint {
 
 	@Override
-	public IStatus validate(IValidationContext ctx) {
-		assert ctx.getTarget() instanceof FloatValue;
+	protected boolean isApplicable(IValidationContext ctx) {
+		return ctx.getTarget() instanceof FloatValue;
+	}
 
+	@Override
+	protected IStatus doValidate(IValidationContext ctx) {
 		FloatValue floatValue = (FloatValue) ctx.getTarget();
 		IStatus status = validateDefinitionRef(ctx, floatValue);
 		if (status.isOK()) {

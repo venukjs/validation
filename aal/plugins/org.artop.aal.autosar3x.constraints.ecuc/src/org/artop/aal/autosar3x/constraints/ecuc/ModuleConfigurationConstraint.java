@@ -17,7 +17,6 @@ package org.artop.aal.autosar3x.constraints.ecuc;
 import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 
 import autosar3x.ecucdescription.EcucdescriptionPackage;
@@ -25,10 +24,15 @@ import autosar3x.ecucdescription.ModuleConfiguration;
 import autosar3x.ecucparameterdef.ConfigurationVariant;
 import autosar3x.ecucparameterdef.ModuleDef;
 
-public class ModuleConfigurationConstraint extends AbstractModelConstraint {
+public class ModuleConfigurationConstraint extends AbstractModelConstraintWithPrecondition {
 
 	@Override
-	public IStatus validate(IValidationContext ctx) {
+	protected boolean isApplicable(IValidationContext ctx) {
+		return ctx.getTarget() instanceof ModuleConfiguration;
+	}
+
+	@Override
+	public IStatus doValidate(IValidationContext ctx) {
 		assert ctx.getTarget() instanceof ModuleConfiguration;
 
 		ModuleConfiguration moduleConfiguration = (ModuleConfiguration) ctx.getTarget();

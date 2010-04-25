@@ -20,7 +20,6 @@ import java.util.List;
 import org.artop.aal.autosar3x.constraints.ecuc.internal.Activator;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
-import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 
 import autosar3x.ecucdescription.Container;
@@ -29,10 +28,20 @@ import autosar3x.ecucparameterdef.ContainerDef;
 import autosar3x.ecucparameterdef.ParamConfContainerDef;
 import autosar3x.genericstructure.infrastructure.identifiable.Identifiable;
 
-public class ContainerSubContainerMultiplicityConstraint extends AbstractModelConstraint {
+public class ContainerSubContainerMultiplicityConstraint extends AbstractModelConstraintWithPrecondition {
+	@Override
+	protected boolean isApplicable(IValidationContext ctx) {
+		boolean isApplicable = false;
+		if (ctx.getTarget() instanceof Container) {
+			Container container = (Container) ctx.getTarget();
+			ContainerDef containerDef = container.getDefinition();
+			isApplicable = null != containerDef && false == containerDef.eIsProxy();
+		}
+		return isApplicable;
+	}
 
 	@Override
-	public IStatus validate(IValidationContext ctx) {
+	public IStatus doValidate(IValidationContext ctx) {
 		assert ctx.getTarget() instanceof Container;
 
 		final IStatus status;
@@ -40,16 +49,10 @@ public class ContainerSubContainerMultiplicityConstraint extends AbstractModelCo
 		Container container = (Container) ctx.getTarget();
 		ContainerDef containerDef = container.getDefinition();
 
-		if (null != containerDef && false == containerDef.eIsProxy()) {
-			if (containerDef instanceof ChoiceContainerDef) {
-				status = validateChoiceContainer(ctx, container, (ChoiceContainerDef) containerDef);
-			} else {
-				status = validateParamConfContainer(ctx, container, (ParamConfContainerDef) containerDef);
-			}
-
+		if (containerDef instanceof ChoiceContainerDef) {
+			status = validateChoiceContainer(ctx, container, (ChoiceContainerDef) containerDef);
 		} else {
-			// if there is no definition, we assume, that multiplicity is OK
-			status = ctx.createSuccessStatus();
+			status = validateParamConfContainer(ctx, container, (ParamConfContainerDef) containerDef);
 		}
 
 		return status;

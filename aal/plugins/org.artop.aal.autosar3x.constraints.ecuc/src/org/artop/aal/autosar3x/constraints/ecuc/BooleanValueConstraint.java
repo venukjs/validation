@@ -26,9 +26,12 @@ import autosar3x.ecucparameterdef.BooleanParamDef;
 public class BooleanValueConstraint extends AbstractParameterValueConstraint {
 
 	@Override
-	public IStatus validate(IValidationContext ctx) {
-		assert ctx.getTarget() instanceof BooleanValue;
+	protected boolean isApplicable(IValidationContext ctx) {
+		return ctx.getTarget() instanceof BooleanValue;
+	}
 
+	@Override
+	protected IStatus doValidate(IValidationContext ctx) {
 		MultiStatus status = new MultiStatus(Activator.PLUGIN_ID, 0, this.getClass().getName(), null);
 		BooleanValue booleanValue = (BooleanValue) ctx.getTarget();
 

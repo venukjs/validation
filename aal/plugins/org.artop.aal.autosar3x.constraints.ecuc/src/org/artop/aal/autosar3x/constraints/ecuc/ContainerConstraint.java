@@ -15,23 +15,21 @@
 package org.artop.aal.autosar3x.constraints.ecuc;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 
 import autosar3x.ecucdescription.Container;
 import autosar3x.ecucdescription.EcucdescriptionPackage;
 import autosar3x.ecucparameterdef.ContainerDef;
 
-public class ContainerConstraint extends AbstractModelConstraint {
+public class ContainerConstraint extends AbstractModelConstraintWithPrecondition {
+	@Override
+	protected boolean isApplicable(IValidationContext ctx) {
+		return ctx.getTarget() instanceof Container;
+	}
 
 	@Override
-	public IStatus validate(IValidationContext ctx) {
-		assert ctx.getTarget() instanceof Container;
-
-		Container container = (Container) ctx.getTarget();
-		IStatus status = validateDefinitionRef(ctx, container);
-
-		return status;
+	public IStatus doValidate(IValidationContext ctx) {
+		return validateDefinitionRef(ctx, (Container) ctx.getTarget());
 	}
 
 	private IStatus validateDefinitionRef(IValidationContext ctx, Container container) {
