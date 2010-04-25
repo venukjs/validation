@@ -21,9 +21,7 @@ import java.util.Set;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.ecl.emf.util.EObjectUtil;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.validation.IValidationContext;
 
 import autosar3x.ecucdescription.ConfigReferenceValue;
 import autosar3x.ecucdescription.Container;
@@ -199,52 +197,58 @@ public class EcucUtil {
 		return filteredConfigReferenceValues;
 	}
 
-	public static IStatus validateLowerMultiplicity(IValidationContext ctx, int numberOfSubContainers, ParamConfMultiplicity containerDef) {
-		final IStatus status;
+	public static boolean isValidLowerMultiplicity(int numberOfObjects, ParamConfMultiplicity paramConfMultiplicity) {
 
 		// by default the multiplicity is 1
 		int lowerMultiplicity = 1;
 		try {
-			if (containerDef.isSetLowerMultiplicity()) {
-				lowerMultiplicity = Integer.parseInt(containerDef.getLowerMultiplicity());
+			if (paramConfMultiplicity.isSetLowerMultiplicity()) {
+				lowerMultiplicity = Integer.parseInt(paramConfMultiplicity.getLowerMultiplicity());
 			}
 		} catch (NumberFormatException nfe) {
 			// ContainerDef is currupt. that problem need to be reported by another constraint
 		}
 
-		if (numberOfSubContainers < lowerMultiplicity) {
-			status = ctx.createFailureStatus("Expected " + lowerMultiplicity + " subcontainers. Only " + numberOfSubContainers + " found.");
-		} else {
-			status = ctx.createSuccessStatus();
-		}
-
-		return status;
+		return lowerMultiplicity <= numberOfObjects;
 	}
 
-	public static IStatus validateUpperMultiplicity(IValidationContext ctx, int numberOfSubContainers, ParamConfMultiplicity containerDef) {
-		final IStatus status;
+	public static String getLowerMultiplicity(ParamConfMultiplicity paramConfMultiplicity) {
+		final String lowerMultiplicity;
+		if (paramConfMultiplicity.isSetLowerMultiplicity()) {
+			lowerMultiplicity = paramConfMultiplicity.getLowerMultiplicity();
+		} else {
+			lowerMultiplicity = "1";
+		}
+		return lowerMultiplicity;
+	}
 
-		if ("*".equals(containerDef.getUpperMultiplicity())) {
-			status = ctx.createSuccessStatus();
+	public static String getUpperMultiplicity(ParamConfMultiplicity paramConfMultiplicity) {
+		final String upperMultiplicity;
+		if (paramConfMultiplicity.isSetUpperMultiplicity()) {
+			upperMultiplicity = paramConfMultiplicity.getUpperMultiplicity();
+		} else {
+			upperMultiplicity = "1";
+		}
+		return upperMultiplicity;
+	}
+
+	public static boolean isValidUpperMultiplicity(int numberOfObjects, ParamConfMultiplicity paramConfMultiplicity) {
+		final boolean isValidUpperMultiplicity;
+		if ("*".equals(paramConfMultiplicity.getUpperMultiplicity())) {
+			isValidUpperMultiplicity = true;
 		} else {
 			int upperMultiplicity = 1;
 			try {
-				if (containerDef.isSetUpperMultiplicity()) {
-					upperMultiplicity = Integer.parseInt(containerDef.getUpperMultiplicity());
+				if (paramConfMultiplicity.isSetUpperMultiplicity()) {
+					upperMultiplicity = Integer.parseInt(paramConfMultiplicity.getUpperMultiplicity());
 				}
 			} catch (NumberFormatException nfe) {
 				// ContainerDef is currupt. that problem need to be reported by another constraint
 			}
 
-			if (upperMultiplicity < numberOfSubContainers) {
-				status = ctx
-						.createFailureStatus("Expected max " + upperMultiplicity + " subcontainers. However " + numberOfSubContainers + " found.");
-			} else {
-				status = ctx.createSuccessStatus();
-			}
-
+			isValidUpperMultiplicity = numberOfObjects <= upperMultiplicity;
 		}
-		return status;
+		return isValidUpperMultiplicity;
 	}
 
 }

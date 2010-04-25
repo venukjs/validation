@@ -49,11 +49,19 @@ public class ContainerReferenceValueMultiplicityConstraint extends AbstractModel
 
 		List<ConfigReferenceValue> allConfigReferenceValues = EcucUtil.getAllReferenceValuesOf(container);
 		List<ConfigReference> configReferences = paramConfContainerDef.getReferences();
-		for (ConfigReference currentConfigparameter : configReferences) {
-			int numberOfConfigReferenceValues = EcucUtil.filterConfigReferenceValuesByDefinition(allConfigReferenceValues, currentConfigparameter)
+		for (ConfigReference currentConfigReference : configReferences) {
+			int numberOfConfigReferenceValues = EcucUtil.filterConfigReferenceValuesByDefinition(allConfigReferenceValues, currentConfigReference)
 					.size();
-			multiStatus.add(EcucUtil.validateLowerMultiplicity(ctx, numberOfConfigReferenceValues, currentConfigparameter));
-			multiStatus.add(EcucUtil.validateUpperMultiplicity(ctx, numberOfConfigReferenceValues, currentConfigparameter));
+			if (!EcucUtil.isValidLowerMultiplicity(numberOfConfigReferenceValues, currentConfigReference)) {
+				multiStatus.add(ctx.createFailureStatus("Expected min '" + EcucUtil.getLowerMultiplicity(currentConfigReference)
+						+ "' ConfigReferenceValues with definition='" + currentConfigReference.getShortName() + "'. Found '"
+						+ numberOfConfigReferenceValues + "'."));
+			}
+			if (!EcucUtil.isValidUpperMultiplicity(numberOfConfigReferenceValues, currentConfigReference)) {
+				multiStatus.add(ctx.createFailureStatus("Expected max '" + EcucUtil.getUpperMultiplicity(currentConfigReference)
+						+ "' ConfigReferenceValues with definition='" + currentConfigReference.getShortName() + "'. Found '"
+						+ numberOfConfigReferenceValues + "'."));
+			}
 		}
 		return multiStatus;
 	}

@@ -52,8 +52,14 @@ public class ContainerParameterValueMultiplicityConstraint extends AbstractModel
 		for (ConfigParameter currentConfigParameter : configParameters) {
 
 			int numberOfParameters = EcucUtil.filterParameterValuesByDefinition(allParameterValues, currentConfigParameter).size();
-			multiStatus.add(EcucUtil.validateLowerMultiplicity(ctx, numberOfParameters, currentConfigParameter));
-			multiStatus.add(EcucUtil.validateUpperMultiplicity(ctx, numberOfParameters, currentConfigParameter));
+			if (!EcucUtil.isValidLowerMultiplicity(numberOfParameters, currentConfigParameter)) {
+				multiStatus.add(ctx.createFailureStatus("Expected min '" + EcucUtil.getLowerMultiplicity(currentConfigParameter)
+						+ "' ParameterValues with definition='" + currentConfigParameter.getShortName() + "'. Found '" + numberOfParameters + "'."));
+			}
+			if (!EcucUtil.isValidUpperMultiplicity(numberOfParameters, currentConfigParameter)) {
+				multiStatus.add(ctx.createFailureStatus("Expected max '" + EcucUtil.getLowerMultiplicity(currentConfigParameter)
+						+ "' ParameterValues with definition='" + currentConfigParameter.getShortName() + "'. Found '" + numberOfParameters + "'."));
+			}
 		}
 		return multiStatus;
 	}

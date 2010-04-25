@@ -50,8 +50,15 @@ public class ModuleConfigurationSubContainerMultiplicityConstraint extends Abstr
 
 		for (ContainerDef currentSubContainerDef : subContainerDefs) {
 			int numberOfSubContainers = EcucUtil.getNumberOfUniqueContainersByDefinition(allSubContainers, currentSubContainerDef);
-			multiStatus.add(EcucUtil.validateLowerMultiplicity(ctx, numberOfSubContainers, currentSubContainerDef));
-			multiStatus.add(EcucUtil.validateUpperMultiplicity(ctx, numberOfSubContainers, currentSubContainerDef));
+			if (!EcucUtil.isValidLowerMultiplicity(numberOfSubContainers, currentSubContainerDef)) {
+				multiStatus.add(ctx.createFailureStatus("Expected min '" + EcucUtil.getLowerMultiplicity(currentSubContainerDef)
+						+ "' SubContainers with definition='" + currentSubContainerDef.getShortName() + "'. Found '" + numberOfSubContainers + "'."));
+			} else if (!EcucUtil.isValidUpperMultiplicity(numberOfSubContainers, currentSubContainerDef)) {
+				multiStatus.add(ctx.createFailureStatus("Expected max '" + EcucUtil.getUpperMultiplicity(currentSubContainerDef)
+						+ "' SubContainers with definition='" + currentSubContainerDef.getShortName() + "'. Found '" + numberOfSubContainers + "'."));
+			} else {
+				multiStatus.add(ctx.createSuccessStatus());
+			}
 		}
 
 		return multiStatus;
