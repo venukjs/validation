@@ -287,6 +287,26 @@
                      class="Container">
                </target>
             </constraint> 
+            
+            <constraint
+                  class="org.artop.aal.autosar3x.constraints.ecuc.ContainerMultiplicityConstraint"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.ContainerMultiplicityConstraint_3x"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="ContainerMultiplicityConstraint"
+                  severity="ERROR"
+                  statusCode="0010002">
+               <message>
+                  {0}
+               </message>
+               <description>
+               Valiates the multiplicity of the subContainers of a Container.
+               </description>
+               <target
+                     class="Container">
+               </target>
+            </constraint> 
+            
          </constraints>     
       </constraintProvider>
    </extension>

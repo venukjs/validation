@@ -15,7 +15,9 @@
 package org.artop.aal.autosar3x.constraints.ecuc;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.ecl.emf.util.EObjectUtil;
@@ -30,6 +32,7 @@ import autosar3x.ecucparameterdef.ContainerDef;
 import autosar3x.ecucparameterdef.ModuleDef;
 import autosar3x.ecucparameterdef.ParamConfContainerDef;
 import autosar3x.genericstructure.infrastructure.ARObject;
+import autosar3x.genericstructure.infrastructure.identifiable.Identifiable;
 
 public class EcucUtil {
 
@@ -114,5 +117,30 @@ public class EcucUtil {
 			allConfigParameters.addAll(equivalentContainerDef.getParameters());
 		}
 		return allConfigParameters;
+	}
+
+	public static int getNumberOfUniqueShortNames(List<Identifiable> identifiables) {
+		Set<String> shortNames = new HashSet<String>();
+		for (Identifiable identifiable : identifiables) {
+			shortNames.add(identifiable.getShortName());
+		}
+		return shortNames.size();
+	}
+
+	public static int getNumberOfUniqueContainersByDefinition(List<Container> containers, ContainerDef containerDef) throws IllegalArgumentException {
+		final int numberOfUniqueContainersByDefinition;
+
+		if (null == containers || null == containerDef) {
+			throw new IllegalArgumentException("parameters must not be null");
+		} else {
+			Set<String> uniqueContainers = new HashSet<String>();
+			for (Container currentContainer : containers) {
+				if (containerDef.equals(currentContainer.getDefinition())) {
+					uniqueContainers.add(currentContainer.getShortName());
+				}
+			}
+			numberOfUniqueContainersByDefinition = uniqueContainers.size();
+		}
+		return numberOfUniqueContainersByDefinition;
 	}
 }
