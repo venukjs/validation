@@ -54,17 +54,17 @@ public class BasicValidationActionProvider extends AbstractValidationActionProvi
 	/**
 	 * Action responsible for the batch validation of a selected model.
 	 */
-	private BasicValidateAction validateAction;
+	protected BasicValidateAction validateAction;
 
 	/**
 	 * Action responsible for cleaning existing problem markers on model's elements.
 	 */
-	private BasicCleanProblemMarkersAction cleanProblemMarkersAction;
+	protected BasicCleanProblemMarkersAction cleanProblemMarkersAction;
 
 	/**
 	 * Action responsible for the generation of a report once batch validation performed.
 	 */
-	private BasicGenerateValidationReportAction generateValidationReportAction;
+	protected BasicGenerateValidationReportAction generateValidationReportAction;
 
 	/*
 	 * @see org.artop.ecl.emf.ui.actions.providers.BasicActionProvider#doInit()
