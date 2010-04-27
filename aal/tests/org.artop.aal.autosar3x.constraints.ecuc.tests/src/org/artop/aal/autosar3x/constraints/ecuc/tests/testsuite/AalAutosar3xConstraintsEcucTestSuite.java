@@ -33,6 +33,7 @@ import org.artop.aal.autosar3x.constraints.ecuc.tests.IntegerValueConstraintTest
 import org.artop.aal.autosar3x.constraints.ecuc.tests.LinkerSymbolValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ModuleConfigurationConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ModuleConfigurationSubContainerMultiplicityConstraintTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.ParamConfMultiplicityBasicConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ParameterValueStructuralIntegrityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ReferenceValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.StringValueConstraintTests;
@@ -59,6 +60,7 @@ public class AalAutosar3xConstraintsEcucTestSuite {
 		suite.addTestSuite(ContainerConstraintTests.class);
 		suite.addTestSuite(LinkerSymbolValueConstraintTests.class);
 		suite.addTestSuite(FunctionNameValueConstraintTests.class);
+		suite.addTestSuite(ParamConfMultiplicityBasicConstraintTests.class);
 
 		// structural integrity
 		suite.addTestSuite(ConfigReferenceValueStructuralIntegrityConstraintTests.class);
