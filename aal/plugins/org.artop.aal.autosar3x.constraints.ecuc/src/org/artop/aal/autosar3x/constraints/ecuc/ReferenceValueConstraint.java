@@ -71,7 +71,7 @@ public class ReferenceValueConstraint extends AbstractConfigReferenceValueConstr
 			if (null == valueObject) {
 				status = ctx.createFailureStatus("value not available");
 			} else if (valueObject.eIsProxy()) {
-				status = ctx.createFailureStatus("value coul not be resolved");
+				status = ctx.createFailureStatus("value could not be resolved");
 			} else {
 				ConfigReference configReference = referenceValue.getDefinition();
 				if (configReference instanceof ChoiceReferenceParamDef) {

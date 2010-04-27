@@ -25,8 +25,30 @@
             cache="true"
             mode="Batch">
          <package namespaceUri="http://autosar.org/3.1.2/autosar3x/ecucd"/>
+         <package namespaceUri="http://autosar.org/3.1.2/autosar3x/ecucpd"/>
 
          <constraints categories="org.artop.aal.autosar3x.constraints.ecuc/Basic">
+             <constraint
+                  class="org.artop.aal.autosar3x.constraints.ecuc.ParamConfMultiplicityBasicConstraint"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.ParamConfMultiplicityBasicConstraint_3x"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="ParamConfMultiplicityBasicConstraint"
+                  severity="ERROR"
+                  statusCode="0010001">
+               <message>
+                  {0}
+               </message>
+               <description>
+               Validates 'lowerMultiplicity' and 'upperMultiplicity' of ParamConfMultiplicity:
+               If 'lowerMultiplicity' is set, then it shall be a positive integer.
+               If 'upperMultiplicity' is set, then it shall be a positive integer or "*".           
+               </description>
+               <target
+                     class="ParamConfMultiplicity">
+               </target>
+            </constraint>
+         
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.StringValueConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.StringValueConstraint_3x"
