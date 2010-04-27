@@ -24,7 +24,7 @@ import autosar3x.ecucdescription.ParameterValue;
 import autosar3x.ecucdescription.StringValue;
 import autosar3x.ecucparameterdef.StringParamDef;
 
-public class StringValueConstraint extends AbstractParameterValueConstraint {
+public class StringValueBasicConstraint extends AbstractParameterValueConstraint {
 	@Override
 	protected boolean isApplicable(IValidationContext ctx) {
 		return EcucdescriptionPackage.eINSTANCE.getStringValue().equals(ctx.getTarget().eClass());

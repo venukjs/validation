@@ -23,7 +23,7 @@ import autosar3x.ecucdescription.EcucdescriptionPackage;
 import autosar3x.ecucdescription.LinkerSymbolValue;
 import autosar3x.ecucparameterdef.LinkerSymbolDef;
 
-public class LinkerSymbolValueConstraint extends StringValueConstraint {
+public class LinkerSymbolValueBasicConstraint extends StringValueBasicConstraint {
 	final String STRING_PATTERN = "[a-zA-Z]([a-zA-Z0-9_])*"; //$NON-NLS-1$
 
 	@Override

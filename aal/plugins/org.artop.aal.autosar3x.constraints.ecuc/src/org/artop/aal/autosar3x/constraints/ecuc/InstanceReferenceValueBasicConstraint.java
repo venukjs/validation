@@ -30,7 +30,7 @@ import autosar3x.ecucparameterdef.ConfigReference;
 import autosar3x.ecucparameterdef.InstanceReferenceParamDef;
 import autosar3x.genericstructure.infrastructure.identifiable.Identifiable;
 
-public class InstanceReferenceValueConstraint extends AbstractConfigReferenceValueConstraint {
+public class InstanceReferenceValueBasicConstraint extends AbstractConfigReferenceValueConstraint {
 
 	@Override
 	protected boolean isApplicable(IValidationContext ctx) {

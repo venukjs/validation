@@ -21,7 +21,7 @@ import autosar3x.ecucdescription.FloatValue;
 import autosar3x.ecucdescription.ParameterValue;
 import autosar3x.ecucparameterdef.FloatParamDef;
 
-public class FloatValueConstraint extends AbstractParameterValueConstraint {
+public class FloatValueBasicConstraint extends AbstractParameterValueConstraint {
 
 	@Override
 	protected boolean isApplicable(IValidationContext ctx) {

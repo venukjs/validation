@@ -24,7 +24,7 @@ import autosar3x.ecucdescription.ModuleConfiguration;
 import autosar3x.ecucparameterdef.ConfigurationVariant;
 import autosar3x.ecucparameterdef.ModuleDef;
 
-public class ModuleConfigurationConstraint extends AbstractModelConstraintWithPrecondition {
+public class ModuleConfigurationBasicConstraint extends AbstractModelConstraintWithPrecondition {
 
 	@Override
 	protected boolean isApplicable(IValidationContext ctx) {

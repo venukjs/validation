@@ -22,7 +22,7 @@ import org.eclipse.emf.validation.IValidationContext;
 import autosar3x.ecucdescription.FunctionNameValue;
 import autosar3x.ecucparameterdef.FunctionNameDef;
 
-public class FunctionNameValueConstraint extends LinkerSymbolValueConstraint {
+public class FunctionNameValueBasicConstraint extends LinkerSymbolValueBasicConstraint {
 	@Override
 	protected boolean isApplicable(IValidationContext ctx) {
 		return ctx.getTarget() instanceof FunctionNameValue;

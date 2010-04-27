@@ -24,7 +24,7 @@ import autosar3x.ecucdescription.ParameterValue;
 import autosar3x.ecucparameterdef.EnumerationLiteralDef;
 import autosar3x.ecucparameterdef.EnumerationParamDef;
 
-public class EnumerationValueConstraint extends AbstractParameterValueConstraint {
+public class EnumerationValueBasicConstraint extends AbstractParameterValueConstraint {
 
 	@Override
 	protected boolean isApplicable(IValidationContext ctx) {

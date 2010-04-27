@@ -29,7 +29,7 @@ import autosar3x.ecucparameterdef.ForeignReferenceParamDef;
 import autosar3x.ecucparameterdef.ParamConfContainerDef;
 import autosar3x.ecucparameterdef.ReferenceParamDef;
 
-public class ReferenceValueConstraint extends AbstractConfigReferenceValueConstraint {
+public class ReferenceValueBasicBasicConstraint extends AbstractConfigReferenceValueConstraint {
 
 	@Override
 	protected boolean isApplicable(IValidationContext ctx) {

@@ -48,10 +48,51 @@
                      class="ParamConfMultiplicity">
                </target>
             </constraint>
+            
+              <constraint
+                  class="org.artop.aal.autosar3x.constraints.ecuc.ReferenceParamDefBasicConstraint"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.ReferenceParamDefBasicConstraint_3x"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="ReferenceParamDefBasicConstraint"
+                  severity="ERROR"
+                  statusCode="0010001">
+               <message>
+                  {0}
+               </message>
+               <description>
+               Validates 'destination' of ReferenceParamDef.   
+               A resolvable 'destination' is expected.       
+               </description>
+               <target
+                     class="ReferenceParamDef">
+               </target>
+            </constraint>
+            
+            <constraint
+                  class="org.artop.aal.autosar3x.constraints.ecuc.ChoiceReferenceParamDefBasicConstraint"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.ChoiceReferenceParamDefBasicConstraint_3x"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="ChoiceReferenceParamDefBasicConstraint"
+                  severity="ERROR"
+                  statusCode="0010001">
+               <message>
+                  {0}
+               </message>
+               <description>
+               Validates 'destinations' of ChoiceReferenceParamDef. 
+               At least one 'destination' is expected. All 'destinations' shall be resolvable.     
+               </description>
+               <target
+                     class="ChoiceReferenceParamDef">
+               </target>
+            </constraint>
+            
          
             <constraint
-                  class="org.artop.aal.autosar3x.constraints.ecuc.StringValueConstraint"
-                  id="org.artop.aal.autosar3x.constraints.ecuc.StringValueConstraint_3x"
+                  class="org.artop.aal.autosar3x.constraints.ecuc.StringValueBasicConstraint"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.StringValueBasicConstraint_3x"
                   lang="JAVA"
                   mode="Batch"
                   name="StringValue"
@@ -68,8 +109,8 @@
                </target>
             </constraint>
             <constraint
-                  class="org.artop.aal.autosar3x.constraints.ecuc.FunctionNameValueConstraint"
-                  id="org.artop.aal.autosar3x.constraints.ecuc.FunctionNameValueConstraint_3x"
+                  class="org.artop.aal.autosar3x.constraints.ecuc.FunctionNameValueBasicConstraint"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.FunctionNameValueBasicConstraint_3x"
                   lang="JAVA"
                   mode="Batch"
                   name="FunctionNameValue"
@@ -86,8 +127,8 @@
                </target>
             </constraint>
             <constraint
-                  class="org.artop.aal.autosar3x.constraints.ecuc.LinkerSymbolValueConstraint"
-                  id="org.artop.aal.autosar3x.constraints.ecuc.LinkerSymbolValueConstraint_3x"
+                  class="org.artop.aal.autosar3x.constraints.ecuc.LinkerSymbolValueBasicConstraint"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.LinkerSymbolValueBasicConstraint_3x"
                   lang="JAVA"
                   mode="Batch"
                   name="LinkerSymbolValue"
@@ -104,8 +145,8 @@
                </target>
             </constraint>
             <constraint
-                  class="org.artop.aal.autosar3x.constraints.ecuc.IntegerValueConstraint"
-                  id="org.artop.aal.autosar3x.constraints.ecuc.IntegerValueConstraint_3x"
+                  class="org.artop.aal.autosar3x.constraints.ecuc.IntegerValueBasicConstraint"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.IntegerValueBasicConstraint_3x"
                   lang="JAVA"
                   mode="Batch"
                   name="IntegerValue"
@@ -122,8 +163,8 @@
                </target>
             </constraint>
             <constraint
-                  class="org.artop.aal.autosar3x.constraints.ecuc.BooleanValueConstraint"
-                  id="org.artop.aal.autosar3x.constraints.ecuc.BooleanValueConstraint_3x"
+                  class="org.artop.aal.autosar3x.constraints.ecuc.BooleanValueBasicConstraint"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.BooleanValueBasicConstraint_3x"
                   lang="JAVA"
                   mode="Batch"
                   name="BooleanValue"
@@ -140,8 +181,8 @@
                </target>
             </constraint>
             <constraint
-                  class="org.artop.aal.autosar3x.constraints.ecuc.FloatValueConstraint"
-                  id="org.artop.aal.autosar3x.constraints.ecuc.FloatValueConstraint_3x"
+                  class="org.artop.aal.autosar3x.constraints.ecuc.FloatValueBasicConstraint"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.FloatValueBasicConstraint_3x"
                   lang="JAVA"
                   mode="Batch"
                   name="FloatValue"
@@ -158,8 +199,8 @@
                </target>
             </constraint>
             <constraint
-                  class="org.artop.aal.autosar3x.constraints.ecuc.EnumerationValueConstraint"
-                  id="org.artop.aal.autosar3x.constraints.ecuc.EnumerationValueConstraint_3x"
+                  class="org.artop.aal.autosar3x.constraints.ecuc.EnumerationValueBasicConstraint"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.EnumerationValueBasicConstraint_3x"
                   lang="JAVA"
                   mode="Batch"
                   name="EnumerationValue"
@@ -177,8 +218,8 @@
             </constraint>
             
             <constraint
-                  class="org.artop.aal.autosar3x.constraints.ecuc.ReferenceValueConstraint"
-                  id="org.artop.aal.autosar3x.constraints.ecuc.ReferenceValueConstraint_3x"
+                  class="org.artop.aal.autosar3x.constraints.ecuc.ReferenceValueBasicBasicConstraint"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.ReferenceValueBasicConstraint_3x"
                   lang="JAVA"
                   mode="Batch"
                   name="ReferenceValue"
@@ -196,8 +237,8 @@
             </constraint>
             
             <constraint
-                  class="org.artop.aal.autosar3x.constraints.ecuc.InstanceReferenceValueConstraint"
-                  id="org.artop.aal.autosar3x.constraints.ecuc.InstanceReferenceValueConstraint_3x"
+                  class="org.artop.aal.autosar3x.constraints.ecuc.InstanceReferenceValueBasicConstraint"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.InstanceReferenceValueBasicConstraint_3x"
                   lang="JAVA"
                   mode="Batch"
                   name="InstanceReferenceValue"
@@ -215,8 +256,8 @@
             </constraint>
             
             <constraint
-                  class="org.artop.aal.autosar3x.constraints.ecuc.ModuleConfigurationConstraint"
-                  id="org.artop.aal.autosar3x.constraints.ecuc.ModuleConfigurationConstraint_3x"
+                  class="org.artop.aal.autosar3x.constraints.ecuc.ModuleConfigurationBasicConstraint"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.ModuleConfigurationBasicConstraint_3x"
                   lang="JAVA"
                   mode="Batch"
                   name="ModuleConfiguration"
@@ -233,8 +274,8 @@
                </target>
             </constraint>
             <constraint
-                  class="org.artop.aal.autosar3x.constraints.ecuc.ContainerConstraint"
-                  id="org.artop.aal.autosar3x.constraints.ecuc.ContainerConstraint_3x"
+                  class="org.artop.aal.autosar3x.constraints.ecuc.ContainerBasicConstraint"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.ContainerBasicConstraint_3x"
                   lang="JAVA"
                   mode="Batch"
                   name="Container"

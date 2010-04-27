@@ -21,7 +21,7 @@ import autosar3x.ecucdescription.Container;
 import autosar3x.ecucdescription.EcucdescriptionPackage;
 import autosar3x.ecucparameterdef.ContainerDef;
 
-public class ContainerConstraint extends AbstractModelConstraintWithPrecondition {
+public class ContainerBasicConstraint extends AbstractModelConstraintWithPrecondition {
 	@Override
 	protected boolean isApplicable(IValidationContext ctx) {
 		return ctx.getTarget() instanceof Container;

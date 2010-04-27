@@ -23,7 +23,7 @@ import autosar3x.ecucdescription.BooleanValue;
 import autosar3x.ecucdescription.ParameterValue;
 import autosar3x.ecucparameterdef.BooleanParamDef;
 
-public class BooleanValueConstraint extends AbstractParameterValueConstraint {
+public class BooleanValueBasicConstraint extends AbstractParameterValueConstraint {
 
 	@Override
 	protected boolean isApplicable(IValidationContext ctx) {

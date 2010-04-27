@@ -23,7 +23,7 @@ import autosar3x.ecucdescription.IntegerValue;
 import autosar3x.ecucdescription.ParameterValue;
 import autosar3x.ecucparameterdef.IntegerParamDef;
 
-public class IntegerValueConstraint extends AbstractParameterValueConstraint {
+public class IntegerValueBasicConstraint extends AbstractParameterValueConstraint {
 	@Override
 	protected boolean isApplicable(IValidationContext ctx) {
 		return ctx.getTarget() instanceof IntegerValue;
