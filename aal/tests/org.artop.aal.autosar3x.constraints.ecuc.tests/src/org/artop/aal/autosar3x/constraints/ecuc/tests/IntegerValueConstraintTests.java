@@ -26,7 +26,7 @@ public class IntegerValueConstraintTests extends ValidationTestCase {
 
 	@Override
 	protected String getConstraintID() {
-		return "org.artop.aal.autosar3x.constraints.ecuc.IntegerValueConstraint_3x";//$NON-NLS-1$
+		return "org.artop.aal.autosar3x.constraints.ecuc.IntegerValueBasicConstraint_3x";//$NON-NLS-1$
 	}
 
 	// test completeness

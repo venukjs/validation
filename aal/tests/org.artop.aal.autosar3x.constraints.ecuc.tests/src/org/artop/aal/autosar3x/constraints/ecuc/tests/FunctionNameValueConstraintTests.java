@@ -26,7 +26,7 @@ public class FunctionNameValueConstraintTests extends ValidationTestCase {
 
 	@Override
 	protected String getConstraintID() {
-		return "org.artop.aal.autosar3x.constraints.ecuc.FunctionNameValueConstraint_3x";//$NON-NLS-1$
+		return "org.artop.aal.autosar3x.constraints.ecuc.FunctionNameValueBasicConstraint_3x";//$NON-NLS-1$
 	}
 
 	// completeness

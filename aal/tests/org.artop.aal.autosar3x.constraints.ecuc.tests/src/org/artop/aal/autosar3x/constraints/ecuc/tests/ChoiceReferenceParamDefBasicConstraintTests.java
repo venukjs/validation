@@ -18,30 +18,31 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
 @SuppressWarnings("nls")
-public class ContainerConstraintTests extends ValidationTestCase {
+public class ChoiceReferenceParamDefBasicConstraintTests extends ValidationTestCase {
 
-	public ContainerConstraintTests() {
+	public ChoiceReferenceParamDefBasicConstraintTests() {
 		super();
 	}
 
 	@Override
 	protected String getConstraintID() {
-		return "org.artop.aal.autosar3x.constraints.ecuc.ContainerBasicConstraint_3x";//$NON-NLS-1$
+		return "org.artop.aal.autosar3x.constraints.ecuc.ChoiceReferenceParamDefBasicConstraint_3x";//$NON-NLS-1$
 	}
 
 	// completeness
-	public void testInvalidContainer_noDefinition() throws Exception {
-		EObject invalidModel = loadInputFile("ecuc/Container/noDefinition.arxml");
+	public void testInvalidChoiceReferenceParamDef_noDestination() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/ChoiceReferenceParamDef/noDestination.arxml");
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
 	}
 
-	// consistency
-
-	// correctness
+	public void testInvalidChoiceReferenceParamDef_unresolvedDestination() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/ChoiceReferenceParamDef/unresolvedDestination.arxml");
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
+	}
 
 	// valid
-	public void testValidContainer() throws Exception {
-		EObject validModel = loadInputFile("ecuc/Container/valid.arxml");
+	public void testValidChoiceReferenceParamDef() throws Exception {
+		EObject validModel = loadInputFile("ecuc/ChoiceReferenceParamDef/valid.arxml");
 		ValidationTestUtil.validateModel(validModel, validator, IStatus.OK);
 	}
 }

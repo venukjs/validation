@@ -18,15 +18,15 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
 @SuppressWarnings("nls")
-public class BooleanValueConstraintTests extends ValidationTestCase {
+public class BooleanValueBasicConstraintTests extends ValidationTestCase {
 
-	public BooleanValueConstraintTests() {
+	public BooleanValueBasicConstraintTests() {
 		super();
 	}
 
 	@Override
 	protected String getConstraintID() {
-		return "org.artop.aal.autosar3x.constraints.ecuc.BooleanValueConstraint_3x";//$NON-NLS-1$
+		return "org.artop.aal.autosar3x.constraints.ecuc.BooleanValueBasicConstraint_3x";//$NON-NLS-1$
 	}
 
 	// completeness

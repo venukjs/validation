@@ -26,7 +26,7 @@ public class ReferenceValueConstraintTests extends ValidationTestCase {
 
 	@Override
 	protected String getConstraintID() {
-		return "org.artop.aal.autosar3x.constraints.ecuc.ReferenceValueConstraint_3x";//$NON-NLS-1$
+		return "org.artop.aal.autosar3x.constraints.ecuc.ReferenceValueBasicConstraint_3x";//$NON-NLS-1$
 	}
 
 	// test completeness

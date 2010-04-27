@@ -26,7 +26,7 @@ public class LinkerSymbolValueConstraintTests extends ValidationTestCase {
 
 	@Override
 	protected String getConstraintID() {
-		return "org.artop.aal.autosar3x.constraints.ecuc.LinkerSymbolValueConstraint_3x";//$NON-NLS-1$
+		return "org.artop.aal.autosar3x.constraints.ecuc.LinkerSymbolValueBasicConstraint_3x";//$NON-NLS-1$
 	}
 
 	// completeness

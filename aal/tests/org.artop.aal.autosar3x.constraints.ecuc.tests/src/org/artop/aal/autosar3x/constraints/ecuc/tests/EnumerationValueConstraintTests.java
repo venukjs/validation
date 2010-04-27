@@ -26,7 +26,7 @@ public class EnumerationValueConstraintTests extends ValidationTestCase {
 
 	@Override
 	protected String getConstraintID() {
-		return "org.artop.aal.autosar3x.constraints.ecuc.EnumerationValueConstraint_3x";//$NON-NLS-1$
+		return "org.artop.aal.autosar3x.constraints.ecuc.EnumerationValueBasicConstraint_3x";//$NON-NLS-1$
 	}
 
 	// test completeness
