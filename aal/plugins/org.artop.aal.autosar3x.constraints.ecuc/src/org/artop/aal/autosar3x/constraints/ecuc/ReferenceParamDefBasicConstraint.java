@@ -37,8 +37,8 @@ public class ReferenceParamDefBasicConstraint extends AbstractParameterValueCons
 		if (referenceParamDef.eIsSet(EcucparameterdefPackage.eINSTANCE.getReferenceParamDef_Destination())) {
 			ParamConfContainerDef paramConfContainerDef = referenceParamDef.getDestination();
 			if (paramConfContainerDef.eIsProxy()) {
-				status = ctx
-						.createFailureStatus("Could not resolve destination " + AutosarURIFactory.getAbsoluteQualifiedName(paramConfContainerDef));
+				status = ctx.createFailureStatus("Could not resolve destination. ("
+						+ AutosarURIFactory.getAbsoluteQualifiedName(paramConfContainerDef) + " not found)");
 			} else {
 				status = ctx.createSuccessStatus();
 			}

@@ -17,6 +17,7 @@ package org.artop.aal.autosar3x.constraints.ecuc;
 import java.util.List;
 
 import org.artop.aal.autosar3x.constraints.ecuc.internal.Activator;
+import org.artop.aal.common.resource.AutosarURIFactory;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.emf.validation.IValidationContext;
@@ -53,12 +54,14 @@ public class ContainerParameterValueMultiplicityConstraint extends AbstractModel
 
 			int numberOfParameters = EcucUtil.filterParameterValuesByDefinition(allParameterValues, currentConfigParameter).size();
 			if (!EcucUtil.isValidLowerMultiplicity(numberOfParameters, currentConfigParameter)) {
-				multiStatus.add(ctx.createFailureStatus("Expected min '" + EcucUtil.getLowerMultiplicity(currentConfigParameter)
-						+ "' ParameterValues with definition='" + currentConfigParameter.getShortName() + "'. Found '" + numberOfParameters + "'."));
+				multiStatus.add(ctx.createFailureStatus("Expected min " + EcucUtil.getLowerMultiplicity(currentConfigParameter)
+						+ " ParameterValues with definition=" + AutosarURIFactory.getAbsoluteQualifiedName(currentConfigParameter) + ". Found "
+						+ numberOfParameters + "."));
 			}
 			if (!EcucUtil.isValidUpperMultiplicity(numberOfParameters, currentConfigParameter)) {
-				multiStatus.add(ctx.createFailureStatus("Expected max '" + EcucUtil.getLowerMultiplicity(currentConfigParameter)
-						+ "' ParameterValues with definition='" + currentConfigParameter.getShortName() + "'. Found '" + numberOfParameters + "'."));
+				multiStatus.add(ctx.createFailureStatus("Expected max " + EcucUtil.getLowerMultiplicity(currentConfigParameter)
+						+ " ParameterValues with definition=" + AutosarURIFactory.getAbsoluteQualifiedName(currentConfigParameter) + ". Found "
+						+ numberOfParameters + "."));
 			}
 		}
 		return multiStatus;

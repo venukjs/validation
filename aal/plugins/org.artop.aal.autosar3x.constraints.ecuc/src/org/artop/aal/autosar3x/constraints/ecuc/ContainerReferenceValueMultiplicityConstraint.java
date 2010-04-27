@@ -17,6 +17,7 @@ package org.artop.aal.autosar3x.constraints.ecuc;
 import java.util.List;
 
 import org.artop.aal.autosar3x.constraints.ecuc.internal.Activator;
+import org.artop.aal.common.resource.AutosarURIFactory;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.emf.validation.IValidationContext;
@@ -53,14 +54,14 @@ public class ContainerReferenceValueMultiplicityConstraint extends AbstractModel
 			int numberOfConfigReferenceValues = EcucUtil.filterConfigReferenceValuesByDefinition(allConfigReferenceValues, currentConfigReference)
 					.size();
 			if (!EcucUtil.isValidLowerMultiplicity(numberOfConfigReferenceValues, currentConfigReference)) {
-				multiStatus.add(ctx.createFailureStatus("Expected min '" + EcucUtil.getLowerMultiplicity(currentConfigReference)
-						+ "' ConfigReferenceValues with definition='" + currentConfigReference.getShortName() + "'. Found '"
-						+ numberOfConfigReferenceValues + "'."));
+				multiStatus.add(ctx.createFailureStatus("Expected min " + EcucUtil.getLowerMultiplicity(currentConfigReference)
+						+ " ConfigReferenceValues with definition=" + AutosarURIFactory.getAbsoluteQualifiedName(currentConfigReference) + ". Found "
+						+ numberOfConfigReferenceValues + "."));
 			}
 			if (!EcucUtil.isValidUpperMultiplicity(numberOfConfigReferenceValues, currentConfigReference)) {
-				multiStatus.add(ctx.createFailureStatus("Expected max '" + EcucUtil.getUpperMultiplicity(currentConfigReference)
-						+ "' ConfigReferenceValues with definition='" + currentConfigReference.getShortName() + "'. Found '"
-						+ numberOfConfigReferenceValues + "'."));
+				multiStatus.add(ctx.createFailureStatus("Expected max " + EcucUtil.getUpperMultiplicity(currentConfigReference)
+						+ " ConfigReferenceValues with definition=" + AutosarURIFactory.getAbsoluteQualifiedName(currentConfigReference) + ". Found "
+						+ numberOfConfigReferenceValues + "."));
 			}
 		}
 		return multiStatus;

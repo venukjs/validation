@@ -14,6 +14,7 @@
  */
 package org.artop.aal.autosar3x.constraints.ecuc;
 
+import org.artop.aal.common.resource.AutosarURIFactory;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -104,7 +105,8 @@ public class ReferenceValueBasicBasicConstraint extends AbstractConfigReferenceV
 			// CHECK if ParamConfContainerDef is available for destination
 			ParamConfContainerDef containerDefFromDestination = referenceDef.getDestination();
 			if (null == containerDefFromDestination || containerDefFromDestination.eIsProxy()) {
-				status = ctx.createFailureStatus("no ParamConfContainerDef for destination"); //$NON-NLS-1$
+				status = ctx
+						.createFailureStatus("Could not validate due to errors in ReferenceParamDef " + AutosarURIFactory.getAbsoluteQualifiedName(containerDefFromDestination)); //$NON-NLS-1$
 			} else {
 				Container container = (Container) valueObject;
 				ParamConfContainerDef containerDefFromDefinition = (ParamConfContainerDef) container.getDefinition();
@@ -141,7 +143,8 @@ public class ReferenceValueBasicBasicConstraint extends AbstractConfigReferenceV
 			// CHECK if destination available
 			EList<ParamConfContainerDef> containerDefList = choiceReferenceDef.getDestinations();
 			if (null == containerDefList || 0 == containerDefList.size()) {
-				status = ctx.createFailureStatus("destination not available"); //$NON-NLS-1$
+				status = ctx
+						.createFailureStatus("Could not validate due to errors in ChoiceReferenceParamDef " + AutosarURIFactory.getAbsoluteQualifiedName(choiceReferenceDef)); //$NON-NLS-1$
 			} else {
 				// CHECK if the value Container is included in the destination of the reference parameter
 				Container container = (Container) valueObject;

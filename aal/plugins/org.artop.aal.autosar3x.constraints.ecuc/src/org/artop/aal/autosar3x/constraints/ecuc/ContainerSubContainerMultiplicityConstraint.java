@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.artop.aal.autosar3x.constraints.ecuc.internal.Activator;
+import org.artop.aal.common.resource.AutosarURIFactory;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.emf.validation.IValidationContext;
@@ -86,12 +87,14 @@ public class ContainerSubContainerMultiplicityConstraint extends AbstractModelCo
 		for (ContainerDef currentSubContainerDef : subContainerDefs) {
 			int numberOfSubContainers = EcucUtil.getNumberOfUniqueContainersByDefinition(allSubContainers, currentSubContainerDef);
 			if (!EcucUtil.isValidLowerMultiplicity(numberOfSubContainers, currentSubContainerDef)) {
-				multiStatus.add(ctx.createFailureStatus("Expected min '" + EcucUtil.getLowerMultiplicity(currentSubContainerDef)
-						+ "' SubContainers with definition='" + currentSubContainerDef.getShortName() + "'. Found '" + numberOfSubContainers + "'."));
+				multiStatus.add(ctx.createFailureStatus("Expected min " + EcucUtil.getLowerMultiplicity(currentSubContainerDef)
+						+ " SubContainers with definition=" + AutosarURIFactory.getAbsoluteQualifiedName(currentSubContainerDef) + ". Found "
+						+ numberOfSubContainers + "."));
 			}
 			if (!EcucUtil.isValidUpperMultiplicity(numberOfSubContainers, currentSubContainerDef)) {
-				multiStatus.add(ctx.createFailureStatus("Expected max '" + EcucUtil.getUpperMultiplicity(currentSubContainerDef)
-						+ "' SubContainers with definition='" + currentSubContainerDef.getShortName() + "'. Found '" + numberOfSubContainers + "'."));
+				multiStatus.add(ctx.createFailureStatus("Expected max " + EcucUtil.getUpperMultiplicity(currentSubContainerDef)
+						+ " SubContainers with definition=" + AutosarURIFactory.getAbsoluteQualifiedName(currentSubContainerDef) + ". Found "
+						+ numberOfSubContainers + "."));
 			}
 		}
 		return multiStatus;
