@@ -35,8 +35,6 @@ import autosar3x.util.Autosar3xResourceFactoryImpl;
 
 /**
  * Abstract test class for all validation test cases. The EMF Validator is created here.
- * 
- * @author dko
  */
 public abstract class ValidationTestCase extends TestCase {
 
