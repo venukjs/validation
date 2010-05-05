@@ -12,7 +12,6 @@
  * 
  * </copyright>
  */
-
 package org.artop.aal.autosar3x.constraints.ecuc.tests.testsuite;
 
 import junit.framework.Test;
