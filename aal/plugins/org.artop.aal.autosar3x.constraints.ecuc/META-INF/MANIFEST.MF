@@ -6,8 +6,8 @@ Bundle-Version: 2.1.0.qualifier
 Bundle-Activator: org.artop.aal.autosar3x.constraints.ecuc.internal.Activator
 Bundle-Vendor: %providerName
 Require-Bundle: org.artop.aal.autosar3x,
- org.artop.ecl.emf.validation;bundle-version="1.2.0",
- org.artop.aal.autosar3x.validation;bundle-version="2.1.0"
+ org.artop.ecl.emf.validation,
+ org.artop.aal.autosar3x.validation
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
