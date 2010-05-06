@@ -32,8 +32,6 @@ import org.eclipse.core.runtime.Platform;
 /**
  * This singleton is a cache in order to treat the extension contribution to org.artop.ecl.emf.validation. It implements
  * the IRegistryChangeListener in order to catch event from the extension registry.
- * 
- * @author NBD
  */
 public class RulesExtCache implements IRegistryChangeListener {
 

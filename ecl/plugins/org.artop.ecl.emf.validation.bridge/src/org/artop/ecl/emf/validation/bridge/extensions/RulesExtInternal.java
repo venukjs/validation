@@ -24,8 +24,6 @@ import org.eclipse.emf.ecore.EPackage;
 
 /**
  * internal class to store contribution to ExtensionPoint
- * 
- * @author NBD
  */
 public class RulesExtInternal {
 
