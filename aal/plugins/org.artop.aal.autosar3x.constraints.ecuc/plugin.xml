@@ -56,7 +56,7 @@
                   mode="Batch"
                   name="ReferenceParamDefBasicConstraint"
                   severity="ERROR"
-                  statusCode="0010001">
+                  statusCode="0010002">
                <message>
                   {0}
                </message>
@@ -76,7 +76,7 @@
                   mode="Batch"
                   name="ChoiceReferenceParamDefBasicConstraint"
                   severity="ERROR"
-                  statusCode="0010001">
+                  statusCode="0010003">
                <message>
                   {0}
                </message>
@@ -97,7 +97,7 @@
                   mode="Batch"
                   name="StringValue"
                   severity="ERROR"
-                  statusCode="0010001">
+                  statusCode="0010004">
                <message>
                   {0}
                </message>
@@ -115,7 +115,7 @@
                   mode="Batch"
                   name="FunctionNameValue"
                   severity="ERROR"
-                  statusCode="0010001">
+                  statusCode="0010005">
                <message>
                   {0}
                </message>
@@ -133,7 +133,7 @@
                   mode="Batch"
                   name="LinkerSymbolValue"
                   severity="ERROR"
-                  statusCode="0010001">
+                  statusCode="0010006">
                <message>
                   {0}
                </message>
@@ -151,7 +151,7 @@
                   mode="Batch"
                   name="IntegerValue"
                   severity="ERROR"
-                  statusCode="0010002">
+                  statusCode="0010007">
                <message>
                   {0}
                </message>
@@ -169,7 +169,7 @@
                   mode="Batch"
                   name="BooleanValue"
                   severity="ERROR"
-                  statusCode="0010002">
+                  statusCode="0010008">
                <message>
                   {0}
                </message>
@@ -187,7 +187,7 @@
                   mode="Batch"
                   name="FloatValue"
                   severity="ERROR"
-                  statusCode="0010002">
+                  statusCode="0010009">
                <message>
                   {0}
                </message>
@@ -205,7 +205,7 @@
                   mode="Batch"
                   name="EnumerationValue"
                   severity="ERROR"
-                  statusCode="0010002">
+                  statusCode="0010010">
                <message>
                   {0}
                </message>
@@ -224,7 +224,7 @@
                   mode="Batch"
                   name="ReferenceValue"
                   severity="ERROR"
-                  statusCode="0010002">
+                  statusCode="0010011">
                <message>
                   {0}
                </message>
@@ -243,7 +243,7 @@
                   mode="Batch"
                   name="InstanceReferenceValue"
                   severity="ERROR"
-                  statusCode="0010002">
+                  statusCode="0010012">
                <message>
                   {0}
                </message>
@@ -262,7 +262,7 @@
                   mode="Batch"
                   name="ModuleConfiguration"
                   severity="ERROR"
-                  statusCode="0010002">
+                  statusCode="0010013">
                <message>
                   {0}
                </message>
@@ -280,7 +280,7 @@
                   mode="Batch"
                   name="Container"
                   severity="ERROR"
-                  statusCode="0010002">
+                  statusCode="0010014">
                <message>
                   {0}
                </message>
@@ -301,7 +301,7 @@
                   mode="Batch"
                   name="ConfigReferenceValueStructuralIntegrityConstraint"
                   severity="ERROR"
-                  statusCode="0010002">
+                  statusCode="0020001">
                <message>
                   {0}
                </message>
@@ -320,7 +320,7 @@
                   mode="Batch"
                   name="ParameterValueStructuralIntegrityConstraint"
                   severity="ERROR"
-                  statusCode="0010002">
+                  statusCode="0020002">
                <message>
                   {0}
                </message>
@@ -339,7 +339,7 @@
                   mode="Batch"
                   name="ContainerStructuralIntegrityConstraint"
                   severity="ERROR"
-                  statusCode="0010002">
+                  statusCode="0020003">
                <message>
                   {0}
                </message>
@@ -358,7 +358,7 @@
                   mode="Batch"
                   name="ContainerSubContainerMultiplicityConstraint"
                   severity="ERROR"
-                  statusCode="0010002">
+                  statusCode="0020004">
                <message>
                   {0}
                </message>
@@ -376,7 +376,7 @@
                   mode="Batch"
                   name="ModuleConfigurationSubContainerMultiplicityConstraint"
                   severity="ERROR"
-                  statusCode="0010002">
+                  statusCode="0020005">
                <message>
                   {0}
                </message>
@@ -394,7 +394,7 @@
                   mode="Batch"
                   name="ContainerParameterValueMultiplicityConstraint"
                   severity="ERROR"
-                  statusCode="0010002">
+                  statusCode="0020006">
                <message>
                   {0}
                </message>
@@ -412,7 +412,7 @@
                   mode="Batch"
                   name="ContainerReferenceValueMultiplicityConstraint"
                   severity="ERROR"
-                  statusCode="0010002">
+                  statusCode="0020007">
                <message>
                   {0}
                </message>
