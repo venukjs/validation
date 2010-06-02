@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2006 IBM Corporation and others.
+ * Copyright (c) 2000, 2010 IBM Corporation, Geensys, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,8 +7,13 @@
  *
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Geensys - added support for problem markers on model objects (rather than 
+ *               only on workspace resources). Unfortunately, there was no other 
+ *               choice than copying the whole code from 
+ *               org.eclipse.ui.views.markers.internal for that purpose because 
+ *               many of the relevant classes, methods, and fields are private or
+ *               package private.
  *******************************************************************************/
-
 package org.artop.ecl.emf.validation.ui.views;
 
 import org.eclipse.core.resources.IFile;
@@ -22,9 +27,7 @@ import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.ide.ResourceUtil;
 
 /**
- * ActionRevealMarker is the action for opening the editor on
- * a marker.
- *
+ * ActionRevealMarker is the action for opening the editor on a marker.
  */
 public class ActionRevealMarker extends MarkerSelectionProviderAction {
 
@@ -32,21 +35,22 @@ public class ActionRevealMarker extends MarkerSelectionProviderAction {
 
 	/**
 	 * Create a new instance of the receiver.
+	 * 
 	 * @param part
 	 * @param provider
 	 */
 	public ActionRevealMarker(IWorkbenchPart part, ISelectionProvider provider) {
-		super(provider, Util.EMPTY_STRING); 
+		super(provider, Util.EMPTY_STRING);
 		this.part = part;
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.eclipse.jface.action.Action#run()
 	 */
+	@Override
 	public void run() {
-		
+
 		IEditorPart editor = part.getSite().getPage().getActiveEditor();
 		if (editor == null) {
 			return;
@@ -56,17 +60,19 @@ public class ActionRevealMarker extends MarkerSelectionProviderAction {
 			IMarker marker = getSelectedMarker();
 			if (marker.getResource().equals(file)) {
 				try {
-					IDE.openEditor(part.getSite().getPage(),
-							marker, false);
+					IDE.openEditor(part.getSite().getPage(), marker, false);
 				} catch (CoreException e) {
 				}
 			}
 		}
 	}
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.ui.actions.SelectionProviderAction#selectionChanged(org.eclipse.jface.viewers.IStructuredSelection)
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * org.eclipse.ui.actions.SelectionProviderAction#selectionChanged(org.eclipse.jface.viewers.IStructuredSelection)
 	 */
+	@Override
 	public void selectionChanged(IStructuredSelection selection) {
 		setEnabled(Util.isSingleConcreteSelection(selection));
 	}

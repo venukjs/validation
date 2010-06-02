@@ -1,12 +1,25 @@
-/***********************************************************************************************************************
- * Copyright (c) 2005, 2006 IBM Corporation and others. All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html Contributors: IBM Corporation - initial API and implementation
- **********************************************************************************************************************/
+/*******************************************************************************
+ * Copyright (c) 2000, 2010 IBM Corporation, Geensys, and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *     Geensys - added support for problem markers on model objects (rather than 
+ *               only on workspace resources). Unfortunately, there was no other 
+ *               choice than copying the whole code from 
+ *               org.eclipse.ui.views.markers.internal for that purpose because 
+ *               many of the relevant classes, methods, and fields are private or
+ *               package private.
+ *******************************************************************************/
 package org.artop.ecl.emf.validation.ui.views;
 
 import java.util.ArrayList;
 
+import org.artop.ecl.emf.validation.ui.Activator;
+import org.artop.ecl.platform.util.PlatformLogUtil;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.resources.IMarker;
@@ -19,9 +32,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.SelectionProviderAction;
 import org.eclipse.ui.ide.undo.WorkspaceUndoUtil;
-
-import org.artop.ecl.emf.validation.ui.Activator;
-import org.artop.ecl.platform.util.PlatformLogUtil;
 
 /**
  * MarkerSelectionProviderAction is the abstract super class of the selection provider actions used by marker views.
@@ -59,8 +69,8 @@ public abstract class MarkerSelectionProviderAction extends SelectionProviderAct
 	IMarker[] getSelectedMarkers(IStructuredSelection structured) {
 		Object[] selection = structured.toArray();
 		ArrayList markers = new ArrayList();
-		for (int i = 0; i < selection.length; i++) {
-			Object object = selection[i];
+		for (Object element : selection) {
+			Object object = element;
 			if (!(object instanceof MarkerNode)) {
 				return new IMarker[0];// still pending
 			}

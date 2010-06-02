@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005 IBM Corporation and others.
+ * Copyright (c) 2000, 2010 IBM Corporation, Geensys, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +7,12 @@
  *
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Geensys - added support for problem markers on model objects (rather than 
+ *               only on workspace resources). Unfortunately, there was no other 
+ *               choice than copying the whole code from 
+ *               org.eclipse.ui.views.markers.internal for that purpose because 
+ *               many of the relevant classes, methods, and fields are private or
+ *               package private.
  *******************************************************************************/
 package org.artop.ecl.emf.validation.ui.views;
 
@@ -24,11 +30,9 @@ import org.eclipse.ui.internal.ide.IDEWorkbenchPlugin;
 import org.eclipse.ui.preferences.ViewSettingsDialog;
 
 /**
- * The MarkerViewPreferenceDialog is the dialog that is used for preference
- * settings in a markers view.
+ * The MarkerViewPreferenceDialog is the dialog that is used for preference settings in a markers view.
  * 
  * @since 3.1
- * 
  */
 public class MarkerViewPreferenceDialog extends ViewSettingsDialog {
 
@@ -55,8 +59,7 @@ public class MarkerViewPreferenceDialog extends ViewSettingsDialog {
 	 * @param title
 	 *            The title for the dialog.
 	 */
-	public MarkerViewPreferenceDialog(Shell parentShell,
-			String enablementPreference, String limitPreference, String title) {
+	public MarkerViewPreferenceDialog(Shell parentShell, String enablementPreference, String limitPreference, String title) {
 		super(parentShell);
 		enablementKey = enablementPreference;
 		limitKey = limitPreference;
@@ -66,9 +69,9 @@ public class MarkerViewPreferenceDialog extends ViewSettingsDialog {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.eclipse.jface.window.Window#configureShell(org.eclipse.swt.widgets.Shell)
 	 */
+	@Override
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
 		newShell.setText(dialogTitle);
@@ -76,29 +79,25 @@ public class MarkerViewPreferenceDialog extends ViewSettingsDialog {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets.Composite)
 	 */
+	@Override
 	protected Control createDialogArea(Composite parent) {
 		Composite topComposite = (Composite) super.createDialogArea(parent);
 
-		boolean checked = IDEWorkbenchPlugin.getDefault().getPreferenceStore()
-				.getBoolean(enablementKey);
+		boolean checked = IDEWorkbenchPlugin.getDefault().getPreferenceStore().getBoolean(enablementKey);
 		enablementButton = new Button(topComposite, SWT.CHECK);
 		enablementButton.setText(MarkerMessages.MarkerPreferences_MarkerLimits);
 		enablementButton.setSelection(checked);
 
 		editArea = new Composite(topComposite, SWT.NONE);
 		editArea.setLayout(new GridLayout());
-		GridData editData = new GridData(GridData.FILL_BOTH
-				| GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL);
+		GridData editData = new GridData(GridData.FILL_BOTH | GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL);
 		editData.horizontalIndent = 10;
 		editArea.setLayoutData(editData);
 
-		limitEditor = new IntegerFieldEditor(
-				"limit", MarkerMessages.MarkerPreferences_VisibleItems, editArea);//$NON-NLS-1$
-		limitEditor.setPreferenceStore(IDEWorkbenchPlugin.getDefault()
-				.getPreferenceStore());
+		limitEditor = new IntegerFieldEditor("limit", MarkerMessages.MarkerPreferences_VisibleItems, editArea);//$NON-NLS-1$
+		limitEditor.setPreferenceStore(IDEWorkbenchPlugin.getDefault().getPreferenceStore());
 		limitEditor.setPreferenceName(limitKey);
 		limitEditor.load();
 
@@ -107,9 +106,9 @@ public class MarkerViewPreferenceDialog extends ViewSettingsDialog {
 		enablementButton.setLayoutData(checkedData);
 
 		enablementButton.addSelectionListener(new SelectionAdapter() {
+			@Override
 			public void widgetSelected(SelectionEvent e) {
-				setLimitEditorEnablement(editArea, enablementButton
-						.getSelection());
+				setLimitEditorEnablement(editArea, enablementButton.getSelection());
 			}
 		});
 
@@ -131,27 +130,25 @@ public class MarkerViewPreferenceDialog extends ViewSettingsDialog {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.eclipse.jface.dialogs.Dialog#okPressed()
 	 */
+	@Override
 	protected void okPressed() {
 		limitEditor.store();
-		IDEWorkbenchPlugin.getDefault().getPreferenceStore().setValue(
-				enablementKey, enablementButton.getSelection());
+		IDEWorkbenchPlugin.getDefault().getPreferenceStore().setValue(enablementKey, enablementButton.getSelection());
 		IDEWorkbenchPlugin.getDefault().savePluginPreferences();
 		super.okPressed();
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.eclipse.ui.preferences.ViewSettingsDialog#performDefaults()
 	 */
+	@Override
 	protected void performDefaults() {
 		super.performDefaults();
 		limitEditor.loadDefault();
-		boolean checked = IDEWorkbenchPlugin.getDefault().getPreferenceStore()
-				.getDefaultBoolean(enablementKey);
+		boolean checked = IDEWorkbenchPlugin.getDefault().getPreferenceStore().getDefaultBoolean(enablementKey);
 		enablementButton.setSelection(checked);
 		setLimitEditorEnablement(editArea, checked);
 	}

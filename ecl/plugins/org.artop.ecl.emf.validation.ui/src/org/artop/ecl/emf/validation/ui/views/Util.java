@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2006 IBM Corporation and others.
+ * Copyright (c) 2000, 2010 IBM Corporation, Geensys, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,11 +7,15 @@
  *
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Geensys - added support for problem markers on model objects (rather than 
+ *               only on workspace resources). Unfortunately, there was no other 
+ *               choice than copying the whole code from 
+ *               org.eclipse.ui.views.markers.internal for that purpose because 
+ *               many of the relevant classes, methods, and fields are private or
+ *               package private.
  *******************************************************************************/
-
 package org.artop.ecl.emf.validation.ui.views;
 
-import com.ibm.icu.text.DateFormat;
 import java.util.Date;
 import java.util.Iterator;
 
@@ -28,9 +32,10 @@ import org.eclipse.ui.internal.ide.IDEInternalWorkbenchImages;
 import org.eclipse.ui.internal.ide.IDEWorkbenchPlugin;
 import org.eclipse.ui.views.markers.MarkerViewUtil;
 
+import com.ibm.icu.text.DateFormat;
+
 /**
  * The Util class is the class of general utilities used by the marker support.
- * 
  */
 public final class Util {
 
@@ -45,8 +50,7 @@ public final class Util {
 	static final MarkerNode[] EMPTY_MARKER_ARRAY = new MarkerNode[0];
 
 	/**
-	 * Get the propery called property from the marker. If it is not found
-	 * return the empty string.
+	 * Get the propery called property from the marker. If it is not found return the empty string.
 	 * 
 	 * @param property
 	 * @param marker
@@ -76,8 +80,7 @@ public final class Util {
 	 */
 	public static String getCreationTime(long timestamp) {
 		if (format == null) {
-			format = DateFormat.getDateTimeInstance(DateFormat.LONG,
-					DateFormat.MEDIUM);
+			format = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.MEDIUM);
 		}
 		return format.format(new Date(timestamp));
 	}
@@ -98,21 +101,20 @@ public final class Util {
 	}
 
 	/**
-	 * Get the name of the container. If the marker has the
-	 * MarkerViewUtil#PATH_ATTRIBUTE set use that. Otherwise use the path of the
-	 * parent resource.
+	 * Get the name of the container. If the marker has the MarkerViewUtil#PATH_ATTRIBUTE set use that. Otherwise use
+	 * the path of the parent resource.
 	 * 
 	 * @param marker
 	 * @return String
 	 */
 	public static String getContainerName(IMarker marker) {
 
-		if (!marker.exists())
+		if (!marker.exists()) {
 			return Util.EMPTY_STRING;
+		}
 
 		try {
-			Object pathAttribute = marker
-					.getAttribute(MarkerViewUtil.PATH_ATTRIBUTE);
+			Object pathAttribute = marker.getAttribute(MarkerViewUtil.PATH_ATTRIBUTE);
 
 			if (pathAttribute != null) {
 				return pathAttribute.toString();
@@ -156,21 +158,20 @@ public final class Util {
 	}
 
 	/**
-	 * Get the name of the element. If the marker has the
-	 * MarkerViewUtil#NAME_ATTRIBUTE set use that. Otherwise use the name of the
-	 * resource.
+	 * Get the name of the element. If the marker has the MarkerViewUtil#NAME_ATTRIBUTE set use that. Otherwise use the
+	 * name of the resource.
 	 * 
 	 * @param marker
 	 * @return String
 	 */
 	public static String getResourceName(IMarker marker) {
 
-		if (!marker.exists())
+		if (!marker.exists()) {
 			return Util.EMPTY_STRING;
+		}
 
 		try {
-			Object nameAttribute = marker
-					.getAttribute(MarkerViewUtil.NAME_ATTRIBUTE);
+			Object nameAttribute = marker.getAttribute(MarkerViewUtil.NAME_ATTRIBUTE);
 
 			if (nameAttribute != null) {
 				return nameAttribute.toString();
@@ -193,9 +194,7 @@ public final class Util {
 			return false;
 		}
 		try {
-			return marker.isSubtypeOf(IMarker.BOOKMARK)
-					|| (marker.isSubtypeOf(IMarker.TASK) && marker
-							.getAttribute(IMarker.USER_EDITABLE, true));
+			return marker.isSubtypeOf(IMarker.BOOKMARK) || marker.isSubtypeOf(IMarker.TASK) && marker.getAttribute(IMarker.USER_EDITABLE, true);
 		} catch (CoreException e) {
 			return false;
 		}
@@ -212,8 +211,7 @@ public final class Util {
 		if (message == null) {
 			message = EMPTY_STRING;
 		}
-		return new Status(IStatus.ERROR, IDEWorkbenchPlugin.IDE_WORKBENCH,
-				IStatus.ERROR, message, exception);
+		return new Status(IStatus.ERROR, IDEWorkbenchPlugin.IDE_WORKBENCH, IStatus.ERROR, message, exception);
 	}
 
 	static final int SHORT_DELAY = 100;// The 100 ms short delay for scheduling
@@ -255,8 +253,7 @@ public final class Util {
 	 */
 	private static Image getIDEImage(String constantName) {
 
-		return JFaceResources.getResources().createImageWithDefault(
-				IDEInternalWorkbenchImages.getImageDescriptor(constantName));
+		return JFaceResources.getResources().createImageWithDefault(IDEInternalWorkbenchImages.getImageDescriptor(constantName));
 
 	}
 
@@ -268,12 +265,12 @@ public final class Util {
 	 */
 	public static String getShortContainerName(IMarker marker) {
 
-		if (!marker.exists())
+		if (!marker.exists()) {
 			return Util.EMPTY_STRING;
+		}
 
 		try {
-			Object pathAttribute = marker
-					.getAttribute(MarkerViewUtil.PATH_ATTRIBUTE);
+			Object pathAttribute = marker.getAttribute(MarkerViewUtil.PATH_ATTRIBUTE);
 
 			if (pathAttribute != null) {
 				return pathAttribute.toString();
@@ -295,8 +292,7 @@ public final class Util {
 			return MarkerMessages.Util_WorkspaceRoot;
 		}
 
-		String result = marker.getResource().getProjectRelativePath()
-				.removeLastSegments(1).toOSString();
+		String result = marker.getResource().getProjectRelativePath().removeLastSegments(1).toOSString();
 		if (result.trim().length() == 0) {
 			return MarkerMessages.Util_ProjectRoot;
 		}
@@ -307,8 +303,7 @@ public final class Util {
 	 * Return whether or not the selection has one element that is concrete.
 	 * 
 	 * @param selection
-	 * @return <true>code</true> if the selection has one element that is
-	 *         concrete.
+	 * @return <true>code</true> if the selection has one element that is concrete.
 	 */
 	static boolean isSingleConcreteSelection(IStructuredSelection selection) {
 		if (selection != null && selection.size() == 1) {

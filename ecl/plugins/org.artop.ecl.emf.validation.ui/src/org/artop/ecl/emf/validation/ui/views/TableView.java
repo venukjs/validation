@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2007 IBM Corporation and others.
+ * Copyright (c) 2000, 2010 IBM Corporation, Geensys, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,9 +7,13 @@
  *
  * Contributors:
  *     IBM Corporation - initial API and implementation
- *     Sebastian Davids <sdavids@gmx.de> - 26823 [Markers] cannot reorder columns in task list
+ *     Geensys - added support for problem markers on model objects (rather than 
+ *               only on workspace resources). Unfortunately, there was no other 
+ *               choice than copying the whole code from 
+ *               org.eclipse.ui.views.markers.internal for that purpose because 
+ *               many of the relevant classes, methods, and fields are private or
+ *               package private.
  *******************************************************************************/
-
 package org.artop.ecl.emf.validation.ui.views;
 
 import java.lang.reflect.InvocationTargetException;
@@ -62,7 +66,6 @@ import org.eclipse.ui.progress.IWorkbenchSiteProgressService;
 
 /**
  * The TableView is a view that generically implements views with tables.
- * 
  */
 public abstract class TableView extends ViewPart {
 
@@ -93,6 +96,7 @@ public abstract class TableView extends ViewPart {
 	/*
 	 * (non-Javadoc) Method declared on IViewPart.
 	 */
+	@Override
 	public void init(IViewSite site, IMemento memento) throws PartInitException {
 		super.init(site, memento);
 		this.memento = memento;
@@ -110,20 +114,19 @@ public abstract class TableView extends ViewPart {
 	// void setContents(Collection contents, IProgressMonitor mon) {
 	// content.set(contents, mon);
 	// }
-	abstract protected void viewerSelectionChanged(
-			IStructuredSelection selection);
+	abstract protected void viewerSelectionChanged(IStructuredSelection selection);
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.eclipse.ui.part.WorkbenchPart#createPartControl(org.eclipse.swt.widgets.Composite)
 	 */
+	@Override
 	public void createPartControl(Composite parent) {
 		parent.setLayout(new FillLayout());
 
 		viewer = new TreeViewer(createTree(parent));
 		createColumns(viewer.getTree());
-		
+
 		viewer.setComparator(buildComparator());
 		setSortIndicators();
 
@@ -133,12 +136,10 @@ public abstract class TableView extends ViewPart {
 
 		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
 			public void selectionChanged(SelectionChangedEvent event) {
-				IStructuredSelection selection = (IStructuredSelection) event
-						.getSelection();
+				IStructuredSelection selection = (IStructuredSelection) event.getSelection();
 				viewerSelectionChanged(selection);
 			}
 		});
-
 
 		// create the actions before the input is set on the viewer but after
 		// the
@@ -176,12 +177,12 @@ public abstract class TableView extends ViewPart {
 			}
 		});
 		viewer.getControl().addKeyListener(new KeyAdapter() {
+			@Override
 			public void keyPressed(KeyEvent e) {
 				handleKeyPressed(e);
 			}
 		});
 	}
-
 
 	/**
 	 * Create the viewer input for the receiver.
@@ -191,8 +192,7 @@ public abstract class TableView extends ViewPart {
 	abstract Object createViewerInput();
 
 	/**
-	 * Set the comparator to be the new comparator. This should only
-	 * be called if the viewer has been created.
+	 * Set the comparator to be the new comparator. This should only be called if the viewer has been created.
 	 * 
 	 * @param comparator
 	 */
@@ -219,8 +219,7 @@ public abstract class TableView extends ViewPart {
 	 * @return Tree
 	 */
 	protected Tree createTree(Composite parent) {
-		Tree tree = new Tree(parent, SWT.H_SCROLL | SWT.V_SCROLL | SWT.MULTI
-				| SWT.FULL_SELECTION);
+		Tree tree = new Tree(parent, SWT.H_SCROLL | SWT.V_SCROLL | SWT.MULTI | SWT.FULL_SELECTION);
 		tree.setLinesVisible(true);
 		return tree;
 	}
@@ -235,7 +234,7 @@ public abstract class TableView extends ViewPart {
 
 		ColumnPixelData[] result = new ColumnPixelData[defaultData.length];
 		for (int i = 0; i < defaultData.length; i++) {
-			
+
 			ColumnPixelData defaultPixelData = defaultData[i];
 			boolean addTrim = defaultPixelData.addTrim;
 			int width = defaultPixelData.width;
@@ -251,19 +250,17 @@ public abstract class TableView extends ViewPart {
 				}
 			}
 
-			result[i] = new ColumnPixelData(width, defaultPixelData.resizable,
-					addTrim);
+			result[i] = new ColumnPixelData(width, defaultPixelData.resizable, addTrim);
 		}
 
 		return result;
 	}
 
 	/**
-	 * Return the column sizes from the actual widget. Returns the saved column
-	 * sizes if the widget hasn't been created yet or its columns haven't been
-	 * initialized yet. (Note that TableLayout only initializes the column
-	 * widths after the first layout, so it is possible for the widget to exist
-	 * but have all its columns incorrectly set to zero width - see bug 86329)
+	 * Return the column sizes from the actual widget. Returns the saved column sizes if the widget hasn't been created
+	 * yet or its columns haven't been initialized yet. (Note that TableLayout only initializes the column widths after
+	 * the first layout, so it is possible for the widget to exist but have all its columns incorrectly set to zero
+	 * width - see bug 86329)
 	 * 
 	 * @return ColumnPixelData
 	 */
@@ -294,8 +291,7 @@ public abstract class TableView extends ViewPart {
 				}
 			}
 
-			result[i] = new ColumnPixelData(width, defaultPixelData.resizable,
-					defaultPixelData.addTrim);
+			result[i] = new ColumnPixelData(width, defaultPixelData.resizable, defaultPixelData.addTrim);
 		}
 
 		return result;
@@ -390,9 +386,9 @@ public abstract class TableView extends ViewPart {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.eclipse.ui.part.WorkbenchPart#setFocus()
 	 */
+	@Override
 	public void setFocus() {
 		Viewer viewer = getViewer();
 		if (viewer != null && !viewer.getControl().isDisposed()) {
@@ -417,8 +413,7 @@ public abstract class TableView extends ViewPart {
 	 * @return TableComparator
 	 */
 	TableComparator createTableComparator() {
-		TableComparator sorter = TableComparator
-				.createTableSorter(getSortingFields());
+		TableComparator sorter = TableComparator.createTableSorter(getSortingFields());
 		sorter.restoreState(getDialogSettings());
 		return sorter;
 	}
@@ -454,6 +449,7 @@ public abstract class TableView extends ViewPart {
 			/**
 			 * Handles the case of user selecting the header area.
 			 */
+			@Override
 			public void widgetSelected(SelectionEvent e) {
 
 				final TreeColumn column = (TreeColumn) e.widget;
@@ -461,35 +457,31 @@ public abstract class TableView extends ViewPart {
 
 				try {
 					IWorkbenchSiteProgressService progressService = getProgressService();
-					if (progressService == null)
-						BusyIndicator.showWhile(getSite().getShell()
-								.getDisplay(), new Runnable() {
+					if (progressService == null) {
+						BusyIndicator.showWhile(getSite().getShell().getDisplay(), new Runnable() {
 							/*
 							 * (non-Javadoc)
-							 * 
 							 * @see java.lang.Runnable#run()
 							 */
 							public void run() {
-								resortTable(column, field,
-										new NullProgressMonitor());
+								resortTable(column, field, new NullProgressMonitor());
 
 							}
 						});
-					else
-						getProgressService().busyCursorWhile(
-								new IRunnableWithProgress() {
-									/*
-									 * (non-Javadoc)
-									 * 
-									 * @see org.eclipse.jface.operation.IRunnableWithProgress#run(org.eclipse.core.runtime.IProgressMonitor)
-									 */
-									public void run(IProgressMonitor monitor) {
-										resortTable(column, field, monitor);
-									}
-								});
+					} else {
+						getProgressService().busyCursorWhile(new IRunnableWithProgress() {
+							/*
+							 * (non-Javadoc)
+							 * @seeorg.eclipse.jface.operation.IRunnableWithProgress#run(org.eclipse.core.runtime.
+							 * IProgressMonitor)
+							 */
+							public void run(IProgressMonitor monitor) {
+								resortTable(column, field, monitor);
+							}
+						});
+					}
 				} catch (InvocationTargetException e1) {
-					IDEWorkbenchPlugin.getDefault().getLog().log(
-							Util.errorStatus(e1));
+					IDEWorkbenchPlugin.getDefault().getLog().log(Util.errorStatus(e1));
 				} catch (InterruptedException e1) {
 					return;
 				}
@@ -504,30 +496,28 @@ public abstract class TableView extends ViewPart {
 			 * @param field
 			 * @param monitor
 			 */
-			private void resortTable(final TreeColumn column,
-					final IField field, IProgressMonitor monitor) {
+			private void resortTable(final TreeColumn column, final IField field, IProgressMonitor monitor) {
 				TableComparator sorter = getTableSorter();
 
 				monitor.beginTask(MarkerMessages.sortDialog_title, 100);
 				monitor.worked(10);
-				if (field.equals(sorter.getTopField()))
+				if (field.equals(sorter.getTopField())) {
 					sorter.reverseTopPriority();
-				else
+				} else {
 					sorter.setTopPriority(field);
+				}
 
 				monitor.worked(15);
-				PlatformUI.getWorkbench().getDisplay().asyncExec(
-						new Runnable() {
-							/*
-							 * (non-Javadoc)
-							 * 
-							 * @see java.lang.Runnable#run()
-							 */
-							public void run() {
-								viewer.refresh();
-								updateDirectionIndicator(column);
-							}
-						});
+				PlatformUI.getWorkbench().getDisplay().asyncExec(new Runnable() {
+					/*
+					 * (non-Javadoc)
+					 * @see java.lang.Runnable#run()
+					 */
+					public void run() {
+						viewer.refresh();
+						updateDirectionIndicator(column);
+					}
+				});
 
 				monitor.done();
 			}
@@ -536,7 +526,6 @@ public abstract class TableView extends ViewPart {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.eclipse.ui.views.markers.internal.TableView#getDefaultColumnLayouts()
 	 */
 	protected ColumnPixelData[] getDefaultColumnLayouts() {
@@ -590,9 +579,9 @@ public abstract class TableView extends ViewPart {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.eclipse.ui.part.ViewPart#saveState(org.eclipse.ui.IMemento)
 	 */
+	@Override
 	public void saveState(IMemento memento) {
 		super.saveState(memento);
 
@@ -605,18 +594,18 @@ public abstract class TableView extends ViewPart {
 		// save column order
 		Tree tree = getTree();
 		int[] columnOrder = tree.getColumnOrder();
-		for (int i = 0; i < columnOrder.length; i++) {
+		for (int element : columnOrder) {
 			IMemento child = memento.createChild(TAG_COLUMN_ORDER);
-			child.putInteger(TAG_COLUMN_ORDER_INDEX, columnOrder[i]);
+			child.putInteger(TAG_COLUMN_ORDER_INDEX, element);
 		}
 		// save vertical position
 		Scrollable scrollable = (Scrollable) viewer.getControl();
 		ScrollBar bar = scrollable.getVerticalBar();
-		int position = (bar != null) ? bar.getSelection() : 0;
+		int position = bar != null ? bar.getSelection() : 0;
 		memento.putInteger(TAG_VERTICAL_POSITION, position);
 		// save horizontal position
 		bar = scrollable.getHorizontalBar();
-		position = (bar != null) ? bar.getSelection() : 0;
+		position = bar != null ? bar.getSelection() : 0;
 		memento.putInteger(TAG_HORIZONTAL_POSITION, position);
 	}
 
@@ -647,7 +636,7 @@ public abstract class TableView extends ViewPart {
 			return 0;
 		}
 		Integer position = memento.getInteger(TAG_VERTICAL_POSITION);
-		return (position == null) ? 0 : position.intValue();
+		return position == null ? 0 : position.intValue();
 	}
 
 	private int restoreHorizontalScrollBarPosition(IMemento memento) {
@@ -655,7 +644,7 @@ public abstract class TableView extends ViewPart {
 			return 0;
 		}
 		Integer position = memento.getInteger(TAG_HORIZONTAL_POSITION);
-		return (position == null) ? 0 : position.intValue();
+		return position == null ? 0 : position.intValue();
 	}
 
 	/**
@@ -665,8 +654,7 @@ public abstract class TableView extends ViewPart {
 	 */
 	protected IWorkbenchSiteProgressService getProgressService() {
 		IWorkbenchSiteProgressService service = null;
-		Object siteService = getSite().getAdapter(
-				IWorkbenchSiteProgressService.class);
+		Object siteService = getSite().getAdapter(IWorkbenchSiteProgressService.class);
 		if (siteService != null) {
 			service = (IWorkbenchSiteProgressService) siteService;
 		}
@@ -730,14 +718,12 @@ public abstract class TableView extends ViewPart {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.eclipse.ui.views.markers.internal.TableView#setSortIndicators()
 	 */
 	void setSortIndicators() {
 		IField top = getTableSorter().getTopField();
 		TreeColumn[] columns = getViewer().getTree().getColumns();
-		for (int i = 0; i < columns.length; i++) {
-			TreeColumn column = columns[i];
+		for (TreeColumn column : columns) {
 			if (column.getData().equals(top)) {
 				updateDirectionIndicator(column);
 				return;
@@ -752,10 +738,11 @@ public abstract class TableView extends ViewPart {
 	 */
 	void updateDirectionIndicator(TreeColumn column) {
 		getViewer().getTree().setSortColumn(column);
-		if (getTableSorter().getTopPriorityDirection() == TableComparator.ASCENDING)
+		if (getTableSorter().getTopPriorityDirection() == TableComparator.ASCENDING) {
 			getViewer().getTree().setSortDirection(SWT.UP);
-		else
+		} else {
 			getViewer().getTree().setSortDirection(SWT.DOWN);
+		}
 	}
 
 	/**

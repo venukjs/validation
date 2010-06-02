@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2006 IBM Corporation and others.
+ * Copyright (c) 2000, 2010 IBM Corporation, Geensys, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,8 +7,13 @@
  *
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Geensys - added support for problem markers on model objects (rather than 
+ *               only on workspace resources). Unfortunately, there was no other 
+ *               choice than copying the whole code from 
+ *               org.eclipse.ui.views.markers.internal for that purpose because 
+ *               many of the relevant classes, methods, and fields are private or
+ *               package private.
  *******************************************************************************/
-
 package org.artop.ecl.emf.validation.ui.views;
 
 import java.util.ArrayList;
@@ -22,17 +27,17 @@ import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.Platform;
 
 /**
- * Maintains a model of all known marker types. Accessed statically as
- * the list does not change frequently.
+ * Maintains a model of all known marker types. Accessed statically as the list does not change frequently.
  */
 class MarkerTypesModel {
-	
+
 	/**
 	 * Return the singleton implementation.
+	 * 
 	 * @return MarkerTypesModel
 	 */
-	static MarkerTypesModel getInstance(){
-		if(instance == null) {
+	static MarkerTypesModel getInstance() {
+		if (instance == null) {
 			instance = new MarkerTypesModel();
 		}
 		return instance;
@@ -53,8 +58,7 @@ class MarkerTypesModel {
 	}
 
 	/**
-	 * Returns the marker type with the given id, or <code>null</code> if
-	 * there is no such marker type.
+	 * Returns the marker type with the given id, or <code>null</code> if there is no such marker type.
 	 */
 	public MarkerType getType(String id) {
 		return (MarkerType) types.get(id);
@@ -70,8 +74,7 @@ class MarkerTypesModel {
 	}
 
 	/**
-	 * Returns the label for the given marker type. Workaround until we have
-	 * labels in XML.
+	 * Returns the label for the given marker type. Workaround until we have labels in XML.
 	 */
 	private String getWellKnownLabel(String type) {
 		if (type.equals(IMarker.PROBLEM)) {
@@ -92,9 +95,7 @@ class MarkerTypesModel {
 	private HashMap readTypes() {
 		HashMap types = new HashMap();
 
-		IExtensionPoint point = Platform.getExtensionRegistry()
-				.getExtensionPoint(ResourcesPlugin.PI_RESOURCES,
-						ResourcesPlugin.PT_MARKERS);
+		IExtensionPoint point = Platform.getExtensionRegistry().getExtensionPoint(ResourcesPlugin.PI_RESOURCES, ResourcesPlugin.PT_MARKERS);
 		if (point != null) {
 			// Gather all registered marker types.
 			IExtension[] extensions = point.getExtensions();
@@ -106,8 +107,7 @@ class MarkerTypesModel {
 					label = getWellKnownLabel(id);
 				}
 				ArrayList supersList = new ArrayList();
-				IConfigurationElement[] configElements = ext
-						.getConfigurationElements();
+				IConfigurationElement[] configElements = ext.getConfigurationElements();
 				for (int j = 0; j < configElements.length; ++j) {
 					IConfigurationElement elt = configElements[j];
 					if (elt.getName().equalsIgnoreCase("super")) {//$NON-NLS-1$

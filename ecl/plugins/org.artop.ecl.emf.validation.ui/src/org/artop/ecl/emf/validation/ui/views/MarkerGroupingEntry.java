@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2006 IBM Corporation and others.
+ * Copyright (c) 2000, 2010 IBM Corporation, Geensys, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,16 +7,19 @@
  *
  * Contributors:
  *     IBM Corporation - initial API and implementation
- ******************************************************************************/
-
+ *     Geensys - added support for problem markers on model objects (rather than 
+ *               only on workspace resources). Unfortunately, there was no other 
+ *               choice than copying the whole code from 
+ *               org.eclipse.ui.views.markers.internal for that purpose because 
+ *               many of the relevant classes, methods, and fields are private or
+ *               package private.
+ *******************************************************************************/
 package org.artop.ecl.emf.validation.ui.views;
 
-
 /**
- * MarkerGroupingEntry is the configuration object for the markerGroupingEntry
- * extension.
+ * MarkerGroupingEntry is the configuration object for the markerGroupingEntry extension.
+ * 
  * @since 3.2
- *
  */
 public class MarkerGroupingEntry {
 
@@ -25,10 +28,9 @@ public class MarkerGroupingEntry {
 	private String id;
 	private int sortPriority;
 
-	
 	/**
-	 * Create a new instance of the receiver with name name and an id of
-	 * identifier.
+	 * Create a new instance of the receiver with name name and an id of identifier.
+	 * 
 	 * @param name
 	 * @param identifer
 	 * @param priority
@@ -41,27 +43,30 @@ public class MarkerGroupingEntry {
 
 	/**
 	 * Set the receiver as the default grouping entry for type markerType.
-	 * @param markerType String
+	 * 
+	 * @param markerType
+	 *            String
 	 */
 	public void setAsDefault(String markerType) {
-		markerGroup.setAsDefault(markerType,this);
-		
+		markerGroup.setAsDefault(markerType, this);
+
 	}
 
 	/**
-	 * Map the attribute for the markerType to map to the receiver
-	 * when it is equal to attributeValue.
+	 * Map the attribute for the markerType to map to the receiver when it is equal to attributeValue.
+	 * 
 	 * @param markerType
 	 * @param attribute
 	 * @param attributeValue
 	 */
 	public void mapAttribute(String markerType, String attribute, String attributeValue) {
-		markerGroup.mapAttribute(markerType,attribute,attributeValue,this);
-		
+		markerGroup.mapAttribute(markerType, attribute, attributeValue, this);
+
 	}
 
 	/**
 	 * Return the id for the receiver.
+	 * 
 	 * @return String
 	 */
 	public String getId() {
@@ -70,15 +75,17 @@ public class MarkerGroupingEntry {
 
 	/**
 	 * Set the group for the receiver.
+	 * 
 	 * @param group
 	 */
 	public void setGroupingEntry(FieldMarkerGroup group) {
 		markerGroup = group;
-		
+
 	}
 
 	/**
 	 * Get the label of the receiver.
+	 * 
 	 * @return String
 	 */
 	public String getLabel() {
@@ -87,6 +94,7 @@ public class MarkerGroupingEntry {
 
 	/**
 	 * Return the priority of the receiver.
+	 * 
 	 * @return int
 	 */
 	public int getPriority() {
@@ -95,6 +103,7 @@ public class MarkerGroupingEntry {
 
 	/**
 	 * Return the marker group for the receiver.
+	 * 
 	 * @return FieldMarkerGroup
 	 */
 	public FieldMarkerGroup getMarkerGroup() {

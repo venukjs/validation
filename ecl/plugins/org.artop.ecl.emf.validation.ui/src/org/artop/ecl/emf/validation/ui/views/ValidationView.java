@@ -1,11 +1,16 @@
-/***********************************************************************************************************************
- * Copyright (c) 2000, 2007 IBM Corporation and others. All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html Contributors: IBM Corporation - initial API and implementation
- * Sebastian Davids <sdavids@gmx.de> - Fix for Bug 109361 [Markers] Multiselection in problems view yields invalid
- * status message
- **********************************************************************************************************************/
-
+/*******************************************************************************
+ * Copyright (c) 2000, 2010 IBM Corporation, Geensys, and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *     Geensys - copied from org.eclipse.ui.views.markers.internal.ProblemView to 
+ *               add support for problem markers on model objects (rather than 
+ *               only on workspace resources)
+ *******************************************************************************/
 package org.artop.ecl.emf.validation.ui.views;
 
 import java.util.ArrayList;
@@ -43,11 +48,16 @@ import org.eclipse.ui.activities.IActivityManagerListener;
 import org.eclipse.ui.handlers.IHandlerActivation;
 import org.eclipse.ui.handlers.IHandlerService;
 import org.eclipse.ui.progress.IWorkbenchSiteProgressService;
+import org.eclipse.ui.views.markers.internal.ProblemView;
 
 import com.ibm.icu.text.MessageFormat;
 
 /**
- * The ProblemView is the view that displays problem markers.
+ * The Validation view is the view that displays problem markers on model objects.
+ * <p>
+ * Unfortunately, there was no other choice than copying the whole code from {@link ProblemView} for that purpose
+ * because most of the relevant methods and fields of the latter are private or package private.
+ * </p>
  */
 public class ValidationView extends MarkerView {
 

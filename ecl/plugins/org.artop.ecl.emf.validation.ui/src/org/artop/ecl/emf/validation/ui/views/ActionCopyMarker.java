@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2006 IBM Corporation and others.
+ * Copyright (c) 2000, 2010 IBM Corporation, Geensys, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,8 +7,13 @@
  *
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Geensys - added support for problem markers on model objects (rather than 
+ *               only on workspace resources). Unfortunately, there was no other 
+ *               choice than copying the whole code from 
+ *               org.eclipse.ui.views.markers.internal for that purpose because 
+ *               many of the relevant classes, methods, and fields are private or
+ *               package private.
  *******************************************************************************/
-
 package org.artop.ecl.emf.validation.ui.views;
 
 import org.eclipse.core.resources.IMarker;
@@ -47,8 +52,7 @@ public class ActionCopyMarker extends MarkerSelectionProviderAction {
 	public ActionCopyMarker(IWorkbenchPart part, ISelectionProvider provider) {
 		super(provider, MarkerMessages.copyAction_title);
 		this.part = part;
-		setImageDescriptor(PlatformUI.getWorkbench().getSharedImages()
-				.getImageDescriptor(ISharedImages.IMG_TOOL_COPY));
+		setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(ISharedImages.IMG_TOOL_COPY));
 		setEnabled(false);
 	}
 
@@ -63,8 +67,7 @@ public class ActionCopyMarker extends MarkerSelectionProviderAction {
 	}
 
 	/**
-	 * Sets the properties to be added to the plain-text marker report that will
-	 * be copied to the clipboard.
+	 * Sets the properties to be added to the plain-text marker report that will be copied to the clipboard.
 	 * 
 	 * @param properties
 	 */
@@ -73,10 +76,10 @@ public class ActionCopyMarker extends MarkerSelectionProviderAction {
 	}
 
 	/**
-	 * Copies the selected IMarker objects to the clipboard. If properties have
-	 * been set, also copies a plain-text report of the selected markers to the
-	 * clipboard.
+	 * Copies the selected IMarker objects to the clipboard. If properties have been set, also copies a plain-text
+	 * report of the selected markers to the clipboard.
 	 */
+	@Override
 	public void run() {
 		IMarker[] markers = getSelectedMarkers();
 		setClipboard(markers, createMarkerReport(markers));
@@ -84,9 +87,10 @@ public class ActionCopyMarker extends MarkerSelectionProviderAction {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.ui.actions.SelectionProviderAction#selectionChanged(org.eclipse.jface.viewers.IStructuredSelection)
+	 * @see
+	 * org.eclipse.ui.actions.SelectionProviderAction#selectionChanged(org.eclipse.jface.viewers.IStructuredSelection)
 	 */
+	@Override
 	public void selectionChanged(IStructuredSelection selection) {
 		setEnabled(Util.allConcreteSelection(selection));
 	}
@@ -101,8 +105,7 @@ public class ActionCopyMarker extends MarkerSelectionProviderAction {
 				transferTypes = new Transfer[] { MarkerTransfer.getInstance() };
 			} else {
 				data = new Object[] { markers, markerReport };
-				transferTypes = new Transfer[] { MarkerTransfer.getInstance(),
-						TextTransfer.getInstance() };
+				transferTypes = new Transfer[] { MarkerTransfer.getInstance(), TextTransfer.getInstance() };
 			}
 
 			clipboard.setContents(data, transferTypes);
@@ -110,8 +113,7 @@ public class ActionCopyMarker extends MarkerSelectionProviderAction {
 			if (e.code != DND.ERROR_CANNOT_SET_CLIPBOARD) {
 				throw e;
 			}
-			if (MessageDialog.openQuestion(part.getSite().getShell(),
-					MarkerMessages.CopyToClipboardProblemDialog_title,
+			if (MessageDialog.openQuestion(part.getSite().getShell(), MarkerMessages.CopyToClipboardProblemDialog_title,
 					MarkerMessages.CopyToClipboardProblemDialog_message)) {
 				setClipboard(markers, markerReport);
 			}
@@ -119,8 +121,7 @@ public class ActionCopyMarker extends MarkerSelectionProviderAction {
 	}
 
 	/**
-	 * Creates a plain-text report of the selected markers based on predefined
-	 * properties.
+	 * Creates a plain-text report of the selected markers based on predefined properties.
 	 * 
 	 * @param rawMarkers
 	 * @return the marker report
@@ -130,8 +131,7 @@ public class ActionCopyMarker extends MarkerSelectionProviderAction {
 		try {
 			markers = MarkerList.createMarkers(rawMarkers);
 		} catch (CoreException e) {
-			ErrorDialog.openError(part.getSite().getShell(),
-					MarkerMessages.Error, null, e.getStatus());
+			ErrorDialog.openError(part.getSite().getShell(), MarkerMessages.Error, null, e.getStatus());
 			return ""; //$NON-NLS-1$
 		}
 
@@ -154,8 +154,7 @@ public class ActionCopyMarker extends MarkerSelectionProviderAction {
 			}
 		}
 
-		for (int i = 0; i < markers.length; i++) {
-			ConcreteMarker marker = markers[i];
+		for (ConcreteMarker marker : markers) {
 			for (int j = 0; j < properties.length; j++) {
 				report.append(properties[j].getValue(marker));
 				if (j == properties.length - 1) {

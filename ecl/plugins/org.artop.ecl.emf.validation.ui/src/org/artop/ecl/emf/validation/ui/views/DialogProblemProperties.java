@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2006 IBM Corporation and others.
+ * Copyright (c) 2000, 2010 IBM Corporation, Geensys, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,9 +7,13 @@
  *
  * Contributors:
  *     IBM Corporation - initial API and implementation
- *     Sebastian Davids <sdavids@gmx.de> - bug 77332 - [Markers] Add task dialog improvements
+ *     Geensys - added support for problem markers on model objects (rather than 
+ *               only on workspace resources). Unfortunately, there was no other 
+ *               choice than copying the whole code from 
+ *               org.eclipse.ui.views.markers.internal for that purpose because 
+ *               many of the relevant classes, methods, and fields are private or
+ *               package private.
  *******************************************************************************/
-
 package org.artop.ecl.emf.validation.ui.views;
 
 import org.eclipse.core.resources.IMarker;
@@ -32,15 +36,15 @@ class DialogProblemProperties extends DialogMarkerProperties {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.ui.views.markerview.MarkerPropertiesDialog#createAttributesArea(org.eclipse.swt.widgets.Composite)
+	 * @see
+	 * org.eclipse.ui.views.markerview.MarkerPropertiesDialog#createAttributesArea(org.eclipse.swt.widgets.Composite)
 	 */
+	@Override
 	protected void createAttributesArea(Composite parent) {
 		createSeperator(parent);
 		super.createAttributesArea(parent);
 
-		new Label(parent, SWT.NONE)
-				.setText(MarkerMessages.propertiesDialog_severityLabel);
+		new Label(parent, SWT.NONE).setText(MarkerMessages.propertiesDialog_severityLabel);
 
 		Composite composite = new Composite(parent, SWT.NONE);
 		GridLayout layout = new GridLayout();
@@ -55,9 +59,9 @@ class DialogProblemProperties extends DialogMarkerProperties {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.eclipse.ui.views.markerview.MarkerPropertiesDialog#updateDialogFromMarker()
 	 */
+	@Override
 	protected void updateDialogFromMarker() {
 		super.updateDialogFromMarker();
 		IMarker marker = getMarker();
@@ -65,8 +69,7 @@ class DialogProblemProperties extends DialogMarkerProperties {
 			return;
 		}
 
-		severityImage.setImage(Util.getImage(marker.getAttribute(
-				IMarker.SEVERITY, -1)));
+		severityImage.setImage(Util.getImage(marker.getAttribute(IMarker.SEVERITY, -1)));
 		int severity = marker.getAttribute(IMarker.SEVERITY, -1);
 		if (severity == IMarker.SEVERITY_ERROR) {
 			severityLabel.setText(MarkerMessages.propertiesDialog_errorLabel);
@@ -75,8 +78,7 @@ class DialogProblemProperties extends DialogMarkerProperties {
 		} else if (severity == IMarker.SEVERITY_INFO) {
 			severityLabel.setText(MarkerMessages.propertiesDialog_infoLabel);
 		} else {
-			severityLabel
-					.setText(MarkerMessages.propertiesDialog_noseverityLabel);
+			severityLabel.setText(MarkerMessages.propertiesDialog_noseverityLabel);
 		}
 	}
 }

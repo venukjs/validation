@@ -1,16 +1,26 @@
-/***********************************************************************************************************************
- * Copyright (c) 2000, 2006 IBM Corporation and others. All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html Contributors: IBM Corporation - initial API and implementation
- * Sebastian Davids <sdavids@gmx.de> - bug 77332 - [Markers] Add task dialog improvements
- **********************************************************************************************************************/
-
+/*******************************************************************************
+ * Copyright (c) 2000, 2010 IBM Corporation, Geensys, and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *     IBM Corporation - initial API and implementation
+ *     Geensys - added support for problem markers on model objects (rather than 
+ *               only on workspace resources). Unfortunately, there was no other 
+ *               choice than copying the whole code from 
+ *               org.eclipse.ui.views.markers.internal for that purpose because 
+ *               many of the relevant classes, methods, and fields are private or
+ *               package private.
+ *******************************************************************************/
 package org.artop.ecl.emf.validation.ui.views;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.artop.ecl.emf.validation.markers.IValidationMarker;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.resources.IMarker;
@@ -44,8 +54,6 @@ import org.eclipse.ui.ide.undo.CreateMarkersOperation;
 import org.eclipse.ui.ide.undo.UpdateMarkersOperation;
 import org.eclipse.ui.ide.undo.WorkspaceUndoUtil;
 import org.eclipse.ui.internal.ide.IDEWorkbenchPlugin;
-
-import org.artop.ecl.emf.validation.markers.IValidationMarker;
 
 /**
  * Shows the properties of a new or existing marker In 3.3, this class was refactored to allow pre-existing public
@@ -122,8 +130,8 @@ public class DialogMarkerProperties extends TrayDialog {
 
 	/**
 	 * Creates the dialog. By default this dialog creates a new marker. To set the resource and initial attributes for
-	 * the new marker, use <code>setResource</code> and <code>setInitialAttributes</code>. To show or modify an
-	 * existing marker, use <code>setMarker</code>.
+	 * the new marker, use <code>setResource</code> and <code>setInitialAttributes</code>. To show or modify an existing
+	 * marker, use <code>setMarker</code>.
 	 * 
 	 * @param parentShell
 	 *            the parent shell
@@ -135,8 +143,8 @@ public class DialogMarkerProperties extends TrayDialog {
 
 	/**
 	 * Creates the dialog. By default this dialog creates a new marker. To set the resource and initial attributes for
-	 * the new marker, use <code>setResource</code> and <code>setInitialAttributes</code>. To show or modify an
-	 * existing marker, use <code>setMarker</code>.
+	 * the new marker, use <code>setResource</code> and <code>setInitialAttributes</code>. To show or modify an existing
+	 * marker, use <code>setMarker</code>.
 	 * 
 	 * @param parentShell
 	 *            the parent shell
@@ -151,8 +159,8 @@ public class DialogMarkerProperties extends TrayDialog {
 
 	/**
 	 * Creates the dialog. By default this dialog creates a new marker. To set the resource and initial attributes for
-	 * the new marker, use <code>setResource</code> and <code>setInitialAttributes</code>. To show or modify an
-	 * existing marker, use <code>setMarker</code>.
+	 * the new marker, use <code>setResource</code> and <code>setInitialAttributes</code>. To show or modify an existing
+	 * marker, use <code>setMarker</code>.
 	 * 
 	 * @param parentShell
 	 *            the parent shell
@@ -217,8 +225,8 @@ public class DialogMarkerProperties extends TrayDialog {
 	}
 
 	/**
-	 * Returns the resource to use when creating a new task, or <code>null</code> if none has been set. If not set,
-	 * the new task is created on the workspace root.
+	 * Returns the resource to use when creating a new task, or <code>null</code> if none has been set. If not set, the
+	 * new task is created on the workspace root.
 	 * <p>
 	 * IMPORTANT: Although this method is protected and the class is internal, there are public subclasses that expose
 	 * this method as API. Changes in this implementation should be treated as API changes.
@@ -246,8 +254,8 @@ public class DialogMarkerProperties extends TrayDialog {
 	}
 
 	/**
-	 * Returns the initial attributes to use when creating a new task, or <code>null</code> if not set. If not set,
-	 * the new task is created with default attributes.
+	 * Returns the initial attributes to use when creating a new task, or <code>null</code> if not set. If not set, the
+	 * new task is created with default attributes.
 	 * <p>
 	 * IMPORTANT: Although this method is protected and the class is internal, there are public subclasses that expose
 	 * this method as API. Changes in this implementation should be treated as API changes.
@@ -549,11 +557,10 @@ public class DialogMarkerProperties extends TrayDialog {
 	}
 
 	/**
-	 * @return
-	 * <ul>
-	 * <li><code>true</code> if the dirty flag has been set to true.</li>
-	 * <li><code>false</code> otherwise.</li>
-	 * </ul>
+	 * @return <ul>
+	 *         <li><code>true</code> if the dirty flag has been set to true.</li>
+	 *         <li><code>false</code> otherwise.</li>
+	 *         </ul>
 	 */
 	protected boolean isDirty() {
 		return dirty;
@@ -607,11 +614,10 @@ public class DialogMarkerProperties extends TrayDialog {
 	}
 
 	/**
-	 * @return
-	 * <ul>
-	 * <li><code>true</code> if the marker is editable or the dialog is creating a new marker.</li>
-	 * <li><code>false</code> if the marker is not editable.</li>
-	 * </ul>
+	 * @return <ul>
+	 *         <li><code>true</code> if the marker is editable or the dialog is creating a new marker.</li>
+	 *         <li><code>false</code> if the marker is not editable.</li>
+	 *         </ul>
 	 */
 	protected boolean isEditable() {
 		if (marker == null) {
@@ -633,7 +639,6 @@ public class DialogMarkerProperties extends TrayDialog {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.eclipse.jface.window.Dialog#getDialogBoundsSettings()
 	 * @since 3.2
 	 */
