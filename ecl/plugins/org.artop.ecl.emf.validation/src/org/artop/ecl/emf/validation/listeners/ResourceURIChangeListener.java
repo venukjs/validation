@@ -82,7 +82,6 @@ public class ResourceURIChangeListener implements IResourceChangeListener {
 	private void updateCache(IResourceChangeEvent event) {
 		IResourceDelta rootDelta = event.getDelta();
 
-		// final ArrayList<IResource> changed = new ArrayList<IResource>();
 		IResourceDeltaVisitor visitor = new IResourceDeltaVisitor() {
 			public boolean visit(IResourceDelta delta) {
 				IResource resource = delta.getResource();
@@ -94,8 +93,8 @@ public class ResourceURIChangeListener implements IResourceChangeListener {
 				if ((delta.getFlags() & IResourceDelta.MARKERS) == 0) {
 					return true;
 				}
-				// only interested in files with the "arxml" extension
-				if (resource.getType() == IResource.FILE && "arxml".equalsIgnoreCase(resource.getFileExtension()) && resource.exists()) { //$NON-NLS-1$
+				// only interested in files that exist
+				if (resource.getType() == IResource.FILE && resource.exists()) {
 					cache.add(resource);
 				}
 				return true;
