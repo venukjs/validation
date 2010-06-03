@@ -1532,11 +1532,11 @@ public abstract class MarkerView extends TableView {
 		menu.appendToGroup(MENU_FILTERS_GROUP, filtersMenu);
 	}
 
-	private class AutosarContributionItemFactory extends ContributionItemFactory {
+	private class ExtendedContributionItemFactory extends ContributionItemFactory {
 
 		private String targetObjectURI = null;
 
-		public AutosarContributionItemFactory(String contributionItemId) {
+		public ExtendedContributionItemFactory(String contributionItemId) {
 			super(contributionItemId);
 		}
 
@@ -1595,7 +1595,7 @@ public abstract class MarkerView extends TableView {
 			// don't filter views if targetObject is not defined
 			showInMenu.add(ContributionItemFactory.VIEWS_SHOW_IN.create(getViewSite().getWorkbenchWindow()));
 		} else {
-			AutosarContributionItemFactory contributionItemFactory = new AutosarContributionItemFactory("autosarViewsShowIn"); //$NON-NLS-1$
+			ExtendedContributionItemFactory contributionItemFactory = new ExtendedContributionItemFactory("extendedViewsShowIn"); //$NON-NLS-1$
 			contributionItemFactory.setTargetObject(targetObjectURI);
 			showInMenu.add(contributionItemFactory.create(getViewSite().getWorkbenchWindow()));
 		}
