@@ -108,9 +108,10 @@ public class ValidationUtil {
 		return uri == null ? null : uri.split("\\?"); //$NON-NLS-1$
 	}
 
-	// FIXME It is not admissible to assume anything like shortName at ECL level
-	public static String computeOldURI(EObject eObject, String oldShortName) {
-		if (oldShortName == null) {
+	// FIXME It is not admissible to assume any fix URI format right here. Old URI calculation must take resource or
+	// even metamodel specific URI formats into account.
+	public static String computeOldURI(EObject eObject, String oldName) {
+		if (oldName == null) {
 			return null;
 		}
 
@@ -122,9 +123,9 @@ public class ValidationUtil {
 		String uri = uri_.toString();
 		int lowerBound = uri.lastIndexOf("/"); //$NON-NLS-1$
 		int upperBound = uri.lastIndexOf("?"); //$NON-NLS-1$
-		String newShortName = uri.substring(lowerBound, upperBound);
+		String newName = uri.substring(lowerBound, upperBound);
 
-		return uri.replace(newShortName + "?", "/" + oldShortName + "?"); //$NON-NLS-1$ //$NON-NLS-2$//$NON-NLS-3$
+		return uri.replace(newName + "?", "/" + oldName + "?"); //$NON-NLS-1$ //$NON-NLS-2$//$NON-NLS-3$
 	}
 
 	public static String getObjectType(String uri) {
