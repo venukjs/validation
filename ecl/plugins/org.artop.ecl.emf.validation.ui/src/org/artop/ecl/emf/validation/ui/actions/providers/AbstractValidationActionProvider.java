@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) BMW Car IT, Geensys and others.
+ * Copyright (c) Geensys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
