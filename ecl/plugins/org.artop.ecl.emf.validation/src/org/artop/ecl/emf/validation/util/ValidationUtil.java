@@ -330,6 +330,11 @@ public class ValidationUtil {
 		job.setRule(new MultiRule(myRules.toArray(new ISchedulingRule[myRules.size()])));
 		job.setPriority(Job.BUILD);
 		job.schedule();
+		try {
+			job.join();
+		} catch (InterruptedException ex) {
+			// ignore
+		}
 		ValidationPerformanceStats.INSTANCE.endEvent(ValidationPerformanceStats.ValidationEvent.EVENT_UPDATE_PROBLEM_MARKERS, blameObject);
 	}
 }
