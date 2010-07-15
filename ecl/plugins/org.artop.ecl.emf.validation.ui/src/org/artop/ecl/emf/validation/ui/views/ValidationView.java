@@ -48,7 +48,6 @@ import org.eclipse.ui.activities.IActivityManagerListener;
 import org.eclipse.ui.handlers.IHandlerActivation;
 import org.eclipse.ui.handlers.IHandlerService;
 import org.eclipse.ui.progress.IWorkbenchSiteProgressService;
-import org.eclipse.ui.views.markers.internal.ProblemView;
 
 import com.ibm.icu.text.MessageFormat;
 
@@ -196,7 +195,7 @@ public class ValidationView extends MarkerView {
 	@Override
 	protected IField[] getSortingFields() {
 		return new IField[] { severityAndMessage, eObject, eObjectURI, resource, eObjectType, ruleId, creationTime,
-		// Add the marker ID so the table sorter won't reduce
+				// Add the marker ID so the table sorter won't reduce
 				// errors on the same line bug 82502
 				id };
 	}
