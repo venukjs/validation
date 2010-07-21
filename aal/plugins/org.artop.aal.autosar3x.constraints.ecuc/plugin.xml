@@ -306,7 +306,7 @@
                   {0}
                </message>
                <description>
-               Valiates the structural integrity of a ConfigReferenceValue. i.e. Does the ECUC Parameter Definition allows a the reference in the parent Container?  
+               Validates the structural integrity of a ConfigReferenceValue. i.e. Does the ECUC Parameter Definition allows a the reference in the parent Container?  
                </description>
                <target
                      class="ConfigReferenceValue">
@@ -325,7 +325,7 @@
                   {0}
                </message>
                <description>
-               Valiates the structural integrity of a ParameterValue. i.e. Does the ECUC Parameter Definition allows the parameter in the parent Container?
+               Validates the structural integrity of a ParameterValue. i.e. Does the ECUC Parameter Definition allows the parameter in the parent Container?
                </description>
                <target
                      class="ParameterValue">
@@ -344,7 +344,7 @@
                   {0}
                </message>
                <description>
-               Valiates the structural integrity of a Container i.e. Does the ECUC Parameter Definition allows the container in the parent Container or parent MouleConfiguration?
+               Validates the structural integrity of a Container i.e. Does the ECUC Parameter Definition allows the container in the parent Container or parent MouleConfiguration?
                </description>
                <target
                      class="Container">
@@ -363,7 +363,7 @@
                   {0}
                </message>
                <description>
-               Valiates the multiplicity of the subContainers of a Container.
+               Validates the multiplicity of the subContainers of a Container.
                </description>
                <target
                      class="Container">
@@ -381,7 +381,7 @@
                   {0}
                </message>
                <description>
-               Valiates the multiplicity of the containers of a ModuleConfiguration.
+               Validates the multiplicity of the containers of a ModuleConfiguration.
                </description>
                <target
                      class="ModuleConfiguration">
@@ -399,7 +399,7 @@
                   {0}
                </message>
                <description>
-               Valiates the multiplicity of the parameterValues of a Container.
+               Validates the multiplicity of the parameterValues of a Container.
                </description>
                <target
                      class="Container">
@@ -417,7 +417,7 @@
                   {0}
                </message>
                <description>
-               Valiates the multiplicity of the referenceValues of a Container.
+               Validates the multiplicity of the referenceValues of a Container.
                </description>
                <target
                      class="Container">
