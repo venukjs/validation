@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.artop.aal.autosar3x.validation;singleton:=true
+Bundle-Version: 2.1.1.qualifier
+Bundle-Activator: org.artop.aal.autosar3x.validation.internal.Activator
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Require-Bundle: org.artop.aal.validation;visibility:=reexport,
+ org.artop.aal.autosar3x;visibility:=reexport
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.artop.aal.autosar3x.validation.internal;x-internal:=true,
+ org.artop.aal.autosar3x.validation.listeners

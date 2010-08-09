@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.artop.ecl.emf.validation.bridge;singleton:=true
+Bundle-Version: 2.1.1.qualifier
+Bundle-Activator: org.artop.ecl.emf.validation.bridge.Activator
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore,
+ org.artop.ecl.platform
+Bundle-ActivationPolicy: lazy
+Export-Package: org.artop.ecl.emf.validation.bridge,
+ org.artop.ecl.emf.validation.bridge.extensions,
+ org.artop.ecl.emf.validation.bridge.util
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

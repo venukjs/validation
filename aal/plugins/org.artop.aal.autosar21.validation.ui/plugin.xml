@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+
+<!--
+<copyright>
+
+Copyright (c) Geensys and others.
+All rights reserved. This program and the accompanying materials are made
+available under the terms of the Artop Software License Based on AUTOSAR
+Released Material (ASLR) which accompanies this distribution, and is
+available at http://www.artop.org/aslr.html
+ 
+Contributors: 
+    Geensys - Initial API and implementation
+
+</copyright>
+-->
+
+<plugin>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.artop.aal.validation.ui.preferences.validation"
+            class="org.artop.aal.autosar21.validation.ui.preferences.Constraint21PreferencePage"
+            id="org.artop.aal.autosar21.validation.ui.autosar21"
+            name="%UI_org.artop.aal.autosar21.validation.ui.autosar21">
+      </page>
+   </extension>
+
+</plugin>

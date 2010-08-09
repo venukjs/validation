@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.artop.aal.autosar3x.validation.ui;singleton:=true
+Bundle-Version: 2.1.1.qualifier
+Bundle-Activator: org.artop.aal.autosar3x.validation.ui.Activator
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,
+ org.artop.ecl.emf.validation.ui,
+ org.artop.aal.autosar3x.validation
+Bundle-ActivationPolicy: lazy
+Export-Package: org.artop.aal.autosar3x.validation.ui,
+ org.artop.aal.autosar3x.validation.ui.preferences
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

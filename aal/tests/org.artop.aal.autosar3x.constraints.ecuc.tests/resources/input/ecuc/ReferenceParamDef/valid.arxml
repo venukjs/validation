@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/3.1.1"><TOP-LEVEL-PACKAGES>
+    <AR-PACKAGE>
+    <SHORT-NAME>AUTOSAR</SHORT-NAME>
+      <ELEMENTS>
+         <MODULE-DEF>
+          <SHORT-NAME>Os</SHORT-NAME>
+          <CONTAINERS>
+             <PARAM-CONF-CONTAINER-DEF>
+                 <SHORT-NAME>Alternative1</SHORT-NAME>
+              </PARAM-CONF-CONTAINER-DEF>
+              <PARAM-CONF-CONTAINER-DEF>
+                  <SHORT-NAME>Alternative2</SHORT-NAME>
+              </PARAM-CONF-CONTAINER-DEF>
+              <PARAM-CONF-CONTAINER-DEF>
+                 <SHORT-NAME>ParamConfContainerDef1</SHORT-NAME>
+                 <REFERENCES>
+                 <REFERENCE-PARAM-DEF>
+                    <SHORT-NAME>OsAppScheduleTableRef</SHORT-NAME>
+                    <DESTINATION-REF DEST="PARAM-CONF-CONTAINER-DEF">/AUTOSAR/Os/Alternative1</DESTINATION-REF>
+                </CREFERENCE-PARAM-DEF>
+                </REFERENCES>
+              </PARAM-CONF-CONTAINER-DEF>
+          </CONTAINERS>
+        </MODULE-DEF>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </TOP-LEVEL-PACKAGES>
+</AUTOSAR>
