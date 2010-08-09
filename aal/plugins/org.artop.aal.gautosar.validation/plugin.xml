@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.artop.ecl.emf.validation.registration">
+      <model
+            Name="GAUTOSAR"
+            NsURI="http://artop.org/gautosar/gs/in"
+            class="org.artop.aal.gautosar.validation.Model1"
+            filter="_GAR"
+            id="gautosar">
+      </model>
+   </extension>
+   <extension
+         point="org.eclipse.emf.validation.constraintBindings">
+      <clientContext
+            id="gautosar.GARObject.context">
+         <enablement>
+            <instanceof
+                  value="gautosar.ggenericstructure.ginfrastructure.GARObject">
+            </instanceof></enablement>
+      </clientContext>
+   </extension>
+   <extension
+         point="org.artop.ecl.emf.editingDomainFactoryListeners">
+      <listener
+            class="org.artop.aal.gautosar.validation.internal.ValidationEditingDomainFactoryListener"
+            id="org.artop.aal.gautosar.validation.internal.ValidationEditingDomainFactoryListener">
+         <applicableFor
+               metaModelDescriptorIdPattern="org\.artop\.aal\.autosar\d[\dx]">
+         </applicableFor>
+      </listener>
+   </extension>
+
+</plugin>

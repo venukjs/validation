@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.artop.aal.gautosar.validation;singleton:=true
+Bundle-Version: 2.2.0.qualifier
+Bundle-Activator: org.artop.aal.gautosar.validation.internal.Activator
+Bundle-Vendor: %providerName
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.common,
+ org.eclipse.emf.common.ui,
+ org.artop.aal.validation
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.artop.aal.gautosar.validation.internal;x-internal:=true
+Bundle-Localization: plugin
