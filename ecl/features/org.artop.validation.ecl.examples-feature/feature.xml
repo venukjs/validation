@@ -2,7 +2,7 @@
 <feature
       id="org.artop.validation.ecl.examples"
       label="%featureName"
-      version="2.0.3.qualifier"
+      version="2.0.4.qualifier"
       provider-name="%providerName">
 
    <description>
@@ -18,7 +18,7 @@
    </license>
 
    <requires>
-      <import feature="org.artop.validation.ecl" version="2.0.3"/>
+      <import feature="org.artop.validation.ecl" version="2.0.4"/>
    </requires>
 
    <plugin
