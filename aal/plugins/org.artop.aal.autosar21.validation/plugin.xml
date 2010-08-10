@@ -24,7 +24,7 @@ Contributors:
             id="autosar21"
             filter="_21"
             Name="AUTOSAR 2.1"
-            NsURI="http://autosar.org/2.1.4/autosar21/gs/i"
+            NsURI="http://autosar.org/2.1.5/autosar21/gs/i"
             class="autosar21.genericstructure.infrastructure.ARObject">
       </model>
    </extension>
