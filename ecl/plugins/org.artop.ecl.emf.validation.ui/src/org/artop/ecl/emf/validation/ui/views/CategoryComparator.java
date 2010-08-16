@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2005, 2006 IBM Corporation and others.
+ * Copyright (c) 2000, 2010 IBM Corporation, Geensys, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +7,12 @@
  *
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Geensys - added support for problem markers on model objects (rather than 
+ *               only on workspace resources). Unfortunately, there was no other 
+ *               choice than copying the whole code from 
+ *               org.eclipse.ui.views.markers.internal for that purpose because 
+ *               many of the relevant classes, methods, and fields are private or
+ *               package private.
  *******************************************************************************/
 package org.artop.ecl.emf.validation.ui.views;
 
@@ -17,9 +23,7 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.ViewerComparator;
 
 /**
- * CategorySorter is the sorter that takes categories and the viewer into
- * account.
- * 
+ * CategorySorter is the sorter that takes categories and the viewer into account.
  */
 public class CategoryComparator extends ViewerComparator implements Comparator {
 	TableComparator innerSorter;
@@ -49,8 +53,7 @@ public class CategoryComparator extends ViewerComparator implements Comparator {
 	 */
 	int compare(Object obj1, Object obj2, int depth, boolean continueSearching) {
 
-		if (obj1 == null || obj2 == null || !(obj1 instanceof MarkerNode)
-				|| !(obj2 instanceof MarkerNode)) {
+		if (obj1 == null || obj2 == null || !(obj1 instanceof MarkerNode) || !(obj2 instanceof MarkerNode)) {
 			return 0;
 		}
 
@@ -61,8 +64,7 @@ public class CategoryComparator extends ViewerComparator implements Comparator {
 		marker2 = (MarkerNode) obj2;
 
 		if (categoryField == null) {
-			return innerSorter.compare(marker1, marker2, depth,
-					continueSearching);
+			return innerSorter.compare(marker1, marker2, depth, continueSearching);
 		}
 
 		int result = categoryField.compare(marker1, marker2);
@@ -74,17 +76,16 @@ public class CategoryComparator extends ViewerComparator implements Comparator {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.jface.viewers.ViewerSorter#compare(org.eclipse.jface.viewers.Viewer,
-	 *      java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.jface.viewers.ViewerSorter#compare(org.eclipse.jface.viewers.Viewer, java.lang.Object,
+	 * java.lang.Object)
 	 */
+	@Override
 	public int compare(Viewer viewer, Object e1, Object e2) {
 		return compare(e1, e2, 0, true);
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
 	 */
 	public int compare(Object arg0, Object arg1) {
@@ -106,7 +107,7 @@ public class CategoryComparator extends ViewerComparator implements Comparator {
 	 * @param field
 	 */
 	public void setCategoryField(IField field) {
-		this.categoryField = field;
+		categoryField = field;
 	}
 
 	/**
@@ -129,11 +130,9 @@ public class CategoryComparator extends ViewerComparator implements Comparator {
 			return;
 		}
 
-		IDialogSettings settings = dialogSettings
-				.getSection(TableComparator.TAG_DIALOG_SECTION);
+		IDialogSettings settings = dialogSettings.getSection(TableComparator.TAG_DIALOG_SECTION);
 		if (settings == null) {
-			settings = dialogSettings
-					.addNewSection(TableComparator.TAG_DIALOG_SECTION);
+			settings = dialogSettings.addNewSection(TableComparator.TAG_DIALOG_SECTION);
 		}
 
 		String description = Util.EMPTY_STRING;
@@ -157,8 +156,7 @@ public class CategoryComparator extends ViewerComparator implements Comparator {
 			return;
 		}
 
-		IDialogSettings settings = dialogSettings
-				.getSection(TableComparator.TAG_DIALOG_SECTION);
+		IDialogSettings settings = dialogSettings.getSection(TableComparator.TAG_DIALOG_SECTION);
 		if (settings == null) {
 			selectDefaultGrouping(view);
 			return;
@@ -170,10 +168,10 @@ public class CategoryComparator extends ViewerComparator implements Comparator {
 
 	/**
 	 * Select the default grouping in the problem view
+	 * 
 	 * @param view
 	 */
 	private void selectDefaultGrouping(ValidationView view) {
-		view.selectCategoryField(MarkerSupportRegistry.getInstance()
-				.getDefaultGroup(), this);
+		view.selectCategoryField(MarkerSupportRegistry.getInstance().getDefaultGroup(), this);
 	}
 }

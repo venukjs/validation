@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2006 IBM Corporation and others.
+ * Copyright (c) 2000, 2010 IBM Corporation, Geensys, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,8 +7,13 @@
  *
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Geensys - added support for problem markers on model objects (rather than 
+ *               only on workspace resources). Unfortunately, there was no other 
+ *               choice than copying the whole code from 
+ *               org.eclipse.ui.views.markers.internal for that purpose because 
+ *               many of the relevant classes, methods, and fields are private or
+ *               package private.
  *******************************************************************************/
-
 package org.artop.ecl.emf.validation.ui.views;
 
 import java.util.Arrays;
@@ -48,39 +53,30 @@ public class TableComparator extends ViewerComparator implements Comparator {
 	private static final String TAG_DEFAULT_DIRECTION = "defaultDirection"; //$NON-NLS-1$
 
 	public TableComparator(TableComparator other) {
-		this(other.getFields(), other.getDefaultPriorities(), other
-				.getDefaultDirections());
+		this(other.getFields(), other.getDefaultPriorities(), other.getDefaultDirections());
 		priorities = other.getPriorities();
 		directions = other.getDirections();
 	}
 
-	public TableComparator(IField[] properties, final int[] defaultPriorities,
-			final int[] defaultDirections) {
+	public TableComparator(IField[] properties, final int[] defaultPriorities, final int[] defaultDirections) {
 		super();
-		this.fields = properties;
-		if (properties == null
-				|| defaultPriorities == null
-				|| defaultDirections == null
+		fields = properties;
+		if (properties == null || defaultPriorities == null || defaultDirections == null
 				|| !(properties.length == defaultPriorities.length && properties.length == defaultDirections.length)
-				|| !verifyPriorities(defaultPriorities)
-				|| !verifyDirections(defaultDirections)) {
-			this.priorities = new int[0];
-			this.directions = new int[0];
+				|| !verifyPriorities(defaultPriorities) || !verifyDirections(defaultDirections)) {
+			priorities = new int[0];
+			directions = new int[0];
 			this.defaultPriorities = new int[0];
 			this.defaultDirections = new int[0];
 		} else {
-			this.priorities = new int[defaultPriorities.length];
-			System.arraycopy(defaultPriorities, 0, this.priorities, 0,
-					priorities.length);
-			this.directions = new int[defaultDirections.length];
-			System.arraycopy(defaultDirections, 0, this.directions, 0,
-					directions.length);
+			priorities = new int[defaultPriorities.length];
+			System.arraycopy(defaultPriorities, 0, priorities, 0, priorities.length);
+			directions = new int[defaultDirections.length];
+			System.arraycopy(defaultDirections, 0, directions, 0, directions.length);
 			this.defaultPriorities = new int[defaultPriorities.length];
-			System.arraycopy(defaultPriorities, 0, this.defaultPriorities, 0,
-					defaultPriorities.length);
+			System.arraycopy(defaultPriorities, 0, this.defaultPriorities, 0, defaultPriorities.length);
 			this.defaultDirections = new int[defaultDirections.length];
-			System.arraycopy(defaultDirections, 0, this.defaultDirections, 0,
-					defaultDirections.length);
+			System.arraycopy(defaultDirections, 0, this.defaultDirections, 0, defaultDirections.length);
 		}
 	}
 
@@ -105,12 +101,8 @@ public class TableComparator extends ViewerComparator implements Comparator {
 	}
 
 	protected void resetState() {
-		System
-				.arraycopy(defaultPriorities, 0, priorities, 0,
-						priorities.length);
-		System
-				.arraycopy(defaultDirections, 0, directions, 0,
-						directions.length);
+		System.arraycopy(defaultPriorities, 0, priorities, 0, priorities.length);
+		System.arraycopy(defaultDirections, 0, directions, 0, directions.length);
 	}
 
 	public void reverseTopPriority() {
@@ -198,13 +190,13 @@ public class TableComparator extends ViewerComparator implements Comparator {
 		return copy;
 	}
 
+	@Override
 	public int compare(Viewer viewer, Object e1, Object e2) {
 		return compare(e1, e2, 0, true);
 	}
 
 	/**
-	 * Compare obj1 and obj2 at depth. If continueSearching continue searching
-	 * below depth to continue the comparison.
+	 * Compare obj1 and obj2 at depth. If continueSearching continue searching below depth to continue the comparison.
 	 * 
 	 * @param obj1
 	 * @param obj2
@@ -212,8 +204,7 @@ public class TableComparator extends ViewerComparator implements Comparator {
 	 * @param continueSearching
 	 * @return int
 	 */
-	protected int compare(Object obj1, Object obj2, int depth,
-			boolean continueSearching) {
+	protected int compare(Object obj1, Object obj2, int depth, boolean continueSearching) {
 		if (depth >= priorities.length) {
 			return 0;
 		}
@@ -252,8 +243,8 @@ public class TableComparator extends ViewerComparator implements Comparator {
 	}
 
 	private boolean verifyDirections(int[] directions) {
-		for (int i = 0; i < directions.length; i++) {
-			if (directions[i] != ASCENDING && directions[i] != DESCENDING) {
+		for (int direction : directions) {
+			if (direction != ASCENDING && direction != DESCENDING) {
 				return false;
 			}
 		}
@@ -262,7 +253,6 @@ public class TableComparator extends ViewerComparator implements Comparator {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
 	 */
 	public int compare(Object o1, Object o2) {
@@ -274,8 +264,7 @@ public class TableComparator extends ViewerComparator implements Comparator {
 			return;
 		}
 
-		IDialogSettings settings = dialogSettings
-				.getSection(TAG_DIALOG_SECTION);
+		IDialogSettings settings = dialogSettings.getSection(TAG_DIALOG_SECTION);
 		if (settings == null) {
 			settings = dialogSettings.addNewSection(TAG_DIALOG_SECTION);
 		}
@@ -294,8 +283,7 @@ public class TableComparator extends ViewerComparator implements Comparator {
 			return;
 		}
 
-		IDialogSettings settings = dialogSettings
-				.getSection(TAG_DIALOG_SECTION);
+		IDialogSettings settings = dialogSettings.getSection(TAG_DIALOG_SECTION);
 		if (settings == null) {
 			resetState();
 			return;
@@ -308,14 +296,14 @@ public class TableComparator extends ViewerComparator implements Comparator {
 					resetState();
 					return;
 				}
-				
+
 				int fieldIndex = Integer.parseInt(priority);
-				
-				//Make sure it is not old data from a different sized array
-				if(fieldIndex < fields.length) {
+
+				// Make sure it is not old data from a different sized array
+				if (fieldIndex < fields.length) {
 					priorities[i] = fieldIndex;
 				}
-				
+
 				String direction = settings.get(TAG_DIRECTION + i);
 				if (direction == null) {
 					resetState();
@@ -328,8 +316,7 @@ public class TableComparator extends ViewerComparator implements Comparator {
 					return;
 				}
 				defaultPriorities[i] = Integer.parseInt(defaultPriority);
-				String defaultDirection = settings.get(TAG_DEFAULT_DIRECTION
-						+ i);
+				String defaultDirection = settings.get(TAG_DEFAULT_DIRECTION + i);
 				if (defaultDirection == null) {
 					resetState();
 					return;
@@ -353,8 +340,7 @@ public class TableComparator extends ViewerComparator implements Comparator {
 	}
 
 	/**
-	 * Sorts the given elements in-place, modifying the given array from index
-	 * start to index end. <
+	 * Sorts the given elements in-place, modifying the given array from index start to index end. <
 	 * 
 	 * @param viewer
 	 * @param elements

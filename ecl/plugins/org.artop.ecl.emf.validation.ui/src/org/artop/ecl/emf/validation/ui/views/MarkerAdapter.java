@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2007 IBM Corporation and others.
+ * Copyright (c) 2000, 2010 IBM Corporation, Geensys, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,9 +7,14 @@
  *
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Geensys - added support for problem markers on model objects (rather than 
+ *               only on workspace resources). Unfortunately, there was no other 
+ *               choice than copying the whole code from 
+ *               org.eclipse.ui.views.markers.internal for that purpose because 
+ *               many of the relevant classes, methods, and fields are private or
+ *               package private.
  *******************************************************************************/
 package org.artop.ecl.emf.validation.ui.views;
-
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,7 +30,6 @@ import org.eclipse.osgi.util.NLS;
  * The MarkerAdapter is the adapter for the deferred update of markers.
  * 
  * @since 3.1
- * 
  */
 public class MarkerAdapter {
 
@@ -42,15 +46,13 @@ public class MarkerAdapter {
 		private String name;
 
 		/**
-		 * Create a new instance of the receiver that has the markers between
-		 * startIndex and endIndex showing.
+		 * Create a new instance of the receiver that has the markers between startIndex and endIndex showing.
 		 * 
 		 * @param adapter
 		 * @param startIndex
 		 * @param endIndex
 		 */
-		MarkerCategory(MarkerAdapter adapter, int startIndex, int endIndex,
-				String categoryName) {
+		MarkerCategory(MarkerAdapter adapter, int startIndex, int endIndex, String categoryName) {
 			markerAdapter = adapter;
 			start = startIndex;
 			end = endIndex;
@@ -59,9 +61,9 @@ public class MarkerAdapter {
 
 		/*
 		 * (non-Javadoc)
-		 * 
 		 * @see org.eclipse.ui.views.markers.internal.MarkerNode#getChildren()
 		 */
+		@Override
 		public MarkerNode[] getChildren() {
 
 			if (children == null) {
@@ -72,8 +74,7 @@ public class MarkerAdapter {
 					return Util.EMPTY_MARKER_ARRAY;
 				}
 
-				ConcreteMarker[] allMarkers = markerAdapter.lastMarkers
-						.toArray();
+				ConcreteMarker[] allMarkers = markerAdapter.lastMarkers.toArray();
 
 				int totalSize = getDisplayedSize();
 				children = new ConcreteMarker[totalSize];
@@ -82,8 +83,8 @@ public class MarkerAdapter {
 				// Sort them locally now
 				view.getTableSorter().sort(view.getViewer(), children);
 
-				for (int i = 0; i < children.length; i++) {
-					children[i].setCategory(this);
+				for (ConcreteMarker element : children) {
+					element.setCategory(this);
 				}
 			}
 			return children;
@@ -104,33 +105,31 @@ public class MarkerAdapter {
 
 		/*
 		 * (non-Javadoc)
-		 * 
 		 * @see org.eclipse.ui.views.markers.internal.MarkerNode#getParent()
 		 */
+		@Override
 		public MarkerNode getParent() {
 			return null;
 		}
 
 		/*
 		 * (non-Javadoc)
-		 * 
 		 * @see org.eclipse.ui.views.markers.internal.MarkerNode#getDescription()
 		 */
+		@Override
 		public String getDescription() {
 
 			int size = end - start + 1;
 
 			if (size <= view.getMarkerLimit()) {
 
-				if (size == 1)
-					return NLS.bind(MarkerMessages.Category_One_Item_Label,
-							new Object[] { name });
+				if (size == 1) {
+					return NLS.bind(MarkerMessages.Category_One_Item_Label, new Object[] { name });
+				}
 
-				return NLS.bind(MarkerMessages.Category_Label, new Object[] {
-						name, String.valueOf(getDisplayedSize()) });
+				return NLS.bind(MarkerMessages.Category_Label, new Object[] { name, String.valueOf(getDisplayedSize()) });
 			}
-			return NLS.bind(MarkerMessages.Category_Limit_Label, new Object[] {
-					name, String.valueOf(getDisplayedSize()),
+			return NLS.bind(MarkerMessages.Category_Limit_Label, new Object[] { name, String.valueOf(getDisplayedSize()),
 					String.valueOf(getTotalSize()) });
 		}
 
@@ -145,18 +144,18 @@ public class MarkerAdapter {
 
 		/*
 		 * (non-Javadoc)
-		 * 
 		 * @see org.eclipse.ui.views.markers.internal.MarkerNode#isConcrete()
 		 */
+		@Override
 		public boolean isConcrete() {
 			return false;
 		}
 
 		/*
 		 * (non-Javadoc)
-		 * 
 		 * @see org.eclipse.ui.views.markers.internal.MarkerNode#getConcreteRepresentative()
 		 */
+		@Override
 		public ConcreteMarker getConcreteRepresentative() {
 			return markerAdapter.lastMarkers.getMarker(start);
 		}
@@ -191,8 +190,8 @@ public class MarkerAdapter {
 	}
 
 	/**
-	 * Return the category sorter for the receiver. This should only be called
-	 * in hierarchal mode or there will be a ClassCastException.
+	 * Return the category sorter for the receiver. This should only be called in hierarchal mode or there will be a
+	 * ClassCastException.
 	 * 
 	 * @return CategorySorter
 	 */
@@ -211,28 +210,27 @@ public class MarkerAdapter {
 		MarkerList newMarkers;
 		try {
 			int markerLimit = view.getMarkerLimit();
-			monitor.beginTask(MarkerMessages.MarkerView_19,
-					markerLimit == -1 ? 60 : 100);
+			monitor.beginTask(MarkerMessages.MarkerView_19, markerLimit == -1 ? 60 : 100);
 			try {
 				monitor.subTask(MarkerMessages.MarkerView_waiting_on_changes);
 
-				if (monitor.isCanceled())
+				if (monitor.isCanceled()) {
 					return;
+				}
 
-				monitor
-						.subTask(MarkerMessages.MarkerView_searching_for_markers);
-				SubProgressMonitor subMonitor = new SubProgressMonitor(monitor,
-						10);
+				monitor.subTask(MarkerMessages.MarkerView_searching_for_markers);
+				SubProgressMonitor subMonitor = new SubProgressMonitor(monitor, 10);
 				MarkerFilter[] filters = view.getEnabledFilters();
-				if (filters.length > 0)
+				if (filters.length > 0) {
 					newMarkers = MarkerList.compute(filters, subMonitor, true);
-				else
+				} else {
 					// Grab any filter as a disabled filter gives all of them
-					newMarkers = MarkerList.compute(new MarkerFilter[] { view
-							.getAllFilters()[0] }, subMonitor, true);
+					newMarkers = MarkerList.compute(new MarkerFilter[] { view.getAllFilters()[0] }, subMonitor, true);
+				}
 
-				if (monitor.isCanceled())
+				if (monitor.isCanceled()) {
 					return;
+				}
 
 				view.refreshMarkerCounts(monitor);
 
@@ -242,8 +240,9 @@ public class MarkerAdapter {
 				return;
 			}
 
-			if (monitor.isCanceled())
+			if (monitor.isCanceled()) {
 				return;
+			}
 
 			ViewerComparator sorter = view.getViewer().getComparator();
 
@@ -254,11 +253,11 @@ public class MarkerAdapter {
 				monitor.subTask(MarkerMessages.MarkerView_18);
 				SubProgressMonitor mon = new SubProgressMonitor(monitor, 40);
 
-				newMarkers = SortUtil.getFirst(newMarkers, (Comparator) sorter,
-						markerLimit, mon);
-				if (monitor.isCanceled()) 
+				newMarkers = SortUtil.getFirst(newMarkers, (Comparator) sorter, markerLimit, mon);
+				if (monitor.isCanceled()) {
 					return;
-				
+				}
+
 				sorter.sort(view.getViewer(), newMarkers.toArray());
 			}
 
@@ -271,14 +270,15 @@ public class MarkerAdapter {
 
 			monitor.subTask(MarkerMessages.MarkerView_queueing_updates);
 
-			if (monitor.isCanceled())
+			if (monitor.isCanceled()) {
 				return;
+			}
 
 			if (isShowingHierarchy()) {
-				MarkerCategory[] newCategories = buildHierarchy(newMarkers, 0,
-						newMarkers.getSize() - 1, 0);
-				if (monitor.isCanceled())
+				MarkerCategory[] newCategories = buildHierarchy(newMarkers, 0, newMarkers.getSize() - 1, 0);
+				if (monitor.isCanceled()) {
 					return;
+				}
 				categories = newCategories;
 			}
 
@@ -312,14 +312,12 @@ public class MarkerAdapter {
 	 *            the start index in the markers
 	 * @param end
 	 *            the last index to check
-	 * @param sortIndex -
-	 *            the parent of the field
+	 * @param sortIndex
+	 *            - the parent of the field
 	 * @param parent
-	 * @return MarkerCategory[] or <code>null</code> if we are at the bottom
-	 *         of the tree
+	 * @return MarkerCategory[] or <code>null</code> if we are at the bottom of the tree
 	 */
-	MarkerCategory[] buildHierarchy(MarkerList markers, int start, int end,
-			int sortIndex) {
+	MarkerCategory[] buildHierarchy(MarkerList markers, int start, int end, int sortIndex) {
 		CategoryComparator sorter = getCategorySorter();
 
 		if (sortIndex > 0) {
@@ -338,8 +336,7 @@ public class MarkerAdapter {
 			if (previous != null) {
 				// Are we at a category boundary?
 				if (sorter.compare(previous, elements[i], sortIndex, false) != 0) {
-					categories.add(new MarkerCategory(this, categoryStart,
-							i - 1, getNameForIndex(markers, categoryStart)));
+					categories.add(new MarkerCategory(this, categoryStart, i - 1, getNameForIndex(markers, categoryStart)));
 					categoryStart = i;
 				}
 			}
@@ -348,8 +345,7 @@ public class MarkerAdapter {
 		}
 
 		if (end >= categoryStart) {
-			categories.add(new MarkerCategory(this, categoryStart, end,
-					getNameForIndex(markers, categoryStart)));
+			categories.add(new MarkerCategory(this, categoryStart, end, getNameForIndex(markers, categoryStart)));
 		}
 
 		// Flatten single categories
@@ -363,16 +359,14 @@ public class MarkerAdapter {
 	}
 
 	/**
-	 * Get the name for the category from the marker at categoryStart in
-	 * markers.
+	 * Get the name for the category from the marker at categoryStart in markers.
 	 * 
 	 * @param markers
 	 * @param categoryStart
 	 * @return String
 	 */
 	private String getNameForIndex(MarkerList markers, int categoryStart) {
-		return getCategorySorter().getCategoryField().getValue(
-				markers.toArray()[categoryStart]);
+		return getCategorySorter().getCategoryField().getValue(markers.toArray()[categoryStart]);
 	}
 
 	/**
@@ -413,11 +407,9 @@ public class MarkerAdapter {
 	}
 
 	/**
-	 * Return whether or not the receiver has markers without scheduling
-	 * anything if it doesn't.
+	 * Return whether or not the receiver has markers without scheduling anything if it doesn't.
 	 * 
-	 * @return boolean <code>true</code> if the markers have not been
-	 *         calculated.
+	 * @return boolean <code>true</code> if the markers have not been calculated.
 	 */
 	public boolean hasNoMarkers() {
 		return lastMarkers == null;
@@ -426,8 +418,7 @@ public class MarkerAdapter {
 	/**
 	 * Return the categories for the receiver.
 	 * 
-	 * @return MarkerCategory[] or <code>null</code> if there are no
-	 *         categories.
+	 * @return MarkerCategory[] or <code>null</code> if there are no categories.
 	 */
 	public MarkerCategory[] getCategories() {
 		if (building) {
@@ -438,6 +429,7 @@ public class MarkerAdapter {
 
 	/**
 	 * Return whether or not the receiver is building.
+	 * 
 	 * @return boolean
 	 */
 	boolean isBuilding() {

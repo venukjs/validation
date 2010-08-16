@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2006 IBM Corporation and others.
+ * Copyright (c) 2000, 2010 IBM Corporation, Geensys, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,8 +7,13 @@
  *
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Geensys - added support for problem markers on model objects (rather than 
+ *               only on workspace resources). Unfortunately, there was no other 
+ *               choice than copying the whole code from 
+ *               org.eclipse.ui.views.markers.internal for that purpose because 
+ *               many of the relevant classes, methods, and fields are private or
+ *               package private.
  *******************************************************************************/
-
 package org.artop.ecl.emf.validation.ui.views;
 
 import java.util.Iterator;
@@ -48,7 +53,6 @@ import org.eclipse.swt.widgets.Text;
  * DialogProblemFilter is the dialog class for problem filters.
  * 
  * @since 3.2
- * 
  */
 public class DialogProblemFilter extends DialogMarkerFilter {
 
@@ -82,13 +86,11 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 
 			Composite descriptionComposite = new Composite(parent, SWT.NONE);
 			descriptionComposite.setLayout(new GridLayout(2, false));
-			descriptionComposite.setLayoutData(new GridData(
-					GridData.FILL_HORIZONTAL | GridData.GRAB_HORIZONTAL));
+			descriptionComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL | GridData.GRAB_HORIZONTAL));
 
 			descriptionLabel = new Label(descriptionComposite, SWT.NONE);
 			descriptionLabel.setFont(parent.getFont());
-			descriptionLabel
-					.setText(MarkerMessages.filtersDialog_descriptionLabel);
+			descriptionLabel.setText(MarkerMessages.filtersDialog_descriptionLabel);
 
 			combo = new Combo(descriptionComposite, SWT.READ_ONLY);
 			combo.setFont(parent.getFont());
@@ -97,9 +99,9 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 			combo.addSelectionListener(new SelectionAdapter() {
 				/*
 				 * (non-Javadoc)
-				 * 
 				 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 				 */
+				@Override
 				public void widgetSelected(SelectionEvent e) {
 					updateForSelection();
 				}
@@ -108,15 +110,13 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 			// active.
 			combo.addTraverseListener(new TraverseListener() {
 				public void keyTraversed(TraverseEvent e) {
-					if (e.detail == SWT.TRAVERSE_ESCAPE
-							|| e.detail == SWT.TRAVERSE_RETURN) {
+					if (e.detail == SWT.TRAVERSE_ESCAPE || e.detail == SWT.TRAVERSE_RETURN) {
 						e.doit = false;
 					}
 				}
 			});
 
-			description = new Text(descriptionComposite, SWT.SINGLE
-					| SWT.BORDER);
+			description = new Text(descriptionComposite, SWT.SINGLE | SWT.BORDER);
 			description.setFont(parent.getFont());
 			GridData data = new GridData(GridData.FILL_HORIZONTAL);
 			data.horizontalSpan = 2;
@@ -124,7 +124,7 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 			description.setLayoutData(data);
 			description.addModifyListener(new ModifyListener() {
 				public void modifyText(ModifyEvent e) {
-					DialogProblemFilter.this.markDirty();
+					markDirty();
 				}
 			});
 		}
@@ -174,8 +174,7 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 		}
 
 		/**
-		 * Update the enablement state based on whether or not the receiver is
-		 * enabled.
+		 * Update the enablement state based on whether or not the receiver is enabled.
 		 * 
 		 * @param enabled
 		 */
@@ -204,18 +203,17 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 
 			Composite severityComposite = new Composite(parent, SWT.NONE);
 			severityComposite.setLayout(new GridLayout(4, false));
-			severityComposite.setLayoutData(new GridData(
-					GridData.FILL_HORIZONTAL | GridData.GRAB_HORIZONTAL));
+			severityComposite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL | GridData.GRAB_HORIZONTAL));
 
 			SelectionListener listener = new SelectionAdapter() {
 				/*
 				 * (non-Javadoc)
-				 * 
 				 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 				 */
+				@Override
 				public void widgetSelected(SelectionEvent e) {
 					updateEnablement(true);
-					DialogProblemFilter.this.markDirty();
+					markDirty();
 				}
 			};
 
@@ -223,8 +221,7 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 			GridData data = new GridData(GridData.FILL_HORIZONTAL);
 			enablementButton.setLayoutData(data);
 			enablementButton.setFont(parent.getFont());
-			enablementButton
-					.setText(MarkerMessages.filtersDialog_severityLabel);
+			enablementButton.setText(MarkerMessages.filtersDialog_severityLabel);
 			enablementButton.addSelectionListener(listener);
 
 			errorButton = new Button(severityComposite, SWT.CHECK);
@@ -234,9 +231,9 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 			errorButton.addSelectionListener(new SelectionAdapter() {
 				/*
 				 * (non-Javadoc)
-				 * 
 				 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 				 */
+				@Override
 				public void widgetSelected(SelectionEvent e) {
 					updateForSelection();
 				}
@@ -249,9 +246,9 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 			warningButton.addSelectionListener(new SelectionAdapter() {
 				/*
 				 * (non-Javadoc)
-				 * 
 				 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 				 */
+				@Override
 				public void widgetSelected(SelectionEvent e) {
 					updateForSelection();
 				}
@@ -264,9 +261,9 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 			infoButton.addSelectionListener(new SelectionAdapter() {
 				/*
 				 * (non-Javadoc)
-				 * 
 				 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 				 */
+				@Override
 				public void widgetSelected(SelectionEvent e) {
 					updateForSelection();
 				}
@@ -373,9 +370,10 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.ui.views.markers.internal.DialogMarkerFilter#createAttributesArea(org.eclipse.swt.widgets.Composite)
+	 * @see
+	 * org.eclipse.ui.views.markers.internal.DialogMarkerFilter#createAttributesArea(org.eclipse.swt.widgets.Composite)
 	 */
+	@Override
 	protected void createAttributesArea(Composite parent) {
 		Composite composite = new Composite(parent, SWT.NONE);
 		composite.setFont(parent.getFont());
@@ -389,9 +387,11 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.ui.views.markers.internal.DialogMarkerFilter#updateFilterFromUI(org.eclipse.ui.views.markers.internal.MarkerFilter)
+	 * @see
+	 * org.eclipse.ui.views.markers.internal.DialogMarkerFilter#updateFilterFromUI(org.eclipse.ui.views.markers.internal
+	 * .MarkerFilter)
 	 */
+	@Override
 	protected void updateFilterFromUI(MarkerFilter filter) {
 		super.updateFilterFromUI(filter);
 
@@ -416,9 +416,11 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.ui.views.markers.internal.DialogMarkerFilter#updateUIWithFilter(org.eclipse.ui.views.markers.internal.MarkerFilter)
+	 * @see
+	 * org.eclipse.ui.views.markers.internal.DialogMarkerFilter#updateUIWithFilter(org.eclipse.ui.views.markers.internal
+	 * .MarkerFilter)
 	 */
+	@Override
 	protected void updateUIWithFilter(MarkerFilter filter) {
 
 		ProblemFilter problemFilter = (ProblemFilter) filter;
@@ -428,12 +430,9 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 		severityGroup.setEnabled(problemFilter.getSelectBySeverity());
 		int severity = problemFilter.getSeverity();
 
-		severityGroup
-				.setErrorSelected((severity & ProblemFilter.SEVERITY_ERROR) > 0);
-		severityGroup
-				.setWarningSelected((severity & ProblemFilter.SEVERITY_WARNING) > 0);
-		severityGroup
-				.setInfoSelected((severity & ProblemFilter.SEVERITY_INFO) > 0);
+		severityGroup.setErrorSelected((severity & ProblemFilter.SEVERITY_ERROR) > 0);
+		severityGroup.setWarningSelected((severity & ProblemFilter.SEVERITY_WARNING) > 0);
+		severityGroup.setInfoSelected((severity & ProblemFilter.SEVERITY_INFO) > 0);
 
 		super.updateUIWithFilter(filter);
 
@@ -441,9 +440,9 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.eclipse.ui.views.markers.internal.DialogMarkerFilter#updateEnabledState(boolean)
 	 */
+	@Override
 	protected void updateEnabledState(boolean enabled) {
 		super.updateEnabledState(enabled);
 		descriptionGroup.updateEnablement(enabled);
@@ -452,33 +451,32 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.eclipse.ui.views.markerview.FiltersDialog#resetPressed()
 	 */
+	@Override
 	protected void resetPressed() {
 		descriptionGroup.setContains(ProblemFilter.DEFAULT_CONTAINS);
 		descriptionGroup.setDescription(ProblemFilter.DEFAULT_DESCRIPTION);
 
 		severityGroup.setEnabled(ProblemFilter.DEFAULT_SELECT_BY_SEVERITY);
-		severityGroup
-				.setErrorSelected((ProblemFilter.DEFAULT_SEVERITY & ProblemFilter.SEVERITY_ERROR) > 0);
-		severityGroup
-				.setWarningSelected((ProblemFilter.DEFAULT_SEVERITY & ProblemFilter.SEVERITY_WARNING) > 0);
-		severityGroup
-				.setInfoSelected((ProblemFilter.DEFAULT_SEVERITY & ProblemFilter.SEVERITY_INFO) > 0);
+		severityGroup.setErrorSelected((ProblemFilter.DEFAULT_SEVERITY & ProblemFilter.SEVERITY_ERROR) > 0);
+		severityGroup.setWarningSelected((ProblemFilter.DEFAULT_SEVERITY & ProblemFilter.SEVERITY_WARNING) > 0);
+		severityGroup.setInfoSelected((ProblemFilter.DEFAULT_SEVERITY & ProblemFilter.SEVERITY_INFO) > 0);
 
 		super.resetPressed();
 	}
 
+	@Override
 	protected MarkerFilter newFilter(String newName) {
 		return new ProblemFilter(newName);
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.ui.views.markers.internal.DialogMarkerFilter#createFiltersArea(org.eclipse.swt.widgets.Composite)
+	 * @see
+	 * org.eclipse.ui.views.markers.internal.DialogMarkerFilter#createFiltersArea(org.eclipse.swt.widgets.Composite)
 	 */
+	@Override
 	void createFiltersArea(Composite dialogArea) {
 
 		if (MarkerSupportRegistry.getInstance().getRegisteredFilters().size() == 0) {
@@ -487,8 +485,7 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 		}
 
 		Composite mainComposite = new Composite(dialogArea, SWT.NONE);
-		mainComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false,
-				true));
+		mainComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, true));
 
 		mainComposite.setLayout(new FormLayout());
 
@@ -536,17 +533,14 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 		definedList.setContentProvider(new IStructuredContentProvider() {
 			/*
 			 * (non-Javadoc)
-			 * 
 			 * @see org.eclipse.jface.viewers.IStructuredContentProvider#getElements(java.lang.Object)
 			 */
 			public Object[] getElements(Object inputElement) {
-				return MarkerSupportRegistry.getInstance()
-						.getRegisteredFilters().toArray();
+				return MarkerSupportRegistry.getInstance().getRegisteredFilters().toArray();
 			}
 
 			/*
 			 * (non-Javadoc)
-			 * 
 			 * @see org.eclipse.jface.viewers.IContentProvider#dispose()
 			 */
 			public void dispose() {
@@ -555,12 +549,10 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 
 			/*
 			 * (non-Javadoc)
-			 * 
 			 * @see org.eclipse.jface.viewers.IContentProvider#inputChanged(org.eclipse.jface.viewers.Viewer,
-			 *      java.lang.Object, java.lang.Object)
+			 * java.lang.Object, java.lang.Object)
 			 */
-			public void inputChanged(Viewer viewer, Object oldInput,
-					Object newInput) {
+			public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 				// Do nothing
 			}
 		});
@@ -568,52 +560,47 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 		definedList.setLabelProvider(new LabelProvider() {
 			/*
 			 * (non-Javadoc)
-			 * 
 			 * @see org.eclipse.jface.viewers.ILabelProvider#getText(java.lang.Object)
 			 */
+			@Override
 			public String getText(Object element) {
 				return ((MarkerFilter) element).getName();
 			}
 		});
 
-		definedList
-				.addSelectionChangedListener(new ISelectionChangedListener() {
+		definedList.addSelectionChangedListener(new ISelectionChangedListener() {
 
-					/*
-					 * (non-Javadoc)
-					 * 
-					 * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
-					 */
-					public void selectionChanged(SelectionChangedEvent event) {
+			/*
+			 * (non-Javadoc)
+			 * @seeorg.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.
+			 * SelectionChangedEvent)
+			 */
+			public void selectionChanged(SelectionChangedEvent event) {
 
-						ISelection selection = event.getSelection();
-						if (selection instanceof IStructuredSelection) {
-							Object selected = ((IStructuredSelection) selection)
-									.getFirstElement();
-							if (selected == null) {
-								systemSettingsLabel.setText(Util.EMPTY_STRING);
-							} else {
-								systemSettingsLabel
-										.setText(getSystemFilterString((ProblemFilter) selected));
-							}
-						} else {
-							systemSettingsLabel.setText(Util.EMPTY_STRING);
-						}
-						showSystemLabel(true);
-
+				ISelection selection = event.getSelection();
+				if (selection instanceof IStructuredSelection) {
+					Object selected = ((IStructuredSelection) selection).getFirstElement();
+					if (selected == null) {
+						systemSettingsLabel.setText(Util.EMPTY_STRING);
+					} else {
+						systemSettingsLabel.setText(getSystemFilterString((ProblemFilter) selected));
 					}
-				});
+				} else {
+					systemSettingsLabel.setText(Util.EMPTY_STRING);
+				}
+				showSystemLabel(true);
 
-		Iterator definedFilters = MarkerSupportRegistry.getInstance()
-				.getRegisteredFilters().iterator();
+			}
+		});
+
+		Iterator definedFilters = MarkerSupportRegistry.getInstance().getRegisteredFilters().iterator();
 		definedList.setInput(this);
 		while (definedFilters.hasNext()) {
 			MarkerFilter next = (MarkerFilter) definedFilters.next();
 			definedList.setChecked(next, next.isEnabled());
 		}
 
-		definedList.getControl().setLayoutData(
-				new GridData(SWT.FILL, SWT.FILL, true, true));
+		definedList.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 	}
 
@@ -674,8 +661,7 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 	}
 
 	/**
-	 * Return the string for severity if there is one. Otherwise return
-	 * <code>null</code>.
+	 * Return the string for severity if there is one. Otherwise return <code>null</code>.
 	 * 
 	 * @param filter
 	 * @return String
@@ -697,8 +683,7 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 	}
 
 	/**
-	 * Return the string for the description if there is one. If not return
-	 * <code>null</code>.
+	 * Return the string for the description if there is one. If not return <code>null</code>.
 	 * 
 	 * @param filter
 	 * @return String or <code>null</code>.
@@ -708,14 +693,9 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 			return null;
 		}
 		if (filter.getContains()) {
-			return NLS.bind(
-					MarkerMessages.ProblemFilterDialog_Contains_Description,
-					filter.getDescription());
+			return NLS.bind(MarkerMessages.ProblemFilterDialog_Contains_Description, filter.getDescription());
 		}
-		return NLS
-				.bind(
-						MarkerMessages.ProblemFilterDialog_Does_Not_Contain_Description,
-						filter.getDescription());
+		return NLS.bind(MarkerMessages.ProblemFilterDialog_Does_Not_Contain_Description, filter.getDescription());
 
 	}
 
@@ -737,8 +717,7 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 		case MarkerFilter.ON_SELECTED_ONLY:
 			return MarkerMessages.ProblemFilterDialog_selected;
 		case MarkerFilter.ON_WORKING_SET:
-			return NLS.bind(MarkerMessages.ProblemFilterDialog_workingSet,
-					filter.getWorkingSet());
+			return NLS.bind(MarkerMessages.ProblemFilterDialog_workingSet, filter.getWorkingSet());
 
 		default:
 			return null;
@@ -748,9 +727,10 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.ui.views.markers.internal.DialogMarkerFilter#setSelectedFilter(org.eclipse.jface.viewers.SelectionChangedEvent)
+	 * @seeorg.eclipse.ui.views.markers.internal.DialogMarkerFilter#setSelectedFilter(org.eclipse.jface.viewers.
+	 * SelectionChangedEvent)
 	 */
+	@Override
 	protected void setSelectedFilter(SelectionChangedEvent event) {
 		showSystemLabel(false);
 		super.setSelectedFilter(event);
@@ -770,9 +750,11 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.ui.views.markers.internal.DialogMarkerFilter#createSelectedFilterArea(org.eclipse.swt.widgets.Composite)
+	 * @see
+	 * org.eclipse.ui.views.markers.internal.DialogMarkerFilter#createSelectedFilterArea(org.eclipse.swt.widgets.Composite
+	 * )
 	 */
+	@Override
 	Composite createSelectedFilterArea(Composite composite) {
 
 		Composite wrapper = new Composite(composite, SWT.NONE);
@@ -786,12 +768,9 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 
 		FormData systemData = new FormData();
 		systemData.top = new FormAttachment(0, IDialogConstants.VERTICAL_MARGIN);
-		systemData.left = new FormAttachment(0,
-				IDialogConstants.HORIZONTAL_MARGIN);
-		systemData.right = new FormAttachment(100, -1
-				* IDialogConstants.HORIZONTAL_MARGIN);
-		systemData.bottom = new FormAttachment(100, -1
-				* IDialogConstants.VERTICAL_MARGIN);
+		systemData.left = new FormAttachment(0, IDialogConstants.HORIZONTAL_MARGIN);
+		systemData.right = new FormAttachment(100, -1 * IDialogConstants.HORIZONTAL_MARGIN);
+		systemData.bottom = new FormAttachment(100, -1 * IDialogConstants.VERTICAL_MARGIN);
 
 		systemSettingsLabel.setLayoutData(systemData);
 
@@ -821,9 +800,9 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.eclipse.ui.views.markers.internal.DialogMarkerFilter#buttonPressed(int)
 	 */
+	@Override
 	protected void buttonPressed(int buttonId) {
 		if (definedList != null) {
 			if (buttonId == SELECT_ALL_FILTERS_ID) {
@@ -838,13 +817,12 @@ public class DialogProblemFilter extends DialogMarkerFilter {
 
 	/*
 	 * (non-Javadoc)
-	 * 
 	 * @see org.eclipse.ui.views.markers.internal.DialogMarkerFilter#okPressed()
 	 */
+	@Override
 	protected void okPressed() {
 
-		Iterator registered = MarkerSupportRegistry.getInstance()
-				.getRegisteredFilters().iterator();
+		Iterator registered = MarkerSupportRegistry.getInstance().getRegisteredFilters().iterator();
 		while (registered.hasNext()) {
 			ProblemFilter next = (ProblemFilter) registered.next();
 			next.setEnabled(definedList.getChecked(next));

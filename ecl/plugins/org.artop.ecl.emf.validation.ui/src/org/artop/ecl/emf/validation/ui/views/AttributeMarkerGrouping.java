@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2006 IBM Corporation and others.
+ * Copyright (c) 2000, 2010 IBM Corporation, Geensys, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,18 +7,21 @@
  *
  * Contributors:
  *     IBM Corporation - initial API and implementation
- ******************************************************************************/
-
+ *     Geensys - added support for problem markers on model objects (rather than 
+ *               only on workspace resources). Unfortunately, there was no other 
+ *               choice than copying the whole code from 
+ *               org.eclipse.ui.views.markers.internal for that purpose because 
+ *               many of the relevant classes, methods, and fields are private or
+ *               package private.
+ *******************************************************************************/
 package org.artop.ecl.emf.validation.ui.views;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 
 /**
- * AttributeMarkerGrouping is the configuration element for the
- * markerAttributeGrouping extension.
+ * AttributeMarkerGrouping is the configuration element for the markerAttributeGrouping extension.
  * 
  * @since 3.2
- * 
  */
 public class AttributeMarkerGrouping {
 
@@ -31,16 +34,15 @@ public class AttributeMarkerGrouping {
 	private IConfigurationElement element;
 
 	/**
-	 * Create a new instance of the receiver for the given attribute on the
-	 * markerType with an optional default grouping.
+	 * Create a new instance of the receiver for the given attribute on the markerType with an optional default
+	 * grouping.
 	 * 
 	 * @param attributeId
 	 * @param markerId
 	 * @param defaultEntry
 	 * @param configElement
 	 */
-	public AttributeMarkerGrouping(String attributeId, String markerId,
-			String defaultEntry, IConfigurationElement configElement) {
+	public AttributeMarkerGrouping(String attributeId, String markerId, String defaultEntry, IConfigurationElement configElement) {
 		attribute = attributeId;
 		markerType = markerId;
 		defaultGroupingEntry = defaultEntry;
@@ -50,6 +52,7 @@ public class AttributeMarkerGrouping {
 
 	/**
 	 * Return the id of the default grouping.
+	 * 
 	 * @return String or <code>null</code> if it is not defined.
 	 */
 	public String getDefaultGroupingEntry() {
@@ -58,6 +61,7 @@ public class AttributeMarkerGrouping {
 
 	/**
 	 * Return the id of the marker type for this type.
+	 * 
 	 * @return String
 	 */
 	public String getMarkerType() {
@@ -66,6 +70,7 @@ public class AttributeMarkerGrouping {
 
 	/**
 	 * Return the name of the attribute for the receiver.
+	 * 
 	 * @return String
 	 */
 	public String getAttribute() {
@@ -74,6 +79,7 @@ public class AttributeMarkerGrouping {
 
 	/**
 	 * Return the IConfigurationElement for the receiver.
+	 * 
 	 * @return IConfigurationElement
 	 */
 	public IConfigurationElement getElement() {
