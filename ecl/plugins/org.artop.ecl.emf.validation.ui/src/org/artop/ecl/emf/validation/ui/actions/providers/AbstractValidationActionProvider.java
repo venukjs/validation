@@ -14,21 +14,16 @@
  */
 package org.artop.ecl.emf.validation.ui.actions.providers;
 
-import java.util.Collection;
-
+import org.artop.ecl.emf.model.IModelDescriptor;
+import org.artop.ecl.emf.model.ModelDescriptorRegistry;
 import org.artop.ecl.emf.ui.actions.providers.BasicActionProvider;
 import org.artop.ecl.emf.util.EcorePlatformUtil;
-import org.artop.ecl.emf.util.WorkspaceEditingDomainUtil;
-import org.artop.ecl.platform.util.ExtendedPlatform;
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IFolder;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.provider.IWrapperItemProvider;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.ui.navigator.CommonActionProvider;
 
 /**
  * An abstract base class for {@linkplain BasicActionProvider action provider}s that are dedicated to validation related
@@ -109,45 +104,19 @@ public abstract class AbstractValidationActionProvider extends BasicActionProvid
 	 * @param selectedObject
 	 *            The object currently selected; object from which enable state for this
 	 *            {@linkplain CommonActionProvider action provider} must be computed.
-	 * @return <ul>
-	 *         <li><tt><b>true</b>&nbsp;&nbsp;</tt> if this {@linkplain action provider} is enabled for the given <code>
-	 *         selectedObject</code>
-	 *         ;</li>
-	 *         <li><tt><b>false</b>&nbsp;</tt> otherwise.</li>
-	 *         </ul>
+	 * @return <code>true</code>if this {@linkplain action provider} is enabled for the given {@link Object object},
+	 *         <code>false</code> otherwise.
 	 */
 	protected boolean isEnabled(Object selectedObject) {
-		if (selectedObject instanceof IProject) {
-			IProject project = (IProject) selectedObject;
-			Collection<TransactionalEditingDomain> editingDomains = WorkspaceEditingDomainUtil.getEditingDomains(project);
-			return isEnabled(ExtendedPlatform.getAllFiles(project, true), editingDomains);
-
-		} else if (selectedObject instanceof IFolder) {
-			IFolder folder = (IFolder) selectedObject;
-			Collection<TransactionalEditingDomain> editingDomains = WorkspaceEditingDomainUtil.getEditingDomains(folder);
-			return isEnabled(ExtendedPlatform.getAllFiles(folder), editingDomains);
-
-		} else if (selectedObject instanceof IFile) {
-			IFile file = (IFile) selectedObject;
-			return EcorePlatformUtil.getModelRoot(file) != null;
-
-		} else if (selectedObject instanceof EObject) {
-			// FIXME should test if it proxy or eResource not null
+		if (selectedObject instanceof IContainer) {
+			IContainer container = (IContainer) selectedObject;
+			return ModelDescriptorRegistry.INSTANCE.getModels(container).size() > 0;
+		} else if (selectedObject instanceof IModelDescriptor) {
 			return true;
-
-		} else if (selectedObject instanceof IWrapperItemProvider) {
-			return AdapterFactoryEditingDomain.unwrap(selectedObject) instanceof EObject;
-		}
-		return false;
-	}
-
-	private boolean isEnabled(Collection<IFile> files, Collection<TransactionalEditingDomain> editingDomains) {
-		for (IFile file : files) {
-			for (TransactionalEditingDomain editingDomain : editingDomains) {
-				EObject object = EcorePlatformUtil.getModelRoot(editingDomain, file);
-				if (object != null) {
-					return true;
-				}
+		} else {
+			IFile file = EcorePlatformUtil.getFile(selectedObject);
+			if (file != null) {
+				return ModelDescriptorRegistry.INSTANCE.getModel(file) != null;
 			}
 		}
 		return false;
