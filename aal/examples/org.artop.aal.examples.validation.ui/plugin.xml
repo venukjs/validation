@@ -31,8 +31,10 @@ Contributors:
                </and>
                <and>
                   <instanceof value="org.eclipse.core.resources.IFile" />
+                  <test
+                      property="org.artop.ecl.emf.isInScope"
+                      value="true" />
                   <test 
-                      forcePluginActivation="true"
                       property="org.artop.ecl.emf.metaModelIdMatches"
                       value="org.artop.aal.autosar\d\w" />
                </and>
