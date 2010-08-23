@@ -21,7 +21,6 @@ import java.util.Set;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.ecl.emf.util.EObjectUtil;
-import org.eclipse.emf.ecore.resource.Resource;
 
 import autosar3x.ecucdescription.ConfigReferenceValue;
 import autosar3x.ecucdescription.Container;
@@ -41,10 +40,6 @@ public class EcucUtil {
 
 	public static <T> List<T> getAllEquivalentInstancesOf(ARObject instance, Class<T> type) {
 		List<T> allInstances = EObjectUtil.getAllInstancesOf(instance, type, true);
-		if (0 == allInstances.size()) {
-			List<Resource> resources = instance.eResource().getResourceSet().getResources();
-			allInstances = EObjectUtil.getAllInstancesOf(resources, type, true);
-		}
 		List<T> equivalentInstances = new ArrayList<T>();
 
 		String absoluteQualifiedName = AutosarURIFactory.getAbsoluteQualifiedName(instance);
