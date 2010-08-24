@@ -12,7 +12,7 @@
  * 
  * </copyright>
  */
-package org.artop.aal.examples.validation.tests.integration.internal;
+package org.artop.aal.examples.autosar3x.constraints.tests.integration.internal;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;

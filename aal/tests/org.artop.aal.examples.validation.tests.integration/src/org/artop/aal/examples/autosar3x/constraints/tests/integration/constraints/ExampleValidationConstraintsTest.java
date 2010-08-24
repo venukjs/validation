@@ -12,14 +12,14 @@
  * 
  * </copyright>
  */
-package org.artop.aal.examples.validation.tests.integration.constraints;
+package org.artop.aal.examples.autosar3x.constraints.tests.integration.constraints;
 
 import java.util.List;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.examples.validation.constraints.ARPackageSpecificNamingConvention3xConstraint;
-import org.artop.aal.testutils.referenceworkspace.AutosarTestCase;
-import org.artop.aal.testutils.referenceworkspace.AutosarTestReferenceWorkspace;
+import org.artop.aal.testutils.integration.referenceworkspace.AbstractAutosarIntegrationTestCase;
+import org.artop.aal.testutils.integration.referenceworkspace.AutosarTestReferenceWorkspace;
 import org.artop.ecl.emf.util.EcorePlatformUtil;
 import org.artop.ecl.emf.validation.diagnostic.ExtendedDiagnostic;
 import org.artop.ecl.emf.validation.diagnostic.ExtendedDiagnostician;
@@ -38,7 +38,7 @@ import autosar3x.system.fibex.fibexcore.coretopology.EcuInstance;
 // Warning ! This test class is based on precise model structure from arFile3x_3xA_5.arxml resource any
 // changes in that resource could lead to a test failures.
 @SuppressWarnings("nls")
-public class ExampleValidationConstraintsTest extends AutosarTestCase {
+public class ExampleValidationConstraintsTest extends AbstractAutosarIntegrationTestCase {
 	private static String ARPACKAGE_SPECIFIQUE_NAMING_CONVENTION_3x_CONSTRAINT_ID = "org.artop.aal.examples.validation.ARPackageSpecificNamingConvention_3x";
 	private static int ARPACKAGE_SPECIFIQUE_NAMING_CONVENTION_3x_CONSTRAINT_CODE = 101;
 
