@@ -7,7 +7,7 @@ Bundle-Activator: org.artop.ecl.emf.validation.tests.integration.internal.Activa
 Require-Bundle: org.eclipse.core.runtime,
  org.junit,
  org.jdom,
- org.artop.ecl.testutils
+ org.artop.ecl.testutils.integration
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
