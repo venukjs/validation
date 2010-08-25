@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.artop.aal.examples.validation.IAutosarValidationExamplesConstants;
+import org.artop.aal.examples.autosar3x.constraints.IAutosarValidationExamplesConstants;
 import org.artop.aal.examples.validation.ui.internal.Activator;
 import org.artop.aal.examples.validation.ui.internal.messages.Messages;
 import org.artop.ecl.emf.validation.diagnostic.filters.ConstraintCategoryFilter;
