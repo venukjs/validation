@@ -22,14 +22,14 @@
    </requires>
 
    <plugin
-         id="org.artop.aal.examples.validation"
+         id="org.artop.aal.examples.validation.ui"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.artop.aal.examples.validation.ui"
+         id="org.artop.aal.examples.autosar3x.contraints"
          download-size="0"
          install-size="0"
          version="0.0.0"
