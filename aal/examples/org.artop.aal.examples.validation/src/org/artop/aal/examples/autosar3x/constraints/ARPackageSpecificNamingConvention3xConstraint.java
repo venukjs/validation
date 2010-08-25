@@ -12,7 +12,7 @@
  * 
  * </copyright>
  */
-package org.artop.aal.examples.validation.constraints;
+package org.artop.aal.examples.autosar3x.constraints;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IStatus;

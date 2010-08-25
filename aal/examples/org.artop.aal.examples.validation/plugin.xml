@@ -49,7 +49,7 @@ Contributors:
  
         <constraints categories="org.artop.aal.examples.constraints.category.autosar3x/static">
             <constraint
-                  class="org.artop.aal.examples.validation.constraints.ARPackageSpecificNamingConvention3xConstraint"
+                  class="org.artop.aal.examples.autosar3x.constraints.ARPackageSpecificNamingConvention3xConstraint"
                   id="ARPackageSpecificNamingConvention_3x"
                   lang="Java"
                   mode="Live"
@@ -70,7 +70,7 @@ Contributors:
             
             <!-- TUTO: Modify this constraint such that it checks the uniqueness of Identifable shortNames rather than ModuleDef muliplicities -->
             <constraint
-                  class="org.artop.aal.examples.validation.constraints.ModuleDefMultiplicityShouldBeTheSame3xConstraint"
+                  class="org.artop.aal.examples.autosar3x.constraints.ModuleDefMultiplicityShouldBeTheSame3xConstraint"
                   id="ModuleDefMultiplicityShouldBeTheSame_3x"
                   lang="Java"
                   mode="Live"

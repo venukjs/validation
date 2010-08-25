@@ -12,7 +12,7 @@
  * 
  * </copyright>
  */
-package org.artop.aal.examples.validation;
+package org.artop.aal.examples.autosar3x.constraints;
 
 /**
  * 
