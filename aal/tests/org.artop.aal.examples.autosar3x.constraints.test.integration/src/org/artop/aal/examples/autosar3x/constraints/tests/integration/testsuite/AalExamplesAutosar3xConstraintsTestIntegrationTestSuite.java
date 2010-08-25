@@ -17,11 +17,11 @@ package org.artop.aal.examples.autosar3x.constraints.tests.integration.testsuite
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-public class AalExamplesValidationTestIntegrationTestSuite {
+public class AalExamplesAutosar3xConstraintsTestIntegrationTestSuite {
 
 	@SuppressWarnings("nls")
 	public static Test suite() {
-		TestSuite suite = new TestSuite("Test for  org.artop.aal.examples.validation.tests.integration");
+		TestSuite suite = new TestSuite("Test for  org.artop.aal.examples.autosar3x.constraints.tests.integration");
 		// $JUnit-BEGIN$
 		suite.addTestSuite(org.artop.aal.examples.autosar3x.constraints.tests.integration.constraints.ExampleValidationConstraintsTest.class);
 		// $JUnit-END$

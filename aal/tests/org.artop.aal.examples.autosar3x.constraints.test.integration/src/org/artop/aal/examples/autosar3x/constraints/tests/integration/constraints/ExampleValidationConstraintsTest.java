@@ -17,7 +17,7 @@ package org.artop.aal.examples.autosar3x.constraints.tests.integration.constrain
 import java.util.List;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
-import org.artop.aal.examples.validation.constraints.ARPackageSpecificNamingConvention3xConstraint;
+import org.artop.aal.examples.autosar3x.constraints.ARPackageSpecificNamingConvention3xConstraint;
 import org.artop.aal.testutils.integration.referenceworkspace.AbstractAutosarIntegrationTestCase;
 import org.artop.aal.testutils.integration.referenceworkspace.AutosarTestReferenceWorkspace;
 import org.artop.ecl.emf.util.EcorePlatformUtil;
@@ -39,16 +39,16 @@ import autosar3x.system.fibex.fibexcore.coretopology.EcuInstance;
 // changes in that resource could lead to a test failures.
 @SuppressWarnings("nls")
 public class ExampleValidationConstraintsTest extends AbstractAutosarIntegrationTestCase {
-	private static String ARPACKAGE_SPECIFIQUE_NAMING_CONVENTION_3x_CONSTRAINT_ID = "org.artop.aal.examples.validation.ARPackageSpecificNamingConvention_3x";
+	private static String ARPACKAGE_SPECIFIQUE_NAMING_CONVENTION_3x_CONSTRAINT_ID = "org.artop.aal.examples.autosar3x.constraints.ARPackageSpecificNamingConvention_3x";
 	private static int ARPACKAGE_SPECIFIQUE_NAMING_CONVENTION_3x_CONSTRAINT_CODE = 101;
 
-	private static String MODULE_DEF_MULTIPLICITY_SHOULD_BE_THE_SAME_3x_CONSTRAINT_ID = "org.artop.aal.examples.validation.ModuleDefMultiplicityShouldBeTheSame_3x";
+	private static String MODULE_DEF_MULTIPLICITY_SHOULD_BE_THE_SAME_3x_CONSTRAINT_ID = "org.artop.aal.examples.autosar3x.constraints.ModuleDefMultiplicityShouldBeTheSame_3x";
 	private static int MODULE_DEF_MULTIPLICITY_SHOULD_BE_THE_SAME_3x_CONSTRAINT_CODE = 102;
 
-	private static String IDENTIABLE_ELEMENTS_MUST_HAVE_A_VALID_SHORT_NAME_3x_CONSTRAINT_ID = "org.artop.aal.examples.validation.IdentifiableElementsMustHaveAValidShortName_3x";
+	private static String IDENTIABLE_ELEMENTS_MUST_HAVE_A_VALID_SHORT_NAME_3x_CONSTRAINT_ID = "org.artop.aal.examples.autosar3x.constraints.IdentifiableElementsMustHaveAValidShortName_3x";
 	private static int IDENTIABLE_ELEMENTS_MUST_HAVE_A_VALID_SHORT_NAME_3x_CONSTRAINT_CODE = 103;
 
-	private static String SHORTNAME_OF_IDENTIFIABLE_ELEMENTS_MUST_BE_UNIQUE_3x_CONSTRAINT_ID = "org.artop.aal.examples.validation.ShortNameOfIdentifiableElementsMustBeUnique_3x";
+	private static String SHORTNAME_OF_IDENTIFIABLE_ELEMENTS_MUST_BE_UNIQUE_3x_CONSTRAINT_ID = "org.artop.aal.examples.autosar3x.constraints.ShortNameOfIdentifiableElementsMustBeUnique_3x";
 	private static int SHORTNAME_OF_IDENTIFIABLE_ELEMENTS_MUST_BE_UNIQUE_3x_CONSTRAINT_CODE = 104;
 
 	@Override
