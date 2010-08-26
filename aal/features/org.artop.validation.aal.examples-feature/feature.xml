@@ -29,7 +29,7 @@
          unpack="false"/>
 
    <plugin
-         id="org.artop.aal.examples.autosar3x.contraints"
+         id="org.artop.aal.examples.autosar3x.constraints"
          download-size="0"
          install-size="0"
          version="0.0.0"
