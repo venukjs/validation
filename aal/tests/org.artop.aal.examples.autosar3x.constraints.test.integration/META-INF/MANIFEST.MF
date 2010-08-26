@@ -12,7 +12,7 @@ Require-Bundle: org.junit,
  org.eclipse.core.runtime,
  org.artop.ecl.emf.validation,
  org.artop.aal.autosar3x.validation,
- org.artop.aal.examples.autosar3x.contraints
+ org.artop.aal.examples.autosar3x.constraints
 Bundle-Activator: org.artop.aal.examples.autosar3x.constraints.tests.integration.internal.Activator$Implementation
 Export-Package: org.artop.aal.examples.autosar3x.constraints.tests.integration.constraints,
  org.artop.aal.examples.autosar3x.constraints.tests.integration.internal;x-internal:=true,
