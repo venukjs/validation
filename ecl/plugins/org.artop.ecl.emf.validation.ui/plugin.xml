@@ -21,13 +21,10 @@ Contributors:
    <extension
          point="org.eclipse.ui.decorators">
       <decorator
-            adaptable="true"
             class="org.artop.ecl.emf.validation.ui.decorators.BasicLightweightValidationDecorator"
-            icon="icons/ovr16/error_co.gif"
             id="org.artop.ecl.emf.validation.ui.decorator"
             label="%ValidationDecorator.label"
             lightweight="true"
-            location="BOTTOM_LEFT"
             state="true">          
            <description>%ValidationDecorator.desc</description>
             <enablement>
