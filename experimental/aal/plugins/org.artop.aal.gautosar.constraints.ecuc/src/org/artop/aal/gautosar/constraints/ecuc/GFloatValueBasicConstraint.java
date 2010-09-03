@@ -72,7 +72,12 @@ public abstract class GFloatValueBasicConstraint extends
 	protected IStatus validateValue(IValidationContext ctx,
 			GFloatValue gFloatValue)
 	{
-		return validateValueSet(ctx, gFloatValue, gFloatValue.gGetValue());
+		IStatus status = validateValueSet(ctx, gFloatValue, gFloatValue.gGetValue());
+		if(status.isOK())
+		{
+			return validateBoundary(ctx, gFloatValue);
+		}
+		return status;
 	}
 
 	/**

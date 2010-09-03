@@ -71,7 +71,12 @@ public abstract class GIntegerValueBasicConstraint extends
 	protected IStatus validateValue(IValidationContext ctx,
 			GIntegerValue gIntegerValue)
 	{
-		return validateValueSet(ctx, gIntegerValue, gIntegerValue.gGetValue());
+		IStatus status = validateValueSet(ctx, gIntegerValue, gIntegerValue.gGetValue());
+		if(status.isOK())
+		{
+			return validateBoundary(ctx, gIntegerValue);
+		}
+		return status;
 	}
 
 	/**
