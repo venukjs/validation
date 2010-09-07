@@ -17,6 +17,7 @@ Contributors:
 -->
 
 <plugin>
+   <extension-point id="org.artop.ecl.emf.validation.constraintCallHandlers" name="constraintCallHandlers" schema="schema/org.artop.ecl.emf.validation.constraintCallHandlers.exsd"/>
    <extension
          point="org.eclipse.emf.validation.validationListeners">
       <listener
