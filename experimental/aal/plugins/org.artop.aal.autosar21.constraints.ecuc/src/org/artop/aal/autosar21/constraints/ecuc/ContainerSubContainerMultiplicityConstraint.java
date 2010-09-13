@@ -14,22 +14,21 @@
  */
 package org.artop.aal.autosar21.constraints.ecuc;
 
-import gautosar.gecucdescription.GParameterValue;
+import gautosar.gecucparameterdef.GParamConfContainerDef;
 
-import org.artop.aal.gautosar.constraints.ecuc.AbstractGFunctionNameValueBasicConstraint;
-import org.eclipse.emf.validation.IValidationContext;
+import org.artop.aal.gautosar.constraints.ecuc.AbstractGContainerSubContainerMultiplicityConstraint;
 
-import autosar21.ecucdescription.FunctionNameValue;
+import autosar21.ecucparameterdef.ParamConfContainerDef;
 
-public class FunctionNameValueBasicConstraint extends AbstractGFunctionNameValueBasicConstraint
+public class ContainerSubContainerMultiplicityConstraint extends AbstractGContainerSubContainerMultiplicityConstraint
 {
 
 	@Override
-	protected boolean isValueSet(IValidationContext ctx,
-			GParameterValue gParameterValue)
+	protected boolean isMultipleConfigurationContainer(
+			GParamConfContainerDef containerDef)
 	{
-		FunctionNameValue value = (FunctionNameValue) gParameterValue;
-		return value.isSetValue();
+		ParamConfContainerDef container = (ParamConfContainerDef) containerDef;
+		return container.getMultipleConfigurationContainer();
 	}
 
 }

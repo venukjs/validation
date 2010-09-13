@@ -12,22 +12,20 @@
  * 
  * </copyright>
  */
-package org.artop.aal.autosar40.constraints.ecuc.internal;
+package org.artop.aal.autosar20.constraints.ecuc;
 
-import org.eclipse.osgi.util.NLS;
+import gautosar.gecucparameterdef.GParamConfContainerDef;
 
-public class Messages extends NLS
+import org.artop.aal.gautosar.constraints.ecuc.AbstractGContainerSubContainerMultiplicityConstraint;
+
+public class ContainerSubContainerMultiplicityConstraint extends AbstractGContainerSubContainerMultiplicityConstraint
 {
-	private static final String BUNDLE_NAME = "org.artop.aal.autosar40.constraints.ecuc.internal.Messages"; //$NON-NLS-1$
-	public static String moduleConfig_ImplConfigVariantNotSet;
-	public static String moduleConfig_ImplConfigVariantNotSupported;
-	static
+
+	@Override
+	protected boolean isMultipleConfigurationContainer(
+			GParamConfContainerDef containerDef)
 	{
-		// initialize resource bundle
-		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
+		return false;
 	}
 
-	private Messages()
-	{
-	}
 }

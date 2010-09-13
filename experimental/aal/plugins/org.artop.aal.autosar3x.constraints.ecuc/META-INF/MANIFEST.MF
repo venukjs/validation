@@ -13,4 +13,5 @@ Require-Bundle: org.artop.aal.autosar3x,
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Export-Package: org.artop.aal.autosar3x.constraints.ecuc
+Export-Package: org.artop.aal.autosar3x.constraints.ecuc,
+ org.artop.aal.autosar3x.constraints.ecuc.internal;x-internal:=true
