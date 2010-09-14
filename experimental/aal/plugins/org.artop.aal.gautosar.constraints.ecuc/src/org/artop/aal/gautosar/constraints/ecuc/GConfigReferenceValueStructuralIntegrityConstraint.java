@@ -103,7 +103,6 @@ public class GConfigReferenceValueStructuralIntegrityConstraint extends
 
 		if (parentGContainerDef instanceof GChoiceContainerDef)
 		{
-			// TODO: create testcase
 			status = ctx.createFailureStatus(NLS.bind(
 					Messages.structuralIntegrity_NotAllowedInChoiceContainer,
 					"reference value"));

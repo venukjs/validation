@@ -38,6 +38,7 @@ public class Messages extends NLS
 	public static String parameterValue_noParent;
 	public static String enumeration_valueNotInLiterals;
 	public static String string_valueTooBig;
+	public static String string_valueNoIdentifier;
 	
 	public static String boundary_valueUnderMin;
 	public static String boundary_valueAboveMax;

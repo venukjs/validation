@@ -17,11 +17,11 @@ package org.artop.aal.autosar3x.constraints.ecuc;
 
 import gautosar.gecucparameterdef.GParamConfContainerDef;
 
-import org.artop.aal.gautosar.constraints.ecuc.AbstractGContainerSubContainerMultiplicityConstraint;
+import org.artop.aal.gautosar.constraints.ecuc.AbstractGModuleConfigurationSubContainerMultiplicityConstraint;
 
 import autosar3x.ecucparameterdef.ParamConfContainerDef;
 
-public class ModuleConfigurationSubContainerMultiplicityConstraint extends AbstractGContainerSubContainerMultiplicityConstraint {
+public class ModuleConfigurationSubContainerMultiplicityConstraint extends AbstractGModuleConfigurationSubContainerMultiplicityConstraint {
 
 	@Override
 	protected boolean isMultipleConfigurationContainer(GParamConfContainerDef containerDef) {

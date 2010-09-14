@@ -170,7 +170,7 @@ public class GReferenceValueBasicConstraint extends
 					// GContainer
 					status = ctx.createFailureStatus(NLS.bind(
 							Messages.reference_valueDefinitionNotSet,
-							"param conf container def", gContainer));
+							"param conf container def", gContainer.gGetShortName()));
 				} else if (!containerDefFromDestination
 						.equals(containerDefFromDefinition))
 				{

@@ -48,7 +48,7 @@ public class GParamConfMultiplicityBasicConstraint extends AbstractModelConstrai
 
 		// validate lower multiplicity
 		String lowerMultiplicityString = gParamConfMultiplicity.gGetLowerMultiplicityAsString();
-		if (lowerMultiplicityString != null)
+		if (lowerMultiplicityString != null && !lowerMultiplicityString.equals(""))
 		{
 			try 
 			{
@@ -65,7 +65,7 @@ public class GParamConfMultiplicityBasicConstraint extends AbstractModelConstrai
 
 		// validate upper multiplicity
 		String upperMultiplicityString = gParamConfMultiplicity.gGetUpperMultiplicityAsString();
-		if (upperMultiplicityString != null)
+		if (upperMultiplicityString != null && !upperMultiplicityString.equals(""))
 		{
 			if ("*".equals(upperMultiplicityString))
 			{

@@ -100,16 +100,6 @@ public abstract class AbstractGStringValueBasicConstraint extends
 		{
 			return status;
 		}
-
-		// check that value length is between 1 and 255 characters
-		if (0 == value.length())
-		{
-			return ctx.createFailureStatus(Messages.generic_emptyValue);
-		} else if (255 < value.length())
-		{
-			return ctx.createFailureStatus(Messages.string_valueTooBig); //$NON-NLS-1$
-		}
-
 		return ctx.createSuccessStatus();
 
 	}

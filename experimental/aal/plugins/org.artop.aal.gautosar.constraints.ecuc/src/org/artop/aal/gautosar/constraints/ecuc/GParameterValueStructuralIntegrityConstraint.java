@@ -91,7 +91,7 @@ public class GParameterValueStructuralIntegrityConstraint extends AbstractModelC
 			else
 			{
 				status = ctx.createFailureStatus(NLS.bind(Messages.structuralIntegrity_containmentProblem,"parameter value",gConfigParameter.gGetShortName()
-						+ " not allowed here"));
+						));
 			}
 
 		} 
