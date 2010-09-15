@@ -46,10 +46,10 @@
             cache="true"
             mode="Batch">
          <package
-               namespaceUri="http://autosar.org/2.1.4/autosar21/ecucd">
+               namespaceUri="http://autosar.org/2.1.5/autosar21/ecucd">
          </package>
          <package
-               namespaceUri="http://autosar.org/2.1.4/autosar21/ecucpd">
+               namespaceUri="http://autosar.org/2.1.5/autosar21/ecucpd">
          </package>
          <constraints
                categories="org.artop.aal.autosar21.constraints.ecuc/Basic">
