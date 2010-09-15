@@ -38,6 +38,8 @@ public class EcucTextualParamValueBasicConstraint extends
 		AbstractGParameterValueConstraint
 {
 
+	final String STRING_PATTERN = "[a-zA-Z]([a-zA-Z0-9_])*"; //$NON-NLS-1$
+
 	@Override
 	protected boolean isApplicable(IValidationContext ctx)
 	{
@@ -104,9 +106,19 @@ public class EcucTextualParamValueBasicConstraint extends
 			if (0 == value.length())
 			{
 				return ctx.createFailureStatus(Messages.generic_emptyValue); //$NON-NLS-1$
-			} else if (255 < value.length())
+			}
+			if (definition instanceof EcucLinkerSymbolDef
+					|| definition instanceof EcucFunctionNameDef)
 			{
-				return ctx.createFailureStatus(Messages.string_valueTooBig); //$NON-NLS-1$
+				if (255 < value.length())
+				{
+					return ctx.createFailureStatus(Messages.string_valueTooBig); //$NON-NLS-1$
+				}
+				if (false == value.matches(STRING_PATTERN))
+				{
+					return ctx
+							.createFailureStatus(Messages.string_valueNoIdentifier);
+				}
 			}
 
 			if (definition instanceof EcucEnumerationParamDef)
