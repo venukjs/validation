@@ -99,4 +99,32 @@
          version="0.0.0"
          unpack="false"/>
 
+   <plugin
+         id="org.artop.aal.autosar20.constraints.ecuc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.artop.aal.autosar21.constraints.ecuc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.artop.aal.autosar40.constraints.ecuc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.artop.aal.gautosar.constraints.ecuc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
 </feature>
