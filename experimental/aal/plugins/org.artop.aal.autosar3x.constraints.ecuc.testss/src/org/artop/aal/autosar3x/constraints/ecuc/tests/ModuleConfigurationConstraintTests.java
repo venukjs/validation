@@ -20,6 +20,7 @@ import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
+@SuppressWarnings("restriction")
 public class ModuleConfigurationConstraintTests extends AbstractAutosar3xValidationTestCase
 {
 
