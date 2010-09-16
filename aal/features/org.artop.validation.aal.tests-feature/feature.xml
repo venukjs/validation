@@ -34,13 +34,14 @@
          install-size="0"
          version="0.0.0"
          unpack="false"/>
-         
+  <!--       
    <plugin
          id="org.artop.aal.autosar3x.constraints.ecuc.tests"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
+-->
 
    <plugin
          id="org.artop.aal.examples.autosar3x.constraints.tests.integration"
