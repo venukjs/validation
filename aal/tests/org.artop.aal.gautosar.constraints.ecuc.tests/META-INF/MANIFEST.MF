@@ -10,7 +10,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.artop.ecl.emf.validation,
  org.junit,
  org.artop.aal.gautosar,
- org.artop.ecl.testutils.integration,
  org.artop.aal.gautosar.constraints.ecuc,
  org.artop.aal.common
 Bundle-ActivationPolicy: lazy
