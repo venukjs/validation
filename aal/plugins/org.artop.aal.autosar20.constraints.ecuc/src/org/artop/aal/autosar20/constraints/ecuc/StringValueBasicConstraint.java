@@ -12,7 +12,6 @@
  * 
  * </copyright>
  */
-
 package org.artop.aal.autosar20.constraints.ecuc;
 
 import gautosar.gecucdescription.GParameterValue;

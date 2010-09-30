@@ -12,7 +12,6 @@
  * 
  * </copyright>
  */
-
 package org.artop.aal.autosar20.constraints.ecuc.internal;
 
 import org.artop.ecl.emf.validation.evalidator.adapter.EValidatorRegistering;
