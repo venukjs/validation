@@ -1,14 +1,14 @@
 package org.artop.ecl.emf.validation.constraint;
 
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
-import org.eclipse.emf.validation.model.IModelConstraint;
 
 public class DelegateConstraintCallHandler implements IConstraintCallHandler {
 
-	private IModelConstraint fDelegate;
+	private AbstractModelConstraint fDelegate;
 
-	public DelegateConstraintCallHandler(IModelConstraint constraint) {
+	public DelegateConstraintCallHandler(AbstractModelConstraint constraint) {
 		fDelegate = constraint;
 	}
 

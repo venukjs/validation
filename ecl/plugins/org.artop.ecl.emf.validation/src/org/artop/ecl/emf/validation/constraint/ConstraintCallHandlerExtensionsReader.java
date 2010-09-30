@@ -11,7 +11,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.validation.IValidationContext;
 
-public class ConstraintCallHandlerExtensionsReader {
+public class ConstraintCallHandlerExtensionsReader implements IConstraintCallHandlerProvider {
 
 	private static final String EXP_ID_SEPARATOR = "."; //$NON-NLS-1$
 	private static final String EXP_ID_CONST_CALL_HANDLERS = "constraintCallHandlers"; //$NON-NLS-1$
@@ -19,11 +19,12 @@ public class ConstraintCallHandlerExtensionsReader {
 	private static final String ATTR_NAME_CLASS = "class"; //$NON-NLS-1$
 	private Collection<IConstraintCallHandler> fConstraintCallHandlers;
 
-	public Iterable<IConstraintCallHandler> getContributedConstraintCallHandlers() {
+	public Iterable<IConstraintCallHandler> getConstraintCallHandlers() {
 		if (fConstraintCallHandlers == null) {
 			fConstraintCallHandlers = new ArrayList<IConstraintCallHandler>();
-			IExtension[] extensions = Platform.getExtensionRegistry().getExtensionPoint(
-					Activator.getDefault().getBundle().getSymbolicName() + EXP_ID_SEPARATOR + EXP_ID_CONST_CALL_HANDLERS).getExtensions();
+			IExtension[] extensions = Platform.getExtensionRegistry()
+					.getExtensionPoint(Activator.getDefault().getBundle().getSymbolicName() + EXP_ID_SEPARATOR + EXP_ID_CONST_CALL_HANDLERS)
+					.getExtensions();
 			for (IExtension extension : extensions) {
 				for (IConfigurationElement configElem : extension.getConfigurationElements()) {
 					if (NODE_NAME_CALL_HANDLER.equals(configElem.getName())) {

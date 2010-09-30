@@ -18,7 +18,10 @@ import java.util.HashMap;
 
 import org.artop.ecl.emf.validation.bridge.extensions.RulesExtCache;
 import org.artop.ecl.emf.validation.bridge.extensions.RulesExtInternal;
+import org.artop.ecl.emf.validation.constraint.ConstraintCallHandlerExtensionsReader;
+import org.artop.ecl.emf.validation.constraint.IConstraintCallHandlerRegistry;
 import org.artop.ecl.emf.validation.evalidator.adapter.EValidatorAdapter;
+import org.artop.ecl.emf.validation.internal.constraint.ConstraintCallHandlerRegistry;
 import org.artop.ecl.emf.validation.listeners.ResourceURIChangeListener;
 import org.artop.ecl.platform.util.PlatformLogUtil;
 import org.eclipse.core.resources.IResourceChangeEvent;
@@ -43,6 +46,8 @@ public class Activator extends Plugin {
 
 	/** the resource listener on URI changes */
 	private static IResourceChangeListener resourceChangeListener = null;
+
+	private static IConstraintCallHandlerRegistry fConstraintCallHandlerRegistry;
 
 	private InstanceScope instanceScope;
 
@@ -123,5 +128,12 @@ public class Activator extends Plugin {
 			instanceScope = new InstanceScope();
 		}
 		return instanceScope;
+	}
+
+	public static IConstraintCallHandlerRegistry getConstraintCallHandlerRegistry() {
+		if (fConstraintCallHandlerRegistry == null) {
+			fConstraintCallHandlerRegistry = new ConstraintCallHandlerRegistry(new ConstraintCallHandlerExtensionsReader());
+		}
+		return fConstraintCallHandlerRegistry;
 	}
 }
