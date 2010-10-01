@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) Geensys and others.
+ * Copyright (c) Geensys, Continental Engineering Services and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
@@ -9,6 +9,7 @@
  * 
  * Contributors: 
  *     Geensys - Initial API and implementation
+ *     Continental Engineering Services - Wait for the markers to be assigned to the resources
  * 
  * </copyright>
  */
@@ -213,8 +214,8 @@ public class ValidationUtil {
 
 				monitor.beginTask(new String(), count);
 				monitor.setTaskName(NLS.bind(Messages.task_subtask_validatingObject, diagnostician.getObjectLabel(eObject)));
-				ValidationPerformanceStats.INSTANCE.startNewEvent(ValidationPerformanceStats.ValidationEvent.EVENT_APPLY_CONSTRAINTS, eObject
-						.toString());
+				ValidationPerformanceStats.INSTANCE.startNewEvent(ValidationPerformanceStats.ValidationEvent.EVENT_APPLY_CONSTRAINTS,
+						eObject.toString());
 				diagnostician.setProgressMonitor(monitor);
 				result.add(diagnostician.validate(eObject, new HashSet<IConstraintFilter>(filters)));
 				ValidationPerformanceStats.INSTANCE.endEvent(ValidationPerformanceStats.ValidationEvent.EVENT_APPLY_CONSTRAINTS, eObject.toString());
@@ -259,8 +260,8 @@ public class ValidationUtil {
 					subMonitor = new SubProgressMonitor(monitor, subCount[cptObject++]);
 					subMonitor.subTask(NLS.bind(Messages.task_subtask_validatingFile, EcorePlatformUtil.getFile((EObject) current).getName()));
 				}
-				ValidationPerformanceStats.INSTANCE.startNewEvent(ValidationPerformanceStats.ValidationEvent.EVENT_APPLY_CONSTRAINTS, current
-						.toString());
+				ValidationPerformanceStats.INSTANCE.startNewEvent(ValidationPerformanceStats.ValidationEvent.EVENT_APPLY_CONSTRAINTS,
+						current.toString());
 				diag = diagnostician.validate((EObject) current);
 				if (diag != null) {
 					result.add(diag);
