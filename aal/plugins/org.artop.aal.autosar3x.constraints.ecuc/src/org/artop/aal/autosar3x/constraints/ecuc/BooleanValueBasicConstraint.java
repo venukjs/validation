@@ -1,33 +1,69 @@
 /**
  * <copyright>
  * 
- * Copyright (c) OpenSynergy,  Continental Engineering Services  and others.
+ * Copyright (c) OpenSynergy and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
  * 
  * Contributors: 
- *     OpenSynergy - Initial API and implementation for AUTOSAR 3.x
- *     Continental Engineering Services - migration to gautosar 
+ *     OpenSynergy - Initial API and implementation
  * 
  * </copyright>
  */
 package org.artop.aal.autosar3x.constraints.ecuc;
 
-import gautosar.gecucdescription.GParameterValue;
-
-import org.artop.aal.gautosar.constraints.ecuc.AbstractGBooleanValueBasicConstraint;
+import org.artop.aal.autosar3x.constraints.ecuc.internal.Activator;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.emf.validation.IValidationContext;
 
 import autosar3x.ecucdescription.BooleanValue;
+import autosar3x.ecucdescription.ParameterValue;
+import autosar3x.ecucparameterdef.BooleanParamDef;
 
-public class BooleanValueBasicConstraint extends AbstractGBooleanValueBasicConstraint {
+public class BooleanValueBasicConstraint extends AbstractParameterValueConstraint {
 
 	@Override
-	protected boolean isValueSet(IValidationContext ctx, GParameterValue gParameterValue) {
-		BooleanValue value = (BooleanValue) gParameterValue;
-		return value.isSetValue();
+	protected boolean isApplicable(IValidationContext ctx) {
+		return ctx.getTarget() instanceof BooleanValue;
+	}
+
+	@Override
+	protected IStatus doValidate(IValidationContext ctx) {
+		MultiStatus status = new MultiStatus(Activator.PLUGIN_ID, 0, this.getClass().getName(), null);
+		BooleanValue booleanValue = (BooleanValue) ctx.getTarget();
+
+		status.add(validateDefinitionRef(ctx, booleanValue));
+		status.add(validateValue(ctx, booleanValue));
+
+		return status;
+	}
+
+	@Override
+	protected IStatus validateDefinitionRef(IValidationContext ctx, ParameterValue parameterValue) {
+		// check if definition is set and available
+		IStatus status = super.validateDefinitionRef(ctx, parameterValue);
+		if (status.isOK()) {
+			if (!(parameterValue.getDefinition() instanceof BooleanParamDef)) {
+				status = ctx.createFailureStatus("definition not of type BooleanParamDef");
+			}
+		}
+		return status;
+	}
+
+	protected IStatus validateValue(IValidationContext ctx, BooleanValue booleanValue) {
+		final IStatus status;
+		if (false == booleanValue.isSetValue()) {
+			status = ctx.createFailureStatus("no value found");
+		} else if (null == booleanValue.getValue()) {
+			status = ctx.createFailureStatus("value is null");
+		} else {
+			status = ctx.createSuccessStatus();
+		}
+
+		return status;
 	}
 
 }

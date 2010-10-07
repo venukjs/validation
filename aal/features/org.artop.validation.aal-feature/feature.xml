@@ -2,7 +2,7 @@
 <feature
       id="org.artop.validation.aal"
       label="%featureName"
-      version="2.2.0.qualifier"
+      version="2.1.1.qualifier"
       provider-name="%providerName">
 
    <description>
@@ -18,8 +18,8 @@
    </license>
 
    <requires>
-      <import feature="org.artop.aal" version="2.2.0"/>
-      <import feature="org.artop.validation.ecl" version="2.2.0"/>
+      <import feature="org.artop.aal" version="2.1.1"/>
+      <import feature="org.artop.validation.ecl" version="2.1.1"/>
    </requires>
 
    <plugin
@@ -94,34 +94,6 @@
 
    <plugin
          id="org.artop.aal.autosar3x.constraints.ecuc"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.artop.aal.autosar20.constraints.ecuc"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.artop.aal.autosar21.constraints.ecuc"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.artop.aal.autosar40.constraints.ecuc"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.artop.aal.gautosar.constraints.ecuc"
          download-size="0"
          install-size="0"
          version="0.0.0"

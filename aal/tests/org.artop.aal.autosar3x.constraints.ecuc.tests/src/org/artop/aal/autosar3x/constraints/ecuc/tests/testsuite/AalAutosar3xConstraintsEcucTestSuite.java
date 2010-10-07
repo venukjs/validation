@@ -1,21 +1,23 @@
 /**
  * <copyright>
  * 
- * Copyright (c) OpenSynergy,  Continental Engineering Services  and others.
+ * Copyright (c) OpenSynergy and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
  * 
  * Contributors: 
- *     OpenSynergy - Initial API and implementation for AUTOSAR 3.x
- *     Continental Engineering Services - migration to gautosar 
+ *     OpenSynergy - Initial API and implementation
  * 
  * </copyright>
  */
 package org.artop.aal.autosar3x.constraints.ecuc.tests.testsuite;
 
-import org.artop.aal.autosar3x.constraints.ecuc.tests.BooleanValueConstraintTests;
+import junit.framework.Test;
+import junit.framework.TestSuite;
+
+import org.artop.aal.autosar3x.constraints.ecuc.tests.BooleanValueBasicConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ChoiceReferenceParamDefBasicConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ConfigReferenceValueStructuralIntegrityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerConstraintTests;
@@ -37,23 +39,20 @@ import org.artop.aal.autosar3x.constraints.ecuc.tests.ReferenceParamDefBasicCons
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ReferenceValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.StringValueConstraintTests;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
+public class AalAutosar3xConstraintsEcucTestSuite {
 
-public class AalAutosar3xConstraintsEcucTestSuite
-{
 	/**
 	 * Suite.
 	 * 
 	 * @return the test
 	 */
 	public static Test suite() {
-		TestSuite suite = new TestSuite("Tests for ecuc validation constraints for Autosar 3.x"); //$NON-NLS-1$
+		TestSuite suite = new TestSuite("Tests for org.artop.aal.autosar3x.validation.ecuc"); //$NON-NLS-1$
 
 		// basic attributes and definition
 		suite.addTestSuite(IntegerValueConstraintTests.class);
 		suite.addTestSuite(StringValueConstraintTests.class);
-		suite.addTestSuite(BooleanValueConstraintTests.class);
+		suite.addTestSuite(BooleanValueBasicConstraintTests.class);
 		suite.addTestSuite(FloatValueConstraintTests.class);
 		suite.addTestSuite(EnumerationValueConstraintTests.class);
 		suite.addTestSuite(ReferenceValueConstraintTests.class);

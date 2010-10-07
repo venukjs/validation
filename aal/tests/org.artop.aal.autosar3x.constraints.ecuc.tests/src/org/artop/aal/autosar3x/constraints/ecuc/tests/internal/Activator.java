@@ -1,25 +1,40 @@
 /**
  * <copyright>
  * 
- * Copyright (c) OpenSynergy,  Continental Engineering Services  and others.
+ * Copyright (c) OpenSynergy and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
  * 
  * Contributors: 
- *     OpenSynergy - Initial API and implementation for AUTOSAR 3.x
- *     Continental Engineering Services - migration to gautosar 
+ *     OpenSynergy - Initial API and implementation
  * 
  * </copyright>
  */
 package org.artop.aal.autosar3x.constraints.ecuc.tests.internal;
 
+/**
+ * 
+ * Copyright (c) OpenSynergy and others.
+ * All rights reserved. This program and the accompanying materials are made
+ * available under the terms of the Artop Software License Based on AUTOSAR
+ * Released Material (ASLR) which accompanies this distribution, and is
+ * available at http://www.artop.org/aslr.html
+ * 
+ * Contributors: 
+ *     OpenSynergy - Initial API and implementation
+ * 
+ * </copyright>
+ */
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 
-public class Activator extends EMFPlugin {
+/**
+ * This is the central singleton for this plug-in.
+ */
+public final class Activator extends EMFPlugin {
 
 	/**
 	 * Keep track of the singleton.
@@ -83,5 +98,4 @@ public class Activator extends EMFPlugin {
 			plugin = this;
 		}
 	}
-
 }

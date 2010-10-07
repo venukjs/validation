@@ -1,28 +1,25 @@
 /**
  * <copyright>
  * 
- * Copyright (c) OpenSynergy,  Continental Engineering Services  and others.
+ * Copyright (c) OpenSynergy and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
  * 
  * Contributors: 
- *     OpenSynergy - Initial API and implementation for AUTOSAR 3.x
- *     Continental Engineering Services - migration to gautosar 
+ *     OpenSynergy - Initial API and implementation
  * 
  * </copyright>
  */
 package org.artop.aal.autosar3x.constraints.ecuc.tests;
 
-import org.artop.aal.gautosar.constraints.ecuc.tests.util.ValidationTestUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.osgi.util.NLS;
 
-public class ParamConfMultiplicityBasicConstraintTests extends AbstractAutosar3xValidationTestCase
-{
+@SuppressWarnings("nls")
+public class ParamConfMultiplicityBasicConstraintTests extends ValidationTestCase {
+
 	public ParamConfMultiplicityBasicConstraintTests() {
 		super();
 	}
@@ -34,22 +31,22 @@ public class ParamConfMultiplicityBasicConstraintTests extends AbstractAutosar3x
 
 	public void testInvalidParamConfMultiplicity_upperMultiplicityNotANumber() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ParamConfMultiplicity/upperMultiplicityNotANumber.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.multiplicity_upperMultException,"For input string: \"UNLIMITED\""));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
 	}
 
 	public void testInvalidParamConfMultiplicity_upperMultiplicityNegativeNumber() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ParamConfMultiplicity/upperMultiplicityNegativeNumber.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.multiplicity_upperMultNegative);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
 	}
 
 	public void testInvalidParamConfMultiplicity_lowerMultiplicityNotANumber() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ParamConfMultiplicity/lowerMultiplicityNotANumber.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.multiplicity_lowerMultException,"For input string: \"*\""));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
 	}
 
 	public void testInvalidParamConfMultiplicity_lowerMultiplicityNegativeNumber() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ParamConfMultiplicity/lowerMultiplicityNegativeNumber.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.multiplicity_lowerMultNegative);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
 	}
 
 	// valid
@@ -67,5 +64,4 @@ public class ParamConfMultiplicityBasicConstraintTests extends AbstractAutosar3x
 		EObject validModel = loadInputFile("ecuc/ParamConfMultiplicity/valid_multiplicitiesUnset.arxml");
 		ValidationTestUtil.validateModel(validModel, validator, IStatus.OK);
 	}
-
 }

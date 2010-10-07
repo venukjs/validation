@@ -1,29 +1,24 @@
 /**
  * <copyright>
  * 
- * Copyright (c) OpenSynergy,  Continental Engineering Services  and others.
+ * Copyright (c) OpenSynergy and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
  * 
  * Contributors: 
- *     OpenSynergy - Initial API and implementation for AUTOSAR 3.x
- *     Continental Engineering Services - migration to gautosar 
+ *     OpenSynergy - Initial API and implementation
  * 
  * </copyright>
  */
 package org.artop.aal.autosar3x.constraints.ecuc.tests;
 
-import org.artop.aal.gautosar.constraints.ecuc.tests.util.ValidationTestUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.osgi.util.NLS;
 
-public class StringValueConstraintTests extends AbstractAutosar3xValidationTestCase
-{
-
+@SuppressWarnings("nls")
+public class StringValueConstraintTests extends ValidationTestCase {
 
 	public StringValueConstraintTests() {
 		super();
@@ -37,18 +32,18 @@ public class StringValueConstraintTests extends AbstractAutosar3xValidationTestC
 	// completeness
 	public void testInvalidStringValue_noDefinition() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/StringValue/noDefinition.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.generic_definitionReferenceNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
 	}
 
 	public void testInvalidStringValue_noValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/StringValue/noValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.generic_valueNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
 	}
 
 	// consistency
 	public void testInvalidStringValue_wrongParamDefType() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/StringValue/wrongParamDefType.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.generic_definitionNotOfType,"string param def") );
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, "[ecuc sws 3003]");
 	}
 
 	// correctness
@@ -56,7 +51,7 @@ public class StringValueConstraintTests extends AbstractAutosar3xValidationTestC
 	// valid
 	public void testInvalidStringValue_emptyValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/StringValue/emptyValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.generic_valueNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.OK);
 	}
 
 	public void testInvalidStringValue_valueNoIdentifier() throws Exception {

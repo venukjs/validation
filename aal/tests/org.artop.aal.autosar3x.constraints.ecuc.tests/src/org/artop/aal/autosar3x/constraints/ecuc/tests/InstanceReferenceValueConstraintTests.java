@@ -1,28 +1,24 @@
 /**
  * <copyright>
  * 
- * Copyright (c) OpenSynergy,  Continental Engineering Services  and others.
+ * Copyright (c) OpenSynergy and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
  * 
  * Contributors: 
- *     OpenSynergy - Initial API and implementation for AUTOSAR 3.x
- *     Continental Engineering Services - migration to gautosar 
+ *     OpenSynergy - Initial API and implementation
  * 
  * </copyright>
  */
 package org.artop.aal.autosar3x.constraints.ecuc.tests;
 
-import org.artop.aal.gautosar.constraints.ecuc.tests.util.ValidationTestUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.osgi.util.NLS;
 
-public class InstanceReferenceValueConstraintTests extends AbstractAutosar3xValidationTestCase
-{
+@SuppressWarnings("nls")
+public class InstanceReferenceValueConstraintTests extends ValidationTestCase {
 
 	public InstanceReferenceValueConstraintTests() {
 		super();
@@ -36,56 +32,54 @@ public class InstanceReferenceValueConstraintTests extends AbstractAutosar3xVali
 	// completeness
 	public void testInvalidInstanceReferenceValue_noDefinition() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/noDefinition.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_definitionReferenceNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
 	}
 
 	public void testInvalidInstanceReferenceValue_noValueValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/noValueValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.instanceref_targetNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
 	}
 
 	public void testInvalidInstanceReferenceValue_noValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/noValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.generic_valueNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
 	}
 
 	// consistency
 	public void testInvalidInstanceReferenceValue_defTypeInvalid() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/defTypeInvalid.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.generic_definitionNotOfType,"instance reference def"));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
 	}
 
 	// correctness
 	public void testInvalidInstanceReferenceValue_noDestinationContext() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/noDestinationContext.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.instanceref_valueDestContextNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
 	}
 
 	public void testInvalidInstanceReferenceValue_valueContextNoDestinationContext() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/valueContextNoDestinationContext.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.instanceref_valueDestContextNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
 	}
 
 	public void testInvalidInstanceReferenceValue_destinationContextNoValueContext() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/destinationContextNoValueContext.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.instanceref_valueNotMatchDestContext, "(ComponentPrototype )"));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
 	}
 
 	public void testInvalidInstanceReferenceValue_contextNotMatchWithDestinationContext() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/contextNotMatchWithDestinationContext.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.instanceref_valueNotMatchDestContext, "(ComponentPrototype )"));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
 	}
-
-
 
 	public void testInvalidInstanceReferenceValue_noDestinationType() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/noDestinationType.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.reference_targetDestinationTypeNotAvailable);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
 	}
 
 	public void testInvalidInstanceReferenceValue_valueNotMatchWithDestinationType() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/valueNotMatchWithDestinationType.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.reference_valueNotInstanceOfDestType, "PPortPrototype"));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR);
 	}
 
 	// valid
