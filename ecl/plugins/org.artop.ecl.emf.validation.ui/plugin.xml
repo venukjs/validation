@@ -21,8 +21,8 @@ Contributors:
    <extension
          point="org.eclipse.ui.decorators">
       <decorator
-            class="org.artop.ecl.emf.validation.ui.decorators.BasicLightweightValidationDecorator"
-            id="org.artop.ecl.emf.validation.ui.decorator"
+            class="org.eclipse.sphinx.emf.validation.ui.decorators.BasicLightweightValidationDecorator"
+            id="org.eclipse.sphinx.emf.validation.ui.decorator"
             label="%ValidationDecorator.label"
             lightweight="true"
             state="true">          
@@ -43,19 +43,19 @@ Contributors:
    <extension
          point="org.eclipse.ui.ide.markerSupport">
       <markerGroupingEntry
-            id="org.artop.ecl.emf.validation.markerErrorGroupingEntry"
+            id="org.eclipse.sphinx.emf.validation.markerErrorGroupingEntry"
             label="Errors"
             markerGrouping="org.eclipse.ui.ide.severity"
             priority="2">
       </markerGroupingEntry>
       <markerGroupingEntry
-            id="org.artop.ecl.emf.validation.markerWarningGroupingEntry"
+            id="org.eclipse.sphinx.emf.validation.markerWarningGroupingEntry"
             label="Warnings"
             markerGrouping="org.eclipse.ui.ide.severity"
             priority="1">
       </markerGroupingEntry>
       <markerGroupingEntry
-            id="org.artop.ecl.emf.validation.markerInfoGroupingEntry"
+            id="org.eclipse.sphinx.emf.validation.markerInfoGroupingEntry"
             label="Infos"
             markerGrouping="org.eclipse.ui.ide.severity"
             priority="0">
@@ -64,63 +64,63 @@ Contributors:
             attribute="severity"
             markerType="ecl.emf.validation.problem.marker">
          <markerAttributeMapping
-               markerGroupingEntry="org.artop.ecl.emf.validation.markerErrorGroupingEntry"
+               markerGroupingEntry="org.eclipse.sphinx.emf.validation.markerErrorGroupingEntry"
                value="2">
          </markerAttributeMapping>
          <markerAttributeMapping
-               markerGroupingEntry="org.artop.ecl.emf.validation.markerWarningGroupingEntry"
+               markerGroupingEntry="org.eclipse.sphinx.emf.validation.markerWarningGroupingEntry"
                value="1">
          </markerAttributeMapping>
          <markerAttributeMapping
-               markerGroupingEntry="org.artop.ecl.emf.validation.markerInfoGroupingEntry"
+               markerGroupingEntry="org.eclipse.sphinx.emf.validation.markerInfoGroupingEntry"
                value="0">
          </markerAttributeMapping>
       </markerAttributeGrouping>
       <markerAttributeGrouping
             attribute="severity"
-            markerType="org.artop.ecl.emf.xmlwellformednessproblemmarker">
+            markerType="org.eclipse.sphinx.emf.xmlwellformednessproblemmarker">
          <markerAttributeMapping
-               markerGroupingEntry="org.artop.ecl.emf.validation.markerErrorGroupingEntry"
+               markerGroupingEntry="org.eclipse.sphinx.emf.validation.markerErrorGroupingEntry"
                value="2">
          </markerAttributeMapping>
          <markerAttributeMapping
-               markerGroupingEntry="org.artop.ecl.emf.validation.markerWarningGroupingEntry"
+               markerGroupingEntry="org.eclipse.sphinx.emf.validation.markerWarningGroupingEntry"
                value="1">
          </markerAttributeMapping>
          <markerAttributeMapping
-               markerGroupingEntry="org.artop.ecl.emf.validation.markerInfoGroupingEntry"
+               markerGroupingEntry="org.eclipse.sphinx.emf.validation.markerInfoGroupingEntry"
                value="0">
          </markerAttributeMapping>
       </markerAttributeGrouping>
       <markerAttributeGrouping
             attribute="severity"
-            markerType="org.artop.ecl.emf.xmlvalidityproblemmarker">
+            markerType="org.eclipse.sphinx.emf.xmlvalidityproblemmarker">
          <markerAttributeMapping
-               markerGroupingEntry="org.artop.ecl.emf.validation.markerErrorGroupingEntry"
+               markerGroupingEntry="org.eclipse.sphinx.emf.validation.markerErrorGroupingEntry"
                value="2">
          </markerAttributeMapping>
          <markerAttributeMapping
-               markerGroupingEntry="org.artop.ecl.emf.validation.markerWarningGroupingEntry"
+               markerGroupingEntry="org.eclipse.sphinx.emf.validation.markerWarningGroupingEntry"
                value="1">
          </markerAttributeMapping>
          <markerAttributeMapping
-               markerGroupingEntry="org.artop.ecl.emf.validation.markerInfoGroupingEntry"
+               markerGroupingEntry="org.eclipse.sphinx.emf.validation.markerInfoGroupingEntry"
                value="0">
          </markerAttributeMapping>
       </markerAttributeGrouping>
       <markerAttributeGrouping
             attribute="severity"
-            markerType="org.artop.ecl.emf.xmlintegrityproblemmarker">
+            markerType="org.eclipse.sphinx.emf.xmlintegrityproblemmarker">
          <markerAttributeMapping
-               markerGroupingEntry="org.artop.ecl.emf.validation.markerErrorGroupingEntry"
+               markerGroupingEntry="org.eclipse.sphinx.emf.validation.markerErrorGroupingEntry"
                value="2">
          </markerAttributeMapping>
          <markerAttributeMapping
-               markerGroupingEntry="org.artop.ecl.emf.validation.markerWarningGroupingEntry"
+               markerGroupingEntry="org.eclipse.sphinx.emf.validation.markerWarningGroupingEntry"
                value="1">
          </markerAttributeMapping>
          <markerAttributeMapping
-               markerGroupingEntry="org.artop.ecl.emf.validation.markerInfoGroupingEntry"
+               markerGroupingEntry="org.eclipse.sphinx.emf.validation.markerInfoGroupingEntry"
                value="0">
          </markerAttributeMapping>
       </markerAttributeGrouping>

@@ -18,6 +18,6 @@ Contributors:
 
 <plugin>
 
-   <extension-point id="org.artop.ecl.emf.validation.registration" name="org.artop.ecl.emf.validation.registration" schema="schema/org.artop.ecl.emf.validation.exsd"/>
+   <extension-point id="org.eclipse.sphinx.emf.validation.registration" name="org.eclipse.sphinx.emf.validation.registration" schema="schema/org.eclipse.sphinx.emf.validation.exsd"/>
 
 </plugin>

@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.artop.ecl.emf.validation" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.eclipse.sphinx.emf.validation" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.artop.ecl.emf.validation" id="org.artop.ecl.emf.validation.registration" name="org.artop.ecl.emf.validation.registration"/>
+         <meta.schema plugin="org.eclipse.sphinx.emf.validation" id="org.eclipse.sphinx.emf.validation.registration" name="org.eclipse.sphinx.emf.validation.registration"/>
       </appInfo>
       <documentation>
          This extension point register a meta-model to the validation framework.

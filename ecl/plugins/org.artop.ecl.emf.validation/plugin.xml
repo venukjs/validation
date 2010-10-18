@@ -20,7 +20,7 @@ Contributors:
    <extension
          point="org.eclipse.emf.validation.validationListeners">
       <listener
-            class="org.artop.ecl.emf.validation.listeners.CachedDataCleaner">
+            class="org.eclipse.sphinx.emf.validation.listeners.CachedDataCleaner">
       </listener>
    </extension>
 
@@ -35,7 +35,7 @@ Contributors:
    <extension
          point="org.eclipse.core.runtime.preferences">
       <initializer
-            class="org.artop.ecl.emf.validation.preferences.ValidationPreferenceInitializer">
+            class="org.eclipse.sphinx.emf.validation.preferences.ValidationPreferenceInitializer">
       </initializer>
    </extension>
    
