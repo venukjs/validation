@@ -24,7 +24,9 @@ public abstract class ChainableConstraint extends AbstractModelConstraint implem
 	 * 
 	 * @return
 	 */
-	protected abstract AbstractModelConstraint getDelegateConstraint();
+	protected AbstractModelConstraint getDelegateConstraint() {
+		return new SuccessConstraint();
+	}
 
 	protected Class<? extends IConstraintCallHandler> getSupportedHandlerClass() {
 		return null;
@@ -40,6 +42,15 @@ public abstract class ChainableConstraint extends AbstractModelConstraint implem
 			constraintCallHandler.append(fConstraintCallHandler);
 			fConstraintCallHandler = constraintCallHandler;
 		}
+	}
+
+	private class SuccessConstraint extends AbstractModelConstraint {
+
+		@Override
+		public IStatus validate(IValidationContext ctx) {
+			return ctx.createSuccessStatus();
+		}
+
 	}
 
 }
