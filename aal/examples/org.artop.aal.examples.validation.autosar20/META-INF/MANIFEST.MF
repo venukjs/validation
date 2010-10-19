@@ -5,6 +5,6 @@ Bundle-SymbolicName: org.artop.aal.examples.validation.autosar20;singleton:=true
 Bundle-Version: 2.1.1.qualifier
 Bundle-Localization: plugin
 Bundle-Vendor: %providerName
-Require-Bundle: org.artop.aal.validation;visibility:=reexport,
- org.artop.aal.autosar3x;visibility:=reexport
+Require-Bundle: org.artop.aal.examples.validation.gautosar,
+ org.artop.aal.autosar20
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

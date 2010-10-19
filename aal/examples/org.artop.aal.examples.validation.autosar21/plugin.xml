@@ -17,6 +17,12 @@ Contributors:
 -->
 
 <plugin>
+   <extension
+         point="org.artop.ecl.emf.validation.constraintCallHandlers">
+      <constraintCallHandler
+            class="org.artop.aal.examples.validation.autosar21.constraints.ModeSwitchStartsWithMSCCHandler">
+      </constraintCallHandler>
+   </extension>
 
     <!-- Example contraint categroy definition -->
   
