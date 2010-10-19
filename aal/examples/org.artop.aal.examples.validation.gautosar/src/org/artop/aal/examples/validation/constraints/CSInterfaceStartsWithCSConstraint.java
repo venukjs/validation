@@ -45,7 +45,7 @@ public class CSInterfaceStartsWithCSConstraint extends ChainableConstraint {
 	}
 
 	// ConstraintHandlers which shall be taken into account by this Constraint have to implement this interface.
-	private static interface ConstraintCallHandler extends IConstraintCallHandler {
+	public static interface ConstraintCallHandler extends IConstraintCallHandler {
 	}
 
 }
