@@ -12,7 +12,7 @@ import org.artop.ecl.emf.validation.constraint.IConstraintCallHandler;
 // implementations.
 // This Constraint actually only serves as an enty point for the release-specific ConstraintCallHandlers into the 
 // EMF Validation Framework.
-public class ModeSwitchInterfaceStartsWithMS extends ChainableConstraint {
+public class ModeSwitchInterfaceStartsWithMSConstraint extends ChainableConstraint {
 
 	// The Constraint is intended to be extended by ConstraintCallHandlers therefore it overrides this method.
 	@Override
@@ -20,7 +20,7 @@ public class ModeSwitchInterfaceStartsWithMS extends ChainableConstraint {
 		return ConstraintCallHandler.class;
 	}
 
-	private static interface ConstraintCallHandler extends IConstraintCallHandler {
+	public static interface ConstraintCallHandler extends IConstraintCallHandler {
 	}
 
 }
