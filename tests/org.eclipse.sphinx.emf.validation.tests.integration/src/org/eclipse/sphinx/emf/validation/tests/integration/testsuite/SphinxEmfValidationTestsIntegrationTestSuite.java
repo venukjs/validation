@@ -17,7 +17,7 @@ package org.eclipse.sphinx.emf.validation.tests.integration.testsuite;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-public class EclEmfValidationTestsIntegrationTestSuite {
+public class SphinxEmfValidationTestsIntegrationTestSuite {
 
 	@SuppressWarnings("nls")
 	public static Test suite() {

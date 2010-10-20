@@ -225,7 +225,7 @@ public class ValidationMarkerManager {
 	 *            the target {@link IResource}
 	 * @see IMarker#getType()
 	 */
-	private void removeEclValidationProblemMarker(final IResource resource) throws CoreException {
+	private void removeSphinxValidationProblemMarker(final IResource resource) throws CoreException {
 		Assert.isNotNull(resource);
 		resource.deleteMarkers(IValidationMarker.MODEL_VALIDATION_PROBLEM, true, IResource.DEPTH_INFINITE);
 	}
@@ -305,7 +305,7 @@ public class ValidationMarkerManager {
 		if (resource != null && resource.getContents() != null && resource.getContents().size() >= 1) {
 			EObject rootObject = resource.getContents().get(0);
 			if (rootObject == eObject && depth == EObjectUtil.DEPTH_INFINITE) {
-				removeEclValidationProblemMarker(file);
+				removeSphinxValidationProblemMarker(file);
 				removeXMLWellFormednessProblemMarker(file);
 				removeXSDDiagnosticMarker(file);
 				removeXMLIntegrityProblemMarker(file);
