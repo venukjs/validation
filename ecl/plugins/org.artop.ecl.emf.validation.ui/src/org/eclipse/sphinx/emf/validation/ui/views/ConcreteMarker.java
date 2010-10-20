@@ -100,7 +100,7 @@ public class ConcreteMarker extends MarkerNode {
 
 		boolean validationProblem;
 		try {
-			validationProblem = marker.isSubtypeOf(IValidationMarker.ECL_VALIDATION_PROBLEM);
+			validationProblem = marker.isSubtypeOf(IValidationMarker.MODEL_VALIDATION_PROBLEM);
 		} catch (CoreException ex1) {
 			validationProblem = false;
 		}

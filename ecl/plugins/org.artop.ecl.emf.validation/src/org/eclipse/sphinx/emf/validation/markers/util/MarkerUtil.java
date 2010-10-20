@@ -61,7 +61,7 @@ public class MarkerUtil {
 
 	/**
 	 * return a set containing the names of the target features associated to marker of (sub)type
-	 * {@link IValidationMarker#ECL_VALIDATION_PROBLEM}.
+	 * {@link IValidationMarker#MODEL_VALIDATION_PROBLEM}.
 	 * 
 	 * @param marker
 	 * @return Set

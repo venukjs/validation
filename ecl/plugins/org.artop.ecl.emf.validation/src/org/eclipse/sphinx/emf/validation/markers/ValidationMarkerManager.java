@@ -23,10 +23,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.sphinx.emf.resource.IXMLMarker;
-import org.eclipse.sphinx.emf.util.EObjectUtil;
-import org.eclipse.sphinx.emf.util.EcorePlatformUtil;
-import org.eclipse.sphinx.platform.util.PlatformLogUtil;
 import org.eclipse.core.internal.resources.Workspace;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
@@ -42,6 +38,9 @@ import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.sphinx.emf.resource.IXMLMarker;
+import org.eclipse.sphinx.emf.util.EObjectUtil;
+import org.eclipse.sphinx.emf.util.EcorePlatformUtil;
 import org.eclipse.sphinx.emf.validation.Activator;
 import org.eclipse.sphinx.emf.validation.diagnostic.ExtendedDiagnostic;
 import org.eclipse.sphinx.emf.validation.markers.util.FeatureAttUtil;
@@ -49,6 +48,7 @@ import org.eclipse.sphinx.emf.validation.preferences.IValidationPreferences;
 import org.eclipse.sphinx.emf.validation.stats.ValidationPerformanceStats;
 import org.eclipse.sphinx.emf.validation.util.Messages;
 import org.eclipse.sphinx.emf.validation.util.ValidationUtil;
+import org.eclipse.sphinx.platform.util.PlatformLogUtil;
 
 /**
  * This singleton class manage the validation marker
@@ -111,7 +111,8 @@ public class ValidationMarkerManager {
 		// created markers
 		int max_err = Platform.getPreferencesService().getInt(org.eclipse.sphinx.emf.validation.Activator.PLUGIN_ID,
 				IValidationPreferences.PREF_MAX_NUMBER_OF_ERRORS, IValidationPreferences.PREF_MAX_NUMBER_OF_ERRORS_DEFAULT, null);
-		IMarker[] markers = iResource.getWorkspace().getRoot().findMarkers(IValidationMarker.ECL_VALIDATION_PROBLEM, true, IResource.DEPTH_INFINITE);
+		IMarker[] markers = iResource.getWorkspace().getRoot()
+				.findMarkers(IValidationMarker.MODEL_VALIDATION_PROBLEM, true, IResource.DEPTH_INFINITE);
 		int nb_err = markers.length;
 
 		// compute nb markers to be added
@@ -161,7 +162,7 @@ public class ValidationMarkerManager {
 
 					Map<String, Object> attributes = new HashMap<String, Object>();
 
-					IMarker marker = iResource.createMarker(IValidationMarker.ECL_VALIDATION_PROBLEM);
+					IMarker marker = iResource.createMarker(IValidationMarker.MODEL_VALIDATION_PROBLEM);
 					++nb_err;
 
 					EObject tgtObject = (EObject) childDiagnostic.getData().get(0);
@@ -212,13 +213,13 @@ public class ValidationMarkerManager {
 			// Notify IValidationProblemMarkerChangedListeners
 			fireValidationProblemMarkersChanged(validatedObject);
 		} catch (CoreException ex) {
-			PlatformLogUtil.logAsWarning(Activator.getDefault(), NLS.bind(Messages.warningProblemWithMarkerOperationOnResource, iResource
-					.getLocationURI().toString()));
+			PlatformLogUtil.logAsWarning(Activator.getDefault(),
+					NLS.bind(Messages.warningProblemWithMarkerOperationOnResource, iResource.getLocationURI().toString()));
 		}
 	}
 
 	/**
-	 * Remove all markers of type {@link IValidationMarker.ECL_VALIDATION_PROBLEM} present on the resource.
+	 * Remove all markers of type {@link IValidationMarker.MODEL_VALIDATION_PROBLEM} present on the resource.
 	 * 
 	 * @param resource
 	 *            the target {@link IResource}
@@ -226,7 +227,7 @@ public class ValidationMarkerManager {
 	 */
 	private void removeEclValidationProblemMarker(final IResource resource) throws CoreException {
 		Assert.isNotNull(resource);
-		resource.deleteMarkers(IValidationMarker.ECL_VALIDATION_PROBLEM, true, IResource.DEPTH_INFINITE);
+		resource.deleteMarkers(IValidationMarker.MODEL_VALIDATION_PROBLEM, true, IResource.DEPTH_INFINITE);
 	}
 
 	/**
@@ -266,7 +267,7 @@ public class ValidationMarkerManager {
 	}
 
 	/**
-	 * remove all markers of Type {@link IValidationMarker#ECL_VALIDATION_PROBLEM} directly attached to this eObject
+	 * remove all markers of Type {@link IValidationMarker#MODEL_VALIDATION_PROBLEM} directly attached to this eObject
 	 * (depth set to IValidationMarkerManager.DEPTH_ZERO), to its direct children (depth set to
 	 * IValidationMarkerManager.DEPTH_ONE), or to itself and all its children (depth set to
 	 * IValidationMarkerManager.DEPTH_INFINITE)
@@ -278,7 +279,7 @@ public class ValidationMarkerManager {
 	 * @throws CoreException
 	 */
 	public void removeMarkers(EObject eObject, int depth) throws CoreException {
-		removeMarkers(eObject, depth, IValidationMarker.ECL_VALIDATION_PROBLEM);
+		removeMarkers(eObject, depth, IValidationMarker.MODEL_VALIDATION_PROBLEM);
 	}
 
 	/**
@@ -315,7 +316,7 @@ public class ValidationMarkerManager {
 			}
 		}
 
-		// Let's get the ECL validation problem markers
+		// Let's get the model validation problem markers
 		IMarker[] markers = getValidationMarkersList(eObject, depth, markerType);
 		if (markers == null || markers.length == 0) {
 			return;
@@ -349,7 +350,7 @@ public class ValidationMarkerManager {
 		String[] newInfo = ValidationUtil.splitURI(newUri);
 		if (oldInfo != null && oldInfo.length == 2 && newInfo != null && newInfo.length == 2) {
 
-			IMarker[] markers = resource.findMarkers(IValidationMarker.ECL_VALIDATION_PROBLEM, true, IResource.DEPTH_INFINITE);
+			IMarker[] markers = resource.findMarkers(IValidationMarker.MODEL_VALIDATION_PROBLEM, true, IResource.DEPTH_INFINITE);
 			if (markers == null || markers.length == 0) {
 				return;
 			}
@@ -365,8 +366,8 @@ public class ValidationMarkerManager {
 					}
 				}
 			} catch (CoreException ex) {
-				PlatformLogUtil.logAsWarning(Activator.getDefault(), NLS.bind(Messages.warningProblemWithMarkerOperationOnResource, resource
-						.getLocationURI().toString()));
+				PlatformLogUtil.logAsWarning(Activator.getDefault(),
+						NLS.bind(Messages.warningProblemWithMarkerOperationOnResource, resource.getLocationURI().toString()));
 			}
 		}
 	}
@@ -379,9 +380,9 @@ public class ValidationMarkerManager {
 	 * @throws CoreException
 	 */
 	public void updateMarkersURI(IResource resource) throws CoreException {
-		ValidationPerformanceStats.INSTANCE.startNewEvent(ValidationPerformanceStats.ValidationEvent.EVENT_UPDATE_PROBLEM_MARKERS, resource
-				.getFullPath());
-		IMarker[] markers = resource.findMarkers(IValidationMarker.ECL_VALIDATION_PROBLEM, true, IResource.DEPTH_INFINITE);
+		ValidationPerformanceStats.INSTANCE.startNewEvent(ValidationPerformanceStats.ValidationEvent.EVENT_UPDATE_PROBLEM_MARKERS,
+				resource.getFullPath());
+		IMarker[] markers = resource.findMarkers(IValidationMarker.MODEL_VALIDATION_PROBLEM, true, IResource.DEPTH_INFINITE);
 
 		String workspacePath = ResourcesPlugin.getWorkspace().getRoot().getLocation().toString();
 
@@ -406,8 +407,8 @@ public class ValidationMarkerManager {
 				marker.setAttribute(EValidator.URI_ATTRIBUTE, newURIPath + fragment);
 			}
 		} catch (CoreException ex) {
-			PlatformLogUtil.logAsWarning(Activator.getDefault(), NLS.bind(Messages.warningProblemWithMarkerOperationOnResource, resource
-					.getLocationURI().toString()));
+			PlatformLogUtil.logAsWarning(Activator.getDefault(),
+					NLS.bind(Messages.warningProblemWithMarkerOperationOnResource, resource.getLocationURI().toString()));
 		}
 
 		finally {
@@ -422,7 +423,7 @@ public class ValidationMarkerManager {
 
 	/**
 	 * Return an array of {IMarker}. This one is composed with markers of Type
-	 * {@link IValidationMarker#ECL_VALIDATION_PROBLEM} directly attached to this eObject, from its direct children
+	 * {@link IValidationMarker#MODEL_VALIDATION_PROBLEM} directly attached to this eObject, from its direct children
 	 * only, or itself and also to its children, according to the depth value (respectively
 	 * IValidationMarkerManager.DEPTH_ZERO, IValidationMarkerManager.DEPTH_ONE and
 	 * IValidationMarkerManager.DET_INFINITE.)
@@ -435,7 +436,7 @@ public class ValidationMarkerManager {
 	 */
 	public IMarker[] getValidationMarkersList(EObject eObject, int depth) throws CoreException {
 
-		return getValidationMarkersList(eObject, depth, IValidationMarker.ECL_VALIDATION_PROBLEM);
+		return getValidationMarkersList(eObject, depth, IValidationMarker.MODEL_VALIDATION_PROBLEM);
 	}
 
 	/**
@@ -602,7 +603,7 @@ public class ValidationMarkerManager {
 	 */
 	public int getEObjectErrorStatus(EObject eObject, int depth) throws CoreException {
 
-		IMarker[] markers = getValidationMarkersList(eObject, depth, IValidationMarker.ECL_VALIDATION_PROBLEM);
+		IMarker[] markers = getValidationMarkersList(eObject, depth, IValidationMarker.MODEL_VALIDATION_PROBLEM);
 
 		return getUpperSeverity(markers);
 	}

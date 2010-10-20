@@ -19,7 +19,7 @@ public interface IValidationMarker {
 	/**
 	 * Validation problem marker type.
 	 */
-	public static final String ECL_VALIDATION_PROBLEM = "ecl.emf.validation.problem.marker"; //$NON-NLS-1$
+	public static final String MODEL_VALIDATION_PROBLEM = "sphinx.emf.validation.problem.marker"; //$NON-NLS-1$
 
 	/**
 	 * This is the id of the marker attribute in order to hold an understandable eObject name. not used yet

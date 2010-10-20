@@ -85,7 +85,7 @@ public class ProblemFilter extends MarkerFilter {
 	 *            A human readable name for the filter.
 	 */
 	public ProblemFilter(String filterName) {
-		super(filterName, new String[] { IValidationMarker.ECL_VALIDATION_PROBLEM, IXMLMarker.XML_WELLFORMEDNESS_PROBLEM,
+		super(filterName, new String[] { IValidationMarker.MODEL_VALIDATION_PROBLEM, IXMLMarker.XML_WELLFORMEDNESS_PROBLEM,
 				IXMLMarker.XML_INTEGRITY_PROBLEM, IXMLMarker.XML_VALIDITY_PROBLEM });
 		if (PlatformUI.getPreferenceStore().getBoolean(IWorkbenchPreferenceConstants.USE_WINDOW_WORKING_SET_BY_DEFAULT)) {
 			IWorkbenchWindow window = PlatformUI.getWorkbench().getActiveWorkbenchWindow();

@@ -60,7 +60,7 @@ import com.ibm.icu.text.MessageFormat;
  */
 public class ValidationView extends MarkerView {
 
-	private final static String[] ROOT_TYPES = { IValidationMarker.ECL_VALIDATION_PROBLEM, IMarker.PROBLEM };
+	private final static String[] ROOT_TYPES = { IValidationMarker.MODEL_VALIDATION_PROBLEM, IMarker.PROBLEM };
 
 	private final static String TAG_DIALOG_SECTION = "org.eclipse.sphinx.emf.validation.ui"; //$NON-NLS-1$
 

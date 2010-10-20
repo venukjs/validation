@@ -81,7 +81,7 @@ public class BasicValidateSelectedCategoriesAction extends BaseSelectionListener
 	}
 
 	// TODO Enhance dialog so that not only top level categories would be displayed.
-	// TODO Externalize dialog in a dedicated class that could be accessible at the ECL level.
+	// TODO Externalize dialog in a dedicated class that could be accessible at the Sphinx level.
 	private List<IConstraintFilter> getSelectedCatories() {
 		// The active shell.
 		Shell shell = ExtendedPlatformUI.getActiveShell();
