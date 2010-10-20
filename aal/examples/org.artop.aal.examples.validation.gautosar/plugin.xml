@@ -40,7 +40,13 @@ Contributors:
             mode="Batch">
       
        <package namespaceUri="http://autosar.org/*"/>
-       <package namespaceUri="http://autosar.org/gs/in"/>
+       <package namespaceUri="http://artop.org/gautosar/gs/in"/>
+        <package
+              namespaceUri="http://artop.org/gautosar/swc/pi">
+        </package>
+        <package
+              namespaceUri="http://artop.org/gautosar/swc/d/dp">
+        </package>
  
         <constraints categories="org.artop.aal.examples.constraints.category.gautosar">
            <constraint
@@ -77,6 +83,24 @@ Contributors:
               </description>
               <target
                     class="GAutosarDataPrototype">
+              </target>
+           </constraint>
+           <constraint
+                 class="org.artop.aal.examples.validation.constraints.ModeSwitchInterfaceStartsWithMSConstraint"
+                 id="org.artop.aal.examples.validation.gautosar.msifcnaming"
+                 lang="java"
+                 mode="Batch"
+                 name="%MSInterfaceNamingConvention.name"
+                 severity="ERROR"
+                 statusCode="202">
+              <message>
+                 %MSInterfaceNamingConvention.msg
+              </message>
+              <description>
+                 %MSInterfaceNamingConvention.desc
+              </description>
+              <target
+                    class="GPortInterface">
               </target>
            </constraint>
             
