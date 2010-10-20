@@ -17,7 +17,7 @@ public class ModeSwitchStartsWithMSCCHandler extends ConstraintCallHandler imple
 		EObject targetEObj = ctx.getTarget();
 		if (targetEObj instanceof SenderReceiverInterface) {
 			SenderReceiverInterface srIfc = (SenderReceiverInterface) targetEObj;
-			if (isModeSwitchInterface(srIfc) && srIfc.getShortName().startsWith(MS_PREFIX)) {
+			if (isModeSwitchInterface(srIfc) && !srIfc.getShortName().startsWith(MS_PREFIX)) {
 				return ctx.createFailureStatus();
 			}
 		}

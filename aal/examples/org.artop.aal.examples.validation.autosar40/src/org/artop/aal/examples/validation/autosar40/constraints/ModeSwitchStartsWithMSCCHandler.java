@@ -7,8 +7,7 @@ import org.eclipse.emf.validation.IValidationContext;
 
 import autosar40.swcomponent.portinterface.ModeSwitchInterface;
 
-public class ModeSwitchStartsWithMSCCHandler extends ConstraintCallHandler
-		implements
+public class ModeSwitchStartsWithMSCCHandler extends ConstraintCallHandler implements
 		org.artop.aal.examples.validation.constraints.ModeSwitchInterfaceStartsWithMSConstraint.ConstraintCallHandler {
 
 	private static final String MS_PREFIX = "MS"; //$NON-NLS-1$
@@ -18,7 +17,7 @@ public class ModeSwitchStartsWithMSCCHandler extends ConstraintCallHandler
 		EObject targetEObj = ctx.getTarget();
 		if (targetEObj instanceof ModeSwitchInterface) {
 			ModeSwitchInterface msIfc = (ModeSwitchInterface) targetEObj;
-			if (msIfc.getShortName().startsWith(MS_PREFIX)) {
+			if (!msIfc.getShortName().startsWith(MS_PREFIX)) {
 				return ctx.createFailureStatus();
 			}
 		}
