@@ -21,7 +21,7 @@ public class SphinxEmfValidationTestsIntegrationTestSuite {
 
 	@SuppressWarnings("nls")
 	public static Test suite() {
-		TestSuite suite = new TestSuite("Test for org.eclipse.sphinx.emf.tests.testsuite");
+		TestSuite suite = new TestSuite("Test for org.eclipse.sphinx.emf.validation.tests.integration.testsuite");
 		// $JUnit-BEGIN$
 		// $JUnit-END$
 		return suite;
