@@ -204,7 +204,7 @@
                   {0}
                </message>
                <description>
-                  Validates 'value' and 'definition' of a FloatValue.
+                  Validates 'value' and 'definition' of a EnumerationValue.
                </description>
                <target
                      class="EnumerationValue">
