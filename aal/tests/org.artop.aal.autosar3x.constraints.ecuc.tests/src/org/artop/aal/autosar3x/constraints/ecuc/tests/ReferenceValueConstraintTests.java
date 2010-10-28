@@ -21,29 +21,28 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
 
-public class ReferenceValueConstraintTests extends AbstractAutosar3xValidationTestCase
-{
+@SuppressWarnings("nls")
+public class ReferenceValueConstraintTests extends AbstractAutosar3xValidationTestCase {
 
-	public ReferenceValueConstraintTests() 
-	{
+	public ReferenceValueConstraintTests() {
 		super();
 	}
-	
+
 	@Override
-	protected String getConstraintID()
-	{
+	protected String getConstraintID() {
 		return "org.artop.aal.autosar3x.constraints.ecuc.ReferenceValueBasicConstraint_3x";//$NON-NLS-1$
 	}
 
 	// test completeness
+
 	public void testInvalidReferenceValue_noDefinition() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ReferenceValue/noDefinition.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.generic_definitionReferenceNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_definitionReferenceNotSet);
 	}
 
 	public void testInvalidReferenceValue_noValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ReferenceValue/noValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.generic_valueNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_valueNotSet);
 	}
 
 	// test consistency
@@ -55,47 +54,53 @@ public class ReferenceValueConstraintTests extends AbstractAutosar3xValidationTe
 	// test correctness
 	public void testInvalidReferenceValue_choiceReferenceParamDefnotContainer() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ReferenceValue/choiceReferenceParamDefNotContainer.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.reference_valueNotOfType,"container"));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, NLS.bind(Messages.reference_valueNotOfType, "container"));
 	}
 
 	public void testInvalidReferenceValue_choiceReferenceParamDefNoDest() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ReferenceValue/choiceReferenceParamDefNoDest.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.generic_validationNotPossible, "/AUTOSAR/Os/OsApplication/OsAppScheduleTableRef"));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(Messages.generic_validationNotPossible, "/AUTOSAR/Os/OsApplication/OsAppScheduleTableRef"));
 	}
 
 	public void testInvalidReferenceValue_choiceReferenceParamDefDifferentDef() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ReferenceValue/choiceReferenceParamDefDifferentDef.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.choiceref_containerNotInTheDest, "","OsScheduleTable,OsScheduleTable_1,OsScheduleTable_2,"));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(Messages.choiceref_containerNotInTheDest, "OsScheduleTable", "OsScheduleTable_1,OsScheduleTable_2,"));
 	}
 
 	public void testInvalidReferenceValue_referenceParamDefnotContainer() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ReferenceValue/referenceParamDefNotContainer.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.reference_valueNotOfType, "container"));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, NLS.bind(Messages.reference_valueNotOfType, "container"));
 	}
 
 	public void testInvalidReferenceValue_referenceParamDefNoDest() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ReferenceValue/referenceParamDefNoDest.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.generic_validationNotPossible,"/AUTOSAR/Os/unresolvableReference"));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(Messages.generic_validationNotPossible, "/AUTOSAR/Os/unresolvableReference"));
 	}
 
 	public void testInvalidReferenceValue_referenceParamDefContainerNotInDest() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ReferenceValue/referenceParamDefContainerNotInDest.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.reference_valueDefinitionNotSet, "param conf container def", "OS_OsScheduleTable"));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(Messages.reference_valueDefinitionNotSet, "param conf container def", "OS_OsScheduleTable"));
 	}
 
 	public void testInvalidReferenceValue_referenceParamDefDifferentDef() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ReferenceValue/referenceParamDefDifferentDef.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.reference_differentDefAndDestination,"OsResource","OsScheduleTable"));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(Messages.reference_differentDefAndDestination, "OsResource", "OsScheduleTable"));
 	}
 
 	public void testInvalidReferenceValue_noForeignDestinationType() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ReferenceValue/noForeignDestinationType.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.reference_targetDestinationTypeNotAvailable);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.reference_targetDestinationTypeNotAvailable);
 	}
 
 	public void testInvalidReferenceValue_valueTypeNotMatchWithForeignDestination() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ReferenceValue/valueTypeNotMatchWithForeignDestination.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.reference_valueNotInstanceOfDestType,"Container"));
+		ValidationTestUtil
+				.validateModel(invalidModel, validator, IStatus.ERROR, NLS.bind(Messages.reference_valueNotInstanceOfDestType, "Container"));
 	}
 
 	// test valid
@@ -109,8 +114,18 @@ public class ReferenceValueConstraintTests extends AbstractAutosar3xValidationTe
 		ValidationTestUtil.validateModel(validModel, validator, IStatus.OK);
 	}
 
+	public void testValidReferenceValue_validVendorSpecificChoiceReferenceParamDef() throws Exception {
+		EObject validModel = loadInputFile("ecuc/ReferenceValue/validVendorSpecificChoiceReferenceParamDef.arxml");
+		ValidationTestUtil.validateModel(validModel, validator, IStatus.OK);
+	}
+
 	public void testValidReferenceValue_validReferenceParamDef() throws Exception {
 		EObject validModel = loadInputFile("ecuc/ReferenceValue/validReferenceParamDef.arxml");
+		ValidationTestUtil.validateModel(validModel, validator, IStatus.OK);
+	}
+
+	public void testValidReferenceValue_validVendorSpecificReferenceParamDef() throws Exception {
+		EObject validModel = loadInputFile("ecuc/ReferenceValue/validVendorSpecificReferenceParamDef.arxml");
 		ValidationTestUtil.validateModel(validModel, validator, IStatus.OK);
 	}
 
