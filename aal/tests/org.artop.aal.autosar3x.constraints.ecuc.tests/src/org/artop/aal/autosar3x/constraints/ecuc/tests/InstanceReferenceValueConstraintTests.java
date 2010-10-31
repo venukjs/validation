@@ -68,7 +68,7 @@ public class InstanceReferenceValueConstraintTests extends AbstractAutosar3xVali
 
 	public void testInvalidInstanceReferenceValue_destinationContextNoValueContext() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/destinationContextNoValueContext.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.instanceref_valueNotMatchDestContext, "(ComponentPrototype )"));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.instanceref_valueNotMatchDestContext, "(PPortPrototype )"));
 	}
 
 	public void testInvalidInstanceReferenceValue_contextNotMatchWithDestinationContext() throws Exception {
