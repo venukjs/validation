@@ -62,7 +62,7 @@ Contributors:
       </markerGroupingEntry>
       <markerAttributeGrouping
             attribute="severity"
-            markerType="ecl.emf.validation.problem.marker">
+            markerType="sphinx.emf.validation.problem.marker">
          <markerAttributeMapping
                markerGroupingEntry="org.eclipse.sphinx.emf.validation.markerErrorGroupingEntry"
                value="2">

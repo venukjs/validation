@@ -25,8 +25,8 @@ Contributors:
    </extension>
 
    <extension
-         id="ecl.emf.validation.problem.marker"
-         name="%ecl.emf.validation.problem.marker.name"
+         id="sphinx.emf.validation.problem.marker"
+         name="%sphinx.emf.validation.problem.marker.name"
          point="org.eclipse.core.resources.markers">
       <super type="org.eclipse.core.resources.problemmarker"/>
       <super type="org.eclipse.core.resources.textmarker"/>

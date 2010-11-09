@@ -33,11 +33,11 @@ public final class ValidationStatusCode {
 	public static final int SEVERITY_ERROR_ON_CHILDREN = 6;
 
 	/**
-	 * convert Marker problem status to ecl validation framework status
+	 * convert Marker problem status to sphinx validation framework status
 	 * 
 	 * @param markerProblemCode
 	 *            Severity code as stored into Marker
-	 * @return severity code for the ecl validation framework
+	 * @return severity code for the sphinx validation framework
 	 * @see IMarker
 	 */
 	public static int convertMarkerToValidationStatusCode(int markerProblemCode) {
