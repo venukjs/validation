@@ -20,9 +20,8 @@ import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
-@SuppressWarnings("restriction")
-public class ModuleConfigurationConstraintTests extends AbstractAutosar3xValidationTestCase
-{
+@SuppressWarnings({ "restriction", "nls" })
+public class ModuleConfigurationConstraintTests extends AbstractAutosar3xValidationTestCase {
 
 	public ModuleConfigurationConstraintTests() {
 		super();
@@ -36,34 +35,38 @@ public class ModuleConfigurationConstraintTests extends AbstractAutosar3xValidat
 	// completeness
 	public void testInvalidModuleConfiguration_noDefinition() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ModuleConfiguration/noDefinition.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.generic_definitionReferenceNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_definitionReferenceNotSet);
 	}
 
 	public void testInvalidModuleConfiguration_proxyDefinition() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ModuleConfiguration/proxyDefinition.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.generic_definitionReferenceNotResolved);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_definitionReferenceNotResolved);
 	}
 
 	// consistency
 	public void testInValidModuleConfiguration_implConfigValueWrongValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ModuleConfiguration/implConfigValueWrongValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,org.artop.aal.autosar3x.constraints.ecuc.internal.Messages.moduleConfig_ImplConfigVariantNotSupported);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				org.artop.aal.autosar3x.constraints.ecuc.internal.Messages.moduleConfig_ImplConfigVariantNotSupported);
 	}
-	
+
 	public void testInValidModuleConfiguration_implConfigValueNotSet() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ModuleConfiguration/implConfigValueNotSet.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,org.artop.aal.autosar3x.constraints.ecuc.internal.Messages.moduleConfig_ImplConfigVariantNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				org.artop.aal.autosar3x.constraints.ecuc.internal.Messages.moduleConfig_ImplConfigVariantNotSet);
 	}
 
 	// correctness
 	public void testInValidModuleConfiguration_noSupportedConfigVariant() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ModuleConfiguration/noSupportedConfigVariant.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,org.artop.aal.autosar3x.constraints.ecuc.internal.Messages.moduleConfig_ImplConfigVariantNotSupported);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				org.artop.aal.autosar3x.constraints.ecuc.internal.Messages.moduleConfig_ImplConfigVariantNotSupported);
 	}
 
 	public void testInValidModuleConfiguration_implConfigVariantNotSupported() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ModuleConfiguration/implConfigVariantNotSupported.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,org.artop.aal.autosar3x.constraints.ecuc.internal.Messages.moduleConfig_ImplConfigVariantNotSupported);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				org.artop.aal.autosar3x.constraints.ecuc.internal.Messages.moduleConfig_ImplConfigVariantNotSupported);
 	}
 
 	// valid

@@ -21,8 +21,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
 
-public class ContainerSubContainerMultiplicityConstraintTests extends AbstractAutosar3xValidationTestCase
-{
+@SuppressWarnings("nls")
+public class ContainerSubContainerMultiplicityConstraintTests extends AbstractAutosar3xValidationTestCase {
 	public ContainerSubContainerMultiplicityConstraintTests() {
 		super();
 	}
@@ -34,32 +34,50 @@ public class ContainerSubContainerMultiplicityConstraintTests extends AbstractAu
 
 	public void testInvalidContainer_choiceContainerMoreThanOneChoiceSelected() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/Container/choiceContainerMoreThanOneChoiceSelected.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.multiplicity_subContainersExpected, "choice container"));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(Messages.multiplicity_subContainersExpected, "choice container"));
 	}
 
 	public void testInvalidContainer_choiceContainerMoreThanOneChoiceSelected_splitted() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/Container/choiceContainerMoreThanOneChoiceSelected_splitted.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.multiplicity_subContainersExpected, "choice container"));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(Messages.multiplicity_subContainersExpected, "choice container"));
 	}
 
 	public void testInvalidContainer_choiceContainerNoChoiceSelected() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/Container/choiceContainerNoChoiceSelected.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.multiplicity_subContainersExpected, "choice container"));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(Messages.multiplicity_subContainersExpected, "choice container"));
 	}
 
 	public void testInvalidContainer_lowerMultiplicityOfSubContainerViolated() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/Container/lowerMultiplicityOfSubContainerViolated.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.multiplicity_minElementsExpected, new String[]{"2","subcontainers","/AUTOSAR/Os/ParamConfContainerDef/SubContainerDef","1"}));
+		ValidationTestUtil.validateModel(
+				invalidModel,
+				validator,
+				IStatus.ERROR,
+				NLS.bind(Messages.multiplicity_minElementsExpected, new String[] { "2", "subcontainers",
+						"/AUTOSAR/Os/ParamConfContainerDef/SubContainerDef", "1" }));
 	}
 
 	public void testInvalidContainer_mandatorySubContainerMissing() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/Container/mandatorySubContainerMissing.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.multiplicity_minElementsExpected, new String[]{"1","subcontainers","/AUTOSAR/Os/ParamConfContainerDef/SubContainerDef","0"}));
+		ValidationTestUtil.validateModel(
+				invalidModel,
+				validator,
+				IStatus.ERROR,
+				NLS.bind(Messages.multiplicity_minElementsExpected, new String[] { "1", "subcontainers",
+						"/AUTOSAR/Os/ParamConfContainerDef/SubContainerDef", "0" }));
 	}
 
 	public void testInvalidContainer_upperMultiplicityOfSubContainerViolated() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/Container/upperMultiplicityOfSubContainerViolated.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.multiplicity_maxElementsExpected, new String[]{"2","subcontainers","/AUTOSAR/Os/ParamConfContainerDef/SubContainerDef","3"}));
+		ValidationTestUtil.validateModel(
+				invalidModel,
+				validator,
+				IStatus.ERROR,
+				NLS.bind(Messages.multiplicity_maxElementsExpected, new String[] { "2", "subcontainers",
+						"/AUTOSAR/Os/ParamConfContainerDef/SubContainerDef", "3" }));
 	}
 
 	// valid
@@ -72,11 +90,15 @@ public class ContainerSubContainerMultiplicityConstraintTests extends AbstractAu
 		EObject validModel = loadInputFile("ecuc/Container/valid_splitted.arxml");
 		ValidationTestUtil.validateModel(validModel, validator, IStatus.OK);
 	}
-	
+
+	public void testValidContainer_splitted_big() throws Exception {
+		EObject validModel = loadInputFile("ecuc/Container/valid_splitted_100containers.arxml");
+		ValidationTestUtil.validateModel(validModel, validator, IStatus.OK);
+	}
+
 	public void testValidContainer_MultipleConfigurationContainer() throws Exception {
 		EObject validModel = loadInputFile("ecuc/Container/upperMultiplicityOfMultipleConfigSubContainerValid.arxml");
 		ValidationTestUtil.validateModel(validModel, validator, IStatus.OK);
 	}
-
 
 }

@@ -21,8 +21,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
 
-public class ParameterValueStructuralIntegrityConstraintTests extends AbstractAutosar3xValidationTestCase
-{
+@SuppressWarnings("nls")
+public class ParameterValueStructuralIntegrityConstraintTests extends AbstractAutosar3xValidationTestCase {
 	public ParameterValueStructuralIntegrityConstraintTests() {
 		super();
 	}
@@ -34,12 +34,14 @@ public class ParameterValueStructuralIntegrityConstraintTests extends AbstractAu
 
 	public void testInvalidBooleanValue_notContainedInDefinitionOfParentContainer() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ParameterValue/notContainedInDefinitionOfParentContainer.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.structuralIntegrity_containmentProblem, "parameter value","OsAppErrorHook2"));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(Messages.structuralIntegrity_containmentProblem, "parameter value", "OsAppErrorHook2"));
 	}
-	
+
 	public void testInvalidBooleanValue_notAllowedInChoiceContainers() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ParameterValue/notAllowedInChoiceContainers.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.structuralIntegrity_NotAllowedInChoiceContainer, "reference values"));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(Messages.structuralIntegrity_NotAllowedInChoiceContainer, "reference values"));
 	}
 
 	public void testValidBooleanValue() throws Exception {

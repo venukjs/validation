@@ -21,9 +21,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
 
-public class StringValueConstraintTests extends AbstractAutosar3xValidationTestCase
-{
-
+@SuppressWarnings("nls")
+public class StringValueConstraintTests extends AbstractAutosar3xValidationTestCase {
 
 	public StringValueConstraintTests() {
 		super();
@@ -37,18 +36,18 @@ public class StringValueConstraintTests extends AbstractAutosar3xValidationTestC
 	// completeness
 	public void testInvalidStringValue_noDefinition() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/StringValue/noDefinition.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.generic_definitionReferenceNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_definitionReferenceNotSet);
 	}
 
 	public void testInvalidStringValue_noValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/StringValue/noValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.generic_valueNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_valueNotSet);
 	}
 
 	// consistency
 	public void testInvalidStringValue_wrongParamDefType() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/StringValue/wrongParamDefType.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.generic_definitionNotOfType,"string param def") );
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, NLS.bind(Messages.generic_definitionNotOfType, "string param def"));
 	}
 
 	// correctness
@@ -56,7 +55,7 @@ public class StringValueConstraintTests extends AbstractAutosar3xValidationTestC
 	// valid
 	public void testInvalidStringValue_emptyValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/StringValue/emptyValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.generic_valueNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_valueNotSet);
 	}
 
 	public void testInvalidStringValue_valueNoIdentifier() throws Exception {

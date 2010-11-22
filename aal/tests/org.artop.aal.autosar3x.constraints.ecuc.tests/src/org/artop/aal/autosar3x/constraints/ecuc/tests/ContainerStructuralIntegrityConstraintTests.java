@@ -21,8 +21,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
 
-public class ContainerStructuralIntegrityConstraintTests extends AbstractAutosar3xValidationTestCase
-{
+@SuppressWarnings("nls")
+public class ContainerStructuralIntegrityConstraintTests extends AbstractAutosar3xValidationTestCase {
 	public ContainerStructuralIntegrityConstraintTests() {
 		super();
 	}
@@ -35,12 +35,13 @@ public class ContainerStructuralIntegrityConstraintTests extends AbstractAutosar
 	// consistency
 	public void testInvalidContainer_noDefInParentDef() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/Container/containerDefinitionNotInParentDef.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.structuralIntegrity_noDefInParent, "container"));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, NLS.bind(Messages.structuralIntegrity_noDefInParent, "container"));
 	}
-	
+
 	public void testInvalidContainer_containerDefinitionNotInParentDef() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/Container/defNotFoundInParent.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.structuralIntegrity_DefNotFoundInParent, "container"));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(Messages.structuralIntegrity_DefNotFoundInParent, "container"));
 	}
 
 	// valid

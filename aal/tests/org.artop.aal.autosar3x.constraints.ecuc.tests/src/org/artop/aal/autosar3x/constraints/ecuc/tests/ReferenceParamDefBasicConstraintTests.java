@@ -21,8 +21,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
 
-public class ReferenceParamDefBasicConstraintTests extends AbstractAutosar3xValidationTestCase
-{
+@SuppressWarnings("nls")
+public class ReferenceParamDefBasicConstraintTests extends AbstractAutosar3xValidationTestCase {
 
 	public ReferenceParamDefBasicConstraintTests() {
 		super();
@@ -36,12 +36,13 @@ public class ReferenceParamDefBasicConstraintTests extends AbstractAutosar3xVali
 	// completeness
 	public void testInvalidReferenceParamDef_noDestination() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ReferenceParamDef/noDestination.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.reference_destinationNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.reference_destinationNotSet);
 	}
 
 	public void testInvalidReferenceParamDef_unresolvedDestination() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ReferenceParamDef/unresolvedDestination.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.reference_destinationNotResolved, "/AUTOSAR/Os/unresolved"));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(Messages.reference_destinationNotResolved, "/AUTOSAR/Os/unresolved"));
 	}
 
 	// valid

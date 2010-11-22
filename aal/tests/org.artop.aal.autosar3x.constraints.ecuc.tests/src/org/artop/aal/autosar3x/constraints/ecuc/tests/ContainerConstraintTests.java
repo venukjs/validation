@@ -20,8 +20,8 @@ import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
-public class ContainerConstraintTests extends AbstractAutosar3xValidationTestCase
-{ 
+@SuppressWarnings("nls")
+public class ContainerConstraintTests extends AbstractAutosar3xValidationTestCase {
 	public ContainerConstraintTests() {
 		super();
 	}
@@ -34,7 +34,7 @@ public class ContainerConstraintTests extends AbstractAutosar3xValidationTestCas
 	// completeness
 	public void testInvalidContainer_noDefinition() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/Container/noDefinition.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.generic_definitionReferenceNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_definitionReferenceNotSet);
 	}
 
 	// consistency

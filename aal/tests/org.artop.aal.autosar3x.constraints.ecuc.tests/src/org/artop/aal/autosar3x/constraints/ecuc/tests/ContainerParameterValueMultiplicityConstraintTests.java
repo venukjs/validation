@@ -21,8 +21,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
 
-public class ContainerParameterValueMultiplicityConstraintTests extends AbstractAutosar3xValidationTestCase
-{
+@SuppressWarnings("nls")
+public class ContainerParameterValueMultiplicityConstraintTests extends AbstractAutosar3xValidationTestCase {
 	public ContainerParameterValueMultiplicityConstraintTests() {
 		super();
 	}
@@ -34,17 +34,32 @@ public class ContainerParameterValueMultiplicityConstraintTests extends Abstract
 
 	public void testInvalidContainer_mandatoryParameterValueMissing() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/Container/mandatoryParameterValueMissing.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.multiplicity_minElementsExpected, new String[]{"1","parameter values","/AUTOSAR/Os/OsAlarm/BooleanParameter","0"}));
+		ValidationTestUtil.validateModel(
+				invalidModel,
+				validator,
+				IStatus.ERROR,
+				NLS.bind(Messages.multiplicity_minElementsExpected, new String[] { "1", "parameter values", "/AUTOSAR/Os/OsAlarm/BooleanParameter",
+						"0" }));
 	}
 
 	public void testInvalidContainer_parameterValueLowerMultiplicityViolated() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/Container/parameterValueLowerMultiplicityViolated.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.multiplicity_minElementsExpected, new String[]{"2","parameter values","/AUTOSAR/Os/OsAlarm/BooleanParameter","1"}));
+		ValidationTestUtil.validateModel(
+				invalidModel,
+				validator,
+				IStatus.ERROR,
+				NLS.bind(Messages.multiplicity_minElementsExpected, new String[] { "2", "parameter values", "/AUTOSAR/Os/OsAlarm/BooleanParameter",
+						"1" }));
 	}
 
 	public void testInvalidContainer_parameterValueUpperMultiplicityViolated() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/Container/parameterValueUpperMultiplicityViolated.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.multiplicity_maxElementsExpected, new String[]{"1","parameter values","/AUTOSAR/Os/OsAlarm/BooleanParameter","2"}));
+		ValidationTestUtil.validateModel(
+				invalidModel,
+				validator,
+				IStatus.ERROR,
+				NLS.bind(Messages.multiplicity_maxElementsExpected, new String[] { "1", "parameter values", "/AUTOSAR/Os/OsAlarm/BooleanParameter",
+						"2" }));
 	}
 
 	// valid

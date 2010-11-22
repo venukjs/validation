@@ -21,6 +21,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
 
+@SuppressWarnings("nls")
 public class InstanceReferenceValueConstraintTests extends AbstractAutosar3xValidationTestCase {
 
 	public InstanceReferenceValueConstraintTests() {

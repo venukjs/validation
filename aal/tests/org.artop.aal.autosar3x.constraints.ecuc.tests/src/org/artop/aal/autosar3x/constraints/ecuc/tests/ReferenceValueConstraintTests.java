@@ -103,6 +103,18 @@ public class ReferenceValueConstraintTests extends AbstractAutosar3xValidationTe
 				.validateModel(invalidModel, validator, IStatus.ERROR, NLS.bind(Messages.reference_valueNotInstanceOfDestType, "Container"));
 	}
 
+	public void testInvalidReferenceValue_notContainedInDefinitionOfParentContainer() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/ReferenceValue/notContainedInDefinitionOfParentContainer.arxml");
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(Messages.structuralIntegrity_containmentProblem, "reference value", "OsAppScheduleTableRef2"));
+	}
+
+	public void testInvalidReferenceValue_notAllowedInChoiceContainers() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/ReferenceValue/notAllowedInChoiceContainers.arxml");
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(Messages.structuralIntegrity_NotAllowedInChoiceContainer, "reference value"));
+	}
+
 	// test valid
 	public void testValidReferenceValue() throws Exception {
 		EObject validModel = loadInputFile("ecuc/ReferenceValue/valid.arxml");

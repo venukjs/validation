@@ -21,8 +21,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
 
-public class ConfigReferenceValueStructuralIntegrityConstraintTests extends AbstractAutosar3xValidationTestCase
-{
+@SuppressWarnings("nls")
+public class ConfigReferenceValueStructuralIntegrityConstraintTests extends AbstractAutosar3xValidationTestCase {
 
 	public ConfigReferenceValueStructuralIntegrityConstraintTests() {
 		super();
@@ -35,14 +35,14 @@ public class ConfigReferenceValueStructuralIntegrityConstraintTests extends Abst
 
 	public void testInvalidConfigReferenceValue_notContainedInDefinitionOfParentContainer() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ConfigReferenceValue/notContainedInDefinitionOfParentContainer.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.structuralIntegrity_containmentProblem,"reference value", "OsAppScheduleTableRef2"));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(Messages.structuralIntegrity_containmentProblem, "reference value", "OsAppScheduleTableRef2"));
 	}
-	
+
 	public void testInvalidConfigReferenceValue_notAllowedInChoiceContainers() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ConfigReferenceValue/notAllowedInChoiceContainers.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(
-				Messages.structuralIntegrity_NotAllowedInChoiceContainer,
-				"reference value"));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(Messages.structuralIntegrity_NotAllowedInChoiceContainer, "reference value"));
 	}
 
 	// test valid

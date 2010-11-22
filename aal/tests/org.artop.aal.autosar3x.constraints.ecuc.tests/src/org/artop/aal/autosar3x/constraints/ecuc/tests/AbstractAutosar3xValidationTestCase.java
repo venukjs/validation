@@ -24,31 +24,28 @@ import org.eclipse.emf.ecore.resource.Resource.Factory;
 import autosar3x.util.Autosar3xPackage;
 import autosar3x.util.Autosar3xResourceFactoryImpl;
 
-public abstract class AbstractAutosar3xValidationTestCase extends AbstractValidationTestCase
-{
+public abstract class AbstractAutosar3xValidationTestCase extends AbstractValidationTestCase {
 
 	@Override
-	protected Plugin getPlugin()
-	{
+	protected Plugin getPlugin() {
 		return Activator.getPlugin();
 	}
+
 	/*
 	 * (non-Javadoc)
 	 * @see org.artop.aal.constraints.ecuc.tests.AbstractValidationTestCase#getAutosarPackageNsURi()
 	 */
 	@Override
-	protected String getAutosarPackageNsURi()
-	{
+	protected String getAutosarPackageNsURi() {
 		return Autosar3xPackage.eINSTANCE.getNsURI();
 	}
-	
+
 	/*
 	 * (non-Javadoc)
 	 * @see org.artop.aal.constraints.ecuc.tests.AbstractValidationTestCase#getAutosarPackageInstance()
 	 */
 	@Override
-	protected EPackage getAutosarPackageInstance()
-	{
+	protected EPackage getAutosarPackageInstance() {
 		return Autosar3xPackage.eINSTANCE;
 	}
 
@@ -57,8 +54,7 @@ public abstract class AbstractAutosar3xValidationTestCase extends AbstractValida
 	 * @see org.artop.aal.constraints.ecuc.tests.AbstractValidationTestCase#getAutosarResourceFactory()
 	 */
 	@Override
-	protected Factory getAutosarResourceFactory()
-	{
+	protected Factory getAutosarResourceFactory() {
 		return new Autosar3xResourceFactoryImpl();
 	}
 }
