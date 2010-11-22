@@ -31,7 +31,7 @@ import org.eclipse.osgi.util.NLS;
 /**
  * Abstract superclass for the constraints implementations on a parameter value.
  */
-public abstract class AbstractGParameterValueConstraint extends AbstractModelConstraintWithPreconditionAndIndex {
+public abstract class AbstractGParameterValueConstraint extends AbstractModelConstraintWithPrecondition {
 
 	/**
 	 * Performs the validation on the definition of the given <code>gParameterValue</code>.
