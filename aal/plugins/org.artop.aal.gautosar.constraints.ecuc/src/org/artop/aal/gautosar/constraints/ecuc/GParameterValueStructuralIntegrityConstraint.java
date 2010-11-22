@@ -15,7 +15,6 @@
  */
 package org.artop.aal.gautosar.constraints.ecuc;
 
-
 import gautosar.gecucdescription.GContainer;
 import gautosar.gecucdescription.GParameterValue;
 import gautosar.gecucparameterdef.GChoiceContainerDef;
@@ -29,26 +28,20 @@ import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
 
 /**
- * 
  * Superclass for the constraints implementations of the structural integrity of a parameter value.
- * 
  */
 
-public class GParameterValueStructuralIntegrityConstraint extends AbstractModelConstraintWithPrecondition
-{
+public class GParameterValueStructuralIntegrityConstraint extends AbstractModelConstraintWithPreconditionAndIndex {
 	@Override
-	protected boolean isApplicable(IValidationContext ctx)
-	{
+	protected boolean isApplicable(IValidationContext ctx) {
 		boolean isApplicable = false;
 
-		if (ctx.getTarget() instanceof GParameterValue)
-		{
+		if (ctx.getTarget() instanceof GParameterValue) {
 			// required ECUC description objects
 			GParameterValue gParameterValue = (GParameterValue) ctx.getTarget();
 			GContainer parentContainer = (GContainer) gParameterValue.eContainer();
 
-			if (null != parentContainer)
-			{
+			if (null != parentContainer) {
 				// required ECUC definition objects
 				GContainerDef parentGContainerDef = parentContainer.gGetDefinition();
 				GConfigParameter gConfigReference = gParameterValue.gGetDefinition();
@@ -60,8 +53,7 @@ public class GParameterValueStructuralIntegrityConstraint extends AbstractModelC
 	}
 
 	@Override
-	public IStatus doValidate(IValidationContext ctx)
-	{
+	public IStatus doValidate(IValidationContext ctx) {
 		GParameterValue gParameterValue = (GParameterValue) ctx.getTarget();
 		GContainer parentGContainer = (GContainer) gParameterValue.eContainer();
 
@@ -69,34 +61,25 @@ public class GParameterValueStructuralIntegrityConstraint extends AbstractModelC
 
 	}
 
-	private IStatus validateStructuralIntegrity(IValidationContext ctx, GParameterValue GParameterValue, GContainer parentContainer)
-	{
+	private IStatus validateStructuralIntegrity(IValidationContext ctx, GParameterValue GParameterValue, GContainer parentContainer) {
 		final IStatus status;
 
 		GContainerDef parentGContainerDef = parentContainer.gGetDefinition();
 		GConfigParameter gConfigParameter = GParameterValue.gGetDefinition();
 
-		if (parentGContainerDef instanceof GChoiceContainerDef)
-		{
+		if (parentGContainerDef instanceof GChoiceContainerDef) {
 			status = ctx.createFailureStatus(NLS.bind(Messages.structuralIntegrity_NotAllowedInChoiceContainer, "reference values"));
-		}
-		else if (parentGContainerDef instanceof GParamConfContainerDef)
-		{
+		} else if (parentGContainerDef instanceof GParamConfContainerDef) {
 			// the parent containers definition is a GParamConfContainerDef
 			GParamConfContainerDef parentGParamConfContainerDef = (GParamConfContainerDef) parentGContainerDef;
-			if (EcucUtil.getAllParametersOf(parentGParamConfContainerDef).contains(gConfigParameter))
-			{
+			if (getEcucValidationIndex(ctx).getAllParametersOf(parentGParamConfContainerDef).contains(gConfigParameter)) {
 				status = ctx.createSuccessStatus(); // reference is valid
-			}
-			else
-			{
-				status = ctx.createFailureStatus(NLS.bind(Messages.structuralIntegrity_containmentProblem,"parameter value",gConfigParameter.gGetShortName()
-						));
+			} else {
+				status = ctx.createFailureStatus(NLS.bind(Messages.structuralIntegrity_containmentProblem, "parameter value",
+						gConfigParameter.gGetShortName()));
 			}
 
-		} 
-		else
-		{
+		} else {
 			// in the current metamodel we only find expect GParamConfContainerDef and ChoiceContainerDef
 			// The assert will warn in case of metamodel extensions
 			assert false;

@@ -33,31 +33,22 @@ import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
 
 /**
- * 
- * Superclass for the constraints implementations on the subcontainers of a
- * container.
- * 
+ * Superclass for the constraints implementations on the subcontainers of a container.
  */
-public abstract class AbstractGContainerSubContainerMultiplicityConstraint
-		extends AbstractModelConstraintWithPrecondition
-{
+public abstract class AbstractGContainerSubContainerMultiplicityConstraint extends AbstractModelConstraintWithPreconditionAndIndex {
 	@Override
-	protected boolean isApplicable(IValidationContext ctx)
-	{
+	protected boolean isApplicable(IValidationContext ctx) {
 		boolean isApplicable = false;
-		if (ctx.getTarget() instanceof GContainer)
-		{
+		if (ctx.getTarget() instanceof GContainer) {
 			GContainer gContainer = (GContainer) ctx.getTarget();
 			GContainerDef gContainerDef = gContainer.gGetDefinition();
-			isApplicable = null != gContainerDef
-					&& false == gContainerDef.eIsProxy();
+			isApplicable = null != gContainerDef && false == gContainerDef.eIsProxy();
 		}
 		return isApplicable;
 	}
 
 	@Override
-	public IStatus doValidate(IValidationContext ctx)
-	{
+	public IStatus doValidate(IValidationContext ctx) {
 		assert ctx.getTarget() instanceof GContainer;
 
 		final IStatus status;
@@ -65,41 +56,29 @@ public abstract class AbstractGContainerSubContainerMultiplicityConstraint
 		GContainer gContainer = (GContainer) ctx.getTarget();
 		GContainerDef gContainerDef = gContainer.gGetDefinition();
 
-		if (gContainerDef instanceof GChoiceContainerDef)
-		{
-			status = validateChoiceContainer(ctx, gContainer,
-					(GChoiceContainerDef) gContainerDef);
-		} else
-		{
-			status = validateParamConfContainer(ctx, gContainer,
-					(GParamConfContainerDef) gContainerDef);
+		if (gContainerDef instanceof GChoiceContainerDef) {
+			status = validateChoiceContainer(ctx, gContainer, (GChoiceContainerDef) gContainerDef);
+		} else {
+			status = validateParamConfContainer(ctx, gContainer, (GParamConfContainerDef) gContainerDef);
 		}
 
 		return status;
 	}
 
-	private IStatus validateChoiceContainer(IValidationContext ctx,
-			GContainer GContainer, GChoiceContainerDef gChoiceContainerDef)
-	{
+	private IStatus validateChoiceContainer(IValidationContext ctx, GContainer GContainer, GChoiceContainerDef gChoiceContainerDef) {
 		final IStatus status;
 
-		List<GContainer> allSubContainers = EcucUtil
-				.getAllSubContainersOf(GContainer);
+		List<GContainer> allSubContainers = getEcucValidationIndex(ctx).getAllSubContainersOf(GContainer);
 
 		List<GIdentifiable> gIdentifiables = new ArrayList<GIdentifiable>();
 		gIdentifiables.addAll(allSubContainers);
-		int numberOfUniqueShortNames = EcucUtil
-				.getNumberOfUniqueShortNames(gIdentifiables);
+		int numberOfUniqueShortNames = EcucUtil.getNumberOfUniqueShortNames(gIdentifiables);
 
 		// choice GContainer may only contain a single subcontainer
-		if (1 != numberOfUniqueShortNames)
-		{
-			status = ctx.createFailureStatus(NLS.bind(
-					Messages.multiplicity_subContainersExpected,
-					"choice container"));
+		if (1 != numberOfUniqueShortNames) {
+			status = ctx.createFailureStatus(NLS.bind(Messages.multiplicity_subContainersExpected, "choice container"));
 			ctx.addResults(allSubContainers);
-		} else
-		{
+		} else {
 			status = ctx.createSuccessStatus();
 		}
 
@@ -107,78 +86,50 @@ public abstract class AbstractGContainerSubContainerMultiplicityConstraint
 	}
 
 	/**
-	 * Returns whether the <code>multipleConfigurationContainer</code> flag for
-	 * the given <code>containerDef</code> is set to true.
+	 * Returns whether the <code>multipleConfigurationContainer</code> flag for the given <code>containerDef</code> is
+	 * set to true.
 	 * 
 	 * @param containerDef
 	 * @return
 	 */
-	protected abstract boolean isMultipleConfigurationContainer(
-			GParamConfContainerDef containerDef);
+	protected abstract boolean isMultipleConfigurationContainer(GParamConfContainerDef containerDef);
 
 	/**
-	 * Validates that the number of subcontainers of the given
-	 * <code>gContainer</code> is >= <code>lowerMultiplicity</code> and <=
-	 * <code>upperMultiplicity</code>. If one subcontainer has the
-	 * <code>multipleConfigurationContainer</code> set to true, then the
-	 * <code>upperMultiplicity</code> is considered <code>*</code>.
+	 * Validates that the number of subcontainers of the given <code>gContainer</code> is >=
+	 * <code>lowerMultiplicity</code> and <= <code>upperMultiplicity</code>. If one subcontainer has the
+	 * <code>multipleConfigurationContainer</code> set to true, then the <code>upperMultiplicity</code> is considered
+	 * <code>*</code>.
 	 * 
 	 * @param ctx
 	 * @param gContainer
 	 * @param gParamConfContainerDef
 	 * @return
 	 */
-	private IStatus validateParamConfContainer(IValidationContext ctx,
-			GContainer gContainer, GParamConfContainerDef gParamConfContainerDef)
-	{
-		MultiStatus multiStatus = new MultiStatus(Activator.PLUGIN_ID, 0, this
-				.getClass().getName(), null);
+	private IStatus validateParamConfContainer(IValidationContext ctx, GContainer gContainer, GParamConfContainerDef gParamConfContainerDef) {
+		MultiStatus multiStatus = new MultiStatus(Activator.PLUGIN_ID, 0, this.getClass().getName(), null);
 
-		List<GContainer> allSubGContainers = EcucUtil
-				.getAllSubContainersOf(gContainer);
-		List<GContainerDef> subGContainerDefs = gParamConfContainerDef
-				.gGetSubContainers();
-		for (GContainerDef currentSubGContainerDef : subGContainerDefs)
-		{
-			int numberOfSubContainers = EcucUtil
-					.getNumberOfUniqueContainersByDefinition(allSubGContainers,
-							currentSubGContainerDef);
-			if (!EcucUtil.isValidLowerMultiplicity(numberOfSubContainers,
-					currentSubGContainerDef))
-			{
-				multiStatus
-						.add(ctx.createFailureStatus(NLS
-								.bind(Messages.multiplicity_minElementsExpected,
-										new Object[]
-										{
-												EcucUtil.getLowerMultiplicity(currentSubGContainerDef),
-												"subcontainers",
-												AutosarURIFactory
-														.getAbsoluteQualifiedName(currentSubGContainerDef),
-												numberOfSubContainers })));
+		List<GContainer> allSubGContainers = getEcucValidationIndex(ctx).getAllSubContainersOf(gContainer);
+		List<GContainerDef> subGContainerDefs = gParamConfContainerDef.gGetSubContainers();
+		for (GContainerDef currentSubGContainerDef : subGContainerDefs) {
+			int numberOfSubContainers = EcucUtil.getNumberOfUniqueContainersByDefinition(allSubGContainers, currentSubGContainerDef);
+			if (!EcucUtil.isValidLowerMultiplicity(numberOfSubContainers, currentSubGContainerDef)) {
+				multiStatus.add(ctx.createFailureStatus(NLS.bind(
+						Messages.multiplicity_minElementsExpected,
+						new Object[] { EcucUtil.getLowerMultiplicity(currentSubGContainerDef), "subcontainers",
+								AutosarURIFactory.getAbsoluteQualifiedName(currentSubGContainerDef), numberOfSubContainers })));
 			}
 
-			if (currentSubGContainerDef instanceof GParamConfContainerDef)
-			{
-				if (isMultipleConfigurationContainer((GParamConfContainerDef) currentSubGContainerDef))
-				{
+			if (currentSubGContainerDef instanceof GParamConfContainerDef) {
+				if (isMultipleConfigurationContainer((GParamConfContainerDef) currentSubGContainerDef)) {
 					return multiStatus;
 				}
 			}
-			
-			if (!EcucUtil.isValidUpperMultiplicity(
-					numberOfSubContainers, currentSubGContainerDef))
-			{
-				multiStatus
-						.add(ctx.createFailureStatus(NLS
-								.bind(Messages.multiplicity_maxElementsExpected,
-										new Object[]
-										{
-												EcucUtil.getUpperMultiplicity(currentSubGContainerDef),
-												"subcontainers",
-												AutosarURIFactory
-														.getAbsoluteQualifiedName(currentSubGContainerDef),
-												numberOfSubContainers })));
+
+			if (!EcucUtil.isValidUpperMultiplicity(numberOfSubContainers, currentSubGContainerDef)) {
+				multiStatus.add(ctx.createFailureStatus(NLS.bind(
+						Messages.multiplicity_maxElementsExpected,
+						new Object[] { EcucUtil.getUpperMultiplicity(currentSubGContainerDef), "subcontainers",
+								AutosarURIFactory.getAbsoluteQualifiedName(currentSubGContainerDef), numberOfSubContainers })));
 			}
 		}
 		return multiStatus;

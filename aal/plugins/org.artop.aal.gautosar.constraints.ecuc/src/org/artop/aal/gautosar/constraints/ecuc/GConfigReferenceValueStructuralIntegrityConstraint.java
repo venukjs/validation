@@ -28,101 +28,69 @@ import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
 
 /**
- * 
  * Superclass for the constraints implementations on config reference def.
- * 
  */
-public class GConfigReferenceValueStructuralIntegrityConstraint extends
-		AbstractModelConstraintWithPrecondition
-{
+public class GConfigReferenceValueStructuralIntegrityConstraint extends AbstractModelConstraintWithPreconditionAndIndex {
 	@Override
-	protected boolean isApplicable(IValidationContext ctx)
-	{
+	protected boolean isApplicable(IValidationContext ctx) {
 		boolean isApplicable = false;
 
-		if (ctx.getTarget() instanceof GConfigReferenceValue)
-		{
+		if (ctx.getTarget() instanceof GConfigReferenceValue) {
 			// required ECUC description objects
-			GConfigReferenceValue gConfigReferenceValue = (GConfigReferenceValue) ctx
-					.getTarget();
-			GContainer parentGContainer = (GContainer) gConfigReferenceValue
-					.eContainer();
+			GConfigReferenceValue gConfigReferenceValue = (GConfigReferenceValue) ctx.getTarget();
+			GContainer parentGContainer = (GContainer) gConfigReferenceValue.eContainer();
 
-			if (null != parentGContainer)
-			{
+			if (null != parentGContainer) {
 				// required ECUC definition objects
-				GContainerDef parentGContainerDef = parentGContainer
-						.gGetDefinition();
-				GConfigReference gConfigReference = gConfigReferenceValue
-						.gGetDefinition();
-				isApplicable = null != parentGContainerDef
-						&& false == parentGContainerDef.eIsProxy();
-				isApplicable &= null != gConfigReference
-						&& false == gConfigReference.eIsProxy();
+				GContainerDef parentGContainerDef = parentGContainer.gGetDefinition();
+				GConfigReference gConfigReference = gConfigReferenceValue.gGetDefinition();
+				isApplicable = null != parentGContainerDef && false == parentGContainerDef.eIsProxy();
+				isApplicable &= null != gConfigReference && false == gConfigReference.eIsProxy();
 			}
 		}
 		return isApplicable;
 	}
 
 	@Override
-	public IStatus doValidate(IValidationContext ctx)
-	{
+	public IStatus doValidate(IValidationContext ctx) {
 
-		GConfigReferenceValue gConfigReferenceValue = (GConfigReferenceValue) ctx
-				.getTarget();
-		GContainer parentContainer = (GContainer) gConfigReferenceValue
-				.eContainer();
+		GConfigReferenceValue gConfigReferenceValue = (GConfigReferenceValue) ctx.getTarget();
+		GContainer parentContainer = (GContainer) gConfigReferenceValue.eContainer();
 
-		return validateStructuralIntegrity(ctx, gConfigReferenceValue,
-				parentContainer);
+		return validateStructuralIntegrity(ctx, gConfigReferenceValue, parentContainer);
 
 	}
 
 	/**
-	 * Performs the validation on the structural integrity of the given
-	 * <code>gConfigReferenceValue</code>.
+	 * Performs the validation on the structural integrity of the given <code>gConfigReferenceValue</code>.
 	 * 
 	 * @param ctx
-	 *            the validation context that provides access to the current
-	 *            constraint evaluation environment
+	 *            the validation context that provides access to the current constraint evaluation environment
 	 * @param gConfigReferenceValue
 	 *            the element on which the validation is performed.
 	 * @param parentContainer
 	 *            the parent container
 	 * @return a status object describing the result of the validation.
 	 */
-	private IStatus validateStructuralIntegrity(IValidationContext ctx,
-			GConfigReferenceValue gConfigReferenceValue,
-			GContainer parentContainer)
-	{
+	private IStatus validateStructuralIntegrity(IValidationContext ctx, GConfigReferenceValue gConfigReferenceValue, GContainer parentContainer) {
 		final IStatus status;
 
 		GContainerDef parentGContainerDef = parentContainer.gGetDefinition();
-		GConfigReference gConfigReference = gConfigReferenceValue
-				.gGetDefinition();
+		GConfigReference gConfigReference = gConfigReferenceValue.gGetDefinition();
 
-		if (parentGContainerDef instanceof GChoiceContainerDef)
-		{
-			status = ctx.createFailureStatus(NLS.bind(
-					Messages.structuralIntegrity_NotAllowedInChoiceContainer,
-					"reference value"));
-		} else if (parentGContainerDef instanceof GParamConfContainerDef)
-		{
+		if (parentGContainerDef instanceof GChoiceContainerDef) {
+			status = ctx.createFailureStatus(NLS.bind(Messages.structuralIntegrity_NotAllowedInChoiceContainer, "reference value"));
+		} else if (parentGContainerDef instanceof GParamConfContainerDef) {
 			// the parent containers definition is a GParamConfContainerDef
 			GParamConfContainerDef parentGParamConfContainerDef = (GParamConfContainerDef) parentGContainerDef;
-			if (EcucUtil.getAllReferencesOf(parentGParamConfContainerDef)
-					.contains(gConfigReference))
-			{
+			if (getEcucValidationIndex(ctx).getAllReferencesOf(parentGParamConfContainerDef).contains(gConfigReference)) {
 				status = ctx.createSuccessStatus(); // reference is valid
-			} else
-			{
-				status = ctx.createFailureStatus(NLS.bind(
-						Messages.structuralIntegrity_containmentProblem,
-						"reference value", gConfigReference.gGetShortName()));
+			} else {
+				status = ctx.createFailureStatus(NLS.bind(Messages.structuralIntegrity_containmentProblem, "reference value",
+						gConfigReference.gGetShortName()));
 			}
 
-		} else
-		{
+		} else {
 			// in the current metamodel we only find expect
 			// GParamConfContainerDef and GChoiceContainerDef
 			// The assert will warn in case of metamodel extensions
