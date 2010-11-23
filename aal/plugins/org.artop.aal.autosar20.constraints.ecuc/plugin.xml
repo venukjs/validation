@@ -286,7 +286,7 @@
             </constraint>
          </constraints>
          <constraints
-               categories="org.artop.aal.autosar20.constraints.ecuc/StructuralIntegrity">
+               categories="org.artop.aal.autosar20.constraints.ecuc/Multiplicity">
             <constraint
                   class="org.artop.aal.autosar20.constraints.ecuc.ModuleConfigurationSubContainerMultiplicityConstraint"
                   id="org.artop.aal.autosar20.constraints.ecuc.ModuleConfigurationSubContainerMultiplicityConstraint_20"

@@ -301,14 +301,8 @@
                      class="ChoiceReferenceParamDef">
                </target>
             </constraint>
-            
-         
-            
-            
-            
-            
       </constraints>
-      <constraints categories="org.artop.aal.autosar3x.constraints.ecuc/StructuralIntegrity">
+      <constraints categories="org.artop.aal.autosar3x.constraints.ecuc/Multiplicity">
          <constraint
                class="org.artop.aal.autosar3x.constraints.ecuc.ModuleConfigurationSubContainerMultiplicityConstraint"
                id="org.artop.aal.autosar3x.constraints.ecuc.ModuleConfigurationSubContainerMultiplicityConstraint_3x"
