@@ -57,7 +57,7 @@ public class BasicValidateSelectedCategoriesAction extends BaseSelectionListener
 	@Override
 	public void run() {
 		// Retrieves categories of constraints to validate (user's selection)
-		final List<IConstraintFilter> selectedCategories = getSelectedCatories();
+		final List<IConstraintFilter> selectedCategories = getSelectedCategories();
 
 		if (selectedCategories == null || selectedCategories.isEmpty()) {
 			return;
@@ -82,7 +82,7 @@ public class BasicValidateSelectedCategoriesAction extends BaseSelectionListener
 
 	// TODO Enhance dialog so that not only top level categories would be displayed.
 	// TODO Externalize dialog in a dedicated class that could be accessible at the Sphinx level.
-	private List<IConstraintFilter> getSelectedCatories() {
+	private List<IConstraintFilter> getSelectedCategories() {
 		// The active shell.
 		Shell shell = ExtendedPlatformUI.getActiveShell();
 
