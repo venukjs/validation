@@ -39,16 +39,23 @@ public class ContainerConstraintTests extends AbstractAutosar3xValidationTestCas
 	}
 
 	// consistency
-	public void testInvalidContainer_noDefInParentDef() throws Exception {
-		EObject invalidModel = loadInputFile("ecuc/Container/containerDefinitionNotInParentDef.arxml");
+
+	public void testInvalidContainer_containerNotAllowedInParamConfContainer() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/Container/containerNotAllowedInParamConfContainer.arxml");
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
-				NLS.bind(Messages.structuralIntegrity_containmentProblem, "container", "ChoiceContainerDef"));
+				NLS.bind(Messages.structuralIntegrity_containmentProblem, "container", "Alternative1"));
 	}
 
-	public void testInvalidContainer_containerDefinitionNotInParentDef() throws Exception {
-		EObject invalidModel = loadInputFile("ecuc/Container/defNotFoundInParent.arxml");
+	public void testInvalidContainer_containerNotAllowedInChoiceContainer() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/Container/containerNotAllowedInChoiceContainer.arxml");
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
-				NLS.bind(Messages.structuralIntegrity_containmentProblem, "container", "ParamConfContainerDef"));
+				NLS.bind(Messages.structuralIntegrity_containmentProblem, "container", "ParamConfContainerDef1"));
+	}
+
+	public void testInvalidContainer_containerNotAllowedInModuleConfiguration() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/Container/containerNotAllowedInModuleConfiguration.arxml");
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(Messages.structuralIntegrity_containmentProblem, "container", "ParamConfContainerDef1"));
 	}
 
 	// correctness
