@@ -13,7 +13,7 @@
  * 
  * </copyright>
  */
-package org.artop.aal.gautosar.constraints.ecuc;
+package org.artop.aal.gautosar.constraints.ecuc.util;
 
 import gautosar.gecucdescription.GConfigReferenceValue;
 import gautosar.gecucdescription.GContainer;
@@ -29,7 +29,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 
 public class EcucUtil {
 
