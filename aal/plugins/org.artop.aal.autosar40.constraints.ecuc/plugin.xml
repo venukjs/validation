@@ -24,10 +24,10 @@
          Constraints for validating ECUC descriptions.
       </category>
       <category
-            id="org.artop.aal.autosar40.constraints.ecuc/StructuralIntegrity"
+            id="org.artop.aal.autosar40.constraints.ecuc/Multiplicity"
             mandatory="false"
-            name="Structural Integrity">
-         Constraints for validating the structural integrity of ECUC descriptions.
+            name="Multiplicity">
+         Constraints for validating the multiplicity of elements in ECUC descriptions.
       </category>
       <category
             id="org.artop.aal.autosar40.constraints.ecuc/Basic"
