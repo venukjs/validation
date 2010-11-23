@@ -21,8 +21,10 @@ import java.util.List;
 
 import org.artop.aal.autosar3x.constraints.ecuc.internal.Messages;
 import org.artop.aal.gautosar.constraints.ecuc.AbstractGModuleConfigurationBasicConstraint;
+import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
+import org.eclipse.osgi.util.NLS;
 
 import autosar3x.ecucdescription.ModuleConfiguration;
 import autosar3x.ecucparameterdef.ConfigurationVariant;
@@ -46,7 +48,8 @@ public class ModuleConfigurationBasicConstraint extends AbstractGModuleConfigura
 			if (supportedConfigVariants.contains(configVariant)) {
 				status = ctx.createSuccessStatus();
 			} else {
-				status = ctx.createFailureStatus(Messages.moduleConfig_ImplConfigVariantNotSupported);
+				status = ctx.createFailureStatus(NLS.bind(Messages.moduleConfig_ImplConfigVariantNotSupported, configVariant.getName(),
+						EcucUtil.enumeratorToString(supportedConfigVariants)));
 			}
 		}
 		return status;
