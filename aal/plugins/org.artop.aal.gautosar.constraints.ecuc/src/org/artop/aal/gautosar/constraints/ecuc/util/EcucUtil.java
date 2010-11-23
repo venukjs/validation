@@ -25,12 +25,17 @@ import gautosar.gecucparameterdef.GParamConfMultiplicity;
 import gautosar.ggenericstructure.ginfrastructure.GIdentifiable;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.Enumerator;
 
 public class EcucUtil {
+	static final String MULTIPLICITY_ONE = "1"; //$NON-NLS-1$
+	static final String MULTIPLICITY_INFINITY = "*"; //$NON-NLS-1$
 
 	public static int getNumberOfUniqueShortNames(List<GIdentifiable> identifiables) {
 		Set<String> shortNames = new HashSet<String>();
@@ -110,7 +115,7 @@ public class EcucUtil {
 		if (gParamConfMultiplicity.gGetLowerMultiplicityAsString() != null) {
 			lowerMultiplicity = gParamConfMultiplicity.gGetLowerMultiplicityAsString();
 		} else {
-			lowerMultiplicity = "1";
+			lowerMultiplicity = MULTIPLICITY_ONE;
 		}
 		return lowerMultiplicity;
 	}
@@ -120,14 +125,14 @@ public class EcucUtil {
 		if (gParamConfMultiplicity.gGetUpperMultiplicityAsString() != null) {
 			upperMultiplicity = gParamConfMultiplicity.gGetUpperMultiplicityAsString();
 		} else {
-			upperMultiplicity = "1";
+			upperMultiplicity = MULTIPLICITY_ONE;
 		}
 		return upperMultiplicity;
 	}
 
 	public static boolean isValidUpperMultiplicity(int numberOfObjects, GParamConfMultiplicity gParamConfMultiplicity) {
 		final boolean isValidUpperMultiplicity;
-		if ("*".equals(gParamConfMultiplicity.gGetUpperMultiplicityAsString())) {
+		if (MULTIPLICITY_INFINITY.equals(gParamConfMultiplicity.gGetUpperMultiplicityAsString())) {
 			isValidUpperMultiplicity = true;
 		} else {
 			int upperMultiplicity = 1;
@@ -142,5 +147,22 @@ public class EcucUtil {
 			isValidUpperMultiplicity = numberOfObjects <= upperMultiplicity;
 		}
 		return isValidUpperMultiplicity;
+	}
+
+	public static String enumeratorToString(Collection<? extends Enumerator> enumInstances) {
+		Iterator<? extends Enumerator> enumInstancesIterator = enumInstances.iterator();
+		StringBuilder stringBuilder = new StringBuilder();
+
+		stringBuilder.append("{"); //$NON-NLS-1$
+		if (enumInstancesIterator.hasNext()) {
+			stringBuilder.append(enumInstancesIterator.next().getName());
+			while (enumInstancesIterator.hasNext()) {
+				stringBuilder.append(","); //$NON-NLS-1$
+				stringBuilder.append(enumInstancesIterator.next().getName());
+			}
+		}
+		stringBuilder.append("}"); //$NON-NLS-1$
+
+		return stringBuilder.toString();
 	}
 }
