@@ -234,24 +234,6 @@
                </target>
             </constraint>
             <constraint
-                  class="org.artop.aal.gautosar.constraints.ecuc.GContainerStructuralIntegrityConstraint"
-                  id="org.artop.aal.autosar40.constraints.ecuc.ContainerStructuralIntegrityConstraint_40"
-                  lang="JAVA"
-                  mode="Batch"
-                  name="ContainerStructuralIntegrityConstraint"
-                  severity="ERROR"
-                  statusCode="0020003">
-               <message>
-                  {0}
-               </message>
-               <description>
-                  Validates the structural integrity of a Container i.e. Does the ECUC Parameter Definition allows the container in the parent Container or parent MouleConfiguration?
-               </description>
-               <target
-                     class="EcucContainerValue">
-               </target>
-            </constraint>
-            <constraint
                   class="org.artop.aal.autosar40.constraints.ecuc.ContainerSubContainerMultiplicityConstraint"
                   id="org.artop.aal.autosar40.constraints.ecuc.ContainerSubContainerMultiplicityConstraint_40"
                   lang="JAVA"
@@ -303,42 +285,6 @@
                </description>
                <target
                      class="EcucContainerValue">
-               </target>
-            </constraint>
-            <constraint
-                  class="org.artop.aal.gautosar.constraints.ecuc.GParameterValueStructuralIntegrityConstraint"
-                  id="org.artop.aal.autosar40.constraints.ecuc.ParameterValueStructuralIntegrityConstraint_40"
-                  lang="JAVA"
-                  mode="Batch"
-                  name="ParameterValueStructuralIntegrityConstraint"
-                  severity="ERROR"
-                  statusCode="0020002">
-               <message>
-                  {0}
-               </message>
-               <description>
-                  Validates the structural integrity of a ParameterValue. i.e. Does the ECUC Parameter Definition allows the parameter in the parent Container?
-               </description>
-               <target
-                     class="EcucParameterValue">
-               </target>
-            </constraint>
-            <constraint
-                  class="org.artop.aal.gautosar.constraints.ecuc.GConfigReferenceValueStructuralIntegrityConstraint"
-                  id="org.artop.aal.autosar40.constraints.ecuc.ConfigReferenceValueStructuralIntegrityConstraint_40"
-                  lang="JAVA"
-                  mode="Batch"
-                  name="ConfigReferenceValueStructuralIntegrityConstraint"
-                  severity="ERROR"
-                  statusCode="0020001">
-               <message>
-                  {0}
-               </message>
-               <description>
-                  Validates the structural integrity of a ConfigReferenceValue. i.e. Does the ECUC Parameter Definition allows a the reference in the parent Container?
-               </description>
-               <target
-                     class="EcucAbstractReferenceValue">
                </target>
             </constraint>
          </constraints>

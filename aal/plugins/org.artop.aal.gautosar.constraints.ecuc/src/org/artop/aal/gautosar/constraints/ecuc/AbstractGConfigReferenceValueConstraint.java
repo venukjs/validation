@@ -71,8 +71,7 @@ public abstract class AbstractGConfigReferenceValueConstraint extends AbstractMo
 		EObject parent = gConfigReferenceValue.eContainer();
 
 		if (null == parent) {
-			// TODO:
-			status = ctx.createFailureStatus(Messages.parameterValue_noParent);
+			status = ctx.createFailureStatus(Messages.generic_noParent);
 		} else {
 			GConfigReference configReference = gConfigReferenceValue.gGetDefinition();
 			if (parent instanceof GContainer) {

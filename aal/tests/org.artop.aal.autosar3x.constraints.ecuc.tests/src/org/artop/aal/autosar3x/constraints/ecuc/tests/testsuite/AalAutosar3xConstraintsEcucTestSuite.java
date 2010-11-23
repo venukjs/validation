@@ -15,13 +15,14 @@
  */
 package org.artop.aal.autosar3x.constraints.ecuc.tests.testsuite;
 
+import junit.framework.Test;
+import junit.framework.TestSuite;
+
 import org.artop.aal.autosar3x.constraints.ecuc.tests.BooleanValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ChoiceReferenceParamDefBasicConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.ConfigReferenceValueStructuralIntegrityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerParameterValueMultiplicityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerReferenceValueMultiplicityConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerStructuralIntegrityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerSubContainerMultiplicityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.EnumerationValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.FloatValueConstraintTests;
@@ -32,16 +33,11 @@ import org.artop.aal.autosar3x.constraints.ecuc.tests.LinkerSymbolValueConstrain
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ModuleConfigurationConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ModuleConfigurationSubContainerMultiplicityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ParamConfMultiplicityBasicConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.ParameterValueStructuralIntegrityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ReferenceParamDefBasicConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ReferenceValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.StringValueConstraintTests;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
-
-public class AalAutosar3xConstraintsEcucTestSuite
-{
+public class AalAutosar3xConstraintsEcucTestSuite {
 	/**
 	 * Suite.
 	 * 
@@ -67,9 +63,6 @@ public class AalAutosar3xConstraintsEcucTestSuite
 		suite.addTestSuite(ReferenceParamDefBasicConstraintTests.class);
 
 		// structural integrity
-		suite.addTestSuite(ConfigReferenceValueStructuralIntegrityConstraintTests.class);
-		suite.addTestSuite(ParameterValueStructuralIntegrityConstraintTests.class);
-		suite.addTestSuite(ContainerStructuralIntegrityConstraintTests.class);
 		suite.addTestSuite(ContainerSubContainerMultiplicityConstraintTests.class);
 		suite.addTestSuite(ContainerParameterValueMultiplicityConstraintTests.class);
 		suite.addTestSuite(ContainerReferenceValueMultiplicityConstraintTests.class);

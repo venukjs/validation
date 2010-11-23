@@ -73,7 +73,7 @@ public abstract class AbstractGParameterValueConstraint extends AbstractModelCon
 		EObject parent = gParameterValue.eContainer();
 
 		if (null == parent) {
-			status = ctx.createFailureStatus(Messages.parameterValue_noParent);
+			status = ctx.createFailureStatus(Messages.generic_noParent);
 		} else {
 			GConfigParameter configParameter = gParameterValue.gGetDefinition();
 			if (parent instanceof GContainer) {

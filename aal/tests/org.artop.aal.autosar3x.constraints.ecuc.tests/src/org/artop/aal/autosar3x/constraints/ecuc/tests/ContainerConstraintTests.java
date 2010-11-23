@@ -19,6 +19,7 @@ import org.artop.aal.gautosar.constraints.ecuc.tests.util.ValidationTestUtil;
 import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.osgi.util.NLS;
 
 @SuppressWarnings("nls")
 public class ContainerConstraintTests extends AbstractAutosar3xValidationTestCase {
@@ -38,6 +39,17 @@ public class ContainerConstraintTests extends AbstractAutosar3xValidationTestCas
 	}
 
 	// consistency
+	public void testInvalidContainer_noDefInParentDef() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/Container/containerDefinitionNotInParentDef.arxml");
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(Messages.structuralIntegrity_containmentProblem, "container", "ChoiceContainerDef"));
+	}
+
+	public void testInvalidContainer_containerDefinitionNotInParentDef() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/Container/defNotFoundInParent.arxml");
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(Messages.structuralIntegrity_containmentProblem, "container", "ParamConfContainerDef"));
+	}
 
 	// correctness
 
