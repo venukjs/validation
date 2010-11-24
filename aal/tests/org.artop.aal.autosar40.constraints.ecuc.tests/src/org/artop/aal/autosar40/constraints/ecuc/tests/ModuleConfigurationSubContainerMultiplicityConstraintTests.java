@@ -20,8 +20,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
 
-public class ModuleConfigurationSubContainerMultiplicityConstraintTests extends AbstractAutosar40ValidationTestCase
-{
+@SuppressWarnings("nls")
+public class ModuleConfigurationSubContainerMultiplicityConstraintTests extends AbstractAutosar40ValidationTestCase {
 
 	public ModuleConfigurationSubContainerMultiplicityConstraintTests() {
 		super();
@@ -34,7 +34,8 @@ public class ModuleConfigurationSubContainerMultiplicityConstraintTests extends 
 
 	public void testInvalidModuleConfiguration_upperMultiplicityOfSubContainerViolated() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ModuleConfiguration/upperMultiplicityOfSubContainerViolated.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.multiplicity_maxElementsExpected, new String[]{"1","subcontainers","/AUTOSAR/Os/OsAlarm","2"}));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(Messages.multiplicity_maxElementsExpected, new String[] { "1", "subcontainers", "/AUTOSAR/Os/OsAlarm", "2" }));
 	}
 
 	// valid

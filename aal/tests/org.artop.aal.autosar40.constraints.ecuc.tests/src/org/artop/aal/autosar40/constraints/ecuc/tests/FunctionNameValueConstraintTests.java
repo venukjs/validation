@@ -19,8 +19,8 @@ import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
-public class FunctionNameValueConstraintTests extends AbstractAutosar40ValidationTestCase
-{
+@SuppressWarnings("nls")
+public class FunctionNameValueConstraintTests extends AbstractAutosar40ValidationTestCase {
 
 	public FunctionNameValueConstraintTests() {
 		super();
@@ -34,18 +34,18 @@ public class FunctionNameValueConstraintTests extends AbstractAutosar40Validatio
 	// completeness
 	public void testInvalidFunctionNameValue_noValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/FunctionNameValue/emptyValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.generic_valueNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_valueNotSet);
 	}
-	
+
 	public void testInvalidFunctionNameValue_valueNoIdentifier() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/FunctionNameValue/valueNoIdentifier.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.string_valueNoIdentifier);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.string_valueNoIdentifier);
 	}
 
 	// should be reported by LinkerSymbolConstraint and not reported again
 	public void testInvalidFunctionNameValue_valueTooLong() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/FunctionNameValue/valueTooLong.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.string_valueTooBig);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.string_valueTooBig);
 	}
 
 	public void testValidFunctionNameValue() throws Exception {

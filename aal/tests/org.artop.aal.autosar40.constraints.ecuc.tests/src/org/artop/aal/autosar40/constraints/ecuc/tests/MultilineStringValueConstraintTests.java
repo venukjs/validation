@@ -19,8 +19,8 @@ import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
-public class MultilineStringValueConstraintTests extends AbstractAutosar40ValidationTestCase
-{
+@SuppressWarnings("nls")
+public class MultilineStringValueConstraintTests extends AbstractAutosar40ValidationTestCase {
 	public MultilineStringValueConstraintTests() {
 		super();
 	}
@@ -33,6 +33,6 @@ public class MultilineStringValueConstraintTests extends AbstractAutosar40Valida
 	// valid
 	public void testInvalidStringValue_emptyValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/MultilineStringValue/emptyValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.generic_valueNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_valueNotSet);
 	}
 }

@@ -19,40 +19,38 @@ import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
-public class IntegerValueConstraintTests extends AbstractAutosar40ValidationTestCase
-{
+@SuppressWarnings("nls")
+public class IntegerValueConstraintTests extends AbstractAutosar40ValidationTestCase {
 
 	public IntegerValueConstraintTests() {
 		super();
 	}
-	
+
 	@Override
-	protected String getConstraintID()
-	{
+	protected String getConstraintID() {
 		return "org.artop.aal.autosar40.constraints.ecuc.EcucNumericalParamValueBasicConstraint_40";
 	}
-	
+
 	// test completeness
 	public void testInvalidIntegerValue_noValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/IntegerValue/noValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.generic_valueNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_valueNotSet);
 	}
 
 	// test correctness
 	public void testInvalidIntegerValue_valueLowerThanMin() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/IntegerValue/valueLowerThanMin.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.boundary_valueUnderMin);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.boundary_valueUnderMin);
 	}
 
 	public void testInvalidIntegerValue_valueBiggerThanMax() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/IntegerValue/valueBiggerThanMax.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.boundary_valueAboveMax);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.boundary_valueAboveMax);
 	}
 
 	public void testValidIntegerValue() throws Exception {
 		EObject validModel = loadInputFile("ecuc/IntegerValue/valid.arxml");
 		ValidationTestUtil.validateModel(validModel, validator, IStatus.OK);
 	}
-	
 
 }

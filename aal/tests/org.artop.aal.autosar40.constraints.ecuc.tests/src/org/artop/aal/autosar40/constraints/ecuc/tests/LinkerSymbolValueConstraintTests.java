@@ -19,8 +19,8 @@ import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
-public class LinkerSymbolValueConstraintTests extends AbstractAutosar40ValidationTestCase
-{ 
+@SuppressWarnings("nls")
+public class LinkerSymbolValueConstraintTests extends AbstractAutosar40ValidationTestCase {
 	public LinkerSymbolValueConstraintTests() {
 		super();
 	}
@@ -39,17 +39,17 @@ public class LinkerSymbolValueConstraintTests extends AbstractAutosar40Validatio
 	// correctness
 	public void testInvalidLinkerSymbolValue_emptyValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/LinkerSymbolValue/emptyValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.generic_valueNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_valueNotSet);
 	}
 
 	public void testInvalidLinkerSymbolValue_valueNoIdentifier() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/LinkerSymbolValue/valueNoIdentifier.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.string_valueNoIdentifier);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.string_valueNoIdentifier);
 	}
 
 	public void testInvalidLinkerSymbolValue_valueTooLong() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/LinkerSymbolValue/valueTooLong.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.string_valueTooBig);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.string_valueTooBig);
 	}
 
 	public void testValidLinkerSymbolValue() throws Exception {
