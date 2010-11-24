@@ -1,31 +1,23 @@
 /**
  * <copyright>
  * 
- * Copyright (c) OpenSynergy, Continental Engineering Services and others.
+ * Copyright (c) OpenSynergy and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
  * 
  * Contributors: 
- *     OpenSynergy - Initial API and implementation for AUTOSAR 3.x
- *     Continental Engineering Services - migration to gautosar
+ *     OpenSynergy - Initial API and implementation
  * 
  * </copyright>
  */
-
 package org.artop.aal.gautosar.constraints.ecuc.internal.index;
 
 import gautosar.gecucdescription.GConfigReferenceValue;
 import gautosar.gecucdescription.GContainer;
 import gautosar.gecucdescription.GModuleConfiguration;
 import gautosar.gecucdescription.GParameterValue;
-import gautosar.gecucparameterdef.GChoiceContainerDef;
-import gautosar.gecucparameterdef.GConfigParameter;
-import gautosar.gecucparameterdef.GConfigReference;
-import gautosar.gecucparameterdef.GContainerDef;
-import gautosar.gecucparameterdef.GModuleDef;
-import gautosar.gecucparameterdef.GParamConfContainerDef;
 import gautosar.ggenericstructure.ginfrastructure.GARObject;
 
 import java.util.ArrayList;
@@ -33,6 +25,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * An index that allows fast access to structural information of ECUC descriptions that are split up over several
+ * resources.
+ */
 public class EcucValidationIndex {
 
 	Map<Class<?>, EquivalentInstancesIndex<?>> classToEquivalentInstancesCache = new HashMap<Class<?>, EquivalentInstancesIndex<?>>();
@@ -41,6 +37,14 @@ public class EcucValidationIndex {
 		super();
 	}
 
+	/**
+	 * Gets all instances within the full model that have the same short name path and type.
+	 * 
+	 * @param <T>
+	 * @param instance
+	 * @param type
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public <T> List<T> getAllEquivalentInstancesOf(GARObject instance, Class<T> type) {
 
@@ -53,6 +57,14 @@ public class EcucValidationIndex {
 		return cache.getEquivalentInstances(instance);
 	}
 
+	/**
+	 * Finds all GModuleConfigurations in the model that have the same short name path as the given gModuleConfiguration
+	 * and collects all directly nested GContainers.
+	 * 
+	 * @param gModuleConfiguration
+	 * @return list of directly nested GContainers of all GModuleConfigurations in the model that have the same short
+	 *         name path as the give gModuleConfiguration
+	 */
 	public List<GContainer> getAllContainersOf(GModuleConfiguration gModuleConfiguration) {
 		List<GContainer> allContainers = new ArrayList<GContainer>();
 		List<GModuleConfiguration> equivalentModuleConfigurations = getAllEquivalentInstancesOf(gModuleConfiguration, GModuleConfiguration.class);
@@ -62,6 +74,14 @@ public class EcucValidationIndex {
 		return allContainers;
 	}
 
+	/**
+	 * Finds all GContainers in the model that have the same short name path as the given gContainer and collects all
+	 * directly nested GParameterValues.
+	 * 
+	 * @param gContainer
+	 * @return list of directly nested GParameterValues of all GContainers in the model that have the same short name
+	 *         path as the give gContainer
+	 */
 	public List<GParameterValue> getAllParameterValuesOf(GContainer gContainer) {
 		List<GParameterValue> allParameterValues = new ArrayList<GParameterValue>();
 		List<GContainer> equivalentContainers = getAllEquivalentInstancesOf(gContainer, GContainer.class);
@@ -71,6 +91,14 @@ public class EcucValidationIndex {
 		return allParameterValues;
 	}
 
+	/**
+	 * Finds all GContainers in the model that have the same short name path as the given gContainer and collects all
+	 * directly nested GConfigReferenceValues.
+	 * 
+	 * @param gContainer
+	 * @return list of directly nested GConfigReferenceValues of all GContainers in the model that have the same short
+	 *         name path as the give gContainer
+	 */
 	public List<GConfigReferenceValue> getAllReferenceValuesOf(GContainer gContainer) {
 		List<GConfigReferenceValue> allReferenceValues = new ArrayList<GConfigReferenceValue>();
 		List<GContainer> equivalentContainers = getAllEquivalentInstancesOf(gContainer, GContainer.class);
@@ -80,15 +108,14 @@ public class EcucValidationIndex {
 		return allReferenceValues;
 	}
 
-	public List<GContainerDef> getAllContainersOf(GModuleDef gModuleDef) {
-		List<GContainerDef> allContainerDefs = new ArrayList<GContainerDef>();
-		List<GModuleDef> equivalentModuleDefs = getAllEquivalentInstancesOf(gModuleDef, GModuleDef.class);
-		for (GModuleDef equivalentModuleDef : equivalentModuleDefs) {
-			allContainerDefs.addAll(equivalentModuleDef.gGetContainers());
-		}
-		return allContainerDefs;
-	}
-
+	/**
+	 * Finds all GContainers in the model that have the same short name path as the given gContainer and collects all
+	 * directly nested GContainers.
+	 * 
+	 * @param gContainer
+	 * @return list of directly nested GContainers of all GContainers in the model that have the same short name path as
+	 *         the give gContainer
+	 */
 	public List<GContainer> getAllSubContainersOf(GContainer gContainer) {
 		List<GContainer> allContainers = new ArrayList<GContainer>();
 		List<GContainer> equivalentContainers = getAllEquivalentInstancesOf(gContainer, GContainer.class);
@@ -96,42 +123,6 @@ public class EcucValidationIndex {
 			allContainers.addAll(equivalentContainer.gGetSubContainers());
 		}
 		return allContainers;
-	}
-
-	public List<GContainerDef> getAllSubContainersOf(GParamConfContainerDef gContainerDef) {
-		List<GContainerDef> allContainerDefs = new ArrayList<GContainerDef>();
-		List<GParamConfContainerDef> equivalentContainerDefs = getAllEquivalentInstancesOf(gContainerDef, GParamConfContainerDef.class);
-		for (GParamConfContainerDef equivalentContainerDef : equivalentContainerDefs) {
-			allContainerDefs.addAll(equivalentContainerDef.gGetSubContainers());
-		}
-		return allContainerDefs;
-	}
-
-	public List<GContainerDef> getAllChoicesOf(GChoiceContainerDef gContainerDef) {
-		List<GContainerDef> allContainerDefs = new ArrayList<GContainerDef>();
-		List<GChoiceContainerDef> equivalentContainerDefs = getAllEquivalentInstancesOf(gContainerDef, GChoiceContainerDef.class);
-		for (GChoiceContainerDef equivalentContainerDef : equivalentContainerDefs) {
-			allContainerDefs.addAll(equivalentContainerDef.gGetChoices());
-		}
-		return allContainerDefs;
-	}
-
-	public List<GConfigReference> getAllReferencesOf(GParamConfContainerDef gContainerDef) {
-		List<GConfigReference> allConfigReferences = new ArrayList<GConfigReference>();
-		List<GParamConfContainerDef> equivalentContainerDefs = getAllEquivalentInstancesOf(gContainerDef, GParamConfContainerDef.class);
-		for (GParamConfContainerDef equivalentContainerDef : equivalentContainerDefs) {
-			allConfigReferences.addAll(equivalentContainerDef.gGetReferences());
-		}
-		return allConfigReferences;
-	}
-
-	public List<GConfigParameter> getAllParametersOf(GParamConfContainerDef gContainerDef) {
-		List<GConfigParameter> allConfigParameters = new ArrayList<GConfigParameter>();
-		List<GParamConfContainerDef> equivalentContainerDefs = getAllEquivalentInstancesOf(gContainerDef, GParamConfContainerDef.class);
-		for (GParamConfContainerDef equivalentContainerDef : equivalentContainerDefs) {
-			allConfigParameters.addAll(equivalentContainerDef.gGetParameters());
-		}
-		return allConfigParameters;
 	}
 
 }
