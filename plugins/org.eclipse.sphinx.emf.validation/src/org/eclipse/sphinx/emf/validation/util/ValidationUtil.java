@@ -1,14 +1,14 @@
 /**
  * <copyright>
  * 
- * Copyright (c) Geensys, Continental Engineering Services and others.
+ * Copyright (c) See4sys, Continental Engineering Services and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors: 
- *     Geensys - Initial API and implementation
+ *     See4sys - Initial API and implementation
  *     Continental Engineering Services - Wait for the markers to be assigned to the resources
  * 
  * </copyright>
