@@ -22,7 +22,6 @@ Export-Package: org.eclipse.sphinx.emf.validation,
  org.eclipse.sphinx.emf.validation.markers,
  org.eclipse.sphinx.emf.validation.markers.util,
  org.eclipse.sphinx.emf.validation.preferences,
- org.eclipse.sphinx.emf.validation.report,
  org.eclipse.sphinx.emf.validation.stats,
  org.eclipse.sphinx.emf.validation.util
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

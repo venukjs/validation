@@ -14,17 +14,14 @@
  */
 package org.eclipse.sphinx.emf.validation.ui.actions.providers;
 
-import org.eclipse.core.resources.IResource;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.sphinx.emf.validation.ui.IValidationMenuConstants;
 import org.eclipse.sphinx.emf.validation.ui.actions.BasicCleanProblemMarkersAction;
-import org.eclipse.sphinx.emf.validation.ui.actions.BasicGenerateValidationReportAction;
 import org.eclipse.sphinx.emf.validation.ui.actions.BasicValidateAction;
 import org.eclipse.ui.navigator.ICommonMenuConstants;
-import org.eclipse.ui.views.navigator.ResourceSelectionUtil;
 
 /**
  * A basic implementation of {@linkplain AbstractValidationActionProvider action provider} dedicated to actions that are
@@ -34,8 +31,6 @@ import org.eclipse.ui.views.navigator.ResourceSelectionUtil;
  * selected model;</li>
  * <li>a {@linkplain BasicCleanProblemMarkersAction clean problem markers action} that has the capability for cleaning
  * all the markers that may exist for the elements on the selected model;</li>
- * <li>a {@linkplain BasicGenerateValidationReportAction generate validation report action} that generates a report once
- * a validation of the selected model has been performed.</li>
  * </ul>
  * <p>
  * Actions are populated to contextual menu under item "<b>{@linkplain IValidationMenuConstants#MENU_VALIDATION_LABEL
@@ -61,11 +56,6 @@ public class BasicValidationActionProvider extends AbstractValidationActionProvi
 	 */
 	protected BasicCleanProblemMarkersAction cleanProblemMarkersAction;
 
-	/**
-	 * Action responsible for the generation of a report once batch validation performed.
-	 */
-	protected BasicGenerateValidationReportAction generateValidationReportAction;
-
 	/*
 	 * @see org.eclipse.sphinx.emf.ui.actions.providers.BasicActionProvider#doInit()
 	 */
@@ -73,7 +63,6 @@ public class BasicValidationActionProvider extends AbstractValidationActionProvi
 	public void doInit() {
 		validateAction = createValidateAction();
 		cleanProblemMarkersAction = createCleanProblemMarkersAction();
-		generateValidationReportAction = createGenerateValidationReportAction();
 	}
 
 	protected BasicValidateAction createValidateAction() {
@@ -84,14 +73,10 @@ public class BasicValidationActionProvider extends AbstractValidationActionProvi
 		return new BasicCleanProblemMarkersAction();
 	}
 
-	protected BasicGenerateValidationReportAction createGenerateValidationReportAction() {
-		return new BasicGenerateValidationReportAction();
-	}
-
 	/*
 	 * @see
-	 * org.eclipse.sphinx.emf.validation.ui.actions.providers.AbstractValidationActionProvider#addSubMenu(org.eclipse.jface
-	 * .action.IMenuManager)
+	 * org.eclipse.sphinx.emf.validation.ui.actions.providers.AbstractValidationActionProvider#addSubMenu(org.eclipse
+	 * .jface .action.IMenuManager)
 	 */
 	@Override
 	protected IMenuManager addSubMenu(IMenuManager contextMenuManager) {
@@ -124,13 +109,6 @@ public class BasicValidationActionProvider extends AbstractValidationActionProvi
 			cleanProblemMarkersAction.selectionChanged(selection);
 			cleanProblemMarkersAction.setEnabled(enabled);
 			menu.add(new ActionContributionItem(cleanProblemMarkersAction));
-		}
-
-		if (generateValidationReportAction != null) {
-			generateValidationReportAction.selectionChanged(selection);
-			generateValidationReportAction.setEnabled(enabled && selection.size() == 1
-					&& ResourceSelectionUtil.allResourcesAreOfType(selection, IResource.PROJECT | IResource.FILE));
-			menu.add(new ActionContributionItem(generateValidationReportAction));
 		}
 	}
 }
