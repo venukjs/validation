@@ -117,7 +117,7 @@ public class ValidationUtil {
 		}
 
 		URI uri_ = getURI(eObject);
-		if (uri_.segmentCount() < 1) {
+		if (uri_ == null || uri_.segmentCount() < 1) {
 			return null;
 		}
 
