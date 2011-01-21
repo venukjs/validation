@@ -17,7 +17,6 @@ package org.artop.aal.examples.autosar3x.constraints.tests.integration.constrain
 import java.util.List;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
-import org.artop.aal.examples.autosar3x.constraints.ARPackageSpecificNamingConvention3xConstraint;
 import org.artop.aal.testutils.integration.referenceworkspace.AbstractAutosarIntegrationTestCase;
 import org.artop.aal.testutils.integration.referenceworkspace.AutosarTestReferenceWorkspace;
 import org.artop.ecl.emf.util.EcorePlatformUtil;
@@ -27,7 +26,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.validation.IValidationContext;
 
 import autosar3x.ecucparameterdef.ModuleDef;
 import autosar3x.ecuresource.ECU;

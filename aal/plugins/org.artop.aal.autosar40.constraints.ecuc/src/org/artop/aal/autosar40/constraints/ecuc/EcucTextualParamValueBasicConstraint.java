@@ -34,28 +34,22 @@ import autosar40.ecucparameterdef.EcucLinkerSymbolDef;
 import autosar40.ecucparameterdef.EcucMultilineStringParamDef;
 import autosar40.ecucparameterdef.EcucStringParamDef;
 
-public class EcucTextualParamValueBasicConstraint extends
-		AbstractGParameterValueConstraint
-{
+public class EcucTextualParamValueBasicConstraint extends AbstractGParameterValueConstraint {
 
 	final String STRING_PATTERN = "[a-zA-Z]([a-zA-Z0-9_])*"; //$NON-NLS-1$
 
 	@Override
-	protected boolean isApplicable(IValidationContext ctx)
-	{
+	protected boolean isApplicable(IValidationContext ctx) {
 		return ctx.getTarget() instanceof EcucTextualParamValue;
 	}
 
 	@Override
-	protected IStatus doValidate(IValidationContext ctx)
-	{
+	protected IStatus doValidate(IValidationContext ctx) {
 		IStatus status = ctx.createSuccessStatus();
-		EcucTextualParamValue ecucTextualParamValue = (EcucTextualParamValue) ctx
-				.getTarget();
+		EcucTextualParamValue ecucTextualParamValue = (EcucTextualParamValue) ctx.getTarget();
 
 		status = validateDefinitionRef(ctx, ecucTextualParamValue);
-		if (status.isOK())
-		{
+		if (status.isOK()) {
 			status = validateValue(ctx, ecucTextualParamValue);
 		}
 
@@ -63,84 +57,59 @@ public class EcucTextualParamValueBasicConstraint extends
 	}
 
 	@Override
-	protected IStatus validateDefinitionRef(IValidationContext ctx,
-			GParameterValue gParameterValue)
-	{
+	protected IStatus validateDefinitionRef(IValidationContext ctx, GParameterValue gParameterValue) {
 		// check if definition is set and available
 		IStatus status = super.validateDefinitionRef(ctx, gParameterValue);
-		if (status.isOK())
-		{
+		if (status.isOK()) {
 			GConfigParameter definition = gParameterValue.gGetDefinition();
-			if (!(definition instanceof EcucStringParamDef)
-					&& !(definition instanceof EcucMultilineStringParamDef)
-					&& !(definition instanceof EcucLinkerSymbolDef)
-					&& !(definition instanceof EcucFunctionNameDef)
-					&& !(definition instanceof EcucEnumerationParamDef)
-					&& !(definition instanceof EcucAddInfoParamDef))
-			{
-				status = ctx
-						.createFailureStatus(NLS
-								.bind(Messages.generic_definitionNotOfType,
-										"EcucStringParamDef/EcucLinkerSymbolDef/EcucFunctionNameDef"));
+			if (!(definition instanceof EcucStringParamDef) && !(definition instanceof EcucMultilineStringParamDef)
+					&& !(definition instanceof EcucLinkerSymbolDef) && !(definition instanceof EcucFunctionNameDef)
+					&& !(definition instanceof EcucEnumerationParamDef) && !(definition instanceof EcucAddInfoParamDef)) {
+				status = ctx.createFailureStatus(NLS.bind(Messages.generic_definitionNotOfType,
+						"EcucStringParamDef/EcucLinkerSymbolDef/EcucFunctionNameDef")); //$NON-NLS-1$
 			}
 		}
 		return status;
 	}
 
-	protected IStatus validateValue(IValidationContext ctx,
-			EcucTextualParamValue ecucTextualParamValue)
-	{
+	protected IStatus validateValue(IValidationContext ctx, EcucTextualParamValue ecucTextualParamValue) {
 		String value = ecucTextualParamValue.getValue();
 		GConfigParameter definition = ecucTextualParamValue.gGetDefinition();
 
 		IStatus status = validateValueSet(ctx, ecucTextualParamValue, value);
-		if (!status.isOK())
-		{
+		if (!status.isOK()) {
 			return status;
 		}
 
-		if (value != null)
-		{
+		if (value != null) {
 
 			// check that value length is between 1 and 255 characters
-			if (0 == value.length())
-			{
-				return ctx.createFailureStatus(Messages.generic_emptyValue); //$NON-NLS-1$
+			if (0 == value.length()) {
+				return ctx.createFailureStatus(Messages.generic_emptyValue);
 			}
-			if (definition instanceof EcucLinkerSymbolDef
-					|| definition instanceof EcucFunctionNameDef)
-			{
-				if (255 < value.length())
-				{
-					return ctx.createFailureStatus(Messages.string_valueTooBig); //$NON-NLS-1$
+			if (definition instanceof EcucLinkerSymbolDef || definition instanceof EcucFunctionNameDef) {
+				if (255 < value.length()) {
+					return ctx.createFailureStatus(Messages.string_valueTooBig);
 				}
-				if (false == value.matches(STRING_PATTERN))
-				{
-					return ctx
-							.createFailureStatus(Messages.string_valueNoIdentifier);
+				if (false == value.matches(STRING_PATTERN)) {
+					return ctx.createFailureStatus(Messages.string_valueNoIdentifier);
 				}
 			}
 
-			if (definition instanceof EcucEnumerationParamDef)
-			{
+			if (definition instanceof EcucEnumerationParamDef) {
 				EcucEnumerationParamDef enumerationParamDef = (EcucEnumerationParamDef) definition;
-				List<GEnumerationLiteralDef> literalList = enumerationParamDef
-						.gGetLiterals();
+				List<GEnumerationLiteralDef> literalList = enumerationParamDef.gGetLiterals();
 				boolean valueFound = false;
 
-				for (int i = 0; i < literalList.size(); i++)
-				{
-					if (literalList.get(i).gGetShortName().equals(value))
-					{
+				for (int i = 0; i < literalList.size(); i++) {
+					if (literalList.get(i).gGetShortName().equals(value)) {
 						valueFound = true;
 						break; // leave the for loop
 					}
 				}
 
-				if (false == valueFound)
-				{
-					return ctx
-							.createFailureStatus(Messages.enumeration_valueNotInLiterals);
+				if (false == valueFound) {
+					return ctx.createFailureStatus(Messages.enumeration_valueNotInLiterals);
 				}
 			}
 		}
@@ -149,9 +118,7 @@ public class EcucTextualParamValueBasicConstraint extends
 	}
 
 	@Override
-	protected boolean isValueSet(IValidationContext ctx,
-			GParameterValue gParameterValue)
-	{
+	protected boolean isValueSet(IValidationContext ctx, GParameterValue gParameterValue) {
 		// TODO Auto-generated method stub
 		return true;
 	}
