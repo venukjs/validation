@@ -24,7 +24,7 @@ Contributors:
             id="autosar3x"
             filter="_3x"
             Name="AUTOSAR 3.x"
-            NsURI="http://autosar.org/3.1.4/autosar3x/gs/i"
+            NsURI="http://autosar.org/3.1.5/autosar3x/gs/i"
             class="autosar3x.genericstructure.infrastructure.ARObject">
       </model>
    </extension>
