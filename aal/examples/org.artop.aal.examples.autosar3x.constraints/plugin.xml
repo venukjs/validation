@@ -43,9 +43,9 @@ Contributors:
    <extension point="org.eclipse.emf.validation.constraintProviders">
       <constraintProvider cache="true">
       
-       <package namespaceUri="http://autosar.org/3.1.4/autosar3x/gs/i/a"/>
-       <package namespaceUri="http://autosar.org/3.1.4/autosar3x/gs/i/i"/>
-       <package namespaceUri="http://autosar.org/3.1.4/autosar3x/ecucpd"/>
+       <package namespaceUri="http://autosar.org/3.1.5/autosar3x/gs/i/a"/>
+       <package namespaceUri="http://autosar.org/3.1.5/autosar3x/gs/i/i"/>
+       <package namespaceUri="http://autosar.org/3.1.5/autosar3x/ecucpd"/>
  
         <constraints categories="org.artop.aal.examples.constraints.category.autosar3x/static">
             <constraint
@@ -143,9 +143,18 @@ Contributors:
       </constraintProvider>           
     </extension>
 
-    <extension point="org.eclipse.emf.validation.constraintBindings">    
-        <binding
-            context="autosar3x.ARObject.context"
-            category="org.artop.aal.examples.constraints.category.autosar3x"/>
+    <extension
+          point="org.artop.ecl.emf.validation.constraintBindings">
+       <binding>
+          <metamodels>
+             <metamodel
+                   id="org.artop.aal.autosar3x">
+             </metamodel>
+          </metamodels>
+          <constraints>
+             <category
+                   id="org.artop.aal.examples.constraints.category.autosar3x">
+             </category></constraints>
+       </binding>
     </extension>
 </plugin>
