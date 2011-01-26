@@ -114,14 +114,11 @@ public abstract class AbstractGContainerSubContainerMultiplicityConstraint exten
 		for (GContainerDef currentSubGContainerDef : subGContainerDefs) {
 			int numberOfSubContainers = EcucUtil.getNumberOfUniqueContainersByDefinition(allSubGContainers, currentSubGContainerDef);
 
-			// Ensure that LowerMultiplicity was set
-			if (currentSubGContainerDef.gGetLowerMultiplicityAsString() != null) {
-				if (!EcucUtil.isValidLowerMultiplicity(numberOfSubContainers, currentSubGContainerDef)) {
-					multiStatus.add(ctx.createFailureStatus(NLS.bind(
-							Messages.multiplicity_minElementsExpected,
-							new Object[] { EcucUtil.getLowerMultiplicity(currentSubGContainerDef), "subcontainers",
-									AutosarURIFactory.getAbsoluteQualifiedName(currentSubGContainerDef), numberOfSubContainers })));
-				}
+			if (!EcucUtil.isValidLowerMultiplicity(numberOfSubContainers, currentSubGContainerDef)) {
+				multiStatus.add(ctx.createFailureStatus(NLS.bind(
+						Messages.multiplicity_minElementsExpected,
+						new Object[] { EcucUtil.getLowerMultiplicity(currentSubGContainerDef), "subcontainers",
+								AutosarURIFactory.getAbsoluteQualifiedName(currentSubGContainerDef), numberOfSubContainers })));
 			}
 
 			if (currentSubGContainerDef instanceof GParamConfContainerDef) {
