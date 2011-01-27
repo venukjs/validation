@@ -143,18 +143,4 @@ Contributors:
       </constraintProvider>           
     </extension>
 
-    <extension
-          point="org.artop.ecl.emf.validation.constraintBindings">
-       <binding>
-          <metamodels>
-             <metamodel
-                   id="org.artop.aal.autosar3x">
-             </metamodel>
-          </metamodels>
-          <constraints>
-             <category
-                   id="org.artop.aal.examples.constraints.category.autosar3x">
-             </category></constraints>
-       </binding>
-    </extension>
 </plugin>
