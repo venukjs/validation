@@ -1,0 +1,65 @@
+/**
+ * <copyright>
+ * 
+ * Copyright (c) see4Sys and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Artop Software License 
+ * Based on Released AUTOSAR Material (ASLR) which accompanies this 
+ * distribution, and is available at http://www.artop.org/aslr.html
+ * 
+ * Contributors: 
+ *     see4Sys - Initial API and implementation
+ * 
+ * </copyright>
+ */
+package org.artop.aal.autosar21.constraints.ecuc;
+
+import org.artop.aal.gautosar.constraints.ecuc.AbstractModelConstraintWithPrecondition;
+import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
+import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.validation.IValidationContext;
+import org.eclipse.osgi.util.NLS;
+
+import autosar21.ecucparameterdef.ConfigParameter;
+import autosar21.ecucparameterdef.ConfigurationClass;
+import autosar21.ecucparameterdef.ModuleDef;
+
+public class ConfigParameterLinkTimeConstraint extends AbstractModelConstraintWithPrecondition {
+
+	@Override
+	protected boolean isApplicable(IValidationContext ctx) {
+		return ctx.getTarget() instanceof ConfigParameter;
+	}
+
+	@Override
+	protected IStatus doValidate(IValidationContext ctx) {
+		IStatus status = ctx.createSuccessStatus();
+
+		ConfigParameter cp = (ConfigParameter) ctx.getTarget();
+
+		// Let's obtain the parent ModulDef
+		ModuleDef md = (ModuleDef) EcucUtil.getParentModuleDef(cp);
+
+		if (md == null) {
+			return status;
+		}
+
+		String configVariant = md.getImplementationConfigVariant();
+		if (!md.isSetImplementationConfigVariant()) {
+			return status;
+		}
+
+		if (configVariant.equals("VARIANT-LINK-TIME")) { //$NON-NLS-1$
+			if (cp.getImplementationConfigClass() != ConfigurationClass.PRE_COMPILE
+					&& cp.getImplementationConfigClass() != ConfigurationClass.PUBLISHED_INFORMATION
+					&& cp.getImplementationConfigClass() != ConfigurationClass.LINK) {
+				return ctx.createFailureStatus(NLS.bind(Messages.configParameter_configurationVariantRespectAsPreCompilePublishedOrLink, cp
+						.getShortName()));
+			}
+		}
+
+		return status;
+	}
+
+}

@@ -10,7 +10,7 @@
  * Contributors: 
  *     OpenSynergy - Initial API and implementation for AUTOSAR 3.x
  *     Continental Engineering Services - migration to gautosar
- * 
+ *     see4Sys
  * </copyright>
  */
 package org.artop.aal.gautosar.constraints.ecuc.util;
@@ -26,8 +26,10 @@ public class Messages extends NLS {
 	public static String generic_definitionReferenceNotResolved;
 	public static String generic_definitionNotOfType;
 	public static String generic_valueNotSet;
+	public static String generic_defaultValueNotSet;
 	public static String generic_validationNotPossible;
 	public static String generic_noParent;
+	public static String generic_notValidFormat;
 
 	public static String structuralIntegrity_containmentProblem;
 	public static String structuralIntegrity_NotAllowedInChoiceContainer;
@@ -65,6 +67,58 @@ public class Messages extends NLS {
 	public static String reference_valueNotOfType;
 	public static String reference_valueDefinitionNotSet;
 	public static String reference_differentDefAndDestination;
+
+	public static String containerDef_containerDefMissing;
+	public static String containerDef_upperMultiplicityChanged;
+	public static String containerDef_lowerMultiplicityMismatching;
+	public static String containerDef_postBuildChangeableModified;
+
+	public static String configParameter_ancestorEmptylist;
+	public static String configParameter_defaultValueChanged;
+	public static String configParameter_implConfigClassChanged;
+	public static String configParameter_lowerMultiplicityChanged;
+	public static String configParameter_upperMultiplicityChanged;
+	public static String configParameter_symbolicNameValueModified;
+
+	public static String configReference_lowerMultiplicityChanged;
+	public static String configReference_upperMultiplicityChanged;
+
+	public static String paramConfigContainerDef_configParameterMissing;
+	public static String paramConfigContainerDef_configReferenceMissing;
+	public static String paramConfigContainerDef_multipleConfigurationModified;
+
+	public static String moduleDef_containerDefMissing;
+	public static String moduleDef_selfReference;
+
+	public static String enumerationParamDef_enumLiteralChanged;
+	public static String enumerationParamDef_defaultValueUndeclaredInLiterals;
+
+	public static String configParameter_symbolicNameValueIsMultiDeclared;
+	public static String configParameter_configurationVariantRespectAsPreCompile;
+	public static String configParameter_configurationVariantRespectAsPreCompileOrPublished;
+	public static String configParameter_configurationVariantRespectAsPreCompileOrLink;
+	public static String configParameter_configurationVariantRespectAsPreCompilePublishedOrLink;
+
+	public static String paramDef_defaultValueNoIdentifier;
+	public static String parameterValue_valueNotSet;
+
+	public static String paramConfContainerDef_InChoiceContainerDefMultiplicity;
+	public static String paramConfMultiplicity_isNotConsistency;
+
+	public static String integerParamDef_upperLimitChanged;
+	public static String integerParamDef_LowerLimitChangedInVendorSpecificModuleDefinition;
+	public static String integerParamDef_defaultValueIsOutOfRange;
+
+	public static String floatParamDef_upperLimitChanged;
+	public static String floatParamDef_LowerLimitChangedInVendorSpecificModuleDefinition;
+	public static String floatParamDef_defaultValueIsOutOfRange;
+
+	public static String configReferenceValue_valueNotSet;
+
+	public static String choiceContainerDef_multiplicityNotRespected;
+
+	public static String modulesConfiguration_moduleDefTooMuch;
+	public static String modulesConfiguration_moduleDefMissing;
 
 	static {
 		// initialize resource bundle

@@ -1,0 +1,58 @@
+/**
+ * <copyright>
+ * 
+ * Copyright (c) see4Sys and others.
+ * All rights reserved. This program and the accompanying materials 
+ * are made available under the terms of the Artop Software License 
+ * Based on Released AUTOSAR Material (ASLR) which accompanies this 
+ * distribution, and is available at http://www.artop.org/aslr.html
+ * 
+ * Contributors: 
+ *     see4Sys - Initial API and implementation
+ * 
+ * </copyright>
+ */
+package org.artop.aal.autosar3x.constraints.ecuc;
+
+import org.artop.aal.gautosar.constraints.ecuc.AbstractModelConstraintWithPrecondition;
+import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.validation.IValidationContext;
+import org.eclipse.osgi.util.NLS;
+
+import autosar3x.ecucparameterdef.ConfigParameter;
+import autosar3x.ecucparameterdef.ConfigurationClass;
+import autosar3x.ecucparameterdef.ConfigurationVariant;
+import autosar3x.ecucparameterdef.ImplementationConfigClass;
+
+public class ImplementationConfigClassPreCompileConstraint extends AbstractModelConstraintWithPrecondition {
+
+	@Override
+	protected boolean isApplicable(IValidationContext ctx) {
+		return ctx.getTarget() instanceof ImplementationConfigClass;
+	}
+
+	@Override
+	protected IStatus doValidate(IValidationContext ctx) {
+		ImplementationConfigClass implementationConfigClass = (ImplementationConfigClass) ctx.getTarget();
+
+		if (!(implementationConfigClass.eContainer() instanceof ConfigParameter)) {
+			return ctx.createSuccessStatus();
+		}
+
+		ConfigParameter cp = (ConfigParameter) implementationConfigClass.eContainer();
+
+		ConfigurationVariant cv = implementationConfigClass.getConfigVariant();
+		ConfigurationClass cc = implementationConfigClass.getConfigClass();
+
+		if (cv == ConfigurationVariant.VARIANT_PRE_COMPILE) {
+			if (cc != ConfigurationClass.PRE_COMPILE && cc != ConfigurationClass.PUBLISHED_INFORMATION) {
+				return ctx.createFailureStatus(NLS.bind(Messages.configParameter_configurationVariantRespectAsPreCompileOrPublished, cp
+						.getShortName()));
+			}
+		}
+
+		return ctx.createSuccessStatus();
+	}
+
+}

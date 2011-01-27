@@ -87,14 +87,14 @@ public abstract class AbstractGParameterValueConstraint extends AbstractModelCon
 					GParamConfContainerDef parentParamConfContainerDef = (GParamConfContainerDef) parentContainerDef;
 					if (parentParamConfContainerDef.gGetParameters().contains(configParameter)) {
 						status = ctx.createSuccessStatus(); // parameter is
-															// valid
+						// valid
 					} else {
-						status = ctx.createFailureStatus(NLS.bind(Messages.structuralIntegrity_containmentProblem, "parameter value",
-								configParameter.gGetShortName()));
+						status = ctx.createFailureStatus(NLS.bind(Messages.structuralIntegrity_containmentProblem, "parameter value", configParameter //$NON-NLS-1$
+								.gGetShortName()));
 					}
 				} else if (parentContainerDef instanceof GChoiceContainerDef) {
 					// TODO: create testcase
-					status = ctx.createFailureStatus(NLS.bind(Messages.structuralIntegrity_NotAllowedInChoiceContainer, "parameter value"));
+					status = ctx.createFailureStatus(NLS.bind(Messages.structuralIntegrity_NotAllowedInChoiceContainer, "parameter value")); //$NON-NLS-1$
 				} else {
 					status = ctx.createSuccessStatus();
 				}
@@ -130,7 +130,7 @@ public abstract class AbstractGParameterValueConstraint extends AbstractModelCon
 			return ctx.createFailureStatus(Messages.generic_valueNotSet);
 		}
 
-		if (null == value || value.equals("")) {
+		if (null == value || value.equals("")) { //$NON-NLS-1$
 			return ctx.createFailureStatus(Messages.generic_valueNotSet);
 		}
 
