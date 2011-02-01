@@ -17,7 +17,7 @@ package org.artop.aal.validation.constraints.swc.tests.testsuite;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import org.artop.aal.validation.constraints.swc.tests.portinterface.CSInterfaceHasUniqueErrorCodesConstraintTest;
+import org.artop.aal.validation.constraints.swc.tests.portinterface.UniqueApplicationErrorCodesConstraintTest;
 
 /**
  * The test-suite containing all SWC Constraint tests.
@@ -31,7 +31,7 @@ public class SwcConstraintsTestSuite {
 	 */
 	public static Test suite() {
 		TestSuite suite = new TestSuite("Test for the SWC constraints"); //$NON-NLS-1$
-		suite.addTestSuite(CSInterfaceHasUniqueErrorCodesConstraintTest.class);
+		suite.addTestSuite(UniqueApplicationErrorCodesConstraintTest.class);
 		return suite;
 	}
 }
