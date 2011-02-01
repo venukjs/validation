@@ -1,3 +1,17 @@
+/**
+ * <copyright>
+ * 
+ * Copyright (c) BMW Car IT and others.
+ * All rights reserved. This program and the accompanying materials are made
+ * available under the terms of the Artop Software License Based on AUTOSAR
+ * Released Material (ASLR) which accompanies this distribution, and is
+ * available at http://www.artop.org/aslr.html
+ * 
+ * Contributors: 
+ *     BMW Car IT - Initial API and implementation
+ * 
+ * </copyright>
+ */
 package org.artop.aal.validation.constraints.swc.portinterface;
 
 import static org.artop.ecl.emf.metamodel.providers.EObjectMetaModelDescriptorProvider.createMetaModelDescriptorProviderFor;
@@ -9,8 +23,8 @@ import org.artop.aal.gautosar.services.DefaultMetaModelServiceProvider;
 import org.artop.aal.gautosar.services.IMetaModelServiceProvider;
 import org.artop.aal.gautosar.services.predicates.ExplainablePredicate;
 import org.artop.aal.gautosar.services.predicates.swc.ISwcPredicatesService;
-import org.artop.aal.gautosar.services.predicates.swc.portinterface.AreErrorCodesUnique.DuplicateErrorCodes;
-import org.artop.aal.gautosar.services.predicates.swc.portinterface.AreErrorCodesUnique.DuplicateErrorCodes.MultiplyAssignedErrorCodeValue;
+import org.artop.aal.gautosar.services.predicates.swc.portinterface.HasUniqueErrorCodes.DuplicateErrorCodes;
+import org.artop.aal.gautosar.services.predicates.swc.portinterface.HasUniqueErrorCodes.DuplicateErrorCodes.MultiplyAssignedErrorCodeValue;
 import org.artop.aal.validation.constraints.swc.internal.portinterface.messages.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
@@ -65,7 +79,7 @@ public class UniqueApplicationErrorCodesConstraint extends AbstractModelConstrai
 	}
 
 	private ExplainablePredicate<GClientServerInterface> getAreErrorCodesUniquePredicate(EObject contextEObject) {
-		return getSwcPredicatesService(contextEObject).areErrorCodesUnique();
+		return getSwcPredicatesService(contextEObject).hasUniqueErrorCodes();
 	}
 
 	private ISwcPredicatesService getSwcPredicatesService(EObject contextEObject) {
