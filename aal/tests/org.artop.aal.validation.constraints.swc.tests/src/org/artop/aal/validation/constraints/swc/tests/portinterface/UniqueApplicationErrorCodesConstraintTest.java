@@ -21,7 +21,7 @@ import org.eclipse.emf.validation.service.ConstraintRegistry;
 import org.eclipse.emf.validation.service.IConstraintDescriptor;
 
 /**
- * Tests if the failure messages returned by the <code>CSInterfaceHasUniqueErrorCodesConstraint</code> are correct.
+ * Tests if the failure messages returned by the <code>UniqueApplicationErrorCodesConstraint</code> are correct.
  */
 @SuppressWarnings("nls")
 public class UniqueApplicationErrorCodesConstraintTest extends TestCase {
