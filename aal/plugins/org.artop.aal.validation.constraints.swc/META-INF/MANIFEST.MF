@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.artop.aal.validation.constraints.swc;singleton:=true
+Bundle-Version: 3.0.0.qualifier
+Bundle-Vendor: %providerName
+Require-Bundle: org.eclipse.core.runtime,
+ com.google.collect,
+ org.eclipse.emf.validation,
+ org.artop.aal.gautosar,
+ org.artop.aal.gautosar.services,
+ org.artop.ecl.emf
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Localization: plugin
+Export-Package: org.artop.aal.validation.constraints.swc.portinterface
