@@ -105,7 +105,7 @@ public class UniqueApplicationErrorCodesConstraintIntegrationTest extends TestCa
 		fValidator.validate(eObject);
 		IMetaModelDescriptorProvider mmDescProvider = createMetaModelDescriptorProviderFor(eObject);
 		ISwcPredicatesService service = fServiceProvider.getService(mmDescProvider, ISwcPredicatesService.class);
-		MockPredicate<T> mockPredicate = (MockPredicate<T>) service.areErrorCodesUnique();
+		MockPredicate<T> mockPredicate = (MockPredicate<T>) service.hasUniqueErrorCodes();
 		mockPredicate.assertWasAppliedTo(eObject);
 	}
 
