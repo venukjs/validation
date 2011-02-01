@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+
+<!--
+<copyright>
+
+Copyright (c) BMW Car IT and others.
+All rights reserved. This program and the accompanying materials are made
+available under the terms of the Artop Software License Based on AUTOSAR
+Released Material (ASLR) which accompanies this distribution, and is
+available at http://www.artop.org/aslr.html
+ 
+Contributors: 
+    BMW Car IT - Initial API and implementation
+
+</copyright>
+-->
+
+<plugin>
+   <extension
+         point="org.eclipse.emf.validation.constraintBindings">
+      <binding
+            context="autosar20.ARObject.context">
+         <category
+               ref="org.artop.aal.examples.validation.constraints.artop">
+         </category>
+      </binding>
+      <binding
+            context="autosar21.ARObject.context">
+         <category
+               ref="org.artop.aal.examples.validation.constraints.artop">
+         </category>
+      </binding>
+      <binding
+            context="autosar3x.ARObject.context">
+         <category
+               ref="org.artop.aal.examples.validation.constraints.artop">
+         </category>
+      </binding>
+      <binding
+            context="autosar40.ARObject.context">
+         <category
+               ref="org.artop.aal.examples.validation.constraints.artop">
+         </category>
+      </binding>
+   </extension>
+   <extension
+         point="org.eclipse.emf.validation.constraintProviders">
+      <category
+            id="org.artop.aal.examples.validation.constraints.artop"
+            name="Artop Constraints">
+      </category>
+   </extension>
+   <extension
+         point="org.eclipse.emf.validation.constraintProviders">
+      <category
+            id="org.artop.aal.examples.validation.constraints.artop/SWC"
+            name="SWC">
+      </category>
+      <category
+            id="org.artop.aal.examples.validation.constraints.artop/SWC/PortInterface"
+            name="PortInterface">
+      </category>
+      <constraintProvider
+            cache="true">
+         <package
+               namespaceUri="http://artop.org/gautosar/swc/*">
+         </package>
+         <constraints
+               categories="org.artop.aal.examples.validation.constraints.artop/SWC/PortInterface">
+            <constraint
+                  class="org.artop.aal.validation.constraints.swc.portinterface.UniqueApplicationErrorCodesConstraint"
+                  id="org.artop.aal.examples.validation.constraints.UniqueApplicationErrorCodesConstraint"
+                  isEnabledByDefault="true"
+                  lang="java"
+                  mode="Batch"
+                  name="%uniqueApplicationErrorCodes_Name"
+                  severity="ERROR"
+                  statusCode="0020001">
+               <message>
+                  {0}
+               </message>
+               <description>
+                  %uniqueApplicationErrorCodes_Desc
+               </description>
+               <target
+                     class="GClientServerInterface">
+               </target>
+            </constraint>
+         </constraints>
+      </constraintProvider>
+   </extension>
+
+</plugin>
