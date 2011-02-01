@@ -50,24 +50,24 @@ public class CSInterfaceHasUniqueErrorCodesConstraintTest extends TestCase {
 	}
 
 	public void testShouldPassWithUniqueErrorCodes() {
-		fServiceProvider.setAreErrorCodesUniquePredicate(uniqueErrorCodes());
+		fServiceProvider.setHasUniqueErrorCodesPredicate(uniqueErrorCodes());
 		assertEquals(Status.OK_STATUS, fConstraintUT.validate(EMPTY_CONTEXT));
 	}
 
 	public void testShouldCreateOneFailureMessageWithTwoErrorCodes() {
-		fServiceProvider.setAreErrorCodesUniquePredicate(nonUniqueErrorCodes(multiplyAssignedErrorCodeValue(0, "IDLE", "INIT")));
+		fServiceProvider.setHasUniqueErrorCodesPredicate(nonUniqueErrorCodes(multiplyAssignedErrorCodeValue(0, "IDLE", "INIT")));
 		String expectedMessage = "More than one ApplicationErrorCode has the value \"0\": IDLE, INIT";
 		assertFailureStatus(fConstraintUT.validate(EMPTY_CONTEXT), expectedMessage);
 	}
 
 	public void testShouldCreateOneFailureMessageWithThreeErrorCodes() {
-		fServiceProvider.setAreErrorCodesUniquePredicate(nonUniqueErrorCodes(multiplyAssignedErrorCodeValue(0, "IDLE", "INIT", "RUNNING")));
+		fServiceProvider.setHasUniqueErrorCodesPredicate(nonUniqueErrorCodes(multiplyAssignedErrorCodeValue(0, "IDLE", "INIT", "RUNNING")));
 		String expectedMessage = "More than one ApplicationErrorCode has the value \"0\": IDLE, INIT, RUNNING";
 		assertFailureStatus(fConstraintUT.validate(EMPTY_CONTEXT), expectedMessage);
 	}
 
 	public void testShouldCreateTwoFailureMessages() {
-		fServiceProvider.setAreErrorCodesUniquePredicate(nonUniqueErrorCodes(multiplyAssignedErrorCodeValue(0, "IDLE", "INIT"),
+		fServiceProvider.setHasUniqueErrorCodesPredicate(nonUniqueErrorCodes(multiplyAssignedErrorCodeValue(0, "IDLE", "INIT"),
 				multiplyAssignedErrorCodeValue(1, "RUNNING", "WAITING")));
 		String expectedMessage1 = "More than one ApplicationErrorCode has the value \"0\": IDLE, INIT";
 		String expectedMessage2 = "More than one ApplicationErrorCode has the value \"1\": RUNNING, WAITING";
