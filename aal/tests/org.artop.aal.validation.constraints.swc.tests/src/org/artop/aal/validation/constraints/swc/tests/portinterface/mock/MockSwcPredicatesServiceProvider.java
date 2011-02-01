@@ -32,7 +32,7 @@ public class MockSwcPredicatesServiceProvider implements IMetaModelServiceProvid
 
 		private ExplainablePredicate<GClientServerInterface> fAreErrorCodesUnique;
 
-		public ExplainablePredicate<GClientServerInterface> getAreErrorCodesUniquePredicate() {
+		public ExplainablePredicate<GClientServerInterface> hasUniqueErrorCodes() {
 			return fAreErrorCodesUnique;
 		}
 
