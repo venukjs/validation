@@ -4,28 +4,32 @@
    <extension
          point="org.artop.aal.gautosar.services.metaModelServices">
       <descriptor
-            descriptorID="org.artop.aal.autosar20">
+            descriptorID="org.artop.aal.autosar20"
+            override="true">
          <service
                class="org.artop.aal.examples.validation.constraints.tests.mock.MockSwcPredicatesService"
                name="org.artop.aal.gautosar.services.predicates.swc.ISwcPredicatesService">
          </service>
       </descriptor>
       <descriptor
-            descriptorID="org.artop.aal.autosar21">
+            descriptorID="org.artop.aal.autosar21"
+            override="true">
          <service
                class="org.artop.aal.examples.validation.constraints.tests.mock.MockSwcPredicatesService"
                name="org.artop.aal.gautosar.services.predicates.swc.ISwcPredicatesService">
          </service>
       </descriptor>
       <descriptor
-            descriptorID="org.artop.aal.autosar3x">
+            descriptorID="org.artop.aal.autosar3x"
+            override="true">
          <service
                class="org.artop.aal.examples.validation.constraints.tests.mock.MockSwcPredicatesService"
                name="org.artop.aal.gautosar.services.predicates.swc.ISwcPredicatesService">
          </service>
       </descriptor>
       <descriptor
-            descriptorID="org.artop.aal.autosar40">
+            descriptorID="org.artop.aal.autosar40"
+            override="true">
          <service
                class="org.artop.aal.examples.validation.constraints.tests.mock.MockSwcPredicatesService"
                name="org.artop.aal.gautosar.services.predicates.swc.ISwcPredicatesService">
