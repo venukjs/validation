@@ -4,11 +4,11 @@
    <extension
          point="org.artop.aal.gautosar.services.metaModelServices">
       <descriptor
-            descriptorID="org.artop.aal.autosar20"
-            override="true">
+            descriptorID="org.artop.aal.autosar20">
          <service
                class="org.artop.aal.examples.validation.constraints.tests.mock.MockSwcPredicatesService"
-               name="org.artop.aal.gautosar.services.predicates.swc.ISwcPredicatesService">
+               name="org.artop.aal.gautosar.services.predicates.swc.ISwcPredicatesService"
+               override="org.artop.aal.gautosar.services.predicates.swc.GSwcPredicatesService">
          </service>
       </descriptor>
       <descriptor
@@ -16,7 +16,8 @@
             override="true">
          <service
                class="org.artop.aal.examples.validation.constraints.tests.mock.MockSwcPredicatesService"
-               name="org.artop.aal.gautosar.services.predicates.swc.ISwcPredicatesService">
+               name="org.artop.aal.gautosar.services.predicates.swc.ISwcPredicatesService"
+               override="org.artop.aal.gautosar.services.predicates.swc.GSwcPredicatesService">
          </service>
       </descriptor>
       <descriptor
@@ -24,7 +25,8 @@
             override="true">
          <service
                class="org.artop.aal.examples.validation.constraints.tests.mock.MockSwcPredicatesService"
-               name="org.artop.aal.gautosar.services.predicates.swc.ISwcPredicatesService">
+               name="org.artop.aal.gautosar.services.predicates.swc.ISwcPredicatesService"
+               override="org.artop.aal.gautosar.services.predicates.swc.GSwcPredicatesService">
          </service>
       </descriptor>
       <descriptor
@@ -32,7 +34,8 @@
             override="true">
          <service
                class="org.artop.aal.examples.validation.constraints.tests.mock.MockSwcPredicatesService"
-               name="org.artop.aal.gautosar.services.predicates.swc.ISwcPredicatesService">
+               name="org.artop.aal.gautosar.services.predicates.swc.ISwcPredicatesService"
+               override="org.artop.aal.gautosar.services.predicates.swc.GSwcPredicatesService">
          </service>
       </descriptor>
    </extension>
