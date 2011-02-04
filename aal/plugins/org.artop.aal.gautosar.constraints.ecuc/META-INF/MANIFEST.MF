@@ -8,7 +8,8 @@ Bundle-Activator: org.artop.aal.gautosar.constraints.ecuc.internal.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.artop.ecl.emf.validation,
  org.artop.aal.gautosar,
- org.artop.aal.common
+ org.artop.aal.common,
+ org.artop.aal.gautosar.services
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName

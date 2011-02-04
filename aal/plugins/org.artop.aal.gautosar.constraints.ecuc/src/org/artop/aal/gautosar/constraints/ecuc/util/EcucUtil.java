@@ -28,6 +28,7 @@ import gautosar.gecucparameterdef.GParamConfContainerDef;
 import gautosar.gecucparameterdef.GParamConfMultiplicity;
 import gautosar.ggenericstructure.ginfrastructure.GIdentifiable;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -37,6 +38,10 @@ import java.util.Set;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.internal.Activator;
+import org.artop.aal.gautosar.services.DefaultMetaModelServiceProvider;
+import org.artop.aal.gautosar.services.ecuc.IECUCService;
+import org.artop.ecl.emf.metamodel.IMetaModelDescriptor;
+import org.artop.ecl.emf.metamodel.MetaModelDescriptorRegistry;
 import org.artop.ecl.platform.util.PlatformLogUtil;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.util.EList;
@@ -786,17 +791,14 @@ public class EcucUtil {
 	}
 
 	public static boolean isValidLowerMultiplicity(int numberOfObjects, GParamConfMultiplicity gParamConfMultiplicity) {
-		// by default the multiplicity is 1
-		int lowerMultiplicity = 1;
-		try {
-			if (gParamConfMultiplicity.gGetLowerMultiplicityAsString() != null) {
-				lowerMultiplicity = Integer.parseInt(gParamConfMultiplicity.gGetLowerMultiplicityAsString());
-			}
-		} catch (NumberFormatException nfe) {
-			// GContainerDef is corrupt. that problem need to be reported by another constraint
-		}
 
-		return lowerMultiplicity <= numberOfObjects;
+		IMetaModelDescriptor descriptor = MetaModelDescriptorRegistry.INSTANCE.getDescriptor(gParamConfMultiplicity);
+
+		IECUCService ecucService = new DefaultMetaModelServiceProvider().getService(descriptor, IECUCService.class);
+		BigInteger lowerMultiplicity = ecucService.getLowerMultiplicity(gParamConfMultiplicity, new BigInteger(MULTIPLICITY_ONE, 10));
+
+		return numberOfObjects >= lowerMultiplicity.intValue();
+
 	}
 
 	public static String getLowerMultiplicity(GParamConfMultiplicity gParamConfMultiplicity) {
@@ -810,32 +812,33 @@ public class EcucUtil {
 	}
 
 	public static String getUpperMultiplicity(GParamConfMultiplicity gParamConfMultiplicity) {
-		final String upperMultiplicity;
-		if (gParamConfMultiplicity.gGetUpperMultiplicityAsString() != null) {
-			upperMultiplicity = gParamConfMultiplicity.gGetUpperMultiplicityAsString();
+
+		IMetaModelDescriptor descriptor = MetaModelDescriptorRegistry.INSTANCE.getDescriptor(gParamConfMultiplicity);
+
+		IECUCService ecucService = new DefaultMetaModelServiceProvider().getService(descriptor, IECUCService.class);
+
+		BigInteger upperMultiplicity = ecucService.getUpperMultiplicity(gParamConfMultiplicity, new BigInteger(MULTIPLICITY_ONE, 10));
+		if (IECUCService.MULTIPLICITY_STAR == upperMultiplicity) {
+			return MULTIPLICITY_INFINITY;
 		} else {
-			upperMultiplicity = MULTIPLICITY_ONE;
+
+			return upperMultiplicity.toString(10);
 		}
-		return upperMultiplicity;
+
 	}
 
 	public static boolean isValidUpperMultiplicity(int numberOfObjects, GParamConfMultiplicity gParamConfMultiplicity) {
-		final boolean isValidUpperMultiplicity;
-		if (MULTIPLICITY_INFINITY.equals(gParamConfMultiplicity.gGetUpperMultiplicityAsString())) {
-			isValidUpperMultiplicity = true;
-		} else {
-			int upperMultiplicity = 1;
-			try {
-				if (gParamConfMultiplicity.gGetUpperMultiplicityAsString() != null) {
-					upperMultiplicity = Integer.parseInt(gParamConfMultiplicity.gGetUpperMultiplicityAsString());
-				}
-			} catch (NumberFormatException nfe) {
-				// GContainerDef is corrupt. that problem need to be reported by another constraint
-			}
 
-			isValidUpperMultiplicity = numberOfObjects <= upperMultiplicity;
+		IMetaModelDescriptor descriptor = MetaModelDescriptorRegistry.INSTANCE.getDescriptor(gParamConfMultiplicity);
+
+		IECUCService ecucService = new DefaultMetaModelServiceProvider().getService(descriptor, IECUCService.class);
+		BigInteger upperMultiplicity = ecucService.getUpperMultiplicity(gParamConfMultiplicity, new BigInteger(MULTIPLICITY_ONE, 10));
+
+		if (upperMultiplicity == IECUCService.MULTIPLICITY_STAR) {
+			return true;
+		} else {
+			return numberOfObjects <= upperMultiplicity.intValue();
 		}
-		return isValidUpperMultiplicity;
 	}
 
 	public static String enumeratorToString(Collection<? extends Enumerator> enumInstances) {

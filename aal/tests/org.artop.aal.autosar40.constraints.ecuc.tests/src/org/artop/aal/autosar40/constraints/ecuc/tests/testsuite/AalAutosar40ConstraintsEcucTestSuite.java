@@ -20,6 +20,7 @@ import junit.framework.TestSuite;
 import org.artop.aal.autosar40.constraints.ecuc.tests.AddInfoValueConstraintTests;
 import org.artop.aal.autosar40.constraints.ecuc.tests.BooleanValueConstraintTests;
 import org.artop.aal.autosar40.constraints.ecuc.tests.ContainerSubContainerMultiplicityConstraintTests;
+import org.artop.aal.autosar40.constraints.ecuc.tests.EcucUtilTest;
 import org.artop.aal.autosar40.constraints.ecuc.tests.EnumerationValueConstraintTests;
 import org.artop.aal.autosar40.constraints.ecuc.tests.FloatValueConstraintTests;
 import org.artop.aal.autosar40.constraints.ecuc.tests.FunctionNameValueConstraintTests;
@@ -68,6 +69,7 @@ public class AalAutosar40ConstraintsEcucTestSuite
 //		suite.addTestSuite(ContainerParameterValueMultiplicityConstraintTests.class);
 //		suite.addTestSuite(ContainerReferenceValueMultiplicityConstraintTests.class);
 		suite.addTestSuite(ModuleConfigurationSubContainerMultiplicityConstraintTests.class);
+		suite.addTestSuite(EcucUtilTest.class);
 
 		return suite;
 	}

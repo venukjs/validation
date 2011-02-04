@@ -12,7 +12,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.junit,
  org.artop.aal.gautosar.constraints.ecuc,
  org.artop.aal.autosar40.constraints.ecuc,
- org.artop.aal.autosar40.validation
+ org.artop.aal.autosar40.validation,
+ org.artop.aal.autosar40.tests
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
