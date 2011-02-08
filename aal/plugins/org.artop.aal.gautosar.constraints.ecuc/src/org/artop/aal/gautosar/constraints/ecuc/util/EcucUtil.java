@@ -360,8 +360,8 @@ public class EcucUtil {
 		 */
 		String vSpecifLowerMultiplicity = vSpecifConfMultiplicity.gGetLowerMultiplicityAsString();
 
-		if (refinedLowerMultiplicity != null && !refinedLowerMultiplicity.isEmpty() && vSpecifLowerMultiplicity != null
-				&& !vSpecifLowerMultiplicity.isEmpty()) {
+		if (refinedLowerMultiplicity != null && refinedLowerMultiplicity.length() > 0 && vSpecifLowerMultiplicity != null
+				&& vSpecifLowerMultiplicity.length() > 0) {
 			if (!refinedLowerMultiplicity.equals(MULTIPLICITY_INFINITY)) {
 				if (vSpecifLowerMultiplicity.equals(MULTIPLICITY_INFINITY)) {
 					valid = false;
@@ -504,8 +504,8 @@ public class EcucUtil {
 					return null;
 				}
 
-				GCommonConfigurationAttributes refinedCommonConfigAtt = (GCommonConfigurationAttributes) EcucUtil.find(configAttributes
-						.gGetShortName(), refinedCommonConfigurationAttributes);
+				GCommonConfigurationAttributes refinedCommonConfigAtt = (GCommonConfigurationAttributes) EcucUtil.find(
+						configAttributes.gGetShortName(), refinedCommonConfigurationAttributes);
 
 				if (refinedCommonConfigAtt != null) {
 					//
@@ -556,8 +556,8 @@ public class EcucUtil {
 		// Upper multiplicity of the Common Configuration Attribute from the Vendor Specific Module Definition side.
 		String vSpecifUpperMultiplicity = vSpecifConfMultiplicity.gGetUpperMultiplicityAsString();
 
-		if (refinedUpperMultiplicity != null && !refinedUpperMultiplicity.isEmpty() && vSpecifUpperMultiplicity != null
-				&& !vSpecifUpperMultiplicity.isEmpty()) {
+		if (refinedUpperMultiplicity != null && refinedUpperMultiplicity.length() > 0 && vSpecifUpperMultiplicity != null
+				&& vSpecifUpperMultiplicity.length() > 0) {
 			if (refinedUpperMultiplicity.equals(MULTIPLICITY_INFINITY)) {
 				if (vSpecifUpperMultiplicity.equals(MULTIPLICITY_ZERO)) {
 					valid = false;
