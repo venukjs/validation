@@ -65,14 +65,22 @@
          unpack="false"/>
 
    <plugin
-         id="org.artop.aal.validation.constraints.swc.tests"
+         id="org.artop.aal.examples.validation.constraints.tests"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.artop.aal.examples.validation.constraints.tests"
+         id="org.artop.aal.validation.constraints.swc.tests"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         fragment="true"
+         unpack="false"/>
+
+   <plugin
+         id="org.artop.aal.validation.testutils"
          download-size="0"
          install-size="0"
          version="0.0.0"
