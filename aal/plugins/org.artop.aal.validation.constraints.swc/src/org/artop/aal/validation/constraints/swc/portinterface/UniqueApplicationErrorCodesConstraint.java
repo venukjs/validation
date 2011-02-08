@@ -19,16 +19,14 @@ import gautosar.gswcomponents.gportinterface.GClientServerInterface;
 
 import java.util.ArrayList;
 
-import org.artop.aal.gautosar.services.DefaultMetaModelServiceProvider;
-import org.artop.aal.gautosar.services.IMetaModelServiceProvider;
 import org.artop.aal.gautosar.services.predicates.ExplainablePredicate;
 import org.artop.aal.gautosar.services.predicates.swc.ISwcPredicatesService;
 import org.artop.aal.gautosar.services.predicates.swc.portinterface.HasUniqueErrorCodes.DuplicateErrorCodes;
 import org.artop.aal.gautosar.services.predicates.swc.portinterface.HasUniqueErrorCodes.DuplicateErrorCodes.MultiplyAssignedErrorCodeValue;
+import org.artop.aal.validation.constraints.PredicateBasedConstraint;
 import org.artop.aal.validation.constraints.swc.internal.portinterface.messages.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.emf.validation.model.ConstraintStatus;
 import org.eclipse.osgi.util.NLS;
@@ -37,33 +35,9 @@ import org.eclipse.osgi.util.NLS;
  * A Constraint which validates that all defined possible errors within a client server interface have unique values.
  * The constraint will create a failure message for each error code which is not unique.
  */
-public class UniqueApplicationErrorCodesConstraint extends AbstractModelConstraint {
+public class UniqueApplicationErrorCodesConstraint extends PredicateBasedConstraint {
 
 	private static final String MSG_NAME = "uniqueApplicationErrorCodes_Msg"; //$NON-NLS-1$
-
-	private static final IMetaModelServiceProvider SERVICE_PROVIDER = new DefaultMetaModelServiceProvider();
-
-	private IMetaModelServiceProvider fServiceProvider;
-
-	/**
-	 * Default constructor for creating an <code>UniqueApplicationErrorCodesConstraint</code> instance.
-	 */
-	public UniqueApplicationErrorCodesConstraint() {
-		this(SERVICE_PROVIDER);
-	}
-
-	/**
-	 * Constructor for creating an <code>UniqueApplicationErrorCodesConstraint</code> instance. The constraint will
-	 * retrieve its {@link com.google.common.base.Predicate}s from the <code>IMetaModelServiceProvider</code> passed to
-	 * the constructor.
-	 * 
-	 * @param serviceProvider
-	 *            the <code>IMetaModelServiceProvider</code> from which the constraint will get its
-	 *            <code>Predicate</code>s
-	 */
-	public UniqueApplicationErrorCodesConstraint(IMetaModelServiceProvider serviceProvider) {
-		fServiceProvider = serviceProvider;
-	}
 
 	/**
 	 * {@inheritDoc}
@@ -71,19 +45,19 @@ public class UniqueApplicationErrorCodesConstraint extends AbstractModelConstrai
 	@Override
 	public IStatus validate(IValidationContext ctx) {
 		GClientServerInterface csInterface = (GClientServerInterface) ctx.getTarget();
-		ExplainablePredicate<GClientServerInterface> areErrorCodesUnique = getAreErrorCodesUniquePredicate(csInterface);
-		if (!areErrorCodesUnique.apply(csInterface)) {
-			return createFailures(ctx, (DuplicateErrorCodes) areErrorCodesUnique.explain());
+		ExplainablePredicate<GClientServerInterface> hasUniqueErrorCodes = getHasUniqueErrorCodesPredicate(csInterface);
+		if (!hasUniqueErrorCodes.apply(csInterface)) {
+			return createFailures(ctx, (DuplicateErrorCodes) hasUniqueErrorCodes.explain());
 		}
 		return ctx.createSuccessStatus();
 	}
 
-	private ExplainablePredicate<GClientServerInterface> getAreErrorCodesUniquePredicate(EObject contextEObject) {
+	private ExplainablePredicate<GClientServerInterface> getHasUniqueErrorCodesPredicate(EObject contextEObject) {
 		return getSwcPredicatesService(contextEObject).hasUniqueErrorCodes();
 	}
 
 	private ISwcPredicatesService getSwcPredicatesService(EObject contextEObject) {
-		return fServiceProvider.getService(createMetaModelDescriptorProviderFor(contextEObject), ISwcPredicatesService.class);
+		return getServiceProvider().getService(createMetaModelDescriptorProviderFor(contextEObject), ISwcPredicatesService.class);
 	}
 
 	private IStatus createFailures(IValidationContext ctx, DuplicateErrorCodes reason) {
