@@ -61,15 +61,13 @@ public class GContainerParameterValueMultiplicityConstraint extends AbstractMode
 
 			int numberOfParameters = EcucUtil.filterParameterValuesByDefinition(allGParameterValues, currentConfigParameter).size();
 			if (!EcucUtil.isValidLowerMultiplicity(numberOfParameters, currentConfigParameter)) {
-				multiStatus.add(ctx.createFailureStatus(NLS.bind(
-						Messages.multiplicity_minElementsExpected,
-						new Object[] { EcucUtil.getLowerMultiplicity(currentConfigParameter), "parameter values",
+				multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.multiplicity_minElementsExpected,
+						new Object[] { EcucUtil.getLowerMultiplicity(currentConfigParameter), "parameter values", //$NON-NLS-1$
 								AutosarURIFactory.getAbsoluteQualifiedName(currentConfigParameter), numberOfParameters })));
 			}
 			if (!EcucUtil.isValidUpperMultiplicity(numberOfParameters, currentConfigParameter)) {
-				multiStatus.add(ctx.createFailureStatus(NLS.bind(
-						Messages.multiplicity_maxElementsExpected,
-						new Object[] { EcucUtil.getUpperMultiplicity(currentConfigParameter), "parameter values",
+				multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.multiplicity_maxElementsExpected,
+						new Object[] { EcucUtil.getUpperMultiplicity(currentConfigParameter), "parameter values", //$NON-NLS-1$
 								AutosarURIFactory.getAbsoluteQualifiedName(currentConfigParameter), numberOfParameters })));
 			}
 		}

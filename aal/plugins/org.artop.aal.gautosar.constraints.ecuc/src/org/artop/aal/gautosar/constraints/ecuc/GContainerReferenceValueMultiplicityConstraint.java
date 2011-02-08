@@ -62,15 +62,13 @@ public class GContainerReferenceValueMultiplicityConstraint extends AbstractMode
 					.size();
 
 			if (!EcucUtil.isValidLowerMultiplicity(numberOfConfigReferenceValues, currentGConfigReference)) {
-				multiStatus.add(ctx.createFailureStatus(NLS.bind(
-						Messages.multiplicity_minElementsExpected,
-						new Object[] { EcucUtil.getLowerMultiplicity(currentGConfigReference), "config reference values",
+				multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.multiplicity_minElementsExpected,
+						new Object[] { EcucUtil.getLowerMultiplicity(currentGConfigReference), "config reference values", //$NON-NLS-1$
 								AutosarURIFactory.getAbsoluteQualifiedName(currentGConfigReference), numberOfConfigReferenceValues })));
 			}
 			if (!EcucUtil.isValidUpperMultiplicity(numberOfConfigReferenceValues, currentGConfigReference)) {
-				multiStatus.add(ctx.createFailureStatus(NLS.bind(
-						Messages.multiplicity_maxElementsExpected,
-						new Object[] { EcucUtil.getUpperMultiplicity(currentGConfigReference), "config reference values",
+				multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.multiplicity_maxElementsExpected,
+						new Object[] { EcucUtil.getUpperMultiplicity(currentGConfigReference), "config reference values", //$NON-NLS-1$
 								AutosarURIFactory.getAbsoluteQualifiedName(currentGConfigReference), numberOfConfigReferenceValues })));
 			}
 		}

@@ -19,21 +19,20 @@ import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
-public class EnumerationValueConstraintTests extends AbstractAutosar21ValidationTestCase
-{
+@SuppressWarnings("nls")
+public class EnumerationValueConstraintTests extends AbstractAutosar21ValidationTestCase {
 
-	public EnumerationValueConstraintTests()
-	{
+	public EnumerationValueConstraintTests() {
 		super();
 	}
+
 	@Override
-	protected String getConstraintID()
-	{
-		return "org.artop.aal.autosar21.constraints.ecuc.EnumerationValueBasicConstraint_21";//$NON-NLS-1$
+	protected String getConstraintID() {
+		return "org.artop.aal.autosar21.constraints.ecuc.EnumerationValueBasicConstraint_21";
 	}
 
 	public void testInvalidEnumerationValue_noValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/EnumerationValue/noValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.generic_valueNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_valueNotSet);
 	}
 }

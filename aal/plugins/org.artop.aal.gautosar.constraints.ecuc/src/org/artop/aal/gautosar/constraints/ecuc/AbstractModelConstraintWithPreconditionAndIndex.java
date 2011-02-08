@@ -30,7 +30,7 @@ abstract public class AbstractModelConstraintWithPreconditionAndIndex extends Ab
 			ecucValidationIndex = (EcucValidationIndex) currentConstraintData;
 		} else {
 			// cache not properly used constraint data of type EcucValidationCache expected
-			throw new RuntimeException("Internal error: Illegal constraint data");
+			throw new RuntimeException("Internal error: Illegal constraint data"); //$NON-NLS-1$
 		}
 		return ecucValidationIndex;
 	}

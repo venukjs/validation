@@ -69,9 +69,8 @@ public abstract class AbstractGModuleConfigurationSubContainerMultiplicityConstr
 		for (GContainerDef currentSubGContainerDef : subGContainerDefs) {
 			int numberOfSubContainers = EcucUtil.getNumberOfUniqueContainersByDefinition(allSubContainers, currentSubGContainerDef);
 			if (!EcucUtil.isValidLowerMultiplicity(numberOfSubContainers, currentSubGContainerDef)) {
-				multiStatus.add(ctx.createFailureStatus(NLS.bind(
-						Messages.multiplicity_minElementsExpected,
-						new Object[] { EcucUtil.getLowerMultiplicity(currentSubGContainerDef), "subcontainers",
+				multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.multiplicity_minElementsExpected,
+						new Object[] { EcucUtil.getLowerMultiplicity(currentSubGContainerDef), "subcontainers", //$NON-NLS-1$
 								AutosarURIFactory.getAbsoluteQualifiedName(currentSubGContainerDef), numberOfSubContainers })));
 			}
 
@@ -82,9 +81,8 @@ public abstract class AbstractGModuleConfigurationSubContainerMultiplicityConstr
 			}
 
 			if (!EcucUtil.isValidUpperMultiplicity(numberOfSubContainers, currentSubGContainerDef)) {
-				multiStatus.add(ctx.createFailureStatus(NLS.bind(
-						Messages.multiplicity_maxElementsExpected,
-						new Object[] { EcucUtil.getUpperMultiplicity(currentSubGContainerDef), "subcontainers",
+				multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.multiplicity_maxElementsExpected,
+						new Object[] { EcucUtil.getUpperMultiplicity(currentSubGContainerDef), "subcontainers", //$NON-NLS-1$
 								AutosarURIFactory.getAbsoluteQualifiedName(currentSubGContainerDef), numberOfSubContainers })));
 			}
 		}

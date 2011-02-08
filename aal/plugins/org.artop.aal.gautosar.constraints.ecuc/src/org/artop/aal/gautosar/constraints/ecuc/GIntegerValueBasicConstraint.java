@@ -25,27 +25,20 @@ import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
 
 /**
- * 
  * Superclass for the constraints implementations on an integer value.
- * 
  */
-public abstract class GIntegerValueBasicConstraint extends
-		AbstractGParameterValueConstraint
-{
+public abstract class GIntegerValueBasicConstraint extends AbstractGParameterValueConstraint {
 	@Override
-	protected boolean isApplicable(IValidationContext ctx)
-	{
+	protected boolean isApplicable(IValidationContext ctx) {
 		return ctx.getTarget() instanceof GIntegerValue;
 	}
 
 	@Override
-	protected IStatus doValidate(IValidationContext ctx)
-	{
+	protected IStatus doValidate(IValidationContext ctx) {
 
 		GIntegerValue gIntegerValue = (GIntegerValue) ctx.getTarget();
 		IStatus status = validateDefinitionRef(ctx, gIntegerValue);
-		if (status.isOK())
-		{
+		if (status.isOK()) {
 			// the validation of the value requires valid access to the
 			// GIntegerParamDef
 			status = validateValue(ctx, gIntegerValue);
@@ -55,57 +48,43 @@ public abstract class GIntegerValueBasicConstraint extends
 	}
 
 	@Override
-	protected IStatus validateDefinitionRef(IValidationContext ctx,
-			GParameterValue parameterValue)
-	{
+	protected IStatus validateDefinitionRef(IValidationContext ctx, GParameterValue parameterValue) {
 		// check if definition is set and available
 		IStatus status = super.validateDefinitionRef(ctx, parameterValue);
-		if (status.isOK())
-		{
-			if (!(parameterValue.gGetDefinition() instanceof GIntegerParamDef))
-			{
-				status = ctx.createFailureStatus(NLS.bind(
-						Messages.generic_definitionNotOfType,
-						"integer param def"));
+		if (status.isOK()) {
+			if (!(parameterValue.gGetDefinition() instanceof GIntegerParamDef)) {
+				status = ctx.createFailureStatus(NLS.bind(Messages.generic_definitionNotOfType, "integer param def")); //$NON-NLS-1$
 			}
 		}
 		return status;
 	}
 
 	/**
-	 * Performs the validation on the value of the given
-	 * <code>gIntegerValue</code>.
+	 * Performs the validation on the value of the given <code>gIntegerValue</code>.
 	 * 
 	 * @param ctx
-	 *            the validation context that provides access to the current
-	 *            constraint evaluation environment
+	 *            the validation context that provides access to the current constraint evaluation environment
 	 * @param gIntegerValue
 	 *            the element on which the validation is performed.
 	 * @return a status object describing the result of the validation.
 	 */
-	protected IStatus validateValue(IValidationContext ctx,
-			GIntegerValue gIntegerValue)
-	{
+	protected IStatus validateValue(IValidationContext ctx, GIntegerValue gIntegerValue) {
 		IStatus status = validateValueSet(ctx, gIntegerValue, gIntegerValue.gGetValue());
-		if(status.isOK())
-		{
+		if (status.isOK()) {
 			return validateBoundary(ctx, gIntegerValue);
 		}
 		return status;
 	}
 
 	/**
-	 * Performs the validation on the boundaries of the definition of the given
-	 * <code>gIntegerValue</code>.
+	 * Performs the validation on the boundaries of the definition of the given <code>gIntegerValue</code>.
 	 * 
 	 * @param ctx
-	 *            the validation context that provides access to the current
-	 *            constraint evaluation environment
+	 *            the validation context that provides access to the current constraint evaluation environment
 	 * @param gIntegerValue
 	 *            the element on which the validation is performed.
 	 * @return a status object describing the result of the validation.
 	 */
-	protected abstract IStatus validateBoundary(IValidationContext ctx,
-			GIntegerValue gIntegerValue);
+	protected abstract IStatus validateBoundary(IValidationContext ctx, GIntegerValue gIntegerValue);
 
 }

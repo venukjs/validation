@@ -97,7 +97,7 @@ public class GContainerBasicConstraint extends AbstractModelConstraintWithPrecon
 					if (parentGModuleDef.gGetContainers().contains(gContainerDef)) {
 						status = ctx.createSuccessStatus();
 					} else {
-						status = ctx.createFailureStatus(NLS.bind(Messages.structuralIntegrity_containmentProblem, "container",
+						status = ctx.createFailureStatus(NLS.bind(Messages.structuralIntegrity_containmentProblem, "container", //$NON-NLS-1$
 								gContainerDef.gGetShortName()));
 					}
 				}
@@ -125,7 +125,7 @@ public class GContainerBasicConstraint extends AbstractModelConstraintWithPrecon
 					if (validContainerDefs.contains(gContainerDef)) {
 						status = ctx.createSuccessStatus();
 					} else {
-						status = ctx.createFailureStatus(NLS.bind(Messages.structuralIntegrity_containmentProblem, "container",
+						status = ctx.createFailureStatus(NLS.bind(Messages.structuralIntegrity_containmentProblem, "container", //$NON-NLS-1$
 								gContainerDef.gGetShortName()));
 					}
 				}

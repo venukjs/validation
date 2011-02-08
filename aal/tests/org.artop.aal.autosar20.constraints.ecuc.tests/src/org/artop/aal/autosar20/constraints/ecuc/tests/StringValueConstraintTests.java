@@ -19,8 +19,8 @@ import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
-public class StringValueConstraintTests extends AbstractAutosar20ValidationTestCase
-{
+@SuppressWarnings("nls")
+public class StringValueConstraintTests extends AbstractAutosar20ValidationTestCase {
 
 	public StringValueConstraintTests() {
 		super();
@@ -28,11 +28,11 @@ public class StringValueConstraintTests extends AbstractAutosar20ValidationTestC
 
 	@Override
 	protected String getConstraintID() {
-		return "org.artop.aal.autosar20.constraints.ecuc.StringValueBasicConstraint_20";//$NON-NLS-1$
+		return "org.artop.aal.autosar20.constraints.ecuc.StringValueBasicConstraint_20";
 	}
 
 	public void testInvalidStringValue_noValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/StringValue/noValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.generic_valueNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_valueNotSet);
 	}
 }

@@ -25,29 +25,22 @@ import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
 
 /**
- * 
  * Abstract superclass for the constraints implementations on a boolean value (validates definition and value).
- *
  */
-public abstract class AbstractGBooleanValueBasicConstraint extends
-		AbstractGParameterValueConstraint
-{
+public abstract class AbstractGBooleanValueBasicConstraint extends AbstractGParameterValueConstraint {
 
 	@Override
-	protected boolean isApplicable(IValidationContext ctx)
-	{
+	protected boolean isApplicable(IValidationContext ctx) {
 		return ctx.getTarget() instanceof GBooleanValue;
 	}
 
 	@Override
-	protected IStatus doValidate(IValidationContext ctx)
-	{
+	protected IStatus doValidate(IValidationContext ctx) {
 		IStatus status = ctx.createSuccessStatus();
 		GBooleanValue gBooleanValue = (GBooleanValue) ctx.getTarget();
 
 		status = validateDefinitionRef(ctx, gBooleanValue);
-		if (status.isOK())
-		{
+		if (status.isOK()) {
 			status = validateValue(ctx, gBooleanValue);
 		}
 
@@ -55,37 +48,27 @@ public abstract class AbstractGBooleanValueBasicConstraint extends
 	}
 
 	@Override
-	protected IStatus validateDefinitionRef(IValidationContext ctx,
-			GParameterValue gParameterValue)
-	{
+	protected IStatus validateDefinitionRef(IValidationContext ctx, GParameterValue gParameterValue) {
 		// check if definition is set and available
 		IStatus status = super.validateDefinitionRef(ctx, gParameterValue);
-		if (status.isOK())
-		{
-			if (!(gParameterValue.gGetDefinition() instanceof GBooleanParamDef))
-			{
-				status = ctx.createFailureStatus(NLS.bind(
-						Messages.generic_definitionNotOfType,
-						"boolean param def"));
+		if (status.isOK()) {
+			if (!(gParameterValue.gGetDefinition() instanceof GBooleanParamDef)) {
+				status = ctx.createFailureStatus(NLS.bind(Messages.generic_definitionNotOfType, "boolean param def")); //$NON-NLS-1$
 			}
 		}
 		return status;
 	}
 
 	/**
-	 * Performs the validation on the value of the given
-	 * <code>gBooleanValue</code>.
+	 * Performs the validation on the value of the given <code>gBooleanValue</code>.
 	 * 
 	 * @param ctx
-	 *            the validation context that provides access to the current
-	 *            constraint evaluation environment
+	 *            the validation context that provides access to the current constraint evaluation environment
 	 * @param gBooleanValue
 	 *            the element on which the validation is performed.
 	 * @return a status object describing the result of the validation.
 	 */
-	protected IStatus validateValue(IValidationContext ctx,
-			GBooleanValue gBooleanValue)
-	{
+	protected IStatus validateValue(IValidationContext ctx, GBooleanValue gBooleanValue) {
 		return validateValueSet(ctx, gBooleanValue, gBooleanValue.gGetValue());
 	}
 

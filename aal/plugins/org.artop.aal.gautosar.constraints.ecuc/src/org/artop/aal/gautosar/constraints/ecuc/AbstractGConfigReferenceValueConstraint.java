@@ -87,12 +87,12 @@ public abstract class AbstractGConfigReferenceValueConstraint extends AbstractMo
 						status = ctx.createSuccessStatus(); // reference is
 															// valid
 					} else {
-						status = ctx.createFailureStatus(NLS.bind(Messages.structuralIntegrity_containmentProblem, "reference value",
+						status = ctx.createFailureStatus(NLS.bind(Messages.structuralIntegrity_containmentProblem, "reference value", //$NON-NLS-1$
 								configReference.gGetShortName()));
 					}
 				} else if (parentContainerDef instanceof GChoiceContainerDef) {
 					// TODO: create testcase
-					status = ctx.createFailureStatus(NLS.bind(Messages.structuralIntegrity_NotAllowedInChoiceContainer, "reference value"));
+					status = ctx.createFailureStatus(NLS.bind(Messages.structuralIntegrity_NotAllowedInChoiceContainer, "reference value")); //$NON-NLS-1$
 				} else {
 					status = ctx.createSuccessStatus();
 				}
@@ -148,7 +148,7 @@ public abstract class AbstractGConfigReferenceValueConstraint extends AbstractMo
 	 * @return a status object describing the result of the validation.
 	 */
 	protected IStatus validateValueSet(IValidationContext ctx, GConfigReferenceValue gConfigReferenceValue, Object value) {
-		if (null == value || value.equals("")) {
+		if (null == value || value.equals("")) { //$NON-NLS-1$
 			return ctx.createFailureStatus(Messages.generic_valueNotSet);
 		}
 

@@ -65,7 +65,7 @@ public class GReferenceValueBasicConstraint extends AbstractGConfigReferenceValu
 			GConfigReference configReferenceDef = gConfigReferenceValue.gGetDefinition();
 			if (!(configReferenceDef instanceof GReferenceDef || configReferenceDef instanceof GChoiceReferenceDef || configReferenceDef instanceof GForeignReferenceDef)) {
 				status = ctx.createFailureStatus(NLS.bind(Messages.generic_definitionNotOfType,
-						"GReferenceDef/GChoiceReferenceDef/GForeignReferenceDef"));
+						"GReferenceDef/GChoiceReferenceDef/GForeignReferenceDef")); //$NON-NLS-1$
 			}
 		}
 		return status;
@@ -112,7 +112,7 @@ public class GReferenceValueBasicConstraint extends AbstractGConfigReferenceValu
 
 		// CHECK if value is a GContainer
 		if (!(valueObject instanceof GContainer)) {
-			status = ctx.createFailureStatus(NLS.bind(Messages.reference_valueNotOfType, "container"));
+			status = ctx.createFailureStatus(NLS.bind(Messages.reference_valueNotOfType, "container")); //$NON-NLS-1$
 		} else {
 
 			// CHECK if GParamConfContainerDef is available for destination
@@ -127,7 +127,7 @@ public class GReferenceValueBasicConstraint extends AbstractGConfigReferenceValu
 				if (null == containerDefFromDefinition || containerDefFromDefinition.eIsProxy()) {
 					// CHECK if GParamConfContainerDef is available for
 					// GContainer
-					status = ctx.createFailureStatus(NLS.bind(Messages.reference_valueDefinitionNotSet, "param conf container def",
+					status = ctx.createFailureStatus(NLS.bind(Messages.reference_valueDefinitionNotSet, "param conf container def", //$NON-NLS-1$
 							gContainer.gGetShortName()));
 				} else {
 					// CHECK if shortname of actual GParamConfContainerDef

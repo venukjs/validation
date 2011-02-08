@@ -77,7 +77,7 @@ public abstract class AbstractGContainerSubContainerMultiplicityConstraint exten
 
 		// choice GContainer may only contain a single subcontainer
 		if (1 != numberOfUniqueShortNames) {
-			status = ctx.createFailureStatus(NLS.bind(Messages.multiplicity_subContainersExpected, "choice container"));
+			status = ctx.createFailureStatus(NLS.bind(Messages.multiplicity_subContainersExpected, "choice container")); //$NON-NLS-1$
 			ctx.addResults(allSubContainers);
 		} else {
 			status = ctx.createSuccessStatus();
@@ -115,9 +115,8 @@ public abstract class AbstractGContainerSubContainerMultiplicityConstraint exten
 			int numberOfSubContainers = EcucUtil.getNumberOfUniqueContainersByDefinition(allSubGContainers, currentSubGContainerDef);
 
 			if (!EcucUtil.isValidLowerMultiplicity(numberOfSubContainers, currentSubGContainerDef)) {
-				multiStatus.add(ctx.createFailureStatus(NLS.bind(
-						Messages.multiplicity_minElementsExpected,
-						new Object[] { EcucUtil.getLowerMultiplicity(currentSubGContainerDef), "subcontainers",
+				multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.multiplicity_minElementsExpected,
+						new Object[] { EcucUtil.getLowerMultiplicity(currentSubGContainerDef), "subcontainers", //$NON-NLS-1$
 								AutosarURIFactory.getAbsoluteQualifiedName(currentSubGContainerDef), numberOfSubContainers })));
 			}
 
@@ -128,9 +127,8 @@ public abstract class AbstractGContainerSubContainerMultiplicityConstraint exten
 			}
 
 			if (!EcucUtil.isValidUpperMultiplicity(numberOfSubContainers, currentSubGContainerDef)) {
-				multiStatus.add(ctx.createFailureStatus(NLS.bind(
-						Messages.multiplicity_maxElementsExpected,
-						new Object[] { EcucUtil.getUpperMultiplicity(currentSubGContainerDef), "subcontainers",
+				multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.multiplicity_maxElementsExpected,
+						new Object[] { EcucUtil.getUpperMultiplicity(currentSubGContainerDef), "subcontainers", //$NON-NLS-1$
 								AutosarURIFactory.getAbsoluteQualifiedName(currentSubGContainerDef), numberOfSubContainers })));
 			}
 		}

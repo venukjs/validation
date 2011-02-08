@@ -19,8 +19,8 @@ import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
-public class LinkerSymbolValueConstraintTests extends AbstractAutosar21ValidationTestCase
-{
+@SuppressWarnings("nls")
+public class LinkerSymbolValueConstraintTests extends AbstractAutosar21ValidationTestCase {
 
 	public LinkerSymbolValueConstraintTests() {
 		super();
@@ -28,7 +28,7 @@ public class LinkerSymbolValueConstraintTests extends AbstractAutosar21Validatio
 
 	@Override
 	protected String getConstraintID() {
-		return "org.artop.aal.autosar21.constraints.ecuc.LinkerSymbolValueBasicConstraint_21";//$NON-NLS-1$
+		return "org.artop.aal.autosar21.constraints.ecuc.LinkerSymbolValueBasicConstraint_21";
 	}
 
 	// completeness

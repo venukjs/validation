@@ -19,8 +19,8 @@ import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
-public class InstanceReferenceValueConstraintTests extends AbstractAutosar20ValidationTestCase
-{
+@SuppressWarnings("nls")
+public class InstanceReferenceValueConstraintTests extends AbstractAutosar20ValidationTestCase {
 
 	public InstanceReferenceValueConstraintTests() {
 		super();
@@ -28,23 +28,23 @@ public class InstanceReferenceValueConstraintTests extends AbstractAutosar20Vali
 
 	@Override
 	protected String getConstraintID() {
-		return "org.artop.aal.autosar20.constraints.ecuc.InstanceReferenceValueBasicConstraint_20";//$NON-NLS-1$
+		return "org.artop.aal.autosar20.constraints.ecuc.InstanceReferenceValueBasicConstraint_20";
 	}
 
 	public void testInvalidInstanceReferenceValue_noValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/noValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.generic_valueNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_valueNotSet);
 	}
 
 	// correctness
 	public void testInvalidInstanceReferenceValue_noDestinationContext() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/noDestinationContext.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.instanceref_valueDestContextNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.instanceref_valueDestContextNotSet);
 	}
-	
+
 	public void testInvalidInstanceReferenceValue_noDestinationType() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/noDestinationType.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.reference_targetDestinationTypeNotAvailable);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.reference_targetDestinationTypeNotAvailable);
 	}
 
 }

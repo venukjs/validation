@@ -15,7 +15,6 @@
  */
 package org.artop.aal.gautosar.constraints.ecuc;
 
-
 import gautosar.gecucparameterdef.GParamConfMultiplicity;
 
 import org.artop.aal.gautosar.constraints.ecuc.internal.Activator;
@@ -26,70 +25,56 @@ import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
 
 /**
- * 
- * Superclass for the constraints implementations on the lower and upper multiplicity of a param conf multiplicity object.
- * 
+ * Superclass for the constraints implementations on the lower and upper multiplicity of a param conf multiplicity
+ * object.
  */
-public class GParamConfMultiplicityBasicConstraint extends AbstractModelConstraintWithPrecondition 
-{
+public class GParamConfMultiplicityBasicConstraint extends AbstractModelConstraintWithPrecondition {
 
 	@Override
-	protected boolean isApplicable(IValidationContext ctx)
-	{
+	protected boolean isApplicable(IValidationContext ctx) {
 		return ctx.getTarget() instanceof GParamConfMultiplicity;
 	}
 
 	@Override
-	public IStatus doValidate(IValidationContext ctx) 
-	{
+	public IStatus doValidate(IValidationContext ctx) {
 		GParamConfMultiplicity gParamConfMultiplicity = (GParamConfMultiplicity) ctx.getTarget();
 
 		MultiStatus multiStatus = new MultiStatus(Activator.PLUGIN_ID, 0, this.getClass().getName(), null);
 
 		// validate lower multiplicity
 		String lowerMultiplicityString = gParamConfMultiplicity.gGetLowerMultiplicityAsString();
-		if (lowerMultiplicityString != null && !lowerMultiplicityString.equals(""))
+		if (lowerMultiplicityString != null && !lowerMultiplicityString.equals("")) //$NON-NLS-1$
 		{
-			try 
-			{
+			try {
 				int lowerMultiplicity = Integer.parseInt(lowerMultiplicityString);
-				if (lowerMultiplicity < 0) 
-				{
+				if (lowerMultiplicity < 0) {
 					multiStatus.add(ctx.createFailureStatus(Messages.multiplicity_lowerMultNegative));
 				}
-			} 
-			catch (NumberFormatException nfe) {
-				multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.multiplicity_lowerMultException,nfe.getMessage())));
+			} catch (NumberFormatException nfe) {
+				multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.multiplicity_lowerMultException, nfe.getMessage())));
 			}
 		}
 
 		// validate upper multiplicity
 		String upperMultiplicityString = gParamConfMultiplicity.gGetUpperMultiplicityAsString();
-		if (upperMultiplicityString != null && !upperMultiplicityString.equals(""))
+		if (upperMultiplicityString != null && !upperMultiplicityString.equals("")) //$NON-NLS-1$
 		{
-			if ("*".equals(upperMultiplicityString))
+			if ("*".equals(upperMultiplicityString)) //$NON-NLS-1$
 			{
 				multiStatus.add(ctx.createSuccessStatus());
-			} 
-			else
-			{
-				try
-				{
+			} else {
+				try {
 					int upperMultiplicity = Integer.parseInt(upperMultiplicityString);
-					if (upperMultiplicity < 0)
-					{
+					if (upperMultiplicity < 0) {
 						multiStatus.add(ctx.createFailureStatus(Messages.multiplicity_upperMultNegative));
 					}
-				} 
-				catch (NumberFormatException nfe)
-				{
+				} catch (NumberFormatException nfe) {
 					multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.multiplicity_upperMultException, nfe.getMessage())));
 				}
 			}
 		}
-		
-		if(multiStatus.getChildren().length == 0)
-		{
+
+		if (multiStatus.getChildren().length == 0) {
 			return ctx.createSuccessStatus();
 		}
 

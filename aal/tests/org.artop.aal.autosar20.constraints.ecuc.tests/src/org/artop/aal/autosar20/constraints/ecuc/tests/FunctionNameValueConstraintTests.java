@@ -19,8 +19,8 @@ import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
-public class FunctionNameValueConstraintTests extends AbstractAutosar20ValidationTestCase
-{
+@SuppressWarnings("nls")
+public class FunctionNameValueConstraintTests extends AbstractAutosar20ValidationTestCase {
 
 	public FunctionNameValueConstraintTests() {
 		super();
@@ -28,11 +28,11 @@ public class FunctionNameValueConstraintTests extends AbstractAutosar20Validatio
 
 	@Override
 	protected String getConstraintID() {
-		return "org.artop.aal.autosar20.constraints.ecuc.FunctionNameValueBasicConstraint_20";//$NON-NLS-1$
+		return "org.artop.aal.autosar20.constraints.ecuc.FunctionNameValueBasicConstraint_20";
 	}
 
 	public void testInvalidFunctionNameValue_noValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/FunctionNameValue/noValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.generic_valueNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_valueNotSet);
 	}
 }

@@ -19,23 +19,22 @@ import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
-public class BooleanValueConstraintTests extends AbstractAutosar20ValidationTestCase
-{
+@SuppressWarnings("nls")
+public class BooleanValueConstraintTests extends AbstractAutosar20ValidationTestCase {
 
-	public BooleanValueConstraintTests()
-	{
+	public BooleanValueConstraintTests() {
 		super();
 	}
-	
+
 	@Override
-	protected String getConstraintID()
-	{
-		return "org.artop.aal.autosar20.constraints.ecuc.BooleanValueBasicConstraint_20";//$NON-NLS-1$
+	protected String getConstraintID() {
+		return "org.artop.aal.autosar20.constraints.ecuc.BooleanValueBasicConstraint_20";
 
 	}
+
 	public void testInvalidBooleanValue_noValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/BooleanValue/noValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.generic_valueNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_valueNotSet);
 	}
 
 }
