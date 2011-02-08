@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.artop.aal.validation.testutils;singleton:=true
+Bundle-Version: 3.0.0.qualifier
+Bundle-Activator: org.artop.aal.validation.testutils.Activator$Implementation
+Bundle-Vendor: %providerName
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.artop.aal.validation.testutils;x-friends:="org.artop.aal.validation.constraints.swc.tests,org.artop.aal.validation.constraints.gst.tests"
+Bundle-Localization: plugin
+Require-Bundle: org.junit4;visibility:=reexport,
+ org.artop.aal.validation;visibility:=reexport
