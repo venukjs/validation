@@ -11,5 +11,4 @@ Require-Bundle: org.eclipse.core.runtime,
  org.artop.aal.validation
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Localization: plugin
-Export-Package: org.artop.aal.validation.constraints.swc.composition,
- org.artop.aal.validation.constraints.swc.portinterface
+Export-Package: org.artop.aal.validation.constraints.swc.portinterface
