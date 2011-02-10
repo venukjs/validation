@@ -64,7 +64,7 @@ Contributors:
       <constraintProvider
             cache="true">
          <package
-               namespaceUri="http://artop.org/gautosar/swc/*">
+               namespaceUri="http://artop.org/gautosar/swc/pi">
          </package>
          <constraints
                categories="org.artop.aal.examples.validation.constraints.artop/SWC/PortInterface">
