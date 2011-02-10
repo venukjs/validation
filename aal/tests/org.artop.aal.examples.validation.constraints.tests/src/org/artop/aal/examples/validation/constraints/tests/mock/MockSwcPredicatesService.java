@@ -14,16 +14,17 @@
  */
 package org.artop.aal.examples.validation.constraints.tests.mock;
 
+import static junit.framework.Assert.assertEquals;
+import static junit.framework.Assert.assertTrue;
 import gautosar.gswcomponents.gportinterface.GClientServerInterface;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-import junit.framework.Assert;
-
 import org.artop.aal.gautosar.services.predicates.ExplainablePredicate;
 import org.artop.aal.gautosar.services.predicates.Reason;
 import org.artop.aal.gautosar.services.predicates.swc.ISwcPredicatesService;
+import org.artop.aal.validation.constraints.PredicateBasedConstraint;
 
 /**
  * A mock implementation of the <code>ISwcPredicateService</code>. Instead of providing clients with real SWC
@@ -53,7 +54,7 @@ public class MockSwcPredicatesService implements ISwcPredicatesService {
 	 *            the client server interfaces to which the predicate should have been applied()
 	 */
 	public void assertAreErrorCodesUniqueWasAppliedTo(GClientServerInterface... expectedCSInterfaces) {
-		ARE_ERROR_CODES_UNIQUE.assertWasAppliedTo(expectedCSInterfaces);
+		ARE_ERROR_CODES_UNIQUE.assertWasInvokedOn(expectedCSInterfaces);
 	}
 
 	/**
@@ -66,6 +67,10 @@ public class MockSwcPredicatesService implements ISwcPredicatesService {
 	public static class MockPredicate<T> implements ExplainablePredicate<T> {
 
 		private Collection<T> fEObjects = new ArrayList<T>();
+
+		public void clear() {
+			fEObjects.clear();
+		}
 
 		/**
 		 * {@inheritDoc}
@@ -83,18 +88,24 @@ public class MockSwcPredicatesService implements ISwcPredicatesService {
 		}
 
 		/**
-		 * Asserts that the <code>MockPredicate</code> was applied for the given set of expected <code>EObject</code>s.
+		 * Asserts that the <code>MockPredicate</code> was invoked for the given set of expected <code>EObject</code>s.
 		 * 
 		 * @param expectedEObjects
 		 *            the <code>EObject</code>s this <code>MockPredicate</code> is expected to have been called for.
 		 */
-		public void assertWasAppliedTo(T... expectedEObjects) {
-			Assert.assertEquals(
-					"The number of EObjects to which the Constraint was applied is not correct.", expectedEObjects.length, fEObjects.size()); //$NON-NLS-1$
+		public void assertWasInvokedOn(T... expectedEObjects) {
+			assertEquals("The number of EObjects to which the Constraint was applied is not correct.", expectedEObjects.length, fEObjects.size()); //$NON-NLS-1$
 			for (T expectedEObject : expectedEObjects) {
-				Assert.assertTrue("The Constraint was not applied to the following EObject although expected: " + expectedEObject, //$NON-NLS-1$
+				assertTrue("The Constraint was not applied to the following EObject although expected: " + expectedEObject, //$NON-NLS-1$
 						fEObjects.contains(expectedEObject));
 			}
+		}
+
+		/**
+		 * Asserts that the <code>MockPredicate</code> was not invoked.
+		 */
+		public void assertWasNotInvoked() {
+			assertTrue("Constraint was invoked although it should not have been!", fEObjects.isEmpty()); //$NON-NLS-1$
 		}
 
 	}

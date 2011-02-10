@@ -72,7 +72,15 @@ public class UniqueApplicationErrorCodesConstraintIntegrationTest extends TestCa
 	 * is applied to an AUTOSAR 2.0 {@link autosar20.swcomponent.portinterface.ClientServerInterface}.
 	 */
 	public void testShouldApplyConstraintToCSInterface20() {
-		invokeShouldApplyConstraintToTest(Autosar20Factory.eINSTANCE.createClientServerInterface());
+		invokeShouldValidateConstraint(Autosar20Factory.eINSTANCE.createClientServerInterface());
+	}
+
+	/**
+	 * Verifies that the {@link org.artop.aal.validation.constraints.swc.portinterface.UniqueApplicationCodesConstraint}
+	 * is <b>not</b> applied to an AUTOSAR 2.0 {@link autosar20.swcomponent.portinterface.SenderReceiverInterface}.
+	 */
+	public void testShouldIgnoreConstraintForSRInterface() {
+		invokeShouldIgnoreConstraint(Autosar20Factory.eINSTANCE.createSenderReceiverInterface());
 	}
 
 	/**
@@ -81,7 +89,7 @@ public class UniqueApplicationErrorCodesConstraintIntegrationTest extends TestCa
 	 */
 
 	public void testShouldApplyConstraintToCSInterface21() {
-		invokeShouldApplyConstraintToTest(Autosar21Factory.eINSTANCE.createClientServerInterface());
+		invokeShouldValidateConstraint(Autosar21Factory.eINSTANCE.createClientServerInterface());
 	}
 
 	/**
@@ -89,7 +97,7 @@ public class UniqueApplicationErrorCodesConstraintIntegrationTest extends TestCa
 	 * is applied to an AUTOSAR 3.X {@link autosar3x.swcomponent.portinterface.ClientServerInterface}.
 	 */
 	public void testShouldApplyConstraintToCSInterface3x() {
-		invokeShouldApplyConstraintToTest(Autosar3xFactory.eINSTANCE.createClientServerInterface());
+		invokeShouldValidateConstraint(Autosar3xFactory.eINSTANCE.createClientServerInterface());
 	}
 
 	/**
@@ -97,16 +105,34 @@ public class UniqueApplicationErrorCodesConstraintIntegrationTest extends TestCa
 	 * is applied to an AUTOSAR 4.0 {@link autosar40.swcomponent.portinterface.ClientServerInterface}.
 	 */
 	public void testShouldApplyConstraintToCSInterface40() {
-		invokeShouldApplyConstraintToTest(Autosar40Factory.eINSTANCE.createClientServerInterface());
+		invokeShouldValidateConstraint(Autosar40Factory.eINSTANCE.createClientServerInterface());
 	}
 
 	@SuppressWarnings("unchecked")
-	private <T extends EObject> void invokeShouldApplyConstraintToTest(T eObject) {
+	private <T extends EObject> void invokeShouldValidateConstraint(T eObject) {
+		validate(eObject);
+		getMockPredicate(eObject).assertWasInvokedOn(eObject);
+		assertFalse("The constraint was disabled due to an internal error!", getDescriptorByClass(UniqueApplicationErrorCodesConstraint.class)
+				.isError());
+	}
+
+	private <T extends EObject> void invokeShouldIgnoreConstraint(T eObject) {
+		validate(eObject);
+		getMockPredicate(eObject).assertWasNotInvoked();
+		assertFalse("The constraint was disabled due to an internal error!", getDescriptorByClass(UniqueApplicationErrorCodesConstraint.class)
+				.isError());
+	}
+
+	private <T extends EObject> void validate(T eObject) {
+		getMockPredicate(eObject).clear();
 		fValidator.validate(eObject);
+	}
+
+	@SuppressWarnings("unchecked")
+	private <T extends EObject> MockPredicate<T> getMockPredicate(T eObject) {
 		IMetaModelDescriptorProvider mmDescProvider = createMetaModelDescriptorProviderFor(eObject);
 		ISwcPredicatesService service = fServiceProvider.getService(mmDescProvider, ISwcPredicatesService.class);
-		MockPredicate<T> mockPredicate = (MockPredicate<T>) service.hasUniqueErrorCodes();
-		mockPredicate.assertWasAppliedTo(eObject);
+		return (MockPredicate<T>) service.hasUniqueErrorCodes();
 	}
 
 	private void assertConstraintRegistration(Class<? extends AbstractModelConstraint> constraintClass) {
