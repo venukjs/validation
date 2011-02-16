@@ -38,11 +38,8 @@ import java.util.Set;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.internal.Activator;
-import org.artop.aal.gautosar.services.DefaultMetaModelServiceProvider;
-import org.artop.aal.gautosar.services.ecuc.IECUCService;
-import org.artop.ecl.emf.metamodel.IMetaModelDescriptor;
-import org.artop.ecl.emf.metamodel.MetaModelDescriptorRegistry;
 import org.artop.ecl.platform.util.PlatformLogUtil;
+import org.artop.ecl.platform.util.RadixConverter;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
@@ -51,13 +48,28 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.osgi.util.NLS;
 
 public class EcucUtil {
-	static final String MULTIPLICITY_ZERO = "0"; //$NON-NLS-1$
-	static final String MULTIPLICITY_ONE = "1"; //$NON-NLS-1$
-	static final String MULTIPLICITY_INFINITY = "*"; //$NON-NLS-1$
+	/**
+	 * The constant used to represent a multiplicity with "0" as value.
+	 */
+	protected static final String MULTIPLICITY_ZERO = "0"; //$NON-NLS-1$
+
+	/**
+	 * The constant used to represent a multiplicity with "1" as value.
+	 */
+	protected static final String MULTIPLICITY_ONE = "1"; //$NON-NLS-1$
+
+	/**
+	 * The constant used to represent an infinite multiplicity with "*" as value.
+	 */
+	protected static final String MULTIPLICITY_INFINITY = "*"; //$NON-NLS-1$
+
+	/**
+	 * The constant used to represent a "*" inside the upperMultiplicity field
+	 */
+	public static final BigInteger MULTIPLICITY_STAR_BIG_INTEGER = new BigInteger("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF", 16); //$NON-NLS-1$
 
 	public static String getFeatureValue(EObject eObject, String featureName) {
 		EStructuralFeature eFeature = eObject.eClass().getEStructuralFeature(featureName);
-
 		if (eFeature == null) {
 			return null;
 		}
@@ -82,7 +94,7 @@ public class EcucUtil {
 		GModuleDef refinedModuleDef = getParentRefinedModuleDef(vSpecifContainerDef);
 		if (refinedModuleDef != null) {
 
-			/* Initialises cache with the Container Definition objects contained in the Refined Module Definition. */
+			/* Initializes cache with the Container Definition objects contained in the Refined Module Definition. */
 			GContainerDef[] cache = refinedModuleDef.gGetContainers().toArray(new GContainerDef[0]);
 
 			for (GContainerDef vSpecifContDefAncestor : getAncestors(vSpecifContainerDef)) {
@@ -118,13 +130,9 @@ public class EcucUtil {
 		 * The Module Definition which is refined by the Module Definition containing the given Configuration Parameter.
 		 */
 		GModuleDef refinedModuleDef = getParentRefinedModuleDef(configParameter);
-
 		if (refinedModuleDef != null) {
-
 			GContainerDef refinedContainerDef = null;
-
 			GContainerDef[] tmpRefinedContainers = refinedModuleDef.gGetContainers().toArray(new GContainerDef[0]);
-
 			for (GContainerDef containerDef : getAncestors(configParameter)) {
 				for (GContainerDef rcd : tmpRefinedContainers) {
 					refinedContainerDef = rcd;
@@ -138,7 +146,6 @@ public class EcucUtil {
 							tmpRefinedContainers = ccd.gGetChoices().toArray(new GContainerDef[0]);
 							break;
 						}
-
 					}
 				}
 			}
@@ -221,22 +228,17 @@ public class EcucUtil {
 
 	public static ArrayList<GContainerDef> getAncestors(GConfigParameter configParameter) {
 		ArrayList<GContainerDef> ancestors = new ArrayList<GContainerDef>();
-
 		EObject eContainer = configParameter.eContainer();
 		while (eContainer != null && eContainer instanceof GContainerDef) {
 			ancestors.add(0, (GContainerDef) eContainer);
 			eContainer = eContainer.eContainer();
 		}
-		;
-
 		return ancestors;
 	}
 
 	public static ArrayList<GContainerDef> getAncestors(GContainerDef containerDef) {
 		ArrayList<GContainerDef> ancestors = new ArrayList<GContainerDef>();
-
 		ancestors.add(containerDef);
-
 		EObject eContainer = containerDef.eContainer();
 		while (eContainer != null && eContainer instanceof GContainerDef) {
 			ancestors.add(0, (GContainerDef) eContainer);
@@ -256,7 +258,6 @@ public class EcucUtil {
 	public static int getNumberOfUniqueContainersByDefinition(List<GContainer> containers, GContainerDef gContainerDef)
 			throws IllegalArgumentException {
 		final int numberOfUniqueContainersByDefinition;
-
 		if (null == containers || null == gContainerDef) {
 			throw new IllegalArgumentException(Messages.generic_nullParametersException);
 		} else {
@@ -273,7 +274,6 @@ public class EcucUtil {
 
 	public static ArrayList<GIdentifiable> getIdentifiableAncestors(GIdentifiable eObject) {
 		ArrayList<GIdentifiable> ancestors = new ArrayList<GIdentifiable>();
-
 		ancestors.add(eObject);
 		EObject eContainer = eObject.eContainer();
 		while (eContainer != null && (eContainer instanceof GCommonConfigurationAttributes || eContainer instanceof GContainerDef)) {
@@ -546,7 +546,6 @@ public class EcucUtil {
 	 *         </ul>
 	 */
 	public static boolean validateUpper(GParamConfMultiplicity refinedConfMultiplicity, GParamConfMultiplicity vSpecifConfMultiplicity) {
-
 		/* Flag used to mark the upper multiplicity as valid or not. */
 		boolean valid = true;
 
@@ -663,7 +662,7 @@ public class EcucUtil {
 	}
 
 	public static String[] inspectContainersSub(EList<GContainerDef> refinedContainers, EList<GContainerDef> vSpecifContainers) {
-		/* List of invalid config parameters */
+		/* List of invalid configuration parameters */
 		List<String> failures = new ArrayList<String>();
 
 		for (GContainerDef refinedContainerDef : refinedContainers) {
@@ -693,7 +692,7 @@ public class EcucUtil {
 	}
 
 	public static String[] inspectContainersChoice(EList<GParamConfContainerDef> refinedContainers, EList<GParamConfContainerDef> vSpecifContainers) {
-		/* List of invalid config parameters */
+		/* List of invalid configuration parameters */
 		List<String> failures = new ArrayList<String>();
 
 		for (GContainerDef refinedContainerDef : refinedContainers) {
@@ -725,7 +724,7 @@ public class EcucUtil {
 
 	public static String[] inspectCommonConfigurationParameter(EList<GConfigParameter> refinedCommonConfigurationAttributes,
 			EList<GConfigParameter> vSpecifCommonConfigurationAttributes) {
-		/* List of invalid config parameters */
+		/* List of invalid configuration parameters */
 		List<String> failures = new ArrayList<String>();
 
 		for (GConfigParameter refinedCommonConfAtt : refinedCommonConfigurationAttributes) {
@@ -758,7 +757,7 @@ public class EcucUtil {
 
 	public static String[] inspectCommonConfigurationReference(EList<GConfigReference> refinedCommonConfigurationAttributes,
 			EList<GConfigReference> vSpecifCommonConfigurationAttributes) {
-		/* List of invalid config parameters */
+		/* List of invalid configuration parameters */
 		List<String> failures = new ArrayList<String>();
 
 		for (GConfigReference refinedCommonConfAtt : refinedCommonConfigurationAttributes) {
@@ -790,17 +789,6 @@ public class EcucUtil {
 		return failures.toArray(new String[0]);
 	}
 
-	public static boolean isValidLowerMultiplicity(int numberOfObjects, GParamConfMultiplicity gParamConfMultiplicity) {
-
-		IMetaModelDescriptor descriptor = MetaModelDescriptorRegistry.INSTANCE.getDescriptor(gParamConfMultiplicity);
-
-		IECUCService ecucService = new DefaultMetaModelServiceProvider().getService(descriptor, IECUCService.class);
-		BigInteger lowerMultiplicity = ecucService.getLowerMultiplicity(gParamConfMultiplicity, new BigInteger(MULTIPLICITY_ONE, 10));
-
-		return numberOfObjects >= lowerMultiplicity.intValue();
-
-	}
-
 	public static String getLowerMultiplicity(GParamConfMultiplicity gParamConfMultiplicity) {
 		final String lowerMultiplicity;
 		if (gParamConfMultiplicity.gGetLowerMultiplicityAsString() != null) {
@@ -812,32 +800,72 @@ public class EcucUtil {
 	}
 
 	public static String getUpperMultiplicity(GParamConfMultiplicity gParamConfMultiplicity) {
+		Assert.isNotNull(gParamConfMultiplicity);
 
-		IMetaModelDescriptor descriptor = MetaModelDescriptorRegistry.INSTANCE.getDescriptor(gParamConfMultiplicity);
-
-		IECUCService ecucService = new DefaultMetaModelServiceProvider().getService(descriptor, IECUCService.class);
-
-		BigInteger upperMultiplicity = ecucService.getUpperMultiplicity(gParamConfMultiplicity, new BigInteger(MULTIPLICITY_ONE, 10));
-		if (IECUCService.MULTIPLICITY_STAR == upperMultiplicity) {
+		if (gParamConfMultiplicity.gGetUpperMultiplicityInfinite()) {
 			return MULTIPLICITY_INFINITY;
 		} else {
-
+			BigInteger upperMultiplicity = convertMultiplicityAsBigInteger(gParamConfMultiplicity.gGetUpperMultiplicityAsString(), new BigInteger(
+					MULTIPLICITY_ONE, 10));
 			return upperMultiplicity.toString(10);
 		}
+	}
 
+	public static boolean isValidLowerMultiplicity(int numberOfObjects, GParamConfMultiplicity gParamConfMultiplicity) {
+		Assert.isNotNull(gParamConfMultiplicity);
+
+		BigInteger lowerMultiplicity = convertMultiplicityAsBigInteger(gParamConfMultiplicity.gGetLowerMultiplicityAsString(), new BigInteger(
+				MULTIPLICITY_ONE, 10));
+		return numberOfObjects >= lowerMultiplicity.intValue();
 	}
 
 	public static boolean isValidUpperMultiplicity(int numberOfObjects, GParamConfMultiplicity gParamConfMultiplicity) {
+		Assert.isNotNull(gParamConfMultiplicity);
 
-		IMetaModelDescriptor descriptor = MetaModelDescriptorRegistry.INSTANCE.getDescriptor(gParamConfMultiplicity);
-
-		IECUCService ecucService = new DefaultMetaModelServiceProvider().getService(descriptor, IECUCService.class);
-		BigInteger upperMultiplicity = ecucService.getUpperMultiplicity(gParamConfMultiplicity, new BigInteger(MULTIPLICITY_ONE, 10));
-
-		if (upperMultiplicity == IECUCService.MULTIPLICITY_STAR) {
+		if (gParamConfMultiplicity.gGetUpperMultiplicityInfinite()) {
 			return true;
+		}
+		BigInteger upperMultiplicity = convertMultiplicityAsBigInteger(gParamConfMultiplicity.gGetUpperMultiplicityAsString(), new BigInteger(
+				MULTIPLICITY_ONE, 10));
+		return numberOfObjects <= upperMultiplicity.intValue();
+	}
+
+	/**
+	 * Converts from the String representation of a BigInteger into a BigInteger. If <code>multiplicity</code> is
+	 * <code>null</code> or cannot be converted, the given <code>defaultValue</code> is returned.
+	 * 
+	 * @param multiplicity
+	 *            String representation of a BigInteger
+	 * @param defaultValue
+	 *            value to be returned in case conversion is not possible
+	 * @return converted value
+	 */
+	public static BigInteger convertMultiplicityAsBigInteger(String multiplicity, BigInteger defaultValue) {
+		// multiplicity not set, return default
+		//
+		if (multiplicity == null) {
+			return defaultValue;
+		}
+
+		// infinite
+		//
+		if (MULTIPLICITY_INFINITY.equals(multiplicity)) {
+			return MULTIPLICITY_STAR_BIG_INTEGER;
+		}
+
+		int radix = RadixConverter.getRadix(multiplicity);
+		if (radix != 0) {
+			BigInteger converted;
+			try {
+				// try to convert
+				converted = new BigInteger(multiplicity, radix);
+			} catch (NumberFormatException e) {
+				// invalid representation
+				return defaultValue;
+			}
+			return converted;
 		} else {
-			return numberOfObjects <= upperMultiplicity.intValue();
+			return defaultValue;
 		}
 	}
 
@@ -894,12 +922,10 @@ public class EcucUtil {
 		}
 
 		GContainerDef cd = (GContainerDef) cp.eContainer();
-
 		while (cd != null && cd.eContainer() instanceof GContainerDef) {
 			cd = (GContainerDef) cd.eContainer();
 		}
 
 		return cd.eContainer() != null && cd.eContainer() instanceof GModuleDef ? (GModuleDef) cd.eContainer() : null;
-
 	}
 }
