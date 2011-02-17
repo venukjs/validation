@@ -48,8 +48,8 @@ public class GParamConfContainerDefInChoiceContainerDefMultiplicityConstraint ex
 		String lowerMultiplicity = paramConfContainerDef.gGetLowerMultiplicityAsString();
 		String upperMultiplicity = paramConfContainerDef.gGetUpperMultiplicityAsString();
 
-		if (lowerMultiplicity != null && !lowerMultiplicity.isEmpty() && !lowerMultiplicity.equals(MULTIPLICITY_LOWERBOUND)
-				|| upperMultiplicity != null && !upperMultiplicity.isEmpty() && !upperMultiplicity.equals(MULTIPLICITY_UPPERBOUND)) {
+		if (lowerMultiplicity != null && lowerMultiplicity.length() > 0 && !lowerMultiplicity.equals(MULTIPLICITY_LOWERBOUND)
+				|| upperMultiplicity != null && upperMultiplicity.length() > 0 && !upperMultiplicity.equals(MULTIPLICITY_UPPERBOUND)) {
 			return ctx.createFailureStatus(NLS.bind(Messages.paramConfContainerDef_InChoiceContainerDefMultiplicity, new String[] {
 					paramConfContainerDef.gGetShortName(), ((GIdentifiable) paramConfContainerDef.eContainer()).gGetShortName(),
 					MULTIPLICITY_LOWERBOUND, MULTIPLICITY_UPPERBOUND }));

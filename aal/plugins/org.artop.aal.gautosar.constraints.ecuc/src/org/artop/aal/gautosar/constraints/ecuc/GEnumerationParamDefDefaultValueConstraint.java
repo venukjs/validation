@@ -44,7 +44,7 @@ public class GEnumerationParamDefDefaultValueConstraint extends AbstractModelCon
 		/* Get default value of the current Enumeration Parameter Definition, if any. */
 		String defaultValue = enumerationParamDef.gGetDefaultValue();
 
-		if (defaultValue != null && !defaultValue.isEmpty()) {
+		if (defaultValue != null && defaultValue.length() > 0) {
 			/*
 			 * Retrieves the literals declared under the current Enumeration Parameter Definition.
 			 */
