@@ -1,14 +1,14 @@
 /**
  * <copyright>
  * 
- * Copyright (c) Geensys and others.
+ * Copyright (c) See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
  * 
  * Contributors: 
- *     Geensys - Initial API and implementation
+ *     See4sys - Initial API and implementation
  * 
  * </copyright>
  */
@@ -17,15 +17,17 @@ package org.artop.aal.examples.autosar3x.constraints.tests.integration.constrain
 import java.util.List;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
+import org.artop.aal.examples.autosar3x.constraints.ARPackageSpecificNamingConvention3xConstraint;
 import org.artop.aal.testutils.integration.referenceworkspace.AbstractAutosarIntegrationTestCase;
 import org.artop.aal.testutils.integration.referenceworkspace.AutosarTestReferenceWorkspace;
-import org.artop.ecl.emf.util.EcorePlatformUtil;
-import org.artop.ecl.emf.validation.diagnostic.ExtendedDiagnostic;
-import org.artop.ecl.emf.validation.diagnostic.ExtendedDiagnostician;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.validation.IValidationContext;
+import org.eclipse.sphinx.emf.util.EcorePlatformUtil;
+import org.eclipse.sphinx.emf.validation.diagnostic.ExtendedDiagnostic;
+import org.eclipse.sphinx.emf.validation.diagnostic.ExtendedDiagnostician;
 
 import autosar3x.ecucparameterdef.ModuleDef;
 import autosar3x.ecuresource.ECU;
@@ -192,8 +194,8 @@ public class ExampleValidationConstraintsTest extends AbstractAutosarIntegration
 				// we ensure that the violated rule is the expected one
 				assertEquals(IDENTIABLE_ELEMENTS_MUST_HAVE_A_VALID_SHORT_NAME_3x_CONSTRAINT_CODE, childDiagnostic.getCode());
 
-				assertEquals(IDENTIABLE_ELEMENTS_MUST_HAVE_A_VALID_SHORT_NAME_3x_CONSTRAINT_ID, ((ExtendedDiagnostic) childDiagnostic)
-						.getConstraintId());
+				assertEquals(IDENTIABLE_ELEMENTS_MUST_HAVE_A_VALID_SHORT_NAME_3x_CONSTRAINT_ID,
+						((ExtendedDiagnostic) childDiagnostic).getConstraintId());
 				// we ensure that data element stored is the expected element violating a rule
 				List<?> childData = childDiagnostic.getData();
 				assertNotNull(childData);
@@ -247,8 +249,8 @@ public class ExampleValidationConstraintsTest extends AbstractAutosarIntegration
 				assertEquals(Diagnostic.ERROR, childDiagnostic.getSeverity());
 				// we ensure that the violated rule is the expected one
 				assertEquals(SHORTNAME_OF_IDENTIFIABLE_ELEMENTS_MUST_BE_UNIQUE_3x_CONSTRAINT_CODE, childDiagnostic.getCode());
-				assertEquals(SHORTNAME_OF_IDENTIFIABLE_ELEMENTS_MUST_BE_UNIQUE_3x_CONSTRAINT_ID, ((ExtendedDiagnostic) childDiagnostic)
-						.getConstraintId());
+				assertEquals(SHORTNAME_OF_IDENTIFIABLE_ELEMENTS_MUST_BE_UNIQUE_3x_CONSTRAINT_ID,
+						((ExtendedDiagnostic) childDiagnostic).getConstraintId());
 				// we ensure that data element stored is the expected element violating a rule
 				List<?> childData = childDiagnostic.getData();
 				assertNotNull(childData);

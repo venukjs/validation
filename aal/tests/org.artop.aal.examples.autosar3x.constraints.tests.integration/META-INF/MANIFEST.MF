@@ -10,7 +10,6 @@ Require-Bundle: org.junit,
  org.artop.aal.testutils.integration.referenceworkspace,
  org.eclipse.emf.common,
  org.eclipse.core.runtime,
- org.artop.ecl.emf.validation,
  org.artop.aal.autosar3x.validation,
  org.artop.aal.examples.autosar3x.constraints
 Bundle-Activator: org.artop.aal.examples.autosar3x.constraints.tests.integration.internal.Activator$Implementation
