@@ -1,14 +1,14 @@
 /**
  * <copyright>
  * 
- * Copyright (c) BMW Car IT, Geensys and others.
+ * Copyright (c) BMW Car IT, See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
  * 
  * Contributors: 
- *     Geensys - Initial API and implementation
+ *     See4sys - Initial API and implementation
  * 
  * </copyright>
  */
@@ -16,9 +16,9 @@ package org.artop.aal.autosar20.validation.internal;
 
 import org.artop.aal.autosar20.validation.listeners.AutomaticValidation20Listener;
 import org.artop.aal.autosar20.validation.listeners.ProblemMarkerIntegrity20Listener;
-import org.artop.ecl.emf.domain.factory.ITransactionalEditingDomainFactoryListener;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.sphinx.emf.domain.factory.ITransactionalEditingDomainFactoryListener;
 
 /**
  * @since 1.2

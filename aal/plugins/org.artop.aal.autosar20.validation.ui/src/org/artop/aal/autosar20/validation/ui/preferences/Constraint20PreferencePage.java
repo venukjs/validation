@@ -1,14 +1,14 @@
 /**
  * <copyright>
  * 
- * Copyright (c) Geensys and others.
+ * Copyright (c) See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
  * 
  * Contributors: 
- *     Geensys - Initial API and implementation
+ *     See4sys - Initial API and implementation
  * 
  * </copyright>
  */
@@ -18,15 +18,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.service.IConstraintDescriptor;
 import org.eclipse.emf.validation.service.IConstraintFilter;
 import org.eclipse.emf.validation.ui.preferences.ConstraintsSelectionBlock;
+import org.eclipse.sphinx.emf.validation.bridge.util.ConstraintUtil;
+import org.eclipse.sphinx.emf.validation.ui.preferences.ConstraintPreferencePage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
 import autosar20.util.Autosar20Factory;
-
-import org.artop.ecl.emf.validation.bridge.util.ConstraintUtil;
-import org.artop.ecl.emf.validation.ui.preferences.ConstraintPreferencePage;
 
 public class Constraint20PreferencePage extends ConstraintPreferencePage {
 	@Override

@@ -1,21 +1,21 @@
 /**
  * <copyright>
  * 
- * Copyright (c) Geensys and others.
+ * Copyright (c) See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
  * 
  * Contributors: 
- *     Geensys - Initial API and implementation
+ *     See4sys - Initial API and implementation
  * 
  * </copyright>
  */
 package org.artop.aal.autosar20.validation;
 
-import org.artop.ecl.emf.validation.evalidator.adapter.EValidatorRegistering;
 import org.eclipse.core.runtime.Plugin;
+import org.eclipse.sphinx.emf.validation.evalidator.adapter.EValidatorRegistering;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -43,7 +43,7 @@ public class Activator extends Plugin {
 		super.start(context);
 		plugin = this;
 
-		// Let's registering EValidator for each contribution to org.artop.ecl.emf.validation.registration.
+		// Let's registering EValidator for each contribution to org.eclipse.sphinx.emf.validation.registration.
 		EValidatorRegistering.getSingleton().eValidatorSetAllContributions(Activator.PLUGIN_ID);
 	}
 

@@ -23,10 +23,10 @@ import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.AbstractModelConstraintWithPrecondition;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
 import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
-import org.artop.ecl.emf.util.EObjectUtil;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.sphinx.emf.util.EObjectUtil;
 
 import autosar20.ecucdescription.EcuConfiguration;
 import autosar20.ecucdescription.ModuleConfiguration;

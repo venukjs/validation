@@ -14,11 +14,11 @@
  */
 package org.artop.aal.autosar21.constraints.ecuc;
 
-import java.math.BigInteger;
-
 import gautosar.gecucdescription.GIntegerValue;
 import gautosar.gecucdescription.GParameterValue;
 import gautosar.gecucparameterdef.GIntegerParamDef;
+
+import java.math.BigInteger;
 
 import org.artop.aal.gautosar.constraints.ecuc.GIntegerValueBasicConstraint;
 import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
