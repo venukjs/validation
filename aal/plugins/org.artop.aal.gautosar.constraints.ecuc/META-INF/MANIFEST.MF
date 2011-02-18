@@ -6,7 +6,7 @@ Bundle-SymbolicName: org.artop.aal.gautosar.constraints.ecuc;singleton:=true
 Bundle-Version: 3.0.0.qualifier
 Bundle-Activator: org.artop.aal.gautosar.constraints.ecuc.internal.Activator
 Require-Bundle: org.eclipse.core.runtime,
- org.artop.ecl.emf.validation,
+ org.eclipse.sphinx.emf.validation,
  org.artop.aal.gautosar,
  org.artop.aal.common,
  org.artop.aal.gautosar.services

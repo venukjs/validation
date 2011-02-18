@@ -14,7 +14,6 @@
  */
 package org.artop.aal.validation.constraints.swc.portinterface;
 
-import static org.artop.ecl.emf.metamodel.providers.EObjectMetaModelDescriptorProvider.createMetaModelDescriptorProviderFor;
 import gautosar.gswcomponents.gportinterface.GClientServerInterface;
 
 import java.util.ArrayList;
@@ -30,6 +29,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.emf.validation.model.ConstraintStatus;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.sphinx.emf.metamodel.providers.EObjectMetaModelDescriptorProvider;
 
 /**
  * A Constraint which validates that all defined possible errors within a client server interface have unique values.
@@ -57,7 +57,8 @@ public class UniqueApplicationErrorCodesConstraint extends PredicateBasedConstra
 	}
 
 	private ISwcPredicatesService getSwcPredicatesService(EObject contextEObject) {
-		return getServiceProvider().getService(createMetaModelDescriptorProviderFor(contextEObject), ISwcPredicatesService.class);
+		return getServiceProvider().getService(EObjectMetaModelDescriptorProvider.createMetaModelDescriptorProviderFor(contextEObject),
+				ISwcPredicatesService.class);
 	}
 
 	private IStatus createFailures(IValidationContext ctx, DuplicateErrorCodes reason) {

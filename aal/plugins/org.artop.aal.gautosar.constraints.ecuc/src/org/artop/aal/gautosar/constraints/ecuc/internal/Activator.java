@@ -15,10 +15,9 @@
  */
 package org.artop.aal.gautosar.constraints.ecuc.internal;
 
-import org.artop.ecl.emf.validation.evalidator.adapter.EValidatorRegistering;
 import org.eclipse.core.runtime.Plugin;
+import org.eclipse.sphinx.emf.validation.evalidator.adapter.EValidatorRegistering;
 import org.osgi.framework.BundleContext;
-
 
 public class Activator extends Plugin {
 
@@ -34,7 +33,7 @@ public class Activator extends Plugin {
 		super.start(context);
 		plugin = this;
 
-		// Let's registering EValidator for each contribution to org.artop.ecl.emf.validation.registration.
+		// Let's registering EValidator for each contribution to org.eclipse.sphinx.emf.validation.registration.
 		EValidatorRegistering.getSingleton().eValidatorSetAllContributions(Activator.PLUGIN_ID);
 	}
 

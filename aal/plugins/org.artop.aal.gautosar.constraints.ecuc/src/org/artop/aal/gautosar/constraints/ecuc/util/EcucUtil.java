@@ -40,15 +40,15 @@ import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.internal.Activator;
 import org.artop.aal.gautosar.services.DefaultMetaModelServiceProvider;
 import org.artop.aal.gautosar.services.ecuc.IECUCService;
-import org.artop.ecl.emf.metamodel.IMetaModelDescriptor;
-import org.artop.ecl.emf.metamodel.MetaModelDescriptorRegistry;
-import org.artop.ecl.platform.util.PlatformLogUtil;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.sphinx.emf.metamodel.IMetaModelDescriptor;
+import org.eclipse.sphinx.emf.metamodel.MetaModelDescriptorRegistry;
+import org.eclipse.sphinx.platform.util.PlatformLogUtil;
 
 public class EcucUtil {
 	static final String MULTIPLICITY_ZERO = "0"; //$NON-NLS-1$

@@ -7,8 +7,8 @@ import org.artop.aal.gautosar.services.IMetaModelService;
 import org.artop.aal.gautosar.services.IMetaModelServiceProvider;
 import org.artop.aal.gautosar.services.predicates.ExplainablePredicate;
 import org.artop.aal.gautosar.services.predicates.swc.ISwcPredicatesService;
-import org.artop.ecl.emf.metamodel.IMetaModelDescriptor;
-import org.artop.ecl.emf.metamodel.providers.IMetaModelDescriptorProvider;
+import org.eclipse.sphinx.emf.metamodel.IMetaModelDescriptor;
+import org.eclipse.sphinx.emf.metamodel.providers.IMetaModelDescriptorProvider;
 
 /**
  * A <code>IMetaModelServiceProvider</code> which provides a

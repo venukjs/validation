@@ -19,7 +19,6 @@ import gautosar.ggenericstructure.ginfrastructure.GAUTOSAR;
 import junit.framework.TestCase;
 
 import org.artop.aal.common.resource.impl.AutosarResourceSetImpl;
-import org.artop.ecl.testutils.TestFileAccessor;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -32,6 +31,7 @@ import org.eclipse.emf.validation.service.IConstraintDescriptor;
 import org.eclipse.emf.validation.service.IConstraintFilter;
 import org.eclipse.emf.validation.service.IValidator;
 import org.eclipse.emf.validation.service.ModelValidationService;
+import org.eclipse.sphinx.testutils.TestFileAccessor;
 
 
 /**

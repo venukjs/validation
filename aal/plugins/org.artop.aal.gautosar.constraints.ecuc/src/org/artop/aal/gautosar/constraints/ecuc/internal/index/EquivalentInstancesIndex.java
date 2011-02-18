@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
-import org.artop.ecl.emf.util.EObjectUtil;
+import org.eclipse.sphinx.emf.util.EObjectUtil;
 
 /**
  * Index that allows fast access to all instances that have the short name path and type. This is useful for e.g.
