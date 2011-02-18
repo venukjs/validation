@@ -18,6 +18,12 @@ Contributors:
 
 <plugin>
 
+    <extension point="org.eclipse.emf.validation.constraintBindings">    
+        <binding
+            context="autosar3x.ARObject.context"
+            category="org.artop.aal.examples.constraints.category.autosar3x"/>
+    </extension>
+
     <!-- Example contraint categroy definition -->
   
    <extension point="org.eclipse.emf.validation.constraintProviders">
