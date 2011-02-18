@@ -14,14 +14,12 @@
  */
 package org.artop.aal.examples.validation.constraints.tests;
 
-import static org.artop.ecl.emf.metamodel.providers.EObjectMetaModelDescriptorProvider.createMetaModelDescriptorProviderFor;
 import junit.framework.TestCase;
 
 import org.artop.aal.examples.validation.constraints.tests.mock.MockSwcPredicatesService.MockPredicate;
 import org.artop.aal.gautosar.services.DefaultMetaModelServiceProvider;
 import org.artop.aal.gautosar.services.predicates.swc.ISwcPredicatesService;
 import org.artop.aal.validation.constraints.swc.portinterface.UniqueApplicationErrorCodesConstraint;
-import org.artop.ecl.emf.metamodel.providers.IMetaModelDescriptorProvider;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.model.EvaluationMode;
@@ -30,6 +28,8 @@ import org.eclipse.emf.validation.service.IConstraintDescriptor;
 import org.eclipse.emf.validation.service.IParameterizedConstraintDescriptor;
 import org.eclipse.emf.validation.service.IValidator;
 import org.eclipse.emf.validation.service.ModelValidationService;
+import org.eclipse.sphinx.emf.metamodel.providers.EObjectMetaModelDescriptorProvider;
+import org.eclipse.sphinx.emf.metamodel.providers.IMetaModelDescriptorProvider;
 
 import autosar20.util.Autosar20Factory;
 import autosar21.util.Autosar21Factory;
@@ -130,7 +130,7 @@ public class UniqueApplicationErrorCodesConstraintIntegrationTest extends TestCa
 
 	@SuppressWarnings("unchecked")
 	private <T extends EObject> MockPredicate<T> getMockPredicate(T eObject) {
-		IMetaModelDescriptorProvider mmDescProvider = createMetaModelDescriptorProviderFor(eObject);
+		IMetaModelDescriptorProvider mmDescProvider = EObjectMetaModelDescriptorProvider.createMetaModelDescriptorProviderFor(eObject);
 		ISwcPredicatesService service = fServiceProvider.getService(mmDescProvider, ISwcPredicatesService.class);
 		return (MockPredicate<T>) service.hasUniqueErrorCodes();
 	}

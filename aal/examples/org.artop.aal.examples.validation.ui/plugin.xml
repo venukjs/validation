@@ -4,19 +4,27 @@
 <!--
 <copyright>
 
-Copyright (c) Geensys and others.
+Copyright (c) See4sys and others.
 All rights reserved. This program and the accompanying materials are made
 available under the terms of the Artop Software License Based on AUTOSAR
 Released Material (ASLR) which accompanies this distribution, and is
 available at http://www.artop.org/aslr.html
  
 Contributors: 
-    Geensys - Initial API and implementation
+    See4sys - Initial API and implementation
 
 </copyright>
 -->
 
 <plugin>
+   <extension point="org.eclipse.ui.views">
+      <view allowMultiple="false"
+            name="%aal.examples.validation.ui.views.validation.name"
+            icon="$nl$/icons/full/eview16/validation_view.gif"
+            category="org.artop.aal.examples.common.ui.views.category.artopExampleViews"
+            class="org.eclipse.sphinx.emf.validation.ui.views.ValidationView"
+            id="org.artop.aal.examples.validation.ui.views.validation" />
+   </extension>
    <extension
          point="org.eclipse.ui.navigator.navigatorContent">
       <actionProvider 
@@ -32,15 +40,15 @@ Contributors:
                <and>
                   <instanceof value="org.eclipse.core.resources.IFile" />
                   <test
-                      property="org.artop.ecl.emf.isInScope"
+                      property="org.eclipse.sphinx.emf.isInScope"
                       value="true" />
                   <test 
-                      property="org.artop.ecl.emf.metaModelIdMatches"
+                      property="org.eclipse.sphinx.emf.metaModelIdMatches"
                       value="org.artop.aal.autosar\d\w" />
                </and>
                <and>
                   <instanceof value="org.eclipse.emf.ecore.EObject" />
-                  <test property="org.artop.ecl.emf.classNameMatches"
+                  <test property="org.eclipse.sphinx.emf.classNameMatches"
                         value="autosar\d\w\..*" />
                </and>
             </or>
