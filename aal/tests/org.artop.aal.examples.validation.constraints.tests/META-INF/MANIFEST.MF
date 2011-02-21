@@ -16,6 +16,6 @@ Require-Bundle: org.eclipse.emf.validation,
  org.artop.aal.autosar3x,
  org.artop.aal.autosar40,
  org.artop.aal.validation,
- org.artop.aal.testutils;bundle-version="3.0.0"
+ org.artop.aal.testutils
 Bundle-ActivationPolicy: lazy
 Export-Package: org.artop.aal.examples.validation.constraints.tests.mock

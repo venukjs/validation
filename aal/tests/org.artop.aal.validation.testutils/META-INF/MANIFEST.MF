@@ -8,4 +8,4 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.artop.aal.validation.testutils;x-friends:="org.artop.aal.validation.constraints.swc.tests,org.artop.aal.validation.constraints.gst.tests"
 Bundle-Localization: plugin
 Require-Bundle: org.artop.aal.validation;visibility:=reexport,
- org.artop.aal.testutils;bundle-version="3.0.0"
+ org.artop.aal.testutils

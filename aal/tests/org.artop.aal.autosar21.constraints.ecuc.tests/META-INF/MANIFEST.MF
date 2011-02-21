@@ -11,7 +11,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.artop.aal.gautosar.constraints.ecuc,
  org.artop.aal.gautosar.constraints.ecuc.tests,
  org.artop.aal.autosar21.constraints.ecuc,
- org.artop.aal.testutils;bundle-version="3.0.0"
+ org.artop.aal.testutils
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.artop.aal.autosar21.constraints.ecuc.tests,

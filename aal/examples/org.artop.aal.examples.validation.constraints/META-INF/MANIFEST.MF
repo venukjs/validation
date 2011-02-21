@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.artop.aal.examples.validation.constraints;singleton:=tr
 Bundle-Version: 3.0.0.qualifier
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.emf.validation,
- org.artop.aal.validation.constraints.swc;bundle-version="3.0.0",
+ org.artop.aal.validation.constraints.swc,
  org.eclipse.sphinx.emf.validation
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Localization: plugin
