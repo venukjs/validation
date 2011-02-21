@@ -18,17 +18,8 @@
    </license>
 
    <requires>
-      <import feature="org.artop.ecl" version="3.0.0"/>
       <import feature="org.artop.aal" version="3.0.0"/>
    </requires>
-
-   <includes
-         id="org.artop.validation.ecl"
-         version="0.0.0"/>
-
-   <includes
-         id="org.artop.validation.ecl.source"
-         version="0.0.0"/>
 
    <includes
          id="org.artop.validation.aal"
