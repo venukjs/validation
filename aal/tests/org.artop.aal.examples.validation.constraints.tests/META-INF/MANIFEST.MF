@@ -6,8 +6,7 @@ Bundle-Version: 3.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Require-Bundle: org.junit,
- org.eclipse.emf.validation,
+Require-Bundle: org.eclipse.emf.validation,
  org.artop.aal.validation.constraints.swc,
  org.eclipse.core.runtime,
  org.artop.aal.gautosar.services,
@@ -16,6 +15,7 @@ Require-Bundle: org.junit,
  org.artop.aal.autosar21,
  org.artop.aal.autosar3x,
  org.artop.aal.autosar40,
- org.artop.aal.validation
+ org.artop.aal.validation,
+ org.artop.aal.testutils;bundle-version="3.0.0"
 Bundle-ActivationPolicy: lazy
 Export-Package: org.artop.aal.examples.validation.constraints.tests.mock

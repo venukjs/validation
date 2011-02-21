@@ -6,8 +6,7 @@ Bundle-Version: 3.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Require-Bundle: org.junit,
- org.artop.aal.testutils.integration.referenceworkspace,
+Require-Bundle: org.artop.aal.testutils.integration.referenceworkspace,
  org.eclipse.emf.common,
  org.eclipse.core.runtime,
  org.artop.aal.autosar3x.validation,

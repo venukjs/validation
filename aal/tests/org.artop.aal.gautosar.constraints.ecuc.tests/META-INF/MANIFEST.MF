@@ -8,7 +8,6 @@ Bundle-Activator: org.artop.aal.gautosar.constraints.ecuc.tests.internal.Activat
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.sphinx.emf.validation,
- org.junit,
  org.artop.aal.gautosar,
  org.artop.aal.gautosar.constraints.ecuc,
  org.artop.aal.common,

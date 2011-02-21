@@ -6,7 +6,8 @@ Bundle-Version: 3.0.0.qualifier
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
 Bundle-Localization: fragment
-Require-Bundle: org.artop.aal.validation.testutils
+Require-Bundle: org.artop.aal.validation.testutils,
+ org.artop.aal.testutils;bundle-version="3.0.0"
 Bundle-ActivationPolicy: lazy
 Fragment-Host: 
  org.artop.aal.validation.constraints.swc
