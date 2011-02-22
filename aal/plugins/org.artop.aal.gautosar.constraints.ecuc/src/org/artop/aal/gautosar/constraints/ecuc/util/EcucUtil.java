@@ -38,22 +38,35 @@ import java.util.Set;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.internal.Activator;
-import org.artop.aal.gautosar.services.DefaultMetaModelServiceProvider;
-import org.artop.aal.gautosar.services.ecuc.IECUCService;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.sphinx.emf.metamodel.IMetaModelDescriptor;
-import org.eclipse.sphinx.emf.metamodel.MetaModelDescriptorRegistry;
 import org.eclipse.sphinx.platform.util.PlatformLogUtil;
+import org.eclipse.sphinx.platform.util.RadixConverter;
 
 public class EcucUtil {
+	/**
+	 * The constant used to represent a multiplicity with "0" as value.
+	 */
 	static final String MULTIPLICITY_ZERO = "0"; //$NON-NLS-1$
+
+	/**
+	 * The constant used to represent a multiplicity with "1" as value.
+	 */
 	static final String MULTIPLICITY_ONE = "1"; //$NON-NLS-1$
+
+	/**
+	 * The constant used to represent an infinite multiplicity with "*" as value.
+	 */
 	static final String MULTIPLICITY_INFINITY = "*"; //$NON-NLS-1$
+
+	/**
+	 * The constant used to represent a "*" inside the upperMultiplicity field
+	 */
+	public static final BigInteger MULTIPLICITY_STAR_BIG_INTEGER = new BigInteger("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF", 16); //$NON-NLS-1$
 
 	public static String getFeatureValue(EObject eObject, String featureName) {
 		EStructuralFeature eFeature = eObject.eClass().getEStructuralFeature(featureName);
@@ -82,7 +95,7 @@ public class EcucUtil {
 		GModuleDef refinedModuleDef = getParentRefinedModuleDef(vSpecifContainerDef);
 		if (refinedModuleDef != null) {
 
-			/* Initialises cache with the Container Definition objects contained in the Refined Module Definition. */
+			/* Initializes cache with the Container Definition objects contained in the Refined Module Definition. */
 			GContainerDef[] cache = refinedModuleDef.gGetContainers().toArray(new GContainerDef[0]);
 
 			for (GContainerDef vSpecifContDefAncestor : getAncestors(vSpecifContainerDef)) {
@@ -790,17 +803,6 @@ public class EcucUtil {
 		return failures.toArray(new String[0]);
 	}
 
-	public static boolean isValidLowerMultiplicity(int numberOfObjects, GParamConfMultiplicity gParamConfMultiplicity) {
-
-		IMetaModelDescriptor descriptor = MetaModelDescriptorRegistry.INSTANCE.getDescriptor(gParamConfMultiplicity);
-
-		IECUCService ecucService = new DefaultMetaModelServiceProvider().getService(descriptor, IECUCService.class);
-		BigInteger lowerMultiplicity = ecucService.getLowerMultiplicity(gParamConfMultiplicity, new BigInteger(MULTIPLICITY_ONE, 10));
-
-		return numberOfObjects >= lowerMultiplicity.intValue();
-
-	}
-
 	public static String getLowerMultiplicity(GParamConfMultiplicity gParamConfMultiplicity) {
 		final String lowerMultiplicity;
 		if (gParamConfMultiplicity.gGetLowerMultiplicityAsString() != null) {
@@ -812,32 +814,72 @@ public class EcucUtil {
 	}
 
 	public static String getUpperMultiplicity(GParamConfMultiplicity gParamConfMultiplicity) {
+		Assert.isNotNull(gParamConfMultiplicity);
 
-		IMetaModelDescriptor descriptor = MetaModelDescriptorRegistry.INSTANCE.getDescriptor(gParamConfMultiplicity);
-
-		IECUCService ecucService = new DefaultMetaModelServiceProvider().getService(descriptor, IECUCService.class);
-
-		BigInteger upperMultiplicity = ecucService.getUpperMultiplicity(gParamConfMultiplicity, new BigInteger(MULTIPLICITY_ONE, 10));
-		if (IECUCService.MULTIPLICITY_STAR == upperMultiplicity) {
+		if (gParamConfMultiplicity.gGetUpperMultiplicityInfinite()) {
 			return MULTIPLICITY_INFINITY;
 		} else {
-
+			BigInteger upperMultiplicity = convertMultiplicityAsBigInteger(gParamConfMultiplicity.gGetUpperMultiplicityAsString(), new BigInteger(
+					MULTIPLICITY_ONE, 10));
 			return upperMultiplicity.toString(10);
 		}
+	}
 
+	public static boolean isValidLowerMultiplicity(int numberOfObjects, GParamConfMultiplicity gParamConfMultiplicity) {
+		Assert.isNotNull(gParamConfMultiplicity);
+
+		BigInteger lowerMultiplicity = convertMultiplicityAsBigInteger(gParamConfMultiplicity.gGetLowerMultiplicityAsString(), new BigInteger(
+				MULTIPLICITY_ONE, 10));
+		return numberOfObjects >= lowerMultiplicity.intValue();
 	}
 
 	public static boolean isValidUpperMultiplicity(int numberOfObjects, GParamConfMultiplicity gParamConfMultiplicity) {
+		Assert.isNotNull(gParamConfMultiplicity);
 
-		IMetaModelDescriptor descriptor = MetaModelDescriptorRegistry.INSTANCE.getDescriptor(gParamConfMultiplicity);
-
-		IECUCService ecucService = new DefaultMetaModelServiceProvider().getService(descriptor, IECUCService.class);
-		BigInteger upperMultiplicity = ecucService.getUpperMultiplicity(gParamConfMultiplicity, new BigInteger(MULTIPLICITY_ONE, 10));
-
-		if (upperMultiplicity == IECUCService.MULTIPLICITY_STAR) {
+		if (gParamConfMultiplicity.gGetUpperMultiplicityInfinite()) {
 			return true;
+		}
+		BigInteger upperMultiplicity = convertMultiplicityAsBigInteger(gParamConfMultiplicity.gGetUpperMultiplicityAsString(), new BigInteger(
+				MULTIPLICITY_ONE, 10));
+		return numberOfObjects <= upperMultiplicity.intValue();
+	}
+
+	/**
+	 * Converts from the String representation of a BigInteger into a BigInteger. If <code>multiplicity</code> is
+	 * <code>null</code> or cannot be converted, the given <code>defaultValue</code> is returned.
+	 * 
+	 * @param multiplicity
+	 *            String representation of a BigInteger
+	 * @param defaultValue
+	 *            value to be returned in case conversion is not possible
+	 * @return converted value
+	 */
+	public static BigInteger convertMultiplicityAsBigInteger(String multiplicity, BigInteger defaultValue) {
+		// multiplicity not set, return default
+		//
+		if (multiplicity == null) {
+			return defaultValue;
+		}
+
+		// infinite
+		//
+		if (MULTIPLICITY_INFINITY.equals(multiplicity)) {
+			return MULTIPLICITY_STAR_BIG_INTEGER;
+		}
+
+		int radix = RadixConverter.getRadix(multiplicity);
+		if (radix != 0) {
+			BigInteger converted;
+			try {
+				// try to convert
+				converted = new BigInteger(multiplicity, radix);
+			} catch (NumberFormatException e) {
+				// invalid representation
+				return defaultValue;
+			}
+			return converted;
 		} else {
-			return numberOfObjects <= upperMultiplicity.intValue();
+			return defaultValue;
 		}
 	}
 
