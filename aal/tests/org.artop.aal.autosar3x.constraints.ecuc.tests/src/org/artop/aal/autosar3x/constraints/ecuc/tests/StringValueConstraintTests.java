@@ -52,7 +52,6 @@ public class StringValueConstraintTests extends AbstractAutosar3xValidationTestC
 
 	// correctness
 
-	// valid
 	public void testInvalidStringValue_emptyValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/StringValue/emptyValue.arxml");
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_valueNotSet);
@@ -60,14 +59,15 @@ public class StringValueConstraintTests extends AbstractAutosar3xValidationTestC
 
 	public void testInvalidStringValue_valueNoIdentifier() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/StringValue/valueNoIdentifier.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.OK);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.string_valueNoIdentifier);
 	}
 
 	public void testInvalidStringValue_valueTooLong() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/StringValue/valueTooLong.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.OK);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.string_valueTooBig);
 	}
 
+	// valid
 	public void testValidStringValue() throws Exception {
 		EObject validModel = loadInputFile("ecuc/StringValue/valid.arxml");
 		ValidationTestUtil.validateModel(validModel, validator, IStatus.OK);
