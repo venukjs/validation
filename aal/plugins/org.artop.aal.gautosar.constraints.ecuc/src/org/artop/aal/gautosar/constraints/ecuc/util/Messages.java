@@ -1,16 +1,17 @@
 /**
  * <copyright>
  * 
- * Copyright (c) OpenSynergy, Continental Engineering Services and others.
+ * Copyright (c) OpenSynergy, Continental Engineering Services, See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
  * 
  * Contributors: 
- *     OpenSynergy - Initial API and implementation for AUTOSAR 3.x
+ *     OpenSynergy - Initial API and implementation
  *     Continental Engineering Services - migration to gautosar
- *     see4Sys
+ *     See4sys -  
+ * 
  * </copyright>
  */
 package org.artop.aal.gautosar.constraints.ecuc.util;
