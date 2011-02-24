@@ -1,9 +1,0 @@
- 
- 
-org.artop.ecl.emf.validation/perf/eventOptions/ValidationPerformanceStats/ApplyContraints=true
-org.artop.ecl.emf.validation/perf/eventOptions/ValidationPerformanceStats/UpdateProblemMarkers=true
-org.artop.ecl.emf.validation/perf/eventOptions/ValidationPerformanceStats/LabelDecoration=true
-org.artop.ecl.emf.validation/perf/eventOptions/ValidationPerformanceStats/ApplyContraints/timeOutValue=700
-org.artop.ecl.emf.validation/perf/eventOptions/ValidationPerformanceStats/UpdateProblemMarkers/timeOutValue=700
-org.artop.ecl.emf.validation/perf/eventOptions/ValidationPerformanceStats/LabelDecoration/timeOutValue=700
- 
