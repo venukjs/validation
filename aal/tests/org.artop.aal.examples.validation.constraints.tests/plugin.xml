@@ -12,8 +12,7 @@
          </service>
       </descriptor>
       <descriptor
-            descriptorID="org.artop.aal.autosar21"
-            override="true">
+            descriptorID="org.artop.aal.autosar21">
          <service
                class="org.artop.aal.examples.validation.constraints.tests.mock.MockSwcPredicatesService"
                name="org.artop.aal.gautosar.services.predicates.swc.ISwcPredicatesService"
@@ -21,8 +20,7 @@
          </service>
       </descriptor>
       <descriptor
-            descriptorID="org.artop.aal.autosar3x"
-            override="true">
+            descriptorID="org.artop.aal.autosar3x">
          <service
                class="org.artop.aal.examples.validation.constraints.tests.mock.MockSwcPredicatesService"
                name="org.artop.aal.gautosar.services.predicates.swc.ISwcPredicatesService"
@@ -30,8 +28,7 @@
          </service>
       </descriptor>
       <descriptor
-            descriptorID="org.artop.aal.autosar40"
-            override="true">
+            descriptorID="org.artop.aal.autosar40">
          <service
                class="org.artop.aal.examples.validation.constraints.tests.mock.MockSwcPredicatesService"
                name="org.artop.aal.gautosar.services.predicates.swc.ISwcPredicatesService"
