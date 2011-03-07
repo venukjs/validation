@@ -46,7 +46,7 @@ public class GParamConfMultiplicityConsistencyConstraint extends AbstractModelCo
 		try {
 			if (lowerMultiplicity != null && lowerMultiplicity.length() > 0 && upperMultiplicity != null && upperMultiplicity.length() > 0) {
 				if (!lowerMultiplicity.equals(MULTIPLICITY_UPPERBOUND) && Integer.valueOf(lowerMultiplicity) >= 0) {
-					if (upperMultiplicity.equals(MULTIPLICITY_UPPERBOUND)) {
+					if (paramConfMultiplicity.gGetUpperMultiplicityInfinite()) {
 						//
 						// Consistency OK.
 						//
@@ -54,8 +54,8 @@ public class GParamConfMultiplicityConsistencyConstraint extends AbstractModelCo
 						//
 						// Upper multiplicity is not strictly greater than lower multiplicity. Create a failure.
 						//
-						return ctx.createFailureStatus(NLS.bind(Messages.paramConfMultiplicity_isNotConsistency,
-								AutosarURIFactory.getAbsoluteQualifiedName(paramConfMultiplicity)));
+						return ctx.createFailureStatus(NLS.bind(Messages.paramConfMultiplicity_isNotConsistency, AutosarURIFactory
+								.getAbsoluteQualifiedName(paramConfMultiplicity)));
 
 					}
 				} else {

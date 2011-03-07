@@ -59,8 +59,7 @@ public class GParamConfMultiplicityBasicConstraint extends AbstractModelConstrai
 		String upperMultiplicityString = gParamConfMultiplicity.gGetUpperMultiplicityAsString();
 		if (upperMultiplicityString != null && !upperMultiplicityString.equals("")) //$NON-NLS-1$
 		{
-			if ("*".equals(upperMultiplicityString)) //$NON-NLS-1$
-			{
+			if (gParamConfMultiplicity.gGetUpperMultiplicityInfinite()) {
 				multiStatus.add(ctx.createSuccessStatus());
 			} else {
 				try {

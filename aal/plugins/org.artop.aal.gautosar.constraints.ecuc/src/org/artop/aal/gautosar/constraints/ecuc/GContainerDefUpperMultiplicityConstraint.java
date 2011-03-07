@@ -70,10 +70,11 @@ public class GContainerDefUpperMultiplicityConstraint extends AbstractModelConst
 				/* Upper multiplicity of the Container Definition in the Vendor Specific Module Definition. */
 				String upperMultiplicity = vSpecifContainerDef.gGetUpperMultiplicityAsString();
 
-				if (upperMultiplicityInRefinedModuleDef == null || upperMultiplicity == null) {
+				if (upperMultiplicityInRefinedModuleDef == null || upperMultiplicity == null || upperMultiplicityInRefinedModuleDef.length() == 0
+						|| upperMultiplicity.length() == 0) {
 					// 1 of upper multiplicity is null, ignored
-				} else if (!upperMultiplicityInRefinedModuleDef.equals("*")) { //$NON-NLS-1$
-					if (upperMultiplicity.equals("*")) { //$NON-NLS-1$
+				} else if (!refinedContainerDef.gGetUpperMultiplicityInfinite()) {
+					if (vSpecifContainerDef.gGetUpperMultiplicityInfinite()) {
 						valid = false;
 					} else {
 						if (Integer.valueOf(upperMultiplicity) > Integer.valueOf(upperMultiplicityInRefinedModuleDef)) {

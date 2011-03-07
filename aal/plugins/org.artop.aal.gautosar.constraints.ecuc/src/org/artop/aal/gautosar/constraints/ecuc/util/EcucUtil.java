@@ -518,8 +518,8 @@ public class EcucUtil {
 					return null;
 				}
 
-				GCommonConfigurationAttributes refinedCommonConfigAtt = (GCommonConfigurationAttributes) EcucUtil.find(
-						configAttributes.gGetShortName(), refinedCommonConfigurationAttributes);
+				GCommonConfigurationAttributes refinedCommonConfigAtt = (GCommonConfigurationAttributes) EcucUtil.find(configAttributes
+						.gGetShortName(), refinedCommonConfigurationAttributes);
 
 				if (refinedCommonConfigAtt != null) {
 					//
@@ -572,12 +572,12 @@ public class EcucUtil {
 
 		if (refinedUpperMultiplicity != null && refinedUpperMultiplicity.length() > 0 && vSpecifUpperMultiplicity != null
 				&& vSpecifUpperMultiplicity.length() > 0) {
-			if (refinedUpperMultiplicity.equals(MULTIPLICITY_INFINITY)) {
+			if (refinedConfMultiplicity.gGetUpperMultiplicityInfinite()) {
 				if (vSpecifUpperMultiplicity.equals(MULTIPLICITY_ZERO)) {
 					valid = false;
 				}
 			} else {
-				if (vSpecifUpperMultiplicity.equals(MULTIPLICITY_INFINITY)) {
+				if (vSpecifConfMultiplicity.gGetUpperMultiplicityInfinite()) {
 					valid = false;
 				} else if (Integer.valueOf(vSpecifUpperMultiplicity) > Integer.valueOf(refinedUpperMultiplicity)) {
 					valid = false;
