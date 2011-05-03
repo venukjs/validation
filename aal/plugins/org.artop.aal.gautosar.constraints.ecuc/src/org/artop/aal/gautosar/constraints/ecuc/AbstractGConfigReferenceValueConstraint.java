@@ -23,11 +23,15 @@ import gautosar.gecucparameterdef.GContainerDef;
 import gautosar.gecucparameterdef.GParamConfContainerDef;
 
 import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.services.DefaultMetaModelServiceProvider;
+import org.artop.aal.gautosar.services.IMetaModelServiceProvider;
+import org.artop.aal.gautosar.services.ecuc.IMetaModelUtilityService;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.sphinx.emf.metamodel.MetaModelDescriptorRegistry;
 
 /**
  * Abstract superclass for the constraints implementations on a config reference value.
@@ -115,11 +119,21 @@ public abstract class AbstractGConfigReferenceValueConstraint extends AbstractMo
 	 */
 	protected boolean isInstanceOfDestinationType(EObject instance, String destinationTypeName) {
 		boolean isInstanceOfDestinationType = false;
+		IMetaModelServiceProvider provider = new DefaultMetaModelServiceProvider();
+
+		IMetaModelUtilityService service = provider
+				.getService(MetaModelDescriptorRegistry.INSTANCE.getDescriptor(instance), IMetaModelUtilityService.class);
+		if (service == null) {
+			return false;
+		}
+
+		// get correct EClass classifier
+		EClass destinationEClass = service.findEClass(destinationTypeName);
 
 		EClass metaClass = instance.eClass();
 		String metaClassName = metaClass.getName();
 
-		if (metaClassName.equals(destinationTypeName)) {
+		if (metaClassName.equals(destinationTypeName) || metaClass.equals(destinationEClass)) {
 			isInstanceOfDestinationType = true;
 		} else {
 			// get all super types of the metaClass and check if destination
@@ -127,7 +141,7 @@ public abstract class AbstractGConfigReferenceValueConstraint extends AbstractMo
 			// super type
 			for (EClass superType : metaClass.getESuperTypes()) {
 				// check if destination type is a super type of value class
-				if (superType.getName().equals(destinationTypeName)) {
+				if (superType.getName().equals(destinationTypeName) || superType.equals(destinationEClass)) {
 					isInstanceOfDestinationType = true;
 					break;
 				}
