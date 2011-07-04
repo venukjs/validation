@@ -49,9 +49,9 @@ Contributors:
    <extension point="org.eclipse.emf.validation.constraintProviders">
       <constraintProvider cache="true">
       
-       <package namespaceUri="http://autosar.org/3.2.0/autosar3x/gs/i/a"/>
-       <package namespaceUri="http://autosar.org/3.2.0/autosar3x/gs/i/i"/>
-       <package namespaceUri="http://autosar.org/3.2.0/autosar3x/ecucpd"/>
+       <package namespaceUri="http://autosar.org/3.2.1/autosar3x/gs/i/a"/>
+       <package namespaceUri="http://autosar.org/3.2.1/autosar3x/gs/i/i"/>
+       <package namespaceUri="http://autosar.org/3.2.1/autosar3x/ecucpd"/>
  
         <constraints categories="org.artop.aal.examples.constraints.category.autosar3x/static">
             <constraint
