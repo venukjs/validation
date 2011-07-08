@@ -18,12 +18,12 @@ import org.artop.aal.autosar40.tests.AbstractAutosar40TestCase;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
 import org.eclipse.emf.common.util.EList;
 
+import autosar40.autosartoplevelstructure.AUTOSAR;
 import autosar40.ecucparameterdef.EcucModuleDef;
 import autosar40.ecucparameterdef.EcucParamConfContainerDef;
 import autosar40.ecucparameterdef.EcucparameterdefFactory;
-import autosar40.genericstructure.autosartoplevelstructure.AUTOSAR;
-import autosar40.genericstructure.autosartoplevelstructure.PackageableElement;
 import autosar40.genericstructure.generaltemplateclasses.arpackage.ARPackage;
+import autosar40.genericstructure.generaltemplateclasses.arpackage.PackageableElement;
 import autosar40.genericstructure.varianthandling.BooleanValueVariationPoint;
 import autosar40.genericstructure.varianthandling.PositiveIntegerValueVariationPoint;
 import autosar40.genericstructure.varianthandling.VarianthandlingFactory;
