@@ -25,13 +25,16 @@ import org.artop.aal.gautosar.services.predicates.swc.portinterface.HasUniqueErr
 import org.artop.aal.gautosar.services.predicates.swc.portinterface.HasUniqueErrorCodes.DuplicateErrorCodes.MultiplyAssignedErrorCodeValue;
 import org.artop.aal.validation.constraints.swc.internal.portinterface.messages.Messages;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.validation.AbstractModelConstraint;
+import org.eclipse.emf.validation.IValidationContext;
+import org.eclipse.emf.validation.model.ConstraintStatus;
 import org.eclipse.osgi.util.NLS;
 
 /**
  * A Constraint which validates that all defined possible errors within a client server interface have unique values.
  * The constraint will create a failure message for each error code which is not unique.
  */
-public class UniqueApplicationErrorCodesConstraint extends PredicateBasedConstraint {
+public class UniqueApplicationErrorCodesConstraint extends AbstractModelConstraint {
 
 	private static final String MSG_NAME = "uniqueApplicationErrorCodes_Msg"; //$NON-NLS-1$
 
