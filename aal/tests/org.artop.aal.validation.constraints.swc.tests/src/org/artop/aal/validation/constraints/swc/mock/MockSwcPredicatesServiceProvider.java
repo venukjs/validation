@@ -14,7 +14,7 @@
  */
 package org.artop.aal.validation.constraints.swc.mock;
 
-import gautosar.gswcomponents.gportinterface.GClientServerInterface;
+import gautosar.gswcomponents.gportinterface.GPortInterface;
 import junit.framework.Assert;
 
 import org.artop.aal.gautosar.services.IMetaModelService;
@@ -26,8 +26,7 @@ import org.eclipse.sphinx.emf.metamodel.providers.IMetaModelDescriptorProvider;
 
 /**
  * A <code>IMetaModelServiceProvider</code> which provides a
- * {@link org.artop.aal.validation.testutils.internal.mock.MockSwcPredicatesServiceProvider.MockSwcPredicatesService}
- * .
+ * {@link org.artop.aal.validation.testutils.internal.mock.MockSwcPredicatesServiceProvider.MockSwcPredicatesService} .
  */
 public class MockSwcPredicatesServiceProvider implements IMetaModelServiceProvider {
 
@@ -43,7 +42,7 @@ public class MockSwcPredicatesServiceProvider implements IMetaModelServiceProvid
 		return getService(provider.getMetaModelDescriptor(), serviceType);
 	}
 
-	public void setHasUniqueErrorCodesPredicate(ExplainablePredicate<GClientServerInterface> predicate) {
+	public void setHasUniqueErrorCodesPredicate(ExplainablePredicate<GPortInterface> predicate) {
 		fSwcPredicatesService.setHasUniqueErrorCodesPredicate(predicate);
 	}
 
@@ -53,14 +52,22 @@ public class MockSwcPredicatesServiceProvider implements IMetaModelServiceProvid
 	 */
 	private static class MockSwcPredicatesService implements ISwcPredicatesService {
 
-		private ExplainablePredicate<GClientServerInterface> fHasUniqueErrorCodesPredicate;
+		private ExplainablePredicate<GPortInterface> fHasUniqueErrorCodesPredicate;
 
-		public ExplainablePredicate<GClientServerInterface> hasUniqueErrorCodes() {
+		public ExplainablePredicate<GPortInterface> hasUniqueErrorCodes() {
 			return fHasUniqueErrorCodesPredicate;
 		}
 
-		public void setHasUniqueErrorCodesPredicate(ExplainablePredicate<GClientServerInterface> predicate) {
+		public void setHasUniqueErrorCodesPredicate(ExplainablePredicate<GPortInterface> predicate) {
 			fHasUniqueErrorCodesPredicate = predicate;
+		}
+
+		public ExplainablePredicate<GPortInterface> isDcmInterface() {
+			return null;
+		}
+
+		public ExplainablePredicate<GPortInterface> isEcuMInterface() {
+			return null;
 		}
 
 	}

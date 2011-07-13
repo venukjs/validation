@@ -14,7 +14,7 @@
  */
 package org.artop.aal.validation.constraints.swc.portinterface.mock;
 
-import gautosar.gswcomponents.gportinterface.GClientServerInterface;
+import gautosar.gswcomponents.gportinterface.GPortInterface;
 
 import java.util.Arrays;
 
@@ -35,9 +35,9 @@ public class MockCSInterfaceExplainPredicates {
 		return new NonUniqueErrorCodes(errorCodeSets);
 	}
 
-	private static class UniqueErrorCodes implements ExplainablePredicate<GClientServerInterface> {
+	private static class UniqueErrorCodes implements ExplainablePredicate<GPortInterface> {
 
-		public boolean apply(GClientServerInterface csInterface) {
+		public boolean apply(GPortInterface csInterface) {
 			return true;
 		}
 
@@ -47,7 +47,7 @@ public class MockCSInterfaceExplainPredicates {
 
 	}
 
-	private static class NonUniqueErrorCodes implements ExplainablePredicate<GClientServerInterface> {
+	private static class NonUniqueErrorCodes implements ExplainablePredicate<GPortInterface> {
 
 		private MultiplyAssignedErrorCodeValue[] fErrorCodeSets;
 
@@ -55,7 +55,7 @@ public class MockCSInterfaceExplainPredicates {
 			fErrorCodeSets = errorCodeSets;
 		}
 
-		public boolean apply(GClientServerInterface csInterface) {
+		public boolean apply(GPortInterface csInterface) {
 			return false;
 		}
 
