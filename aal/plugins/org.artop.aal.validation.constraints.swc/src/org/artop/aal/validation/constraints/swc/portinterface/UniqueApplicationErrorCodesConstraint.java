@@ -15,21 +15,17 @@
 package org.artop.aal.validation.constraints.swc.portinterface;
 
 import gautosar.gswcomponents.gportinterface.GClientServerInterface;
+import gautosar.gswcomponents.gportinterface.GPortInterface;
 
 import java.util.ArrayList;
 
 import org.artop.aal.gautosar.services.predicates.ExplainablePredicate;
-import org.artop.aal.gautosar.services.predicates.swc.ISwcPredicatesService;
+import org.artop.aal.gautosar.services.predicates.PortInterfacePredicates;
 import org.artop.aal.gautosar.services.predicates.swc.portinterface.HasUniqueErrorCodes.DuplicateErrorCodes;
 import org.artop.aal.gautosar.services.predicates.swc.portinterface.HasUniqueErrorCodes.DuplicateErrorCodes.MultiplyAssignedErrorCodeValue;
-import org.artop.aal.validation.constraints.PredicateBasedConstraint;
 import org.artop.aal.validation.constraints.swc.internal.portinterface.messages.Messages;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.validation.IValidationContext;
-import org.eclipse.emf.validation.model.ConstraintStatus;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.sphinx.emf.metamodel.providers.EObjectMetaModelDescriptorProvider;
 
 /**
  * A Constraint which validates that all defined possible errors within a client server interface have unique values.
@@ -45,20 +41,11 @@ public class UniqueApplicationErrorCodesConstraint extends PredicateBasedConstra
 	@Override
 	public IStatus validate(IValidationContext ctx) {
 		GClientServerInterface csInterface = (GClientServerInterface) ctx.getTarget();
-		ExplainablePredicate<GClientServerInterface> hasUniqueErrorCodes = getHasUniqueErrorCodesPredicate(csInterface);
+		ExplainablePredicate<GPortInterface> hasUniqueErrorCodes = PortInterfacePredicates.hasUniqueErrorCodes();
 		if (!hasUniqueErrorCodes.apply(csInterface)) {
 			return createFailures(ctx, (DuplicateErrorCodes) hasUniqueErrorCodes.explain());
 		}
 		return ctx.createSuccessStatus();
-	}
-
-	private ExplainablePredicate<GClientServerInterface> getHasUniqueErrorCodesPredicate(EObject contextEObject) {
-		return getSwcPredicatesService(contextEObject).hasUniqueErrorCodes();
-	}
-
-	private ISwcPredicatesService getSwcPredicatesService(EObject contextEObject) {
-		return getServiceProvider().getService(EObjectMetaModelDescriptorProvider.createMetaModelDescriptorProviderFor(contextEObject),
-				ISwcPredicatesService.class);
 	}
 
 	private IStatus createFailures(IValidationContext ctx, DuplicateErrorCodes reason) {
