@@ -17,6 +17,7 @@ package org.artop.aal.examples.validation.constraints.tests.mock;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 import gautosar.gswcomponents.gportinterface.GClientServerInterface;
+import gautosar.gswcomponents.gportinterface.GPortInterface;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -37,14 +38,26 @@ public class MockSwcPredicatesService implements ISwcPredicatesService {
 
 	private final MockPredicate<GClientServerInterface> ARE_ERROR_CODES_UNIQUE = new MockPredicate<GClientServerInterface>();
 
+	public ExplainablePredicate<GPortInterface> hasUniqueErrorCodes() {
+		throw new UnsupportedOperationException("Method not implemented");
+	}
+
+	public ExplainablePredicate<GPortInterface> isDcmInterface() {
+		throw new UnsupportedOperationException("Method not implemented");
+	}
+
+	public ExplainablePredicate<GPortInterface> isEcuMInterface() {
+		throw new UnsupportedOperationException("Method not implemented");
+	}
+
 	/**
 	 * {@inheritDoc}<br>
 	 * <br>
 	 * Returns a {@link org.artop.aal.examples.validation.constraints.tests.mock.MockSwcPredicateService.MockPredicate}.
 	 */
-	public ExplainablePredicate<GClientServerInterface> hasUniqueErrorCodes() {
-		return ARE_ERROR_CODES_UNIQUE;
-	}
+	// public ExplainablePredicate<GClientServerInterface> hasUniqueErrorCodes() {
+	// return ARE_ERROR_CODES_UNIQUE;
+	// }
 
 	/**
 	 * Asserts that the AreErrorCodesUnique predicate's <code>apply()</code> method has been invoked at least once on
