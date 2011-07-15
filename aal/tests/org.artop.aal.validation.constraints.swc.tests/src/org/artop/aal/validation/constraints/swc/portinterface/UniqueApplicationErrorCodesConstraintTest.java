@@ -14,24 +14,23 @@
  */
 package org.artop.aal.validation.constraints.swc.portinterface;
 
-import org.artop.aal.validation.testutils.PredicateBasedConstraintTest;
-import org.eclipse.emf.validation.AbstractModelConstraint;
+import org.junit.Assert;
 import org.junit.Test;
 
 /**
  * Tests if the failure messages returned by the <code>UniqueApplicationErrorCodesConstraint</code> are correct.
  */
 @SuppressWarnings("nls")
-public class UniqueApplicationErrorCodesConstraintTest extends PredicateBasedConstraintTest {
+public class UniqueApplicationErrorCodesConstraintTest /* extends PredicateBasedConstraintTest */{
 
-	@Override
-	protected AbstractModelConstraint createConstraintUnderTest() {
-		return new UniqueApplicationErrorCodesConstraint();
-	}
+	// @Override
+	// protected AbstractModelConstraint createConstraintUnderTest() {
+	// return new UniqueApplicationErrorCodesConstraint();
+	// }
 
 	@Test
-	public void dummyTest() {
-
+	public void disabledTest() {
+		Assert.fail("Please visit this class and fix the compilation errors");
 	}
 
 	// @Test
