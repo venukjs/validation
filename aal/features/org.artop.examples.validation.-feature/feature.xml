@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.artop.validation.aal.examples"
+      id="org.artop.examples.validation"
       label="%featureName"
       version="3.1.0.qualifier"
       provider-name="%providerName">
@@ -16,10 +16,6 @@
    <license url="%licenseURL">
       %license
    </license>
-
-   <requires>
-      <import feature="org.artop.validation.aal" version="3.1.0"/>
-   </requires>
 
    <plugin
          id="org.artop.aal.examples.validation.ui"
