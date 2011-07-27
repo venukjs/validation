@@ -14,27 +14,41 @@
  */
 package org.artop.aal.examples.validation.constraints.tests;
 
-import junit.framework.TestCase;
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertTrue;
+import static org.artop.aal.gautosar.services.builder.swc.portinterface.GClientServerInterfaceBuilder.clientServerInterface;
+import static org.artop.aal.gautosar.services.builder.swc.portinterface.GSenderReceiverInterfaceBuilder.senderReceiverInterface;
 
-import org.artop.aal.examples.validation.constraints.tests.mock.MockSwcPredicatesService.MockPredicate;
-import org.artop.aal.gautosar.services.DefaultMetaModelServiceProvider;
-import org.artop.aal.gautosar.services.predicates.swc.ISwcPredicatesService;
+import java.util.Arrays;
+import java.util.Collection;
+
+import org.artop.aal.common.metamodel.AutosarReleaseDescriptor;
+import org.artop.aal.gautosar.services.builder.GBuilder;
+import org.artop.aal.gautosar.services.builder.GMaker;
 import org.artop.aal.validation.constraints.swc.portinterface.UniqueApplicationErrorCodesConstraint;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.model.EvaluationMode;
+import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.emf.validation.service.ConstraintRegistry;
 import org.eclipse.emf.validation.service.IConstraintDescriptor;
 import org.eclipse.emf.validation.service.IParameterizedConstraintDescriptor;
 import org.eclipse.emf.validation.service.IValidator;
 import org.eclipse.emf.validation.service.ModelValidationService;
-import org.eclipse.sphinx.emf.metamodel.providers.EObjectMetaModelDescriptorProvider;
-import org.eclipse.sphinx.emf.metamodel.providers.IMetaModelDescriptorProvider;
+import org.eclipse.emf.validation.util.XmlConfig;
+import org.eclipse.emf.validation.xml.IXmlConstraintDescriptor;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
+import org.junit.runners.Parameterized.Parameters;
 
-import autosar20.util.Autosar20Factory;
-import autosar21.util.Autosar21Factory;
-import autosar3x.util.Autosar3xFactory;
-import autosar40.util.Autosar40Factory;
+import autosar20.util.Autosar20ReleaseDescriptor;
+import autosar21.util.Autosar21ReleaseDescriptor;
+import autosar3x.util.Autosar3xReleaseDescriptor;
+import autosar40.util.Autosar40ReleaseDescriptor;
 
 /**
  * This is an integration test which verifies that the EMF Validation extension points are configured correctly for the
@@ -42,103 +56,88 @@ import autosar40.util.Autosar40Factory;
  * configuration is the <code>org.artop.aal.examples.validation.constraints</code> plugin.
  */
 @SuppressWarnings("nls")
-public class UniqueApplicationErrorCodesConstraintIntegrationTest extends TestCase {
+@RunWith(Parameterized.class)
+public class UniqueApplicationErrorCodesConstraintIntegrationTest {
 
+	private static final Autosar40ReleaseDescriptor AR_40 = Autosar40ReleaseDescriptor.INSTANCE;
+	private static final Autosar3xReleaseDescriptor AR_3X = Autosar3xReleaseDescriptor.INSTANCE;
+	private static final Autosar21ReleaseDescriptor AR_21 = Autosar21ReleaseDescriptor.INSTANCE;
+	private static final Autosar20ReleaseDescriptor AR_20 = Autosar20ReleaseDescriptor.INSTANCE;
+	private static final Class<UniqueApplicationErrorCodesConstraint> UNIQUE_ERRORS_CONSTRAINT = UniqueApplicationErrorCodesConstraint.class;
 	private static final String CLASS = "class";
 	private IValidator<EObject> fValidator;
-	private DefaultMetaModelServiceProvider fServiceProvider;
+	private AutosarReleaseDescriptor fRelease;
 
-	public UniqueApplicationErrorCodesConstraintIntegrationTest() {
-		this(null);
+	@Parameters
+	public static Collection<Object[]> releases() {
+		return Arrays.asList(new Object[][] { { AR_20 }, { AR_21 }, { AR_3X }, { AR_40 } });
 	}
 
-	public UniqueApplicationErrorCodesConstraintIntegrationTest(String name) {
-		super(name);
+	public UniqueApplicationErrorCodesConstraintIntegrationTest(AutosarReleaseDescriptor release) {
 		ModelValidationService.getInstance().loadXmlConstraintDeclarations();
 		fValidator = ModelValidationService.getInstance().newValidator(EvaluationMode.BATCH);
-		fServiceProvider = new DefaultMetaModelServiceProvider();
+		fValidator.setReportSuccesses(true);
+		fRelease = release;
 	}
 
 	/**
 	 * Verifies that the <code>UniqueApplicationErrorCodesConstraint</code> has been registered with the EMF Validation
 	 * Framework at least once.
 	 */
+	@Test
 	public void testShouldBeRegistered() {
-		assertConstraintRegistration(UniqueApplicationErrorCodesConstraint.class);
+		assertConstraintRegistration(UNIQUE_ERRORS_CONSTRAINT);
 	}
 
 	/**
 	 * Verifies that the {@link org.artop.aal.validation.constraints.swc.portinterface.UniqueApplicationCodesConstraint}
 	 * is applied to an AUTOSAR 2.0 {@link autosar20.swcomponent.portinterface.ClientServerInterface}.
 	 */
-	public void testShouldApplyConstraintToCSInterface20() {
-		invokeShouldValidateConstraint(Autosar20Factory.eINSTANCE.createClientServerInterface());
+	@Test
+	public void testShouldApplyConstraintToCSInterface() {
+		assertConstraintCalled(clientServerInterface("csIfc"));
 	}
 
 	/**
 	 * Verifies that the {@link org.artop.aal.validation.constraints.swc.portinterface.UniqueApplicationCodesConstraint}
 	 * is <b>not</b> applied to an AUTOSAR 2.0 {@link autosar20.swcomponent.portinterface.SenderReceiverInterface}.
 	 */
+	@Test
 	public void testShouldIgnoreConstraintForSRInterface() {
-		invokeShouldIgnoreConstraint(Autosar20Factory.eINSTANCE.createSenderReceiverInterface());
-	}
-
-	/**
-	 * Verifies that the {@link org.artop.aal.validation.constraints.swc.portinterface.UniqueApplicationCodesConstraint}
-	 * is applied to an AUTOSAR 2.1 {@link autosar21.swcomponent.portinterface.ClientServerInterface}.
-	 */
-
-	public void testShouldApplyConstraintToCSInterface21() {
-		invokeShouldValidateConstraint(Autosar21Factory.eINSTANCE.createClientServerInterface());
-	}
-
-	/**
-	 * Verifies that the {@link org.artop.aal.validation.constraints.swc.portinterface.UniqueApplicationCodesConstraint}
-	 * is applied to an AUTOSAR 3.X {@link autosar3x.swcomponent.portinterface.ClientServerInterface}.
-	 */
-	public void testShouldApplyConstraintToCSInterface3x() {
-		invokeShouldValidateConstraint(Autosar3xFactory.eINSTANCE.createClientServerInterface());
-	}
-
-	/**
-	 * Verifies that the {@link org.artop.aal.validation.constraints.swc.portinterface.UniqueApplicationCodesConstraint}
-	 * is applied to an AUTOSAR 4.0 {@link autosar40.swcomponent.portinterface.ClientServerInterface}.
-	 */
-	public void testShouldApplyConstraintToCSInterface40() {
-		invokeShouldValidateConstraint(Autosar40Factory.eINSTANCE.createClientServerInterface());
-	}
-
-	@SuppressWarnings("unchecked")
-	private <T extends EObject> void invokeShouldValidateConstraint(T eObject) {
-		validate(eObject);
-		getMockPredicate(eObject).assertWasInvokedOn(eObject);
-		assertFalse("The constraint was disabled due to an internal error!", getDescriptorByClass(UniqueApplicationErrorCodesConstraint.class)
-				.isError());
-	}
-
-	private <T extends EObject> void invokeShouldIgnoreConstraint(T eObject) {
-		validate(eObject);
-		getMockPredicate(eObject).assertWasNotInvoked();
-		assertFalse("The constraint was disabled due to an internal error!", getDescriptorByClass(UniqueApplicationErrorCodesConstraint.class)
-				.isError());
-	}
-
-	private <T extends EObject> void validate(T eObject) {
-		getMockPredicate(eObject).clear();
-		fValidator.validate(eObject);
-	}
-
-	@SuppressWarnings("unchecked")
-	private <T extends EObject> MockPredicate<T> getMockPredicate(T eObject) {
-		IMetaModelDescriptorProvider mmDescProvider = EObjectMetaModelDescriptorProvider.createMetaModelDescriptorProviderFor(eObject);
-		ISwcPredicatesService service = fServiceProvider.getService(mmDescProvider, ISwcPredicatesService.class);
-		return (MockPredicate<T>) service.hasUniqueErrorCodes();
+		assertConstraintNotCalled(senderReceiverInterface("srIfc"));
 	}
 
 	private void assertConstraintRegistration(Class<? extends AbstractModelConstraint> constraintClass) {
-		assertNotNull("Constraint \"" + constraintClass.getSimpleName() + "\" is not registered.",
-				getDescriptorByClass(UniqueApplicationErrorCodesConstraint.class));
+		assertNotNull("Constraint \"" + constraintClass.getSimpleName() + "\" is not registered.", getDescriptorByClass(UNIQUE_ERRORS_CONSTRAINT));
+	}
 
+	private <T extends EObject> void assertConstraintNotCalled(GBuilder<T> builder) {
+		IStatus status = validate(builder);
+		assertFalse("The constraint was called although not expected! (status was found)", contains(status, UNIQUE_ERRORS_CONSTRAINT));
+	}
+
+	private <T extends EObject> void assertConstraintCalled(GBuilder<T> builder) {
+		IStatus status = validate(builder);
+		assertTrue("The constraint was not called! (no status found)", contains(status, UNIQUE_ERRORS_CONSTRAINT));
+	}
+
+	private IStatus validate(GBuilder<? extends EObject> builder) {
+		IStatus status = fValidator.validate(make(builder));
+		assertFalse("The constraint was disabled due to an internal error!", getDescriptorByClass(UNIQUE_ERRORS_CONSTRAINT).isError());
+		return status;
+	}
+
+	private boolean contains(IStatus status, Class<? extends AbstractModelConstraint> constraint) {
+		if (status instanceof IConstraintStatus) {
+			IConstraintDescriptor descriptor = ((IConstraintStatus) status).getConstraint().getDescriptor();
+			if (descriptor instanceof IXmlConstraintDescriptor) {
+				String className = ((IXmlConstraintDescriptor) descriptor).getConfig().getAttribute(XmlConfig.A_CLASS);
+				if (constraint.getName().equals(className)) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	private IConstraintDescriptor getDescriptorByClass(Class<UniqueApplicationErrorCodesConstraint> constraintClass) {
@@ -150,6 +149,10 @@ public class UniqueApplicationErrorCodesConstraintIntegrationTest extends TestCa
 			}
 		}
 		return null;
+	}
+
+	private <T extends Notifier> T make(GBuilder<T> builder) {
+		return GMaker.make(fRelease).from(builder);
 	}
 
 }
