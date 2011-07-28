@@ -19,13 +19,12 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 
-import org.artop.aal.gautosar.services.IMetaModelServiceProvider;
-import org.artop.aal.validation.constraints.PredicateBasedConstraint;
 import org.artop.aal.validation.testutils.internal.mock.MockConstraintDescriptor;
 import org.artop.aal.validation.testutils.internal.mock.MockValidationContext;
 import org.artop.aal.validation.testutils.internal.mock.MockValidationContext.FailureStatus;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.emf.validation.service.ConstraintRegistry;
 import org.eclipse.emf.validation.service.IConstraintDescriptor;
@@ -43,25 +42,20 @@ public abstract class PredicateBasedConstraintTest {
 
 	private IValidationContext DUMMY_CONTEXT = new MockValidationContext(CONSTRAINT_DESCRIPTOR_ID);
 
-	protected IMetaModelServiceProvider fServiceProvider;
-	protected PredicateBasedConstraint fConstraintUT;
+	protected AbstractModelConstraint fConstraintUT;
 
 	@Before
 	public void setUp() throws Exception {
 		ConstraintRegistry.getInstance().register(CONSTRAINT_DESCRIPTOR);
-		fServiceProvider = createMockPredicatesServiceProvider();
 		fConstraintUT = createConstraintUnderTest();
-		fConstraintUT.setServiceProvider(fServiceProvider);
 	}
-
-	protected abstract IMetaModelServiceProvider createMockPredicatesServiceProvider();
 
 	@After
 	public void tearDown() throws Exception {
 		ConstraintRegistry.getInstance().unregister(CONSTRAINT_DESCRIPTOR);
 	}
 
-	protected abstract PredicateBasedConstraint createConstraintUnderTest();
+	protected abstract AbstractModelConstraint createConstraintUnderTest();
 
 	protected void assertFailedValidation(String... expectedMessages) {
 		IStatus failureStatus = fConstraintUT.validate(DUMMY_CONTEXT);
