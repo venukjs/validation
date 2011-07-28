@@ -17,6 +17,11 @@
       %license
    </license>
 
+   <requires>
+      <import feature="org.artop.core" version="3.1.0"/>
+      <import feature="org.eclipse.sphinx.emf.validation" version="0.7.0"/>
+   </requires>
+
    <plugin
          id="org.artop.aal.validation"
          download-size="0"

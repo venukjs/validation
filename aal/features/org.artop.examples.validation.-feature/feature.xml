@@ -17,6 +17,11 @@
       %license
    </license>
 
+   <requires>
+      <import feature="org.artop.validation" version="3.1.0"/>
+      <import feature="org.artop.examples.demonstrator" version="3.1.0"/>
+   </requires>
+
    <plugin
          id="org.artop.aal.examples.validation.ui"
          download-size="0"
