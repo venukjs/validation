@@ -24,8 +24,8 @@ import org.artop.aal.validation.testutils.internal.mock.MockValidationContext;
 import org.artop.aal.validation.testutils.internal.mock.MockValidationContext.FailureStatus;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.AbstractModelConstraint;
-import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.emf.validation.service.ConstraintRegistry;
 import org.eclipse.emf.validation.service.IConstraintDescriptor;
 import org.junit.After;
@@ -40,7 +40,7 @@ public abstract class PredicateBasedConstraintTest {
 	private static final String CONSTRAINT_DESCRIPTOR_ID = "ConstraintDescriptor"; //$NON-NLS-1$	
 	private static final IConstraintDescriptor CONSTRAINT_DESCRIPTOR = new MockConstraintDescriptor(CONSTRAINT_DESCRIPTOR_ID, PLUGIN_ID);
 
-	private IValidationContext DUMMY_CONTEXT = new MockValidationContext(CONSTRAINT_DESCRIPTOR_ID);
+	private MockValidationContext VALIDATION_CONTEXT = new MockValidationContext(CONSTRAINT_DESCRIPTOR_ID);
 
 	protected AbstractModelConstraint fConstraintUT;
 
@@ -57,8 +57,9 @@ public abstract class PredicateBasedConstraintTest {
 
 	protected abstract AbstractModelConstraint createConstraintUnderTest();
 
-	protected void assertFailedValidation(String... expectedMessages) {
-		IStatus failureStatus = fConstraintUT.validate(DUMMY_CONTEXT);
+	protected void assertFailedValidation(EObject eObjectToValidate, String... expectedMessages) {
+		VALIDATION_CONTEXT.setTarget(eObjectToValidate);
+		IStatus failureStatus = fConstraintUT.validate(VALIDATION_CONTEXT);
 		IStatus[] failureStatuses = extractAllFailureStatuses(failureStatus);
 		assertEquals(expectedMessages.length, failureStatuses.length);
 		for (IStatus status : failureStatuses) {
@@ -67,8 +68,9 @@ public abstract class PredicateBasedConstraintTest {
 		}
 	}
 
-	protected void assertSuccessfulValidation() {
-		assertEquals(Status.OK_STATUS, fConstraintUT.validate(DUMMY_CONTEXT));
+	protected void assertSuccessfulValidation(EObject eObjectToValidate) {
+		VALIDATION_CONTEXT.setTarget(eObjectToValidate);
+		assertEquals(Status.OK_STATUS, fConstraintUT.validate(VALIDATION_CONTEXT));
 	}
 
 	private void assertIsFailure(IStatus failureStatus) {
