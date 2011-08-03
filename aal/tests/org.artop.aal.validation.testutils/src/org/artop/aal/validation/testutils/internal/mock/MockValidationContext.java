@@ -34,6 +34,7 @@ import org.eclipse.emf.validation.IValidationContext;
 public class MockValidationContext implements IValidationContext {
 
 	private String fConstraintDescriptorId;
+	private EObject fTarget;
 
 	public MockValidationContext(String constraintDescriptorId) {
 		fConstraintDescriptorId = constraintDescriptorId;
@@ -44,7 +45,7 @@ public class MockValidationContext implements IValidationContext {
 	}
 
 	public EObject getTarget() {
-		return null;
+		return fTarget;
 	}
 
 	public EMFEventType getEventType() {
@@ -170,6 +171,10 @@ public class MockValidationContext implements IValidationContext {
 			return false;
 		}
 
+	}
+
+	public void setTarget(EObject target) {
+		fTarget = target;
 	}
 
 }
