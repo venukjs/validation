@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="org.artop.examples.validation"
+      id="org.artop.validation.constraints"
       label="%featureName"
       version="3.1.0.qualifier"
       provider-name="%providerName">
@@ -19,25 +19,45 @@
 
    <requires>
       <import feature="org.artop.validation" version="3.1.0"/>
-      <import feature="org.artop.examples.demonstrator" version="3.1.0"/>
    </requires>
 
    <plugin
-         id="org.artop.aal.examples.validation.ui"
+         id="org.artop.aal.autosar20.constraints.ecuc"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.artop.aal.examples.autosar3x.constraints"
+         id="org.artop.aal.autosar21.constraints.ecuc"
          download-size="0"
          install-size="0"
          version="0.0.0"
          unpack="false"/>
 
    <plugin
-         id="org.artop.aal.examples.validation.constraints"
+         id="org.artop.aal.autosar3x.constraints.ecuc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.artop.aal.autosar40.constraints.ecuc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.artop.aal.gautosar.constraints.ecuc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.artop.aal.validation.constraints.swc"
          download-size="0"
          install-size="0"
          version="0.0.0"
