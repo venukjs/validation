@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) OpenSynergy,  Continental Engineering Services  and others.
+ * Copyright (c) OpenSynergy, Continental Engineering Services and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
@@ -9,7 +9,7 @@
  * 
  * Contributors: 
  *     OpenSynergy - Initial API and implementation for AUTOSAR 3.x
- *     Continental Engineering Services - migration to gautosar 
+ *     Continental Engineering Services - migration to gautosar
  * 
  * </copyright>
  */
@@ -19,7 +19,6 @@ import gautosar.ggenericstructure.ginfrastructure.GAUTOSAR;
 import junit.framework.TestCase;
 
 import org.artop.aal.common.resource.impl.AutosarResourceSetImpl;
-import org.artop.ecl.testutils.TestFileAccessor;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -32,6 +31,7 @@ import org.eclipse.emf.validation.service.IConstraintDescriptor;
 import org.eclipse.emf.validation.service.IConstraintFilter;
 import org.eclipse.emf.validation.service.IValidator;
 import org.eclipse.emf.validation.service.ModelValidationService;
+import org.eclipse.sphinx.testutils.TestFileAccessor;
 
 
 /**

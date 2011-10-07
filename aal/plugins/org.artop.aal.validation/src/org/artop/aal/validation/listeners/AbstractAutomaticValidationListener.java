@@ -1,14 +1,14 @@
 /**
  * <copyright>
  * 
- * Copyright (c) Geensys and others.
+ * Copyright (c) See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
  * 
  * Contributors: 
- *     Geensys - Initial API and implementation
+ *     See4sys - Initial API and implementation
  * 
  * </copyright>
  */
@@ -20,12 +20,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.artop.aal.validation.util.Messages;
-import org.artop.ecl.emf.util.EObjectUtil;
-import org.artop.ecl.emf.util.EcorePlatformUtil;
-import org.artop.ecl.emf.validation.diagnostic.ExtendedDiagnostician;
-import org.artop.ecl.emf.validation.markers.ValidationMarkerManager;
-import org.artop.ecl.emf.validation.preferences.IValidationPreferences;
-import org.artop.ecl.platform.IExtendedPlatformConstants;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceRuleFactory;
@@ -54,6 +48,12 @@ import org.eclipse.emf.validation.service.IConstraintDescriptor;
 import org.eclipse.emf.validation.service.IConstraintFilter;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.sphinx.emf.util.EObjectUtil;
+import org.eclipse.sphinx.emf.util.EcorePlatformUtil;
+import org.eclipse.sphinx.emf.validation.diagnostic.ExtendedDiagnostician;
+import org.eclipse.sphinx.emf.validation.markers.ValidationMarkerManager;
+import org.eclipse.sphinx.emf.validation.preferences.IValidationPreferences;
+import org.eclipse.sphinx.platform.IExtendedPlatformConstants;
 
 public abstract class AbstractAutomaticValidationListener extends ResourceSetListenerImpl {
 
@@ -130,7 +130,7 @@ public abstract class AbstractAutomaticValidationListener extends ResourceSetLis
 	public void resourceSetChanged(ResourceSetChangeEvent event) {
 
 		// Let's check if the automatic validation is enabled
-		if (!Platform.getPreferencesService().getBoolean(org.artop.ecl.emf.validation.Activator.PLUGIN_ID,
+		if (!Platform.getPreferencesService().getBoolean(org.eclipse.sphinx.emf.validation.Activator.PLUGIN_ID,
 				IValidationPreferences.PREF_ENABLE_AUTOMATIC_VALIDATION, false, null)) {
 			return;
 		}
@@ -311,7 +311,7 @@ public abstract class AbstractAutomaticValidationListener extends ResourceSetLis
 		WorkspaceJob job = new WorkspaceJob("Automatic validation processing") { //$NON-NLS-1$
 			@Override
 			public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
-				int max_err = Platform.getPreferencesService().getInt(org.artop.ecl.emf.validation.Activator.PLUGIN_ID,
+				int max_err = Platform.getPreferencesService().getInt(org.eclipse.sphinx.emf.validation.Activator.PLUGIN_ID,
 						IValidationPreferences.PREF_MAX_NUMBER_OF_ERRORS, IValidationPreferences.PREF_MAX_NUMBER_OF_ERRORS_DEFAULT, null);
 				int nb_err = 0;
 				/*

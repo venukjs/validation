@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) OpenSynergy,  Continental Engineering Services  and others.
+ * Copyright (c) OpenSynergy, Continental Engineering Services and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
@@ -9,7 +9,7 @@
  * 
  * Contributors: 
  *     OpenSynergy - Initial API and implementation for AUTOSAR 3.x
- *     Continental Engineering Services - migration to gautosar 
+ *     Continental Engineering Services - migration to gautosar
  * 
  * </copyright>
  */
@@ -19,9 +19,10 @@ import org.artop.aal.gautosar.constraints.ecuc.tests.util.ValidationTestUtil;
 import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.osgi.util.NLS;
 
-public class ContainerConstraintTests extends AbstractAutosar3xValidationTestCase
-{ 
+@SuppressWarnings("nls")
+public class ContainerConstraintTests extends AbstractAutosar3xValidationTestCase {
 	public ContainerConstraintTests() {
 		super();
 	}
@@ -34,10 +35,28 @@ public class ContainerConstraintTests extends AbstractAutosar3xValidationTestCas
 	// completeness
 	public void testInvalidContainer_noDefinition() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/Container/noDefinition.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.generic_definitionReferenceNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_definitionReferenceNotSet);
 	}
 
 	// consistency
+
+	public void testInvalidContainer_containerNotAllowedInParamConfContainer() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/Container/containerNotAllowedInParamConfContainer.arxml");
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(Messages.structuralIntegrity_containmentProblem, "container", "Alternative1"));
+	}
+
+	public void testInvalidContainer_containerNotAllowedInChoiceContainer() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/Container/containerNotAllowedInChoiceContainer.arxml");
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(Messages.structuralIntegrity_containmentProblem, "container", "ParamConfContainerDef1"));
+	}
+
+	public void testInvalidContainer_containerNotAllowedInModuleConfiguration() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/Container/containerNotAllowedInModuleConfiguration.arxml");
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(Messages.structuralIntegrity_containmentProblem, "container", "ParamConfContainerDef1"));
+	}
 
 	// correctness
 

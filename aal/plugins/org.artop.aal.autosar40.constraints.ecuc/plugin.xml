@@ -10,7 +10,7 @@
  available at http://www.artop.org/aslr.html
  Contributors: 
       Continental Engineering Services - Initial API and implementation
-  
+      see4Sys
  </copyright>
  -->
 
@@ -24,10 +24,10 @@
          Constraints for validating ECUC descriptions.
       </category>
       <category
-            id="org.artop.aal.autosar40.constraints.ecuc/StructuralIntegrity"
+            id="org.artop.aal.autosar40.constraints.ecuc/Multiplicity"
             mandatory="false"
-            name="Structural Integrity">
-         Constraints for validating the structural integrity of ECUC descriptions.
+            name="Multiplicity">
+         Constraints for validating the multiplicity of elements in ECUC descriptions.
       </category>
       <category
             id="org.artop.aal.autosar40.constraints.ecuc/Basic"
@@ -212,9 +212,495 @@
                      class="EcucChoiceReferenceDef">
                </target>
             </constraint>
+            <constraint
+                  class="org.artop.aal.gautosar.constraints.ecuc.GConfigParameterDefaultValueConstraint"
+                  id="org.artop.aal.autosar40.constraints.ecuc.EcucParameterDefDefaultValueConstraint_40"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="EcucParameterDefDefaultValueConstraint"
+                  severity="WARNING"
+                  statusCode="0000000">
+               <message>
+                  {0}
+               </message>
+               <description>
+                  The default value of the Configuration Parameter of the Vendor Specific Module Definition has been changed from the referenced Module Definition.
+               </description>
+               <target
+                     class="EcucParameterDef">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.artop.aal.gautosar.constraints.ecuc.GModuleDefContainerDefinitionMissingConstraint"
+                  id="org.artop.aal.autosar40.constraints.ecuc.EcucModuleDefContainerDefinitionMissingConstraint_40"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="EcucModuleDefContainerDefinitionMissingConstraint"
+                  severity="ERROR"
+                  statusCode="0000000">
+               <message>
+                  {0}
+               </message>
+               <description>
+                  The containers defined into the Vendor Specific Module Definition must respect the lower multiplicity of the container definition defined into the referenced Module Definition.
+               </description>
+               <target
+                     class="EcucModuleDef">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.artop.aal.gautosar.constraints.ecuc.GParamConfContainerDefConfigParameterMissingConstraint"
+                  id="org.artop.aal.autosar40.constraints.ecuc.EcucParamConfContainerDefConfigParameterMissingConstraint_40"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="EcucParamConfContainerDefConfigParameterMissingConstraint"
+                  severity="ERROR"
+                  statusCode="0000000">
+               <message>
+                  {0}
+               </message>
+               <description>
+                  The parameters defined into the Vendor Specific Module Definition must respect the lower multiplicity of the parameter definition defined into the referenced Module Definition.
+               </description>
+               <target
+                     class="EcucParamConfContainerDef">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.artop.aal.gautosar.constraints.ecuc.GParamConfContainerDefConfigReferenceMissingConstraint"
+                  id="org.artop.aal.autosar40.constraints.ecuc.EcucParamConfContainerDefConfigReferenceMissingConstraint_40"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="EcucParamConfContainerDefConfigReferenceMissingConstraint"
+                  severity="ERROR"
+                  statusCode="0000000">
+               <message>
+                  {0}
+               </message>
+               <description>
+                  The parameters defined into the Vendor Specific Module Definition must respect the lower multiplicity of the parameter definition defined into the referenced Module Definition.
+               </description>
+               <target
+                     class="EcucParamConfContainerDef">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.artop.aal.gautosar.constraints.ecuc.GEnumerationParamDefEnumerationLiteralConstraint"
+                  id="org.artop.aal.autosar40.constraints.ecuc.EnumerationParamDefEnumerationLiteralConstraint_40"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="EnumerationParamDefEnumerationLiteralConstraint"
+                  severity="WARNING"
+                  statusCode="0000000">
+               <message>
+                  {0}
+               </message>
+               <description>
+                  The literals values of Enumeration Parameter Definition of the Vendor Specific Module Definition has been changed from the referenced Module Definition.
+               </description>
+               <target
+                     class="EcucEnumerationParamDef">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.artop.aal.gautosar.constraints.ecuc.GConfigParameterSymbolicNameValueConstraint"
+                  id="org.artop.aal.autosar40.constraints.ecuc.EcucParameterDefSymbolicNameValueConstraint_40"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="EcucParameterDefSymbolicNameValueConstraint"
+                  severity="ERROR"
+                  statusCode="0000000">
+               <message>
+                  {0}
+               </message>
+               <description>
+                  The "Symbolic Name Value" variant of a Configuration Parameter must be declared only once inside each Container Definition (in a Vendor Specific Module Definition).
+               </description>
+               <target
+                     class="EcucParameterDef">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.artop.aal.gautosar.constraints.ecuc.GStringParamDefDefaultValueConstraint"
+                  id="org.artop.aal.autosar40.constraints.ecuc.EcucStringParamDefDefaultValueConstraint_40"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="EcucStringParamDefDefaultValueConstraint"
+                  severity="ERROR"
+                  statusCode="0000000">
+               <message>
+                  {0}
+               </message>
+               <description>
+                  Validates 'defaultValue' of EcucStringParamDef
+               </description>
+               <target
+                     class="EcucStringParamDef">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.artop.aal.gautosar.constraints.ecuc.GLinkerSymbolDefDefaultValueConstraint"
+                  id="org.artop.aal.autosar40.constraints.ecuc.EcucLinkerSymbolDefDefaultValueConstraint_40"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="EcucLinkerSymbolDefDefaultValueConstraint"
+                  severity="ERROR"
+                  statusCode="0000000">
+               <message>
+                  {0}
+               </message>
+               <description>
+                  Validates 'defaultValue' of EcucLinkerSymbolDef
+               </description>
+               <target
+                     class="EcucLinkerSymbolDef">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.artop.aal.gautosar.constraints.ecuc.GFunctionNameDefDefaultValueConstraint"
+                  id="org.artop.aal.autosar40.constraints.ecuc.EcucFunctionNamelDefDefaultValueConstraint_40"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="EcucFunctionNameDefDefaultValueConstraint"
+                  severity="ERROR"
+                  statusCode="0000000">
+               <message>
+                  {0}
+               </message>
+               <description>
+                   Validates 'defaultValue' of EcucFunctionNameDef
+               </description>
+               <target
+                     class="EcucFunctionNameDef">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.artop.aal.autosar40.constraints.ecuc.EcucIntegerParamDefDefaultValueConstraint"
+                  id="org.artop.aal.autosar40.constraints.ecuc.EcucIntegerParamDefDefaultValueConstraint_40"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="EcucIntegerParamDefDefaultValueConstraint"
+                  severity="ERROR"
+                  statusCode="0000000">
+               <message>
+                  {0}
+               </message>
+               <description>
+                  The default value of an Integer Parameter Definition must be included in the declared range.
+               </description>
+               <target
+                     class="EcucIntegerParamDef">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.artop.aal.autosar40.constraints.ecuc.EcucFloatParamDefDefaultValueConstraint"
+                  id="org.artop.aal.autosar40.constraints.ecuc.EcucFloatParamDefDefaultValueConstraint_40"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="EcucFloatParamDefDefaultValueConstraint"
+                  severity="ERROR"
+                  statusCode="0000000">
+               <message>
+                  {0}
+               </message>
+               <description>
+                  The default value of an Float Parameter Definition must be included in the declared range.
+               </description>
+               <target
+                     class="EcucFloatParamDef">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.artop.aal.gautosar.constraints.ecuc.GEnumerationParamDefDefaultValueConstraint"
+                  id="org.artop.aal.autosar40.constraints.ecuc.EcucEnumerationParamDefDefaultValueConstraint_40"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="EcucEnumerationParamDefDefaultValueConstraint"
+                  severity="ERROR"
+                  statusCode="0000000">
+               <message>
+                  {0}
+               </message>
+               <description>
+                  The default value of a Enumeration Parameter must be declared literal.
+               </description>
+               <target
+                     class="EcucEnumerationParamDef">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.artop.aal.autosar40.constraints.ecuc.EcucImplementationConfigurationClassPreCompileConstraint"
+                  id="org.artop.aal.autosar40.constraints.ecuc.EcucImplementationConfigurationClassPreCompileConstraint_40"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="EcucImplementationConfigurationClassPreCompileConstraint"
+                  severity="ERROR"
+                  statusCode="0000000">
+               <message>
+                  {0}
+               </message>
+               <description>
+                  The Configuration Class associated to the "Pre-Compile" Configuration Variant must be respectively "Published Information" or "Pre-Compile"
+               </description>
+               <target
+                     class="EcucImplementationConfigurationClass">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.artop.aal.autosar40.constraints.ecuc.EcucImplementationConfigurationClassLinkTimeConstraint"
+                  id="org.artop.aal.autosar40.constraints.ecuc.EcucImplementationConfigurationClassLinkTimeConstraint_40"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="EcucImplementationConfigurationClassLinkTimeConstraint"
+                  severity="ERROR"
+                  statusCode="0000000">
+               <message>
+                  {0}
+               </message>
+               <description>
+                  The Configuration Class associated to the &quot;Link-Time&quot; Configuration Variant must be respectively &quot;Published Information&quot;, &quot;Pre-Compile&quot;, or &quot;Link-Time&quot;
+               </description>
+               <target
+                     class="EcucImplementationConfigurationClass">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.artop.aal.autosar40.constraints.ecuc.EcucAbstractReferenceValueBasicConstraint"
+                  id="org.artop.aal.autosar40.constraints.ecuc.EcucAbstractReferenceValueBasicConstraint_40"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="EcucAbstractReferenceValueBasicConstraint"
+                  severity="WARNING"
+                  statusCode="0000000">
+               <message>
+                  {0}
+               </message>
+               <description>
+                  Reference Value should be set
+               </description>
+               <target
+                     class="EcucAbstractReferenceValue">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.artop.aal.autosar40.constraints.ecuc.EcucParameterValueBasicConstraint"
+                  id="org.artop.aal.autosar40.constraints.ecuc.EcucParameterValueBasicConstraint_40"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="EcucParameterValueBasicConstraint"
+                  severity="WARNING"
+                  statusCode="0000000">
+               <message>
+                  {0}
+               </message>
+               <description>
+                  Parameter Value should be set
+               </description>
+               <target
+                     class="EcucParameterValue">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.artop.aal.autosar40.constraints.ecuc.EcucParameterDefImplConfigClassConstraint"
+                  id="org.artop.aal.autosar40.constraints.ecuc.EcucParameterDefImplConfigClassConstraint_40"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="EcucParameterDefImplConfigClassConstraint"
+                  severity="WARNING"
+                  statusCode="0000000">
+               <message>
+                  {0}
+               </message>
+               <description>
+                  The Implementation Configuration Class variant of the Parameter Definition of the Vendor Specific Module Definition has been changed from the refined Module Definition
+               </description>
+               <target
+                     class="EcucParameterDef">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.artop.aal.gautosar.constraints.ecuc.GContainerDefContainerDefinitionMissingConstraint"
+                  id="org.artop.aal.autosar40.constraints.ecuc.EcucContainerDefContainerDefinitionMissingConstraint_40"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="EcucContainerDefContainerDefinitionMissingConstraint"
+                  severity="ERROR"
+                  statusCode="0000000">
+               <message>
+                  {0}
+               </message>
+               <description>
+                  The containers defined into the Vendor Specific Module Definition must respect the lower multiplicity of the container definition defined into the referenced Module Definition
+               </description>
+               <target
+                     class="EcucContainerDef">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.artop.aal.autosar40.constraints.ecuc.EcucFloatParamDefLowerLimitConstraint"
+                  id="org.artop.aal.autosar40.constraints.ecuc.EcucFloatParamDefLowerLimitConstraint_40"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="EcucFloatParamDefLowerLimitConstraint"
+                  severity="WARNING"
+                  statusCode="0000000">
+               <message>
+                  {0}
+               </message>
+               <description>
+                  The lower limit of the Float Parameter Definition of the Vendor Specific Module Definition has been changed from the referenced Module Definition
+               </description>
+               <target
+                     class="EcucFloatParamDef">
+               </target>
+            </constraint>
+            <constraint
+	               class="org.artop.aal.autosar40.constraints.ecuc.EcucFloatParamDefUpperLimitConstraint"
+	               id="org.artop.aal.autosar40.constraints.ecuc.EcucFloatParamDefUpperLimitConstraint_40"
+	               lang="JAVA"
+	               mode="Batch"
+	               name="EcucFloatParamDefUpperLimitConstraint"
+	               severity="WARNING"
+	               statusCode="0000000">
+	            <message>
+	               {0}
+	            </message>
+	            <description>
+	               The upper limit of the Float Parameter Definition of the Vendor Specific Module Definition has been changed from the referenced Module Definition.
+	            </description>
+	            <target
+	                  class="EcucFloatParamDef">
+	            </target>
+	        </constraint>
+            <constraint
+                  class="org.artop.aal.autosar40.constraints.ecuc.EcucIntegerParamDefLowerLimitConstraint"
+                  id="org.artop.aal.autosar40.constraints.ecuc.EcucIntegerParamDefLowerLimitConstraint_40"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="EcucIntegerParamDefLowerLimitConstraint"
+                  severity="WARNING"
+                  statusCode="0000000">
+               <message>
+                  {0}
+               </message>
+               <description>
+                  The lower limit of the Integer Parameter Definition of the Vendor Specific Module Definition has been changed from the referenced Module Definition
+               </description>
+               <target
+                     class="EcucIntegerParamDef">
+               </target>
+            </constraint>
+            <constraint
+	               class="org.artop.aal.autosar40.constraints.ecuc.EcucIntegerParamDefUpperLimitConstraint"
+	               id="org.artop.aal.autosar40.constraints.ecuc.EcucIntegerParamDefUpperLimitConstraint_40"
+	               lang="JAVA"
+	               mode="Batch"
+	               name="EcucIntegerParamDefUpperLimitConstraint"
+	               severity="WARNING"
+	               statusCode="0000000">
+	            <message>
+	               {0}
+	            </message>
+	            <description>
+	               The upper limit of the Integer Parameter Definition of the Vendor Specific Module Definition has been changed from the referenced Module Definition.
+	            </description>
+	            <target
+	                  class="EcucIntegerParamDef">
+	            </target>
+	        </constraint>
+	        <constraint
+                  class="org.artop.aal.autosar40.constraints.ecuc.EcucParamConfContainerDefMultipleConfigurationModifyConstraint"
+                  id="org.artop.aal.autosar40.constraints.ecuc.EcucParamConfContainerDefMultipleConfigurationModifyConstraint_40"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="EcucParamConfContainerDefMultipleConfigurationModifyConstraint"
+                  severity="WARNING"
+                  statusCode="0000000">
+               <message>
+                  {0}
+               </message>
+               <description>
+                  The "Multiple Configuration Container" variant of a Parameter Configuration Container Definition inside a Vendor Specific Module Definition has been changed from the Refined Module Definition
+               </description>
+               <target
+                     class="EcucParamConfContainerDef">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.artop.aal.autosar40.constraints.ecuc.EcucContainerDefPostBuildChangeableModifyConstraint"
+                  id="org.artop.aal.autosar40.constraints.ecuc.EcucContainerDefPostBuildChangeableModifyConstraint_40"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="EcucContainerDefPostBuildChangeableModifyConstraint"
+                  severity="WARNING"
+                  statusCode="0000000">
+               <message>
+                  {0}
+               </message>
+               <description>
+                  The "Post-Build Changeable" variant of a Container Definition inside a Vendor Specific Module Definition has been changed from the Refined Module Definition
+               </description>
+               <target
+                     class="EcucContainerDef">
+               </target>
+            </constraint>
+            <constraint
+                  class="org.artop.aal.autosar40.constraints.ecuc.EcucParameterDefSymbolicNameValueModifyConstraint"
+                  id="org.artop.aal.autosar40.constraints.ecuc.EcucParameterDefSymbolicNameValueModifyConstraint_40"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="EcucParameterDefSymbolicNameValueModifyConstraint"
+                  severity="WARNING"
+                  statusCode="0000000">
+               <message>
+                  {0}
+               </message>
+               <description>
+                  The &quot;Symbolic Name Value&quot; variant of a Configuration Parameter inside a Vendor Specific Module Definition has been changed from the Refined Module Definition
+               </description>
+               <target
+                     class="EcucParameterDef">
+               </target>
+            </constraint>
+            <constraint
+                class="org.artop.aal.autosar40.constraints.ecuc.EcucValueCollectionModuleConfigurationLowerMultiplicityConstraint"
+                id="org.artop.aal.autosar40.constraints.ecuc.EcucValueCollectionModuleConfigurationLowerMultiplicityConstraint_40"
+                lang="JAVA"
+                mode="Batch"
+                name="EcucValueCollectionModuleConfigurationLowerMultiplicityConstraint"
+                severity="ERROR"
+                statusCode="0000000">
+             <message>
+                {0}
+             </message>
+             <description>
+                The Ecuc Module Configuration Values referenced in each Ecuc Value Collection must respect the lower multiplicity of the imported Ecuc Module Def.
+             </description>
+             <target
+                   class="EcucValueCollection">
+             </target>
+          </constraint>
+          <constraint
+                class="org.artop.aal.autosar40.constraints.ecuc.EcucValueCollectionModuleConfigurationUpperMultiplicityConstraint"
+                id="org.artop.aal.autosar40.constraints.ecuc.EcucValueCollectionModuleConfigurationUpperMultiplicityConstraint_40"
+                lang="JAVA"
+                mode="Batch"
+                name="EcucValueCollectionModuleConfigurationUpperMultiplicityConstraint"
+                severity="ERROR"
+                statusCode="0000000">
+             <message>
+                {0}
+             </message>
+             <description>
+                The Ecuc Module Configuration Values referenced in each Ecuc Value Collection must respect the upper multiplicity of the imported Ecuc Module Def.
+             </description>
+             <target
+                   class="EcucValueCollection">
+             </target>
+          </constraint>
          </constraints>
          <constraints
-               categories="org.artop.aal.autosar40.constraints.ecuc/StructuralIntegrity">
+               categories="org.artop.aal.autosar40.constraints.ecuc/Multiplicity">
             <constraint
                   class="org.artop.aal.autosar40.constraints.ecuc.ModuleConfigurationSubContainerMultiplicityConstraint"
                   id="org.artop.aal.autosar40.constraints.ecuc.ModuleConfigurationSubContainerMultiplicityConstraint_40"
@@ -231,24 +717,6 @@
                </description>
                <target
                      class="EcucModuleConfigurationValues">
-               </target>
-            </constraint>
-            <constraint
-                  class="org.artop.aal.gautosar.constraints.ecuc.GContainerStructuralIntegrityConstraint"
-                  id="org.artop.aal.autosar40.constraints.ecuc.ContainerStructuralIntegrityConstraint_40"
-                  lang="JAVA"
-                  mode="Batch"
-                  name="ContainerStructuralIntegrityConstraint"
-                  severity="ERROR"
-                  statusCode="0020003">
-               <message>
-                  {0}
-               </message>
-               <description>
-                  Validates the structural integrity of a Container i.e. Does the ECUC Parameter Definition allows the container in the parent Container or parent MouleConfiguration?
-               </description>
-               <target
-                     class="EcucContainerValue">
                </target>
             </constraint>
             <constraint
@@ -306,41 +774,167 @@
                </target>
             </constraint>
             <constraint
-                  class="org.artop.aal.gautosar.constraints.ecuc.GParameterValueStructuralIntegrityConstraint"
-                  id="org.artop.aal.autosar40.constraints.ecuc.ParameterValueStructuralIntegrityConstraint_40"
+	               class="org.artop.aal.gautosar.constraints.ecuc.GConfigParameterLowerMultiplicityConstraint"
+	               id="org.artop.aal.autosar40.constraints.ecuc.EcucParameterDefLowerMultiplicityConstraint_40"
+	               lang="JAVA"
+	               mode="Batch"
+	               name="EcucParameterDefLowerMultiplicityConstraint"
+	               severity="ERROR"
+	               statusCode="0000000">
+	            <message>
+	               {0}
+	            </message>
+	            <description>
+	               The lower multiplicity of the Parameter Definition of the Vendor Specific Module Definition must respect the lower multiplicity of the corresponding Parameter Definition defined in the refined Module Definition.
+	            </description>
+	            <target
+	                  class="EcucParameterDef">
+	            </target>
+	         </constraint>
+	         <constraint
+	               class="org.artop.aal.gautosar.constraints.ecuc.GConfigParameterUpperMultiplicityConstraint"
+	               id="org.artop.aal.autosar40.constraints.ecuc.EcucConfigParameterUpperMultiplicityConstraint_40"
+	               lang="JAVA"
+	               mode="Batch"
+	               name="EcucConfigParameterUpperMultiplicityConstraint"
+	               severity="ERROR"
+	               statusCode="0000000">
+	            <message>
+	               {0}
+	            </message>
+	            <description>
+	               The upper multiplicity of the Parameter Definition of the Vendor Specific Module Definition must respect the upper multiplicity of the corresponding Parameter Definition defined in the refined Module Definition.
+	            </description>
+	            <target
+	                  class="EcucParameterDef">
+	            </target>
+	         </constraint>
+	         <constraint
+	               class="org.artop.aal.gautosar.constraints.ecuc.GConfigReferenceLowerMultiplicityConstraint"
+	               id="org.artop.aal.autosar40.constraints.ecuc.EcucAbstractReferenceDefLowerMultiplicityConstraint_40"
+	               lang="JAVA"
+	               mode="Batch"
+	               name="EcucAbstractReferenceDefLowerMultiplicityConstraint"
+	               severity="ERROR"
+	               statusCode="0000000">
+	            <message>
+	               {0}
+	            </message>
+	            <description>
+	               The lower multiplicity of the Reference Definition of the Vendor Specific Module Definition must respect the lower multiplicity of the corresponding Reference Definition defined in the refined Module Definition.
+	            </description>
+	            <target
+	                  class="EcucAbstractReferenceDef">
+	            </target>
+	         </constraint>
+	         <constraint
+	               class="org.artop.aal.gautosar.constraints.ecuc.GConfigReferenceUpperMultiplicityConstraint"
+	               id="org.artop.aal.autosar40.constraints.ecuc.EcucAbstractReferenceDefUpperMultiplicityConstraint_40"
+	               lang="JAVA"
+	               mode="Batch"
+	               name="EcucAbstractReferenceDefUpperMultiplicityConstraint"
+	               severity="ERROR"
+	               statusCode="0000000">
+	            <message>
+	               {0}
+	            </message>
+	            <description>
+	               The upper multiplicity of the Reference Definition of the Vendor Specific Module Definition must respect the upper multiplicity of the corresponding Reference Definition defined in the refined Module Definition.
+	            </description>
+	            <target
+	                  class="EcucAbstractReferenceDef">
+	            </target>
+	         </constraint>
+	         <constraint
+	               class="org.artop.aal.gautosar.constraints.ecuc.GParamConfContainerDefInChoiceContainerDefMultiplicityConstraint"
+	               id="org.artop.aal.autosar40.constraints.ecuc.ParamConfContainerDefInChoiceContainerDefMultiplicityConstraint_40"
+	               lang="JAVA"
+	               mode="Batch"
+	               name="ParamConfContainerDefInChoiceContainerDefMultiplicityConstraint"
+	               severity="ERROR"
+	               statusCode="0000000">
+	            <message>
+	               {0}
+	            </message>
+	            <description>
+	               The multiplicity of ParamConfContainerDef contained into ChoiceContainerDef object must be set to [0,1].
+	            </description>
+	            <target
+	                  class="EcucParamConfContainerDef">
+	            </target>
+	         </constraint>
+	         <constraint
+	               class="org.artop.aal.gautosar.constraints.ecuc.GParamConfMultiplicityConsistencyConstraint"
+	               id="org.artop.aal.autosar40.constraints.ecuc.EcucDefinitionElementConsistencyConstraint_40"
+	               lang="JAVA"
+	               mode="Batch"
+	               name="EcucDefinitionElementConsistencyConstraint"
+	               severity="ERROR"
+	               statusCode="0000000">
+	            <message>
+	               {0}
+	            </message>
+	            <description>
+	               Lower multiplicity must not be greater than upper multiplicity.
+	            </description>
+	            <target
+	                  class="EcucDefinitionElement">
+	            </target>
+	         </constraint>
+	         <constraint
+	               class="org.artop.aal.gautosar.constraints.ecuc.GModuleConfigurationChoiceContainerDefMultiplicityConstraint"
+	               id="org.artop.aal.autosar40.constraints.ecuc.EcucModuleConfigurationValuesChoiceContainerDefMultiplicityConstraint_40"
+	               lang="JAVA"
+	               mode="Batch"
+	               name="EcucModuleConfigurationValuesChoiceContainerDefMultiplicityConstraint"
+	               severity="ERROR"
+	               statusCode="0000000">
+	            <message>
+	               {0}
+	            </message>
+	            <description>
+	               The upperMultiplicity of the ChoiceContainerDef does specify how often the choice can be performed. If the upperMultiplicity of the ChoiceContainerDef &gt; 1, the sum of the chosen containers has to be considered.
+	            </description>
+	            <target
+	                  class="EcucModuleConfigurationValues">
+	            </target>
+	         </constraint>
+	         <constraint
+                  class="org.artop.aal.gautosar.constraints.ecuc.GContainerDefLowerMultiplicityConstraint"
+                  id="org.artop.aal.autosar40.constraints.ecuc.EcucContainerDefLowerMultiplicityConstraint_40"
                   lang="JAVA"
                   mode="Batch"
-                  name="ParameterValueStructuralIntegrityConstraint"
+                  name="EcucContainerDefLowerMultiplicityConstraint"
                   severity="ERROR"
-                  statusCode="0020002">
+                  statusCode="0000000">
                <message>
                   {0}
                </message>
                <description>
-                  Validates the structural integrity of a ParameterValue. i.e. Does the ECUC Parameter Definition allows the parameter in the parent Container?
+                  The lower multiplicity of the Container Definition of the Vendor Specific Module Definition must respect the lower multiplicity of the corresponding Container Definition defined in the refined Module Definition
                </description>
                <target
-                     class="EcucParameterValue">
+                     class="EcucContainerDef">
                </target>
-            </constraint>
-            <constraint
-                  class="org.artop.aal.gautosar.constraints.ecuc.GConfigReferenceValueStructuralIntegrityConstraint"
-                  id="org.artop.aal.autosar40.constraints.ecuc.ConfigReferenceValueStructuralIntegrityConstraint_40"
-                  lang="JAVA"
-                  mode="Batch"
-                  name="ConfigReferenceValueStructuralIntegrityConstraint"
-                  severity="ERROR"
-                  statusCode="0020001">
-               <message>
-                  {0}
-               </message>
-               <description>
-                  Validates the structural integrity of a ConfigReferenceValue. i.e. Does the ECUC Parameter Definition allows a the reference in the parent Container?
-               </description>
-               <target
-                     class="EcucAbstractReferenceValue">
-               </target>
-            </constraint>
+             </constraint>
+	         <constraint
+	               class="org.artop.aal.gautosar.constraints.ecuc.GContainerDefUpperMultiplicityConstraint"
+	               id="org.artop.aal.autosar40.constraints.ecuc.EcucContainerDefUpperMultiplicityConstraint_40"
+	               lang="JAVA"
+	               mode="Batch"
+	               name="EcucContainerDefUpperMultiplicityConstraint"
+	               severity="ERROR"
+	               statusCode="0000000">
+	            <message>
+	               {0}
+	            </message>
+	            <description>
+	               The upper multiplicity of the Container Definition of the Vendor Specific Module Definition must respect the upper multiplicity of the corresponding Container Definition defined in the refined Module Definition.
+	            </description>
+	            <target
+	                  class="EcucContainerDef">
+	            </target>
+	         </constraint>
          </constraints>
       </constraintProvider>
    </extension>

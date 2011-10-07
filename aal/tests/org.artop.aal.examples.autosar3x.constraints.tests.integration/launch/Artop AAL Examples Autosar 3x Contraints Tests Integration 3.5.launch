@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.pde.ui.JunitLaunchConfig">
+<setAttribute key="additional_plugins"/>
+<booleanAttribute key="append.args" value="true"/>
+<stringAttribute key="application" value="org.eclipse.pde.junit.runtime.coretestapplication"/>
+<booleanAttribute key="askclear" value="false"/>
+<booleanAttribute key="automaticAdd" value="true"/>
+<booleanAttribute key="automaticValidate" value="false"/>
+<stringAttribute key="bootstrap" value=""/>
+<stringAttribute key="checked" value="[NONE]"/>
+<booleanAttribute key="clearConfig" value="true"/>
+<booleanAttribute key="clearws" value="true"/>
+<booleanAttribute key="clearwslog" value="false"/>
+<stringAttribute key="configLocation" value="${workspace_loc}/.metadata/.plugins/org.eclipse.pde.core/pde-junit"/>
+<booleanAttribute key="default" value="false"/>
+<stringAttribute key="deselected_workspace_plugins" value="org.artop.aal.autosar21.validation.ui,org.artop.ecl.examples.hummingbird20.edit,org.artop.ecl.examples.hummingbird.ide.ui,org.artop.ecl.examples.hummingbird.ide,org.artop.ecl.examples.uml2.ide.ui,org.artop.ecl.emf.explorer,org.artop.ecl.emf.ui.tests.integration,org.artop.ecl.examples.hummingbird.compare,org.artop.aal.compare,org.artop.aal.examples.actions,org.artop.ecl.emf.tests,org.artop.aal.testutils.integration.referenceworkspace.serialization,org.artop.aal.autosar20.validation.ui,org.artop.ecl.examples.validation.ui,org.artop.aal.examples.validation.ui,org.artop.aal.gautosar.edit,org.artop.aal.autosar3x.constraints.ecuc.tests,org.artop.aal.workspace.tests.integration,org.artop.aal.autosar40.validation,org.artop.aal.workspace.tests,org.artop.aal.tests.perf,org.artop.aal.gautosar.tests,org.artop.aal.autosar3x.extender.tests,org.artop.aal.autosar3x.converters,org.artop.ecl.examples.explorer,org.artop.ecl.emf.workspace.ui,org.artop.ecl.gmf.runtime.ui,org.artop.ecl.platform.tests,org.artop.aal.compare.ui,org.artop.aal.examples.editor,org.artop.ecl.examples.hummingbird10.editor,org.artop.ecuc.examples.ui,org.artop.ecl.emf.validation.ui,org.artop.aal.examples.newwizards,org.artop.aal.autosar3x.tests.integration,org.artop.ecl.platform.ui,org.artop.ecl.emf.compare,org.artop.ecl.emf.workspace.tests.integration,org.artop.aal.examples.converter.tests,org.artop.ecl.emf.compare.team.subversive.ui,org.artop.aal.autosar3x.constraints.ecuc,org.artop.aal.workspace.ui.tests.integration,org.artop.aal.examples.common,org.artop.ecl.examples.hummingbird10,org.artop.ecl.examples.hummingbird20,org.artop.ecl.emf.compare.ui,org.artop.aal.examples.intro,org.artop.aal.autosar20.validation,org.artop.ecl.doc.isv,org.artop.ecl.emf.tests.integration,org.artop.aal.testutils,org.artop.aal.workspace.ui,org.artop.aal.autosar20.tests,org.artop.aal.autosar21.tests,org.artop.aal.autosar40.edit,org.artop.aal.examples.cheatsheets,org.artop.ecl.emf.ui,org.artop.aal.validation.ui,org.artop.ecl.emf.workspace.tests,org.artop.aal.autosar3x.validation.ui,org.artop.aal.doc.isv,org.artop.aal.autosar21.converters,org.artop.aal.autosar3x.edit,org.artop.aal.autosar40.validation.ui,org.artop.aal.autosar21.validation,org.artop.aal.autosar40.extender.tests,org.artop.aal.examples.converter,org.artop.aal.examples.demonstrator,org.artop.aal.autosar3x.extender.tests.integration,org.artop.aal.autosar40.tests,org.artop.ecl.examples.tests.perf,org.artop.aal.examples.diagrams.componenttype21,org.artop.aal.extender,org.artop.aal.autosar20.edit,org.artop.ecl.gmf.workspace,org.artop.ecuc.moduleconfiguration.initializer,org.artop.aal.examples.common.ui,org.artop.aal.examples.explorer,org.artop.aal.autosar3x.tests,org.artop.aal.examples.diagrams.componenttype3x,org.artop.ecl.emf.editors.forms,org.artop.ecl.examples.hummingbird10.edit,org.artop.ecl.examples.hummingbird20.editor,org.artop.ecl.examples.common.ui,org.artop.ecl.testutils.integration.referenceworkspace,org.artop.ecl.platform.tests.integration,org.artop.aal.autosar21.extender.tests,org.artop.aal.autosar21.edit,org.artop.ecl.emf.validation.tests.integration,org.artop.ecl.examples.actions,org.artop.ecuc.examples.moduleconfiguration.initializer,org.artop.aal.autosar40,org.artop.aal.examples.extender"/>
+<stringAttribute key="featureDefaultLocation" value="workspace"/>
+<stringAttribute key="featurePluginResolution" value="workspace"/>
+<booleanAttribute key="includeOptional" value="true"/>
+<stringAttribute key="location" value="${workspace_loc}/../junit-workspace"/>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/org.artop.aal.examples.autosar3x.constraints.tests.integration/src/org/artop/aal/examples/autosar3x/constraints/tests/integration/testsuite/AalExamplesAutosar3xConstraintsTestIntegrationTestSuite.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<booleanAttribute key="org.eclipse.debug.core.appendEnvironmentVariables" value="true"/>
+<stringAttribute key="org.eclipse.jdt.junit.CONTAINER" value=""/>
+<booleanAttribute key="org.eclipse.jdt.junit.KEEPRUNNING_ATTR" value="false"/>
+<stringAttribute key="org.eclipse.jdt.junit.TESTNAME" value=""/>
+<stringAttribute key="org.eclipse.jdt.junit.TEST_KIND" value="org.eclipse.jdt.junit.loader.junit3"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="org.artop.aal.examples.autosar3x.constraints.tests.integration.testsuite.AalExamplesAutosar3xConstraintsTestIntegrationTestSuite"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPorg.artop.aal.examples.autosar3x.constraints.tests.integration.testsuite.AalExamplesAutosar3xConstraintsTestIntegrationTestSuiteIntegrationTestSuite" value=""/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl} -debug"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.artop.aal.examples.autosar3x.constraints.tests.integration"/>
+<stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.pde.ui.workbenchClasspathProvider"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Xms128m -Xmx768m -XX:MaxPermSize=128m"/>
+<stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="${workspace_loc:org.artop.ecl.emf.tests/working-dir}"/>
+<stringAttribute key="pde.version" value="3.3"/>
+<stringAttribute key="product" value="org.eclipse.sdk.ide"/>
+<booleanAttribute key="run_in_ui_thread" value="true"/>
+<setAttribute key="selected_features">
+<setEntry value="org.artop.aal.tests:default"/>
+<setEntry value="org.artop.aal:default"/>
+<setEntry value="org.artop.ecl.tests:default"/>
+<setEntry value="org.artop.ecl:default"/>
+<setEntry value="org.artop.validation.aal.examples:default"/>
+<setEntry value="org.artop.validation.aal.tests:default"/>
+<setEntry value="org.artop.validation.aal:default"/>
+<setEntry value="org.artop.validation.ecl.examples:default"/>
+<setEntry value="org.artop.validation.ecl:default"/>
+<setEntry value="org.artop.validation.examples:default"/>
+<setEntry value="org.artop.validation.sdk:default"/>
+<setEntry value="org.artop.validation.tests:default"/>
+<setEntry value="org.eclipse.cvs.source:default"/>
+<setEntry value="org.eclipse.cvs:default"/>
+<setEntry value="org.eclipse.draw2d.sdk:default"/>
+<setEntry value="org.eclipse.draw2d.source:default"/>
+<setEntry value="org.eclipse.draw2d:default"/>
+<setEntry value="org.eclipse.emf.codegen.ecore.ui:default"/>
+<setEntry value="org.eclipse.emf.codegen.ecore:default"/>
+<setEntry value="org.eclipse.emf.codegen.ui:default"/>
+<setEntry value="org.eclipse.emf.codegen:default"/>
+<setEntry value="org.eclipse.emf.common.ui:default"/>
+<setEntry value="org.eclipse.emf.common:default"/>
+<setEntry value="org.eclipse.emf.compare.doc:default"/>
+<setEntry value="org.eclipse.emf.compare.sdk:default"/>
+<setEntry value="org.eclipse.emf.compare.source:default"/>
+<setEntry value="org.eclipse.emf.compare.ui.capabilities.source:default"/>
+<setEntry value="org.eclipse.emf.compare.ui.capabilities:default"/>
+<setEntry value="org.eclipse.emf.compare:default"/>
+<setEntry value="org.eclipse.emf.converter:default"/>
+<setEntry value="org.eclipse.emf.databinding.edit:default"/>
+<setEntry value="org.eclipse.emf.databinding:default"/>
+<setEntry value="org.eclipse.emf.doc:default"/>
+<setEntry value="org.eclipse.emf.ecore.edit:default"/>
+<setEntry value="org.eclipse.emf.ecore.editor:default"/>
+<setEntry value="org.eclipse.emf.ecore:default"/>
+<setEntry value="org.eclipse.emf.edit.ui:default"/>
+<setEntry value="org.eclipse.emf.edit:default"/>
+<setEntry value="org.eclipse.emf.mapping.ecore.editor:default"/>
+<setEntry value="org.eclipse.emf.mapping.ecore:default"/>
+<setEntry value="org.eclipse.emf.mapping.ui:default"/>
+<setEntry value="org.eclipse.emf.mapping:default"/>
+<setEntry value="org.eclipse.emf.ocl.doc:default"/>
+<setEntry value="org.eclipse.emf.ocl.examples.source:default"/>
+<setEntry value="org.eclipse.emf.ocl.examples:default"/>
+<setEntry value="org.eclipse.emf.ocl.sdk:default"/>
+<setEntry value="org.eclipse.emf.ocl.source:default"/>
+<setEntry value="org.eclipse.emf.ocl:default"/>
+<setEntry value="org.eclipse.emf.query.doc:default"/>
+<setEntry value="org.eclipse.emf.query.ocl.source:default"/>
+<setEntry value="org.eclipse.emf.query.ocl:default"/>
+<setEntry value="org.eclipse.emf.query.sdk:default"/>
+<setEntry value="org.eclipse.emf.query.source:default"/>
+<setEntry value="org.eclipse.emf.query:default"/>
+<setEntry value="org.eclipse.emf.sdk:default"/>
+<setEntry value="org.eclipse.emf.source:default"/>
+<setEntry value="org.eclipse.emf.transaction.doc:default"/>
+<setEntry value="org.eclipse.emf.transaction.sdk:default"/>
+<setEntry value="org.eclipse.emf.transaction.source:default"/>
+<setEntry value="org.eclipse.emf.transaction:default"/>
+<setEntry value="org.eclipse.emf.validation.doc:default"/>
+<setEntry value="org.eclipse.emf.validation.ocl.source:default"/>
+<setEntry value="org.eclipse.emf.validation.ocl:default"/>
+<setEntry value="org.eclipse.emf.validation.sdk:default"/>
+<setEntry value="org.eclipse.emf.validation.source:default"/>
+<setEntry value="org.eclipse.emf.validation:default"/>
+<setEntry value="org.eclipse.emf.workspace.doc:default"/>
+<setEntry value="org.eclipse.emf.workspace.source:default"/>
+<setEntry value="org.eclipse.emf.workspace:default"/>
+<setEntry value="org.eclipse.emf:default"/>
+<setEntry value="org.eclipse.equinox.executable:default"/>
+<setEntry value="org.eclipse.equinox.p2.user.ui.source:default"/>
+<setEntry value="org.eclipse.equinox.p2.user.ui:default"/>
+<setEntry value="org.eclipse.gef.all:default"/>
+<setEntry value="org.eclipse.gef.examples:default"/>
+<setEntry value="org.eclipse.gef.sdk:default"/>
+<setEntry value="org.eclipse.gef.source:default"/>
+<setEntry value="org.eclipse.gef:default"/>
+<setEntry value="org.eclipse.gmf.doc:default"/>
+<setEntry value="org.eclipse.gmf.examples.pde:default"/>
+<setEntry value="org.eclipse.gmf.runtime.notation.source:default"/>
+<setEntry value="org.eclipse.gmf.runtime.notation:default"/>
+<setEntry value="org.eclipse.gmf.runtime.thirdparty.source:default"/>
+<setEntry value="org.eclipse.gmf.runtime.thirdparty:default"/>
+<setEntry value="org.eclipse.gmf.sdk:default"/>
+<setEntry value="org.eclipse.gmf.source:default"/>
+<setEntry value="org.eclipse.gmf.tooling.source:default"/>
+<setEntry value="org.eclipse.gmf.tooling:default"/>
+<setEntry value="org.eclipse.gmf:default"/>
+<setEntry value="org.eclipse.help.source:default"/>
+<setEntry value="org.eclipse.help:default"/>
+<setEntry value="org.eclipse.jdt.source:default"/>
+<setEntry value="org.eclipse.jdt:default"/>
+<setEntry value="org.eclipse.m2m.qvt.oml.common.source:default"/>
+<setEntry value="org.eclipse.m2m.qvt.oml.common:default"/>
+<setEntry value="org.eclipse.m2m.qvt.oml.doc:default"/>
+<setEntry value="org.eclipse.m2m.qvt.oml.editor.source:default"/>
+<setEntry value="org.eclipse.m2m.qvt.oml.editor:default"/>
+<setEntry value="org.eclipse.m2m.qvt.oml.examples:default"/>
+<setEntry value="org.eclipse.m2m.qvt.oml.runtime.source:default"/>
+<setEntry value="org.eclipse.m2m.qvt.oml.runtime:default"/>
+<setEntry value="org.eclipse.m2m.qvt.oml.sdk:default"/>
+<setEntry value="org.eclipse.m2m.qvt.oml.source:default"/>
+<setEntry value="org.eclipse.m2m.qvt.oml:default"/>
+<setEntry value="org.eclipse.ocl.all.sdk:default"/>
+<setEntry value="org.eclipse.ocl.all:default"/>
+<setEntry value="org.eclipse.ocl.doc:default"/>
+<setEntry value="org.eclipse.ocl.source:default"/>
+<setEntry value="org.eclipse.ocl.uml.source:default"/>
+<setEntry value="org.eclipse.ocl.uml:default"/>
+<setEntry value="org.eclipse.ocl:default"/>
+<setEntry value="org.eclipse.pde.source:default"/>
+<setEntry value="org.eclipse.pde:default"/>
+<setEntry value="org.eclipse.platform.source:default"/>
+<setEntry value="org.eclipse.platform:default"/>
+<setEntry value="org.eclipse.rcp.source:default"/>
+<setEntry value="org.eclipse.rcp:default"/>
+<setEntry value="org.eclipse.sdk:default"/>
+<setEntry value="org.eclipse.team.svn.mylyn.source:default"/>
+<setEntry value="org.eclipse.team.svn.mylyn:default"/>
+<setEntry value="org.eclipse.team.svn.nl1.sources:default"/>
+<setEntry value="org.eclipse.team.svn.nl1:default"/>
+<setEntry value="org.eclipse.team.svn.resource.ignore.rules.jdt.source:default"/>
+<setEntry value="org.eclipse.team.svn.resource.ignore.rules.jdt:default"/>
+<setEntry value="org.eclipse.team.svn.source:default"/>
+<setEntry value="org.eclipse.team.svn.sources:default"/>
+<setEntry value="org.eclipse.team.svn.ui.capabilities:default"/>
+<setEntry value="org.eclipse.team.svn:default"/>
+<setEntry value="org.eclipse.uml2.doc:default"/>
+<setEntry value="org.eclipse.uml2.examples.source:default"/>
+<setEntry value="org.eclipse.uml2.examples:default"/>
+<setEntry value="org.eclipse.uml2.sdk:default"/>
+<setEntry value="org.eclipse.uml2.source:default"/>
+<setEntry value="org.eclipse.uml2:default"/>
+<setEntry value="org.eclipse.xsd.doc:default"/>
+<setEntry value="org.eclipse.xsd.ecore.converter:default"/>
+<setEntry value="org.eclipse.xsd.edit:default"/>
+<setEntry value="org.eclipse.xsd.editor:default"/>
+<setEntry value="org.eclipse.xsd.mapping.editor:default"/>
+<setEntry value="org.eclipse.xsd.mapping:default"/>
+<setEntry value="org.eclipse.xsd.sdk:default"/>
+<setEntry value="org.eclipse.xsd.source:default"/>
+<setEntry value="org.eclipse.xsd:default"/>
+<setEntry value="org.eclipse.zest.sdk:default"/>
+<setEntry value="org.eclipse.zest.source:default"/>
+<setEntry value="org.eclipse.zest:default"/>
+</setAttribute>
+<stringAttribute key="selected_target_plugins" value="javax.servlet@default:default,org.eclipse.emf.transaction@default:default,javax.activation@default:default,org.eclipse.help@default:default,org.eclipse.equinox.registry@default:default,org.apache.xml.resolver@default:default,org.eclipse.core.runtime@default:true,org.eclipse.swt.win32.win32.x86@default:false,org.eclipse.core.jobs@default:default,org.eclipse.emf.common@default:default,com.ibm.icu@default:default,org.eclipse.equinox.preferences@default:default,org.eclipse.emf.validation@default:default,org.junit*3.8.2.v3_8_2_v20100427-1100@default:default,org.eclipse.emf.ecore@default:default,org.eclipse.jface.databinding@default:default,org.eclipse.emf.ecore.change@default:default,org.eclipse.core.resources.win32.x86@default:false,org.eclipse.core.databinding.observable@default:default,org.eclipse.core.databinding@default:default,org.eclipse.core.runtime.compatibility.auth@default:default,org.apache.xerces@default:default,javax.xml@default:default,org.eclipse.core.filesystem.win32.x86@default:false,org.eclipse.equinox.app@default:default,org.apache.xml.serializer@default:default,org.eclipse.xsd@default:default,org.jdom@default:default,org.eclipse.uml2.common@default:default,org.junit*4.8.1.v4_8_1_v20100427-1100@default:default,org.eclipse.osgi@-1:true,org.eclipse.ant.core@default:default,org.eclipse.osgi.services@default:default,org.eclipse.core.commands@default:default,org.eclipse.core.databinding.property@default:default,org.eclipse.core.contenttype@default:default,org.eclipse.emf.edit@default:default,org.apache.ant@default:default,org.eclipse.core.resources@default:default,org.eclipse.emf.workspace@default:default,org.eclipse.core.runtime.compatibility.registry@default:false,org.eclipse.equinox.common@2:true,org.eclipse.emf.mapping.ecore2xml@default:default,org.eclipse.uml2.uml@default:default,org.eclipse.ui.workbench@default:default,org.eclipse.team.core@default:default,org.eclipse.core.filesystem@default:default,org.eclipse.emf.ecore.xmi@default:default,org.eclipse.core.variables@default:default,org.eclipse.core.expressions@default:default,org.eclipse.jface@default:default,org.eclipse.swt@default:default"/>
+<stringAttribute key="selected_workspace_plugins" value="org.artop.ecl.platform@default:default,org.artop.aal.autosar40.constraints.ecuc.tests@default:default,org.artop.aal.autosar20.constraints.ecuc.tests@default:default,org.artop.aal.serialization@default:default,org.artop.aal.autosar21.services.tests@default:default,org.artop.aal.autosar20.extender.tests@default:default,org.artop.ecl.examples.hummingbird20.diagrams.typemodel@default:default,org.artop.tools.metamodelgen.cleaner@default:default,org.artop.aal.autosar21.services@default:default,org.artop.ecl.examples.sphinx.validation.ui@default:default,org.artop.ecl.examples.sphinx.explorer@default:default,org.artop.aal.testutils.integration.referenceworkspace@default:default,org.artop.aal.gautosar.constraints.ecuc@default:default,org.artop.tools.gmfgen.examples.hummingbird.source@default:default,org.artop.aal.gautosar.services.tests@default:false,org.artop.aal.workspace@default:default,org.artop.ecl.emf.workspace@default:default,org.artop.ecl.emf.validation@default:default,org.artop.ecl.examples.sphinx.edit@default:default,org.artop.aal.validation@default:default,org.artop.aal.common@default:default,org.artop.ecl.examples.sphinx.validation@default:default,org.artop.ecl.examples.sphinx.workspace@default:default,org.artop.ecl.examples.sphinx@default:default,org.artop.aal.autosar21.constraints.ecuc.tests@default:default,org.artop.aal.autosar20.services.tests@default:default,org.artop.aal.autosar20.services@default:default,org.artop.aal.gautosar.constraints.ecuc.tests@default:default,org.artop.templates.project.tests.plugin@default:default,dev.experimental.xplan@default:default,org.artop.ecl.examples.sphinx.editor@default:default,org.apache.xerces@default:default,org.artop.aal.autosar40.services.tests@default:default,org.artop.tools.gmfgen@default:default,org.artop.aal.autosar3x.services.tests@default:default,org.artop.aal.autosar3x@default:default,org.artop.aal.autosar20.constraints.ecuc@default:default,org.artop.aal.autosar3x.validation@default:default,org.artop.aal.autosar21.constraints.ecuc@default:default,org.artop.ecl.emf@default:default,org.artop.ecl.emf.validation.bridge@default:default,org.artop.aal.autosar20@default:default,org.artop.templates.project.tests.fragment@default:false,org.artop.ecl.emf.mwe@default:default,org.artop.tools.gmfgen.examples.autosar.source@default:default,org.artop.ecl.testutils@default:default,org.artop.aal.autosar21@default:default,org.artop.aal.autosar40.constraints.ecuc@default:default,org.artop.aal.autosar40.services@default:default,org.artop.ecl.examples.sphinx.workspace.ui@default:default,org.artop.aal.gautosar.services@default:default,org.artop.templates.project.plugin@default:default,org.artop.tools.metamodelgen@default:default,org.artop.aal.examples.autosar3x.constraints.tests.integration@default:default,org.artop.aal.examples.autosar3x.constraints@default:default,org.artop.tools.metamodelgen.emf@default:default,org.artop.ecl.examples.uml2.ide@default:default,dev.experimental.xplan.edit@default:default,org.artop.aal.common.tests@default:default,org.artop.aal.autosar3x.services@default:default,org.artop.ecl.testutils.integration@default:default,org.artop.aal.gautosar@default:default"/>
+<booleanAttribute key="show_selected_only" value="false"/>
+<stringAttribute key="templateConfig" value="${target_home}\configuration\config.ini"/>
+<booleanAttribute key="tracing" value="false"/>
+<booleanAttribute key="useCustomFeatures" value="false"/>
+<booleanAttribute key="useDefaultConfig" value="true"/>
+<booleanAttribute key="useDefaultConfigArea" value="false"/>
+<booleanAttribute key="useProduct" value="false"/>
+</launchConfiguration>

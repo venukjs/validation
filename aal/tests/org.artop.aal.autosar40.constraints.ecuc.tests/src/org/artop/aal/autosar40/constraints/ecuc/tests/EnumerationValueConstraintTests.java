@@ -19,22 +19,22 @@ import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
-public class EnumerationValueConstraintTests extends AbstractAutosar40ValidationTestCase
-{
+@SuppressWarnings("nls")
+public class EnumerationValueConstraintTests extends AbstractAutosar40ValidationTestCase {
 
-	public EnumerationValueConstraintTests()
-	{
+	public EnumerationValueConstraintTests() {
 		super();
 	}
+
 	@Override
-	protected String getConstraintID()
-	{
+	protected String getConstraintID() {
 		return "org.artop.aal.autosar40.constraints.ecuc.EcucTextualParamValueBasicConstraint_40";//$NON-NLS-1$
 	}
+
 	// test correctness
 	public void testInvalidEnumerationValue_valueNotDefinedInEnumerationLiterals() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/EnumerationValue/valueNotDefinedInEnumerationLiterals.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.enumeration_valueNotInLiterals);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.enumeration_valueNotInLiterals);
 	}
 
 	// test valid

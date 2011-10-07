@@ -18,10 +18,10 @@ import org.artop.aal.autosar40.constraints.ecuc.internal.Messages;
 import org.artop.aal.gautosar.constraints.ecuc.tests.util.ValidationTestUtil;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.osgi.util.NLS;
 
-@SuppressWarnings("restriction")
-public class ModuleConfigurationConstraintTests extends AbstractAutosar40ValidationTestCase
-{ 
+@SuppressWarnings({ "restriction", "nls" })
+public class ModuleConfigurationConstraintTests extends AbstractAutosar40ValidationTestCase {
 	public ModuleConfigurationConstraintTests() {
 		super();
 	}
@@ -34,12 +34,13 @@ public class ModuleConfigurationConstraintTests extends AbstractAutosar40Validat
 	// consistency
 	public void testInValidModuleConfiguration_implConfigValueNotSet() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ModuleConfiguration/implConfigValueNotSet.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.moduleConfig_ImplConfigVariantNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.moduleConfig_ImplConfigVariantNotSet);
 	}
 
 	// correctness
 	public void testInValidModuleConfiguration_implConfigVariantNotSupported() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ModuleConfiguration/implConfigVariantNotSupported.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.moduleConfig_ImplConfigVariantNotSupported);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(Messages.moduleConfig_ImplConfigVariantNotSupported, "VariantPostBuild", "{VariantLinkTime,VariantPreCompile}"));
 	}
 }

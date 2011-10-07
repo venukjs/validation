@@ -12,7 +12,6 @@
  * 
  * </copyright>
  */
-
 package org.artop.aal.autosar21.constraints.ecuc;
 
 import gautosar.gecucdescription.GInstanceReferenceValue;

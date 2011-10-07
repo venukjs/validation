@@ -19,8 +19,8 @@ import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
-public class AddInfoValueConstraintTests extends AbstractAutosar40ValidationTestCase
-{
+@SuppressWarnings("nls")
+public class AddInfoValueConstraintTests extends AbstractAutosar40ValidationTestCase {
 
 	public AddInfoValueConstraintTests() {
 		super();
@@ -33,6 +33,6 @@ public class AddInfoValueConstraintTests extends AbstractAutosar40ValidationTest
 
 	public void testInvalidStringValue_emptyValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/AddInfoValue/emptyValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.generic_valueNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_valueNotSet);
 	}
 }

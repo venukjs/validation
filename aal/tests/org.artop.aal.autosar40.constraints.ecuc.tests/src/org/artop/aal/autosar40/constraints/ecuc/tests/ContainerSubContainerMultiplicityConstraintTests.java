@@ -20,8 +20,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
 
-public class ContainerSubContainerMultiplicityConstraintTests extends AbstractAutosar40ValidationTestCase
-{
+@SuppressWarnings("nls")
+public class ContainerSubContainerMultiplicityConstraintTests extends AbstractAutosar40ValidationTestCase {
 
 	public ContainerSubContainerMultiplicityConstraintTests() {
 		super();
@@ -34,7 +34,12 @@ public class ContainerSubContainerMultiplicityConstraintTests extends AbstractAu
 
 	public void testInvalidContainer_upperMultiplicityOfSubContainerViolated() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/Container/upperMultiplicityOfSubContainerViolated.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,NLS.bind(Messages.multiplicity_maxElementsExpected, new String[]{"2","subcontainers","/AUTOSAR/Os/ParamConfContainerDef/SubContainerDef","3"}));
+		ValidationTestUtil.validateModel(
+				invalidModel,
+				validator,
+				IStatus.ERROR,
+				NLS.bind(Messages.multiplicity_maxElementsExpected, new String[] { "2", "subcontainers",
+						"/AUTOSAR/Os/ParamConfContainerDef/SubContainerDef", "3" }));
 	}
 
 	// valid
@@ -42,6 +47,5 @@ public class ContainerSubContainerMultiplicityConstraintTests extends AbstractAu
 		EObject validModel = loadInputFile("ecuc/Container/upperMultiplicityOfMultipleConfigSubContainerValid.arxml");
 		ValidationTestUtil.validateModel(validModel, validator, IStatus.OK);
 	}
-
 
 }

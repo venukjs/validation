@@ -19,8 +19,8 @@ import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
-public class InstanceReferenceValueConstraintTests extends AbstractAutosar40ValidationTestCase
-{
+@SuppressWarnings("nls")
+public class InstanceReferenceValueConstraintTests extends AbstractAutosar40ValidationTestCase {
 
 	public InstanceReferenceValueConstraintTests() {
 		super();
@@ -34,17 +34,17 @@ public class InstanceReferenceValueConstraintTests extends AbstractAutosar40Vali
 	// completeness
 	public void testInvalidInstanceReferenceValue_noValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/noValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.generic_valueNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_valueNotSet);
 	}
-	
+
 	// correctness
 	public void testInvalidInstanceReferenceValue_noDestinationContext() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/noDestinationContext.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.instanceref_valueDestContextNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.instanceref_valueDestContextNotSet);
 	}
 
 	public void testInvalidInstanceReferenceValue_noDestinationType() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/noDestinationType.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.reference_targetDestinationTypeNotAvailable);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.reference_targetDestinationTypeNotAvailable);
 	}
 }

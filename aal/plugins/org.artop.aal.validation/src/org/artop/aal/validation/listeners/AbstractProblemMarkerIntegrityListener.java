@@ -1,14 +1,14 @@
 /**
  * <copyright>
  * 
- * Copyright (c) Geensys and others.
+ * Copyright (c) See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
  * 
  * Contributors: 
- *     Geensys - Initial API and implementation
+ *     See4sys - Initial API and implementation
  * 
  * </copyright>
  */
@@ -18,11 +18,6 @@ import java.util.List;
 
 import org.artop.aal.validation.Activator;
 import org.artop.aal.validation.util.Messages;
-import org.artop.ecl.emf.util.EcorePlatformUtil;
-import org.artop.ecl.emf.validation.markers.ValidationMarkerManager;
-import org.artop.ecl.emf.validation.preferences.IValidationPreferences;
-import org.artop.ecl.emf.validation.util.ValidationUtil;
-import org.artop.ecl.platform.util.PlatformLogUtil;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceRuleFactory;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -42,6 +37,11 @@ import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.ResourceSetChangeEvent;
 import org.eclipse.emf.transaction.ResourceSetListenerImpl;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
+import org.eclipse.sphinx.emf.util.EcorePlatformUtil;
+import org.eclipse.sphinx.emf.validation.markers.ValidationMarkerManager;
+import org.eclipse.sphinx.emf.validation.preferences.IValidationPreferences;
+import org.eclipse.sphinx.emf.validation.util.ValidationUtil;
+import org.eclipse.sphinx.platform.util.PlatformLogUtil;
 
 public abstract class AbstractProblemMarkerIntegrityListener extends ResourceSetListenerImpl {
 
@@ -54,7 +54,7 @@ public abstract class AbstractProblemMarkerIntegrityListener extends ResourceSet
 
 		// If automatic validation is activated, we do not need to do anything, this one will simply perform
 		// its job, removing old markers and creating new ones.
-		if (Platform.getPreferencesService().getBoolean(org.artop.ecl.emf.validation.Activator.PLUGIN_ID,
+		if (Platform.getPreferencesService().getBoolean(org.eclipse.sphinx.emf.validation.Activator.PLUGIN_ID,
 				IValidationPreferences.PREF_ENABLE_AUTOMATIC_VALIDATION, false, null)) {
 			return;
 		}

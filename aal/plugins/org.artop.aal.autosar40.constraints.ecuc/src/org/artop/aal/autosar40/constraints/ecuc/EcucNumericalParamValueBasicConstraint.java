@@ -35,26 +35,20 @@ import autosar40.genericstructure.varianthandling.FloatValueVariationPoint;
 import autosar40.genericstructure.varianthandling.NumericalValueVariationPoint;
 import autosar40.genericstructure.varianthandling.UnlimitedIntegerValueVariationPoint;
 
-public class EcucNumericalParamValueBasicConstraint extends
-		AbstractGParameterValueConstraint
-{
+public class EcucNumericalParamValueBasicConstraint extends AbstractGParameterValueConstraint {
 
 	@Override
-	protected boolean isApplicable(IValidationContext ctx)
-	{
+	protected boolean isApplicable(IValidationContext ctx) {
 		return ctx.getTarget() instanceof EcucNumericalParamValue;
 	}
 
 	@Override
-	protected IStatus doValidate(IValidationContext ctx)
-	{
+	protected IStatus doValidate(IValidationContext ctx) {
 		IStatus status = ctx.createSuccessStatus();
-		EcucNumericalParamValue ecucNumericalParamValue = (EcucNumericalParamValue) ctx
-				.getTarget();
+		EcucNumericalParamValue ecucNumericalParamValue = (EcucNumericalParamValue) ctx.getTarget();
 
 		status = validateDefinitionRef(ctx, ecucNumericalParamValue);
-		if (status.isOK())
-		{
+		if (status.isOK()) {
 			status = validateValue(ctx, ecucNumericalParamValue);
 		}
 
@@ -62,148 +56,106 @@ public class EcucNumericalParamValueBasicConstraint extends
 	}
 
 	@Override
-	protected IStatus validateDefinitionRef(IValidationContext ctx,
-			GParameterValue gParameterValue)
-	{
+	protected IStatus validateDefinitionRef(IValidationContext ctx, GParameterValue gParameterValue) {
 		// check if definition is set and available
 		IStatus status = super.validateDefinitionRef(ctx, gParameterValue);
-		if (status.isOK())
-		{
+		if (status.isOK()) {
 			GConfigParameter definition = gParameterValue.gGetDefinition();
-			if (!(definition instanceof EcucBooleanParamDef)
-					&& !(definition instanceof EcucIntegerParamDef)
-					&& !(definition instanceof EcucFloatParamDef))
-			{
-				status = ctx
-						.createFailureStatus(NLS.bind(Messages.generic_definitionNotOfType, "EcucBooleanParamDef/EcucIntegerParamDef/EcucFloatParamDef"));
+			if (!(definition instanceof EcucBooleanParamDef) && !(definition instanceof EcucIntegerParamDef)
+					&& !(definition instanceof EcucFloatParamDef)) {
+				status = ctx.createFailureStatus(NLS.bind(Messages.generic_definitionNotOfType,
+						"EcucBooleanParamDef/EcucIntegerParamDef/EcucFloatParamDef")); //$NON-NLS-1$
 			}
 		}
 		return status;
 	}
 
-	protected IStatus validateValue(IValidationContext ctx,
-			EcucNumericalParamValue ecucNumericalParamValue)
-	{
-		MultiStatus multiStatus = new MultiStatus(Activator.PLUGIN_ID, 0, this
-				.getClass().getName(), null);
+	protected IStatus validateValue(IValidationContext ctx, EcucNumericalParamValue ecucNumericalParamValue) {
+		MultiStatus multiStatus = new MultiStatus(Activator.PLUGIN_ID, 0, this.getClass().getName(), null);
 
-		NumericalValueVariationPoint valueVarPoint = ecucNumericalParamValue
-				.getValue();
+		NumericalValueVariationPoint valueVarPoint = ecucNumericalParamValue.getValue();
 		GConfigParameter definition = ecucNumericalParamValue.gGetDefinition();
 
-		IStatus status = validateValueSet(ctx, ecucNumericalParamValue,
-				valueVarPoint);
-		if (!status.isOK())
-		{
+		IStatus status = validateValueSet(ctx, ecucNumericalParamValue, valueVarPoint);
+		if (!status.isOK()) {
 			return status;
 		}
 
 		String mixedText = valueVarPoint.getMixedText();
 		status = validateValueSet(ctx, ecucNumericalParamValue, mixedText);
-		if (!status.isOK())
-		{
+		if (!status.isOK()) {
 			return status;
 		}
 
-		if (mixedText != null)
-		{
+		if (mixedText != null) {
 
-			if (definition instanceof EcucIntegerParamDef)
-			{
+			if (definition instanceof EcucIntegerParamDef) {
 
 				BigInteger value = new BigInteger(mixedText);
 				EcucIntegerParamDef ecucIntegerParamDef = (EcucIntegerParamDef) definition;
 
-				UnlimitedIntegerValueVariationPoint minVarPoint = ecucIntegerParamDef
-						.getMin();
-				if (minVarPoint != null)
-				{
+				UnlimitedIntegerValueVariationPoint minVarPoint = ecucIntegerParamDef.getMin();
+				if (minVarPoint != null) {
 					String mixed = minVarPoint.getMixedText();
-					if (mixed != null)
-					{
+					if (mixed != null) {
 						BigInteger min = new BigInteger(mixed);
-						if (value.compareTo(min) < 0)
-						{
-							multiStatus
-									.add(ctx.createFailureStatus(Messages.boundary_valueUnderMin));
+						if (value.compareTo(min) < 0) {
+							multiStatus.add(ctx.createFailureStatus(Messages.boundary_valueUnderMin));
 						}
 
 					}
 				}
-				UnlimitedIntegerValueVariationPoint maxVarPoint = ecucIntegerParamDef
-						.getMax();
-				if (maxVarPoint != null)
-				{
+				UnlimitedIntegerValueVariationPoint maxVarPoint = ecucIntegerParamDef.getMax();
+				if (maxVarPoint != null) {
 					String mixed = maxVarPoint.getMixedText();
-					if (mixed != null)
-					{
+					if (mixed != null) {
 						BigInteger max = new BigInteger(mixed);
-						if (value.compareTo(max) > 0)
-						{
-							multiStatus
-									.add(ctx.createFailureStatus(Messages.boundary_valueAboveMax));
+						if (value.compareTo(max) > 0) {
+							multiStatus.add(ctx.createFailureStatus(Messages.boundary_valueAboveMax));
 						}
 					}
 				}
 
 			}
 
-			if (definition instanceof EcucFloatParamDef)
-			{
+			if (definition instanceof EcucFloatParamDef) {
 
 				Double value = Double.valueOf(valueVarPoint.getMixedText());
 				EcucFloatParamDef ecucFloatParamDef = (EcucFloatParamDef) definition;
 
-				FloatValueVariationPoint minVarPoint = ecucFloatParamDef
-						.getMin();
-				if (minVarPoint != null)
-				{
+				FloatValueVariationPoint minVarPoint = ecucFloatParamDef.getMin();
+				if (minVarPoint != null) {
 					String mixed = minVarPoint.getMixedText();
-					if (mixed != null)
-					{
-						try
-						{
+					if (mixed != null) {
+						try {
 							Double min = Double.valueOf(mixed);
-							if (value.compareTo(min) < 0)
-							{
-								multiStatus
-										.add(ctx.createFailureStatus(Messages.boundary_valueUnderMin));
+							if (value.compareTo(min) < 0) {
+								multiStatus.add(ctx.createFailureStatus(Messages.boundary_valueUnderMin));
 							}
-						} catch (NumberFormatException nfe)
-						{
-							multiStatus.add(ctx
-									.createFailureStatus(NLS.bind(Messages.boundary_MinValueException,nfe.getMessage())));
+						} catch (NumberFormatException nfe) {
+							multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.boundary_MinValueException, nfe.getMessage())));
 						}
 					}
 				}
 
-				FloatValueVariationPoint maxVarPoint = ecucFloatParamDef
-						.getMax();
-				if (maxVarPoint != null)
-				{
+				FloatValueVariationPoint maxVarPoint = ecucFloatParamDef.getMax();
+				if (maxVarPoint != null) {
 					String mixed = maxVarPoint.getMixedText();
-					if (mixed != null)
-					{
-						try
-						{
+					if (mixed != null) {
+						try {
 							Double max = Double.valueOf(mixed);
-							if (value.compareTo(max) > 0)
-							{
-								multiStatus
-										.add(ctx.createFailureStatus(Messages.boundary_valueAboveMax));
+							if (value.compareTo(max) > 0) {
+								multiStatus.add(ctx.createFailureStatus(Messages.boundary_valueAboveMax));
 							}
-						} catch (NumberFormatException nfe)
-						{
-							multiStatus.add(ctx
-									.createFailureStatus(NLS.bind(Messages.boundary_MaxValueException,nfe.getMessage())));
+						} catch (NumberFormatException nfe) {
+							multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.boundary_MaxValueException, nfe.getMessage())));
 						}
 					}
 				}
 			}
 		}
 
-		if (multiStatus.getChildren().length == 0)
-		{
+		if (multiStatus.getChildren().length == 0) {
 			return ctx.createSuccessStatus();
 		}
 
@@ -211,9 +163,7 @@ public class EcucNumericalParamValueBasicConstraint extends
 	}
 
 	@Override
-	protected boolean isValueSet(IValidationContext ctx,
-			GParameterValue gParameterValue)
-	{
+	protected boolean isValueSet(IValidationContext ctx, GParameterValue gParameterValue) {
 		return true;
 
 	}

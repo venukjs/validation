@@ -1,14 +1,14 @@
 /**
  * <copyright>
  * 
- * Copyright (c) BMW Car IT, Geensys and others.
+ * Copyright (c) BMW Car IT, See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
  * 
  * Contributors: 
- *     Geensys - Initial API and implementation
+ *     See4sys - Initial API and implementation
  * 
  * </copyright>
  */
@@ -19,17 +19,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.artop.aal.examples.autosar3x.constraints.IAutosarValidationExamplesConstants;
 import org.artop.aal.examples.validation.ui.internal.Activator;
 import org.artop.aal.examples.validation.ui.internal.messages.Messages;
-import org.artop.ecl.emf.validation.diagnostic.filters.ConstraintCategoryFilter;
-import org.artop.ecl.emf.validation.util.ValidationUtil;
-import org.artop.ecl.platform.ui.util.ExtendedPlatformUI;
-import org.artop.ecl.platform.util.PlatformLogUtil;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.validation.service.IConstraintFilter;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.sphinx.emf.validation.diagnostic.filters.ConstraintCategoryFilter;
+import org.eclipse.sphinx.emf.validation.util.ValidationUtil;
+import org.eclipse.sphinx.platform.ui.util.ExtendedPlatformUI;
+import org.eclipse.sphinx.platform.util.PlatformLogUtil;
 import org.eclipse.ui.actions.BaseSelectionListenerAction;
 import org.eclipse.ui.actions.WorkspaceModifyDelegatingOperation;
 
@@ -48,7 +47,8 @@ public class ValidateAutosarConstraintsAction extends BaseSelectionListenerActio
 	 */
 	public ValidateAutosarConstraintsAction() {
 		super(Messages.action_validateAutosarConstraints_label);
-		filters.add(new ConstraintCategoryFilter(IAutosarValidationExamplesConstants.AUTOSAR_CONSTRAINTS_CATEGORY_ID));
+		// Validate using constraints contributed by org.artop.aal.examples.autosar*.constraints plug-ins
+		filters.add(new ConstraintCategoryFilter("org.artop.aal.examples.constraints.category.autosar\\d\\w")); //$NON-NLS-1$
 	}
 
 	@Override

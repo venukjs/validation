@@ -2,7 +2,7 @@
 <feature
       id="org.artop.validation.examples"
       label="%featureName"
-      version="2.2.0.qualifier"
+      version="3.0.2.qualifier"
       provider-name="%providerName">
 
    <description>
@@ -16,14 +16,6 @@
    <license url="%licenseURL">
       %license
    </license>
-
-   <includes
-         id="org.artop.validation.ecl.examples"
-         version="0.0.0"/>
-
-   <includes
-         id="org.artop.validation.ecl.examples.source"
-         version="0.0.0"/>
 
    <includes
          id="org.artop.validation.aal.examples"

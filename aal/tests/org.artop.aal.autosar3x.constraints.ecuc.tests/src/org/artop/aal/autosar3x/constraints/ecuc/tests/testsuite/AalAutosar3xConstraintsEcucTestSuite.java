@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) OpenSynergy,  Continental Engineering Services  and others.
+ * Copyright (c) OpenSynergy, Continental Engineering Services and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
@@ -9,19 +9,20 @@
  * 
  * Contributors: 
  *     OpenSynergy - Initial API and implementation for AUTOSAR 3.x
- *     Continental Engineering Services - migration to gautosar 
+ *     Continental Engineering Services - migration to gautosar
  * 
  * </copyright>
  */
 package org.artop.aal.autosar3x.constraints.ecuc.tests.testsuite;
 
+import junit.framework.Test;
+import junit.framework.TestSuite;
+
 import org.artop.aal.autosar3x.constraints.ecuc.tests.BooleanValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ChoiceReferenceParamDefBasicConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.ConfigReferenceValueStructuralIntegrityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerParameterValueMultiplicityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerReferenceValueMultiplicityConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerStructuralIntegrityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerSubContainerMultiplicityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.EnumerationValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.FloatValueConstraintTests;
@@ -32,16 +33,11 @@ import org.artop.aal.autosar3x.constraints.ecuc.tests.LinkerSymbolValueConstrain
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ModuleConfigurationConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ModuleConfigurationSubContainerMultiplicityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ParamConfMultiplicityBasicConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.ParameterValueStructuralIntegrityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ReferenceParamDefBasicConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ReferenceValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.StringValueConstraintTests;
 
-import junit.framework.Test;
-import junit.framework.TestSuite;
-
-public class AalAutosar3xConstraintsEcucTestSuite
-{
+public class AalAutosar3xConstraintsEcucTestSuite {
 	/**
 	 * Suite.
 	 * 
@@ -67,9 +63,6 @@ public class AalAutosar3xConstraintsEcucTestSuite
 		suite.addTestSuite(ReferenceParamDefBasicConstraintTests.class);
 
 		// structural integrity
-		suite.addTestSuite(ConfigReferenceValueStructuralIntegrityConstraintTests.class);
-		suite.addTestSuite(ParameterValueStructuralIntegrityConstraintTests.class);
-		suite.addTestSuite(ContainerStructuralIntegrityConstraintTests.class);
 		suite.addTestSuite(ContainerSubContainerMultiplicityConstraintTests.class);
 		suite.addTestSuite(ContainerParameterValueMultiplicityConstraintTests.class);
 		suite.addTestSuite(ContainerReferenceValueMultiplicityConstraintTests.class);

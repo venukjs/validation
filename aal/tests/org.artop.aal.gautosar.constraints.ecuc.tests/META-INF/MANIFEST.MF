@@ -3,19 +3,19 @@ Bundle-ManifestVersion: 2
 Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.artop.aal.gautosar.constraints.ecuc.tests;singleton:=true
-Bundle-Version: 2.2.0.qualifier
+Bundle-Version: 3.0.2.qualifier
 Bundle-Activator: org.artop.aal.gautosar.constraints.ecuc.tests.internal.Activator$Implementation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
- org.artop.ecl.emf.validation,
- org.junit,
+ org.eclipse.sphinx.emf.validation,
  org.artop.aal.gautosar,
- org.artop.ecl.testutils.integration,
  org.artop.aal.gautosar.constraints.ecuc,
- org.artop.aal.common
+ org.artop.aal.common,
+ org.eclipse.sphinx.testutils
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
 Export-Package: org.artop.aal.gautosar.constraints.ecuc.tests,
  org.artop.aal.gautosar.constraints.ecuc.tests.internal;x-internal:=true,
+ org.artop.aal.gautosar.constraints.ecuc.tests.testsuite,
  org.artop.aal.gautosar.constraints.ecuc.tests.util

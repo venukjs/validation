@@ -1,14 +1,14 @@
 /**
  * <copyright>
  * 
- * Copyright (c) BMW Car IT, Geensys and others.
+ * Copyright (c) BMW Car IT, See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
  * 
  * Contributors: 
- *     Geensys - Initial API and implementation
+ *     See4sys - Initial API and implementation
  * 
  * </copyright>
  */
@@ -23,17 +23,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.artop.aal.common.metamodel.AutosarReleaseDescriptor;
+import org.artop.aal.validation.ui.Activator;
 import org.artop.aal.validation.ui.internal.messages.Messages;
-import org.artop.ecl.emf.metamodel.IMetaModelDescriptor;
-import org.artop.ecl.emf.metamodel.MetaModelDescriptorRegistry;
-import org.artop.ecl.emf.util.EObjectUtil;
-import org.artop.ecl.emf.util.EcorePlatformUtil;
-import org.artop.ecl.emf.util.WorkspaceEditingDomainUtil;
-import org.artop.ecl.emf.util.WorkspaceTransactionUtil;
-import org.artop.ecl.emf.validation.ui.Activator;
-import org.artop.ecl.platform.ui.util.ExtendedPlatformUI;
-import org.artop.ecl.platform.util.ExtendedPlatform;
-import org.artop.ecl.platform.util.PlatformLogUtil;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.commands.operations.IOperationHistory;
 import org.eclipse.core.resources.IFile;
@@ -52,6 +43,15 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.sphinx.emf.metamodel.IMetaModelDescriptor;
+import org.eclipse.sphinx.emf.metamodel.MetaModelDescriptorRegistry;
+import org.eclipse.sphinx.emf.util.EObjectUtil;
+import org.eclipse.sphinx.emf.util.EcorePlatformUtil;
+import org.eclipse.sphinx.emf.util.WorkspaceEditingDomainUtil;
+import org.eclipse.sphinx.emf.util.WorkspaceTransactionUtil;
+import org.eclipse.sphinx.platform.ui.util.ExtendedPlatformUI;
+import org.eclipse.sphinx.platform.util.ExtendedPlatform;
+import org.eclipse.sphinx.platform.util.PlatformLogUtil;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.BaseSelectionListenerAction;

@@ -2,14 +2,21 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.artop.aal.validation;singleton:=true
-Bundle-Version: 2.2.0.qualifier
+Bundle-Version: 3.0.2.qualifier
 Bundle-Activator: org.artop.aal.validation.Activator
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Require-Bundle: org.artop.ecl.emf.validation;visibility:=reexport,
- org.artop.aal.common;visibility:=reexport
+Require-Bundle: org.eclipse.sphinx.emf.validation;visibility:=reexport,
+ org.artop.aal.common;visibility:=reexport,
+ org.artop.aal.gautosar.services;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.artop.aal.validation,
+ org.artop.aal.validation.constraints;
+  x-friends:="org.artop.aal.validation.constraints.swc,
+   org.artop.aal.validation.constraints.gst,
+   org.artop.aal.validation.testutils,
+   org.artop.aal.validation.constraints.swc.tests,
+   org.artop.aal.validation.constraints.gst.tests",
  org.artop.aal.validation.listeners,
  org.artop.aal.validation.util

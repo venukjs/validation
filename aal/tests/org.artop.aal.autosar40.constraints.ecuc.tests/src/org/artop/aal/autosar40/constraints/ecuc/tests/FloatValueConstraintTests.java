@@ -19,34 +19,33 @@ import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
-public class FloatValueConstraintTests extends AbstractAutosar40ValidationTestCase
-{
+@SuppressWarnings("nls")
+public class FloatValueConstraintTests extends AbstractAutosar40ValidationTestCase {
 
-
-	public FloatValueConstraintTests()
-	{
+	public FloatValueConstraintTests() {
 		super();
-}
+	}
+
 	@Override
-	protected String getConstraintID()
-	{
+	protected String getConstraintID() {
 		return "org.artop.aal.autosar40.constraints.ecuc.EcucNumericalParamValueBasicConstraint_40";//$NON-NLS-1$
 	}
 
 	// test completeness
 	public void testInvalidFloatValue_noValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/FloatValue/noValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.generic_valueNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_valueNotSet);
 	}
+
 	// test correctness
 	public void testInvalidFloatValue_valueLowerThanMin() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/FloatValue/valueLowerThanMin.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.boundary_valueUnderMin);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.boundary_valueUnderMin);
 	}
 
 	public void testInvalidFloatValue_valueBiggerThanMax() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/FloatValue/valueBiggerThanMax.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,Messages.boundary_valueAboveMax);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.boundary_valueAboveMax);
 	}
 
 	// test valid

@@ -1,0 +1,41 @@
+/**
+ * <copyright>
+ * 
+ * Copyright (c) See4sys and others.
+ * All rights reserved. This program and the accompanying materials are made
+ * available under the terms of the Artop Software License Based on AUTOSAR
+ * Released Material (ASLR) which accompanies this distribution, and is
+ * available at http://www.artop.org/aslr.html
+ * 
+ * Contributors: 
+ *     See4sys - Initial API and implementation
+ * 
+ * </copyright>
+ */
+package org.artop.aal.autosar21.constraints.ecuc;
+
+import org.artop.aal.gautosar.constraints.ecuc.AbstractGFloatParamDefLowerLimitConstraint;
+import org.eclipse.emf.ecore.EObject;
+
+import autosar21.ecucparameterdef.FloatParamDef;
+
+public class FloatParamDefLowerLimitConstraint extends AbstractGFloatParamDefLowerLimitConstraint {
+
+	@Override
+	protected Double getMin(EObject obj) {
+		if (obj instanceof FloatParamDef) {
+			return ((FloatParamDef) obj).getMin();
+		} else {
+			return null;
+		}
+	}
+
+	@Override
+	protected boolean isSetMin(EObject obj) {
+		if (obj instanceof FloatParamDef) {
+			return ((FloatParamDef) obj).isSetMin();
+		}
+		return false;
+	}
+
+}

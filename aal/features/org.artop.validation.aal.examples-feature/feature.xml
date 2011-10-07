@@ -2,7 +2,7 @@
 <feature
       id="org.artop.validation.aal.examples"
       label="%featureName"
-      version="2.2.0.qualifier"
+      version="3.0.2.qualifier"
       provider-name="%providerName">
 
    <description>
@@ -18,7 +18,7 @@
    </license>
 
    <requires>
-      <import feature="org.artop.validation.aal" version="2.2.0"/>
+      <import feature="org.artop.validation.aal" version="3.0.2"/>
    </requires>
 
    <plugin
@@ -30,6 +30,13 @@
 
    <plugin
          id="org.artop.aal.examples.autosar3x.constraints"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.artop.aal.examples.validation.constraints"
          download-size="0"
          install-size="0"
          version="0.0.0"
