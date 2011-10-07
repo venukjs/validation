@@ -15,10 +15,15 @@
  */
 package org.artop.aal.autosar3x.constraints.ecuc.tests;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.xerces.impl.Constants;
 import org.artop.aal.gautosar.constraints.ecuc.tests.util.ValidationTestUtil;
 import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.osgi.util.NLS;
 
 @SuppressWarnings("nls")
@@ -47,7 +52,12 @@ public class ReferenceParamDefBasicConstraintTests extends AbstractAutosar3xVali
 
 	// valid
 	public void testValidReferenceParamDef() throws Exception {
-		EObject validModel = loadInputFile("ecuc/ReferenceParamDef/valid.arxml");
+		// use special options for loading to avoid exception that is thrown when loading non-wellformed files
+		Map<String, Boolean> parserFeatures = new HashMap<String, Boolean>();
+		parserFeatures.put(Constants.XERCES_FEATURE_PREFIX + Constants.CONTINUE_AFTER_FATAL_ERROR_FEATURE, true);
+		Map<String, Object> options = new HashMap<String, Object>();
+		options.put(XMLResource.OPTION_PARSER_FEATURES, parserFeatures);
+		EObject validModel = loadInputFile("ecuc/ReferenceParamDef/valid.arxml", options);
 		ValidationTestUtil.validateModel(validModel, validator, IStatus.OK);
 	}
 }
