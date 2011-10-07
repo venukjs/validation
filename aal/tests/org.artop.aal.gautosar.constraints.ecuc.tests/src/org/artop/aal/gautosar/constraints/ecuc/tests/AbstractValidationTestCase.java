@@ -16,6 +16,9 @@
 package org.artop.aal.gautosar.constraints.ecuc.tests;
 
 import gautosar.ggenericstructure.ginfrastructure.GAUTOSAR;
+
+import java.util.Map;
+
 import junit.framework.TestCase;
 
 import org.artop.aal.common.resource.impl.AutosarResourceSetImpl;
@@ -33,11 +36,8 @@ import org.eclipse.emf.validation.service.IValidator;
 import org.eclipse.emf.validation.service.ModelValidationService;
 import org.eclipse.sphinx.testutils.TestFileAccessor;
 
-
 /**
- * 
  * Abstract class corresponding to a test case that validates the ecuc validation constraints.
- *
  */
 public abstract class AbstractValidationTestCase extends TestCase {
 
@@ -59,9 +59,10 @@ public abstract class AbstractValidationTestCase extends TestCase {
 
 		});
 	}
-	
+
 	/**
 	 * Returns the plugin instance, useful for locating resources.
+	 * 
 	 * @return the plugin instance
 	 */
 	protected abstract Plugin getPlugin();
@@ -72,47 +73,63 @@ public abstract class AbstractValidationTestCase extends TestCase {
 	 * @return the constraint id
 	 */
 	abstract protected String getConstraintID();
-	
+
 	/**
 	 * Returns the metamodel-specific namespace URI corresponding to the the autosar package.
+	 * 
 	 * @return
 	 */
 	protected abstract String getAutosarPackageNsURi();
-	
+
 	/**
 	 * Returns the instance of the autosar package.
+	 * 
 	 * @return
 	 */
 	protected abstract EPackage getAutosarPackageInstance();
-	
+
 	/**
-	 * 
 	 * Returns the instance of the autosar resource factory.
+	 * 
 	 * @return
 	 */
 	protected abstract Resource.Factory getAutosarResourceFactory();
-	
 
 	/**
 	 * Loads the content of the given file.
-	 * @param fileName the bundle-related path of the file to load.
+	 * 
+	 * @param fileName
+	 *            the bundle-related path of the file to load.
 	 * @return the file's root object.
-	 * @throws Exception if the loading failed.
+	 * @throws Exception
+	 *             if the loading failed.
 	 */
 	protected GAUTOSAR loadInputFile(String fileName) throws Exception {
+		return loadInputFile(fileName, null);
+	}
+
+	/**
+	 * Loads the content of the given file.
+	 * 
+	 * @param fileName
+	 *            the bundle-related path of the file to load.
+	 * @return the file's root object.
+	 * @throws Exception
+	 *             if the loading failed.
+	 */
+	protected GAUTOSAR loadInputFile(String fileName, Map<?, ?> options) throws Exception {
 		ResourceSet resourceSet = new AutosarResourceSetImpl();
 
 		// Register the package
-		resourceSet.getPackageRegistry().put(getAutosarPackageNsURi(),getAutosarPackageInstance());
+		resourceSet.getPackageRegistry().put(getAutosarPackageNsURi(), getAutosarPackageInstance());
 
 		java.net.URI uri = fFileAccessor.getInputFileURI(fileName);
 		URI fileURI = fFileAccessor.convertToEMFURI(uri);
 		XMLResource resource = (XMLResource) getAutosarResourceFactory().createResource(fileURI);
 
-		resource.load(null);
+		resource.load(options);
 		resourceSet.getResources().add(resource);
 
 		return (GAUTOSAR) resource.getContents().get(0);
 	}
-
 }
