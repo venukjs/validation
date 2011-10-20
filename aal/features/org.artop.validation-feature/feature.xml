@@ -37,20 +37,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.artop.aal.autosar20.validation"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="org.artop.aal.autosar20.validation.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.artop.aal.autosar21.validation"
          download-size="0"
          install-size="0"
