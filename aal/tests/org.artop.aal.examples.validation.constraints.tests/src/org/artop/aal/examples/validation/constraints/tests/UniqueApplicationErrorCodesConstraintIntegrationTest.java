@@ -45,7 +45,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import autosar20.util.Autosar20ReleaseDescriptor;
 import autosar21.util.Autosar21ReleaseDescriptor;
 import autosar3x.util.Autosar3xReleaseDescriptor;
 import autosar40.util.Autosar40ReleaseDescriptor;
@@ -62,7 +61,6 @@ public class UniqueApplicationErrorCodesConstraintIntegrationTest {
 	private static final Autosar40ReleaseDescriptor AR_40 = Autosar40ReleaseDescriptor.INSTANCE;
 	private static final Autosar3xReleaseDescriptor AR_3X = Autosar3xReleaseDescriptor.INSTANCE;
 	private static final Autosar21ReleaseDescriptor AR_21 = Autosar21ReleaseDescriptor.INSTANCE;
-	private static final Autosar20ReleaseDescriptor AR_20 = Autosar20ReleaseDescriptor.INSTANCE;
 	private static final Class<UniqueApplicationErrorCodesConstraint> UNIQUE_ERRORS_CONSTRAINT = UniqueApplicationErrorCodesConstraint.class;
 	private static final String CLASS = "class";
 	private IValidator<EObject> fValidator;
@@ -70,7 +68,7 @@ public class UniqueApplicationErrorCodesConstraintIntegrationTest {
 
 	@Parameters
 	public static Collection<Object[]> releases() {
-		return Arrays.asList(new Object[][] { { AR_20 }, { AR_21 }, { AR_3X }, { AR_40 } });
+		return Arrays.asList(new Object[][] { { AR_21 }, { AR_3X }, { AR_40 } });
 	}
 
 	public UniqueApplicationErrorCodesConstraintIntegrationTest(AutosarReleaseDescriptor release) {
