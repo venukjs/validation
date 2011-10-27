@@ -20,12 +20,6 @@ Contributors:
    <extension
          point="org.eclipse.emf.validation.constraintBindings">
       <binding
-            context="autosar20.ARObject.context">
-         <category
-               ref="org.artop.aal.examples.validation.constraints.artop">
-         </category>
-      </binding>
-      <binding
             context="autosar21.ARObject.context">
          <category
                ref="org.artop.aal.examples.validation.constraints.artop">
