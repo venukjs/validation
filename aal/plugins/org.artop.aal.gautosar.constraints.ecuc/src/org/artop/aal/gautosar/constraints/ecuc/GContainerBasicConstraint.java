@@ -25,7 +25,7 @@ import gautosar.gecucparameterdef.GParamConfContainerDef;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.IValidationContext;
@@ -61,9 +61,9 @@ public class GContainerBasicConstraint extends AbstractModelConstraintWithPrecon
 
 		GContainerDef containerDef = gContainer.gGetDefinition();
 		if (null == containerDef) {
-			status = ctx.createFailureStatus(Messages.generic_definitionReferenceNotSet);
+			status = ctx.createFailureStatus(EcucConstraintMessages.generic_definitionReferenceNotSet);
 		} else if (containerDef.eIsProxy()) {
-			status = ctx.createFailureStatus(Messages.generic_definitionReferenceNotResolved);
+			status = ctx.createFailureStatus(EcucConstraintMessages.generic_definitionReferenceNotResolved);
 		} else {
 			status = validateContainmentStructure(ctx, gContainer);
 		}
@@ -81,7 +81,7 @@ public class GContainerBasicConstraint extends AbstractModelConstraintWithPrecon
 		EObject parent = gContainer.eContainer();
 
 		if (null == parent) {
-			status = ctx.createFailureStatus(Messages.generic_noParent);
+			status = ctx.createFailureStatus(EcucConstraintMessages.generic_noParent);
 		} else {
 			GContainerDef gContainerDef = gContainer.gGetDefinition();
 
@@ -97,7 +97,7 @@ public class GContainerBasicConstraint extends AbstractModelConstraintWithPrecon
 					if (parentGModuleDef.gGetContainers().contains(gContainerDef)) {
 						status = ctx.createSuccessStatus();
 					} else {
-						status = ctx.createFailureStatus(NLS.bind(Messages.structuralIntegrity_containmentProblem, "container", //$NON-NLS-1$
+						status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.structuralIntegrity_containmentProblem, "container", //$NON-NLS-1$
 								gContainerDef.gGetShortName()));
 					}
 				}
@@ -125,7 +125,7 @@ public class GContainerBasicConstraint extends AbstractModelConstraintWithPrecon
 					if (validContainerDefs.contains(gContainerDef)) {
 						status = ctx.createSuccessStatus();
 					} else {
-						status = ctx.createFailureStatus(NLS.bind(Messages.structuralIntegrity_containmentProblem, "container", //$NON-NLS-1$
+						status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.structuralIntegrity_containmentProblem, "container", //$NON-NLS-1$
 								gContainerDef.gGetShortName()));
 					}
 				}

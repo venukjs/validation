@@ -19,7 +19,7 @@ import gautosar.gecucparameterdef.GIntegerParamDef;
 import java.math.BigInteger;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
@@ -32,7 +32,6 @@ public abstract class AbstractGIntegerParamDefDefaultValueConstraint extends Abs
 	BigInteger AUTOSAR_INTEGER_LOWERBOUNDSIGNED = new BigInteger("-9223372036854775808"); //$NON-NLS-1$
 	BigInteger AUTOSAR_INTEGER_UPPERBOUNDSIGNED = new BigInteger("9223372036854775807"); //$NON-NLS-1$
 	BigInteger AUTOSAR_INTEGER_UPPERBOUNDUNSIGNED = new BigInteger("18446744073709551615"); //$NON-NLS-1$
-	BigInteger ZERO = new BigInteger("0"); //$NON-NLS-1$
 
 	@Override
 	protected boolean isApplicable(IValidationContext ctx) {
@@ -44,15 +43,20 @@ public abstract class AbstractGIntegerParamDefDefaultValueConstraint extends Abs
 		IStatus status = ctx.createSuccessStatus();
 		GIntegerParamDef integerParamDef = (GIntegerParamDef) ctx.getTarget();
 
-		BigInteger defaultValue = getDefaultValue(integerParamDef);
-		if (!isDefaultValueSet(integerParamDef) || defaultValue == null) {
-			// default value is not set or null, ignored
+		if (!isDefaultValueSet(integerParamDef)) {
+			// default value is not set, ignored
 			return status;
+		}
+
+		BigInteger defaultValue = getDefaultValue(integerParamDef);
+		if (defaultValue == null) {
+			// default value is set with wrong Integer format
+			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.integerParamDef_defaultValueIsNotInteger,
+					AutosarURIFactory.getAbsoluteQualifiedName(integerParamDef)));
 		}
 
 		BigInteger min = getMin(integerParamDef);
 		BigInteger max = getMax(integerParamDef);
-
 		if (min == null) {
 			if (max == null) {
 				min = AUTOSAR_INTEGER_LOWERBOUNDSIGNED;
@@ -60,10 +64,10 @@ public abstract class AbstractGIntegerParamDefDefaultValueConstraint extends Abs
 			} else if (max.compareTo(AUTOSAR_INTEGER_UPPERBOUNDSIGNED) <= 0) {
 				min = AUTOSAR_INTEGER_LOWERBOUNDSIGNED;
 			} else {
-				min = ZERO;
+				min = BigInteger.ZERO;
 			}
 		} else if (max == null) {
-			if (min.compareTo(ZERO) < 0) {// less than 0
+			if (min.compareTo(BigInteger.ZERO) < 0) {// less than 0
 				max = AUTOSAR_INTEGER_UPPERBOUNDSIGNED;
 			} else {
 				max = AUTOSAR_INTEGER_UPPERBOUNDUNSIGNED;
@@ -73,7 +77,7 @@ public abstract class AbstractGIntegerParamDefDefaultValueConstraint extends Abs
 			// invalid min and max value-> ignore
 		} else {
 			if (defaultValue.compareTo(min) < 0 || defaultValue.compareTo(max) > 0) {
-				return ctx.createFailureStatus(NLS.bind(Messages.integerParamDef_defaultValueIsOutOfRange, new String[] {
+				return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.integerParamDef_defaultValueIsOutOfRange, new String[] {
 						AutosarURIFactory.getAbsoluteQualifiedName(integerParamDef), defaultValue.toString(), min.toString(), max.toString() }));
 			}
 		}

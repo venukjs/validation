@@ -24,8 +24,8 @@ import gautosar.gecucparameterdef.GLinkerSymbolDef;
 import gautosar.gecucparameterdef.GStringParamDef;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
@@ -76,9 +76,10 @@ public class GConfigParameterDefaultValueConstraint extends AbstractModelConstra
 		}
 
 		if (!valid) {
-			return ctx.createFailureStatus(NLS.bind(Messages.configParameter_defaultValueChanged, new Object[] { getConfigParameterType(cfParam),
-					AutosarURIFactory.getAbsoluteQualifiedName(cfParam),
-					AutosarURIFactory.getAbsoluteQualifiedName(EcucUtil.getParentModuleDef(configParamInRefinedModuleDef)) }));
+			return ctx.createFailureStatus(NLS.bind(
+					EcucConstraintMessages.configParameter_defaultValueChanged,
+					new Object[] { getConfigParameterType(cfParam), AutosarURIFactory.getAbsoluteQualifiedName(cfParam),
+							AutosarURIFactory.getAbsoluteQualifiedName(EcucUtil.getParentModuleDef(configParamInRefinedModuleDef)) }));
 		}
 
 		return ctx.createSuccessStatus();

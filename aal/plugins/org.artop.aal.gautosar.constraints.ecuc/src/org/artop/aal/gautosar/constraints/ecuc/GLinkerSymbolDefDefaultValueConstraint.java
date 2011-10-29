@@ -18,8 +18,8 @@ import gautosar.gecucparameterdef.GAbstractStringParamDef;
 import gautosar.gecucparameterdef.GFunctionNameDef;
 import gautosar.gecucparameterdef.GLinkerSymbolDef;
 
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
@@ -46,7 +46,7 @@ public class GLinkerSymbolDefDefaultValueConstraint extends GStringParamDefDefau
 			return status;
 		}
 		if (false == value.matches(LINKER_STRING_REGEX)) {
-			return ctx.createFailureStatus(NLS.bind(Messages.paramDef_defaultValueNoIdentifier, gLinkerSymbolDef.gGetShortName()));
+			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.paramDef_defaultValueNoIdentifier, gLinkerSymbolDef.gGetShortName()));
 		}
 
 		return ctx.createSuccessStatus();

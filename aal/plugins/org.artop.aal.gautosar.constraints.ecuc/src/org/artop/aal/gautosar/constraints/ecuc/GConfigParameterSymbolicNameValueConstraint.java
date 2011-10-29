@@ -18,7 +18,7 @@ import gautosar.gecucparameterdef.GConfigParameter;
 import gautosar.gecucparameterdef.GParamConfContainerDef;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.IValidationContext;
@@ -61,8 +61,8 @@ public class GConfigParameterSymbolicNameValueConstraint extends AbstractModelCo
 						 * Constraint can not be validated if more that one Configuration Parameter has a 'Symbolic Name
 						 * Value' set to "true".
 						 */
-						return ctx.createFailureStatus(NLS.bind(Messages.configParameter_symbolicNameValueIsMultiDeclared, AutosarURIFactory
-								.getAbsoluteQualifiedName(configParameter)));
+						return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.configParameter_symbolicNameValueIsMultiDeclared,
+								AutosarURIFactory.getAbsoluteQualifiedName(configParameter)));
 					}
 				}
 			}

@@ -15,7 +15,7 @@
 package org.artop.aal.autosar40.constraints.ecuc;
 
 import org.artop.aal.gautosar.constraints.ecuc.AbstractModelConstraintWithPrecondition;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
@@ -47,8 +47,8 @@ public class EcucImplementationConfigurationClassPreCompileConstraint extends Ab
 
 		if (cv == EcucConfigurationVariantEnum.VARIANT_PRE_COMPILE) {
 			if (cc != EcucConfigurationClassEnum.PRE_COMPILE && cc != EcucConfigurationClassEnum.PUBLISHED_INFORMATION) {
-				return ctx.createFailureStatus(NLS.bind(Messages.configParameter_configurationVariantRespectAsPreCompileOrPublished, cp
-						.getShortName()));
+				return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.configParameter_configurationVariantRespectAsPreCompileOrPublished,
+						cp.getShortName()));
 			}
 		}
 

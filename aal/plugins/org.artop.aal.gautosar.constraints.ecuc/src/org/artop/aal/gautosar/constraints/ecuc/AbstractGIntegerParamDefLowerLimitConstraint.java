@@ -21,8 +21,8 @@ import gautosar.gecucparameterdef.GParamConfContainerDef;
 import java.math.BigInteger;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.IValidationContext;
@@ -69,8 +69,8 @@ public abstract class AbstractGIntegerParamDefLowerLimitConstraint extends Abstr
 				GParamConfContainerDef parent = (GParamConfContainerDef) refinedIntegerParamDef.eContainer();
 				EObject refineModuleDef = EcucUtil.getParentModuleDefForContainerDef(parent);
 
-				return ctx.createFailureStatus(NLS.bind(Messages.integerParamDef_LowerLimitChangedInVendorSpecificModuleDefinition, AutosarURIFactory
-						.getAbsoluteQualifiedName(integerParamDef), AutosarURIFactory.getAbsoluteQualifiedName(refineModuleDef)));
+				return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.integerParamDef_LowerLimitChangedInVendorSpecificModuleDefinition,
+						AutosarURIFactory.getAbsoluteQualifiedName(integerParamDef), AutosarURIFactory.getAbsoluteQualifiedName(refineModuleDef)));
 			}
 		} else {
 			//

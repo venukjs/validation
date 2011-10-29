@@ -21,8 +21,8 @@ import java.util.Set;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.AbstractModelConstraintWithPrecondition;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
@@ -79,8 +79,8 @@ public class EcucValueCollectionModuleConfigurationLowerMultiplicityConstraint e
 			if (invalidModuleDefs.length() != 0) {
 				// Remove redundant ", " at the end
 				invalidModuleDefs = invalidModuleDefs.substring(0, invalidModuleDefs.length() - SEPARATOR.length());
-				return ctx.createFailureStatus(NLS.bind(Messages.modulesConfiguration_moduleDefMissing, new Object[] { invalidModuleDefs,
-						AutosarURIFactory.getAbsoluteQualifiedName(ecucValueCollection) }));
+				return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.modulesConfiguration_moduleDefMissing, new Object[] {
+						invalidModuleDefs, AutosarURIFactory.getAbsoluteQualifiedName(ecucValueCollection) }));
 			}
 		}
 

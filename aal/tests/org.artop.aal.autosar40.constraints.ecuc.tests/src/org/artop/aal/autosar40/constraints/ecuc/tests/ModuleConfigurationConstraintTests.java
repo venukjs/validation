@@ -14,7 +14,7 @@
  */
 package org.artop.aal.autosar40.constraints.ecuc.tests;
 
-import org.artop.aal.autosar40.constraints.ecuc.internal.Messages;
+import org.artop.aal.autosar40.constraints.ecuc.internal.messages.Messages;
 import org.artop.aal.gautosar.constraints.ecuc.tests.util.ValidationTestUtil;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;

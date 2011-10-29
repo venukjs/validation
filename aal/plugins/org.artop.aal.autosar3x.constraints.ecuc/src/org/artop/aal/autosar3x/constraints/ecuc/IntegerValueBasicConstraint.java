@@ -22,7 +22,7 @@ import gautosar.gecucparameterdef.GIntegerParamDef;
 import java.math.BigInteger;
 
 import org.artop.aal.gautosar.constraints.ecuc.GIntegerValueBasicConstraint;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 
@@ -46,7 +46,7 @@ public class IntegerValueBasicConstraint extends GIntegerValueBasicConstraint {
 			if (true == definition.isSetMin()) {
 				BigInteger minLimit = definition.getMin();
 				if (value.compareTo(minLimit) < 0) {
-					status = ctx.createFailureStatus(Messages.boundary_valueUnderMin);
+					status = ctx.createFailureStatus(EcucConstraintMessages.boundary_valueUnderMin);
 				}
 			}
 
@@ -54,7 +54,7 @@ public class IntegerValueBasicConstraint extends GIntegerValueBasicConstraint {
 			if (true == definition.isSetMax()) {
 				BigInteger maxLimit = definition.getMax();
 				if (value.compareTo(maxLimit) > 0) {
-					status = ctx.createFailureStatus(Messages.boundary_valueAboveMax);
+					status = ctx.createFailureStatus(EcucConstraintMessages.boundary_valueAboveMax);
 				}
 			}
 		}

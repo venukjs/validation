@@ -14,8 +14,8 @@
  */
 package org.artop.aal.autosar40.constraints.ecuc.tests;
 
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.tests.util.ValidationTestUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
@@ -34,18 +34,18 @@ public class FloatValueConstraintTests extends AbstractAutosar40ValidationTestCa
 	// test completeness
 	public void testInvalidFloatValue_noValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/FloatValue/noValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_valueNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.generic_valueNotSet);
 	}
 
 	// test correctness
 	public void testInvalidFloatValue_valueLowerThanMin() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/FloatValue/valueLowerThanMin.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.boundary_valueUnderMin);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.boundary_valueUnderMin);
 	}
 
 	public void testInvalidFloatValue_valueBiggerThanMax() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/FloatValue/valueBiggerThanMax.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.boundary_valueAboveMax);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.boundary_valueAboveMax);
 	}
 
 	// test valid

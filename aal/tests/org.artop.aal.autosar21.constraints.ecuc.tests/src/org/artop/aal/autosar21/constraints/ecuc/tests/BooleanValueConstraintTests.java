@@ -14,8 +14,8 @@
  */
 package org.artop.aal.autosar21.constraints.ecuc.tests;
 
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.tests.util.ValidationTestUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
@@ -34,7 +34,7 @@ public class BooleanValueConstraintTests extends AbstractAutosar21ValidationTest
 
 	public void testInvalidBooleanValue_noValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/BooleanValue/noValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_valueNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.generic_valueNotSet);
 	}
 
 }

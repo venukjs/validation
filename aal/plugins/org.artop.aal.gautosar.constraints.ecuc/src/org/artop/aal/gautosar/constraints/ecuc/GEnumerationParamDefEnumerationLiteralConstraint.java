@@ -18,8 +18,8 @@ import gautosar.gecucparameterdef.GEnumerationLiteralDef;
 import gautosar.gecucparameterdef.GEnumerationParamDef;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.validation.IValidationContext;
@@ -84,9 +84,10 @@ public class GEnumerationParamDefEnumerationLiteralConstraint extends AbstractMo
 		}
 
 		if (!valid) {
-			return ctx.createFailureStatus(NLS.bind(Messages.enumerationParamDef_enumLiteralChanged, new Object[] {
-					AutosarURIFactory.getAbsoluteQualifiedName(enumParam),
-					AutosarURIFactory.getAbsoluteQualifiedName(EcucUtil.getParentModuleDef(refinedEnumParamDef)) }));
+			return ctx.createFailureStatus(NLS.bind(
+					EcucConstraintMessages.enumerationParamDef_enumLiteralChanged,
+					new Object[] { AutosarURIFactory.getAbsoluteQualifiedName(enumParam),
+							AutosarURIFactory.getAbsoluteQualifiedName(EcucUtil.getParentModuleDef(refinedEnumParamDef)) }));
 		}
 
 		return ctx.createSuccessStatus();

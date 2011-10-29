@@ -19,7 +19,7 @@ import gautosar.gecucdescription.GParameterValue;
 import gautosar.gecucdescription.GStringValue;
 import gautosar.gecucparameterdef.GStringParamDef;
 
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
@@ -62,7 +62,7 @@ public abstract class AbstractGStringValueBasicConstraint extends AbstractGParam
 		IStatus status = super.validateDefinitionRef(ctx, gParameterValue);
 		if (status.isOK()) {
 			if (!(gParameterValue.gGetDefinition() instanceof GStringParamDef)) {
-				status = ctx.createFailureStatus(NLS.bind(Messages.generic_definitionNotOfType, "string param def")); //$NON-NLS-1$
+				status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.generic_definitionNotOfType, "string param def")); //$NON-NLS-1$
 			}
 		}
 		return status;
@@ -87,11 +87,11 @@ public abstract class AbstractGStringValueBasicConstraint extends AbstractGParam
 		// Note: as String is used directly in C code, verify common constraint is necessary
 		// check that value length is between 1 and 255 characters
 		if (0 == value.length()) {
-			return ctx.createFailureStatus(Messages.generic_emptyValue);
+			return ctx.createFailureStatus(EcucConstraintMessages.generic_emptyValue);
 		} else if (255 < value.length()) {
-			return ctx.createFailureStatus(Messages.string_valueTooBig);
+			return ctx.createFailureStatus(EcucConstraintMessages.string_valueTooBig);
 		} else if (false == value.matches(STRING_PATTERN)) {
-			return ctx.createFailureStatus(Messages.string_valueNoIdentifier);
+			return ctx.createFailureStatus(EcucConstraintMessages.string_valueNoIdentifier);
 		}
 
 		return ctx.createSuccessStatus();

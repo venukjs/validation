@@ -17,7 +17,7 @@ package org.artop.aal.gautosar.constraints.ecuc;
 import gautosar.gecucdescription.GConfigReferenceValue;
 import gautosar.gecucparameterdef.GConfigReference;
 
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
@@ -44,7 +44,7 @@ public abstract class AbstractGConfigReferenceValueBasicConstraint extends Abstr
 		}
 
 		if (null == getValue(configReferenceValue)) {
-			return ctx.createFailureStatus(NLS.bind(Messages.configReferenceValue_valueNotSet, configReference.gGetShortName()));
+			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.configReferenceValue_valueNotSet, configReference.gGetShortName()));
 		}
 
 		return ctx.createSuccessStatus();

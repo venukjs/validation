@@ -19,16 +19,26 @@ import gautosar.gecucparameterdef.GFloatParamDef;
 import org.artop.aal.autosar40.constraints.ecuc.util.EcucUtil40;
 import org.artop.aal.gautosar.constraints.ecuc.AbstractGFloatParamDefDefaultValueConstraint;
 
+import autosar40.ecucparameterdef.EcucFloatParamDef;
+
 public class EcucFloatParamDefDefaultValueConstraint extends AbstractGFloatParamDefDefaultValueConstraint {
 
 	@Override
 	protected Double getMin(GFloatParamDef floatParamDef) {
-		return (Double) EcucUtil40.getMin(floatParamDef);
+		Object obj = EcucUtil40.getMin(floatParamDef);
+		if (obj instanceof Double) {
+			return (Double) obj;
+		}
+		return null;
 	}
 
 	@Override
 	protected Double getMax(GFloatParamDef floatParamDef) {
-		return (Double) EcucUtil40.getMax(floatParamDef);
+		Object obj = EcucUtil40.getMax(floatParamDef);
+		if (obj instanceof Double) {
+			return (Double) obj;
+		}
+		return null;
 	}
 
 	@Override
@@ -42,7 +52,7 @@ public class EcucFloatParamDefDefaultValueConstraint extends AbstractGFloatParam
 
 	@Override
 	protected boolean isDefaultValueSet(GFloatParamDef floatParamDef) {
-		return getDefaultValue(floatParamDef) != null;
+		return ((EcucFloatParamDef) floatParamDef).getDefaultValue().isSetMixed();
 	}
 
 }

@@ -25,8 +25,8 @@ import java.util.List;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.internal.Activator;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.emf.validation.IValidationContext;
@@ -61,12 +61,12 @@ public class GContainerParameterValueMultiplicityConstraint extends AbstractMode
 
 			int numberOfParameters = EcucUtil.filterParameterValuesByDefinition(allGParameterValues, currentConfigParameter).size();
 			if (!EcucUtil.isValidLowerMultiplicity(numberOfParameters, currentConfigParameter)) {
-				multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.multiplicity_minElementsExpected,
+				multiStatus.add(ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.multiplicity_minElementsExpected,
 						new Object[] { EcucUtil.getLowerMultiplicity(currentConfigParameter), "parameter values", //$NON-NLS-1$
 								AutosarURIFactory.getAbsoluteQualifiedName(currentConfigParameter), numberOfParameters })));
 			}
 			if (!EcucUtil.isValidUpperMultiplicity(numberOfParameters, currentConfigParameter)) {
-				multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.multiplicity_maxElementsExpected,
+				multiStatus.add(ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.multiplicity_maxElementsExpected,
 						new Object[] { EcucUtil.getUpperMultiplicity(currentConfigParameter), "parameter values", //$NON-NLS-1$
 								AutosarURIFactory.getAbsoluteQualifiedName(currentConfigParameter), numberOfParameters })));
 			}

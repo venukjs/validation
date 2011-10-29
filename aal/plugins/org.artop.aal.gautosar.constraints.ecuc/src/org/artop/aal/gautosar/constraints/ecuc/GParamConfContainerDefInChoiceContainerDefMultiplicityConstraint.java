@@ -18,7 +18,7 @@ import gautosar.gecucparameterdef.GChoiceContainerDef;
 import gautosar.gecucparameterdef.GParamConfContainerDef;
 import gautosar.ggenericstructure.ginfrastructure.GIdentifiable;
 
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
@@ -50,7 +50,7 @@ public class GParamConfContainerDefInChoiceContainerDefMultiplicityConstraint ex
 
 		if (lowerMultiplicity != null && lowerMultiplicity.length() > 0 && !lowerMultiplicity.equals(MULTIPLICITY_LOWERBOUND)
 				|| upperMultiplicity != null && upperMultiplicity.length() > 0 && !upperMultiplicity.equals(MULTIPLICITY_UPPERBOUND)) {
-			return ctx.createFailureStatus(NLS.bind(Messages.paramConfContainerDef_InChoiceContainerDefMultiplicity, new String[] {
+			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.paramConfContainerDef_InChoiceContainerDefMultiplicity, new String[] {
 					paramConfContainerDef.gGetShortName(), ((GIdentifiable) paramConfContainerDef.eContainer()).gGetShortName(),
 					MULTIPLICITY_LOWERBOUND, MULTIPLICITY_UPPERBOUND }));
 		}

@@ -20,7 +20,7 @@ import java.util.List;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.AbstractModelConstraintWithPrecondition;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -81,8 +81,8 @@ public class EcuConfigurationModuleConfigurationUpperMultiplicityConstraint exte
 				/*
 				 * Retrieve Modules having the same Definition.
 				 */
-				List<EObject> similarModuleConfs = getSimilarModuleConfigurations(ecuConfiguration, (ModuleConfiguration) refinedModuleDefs
-						.get(moduleDef));
+				List<EObject> similarModuleConfs = getSimilarModuleConfigurations(ecuConfiguration,
+						(ModuleConfiguration) refinedModuleDefs.get(moduleDef));
 				/*
 				 * Verify if upper multiplicity is respected or not.
 				 */
@@ -92,7 +92,7 @@ public class EcuConfigurationModuleConfigurationUpperMultiplicityConstraint exte
 						invalidModuleConf += ((ModuleConfiguration) refinedModuleDefs.get(moduleDef)).getShortName() + SEPARATOR;
 					}
 				} catch (NumberFormatException ex) {
-					return ctx.createFailureStatus(NLS.bind(Messages.generic_notValidFormat, upperMultiplicity));
+					return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.generic_notValidFormat, upperMultiplicity));
 				}
 			}
 		}
@@ -102,7 +102,7 @@ public class EcuConfigurationModuleConfigurationUpperMultiplicityConstraint exte
 			invalidModuleDefs = invalidModuleDefs.substring(0, invalidModuleDefs.length() - SEPARATOR.length());
 			invalidModuleConf = invalidModuleConf.substring(0, invalidModuleConf.length() - SEPARATOR.length());
 
-			return ctx.createFailureStatus(NLS.bind(Messages.modulesConfiguration_moduleDefTooMuch, new Object[] { invalidModuleDefs,
+			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.modulesConfiguration_moduleDefTooMuch, new Object[] { invalidModuleDefs,
 					AutosarURIFactory.getAbsoluteQualifiedName(ecuConfiguration), invalidModuleConf }));
 		}
 

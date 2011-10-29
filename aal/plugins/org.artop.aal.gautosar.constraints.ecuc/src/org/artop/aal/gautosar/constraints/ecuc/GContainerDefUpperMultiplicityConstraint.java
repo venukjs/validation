@@ -18,8 +18,8 @@ import gautosar.gecucparameterdef.GContainerDef;
 import gautosar.gecucparameterdef.GModuleDef;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
@@ -84,9 +84,10 @@ public class GContainerDefUpperMultiplicityConstraint extends AbstractModelConst
 				}
 
 				if (!valid) {
-					return ctx.createFailureStatus(NLS.bind(Messages.containerDef_upperMultiplicityChanged, new Object[] {
-							AutosarURIFactory.getAbsoluteQualifiedName(vSpecifContainerDef),
-							AutosarURIFactory.getAbsoluteQualifiedName(refinedContainerDef) }));
+					return ctx.createFailureStatus(NLS.bind(
+							EcucConstraintMessages.containerDef_upperMultiplicityChanged,
+							new Object[] { AutosarURIFactory.getAbsoluteQualifiedName(vSpecifContainerDef),
+									AutosarURIFactory.getAbsoluteQualifiedName(refinedContainerDef) }));
 				}
 			} else {
 				//

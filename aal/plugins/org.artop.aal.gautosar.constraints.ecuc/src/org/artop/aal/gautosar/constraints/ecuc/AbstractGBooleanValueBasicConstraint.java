@@ -19,7 +19,7 @@ import gautosar.gecucdescription.GBooleanValue;
 import gautosar.gecucdescription.GParameterValue;
 import gautosar.gecucparameterdef.GBooleanParamDef;
 
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
@@ -53,7 +53,7 @@ public abstract class AbstractGBooleanValueBasicConstraint extends AbstractGPara
 		IStatus status = super.validateDefinitionRef(ctx, gParameterValue);
 		if (status.isOK()) {
 			if (!(gParameterValue.gGetDefinition() instanceof GBooleanParamDef)) {
-				status = ctx.createFailureStatus(NLS.bind(Messages.generic_definitionNotOfType, "boolean param def")); //$NON-NLS-1$
+				status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.generic_definitionNotOfType, "boolean param def")); //$NON-NLS-1$
 			}
 		}
 		return status;

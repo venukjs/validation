@@ -14,12 +14,20 @@
  * 
  * </copyright>
  */
-package org.artop.aal.gautosar.constraints.ecuc.util;
+package org.artop.aal.gautosar.constraints.ecuc.messages;
 
 import org.eclipse.osgi.util.NLS;
 
-public class Messages extends NLS {
-	private static final String BUNDLE_NAME = "org.artop.aal.gautosar.constraints.ecuc.util.Messages"; //$NON-NLS-1$
+public final class EcucConstraintMessages extends NLS {
+
+	/**
+	 * Private constructor
+	 */
+	private EcucConstraintMessages() {
+	}
+
+	private static final String BUNDLE_NAME = "org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages"; //$NON-NLS-1$
+
 	public static String generic_nullParametersException;
 	public static String generic_validationOf;
 	public static String generic_emptyValue;
@@ -109,10 +117,12 @@ public class Messages extends NLS {
 	public static String integerParamDef_upperLimitChanged;
 	public static String integerParamDef_LowerLimitChangedInVendorSpecificModuleDefinition;
 	public static String integerParamDef_defaultValueIsOutOfRange;
+	public static String integerParamDef_defaultValueIsNotInteger;
 
 	public static String floatParamDef_upperLimitChanged;
 	public static String floatParamDef_LowerLimitChangedInVendorSpecificModuleDefinition;
 	public static String floatParamDef_defaultValueIsOutOfRange;
+	public static String floatParamDef_defaultValueIsNotFloat;
 
 	public static String configReferenceValue_valueNotSet;
 
@@ -123,9 +133,7 @@ public class Messages extends NLS {
 
 	static {
 		// initialize resource bundle
-		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
+		NLS.initializeMessages(BUNDLE_NAME, EcucConstraintMessages.class);
 	}
 
-	private Messages() {
-	}
 }

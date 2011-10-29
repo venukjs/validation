@@ -20,7 +20,7 @@ import java.util.List;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.AbstractModelConstraintWithPrecondition;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -102,7 +102,7 @@ public class EcucValueCollectionModuleConfigurationUpperMultiplicityConstraint e
 						invalidmoduleConf += ((EcucModuleConfigurationValues) refinedModuleDefs.get(moduleDef)).getShortName() + SEPARATOR;
 					}
 				} catch (NumberFormatException ex) {
-					return ctx.createFailureStatus(NLS.bind(Messages.generic_notValidFormat, upperMultiplicity));
+					return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.generic_notValidFormat, upperMultiplicity));
 				}
 			}
 		}
@@ -112,7 +112,7 @@ public class EcucValueCollectionModuleConfigurationUpperMultiplicityConstraint e
 			invalidModuleDefs = invalidModuleDefs.substring(0, invalidModuleDefs.length() - SEPARATOR.length());
 			invalidmoduleConf = invalidmoduleConf.substring(0, invalidmoduleConf.length() - SEPARATOR.length());
 
-			return ctx.createFailureStatus(NLS.bind(Messages.modulesConfiguration_moduleDefTooMuch, new Object[] { invalidModuleDefs,
+			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.modulesConfiguration_moduleDefTooMuch, new Object[] { invalidModuleDefs,
 					AutosarURIFactory.getAbsoluteQualifiedName(ecucValueCollection), invalidmoduleConf }));
 		}
 

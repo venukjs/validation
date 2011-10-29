@@ -28,7 +28,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -64,7 +64,7 @@ public class GReferenceValueBasicConstraint extends AbstractGConfigReferenceValu
 		if (status.isOK()) {
 			GConfigReference configReferenceDef = gConfigReferenceValue.gGetDefinition();
 			if (!(configReferenceDef instanceof GReferenceDef || configReferenceDef instanceof GChoiceReferenceDef || configReferenceDef instanceof GForeignReferenceDef)) {
-				status = ctx.createFailureStatus(NLS.bind(Messages.generic_definitionNotOfType,
+				status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.generic_definitionNotOfType,
 						"GReferenceDef/GChoiceReferenceDef/GForeignReferenceDef")); //$NON-NLS-1$
 			}
 		}
@@ -112,13 +112,13 @@ public class GReferenceValueBasicConstraint extends AbstractGConfigReferenceValu
 
 		// CHECK if value is a GContainer
 		if (!(valueObject instanceof GContainer)) {
-			status = ctx.createFailureStatus(NLS.bind(Messages.reference_valueNotOfType, "container")); //$NON-NLS-1$
+			status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.reference_valueNotOfType, "container")); //$NON-NLS-1$
 		} else {
 
 			// CHECK if GParamConfContainerDef is available for destination
 			GParamConfContainerDef containerDefFromDestination = referenceDef.gGetDestination();
 			if (null == containerDefFromDestination || containerDefFromDestination.eIsProxy()) {
-				status = ctx.createFailureStatus(NLS.bind(Messages.generic_validationNotPossible,
+				status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.generic_validationNotPossible,
 						AutosarURIFactory.getAbsoluteQualifiedName(containerDefFromDestination)));
 			} else {
 				GContainer gContainer = (GContainer) valueObject;
@@ -127,7 +127,7 @@ public class GReferenceValueBasicConstraint extends AbstractGConfigReferenceValu
 				if (null == containerDefFromDefinition || containerDefFromDefinition.eIsProxy()) {
 					// CHECK if GParamConfContainerDef is available for
 					// GContainer
-					status = ctx.createFailureStatus(NLS.bind(Messages.reference_valueDefinitionNotSet, "param conf container def", //$NON-NLS-1$
+					status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.reference_valueDefinitionNotSet, "param conf container def", //$NON-NLS-1$
 							gContainer.gGetShortName()));
 				} else {
 					// CHECK if shortname of actual GParamConfContainerDef
@@ -139,8 +139,8 @@ public class GReferenceValueBasicConstraint extends AbstractGConfigReferenceValu
 					String containerDefFromDestinationShortName = containerDefFromDestination.gGetShortName();
 					if (null != containerDefFromDefinitionShortName
 							&& !containerDefFromDefinitionShortName.equals(containerDefFromDestinationShortName)) {
-						status = ctx.createFailureStatus(NLS.bind(Messages.reference_differentDefAndDestination, containerDefFromDefinitionShortName,
-								containerDefFromDestinationShortName));
+						status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.reference_differentDefAndDestination,
+								containerDefFromDefinitionShortName, containerDefFromDestinationShortName));
 					} else {
 						status = ctx.createSuccessStatus();
 					}
@@ -163,12 +163,12 @@ public class GReferenceValueBasicConstraint extends AbstractGConfigReferenceValu
 
 		// CHECK if value is a GContainer
 		if (!(valueObject instanceof GContainer)) {
-			status = ctx.createFailureStatus(NLS.bind(Messages.reference_valueNotOfType, "container")); //$NON-NLS-1$
+			status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.reference_valueNotOfType, "container")); //$NON-NLS-1$
 		} else {
 			// CHECK if destination available
 			EList<GParamConfContainerDef> containerDefList = choiceReferenceDef.gGetDestinations();
 			if (null == containerDefList || 0 == containerDefList.size()) {
-				status = ctx.createFailureStatus(NLS.bind(Messages.generic_validationNotPossible,
+				status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.generic_validationNotPossible,
 						AutosarURIFactory.getAbsoluteQualifiedName(choiceReferenceDef)));
 			} else {
 				// CHECK if the value GContainer is included in the destination
@@ -191,11 +191,11 @@ public class GReferenceValueBasicConstraint extends AbstractGConfigReferenceValu
 				if (containerDefFromDestination != null) {
 					if (false == containerDefListShortNames.contains(containerDefFromDestination.gGetShortName())) {
 
-						status = ctx.createFailureStatus(NLS.bind(Messages.choiceref_containerNotInTheDest,
+						status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.choiceref_containerNotInTheDest,
 								containerDefFromDestination.gGetShortName(), tmpStr));
 					}
 				} else {
-					status = ctx.createFailureStatus(NLS.bind(Messages.choiceref_containerNotInTheDest, "", tmpStr)); //$NON-NLS-1$
+					status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.choiceref_containerNotInTheDest, "", tmpStr)); //$NON-NLS-1$
 				}
 			}
 		}
@@ -214,14 +214,14 @@ public class GReferenceValueBasicConstraint extends AbstractGConfigReferenceValu
 			// CHECK if reference element is of correct type
 			String destinationTypeName = foreignReferenceDef.gGetDestinationType();
 			if (null == destinationTypeName || destinationTypeName.length() == 0) {
-				status = ctx.createFailureStatus(Messages.reference_targetDestinationTypeNotAvailable);
+				status = ctx.createFailureStatus(EcucConstraintMessages.reference_targetDestinationTypeNotAvailable);
 			} else if (!isInstanceOfDestinationType(valueObject, destinationTypeName)) {
-				status = ctx.createFailureStatus(NLS.bind(Messages.reference_valueNotInstanceOfDestType, destinationTypeName));
+				status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.reference_valueNotInstanceOfDestType, destinationTypeName));
 			} else {
 				status = ctx.createSuccessStatus();
 			}
 		} else {
-			status = ctx.createFailureStatus(Messages.reference_targetDestinationTypeNotAvailable);
+			status = ctx.createFailureStatus(EcucConstraintMessages.reference_targetDestinationTypeNotAvailable);
 		}
 
 		return status;

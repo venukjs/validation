@@ -14,8 +14,8 @@
  */
 package org.artop.aal.autosar40.constraints.ecuc.tests;
 
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.tests.util.ValidationTestUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
@@ -34,7 +34,7 @@ public class EnumerationValueConstraintTests extends AbstractAutosar40Validation
 	// test correctness
 	public void testInvalidEnumerationValue_valueNotDefinedInEnumerationLiterals() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/EnumerationValue/valueNotDefinedInEnumerationLiterals.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.enumeration_valueNotInLiterals);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.enumeration_valueNotInLiterals);
 	}
 
 	// test valid

@@ -15,8 +15,8 @@
  */
 package org.artop.aal.autosar3x.constraints.ecuc.tests;
 
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.tests.util.ValidationTestUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
@@ -36,25 +36,25 @@ public class EnumerationValueConstraintTests extends AbstractAutosar3xValidation
 	// test completeness
 	public void testInvalidEnumerationValue_noDefinition() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/EnumerationValue/noDefinition.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_definitionReferenceNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.generic_definitionReferenceNotSet);
 	}
 
 	public void testInvalidEnumerationValue_noValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/EnumerationValue/noValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_valueNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.generic_valueNotSet);
 	}
 
 	// test consistency
 	public void testInvalidEnumerationValue_wrongParamDefType() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/EnumerationValue/wrongParamDefType.arxml");
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
-				NLS.bind(Messages.generic_definitionNotOfType, "enumeration param def"));
+				NLS.bind(EcucConstraintMessages.generic_definitionNotOfType, "enumeration param def"));
 	}
 
 	// test correctness
 	public void testInvalidEnumerationValue_valueNotDefinedInEnumerationLiterals() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/EnumerationValue/valueNotDefinedInEnumerationLiterals.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.enumeration_valueNotInLiterals);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.enumeration_valueNotInLiterals);
 	}
 
 	// test valid

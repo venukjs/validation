@@ -15,8 +15,8 @@
  */
 package org.artop.aal.autosar3x.constraints.ecuc.tests;
 
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.tests.util.ValidationTestUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
@@ -39,7 +39,7 @@ public class ContainerReferenceValueMultiplicityConstraintTests extends Abstract
 				invalidModel,
 				validator,
 				IStatus.ERROR,
-				NLS.bind(Messages.multiplicity_minElementsExpected, new String[] { "1", "config reference values",
+				NLS.bind(EcucConstraintMessages.multiplicity_minElementsExpected, new String[] { "1", "config reference values",
 						"/AUTOSAR/Osss/OsAlarmmm/DestPduRef", "0" }));
 	}
 
@@ -49,7 +49,7 @@ public class ContainerReferenceValueMultiplicityConstraintTests extends Abstract
 				invalidModel,
 				validator,
 				IStatus.ERROR,
-				NLS.bind(Messages.multiplicity_minElementsExpected, new String[] { "2", "config reference values",
+				NLS.bind(EcucConstraintMessages.multiplicity_minElementsExpected, new String[] { "2", "config reference values",
 						"/AUTOSAR/Osss/OsAlarmmm/DestPduRef", "1" }));
 	}
 
@@ -59,7 +59,7 @@ public class ContainerReferenceValueMultiplicityConstraintTests extends Abstract
 				invalidModel,
 				validator,
 				IStatus.ERROR,
-				NLS.bind(Messages.multiplicity_maxElementsExpected, new String[] { "1", "config reference values",
+				NLS.bind(EcucConstraintMessages.multiplicity_maxElementsExpected, new String[] { "1", "config reference values",
 						"/AUTOSAR/Osss/OsAlarmmm/DestPduRef", "2" }));
 	}
 

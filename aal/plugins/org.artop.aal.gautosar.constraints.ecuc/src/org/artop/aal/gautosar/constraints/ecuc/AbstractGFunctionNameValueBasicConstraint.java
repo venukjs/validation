@@ -18,7 +18,7 @@ package org.artop.aal.gautosar.constraints.ecuc;
 import gautosar.gecucdescription.GFunctionNameValue;
 import gautosar.gecucparameterdef.GFunctionNameDef;
 
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
@@ -57,7 +57,7 @@ public abstract class AbstractGFunctionNameValueBasicConstraint extends Abstract
 		IStatus status = super.validateDefinitionRef(ctx, gFunctionNameValue);
 		if (status.isOK()) {
 			if (!(gFunctionNameValue.gGetDefinition() instanceof GFunctionNameDef)) {
-				status = ctx.createFailureStatus(NLS.bind(Messages.generic_definitionNotOfType, "function name param def")); //$NON-NLS-1$
+				status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.generic_definitionNotOfType, "function name param def")); //$NON-NLS-1$
 			}
 		}
 		return status;

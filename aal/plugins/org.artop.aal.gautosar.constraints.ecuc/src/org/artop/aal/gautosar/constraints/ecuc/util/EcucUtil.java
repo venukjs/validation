@@ -39,6 +39,7 @@ import java.util.Set;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.internal.Activator;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.Enumerator;
@@ -207,7 +208,7 @@ public class EcucUtil {
 		 * Log a warning if the Refined Module Definition is the Module Definition itself.
 		 */
 		if (moduleDef.equals(refinedModuleDef)) {
-			PlatformLogUtil.logAsWarning(Activator.getDefault(), NLS.bind(Messages.moduleDef_selfReference, moduleDef.gGetShortName()));
+			PlatformLogUtil.logAsWarning(Activator.getDefault(), NLS.bind(EcucConstraintMessages.moduleDef_selfReference, moduleDef.gGetShortName()));
 		}
 
 		return refinedModuleDef;
@@ -217,7 +218,7 @@ public class EcucUtil {
 		/* Configuration Parameter ancestors hierarchy. */
 		ArrayList<GContainerDef> ancestors = getAncestors(configParameter);
 		if (ancestors.isEmpty()) {
-			throw new RuntimeException(NLS.bind(Messages.configParameter_ancestorEmptylist, configParameter.gGetShortName()));
+			throw new RuntimeException(NLS.bind(EcucConstraintMessages.configParameter_ancestorEmptylist, configParameter.gGetShortName()));
 		}
 		return (GModuleDef) ancestors.get(0).eContainer();
 	}
@@ -272,7 +273,7 @@ public class EcucUtil {
 		final int numberOfUniqueContainersByDefinition;
 
 		if (null == containers || null == gContainerDef) {
-			throw new IllegalArgumentException(Messages.generic_nullParametersException);
+			throw new IllegalArgumentException(EcucConstraintMessages.generic_nullParametersException);
 		} else {
 			Set<String> uniqueContainers = new HashSet<String>();
 			for (GContainer currentContainer : containers) {
@@ -518,8 +519,8 @@ public class EcucUtil {
 					return null;
 				}
 
-				GCommonConfigurationAttributes refinedCommonConfigAtt = (GCommonConfigurationAttributes) EcucUtil.find(configAttributes
-						.gGetShortName(), refinedCommonConfigurationAttributes);
+				GCommonConfigurationAttributes refinedCommonConfigAtt = (GCommonConfigurationAttributes) EcucUtil.find(
+						configAttributes.gGetShortName(), refinedCommonConfigurationAttributes);
 
 				if (refinedCommonConfigAtt != null) {
 					//
@@ -592,7 +593,7 @@ public class EcucUtil {
 		List<GParameterValue> filteredParameterValues = new ArrayList<GParameterValue>();
 
 		if (null == gParameterValues || null == gConfigParameter) {
-			throw new IllegalArgumentException(Messages.generic_nullParametersException);
+			throw new IllegalArgumentException(EcucConstraintMessages.generic_nullParametersException);
 		} else {
 			for (GParameterValue currentParameterValue : gParameterValues) {
 				if (gConfigParameter.equals(currentParameterValue.gGetDefinition())) {
@@ -608,7 +609,7 @@ public class EcucUtil {
 		List<GConfigReferenceValue> filteredConfigReferenceValues = new ArrayList<GConfigReferenceValue>();
 
 		if (null == gConfigReferenceValues || null == gConfigReference) {
-			throw new IllegalArgumentException(Messages.generic_nullParametersException);
+			throw new IllegalArgumentException(EcucConstraintMessages.generic_nullParametersException);
 		} else {
 			for (GConfigReferenceValue currentConfigReferenceValue : gConfigReferenceValues) {
 				if (gConfigReference.equals(currentConfigReferenceValue.gGetDefinition())) {

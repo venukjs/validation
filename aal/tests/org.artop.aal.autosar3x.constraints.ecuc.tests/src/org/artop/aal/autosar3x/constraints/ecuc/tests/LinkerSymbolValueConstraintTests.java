@@ -15,8 +15,8 @@
  */
 package org.artop.aal.autosar3x.constraints.ecuc.tests;
 
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.tests.util.ValidationTestUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
@@ -35,35 +35,35 @@ public class LinkerSymbolValueConstraintTests extends AbstractAutosar3xValidatio
 	// completeness
 	public void testInvalidLinkerSymbolValue_noDefinition() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/LinkerSymbolValue/noDefinition.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_definitionReferenceNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.generic_definitionReferenceNotSet);
 	}
 
 	public void testInvalidLinkerSymbolValue_noValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/LinkerSymbolValue/noValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_valueNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.generic_valueNotSet);
 	}
 
 	// consistency
 	public void testInvalidLinkerSymbolValue_wrongParamDefType() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/LinkerSymbolValue/wrongParamDefType.arxml");
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
-				NLS.bind(Messages.generic_definitionNotOfType, "linker symbol param def"));
+				NLS.bind(EcucConstraintMessages.generic_definitionNotOfType, "linker symbol param def"));
 	}
 
 	// correctness
 	public void testInvalidLinkerSymbolValue_emptyValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/LinkerSymbolValue/emptyValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_valueNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.generic_valueNotSet);
 	}
 
 	public void testInvalidLinkerSymbolValue_valueNoIdentifier() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/LinkerSymbolValue/valueNoIdentifier.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.string_valueNoIdentifier);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.string_valueNoIdentifier);
 	}
 
 	public void testInvalidLinkerSymbolValue_valueTooLong() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/LinkerSymbolValue/valueTooLong.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.string_valueTooBig);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.string_valueTooBig);
 	}
 
 	public void testValidLinkerSymbolValue() throws Exception {

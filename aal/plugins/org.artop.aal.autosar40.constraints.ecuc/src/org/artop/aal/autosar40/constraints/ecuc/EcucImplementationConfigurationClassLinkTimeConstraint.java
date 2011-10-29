@@ -15,7 +15,7 @@
 package org.artop.aal.autosar40.constraints.ecuc;
 
 import org.artop.aal.gautosar.constraints.ecuc.AbstractModelConstraintWithPrecondition;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
@@ -48,8 +48,8 @@ public class EcucImplementationConfigurationClassLinkTimeConstraint extends Abst
 		if (cv == EcucConfigurationVariantEnum.VARIANT_LINK_TIME) {
 			if (cc != EcucConfigurationClassEnum.PRE_COMPILE && cc != EcucConfigurationClassEnum.PUBLISHED_INFORMATION
 					&& cc != EcucConfigurationClassEnum.LINK) {
-				return ctx.createFailureStatus(NLS.bind(Messages.configParameter_configurationVariantRespectAsPreCompilePublishedOrLink, cp
-						.getShortName()));
+				return ctx.createFailureStatus(NLS.bind(
+						EcucConstraintMessages.configParameter_configurationVariantRespectAsPreCompilePublishedOrLink, cp.getShortName()));
 			}
 		}
 

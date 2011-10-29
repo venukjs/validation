@@ -19,44 +19,36 @@ import gautosar.gecucdescription.GParameterValue;
 import gautosar.gecucparameterdef.GFloatParamDef;
 
 import org.artop.aal.gautosar.constraints.ecuc.GFloatValueBasicConstraint;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 
 import autosar21.ecucdescription.FloatValue;
 import autosar21.ecucparameterdef.FloatParamDef;
 
-
-public class FloatValueBasicConstraint extends GFloatValueBasicConstraint 
-{
+public class FloatValueBasicConstraint extends GFloatValueBasicConstraint {
 
 	@Override
-	protected IStatus validateBoundary(IValidationContext ctx,
-			GFloatValue gFloatValue)
-	{
+	protected IStatus validateBoundary(IValidationContext ctx, GFloatValue gFloatValue) {
 		IStatus status = ctx.createSuccessStatus();
 		GFloatParamDef gFloatParamDef = (GFloatParamDef) gFloatValue.gGetDefinition();
 		FloatParamDef definition = (FloatParamDef) gFloatParamDef;
 		Double value = gFloatValue.gGetValue();
-		if(value != null)
-		{
+		if (value != null) {
 
 			// min limit
-			if (true == definition.isSetMin())
-			{
+			if (true == definition.isSetMin()) {
 				Double minLimit = definition.getMin();
-				if (value.compareTo(minLimit) < 0) 
-				{
-					status = ctx.createFailureStatus(Messages.boundary_valueUnderMin);
+				if (value.compareTo(minLimit) < 0) {
+					status = ctx.createFailureStatus(EcucConstraintMessages.boundary_valueUnderMin);
 				}
 			}
-	
+
 			// max limit
-			if (true == definition.isSetMax())
-			{
+			if (true == definition.isSetMax()) {
 				Double maxLimit = definition.getMax();
 				if (value.compareTo(maxLimit) > 0) {
-					status = ctx.createFailureStatus(Messages.boundary_valueAboveMax);
+					status = ctx.createFailureStatus(EcucConstraintMessages.boundary_valueAboveMax);
 				}
 			}
 		}
@@ -64,10 +56,8 @@ public class FloatValueBasicConstraint extends GFloatValueBasicConstraint
 	}
 
 	@Override
-	protected boolean isValueSet(IValidationContext ctx,
-			GParameterValue gParameterValue)
-	{
-		FloatValue value = (FloatValue)gParameterValue;
+	protected boolean isValueSet(IValidationContext ctx, GParameterValue gParameterValue) {
+		FloatValue value = (FloatValue) gParameterValue;
 		return value.isSetValue();
 	}
 

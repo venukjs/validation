@@ -19,8 +19,8 @@ import gautosar.gecucparameterdef.GFunctionNameDef;
 import gautosar.gecucparameterdef.GLinkerSymbolDef;
 import gautosar.gecucparameterdef.GStringParamDef;
 
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
@@ -68,7 +68,7 @@ public class GStringParamDefDefaultValueConstraint extends AbstractModelConstrai
 			return status;
 		}
 		if (false == value.matches(BASIC_STRING_REGEX)) {
-			return ctx.createFailureStatus(NLS.bind(Messages.paramDef_defaultValueNoIdentifier, gStringParamDef.gGetShortName()));
+			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.paramDef_defaultValueNoIdentifier, gStringParamDef.gGetShortName()));
 		}
 
 		return ctx.createSuccessStatus();
@@ -86,7 +86,7 @@ public class GStringParamDefDefaultValueConstraint extends AbstractModelConstrai
 	 */
 	protected IStatus validateValueSet(IValidationContext ctx, GAbstractStringParamDef gStringParamDef, Object value) {
 		if (null == value || value.equals("")) { //$NON-NLS-1$
-			return ctx.createFailureStatus(Messages.generic_defaultValueNotSet);
+			return ctx.createFailureStatus(EcucConstraintMessages.generic_defaultValueNotSet);
 		}
 
 		return ctx.createSuccessStatus();

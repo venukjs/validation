@@ -18,7 +18,7 @@ import gautosar.gecucdescription.GModuleConfiguration;
 
 import java.util.List;
 
-import org.artop.aal.autosar40.constraints.ecuc.internal.Messages;
+import org.artop.aal.autosar40.constraints.ecuc.internal.messages.Messages;
 import org.artop.aal.gautosar.constraints.ecuc.AbstractGModuleConfigurationBasicConstraint;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
 import org.eclipse.core.runtime.IStatus;

@@ -20,7 +20,7 @@ import gautosar.gecucdescription.GParameterValue;
 import gautosar.gecucparameterdef.GFloatParamDef;
 
 import org.artop.aal.gautosar.constraints.ecuc.GFloatValueBasicConstraint;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 
@@ -41,7 +41,7 @@ public class FloatValueBasicConstraint extends GFloatValueBasicConstraint {
 			if (true == definition.isSetMin()) {
 				Double minLimit = definition.getMin();
 				if (value.compareTo(minLimit) < 0) {
-					status = ctx.createFailureStatus(Messages.boundary_valueUnderMin);
+					status = ctx.createFailureStatus(EcucConstraintMessages.boundary_valueUnderMin);
 				}
 			}
 
@@ -49,7 +49,7 @@ public class FloatValueBasicConstraint extends GFloatValueBasicConstraint {
 			if (true == definition.isSetMax()) {
 				Double maxLimit = definition.getMax();
 				if (value.compareTo(maxLimit) > 0) {
-					status = ctx.createFailureStatus(Messages.boundary_valueAboveMax);
+					status = ctx.createFailureStatus(EcucConstraintMessages.boundary_valueAboveMax);
 				}
 			}
 		}

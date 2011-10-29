@@ -20,8 +20,8 @@ import gautosar.gecucparameterdef.GModuleDef;
 import gautosar.gecucparameterdef.GParamConfContainerDef;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.validation.IValidationContext;
@@ -95,8 +95,8 @@ public class GContainerDefContainerDefinitionMissingConstraint extends AbstractM
 				}
 
 				if (invalidConfigParameters.length() > 0) {
-					return ctx.createFailureStatus(NLS.bind(Messages.containerDef_containerDefMissing, new Object[] { invalidConfigParameters,
-							AutosarURIFactory.getAbsoluteQualifiedName(containerDef) }));
+					return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.containerDef_containerDefMissing, new Object[] {
+							invalidConfigParameters, AutosarURIFactory.getAbsoluteQualifiedName(containerDef) }));
 				}
 			}
 		} else {

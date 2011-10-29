@@ -18,7 +18,7 @@ package org.artop.aal.gautosar.constraints.ecuc;
 import gautosar.gecucparameterdef.GParamConfMultiplicity;
 
 import org.artop.aal.gautosar.constraints.ecuc.internal.Activator;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.emf.validation.IValidationContext;
@@ -48,10 +48,10 @@ public class GParamConfMultiplicityBasicConstraint extends AbstractModelConstrai
 			try {
 				int lowerMultiplicity = Integer.parseInt(lowerMultiplicityString);
 				if (lowerMultiplicity < 0) {
-					multiStatus.add(ctx.createFailureStatus(Messages.multiplicity_lowerMultNegative));
+					multiStatus.add(ctx.createFailureStatus(EcucConstraintMessages.multiplicity_lowerMultNegative));
 				}
 			} catch (NumberFormatException nfe) {
-				multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.multiplicity_lowerMultException, nfe.getMessage())));
+				multiStatus.add(ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.multiplicity_lowerMultException, nfe.getMessage())));
 			}
 		}
 
@@ -65,10 +65,10 @@ public class GParamConfMultiplicityBasicConstraint extends AbstractModelConstrai
 				try {
 					int upperMultiplicity = Integer.parseInt(upperMultiplicityString);
 					if (upperMultiplicity < 0) {
-						multiStatus.add(ctx.createFailureStatus(Messages.multiplicity_upperMultNegative));
+						multiStatus.add(ctx.createFailureStatus(EcucConstraintMessages.multiplicity_upperMultNegative));
 					}
 				} catch (NumberFormatException nfe) {
-					multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.multiplicity_upperMultException, nfe.getMessage())));
+					multiStatus.add(ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.multiplicity_upperMultException, nfe.getMessage())));
 				}
 			}
 		}

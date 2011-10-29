@@ -13,4 +13,6 @@ Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
 Export-Package: org.artop.aal.autosar40.constraints.ecuc,
- org.artop.aal.autosar40.constraints.ecuc.internal;x-internal:=true
+ org.artop.aal.autosar40.constraints.ecuc.internal;x-internal:=true,
+ org.artop.aal.autosar40.constraints.ecuc.internal.messages;x-internal:=true,
+ org.artop.aal.autosar40.constraints.ecuc.util

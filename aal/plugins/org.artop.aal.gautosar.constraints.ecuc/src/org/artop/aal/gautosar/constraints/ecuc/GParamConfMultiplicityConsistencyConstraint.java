@@ -17,7 +17,7 @@ package org.artop.aal.gautosar.constraints.ecuc;
 import gautosar.gecucparameterdef.GParamConfMultiplicity;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
@@ -54,8 +54,8 @@ public class GParamConfMultiplicityConsistencyConstraint extends AbstractModelCo
 						//
 						// Upper multiplicity is not strictly greater than lower multiplicity. Create a failure.
 						//
-						return ctx.createFailureStatus(NLS.bind(Messages.paramConfMultiplicity_isNotConsistency, AutosarURIFactory
-								.getAbsoluteQualifiedName(paramConfMultiplicity)));
+						return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.paramConfMultiplicity_isNotConsistency,
+								AutosarURIFactory.getAbsoluteQualifiedName(paramConfMultiplicity)));
 
 					}
 				} else {

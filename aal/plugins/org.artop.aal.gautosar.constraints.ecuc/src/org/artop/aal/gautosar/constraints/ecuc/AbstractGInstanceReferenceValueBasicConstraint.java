@@ -22,7 +22,7 @@ import gautosar.gecucparameterdef.GInstanceReferenceDef;
 import gautosar.ggenericstructure.ginfrastructure.GIdentifiable;
 
 import org.artop.aal.gautosar.constraints.ecuc.internal.Activator;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.emf.common.util.EList;
@@ -60,7 +60,7 @@ public abstract class AbstractGInstanceReferenceValueBasicConstraint extends Abs
 		if (status.isOK()) {
 			GConfigReference configReferenceDef = gConfigReferenceValue.gGetDefinition();
 			if (!(configReferenceDef instanceof GInstanceReferenceDef)) {
-				status = ctx.createFailureStatus(NLS.bind(Messages.generic_definitionNotOfType, "instance reference def")); //$NON-NLS-1$
+				status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.generic_definitionNotOfType, "instance reference def")); //$NON-NLS-1$
 			}
 		}
 		return status;
@@ -86,7 +86,8 @@ public abstract class AbstractGInstanceReferenceValueBasicConstraint extends Abs
 			return status;
 		}
 
-		MultiStatus multiStatus = new MultiStatus(Activator.PLUGIN_ID, 0, NLS.bind(Messages.generic_validationOf, "instance reference"), null); //$NON-NLS-1$
+		MultiStatus multiStatus = new MultiStatus(Activator.PLUGIN_ID, 0,
+				NLS.bind(EcucConstraintMessages.generic_validationOf, "instance reference"), null); //$NON-NLS-1$
 		multiStatus.add(validateInstanceReferenceTargetDestination(ctx, gInstanceReferenceValue));
 		multiStatus.add(validateInstanceReferenceContextDestination(ctx, gInstanceReferenceValue));
 
@@ -110,13 +111,13 @@ public abstract class AbstractGInstanceReferenceValueBasicConstraint extends Abs
 
 		EObject valueObject = getTargetDestination(gInstanceReferenceValue);
 		if (null == valueObject) {
-			status = ctx.createFailureStatus(Messages.instanceref_targetNotSet);
+			status = ctx.createFailureStatus(EcucConstraintMessages.instanceref_targetNotSet);
 		} else if (valueObject.eIsProxy()) {
-			status = ctx.createFailureStatus(Messages.instanceref_targetNotResolved);
+			status = ctx.createFailureStatus(EcucConstraintMessages.instanceref_targetNotResolved);
 		} else if (null == destinationTypeName || destinationTypeName.length() == 0) {
-			status = ctx.createFailureStatus(Messages.reference_targetDestinationTypeNotAvailable);
+			status = ctx.createFailureStatus(EcucConstraintMessages.reference_targetDestinationTypeNotAvailable);
 		} else if (!isInstanceOfDestinationType(valueObject, destinationTypeName)) {
-			status = ctx.createFailureStatus(NLS.bind(Messages.reference_valueNotInstanceOfDestType, destinationTypeName));
+			status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.reference_valueNotInstanceOfDestType, destinationTypeName));
 		} else {
 			status = ctx.createSuccessStatus();
 		}
@@ -163,13 +164,13 @@ public abstract class AbstractGInstanceReferenceValueBasicConstraint extends Abs
 			// regular expression
 			String destinationContentRegex = getDestinationContextRegex(destinationContext);
 			if (!contextBuffer.toString().matches(destinationContentRegex)) {
-				status = ctx.createFailureStatus(NLS.bind(Messages.instanceref_valueNotMatchDestContext, destinationContentRegex));
+				status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.instanceref_valueNotMatchDestContext, destinationContentRegex));
 			} else {
 				status = ctx.createSuccessStatus();
 			}
 
 		} else if (0 != contextList.size()) {
-			status = ctx.createFailureStatus(Messages.instanceref_valueDestContextNotSet);
+			status = ctx.createFailureStatus(EcucConstraintMessages.instanceref_valueDestContextNotSet);
 		} else {
 			status = ctx.createSuccessStatus();
 		}

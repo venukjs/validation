@@ -22,7 +22,7 @@ import gautosar.gecucparameterdef.GConfigParameter;
 import gautosar.gecucparameterdef.GContainerDef;
 import gautosar.gecucparameterdef.GParamConfContainerDef;
 
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.IValidationContext;
@@ -48,9 +48,9 @@ public abstract class AbstractGParameterValueConstraint extends AbstractModelCon
 		// if (false ==
 		// gParameterValue.eIsSet(EcucdescriptionPackage.eINSTANCE.getParameterValue_Definition()))
 		if (gParameterValue.gGetDefinition() == null) {
-			status = ctx.createFailureStatus(Messages.generic_definitionReferenceNotSet);
+			status = ctx.createFailureStatus(EcucConstraintMessages.generic_definitionReferenceNotSet);
 		} else if (gParameterValue.gGetDefinition().eIsProxy()) {
-			status = ctx.createFailureStatus(Messages.generic_definitionReferenceNotResolved);
+			status = ctx.createFailureStatus(EcucConstraintMessages.generic_definitionReferenceNotResolved);
 
 		} else {
 			status = validateContainmentStructure(ctx, gParameterValue);
@@ -73,7 +73,7 @@ public abstract class AbstractGParameterValueConstraint extends AbstractModelCon
 		EObject parent = gParameterValue.eContainer();
 
 		if (null == parent) {
-			status = ctx.createFailureStatus(Messages.generic_noParent);
+			status = ctx.createFailureStatus(EcucConstraintMessages.generic_noParent);
 		} else {
 			GConfigParameter configParameter = gParameterValue.gGetDefinition();
 			if (parent instanceof GContainer) {
@@ -89,12 +89,14 @@ public abstract class AbstractGParameterValueConstraint extends AbstractModelCon
 						status = ctx.createSuccessStatus(); // parameter is
 						// valid
 					} else {
-						status = ctx.createFailureStatus(NLS.bind(Messages.structuralIntegrity_containmentProblem, "parameter value", configParameter //$NON-NLS-1$
-								.gGetShortName()));
+						status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.structuralIntegrity_containmentProblem,
+								"parameter value", configParameter //$NON-NLS-1$
+										.gGetShortName()));
 					}
 				} else if (parentContainerDef instanceof GChoiceContainerDef) {
 					// TODO: create testcase
-					status = ctx.createFailureStatus(NLS.bind(Messages.structuralIntegrity_NotAllowedInChoiceContainer, "parameter value")); //$NON-NLS-1$
+					status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.structuralIntegrity_NotAllowedInChoiceContainer,
+							"parameter value")); //$NON-NLS-1$
 				} else {
 					status = ctx.createSuccessStatus();
 				}
@@ -127,11 +129,11 @@ public abstract class AbstractGParameterValueConstraint extends AbstractModelCon
 	 */
 	protected IStatus validateValueSet(IValidationContext ctx, GParameterValue gParameterValue, Object value) {
 		if (!isValueSet(ctx, gParameterValue)) {
-			return ctx.createFailureStatus(Messages.generic_valueNotSet);
+			return ctx.createFailureStatus(EcucConstraintMessages.generic_valueNotSet);
 		}
 
 		if (null == value || value.equals("")) { //$NON-NLS-1$
-			return ctx.createFailureStatus(Messages.generic_valueNotSet);
+			return ctx.createFailureStatus(EcucConstraintMessages.generic_valueNotSet);
 		}
 
 		return ctx.createSuccessStatus();

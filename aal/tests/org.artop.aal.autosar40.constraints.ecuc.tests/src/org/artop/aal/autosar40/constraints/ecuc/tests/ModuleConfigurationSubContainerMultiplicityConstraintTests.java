@@ -14,8 +14,8 @@
  */
 package org.artop.aal.autosar40.constraints.ecuc.tests;
 
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.tests.util.ValidationTestUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
@@ -35,7 +35,7 @@ public class ModuleConfigurationSubContainerMultiplicityConstraintTests extends 
 	public void testInvalidModuleConfiguration_upperMultiplicityOfSubContainerViolated() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ModuleConfiguration/upperMultiplicityOfSubContainerViolated.arxml");
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
-				NLS.bind(Messages.multiplicity_maxElementsExpected, new String[] { "1", "subcontainers", "/AUTOSAR/Os/OsAlarm", "2" }));
+				NLS.bind(EcucConstraintMessages.multiplicity_maxElementsExpected, new String[] { "1", "subcontainers", "/AUTOSAR/Os/OsAlarm", "2" }));
 	}
 
 	// valid

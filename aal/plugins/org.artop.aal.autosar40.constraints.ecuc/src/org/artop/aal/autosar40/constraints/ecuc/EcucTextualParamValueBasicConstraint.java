@@ -21,7 +21,7 @@ import gautosar.gecucparameterdef.GEnumerationLiteralDef;
 import java.util.List;
 
 import org.artop.aal.gautosar.constraints.ecuc.AbstractGParameterValueConstraint;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
@@ -65,7 +65,7 @@ public class EcucTextualParamValueBasicConstraint extends AbstractGParameterValu
 			if (!(definition instanceof EcucStringParamDef) && !(definition instanceof EcucMultilineStringParamDef)
 					&& !(definition instanceof EcucLinkerSymbolDef) && !(definition instanceof EcucFunctionNameDef)
 					&& !(definition instanceof EcucEnumerationParamDef) && !(definition instanceof EcucAddInfoParamDef)) {
-				status = ctx.createFailureStatus(NLS.bind(Messages.generic_definitionNotOfType,
+				status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.generic_definitionNotOfType,
 						"EcucStringParamDef/EcucLinkerSymbolDef/EcucFunctionNameDef")); //$NON-NLS-1$
 			}
 		}
@@ -85,14 +85,14 @@ public class EcucTextualParamValueBasicConstraint extends AbstractGParameterValu
 
 			// check that value length is between 1 and 255 characters
 			if (0 == value.length()) {
-				return ctx.createFailureStatus(Messages.generic_emptyValue);
+				return ctx.createFailureStatus(EcucConstraintMessages.generic_emptyValue);
 			}
 			if (definition instanceof EcucLinkerSymbolDef || definition instanceof EcucFunctionNameDef) {
 				if (255 < value.length()) {
-					return ctx.createFailureStatus(Messages.string_valueTooBig);
+					return ctx.createFailureStatus(EcucConstraintMessages.string_valueTooBig);
 				}
 				if (false == value.matches(STRING_PATTERN)) {
-					return ctx.createFailureStatus(Messages.string_valueNoIdentifier);
+					return ctx.createFailureStatus(EcucConstraintMessages.string_valueNoIdentifier);
 				}
 			}
 
@@ -109,7 +109,7 @@ public class EcucTextualParamValueBasicConstraint extends AbstractGParameterValu
 				}
 
 				if (false == valueFound) {
-					return ctx.createFailureStatus(Messages.enumeration_valueNotInLiterals);
+					return ctx.createFailureStatus(EcucConstraintMessages.enumeration_valueNotInLiterals);
 				}
 			}
 		}

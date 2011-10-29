@@ -16,4 +16,5 @@ Bundle-Vendor: %providerName
 Export-Package: org.artop.aal.gautosar.constraints.ecuc,
  org.artop.aal.gautosar.constraints.ecuc.internal;x-internal:=true,
  org.artop.aal.gautosar.constraints.ecuc.internal.index;x-internal:=true,
+ org.artop.aal.gautosar.constraints.ecuc.messages,
  org.artop.aal.gautosar.constraints.ecuc.util

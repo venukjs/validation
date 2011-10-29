@@ -19,8 +19,8 @@ import gautosar.gecucparameterdef.GModuleDef;
 import gautosar.gecucparameterdef.GParamConfContainerDef;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.validation.IValidationContext;
@@ -63,9 +63,9 @@ public class GParamConfContainerDefConfigParameterMissingConstraint extends Abst
 				EList<GConfigParameter> vSpecifCommonConfigurationAttributes = vSpecifParamConfContainerDef.gGetParameters();
 				EList<GConfigParameter> refinedCommonConfigurationAttributes = refinedParamConfContainerDef.gGetParameters();
 
-				//				
+				//
 				// Perform the comparison between the two lists of Common Configuration Attributes.
-				//				 
+				//
 				String[] results = EcucUtil.inspectCommonConfigurationParameter(refinedCommonConfigurationAttributes,
 						vSpecifCommonConfigurationAttributes);
 
@@ -82,8 +82,8 @@ public class GParamConfContainerDefConfigParameterMissingConstraint extends Abst
 						tmp1 = "s "; //$NON-NLS-1$
 						tmp2 = " are"; //$NON-NLS-1$
 					}
-					return ctx.createFailureStatus(NLS.bind(Messages.paramConfigContainerDef_configParameterMissing, new Object[] { tmp1,
-							invalidConfigParameters, tmp2, AutosarURIFactory.getAbsoluteQualifiedName(vSpecifModuleDef) }));
+					return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.paramConfigContainerDef_configParameterMissing, new Object[] {
+							tmp1, invalidConfigParameters, tmp2, AutosarURIFactory.getAbsoluteQualifiedName(vSpecifModuleDef) }));
 				}
 			} else {
 				//

@@ -25,8 +25,8 @@ import java.util.List;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.internal.Activator;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.emf.validation.IValidationContext;
@@ -69,7 +69,7 @@ public abstract class AbstractGModuleConfigurationSubContainerMultiplicityConstr
 		for (GContainerDef currentSubGContainerDef : subGContainerDefs) {
 			int numberOfSubContainers = EcucUtil.getNumberOfUniqueContainersByDefinition(allSubContainers, currentSubGContainerDef);
 			if (!EcucUtil.isValidLowerMultiplicity(numberOfSubContainers, currentSubGContainerDef)) {
-				multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.multiplicity_minElementsExpected,
+				multiStatus.add(ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.multiplicity_minElementsExpected,
 						new Object[] { EcucUtil.getLowerMultiplicity(currentSubGContainerDef), "subcontainers", //$NON-NLS-1$
 								AutosarURIFactory.getAbsoluteQualifiedName(currentSubGContainerDef), numberOfSubContainers })));
 			}
@@ -81,7 +81,7 @@ public abstract class AbstractGModuleConfigurationSubContainerMultiplicityConstr
 			}
 
 			if (!EcucUtil.isValidUpperMultiplicity(numberOfSubContainers, currentSubGContainerDef)) {
-				multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.multiplicity_maxElementsExpected,
+				multiStatus.add(ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.multiplicity_maxElementsExpected,
 						new Object[] { EcucUtil.getUpperMultiplicity(currentSubGContainerDef), "subcontainers", //$NON-NLS-1$
 								AutosarURIFactory.getAbsoluteQualifiedName(currentSubGContainerDef), numberOfSubContainers })));
 			}

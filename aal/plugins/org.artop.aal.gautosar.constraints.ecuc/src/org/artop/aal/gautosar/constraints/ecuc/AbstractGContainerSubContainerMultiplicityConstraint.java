@@ -26,8 +26,8 @@ import java.util.List;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.internal.Activator;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.emf.validation.IValidationContext;
@@ -77,7 +77,7 @@ public abstract class AbstractGContainerSubContainerMultiplicityConstraint exten
 
 		// choice GContainer may only contain a single subcontainer
 		if (1 != numberOfUniqueShortNames) {
-			status = ctx.createFailureStatus(NLS.bind(Messages.multiplicity_subContainersExpected, "choice container")); //$NON-NLS-1$
+			status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.multiplicity_subContainersExpected, "choice container")); //$NON-NLS-1$
 			ctx.addResults(allSubContainers);
 		} else {
 			status = ctx.createSuccessStatus();
@@ -115,7 +115,7 @@ public abstract class AbstractGContainerSubContainerMultiplicityConstraint exten
 			int numberOfSubContainers = EcucUtil.getNumberOfUniqueContainersByDefinition(allSubGContainers, currentSubGContainerDef);
 
 			if (!EcucUtil.isValidLowerMultiplicity(numberOfSubContainers, currentSubGContainerDef)) {
-				multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.multiplicity_minElementsExpected,
+				multiStatus.add(ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.multiplicity_minElementsExpected,
 						new Object[] { EcucUtil.getLowerMultiplicity(currentSubGContainerDef), "subcontainers", //$NON-NLS-1$
 								AutosarURIFactory.getAbsoluteQualifiedName(currentSubGContainerDef), numberOfSubContainers })));
 			}
@@ -127,7 +127,7 @@ public abstract class AbstractGContainerSubContainerMultiplicityConstraint exten
 			}
 
 			if (!EcucUtil.isValidUpperMultiplicity(numberOfSubContainers, currentSubGContainerDef)) {
-				multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.multiplicity_maxElementsExpected,
+				multiStatus.add(ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.multiplicity_maxElementsExpected,
 						new Object[] { EcucUtil.getUpperMultiplicity(currentSubGContainerDef), "subcontainers", //$NON-NLS-1$
 								AutosarURIFactory.getAbsoluteQualifiedName(currentSubGContainerDef), numberOfSubContainers })));
 			}

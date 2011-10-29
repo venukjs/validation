@@ -17,8 +17,8 @@ package org.artop.aal.gautosar.constraints.ecuc;
 import gautosar.gecucparameterdef.GConfigParameter;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
@@ -51,9 +51,10 @@ public abstract class AbstractGConfigParameterImplConfigClassConstraint extends 
 		boolean valid = compareImplConfigurationClass(cfParam, refinedParameterDef);
 
 		if (!valid) {
-			return ctx.createFailureStatus(NLS.bind(Messages.configParameter_implConfigClassChanged, new Object[] {
-					AutosarURIFactory.getAbsoluteQualifiedName(cfParam),
-					AutosarURIFactory.getAbsoluteQualifiedName(EcucUtil.getParentModuleDef(refinedParameterDef)) }));
+			return ctx.createFailureStatus(NLS.bind(
+					EcucConstraintMessages.configParameter_implConfigClassChanged,
+					new Object[] { AutosarURIFactory.getAbsoluteQualifiedName(cfParam),
+							AutosarURIFactory.getAbsoluteQualifiedName(EcucUtil.getParentModuleDef(refinedParameterDef)) }));
 		}
 
 		return ctx.createSuccessStatus();

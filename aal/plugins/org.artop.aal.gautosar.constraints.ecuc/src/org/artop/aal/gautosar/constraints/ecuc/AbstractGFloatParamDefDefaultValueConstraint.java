@@ -17,7 +17,7 @@ package org.artop.aal.gautosar.constraints.ecuc;
 import gautosar.gecucparameterdef.GFloatParamDef;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
@@ -37,15 +37,20 @@ public abstract class AbstractGFloatParamDefDefaultValueConstraint extends Abstr
 		IStatus status = ctx.createSuccessStatus();
 		GFloatParamDef floatParamDef = (GFloatParamDef) ctx.getTarget();
 
-		Double min = getMin(floatParamDef);
-		Double max = getMax(floatParamDef);
-		Double defaultValue = getDefaultValue(floatParamDef);
-
-		if (!isDefaultValueSet(floatParamDef) || defaultValue == null) {
-			// default value is not set or null, ignored
+		if (!isDefaultValueSet(floatParamDef)) {
+			// default value is not set, ignored
 			return status;
 		}
 
+		Double defaultValue = getDefaultValue(floatParamDef);
+		if (defaultValue == null) {
+			// default value is set with wrong Float format
+			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.floatParamDef_defaultValueIsNotFloat,
+					AutosarURIFactory.getAbsoluteQualifiedName(floatParamDef)));
+		}
+
+		Double min = getMin(floatParamDef);
+		Double max = getMax(floatParamDef);
 		boolean valid = true;
 		String minvalue = null;
 		String maxvalue = null;
@@ -67,8 +72,8 @@ public abstract class AbstractGFloatParamDefDefaultValueConstraint extends Abstr
 		}
 
 		if (!valid) {
-			return ctx.createFailureStatus(NLS.bind(Messages.floatParamDef_defaultValueIsOutOfRange, new String[] {
-					AutosarURIFactory.getAbsoluteQualifiedName(floatParamDef), defaultValue.toString(), minvalue, maxvalue }));
+			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.floatParamDef_defaultValueIsOutOfRange,
+					new String[] { AutosarURIFactory.getAbsoluteQualifiedName(floatParamDef), defaultValue.toString(), minvalue, maxvalue }));
 		}
 
 		return ctx.createSuccessStatus();

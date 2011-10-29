@@ -15,8 +15,8 @@
  */
 package org.artop.aal.autosar3x.constraints.ecuc.tests;
 
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.tests.util.ValidationTestUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
@@ -35,7 +35,7 @@ public class ContainerConstraintTests extends AbstractAutosar3xValidationTestCas
 	// completeness
 	public void testInvalidContainer_noDefinition() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/Container/noDefinition.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_definitionReferenceNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.generic_definitionReferenceNotSet);
 	}
 
 	// consistency
@@ -43,19 +43,19 @@ public class ContainerConstraintTests extends AbstractAutosar3xValidationTestCas
 	public void testInvalidContainer_containerNotAllowedInParamConfContainer() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/Container/containerNotAllowedInParamConfContainer.arxml");
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
-				NLS.bind(Messages.structuralIntegrity_containmentProblem, "container", "Alternative1"));
+				NLS.bind(EcucConstraintMessages.structuralIntegrity_containmentProblem, "container", "Alternative1"));
 	}
 
 	public void testInvalidContainer_containerNotAllowedInChoiceContainer() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/Container/containerNotAllowedInChoiceContainer.arxml");
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
-				NLS.bind(Messages.structuralIntegrity_containmentProblem, "container", "ParamConfContainerDef1"));
+				NLS.bind(EcucConstraintMessages.structuralIntegrity_containmentProblem, "container", "ParamConfContainerDef1"));
 	}
 
 	public void testInvalidContainer_containerNotAllowedInModuleConfiguration() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/Container/containerNotAllowedInModuleConfiguration.arxml");
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
-				NLS.bind(Messages.structuralIntegrity_containmentProblem, "container", "ParamConfContainerDef1"));
+				NLS.bind(EcucConstraintMessages.structuralIntegrity_containmentProblem, "container", "ParamConfContainerDef1"));
 	}
 
 	// correctness

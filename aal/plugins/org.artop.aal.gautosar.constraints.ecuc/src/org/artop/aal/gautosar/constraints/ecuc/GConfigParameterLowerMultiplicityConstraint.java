@@ -17,8 +17,8 @@ package org.artop.aal.gautosar.constraints.ecuc;
 import gautosar.gecucparameterdef.GCommonConfigurationAttributes;
 import gautosar.gecucparameterdef.GConfigParameter;
 
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 
@@ -38,7 +38,7 @@ public class GConfigParameterLowerMultiplicityConstraint extends AbstractModelCo
 
 		String[] result = EcucUtil.vendorSpecificCommonConfigurationAttributesLowerMultiplicity(current);
 		if (result != null) {
-			return ctx.createFailureStatus(Messages.configParameter_lowerMultiplicityChanged, new Object[] { result[0], result[1] });
+			return ctx.createFailureStatus(EcucConstraintMessages.configParameter_lowerMultiplicityChanged, new Object[] { result[0], result[1] });
 		}
 		return ctx.createSuccessStatus();
 	}

@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
@@ -57,8 +57,8 @@ public class GEnumerationParamDefDefaultValueConstraint extends AbstractModelCon
 			// Perform the comparison between the default value and the declared literals.
 			//
 			if (!literals.contains(defaultValue)) {
-				return ctx.createFailureStatus(NLS.bind(Messages.enumerationParamDef_defaultValueUndeclaredInLiterals, new String[] { defaultValue,
-						AutosarURIFactory.getAbsoluteQualifiedName(enumerationParamDef) }));
+				return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.enumerationParamDef_defaultValueUndeclaredInLiterals, new String[] {
+						defaultValue, AutosarURIFactory.getAbsoluteQualifiedName(enumerationParamDef) }));
 			}
 		}
 

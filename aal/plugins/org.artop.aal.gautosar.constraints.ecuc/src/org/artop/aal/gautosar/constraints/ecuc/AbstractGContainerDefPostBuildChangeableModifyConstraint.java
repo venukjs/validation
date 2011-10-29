@@ -17,8 +17,8 @@ package org.artop.aal.gautosar.constraints.ecuc;
 import gautosar.gecucparameterdef.GContainerDef;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
@@ -67,9 +67,9 @@ public abstract class AbstractGContainerDefPostBuildChangeableModifyConstraint e
 		}
 
 		if (!valid) {
-			return ctx.createFailureStatus(NLS.bind(Messages.containerDef_postBuildChangeableModified, AutosarURIFactory
-					.getAbsoluteQualifiedName(containerDef), AutosarURIFactory.getAbsoluteQualifiedName(EcucUtil
-					.getParentModuleDefForContainerDef(refinedContainerDef))));
+			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.containerDef_postBuildChangeableModified,
+					AutosarURIFactory.getAbsoluteQualifiedName(containerDef),
+					AutosarURIFactory.getAbsoluteQualifiedName(EcucUtil.getParentModuleDefForContainerDef(refinedContainerDef))));
 		}
 
 		return ctx.createSuccessStatus();

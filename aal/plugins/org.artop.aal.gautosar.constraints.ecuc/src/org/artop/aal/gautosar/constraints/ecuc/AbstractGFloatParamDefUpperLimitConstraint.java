@@ -19,8 +19,8 @@ import gautosar.gecucparameterdef.GFloatParamDef;
 import gautosar.gecucparameterdef.GParamConfContainerDef;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.IValidationContext;
@@ -70,8 +70,10 @@ public abstract class AbstractGFloatParamDefUpperLimitConstraint extends Abstrac
 				GParamConfContainerDef parent = (GParamConfContainerDef) refinedFloatParamDef.eContainer();
 				EObject refinedModuleDef = EcucUtil.getParentModuleDefForContainerDef(parent);
 
-				return ctx.createFailureStatus(NLS.bind(Messages.floatParamDef_upperLimitChanged, new Object[] {
-						AutosarURIFactory.getAbsoluteQualifiedName(floatParamDef), AutosarURIFactory.getAbsoluteQualifiedName(refinedModuleDef) }));
+				return ctx.createFailureStatus(NLS.bind(
+						EcucConstraintMessages.floatParamDef_upperLimitChanged,
+						new Object[] { AutosarURIFactory.getAbsoluteQualifiedName(floatParamDef),
+								AutosarURIFactory.getAbsoluteQualifiedName(refinedModuleDef) }));
 			}
 		} else {
 			//

@@ -22,7 +22,7 @@ import gautosar.gecucparameterdef.GConfigReference;
 import gautosar.gecucparameterdef.GContainerDef;
 import gautosar.gecucparameterdef.GParamConfContainerDef;
 
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.services.DefaultMetaModelServiceProvider;
 import org.artop.aal.gautosar.services.IMetaModelServiceProvider;
 import org.artop.aal.gautosar.services.ecuc.IMetaModelUtilityService;
@@ -51,9 +51,9 @@ public abstract class AbstractGConfigReferenceValueConstraint extends AbstractMo
 		// check if definition is set and available
 		final IStatus status;
 		if (null == gConfigReferenceValue.gGetDefinition()) {
-			status = ctx.createFailureStatus(Messages.generic_definitionReferenceNotSet);
+			status = ctx.createFailureStatus(EcucConstraintMessages.generic_definitionReferenceNotSet);
 		} else if (gConfigReferenceValue.gGetDefinition().eIsProxy()) {
-			status = ctx.createFailureStatus(Messages.generic_definitionReferenceNotResolved);
+			status = ctx.createFailureStatus(EcucConstraintMessages.generic_definitionReferenceNotResolved);
 		} else {
 			status = validateContainmentStructure(ctx, gConfigReferenceValue);
 		}
@@ -75,7 +75,7 @@ public abstract class AbstractGConfigReferenceValueConstraint extends AbstractMo
 		EObject parent = gConfigReferenceValue.eContainer();
 
 		if (null == parent) {
-			status = ctx.createFailureStatus(Messages.generic_noParent);
+			status = ctx.createFailureStatus(EcucConstraintMessages.generic_noParent);
 		} else {
 			GConfigReference configReference = gConfigReferenceValue.gGetDefinition();
 			if (parent instanceof GContainer) {
@@ -91,12 +91,13 @@ public abstract class AbstractGConfigReferenceValueConstraint extends AbstractMo
 						status = ctx.createSuccessStatus(); // reference is
 															// valid
 					} else {
-						status = ctx.createFailureStatus(NLS.bind(Messages.structuralIntegrity_containmentProblem, "reference value", //$NON-NLS-1$
+						status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.structuralIntegrity_containmentProblem, "reference value", //$NON-NLS-1$
 								configReference.gGetShortName()));
 					}
 				} else if (parentContainerDef instanceof GChoiceContainerDef) {
 					// TODO: create testcase
-					status = ctx.createFailureStatus(NLS.bind(Messages.structuralIntegrity_NotAllowedInChoiceContainer, "reference value")); //$NON-NLS-1$
+					status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.structuralIntegrity_NotAllowedInChoiceContainer,
+							"reference value")); //$NON-NLS-1$
 				} else {
 					status = ctx.createSuccessStatus();
 				}
@@ -121,8 +122,8 @@ public abstract class AbstractGConfigReferenceValueConstraint extends AbstractMo
 		boolean isInstanceOfDestinationType = false;
 		IMetaModelServiceProvider provider = new DefaultMetaModelServiceProvider();
 
-		IMetaModelUtilityService service = provider
-				.getService(MetaModelDescriptorRegistry.INSTANCE.getDescriptor(instance), IMetaModelUtilityService.class);
+		IMetaModelUtilityService service = provider.getService(MetaModelDescriptorRegistry.INSTANCE.getDescriptor(instance),
+				IMetaModelUtilityService.class);
 		if (service == null) {
 			return false;
 		}
@@ -163,7 +164,7 @@ public abstract class AbstractGConfigReferenceValueConstraint extends AbstractMo
 	 */
 	protected IStatus validateValueSet(IValidationContext ctx, GConfigReferenceValue gConfigReferenceValue, Object value) {
 		if (null == value || value.equals("")) { //$NON-NLS-1$
-			return ctx.createFailureStatus(Messages.generic_valueNotSet);
+			return ctx.createFailureStatus(EcucConstraintMessages.generic_valueNotSet);
 		}
 
 		return ctx.createSuccessStatus();

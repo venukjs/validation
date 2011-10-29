@@ -15,8 +15,8 @@
 package org.artop.aal.autosar21.constraints.ecuc;
 
 import org.artop.aal.gautosar.constraints.ecuc.AbstractModelConstraintWithPrecondition;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
@@ -54,8 +54,8 @@ public class ConfigParameterLinkTimeConstraint extends AbstractModelConstraintWi
 			if (cp.getImplementationConfigClass() != ConfigurationClass.PRE_COMPILE
 					&& cp.getImplementationConfigClass() != ConfigurationClass.PUBLISHED_INFORMATION
 					&& cp.getImplementationConfigClass() != ConfigurationClass.LINK) {
-				return ctx.createFailureStatus(NLS.bind(Messages.configParameter_configurationVariantRespectAsPreCompilePublishedOrLink, cp
-						.getShortName()));
+				return ctx.createFailureStatus(NLS.bind(
+						EcucConstraintMessages.configParameter_configurationVariantRespectAsPreCompilePublishedOrLink, cp.getShortName()));
 			}
 		}
 

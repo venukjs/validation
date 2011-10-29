@@ -21,16 +21,26 @@ import java.math.BigInteger;
 import org.artop.aal.autosar40.constraints.ecuc.util.EcucUtil40;
 import org.artop.aal.gautosar.constraints.ecuc.AbstractGIntegerParamDefDefaultValueConstraint;
 
+import autosar40.ecucparameterdef.EcucIntegerParamDef;
+
 public class EcucIntegerParamDefDefaultValueConstraint extends AbstractGIntegerParamDefDefaultValueConstraint {
 
 	@Override
 	protected BigInteger getMin(GIntegerParamDef integerParamDef) {
-		return (BigInteger) EcucUtil40.getMin(integerParamDef);
+		Object obj = EcucUtil40.getMin(integerParamDef);
+		if (obj instanceof BigInteger) {
+			return (BigInteger) obj;
+		}
+		return null;
 	}
 
 	@Override
 	protected BigInteger getMax(GIntegerParamDef integerParamDef) {
-		return (BigInteger) EcucUtil40.getMax(integerParamDef);
+		Object obj = EcucUtil40.getMax(integerParamDef);
+		if (obj instanceof BigInteger) {
+			return (BigInteger) obj;
+		}
+		return null;
 	}
 
 	@Override
@@ -44,7 +54,7 @@ public class EcucIntegerParamDefDefaultValueConstraint extends AbstractGIntegerP
 
 	@Override
 	protected boolean isDefaultValueSet(GIntegerParamDef integerParamDef) {
-		return getDefaultValue(integerParamDef) != null;
+		return ((EcucIntegerParamDef) integerParamDef).getDefaultValue().isSetMixed();
 	}
 
 }

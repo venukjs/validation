@@ -12,7 +12,7 @@
  * 
  * </copyright>
  */
-package org.artop.aal.autosar40.constraints.ecuc.internal;
+package org.artop.aal.autosar40.constraints.ecuc.internal.messages;
 
 import org.eclipse.osgi.util.NLS;
 

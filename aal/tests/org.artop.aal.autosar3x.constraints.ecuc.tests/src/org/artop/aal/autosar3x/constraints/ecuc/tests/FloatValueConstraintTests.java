@@ -15,8 +15,8 @@
  */
 package org.artop.aal.autosar3x.constraints.ecuc.tests;
 
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.tests.util.ValidationTestUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
@@ -36,34 +36,35 @@ public class FloatValueConstraintTests extends AbstractAutosar3xValidationTestCa
 	// test completeness
 	public void testInvalidFloatValue_noDefinition() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/FloatValue/noDefinition.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_definitionReferenceNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.generic_definitionReferenceNotSet);
 	}
 
 	public void testInvalidFloatValue_noValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/FloatValue/noValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_valueNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.generic_valueNotSet);
 	}
 
 	public void testInvalidFloatValue_invalidValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/FloatValue/invalidValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_valueNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.generic_valueNotSet);
 	}
 
 	// test consistency
 	public void testInvalidFloatValue_wrongParamDefType() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/FloatValue/wrongParamDefType.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, NLS.bind(Messages.generic_definitionNotOfType, "float param def"));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(EcucConstraintMessages.generic_definitionNotOfType, "float param def"));
 	}
 
 	// test correctness
 	public void testInvalidFloatValue_valueLowerThanMin() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/FloatValue/valueLowerThanMin.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.boundary_valueUnderMin);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.boundary_valueUnderMin);
 	}
 
 	public void testInvalidFloatValue_valueBiggerThanMax() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/FloatValue/valueBiggerThanMax.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.boundary_valueAboveMax);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.boundary_valueAboveMax);
 	}
 
 	// test valid

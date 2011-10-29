@@ -15,8 +15,8 @@
  */
 package org.artop.aal.autosar3x.constraints.ecuc.tests;
 
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.tests.util.ValidationTestUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
@@ -38,8 +38,8 @@ public class ContainerParameterValueMultiplicityConstraintTests extends Abstract
 				invalidModel,
 				validator,
 				IStatus.ERROR,
-				NLS.bind(Messages.multiplicity_minElementsExpected, new String[] { "1", "parameter values", "/AUTOSAR/Os/OsAlarm/BooleanParameter",
-						"0" }));
+				NLS.bind(EcucConstraintMessages.multiplicity_minElementsExpected, new String[] { "1", "parameter values",
+						"/AUTOSAR/Os/OsAlarm/BooleanParameter", "0" }));
 	}
 
 	public void testInvalidContainer_parameterValueLowerMultiplicityViolated() throws Exception {
@@ -48,8 +48,8 @@ public class ContainerParameterValueMultiplicityConstraintTests extends Abstract
 				invalidModel,
 				validator,
 				IStatus.ERROR,
-				NLS.bind(Messages.multiplicity_minElementsExpected, new String[] { "2", "parameter values", "/AUTOSAR/Os/OsAlarm/BooleanParameter",
-						"1" }));
+				NLS.bind(EcucConstraintMessages.multiplicity_minElementsExpected, new String[] { "2", "parameter values",
+						"/AUTOSAR/Os/OsAlarm/BooleanParameter", "1" }));
 	}
 
 	public void testInvalidContainer_parameterValueUpperMultiplicityViolated() throws Exception {
@@ -58,8 +58,8 @@ public class ContainerParameterValueMultiplicityConstraintTests extends Abstract
 				invalidModel,
 				validator,
 				IStatus.ERROR,
-				NLS.bind(Messages.multiplicity_maxElementsExpected, new String[] { "1", "parameter values", "/AUTOSAR/Os/OsAlarm/BooleanParameter",
-						"2" }));
+				NLS.bind(EcucConstraintMessages.multiplicity_maxElementsExpected, new String[] { "1", "parameter values",
+						"/AUTOSAR/Os/OsAlarm/BooleanParameter", "2" }));
 	}
 
 	// valid

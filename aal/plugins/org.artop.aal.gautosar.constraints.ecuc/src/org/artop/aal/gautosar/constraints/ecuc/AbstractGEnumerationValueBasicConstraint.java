@@ -22,7 +22,7 @@ import gautosar.gecucparameterdef.GEnumerationParamDef;
 
 import java.util.List;
 
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
@@ -57,7 +57,7 @@ public abstract class AbstractGEnumerationValueBasicConstraint extends AbstractG
 		IStatus status = super.validateDefinitionRef(ctx, gParameterValue);
 		if (status.isOK()) {
 			if (!(gParameterValue.gGetDefinition() instanceof GEnumerationParamDef)) {
-				status = ctx.createFailureStatus(NLS.bind(Messages.generic_definitionNotOfType, "enumeration param def")); //$NON-NLS-1$
+				status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.generic_definitionNotOfType, "enumeration param def")); //$NON-NLS-1$
 			}
 		}
 		return status;
@@ -84,7 +84,7 @@ public abstract class AbstractGEnumerationValueBasicConstraint extends AbstractG
 		}
 
 		if (0 == value.length()) {
-			return ctx.createFailureStatus(Messages.generic_emptyValue);
+			return ctx.createFailureStatus(EcucConstraintMessages.generic_emptyValue);
 		} else {
 			List<GEnumerationLiteralDef> literalList = gEnumerationParamDef.gGetLiterals();
 			boolean valueFound = false;
@@ -97,7 +97,7 @@ public abstract class AbstractGEnumerationValueBasicConstraint extends AbstractG
 			}
 
 			if (false == valueFound) {
-				return ctx.createFailureStatus(Messages.enumeration_valueNotInLiterals);
+				return ctx.createFailureStatus(EcucConstraintMessages.enumeration_valueNotInLiterals);
 			}
 		}
 

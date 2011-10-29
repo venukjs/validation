@@ -14,8 +14,8 @@
  */
 package org.artop.aal.autosar21.constraints.ecuc.tests;
 
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.tests.util.ValidationTestUtil;
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
@@ -34,18 +34,18 @@ public class IntegerValueConstraintTests extends AbstractAutosar21ValidationTest
 	// test completeness
 	public void testInvalidIntegerValue_noValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/IntegerValue/noValue.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.generic_valueNotSet);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.generic_valueNotSet);
 	}
 
 	// test correctness
 	public void testInvalidIntegerValue_valueLowerThanMin() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/IntegerValue/valueLowerThanMin.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.boundary_valueUnderMin);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.boundary_valueUnderMin);
 	}
 
 	public void testInvalidIntegerValue_valueBiggerThanMax() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/IntegerValue/valueBiggerThanMax.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, Messages.boundary_valueAboveMax);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.boundary_valueAboveMax);
 	}
 
 	public void testValidIntegerValue() throws Exception {

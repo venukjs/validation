@@ -26,7 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.artop.aal.gautosar.constraints.ecuc.util.Messages;
+import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
@@ -97,13 +97,15 @@ public class GModuleConfigurationChoiceContainerDefMultiplicityConstraint extend
 		case 0: // No error
 			break;
 		case 1:
-			return ctx.createFailureStatus(NLS.bind(Messages.choiceContainerDef_multiplicityNotRespected, new Object[] { ccPb.get(0), " is" })); //$NON-NLS-1$
+			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.choiceContainerDef_multiplicityNotRespected, new Object[] { ccPb.get(0),
+					" is" })); //$NON-NLS-1$
 		default: // size>1
 			String l = new String();
 			for (String str : ccPb) {
 				l = l + str + ", "; //$NON-NLS-1$
 			}
-			return ctx.createFailureStatus(NLS.bind(Messages.choiceContainerDef_multiplicityNotRespected, new Object[] { ccPb.get(0), " are" })); //$NON-NLS-1$
+			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.choiceContainerDef_multiplicityNotRespected, new Object[] { ccPb.get(0),
+					" are" })); //$NON-NLS-1$
 		}
 
 		return status;
