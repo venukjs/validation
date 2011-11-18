@@ -26,15 +26,18 @@ import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerReferenceValueMul
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerSubContainerMultiplicityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.EnumerationValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.FloatValueConstraintTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.FunctionNameDefConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.FunctionNameValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.InstanceReferenceValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.IntegerValueConstraintTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.LinkerSymbolDefConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.LinkerSymbolValueConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ModuleConfigurationConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ModuleConfigurationSubContainerMultiplicityConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ParamConfMultiplicityBasicConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ReferenceParamDefBasicConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.ReferenceValueConstraintTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.StringParamDefConstraintTests;
 import org.artop.aal.autosar3x.constraints.ecuc.tests.StringValueConstraintTests;
 
 public class AalAutosar3xConstraintsEcucTestSuite {
@@ -61,6 +64,9 @@ public class AalAutosar3xConstraintsEcucTestSuite {
 		suite.addTestSuite(ParamConfMultiplicityBasicConstraintTests.class);
 		suite.addTestSuite(ChoiceReferenceParamDefBasicConstraintTests.class);
 		suite.addTestSuite(ReferenceParamDefBasicConstraintTests.class);
+		suite.addTestSuite(StringParamDefConstraintTests.class);
+		suite.addTestSuite(FunctionNameDefConstraintTests.class);
+		suite.addTestSuite(LinkerSymbolDefConstraintTests.class);
 
 		// structural integrity
 		suite.addTestSuite(ContainerSubContainerMultiplicityConstraintTests.class);

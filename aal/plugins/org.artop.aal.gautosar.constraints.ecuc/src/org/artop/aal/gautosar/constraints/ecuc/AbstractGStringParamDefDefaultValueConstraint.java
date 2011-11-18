@@ -20,7 +20,6 @@ import gautosar.gecucparameterdef.GLinkerSymbolDef;
 import gautosar.gecucparameterdef.GStringParamDef;
 
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
-import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
@@ -28,7 +27,7 @@ import org.eclipse.osgi.util.NLS;
 /**
  * The class validate the constraints implementations on an <em>StringParamDef</em>'s default value
  */
-public class GStringParamDefDefaultValueConstraint extends AbstractModelConstraintWithPrecondition {
+public abstract class AbstractGStringParamDefDefaultValueConstraint extends AbstractModelConstraintWithPrecondition {
 
 	final String BASIC_STRING_REGEX = "^[a-zA-Z][\\w]+"; //$NON-NLS-1$
 
@@ -61,12 +60,18 @@ public class GStringParamDefDefaultValueConstraint extends AbstractModelConstrai
 	 * @return a status object describing the result of the validation.
 	 */
 	protected IStatus validateValue(IValidationContext ctx, GAbstractStringParamDef gStringParamDef) {
-		String value = EcucUtil.getFeatureValue(gStringParamDef, "defaultValue"); //$NON-NLS-1$
 
-		IStatus status = validateValueSet(ctx, gStringParamDef, value);
-		if (!status.isOK()) {
-			return status;
+		if (!isDefaultValueSet(gStringParamDef)) {
+			// default value is not set, ignored
+			return ctx.createSuccessStatus();
 		}
+		//		String value = EcucUtil.getFeatureValue(gStringParamDef, "defaultValue"); //$NON-NLS-1$
+		// IStatus status = validateValueSet(ctx, gStringParamDef, value);
+		// if (!status.isOK()) {
+		// return status;
+		// }
+
+		String value = getDefaultValue(gStringParamDef);
 		if (false == value.matches(BASIC_STRING_REGEX)) {
 			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.paramDef_defaultValueNoIdentifier, gStringParamDef.gGetShortName()));
 		}
@@ -75,21 +80,43 @@ public class GStringParamDefDefaultValueConstraint extends AbstractModelConstrai
 
 	}
 
-	/**
-	 * Performs the validation on the value of the given <code>gParameterValue</code>.
-	 * 
-	 * @param ctx
-	 *            the validation context that provides access to the current constraint evaluation environment
-	 * @param gParameterValue
-	 *            the element on which the validation is performed.
-	 * @return a status object describing the result of the validation.
-	 */
-	protected IStatus validateValueSet(IValidationContext ctx, GAbstractStringParamDef gStringParamDef, Object value) {
-		if (null == value || value.equals("")) { //$NON-NLS-1$
-			return ctx.createFailureStatus(EcucConstraintMessages.generic_defaultValueNotSet);
-		}
+	// /**
+	// * Performs the validation on the value of the given <code>gParameterValue</code>.
+	// *
+	// * @param ctx
+	// * the validation context that provides access to the current constraint evaluation environment
+	// * @param gParameterValue
+	// * the element on which the validation is performed.
+	// * @return a status object describing the result of the validation.
+	// */
+	// protected IStatus validateValueSet(IValidationContext ctx, GAbstractStringParamDef gStringParamDef, Object value)
+	// {
+	//		if (null == value || value.equals("")) { //$NON-NLS-1$
+	// return ctx.createFailureStatus(EcucConstraintMessages.generic_defaultValueNotSet);
+	// }
+	//
+	// return ctx.createSuccessStatus();
+	// }
 
-		return ctx.createSuccessStatus();
+	/**
+	 * Check if the default value is set on the given parameter definition.
+	 * 
+	 * @param stringParamDef
+	 *            the given parameter def
+	 * @return <code>true</code> if the default value is set, <code>false</code> otherwise
+	 */
+	protected boolean isDefaultValueSet(GAbstractStringParamDef stringParamDef) {
+		String defaultValue = getDefaultValue(stringParamDef);
+		return defaultValue != null && !defaultValue.equals(""); //$NON-NLS-1$
 	}
+
+	/**
+	 * Returns the default value of the given parameter definition.
+	 * 
+	 * @param stringParamDef
+	 *            the given parameter def
+	 * @return the default value
+	 */
+	protected abstract String getDefaultValue(GAbstractStringParamDef stringParamDef);
 
 }

@@ -418,7 +418,7 @@
                </target>
             </constraint>
             <constraint
-                  class="org.artop.aal.gautosar.constraints.ecuc.GStringParamDefDefaultValueConstraint"
+                  class="org.artop.aal.autosar21.constraints.ecuc.StringParamDefDefaultValueConstraint"
                   id="org.artop.aal.autosar21.constraints.ecuc.StringParamDefDefaultValueConstraint_21"
                   lang="JAVA"
                   mode="Batch"
@@ -436,7 +436,7 @@
                </target>
             </constraint>
             <constraint
-                  class="org.artop.aal.gautosar.constraints.ecuc.GLinkerSymbolDefDefaultValueConstraint"
+                  class="org.artop.aal.autosar21.constraints.ecuc.LinkerSymbolDefDefaultValueConstraint"
                   id="org.artop.aal.autosar21.constraints.ecuc.LinkerSymbolDefDefaultValueConstraint_21"
                   lang="JAVA"
                   mode="Batch"
@@ -454,7 +454,7 @@
                </target>
             </constraint>
             <constraint
-                  class="org.artop.aal.gautosar.constraints.ecuc.GFunctionNameDefDefaultValueConstraint"
+                  class="org.artop.aal.autosar21.constraints.ecuc.FunctionNameDefDefaultValueConstraint"
                   id="org.artop.aal.autosar21.constraints.ecuc.FunctionNamelDefDefaultValueConstraint_21"
                   lang="JAVA"
                   mode="Batch"

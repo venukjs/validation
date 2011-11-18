@@ -21,11 +21,10 @@ import org.eclipse.emf.validation.IValidationContext;
 /**
  * The class validate the constraints implementations on an <em>LinkerSymbolDef</em>'s value
  */
-public class GFunctionNameDefDefaultValueConstraint extends GLinkerSymbolDefDefaultValueConstraint {
+public abstract class AbstractGFunctionNameDefDefaultValueConstraint extends AbstractGLinkerSymbolDefDefaultValueConstraint {
 
 	@Override
 	protected boolean isApplicable(IValidationContext ctx) {
-		// FIXME what is the default value of EcucFunctionNameDef (AR4.0)?
 		return ctx.getTarget() instanceof GFunctionNameDef;
 	}
 

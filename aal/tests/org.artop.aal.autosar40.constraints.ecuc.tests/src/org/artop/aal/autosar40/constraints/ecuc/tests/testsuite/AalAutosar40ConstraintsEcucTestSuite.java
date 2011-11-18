@@ -23,18 +23,19 @@ import org.artop.aal.autosar40.constraints.ecuc.tests.ContainerSubContainerMulti
 import org.artop.aal.autosar40.constraints.ecuc.tests.EcucUtilTest;
 import org.artop.aal.autosar40.constraints.ecuc.tests.EnumerationValueConstraintTests;
 import org.artop.aal.autosar40.constraints.ecuc.tests.FloatValueConstraintTests;
+import org.artop.aal.autosar40.constraints.ecuc.tests.FunctionNameDefConstraintTests;
 import org.artop.aal.autosar40.constraints.ecuc.tests.FunctionNameValueConstraintTests;
 import org.artop.aal.autosar40.constraints.ecuc.tests.InstanceReferenceValueConstraintTests;
 import org.artop.aal.autosar40.constraints.ecuc.tests.IntegerValueConstraintTests;
+import org.artop.aal.autosar40.constraints.ecuc.tests.LinkerSymbolDefConstraintTests;
 import org.artop.aal.autosar40.constraints.ecuc.tests.LinkerSymbolValueConstraintTests;
 import org.artop.aal.autosar40.constraints.ecuc.tests.ModuleConfigurationConstraintTests;
 import org.artop.aal.autosar40.constraints.ecuc.tests.ModuleConfigurationSubContainerMultiplicityConstraintTests;
 import org.artop.aal.autosar40.constraints.ecuc.tests.MultilineStringValueConstraintTests;
+import org.artop.aal.autosar40.constraints.ecuc.tests.StringParamDefConstraintTests;
 import org.artop.aal.autosar40.constraints.ecuc.tests.StringValueConstraintTests;
 
-
-public class AalAutosar40ConstraintsEcucTestSuite
-{
+public class AalAutosar40ConstraintsEcucTestSuite {
 	/**
 	 * Suite.
 	 * 
@@ -51,23 +52,26 @@ public class AalAutosar40ConstraintsEcucTestSuite
 		suite.addTestSuite(BooleanValueConstraintTests.class);
 		suite.addTestSuite(FloatValueConstraintTests.class);
 		suite.addTestSuite(EnumerationValueConstraintTests.class);
-//		suite.addTestSuite(ReferenceValueConstraintTests.class);
+		// suite.addTestSuite(ReferenceValueConstraintTests.class);
 		suite.addTestSuite(InstanceReferenceValueConstraintTests.class);
 		suite.addTestSuite(ModuleConfigurationConstraintTests.class);
-//		suite.addTestSuite(ContainerConstraintTests.class);
+		// suite.addTestSuite(ContainerConstraintTests.class);
 		suite.addTestSuite(LinkerSymbolValueConstraintTests.class);
 		suite.addTestSuite(FunctionNameValueConstraintTests.class);
-//		suite.addTestSuite(ParamConfMultiplicityBasicConstraintTests.class);
-//		suite.addTestSuite(ChoiceReferenceParamDefBasicConstraintTests.class);
-//		suite.addTestSuite(ReferenceParamDefBasicConstraintTests.class);
-//
-//		// structural integrity
-//		suite.addTestSuite(ConfigReferenceValueStructuralIntegrityConstraintTests.class);
-//		suite.addTestSuite(ParameterValueStructuralIntegrityConstraintTests.class);
-//		suite.addTestSuite(ContainerStructuralIntegrityConstraintTests.class);
+		// suite.addTestSuite(ParamConfMultiplicityBasicConstraintTests.class);
+		// suite.addTestSuite(ChoiceReferenceParamDefBasicConstraintTests.class);
+		// suite.addTestSuite(ReferenceParamDefBasicConstraintTests.class);
+		suite.addTestSuite(StringParamDefConstraintTests.class);
+		suite.addTestSuite(FunctionNameDefConstraintTests.class);
+		suite.addTestSuite(LinkerSymbolDefConstraintTests.class);
+		//
+		// // structural integrity
+		// suite.addTestSuite(ConfigReferenceValueStructuralIntegrityConstraintTests.class);
+		// suite.addTestSuite(ParameterValueStructuralIntegrityConstraintTests.class);
+		// suite.addTestSuite(ContainerStructuralIntegrityConstraintTests.class);
 		suite.addTestSuite(ContainerSubContainerMultiplicityConstraintTests.class);
-//		suite.addTestSuite(ContainerParameterValueMultiplicityConstraintTests.class);
-//		suite.addTestSuite(ContainerReferenceValueMultiplicityConstraintTests.class);
+		// suite.addTestSuite(ContainerParameterValueMultiplicityConstraintTests.class);
+		// suite.addTestSuite(ContainerReferenceValueMultiplicityConstraintTests.class);
 		suite.addTestSuite(ModuleConfigurationSubContainerMultiplicityConstraintTests.class);
 		suite.addTestSuite(EcucUtilTest.class);
 

@@ -31,7 +31,9 @@ import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
 
@@ -127,8 +129,22 @@ public class GReferenceValueBasicConstraint extends AbstractGConfigReferenceValu
 				if (null == containerDefFromDefinition || containerDefFromDefinition.eIsProxy()) {
 					// CHECK if GParamConfContainerDef is available for
 					// GContainer
-					status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.reference_valueDefinitionNotSet, "param conf container def", //$NON-NLS-1$
-							gContainer.gGetShortName()));
+					String missingContainerURI = ""; //$NON-NLS-1$
+					URI eProxyURI = null;
+					// the definition is a proxy
+					if (containerDefFromDefinition instanceof InternalEObject) {
+						eProxyURI = ((InternalEObject) containerDefFromDefinition).eProxyURI();
+
+					}
+					// the actual value is a proxy
+					else if (gContainer instanceof InternalEObject) {
+						eProxyURI = ((InternalEObject) gContainer).eProxyURI();
+					}
+
+					if (eProxyURI != null) {
+						missingContainerURI = eProxyURI.toString();
+					}
+					status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.reference_valueDefinitionNotSet, missingContainerURI));
 				} else {
 					// CHECK if shortname of actual GParamConfContainerDef
 					// corresponds to the expected shortname

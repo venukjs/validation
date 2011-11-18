@@ -84,8 +84,9 @@ public class ReferenceValueConstraintTests extends AbstractAutosar3xValidationTe
 
 	public void testInvalidReferenceValue_referenceParamDefContainerNotInDest() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ReferenceValue/referenceParamDefContainerNotInDest.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
-				NLS.bind(EcucConstraintMessages.reference_valueDefinitionNotSet, "param conf container def", "OS_OsScheduleTable"));
+		ValidationTestUtil
+				.validateModel(invalidModel, validator, IStatus.ERROR, NLS.bind(EcucConstraintMessages.reference_valueDefinitionNotSet,
+						"ar:/#/AUTOSAR/Os/unresolvableReference?type=ParamConfContainerDef"));
 	}
 
 	public void testInvalidReferenceValue_referenceParamDefDifferentDef() throws Exception {
