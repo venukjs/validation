@@ -126,6 +126,8 @@ public final class EcucConstraintMessages extends NLS {
 
 	public static String configReferenceValue_valueNotSet;
 
+	public static String numericalParamValue_valueTypeDoesNotMatchDefType;
+
 	public static String choiceContainerDef_multiplicityNotRespected;
 
 	public static String modulesConfiguration_moduleDefTooMuch;
