@@ -88,67 +88,77 @@ public class EcucNumericalParamValueBasicConstraint extends AbstractGParameterVa
 		}
 
 		if (mixedText != null) {
-
 			if (definition instanceof EcucIntegerParamDef) {
-
-				BigInteger value = new BigInteger(mixedText);
-				EcucIntegerParamDef ecucIntegerParamDef = (EcucIntegerParamDef) definition;
-
-				UnlimitedIntegerValueVariationPoint minVarPoint = ecucIntegerParamDef.getMin();
-				if (minVarPoint != null) {
-					String mixed = minVarPoint.getMixedText();
-					if (mixed != null) {
-						BigInteger min = new BigInteger(mixed);
-						if (value.compareTo(min) < 0) {
-							multiStatus.add(ctx.createFailureStatus(Messages.boundary_valueUnderMin));
-						}
-
-					}
+				BigInteger value = null;
+				try {
+					value = new BigInteger(mixedText);
+				} catch (NumberFormatException ex) {
+					multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.numericalParamValue_valueTypeDoesNotMatchDefType, mixedText)));
 				}
-				UnlimitedIntegerValueVariationPoint maxVarPoint = ecucIntegerParamDef.getMax();
-				if (maxVarPoint != null) {
-					String mixed = maxVarPoint.getMixedText();
-					if (mixed != null) {
-						BigInteger max = new BigInteger(mixed);
-						if (value.compareTo(max) > 0) {
-							multiStatus.add(ctx.createFailureStatus(Messages.boundary_valueAboveMax));
-						}
-					}
-				}
+				if (value != null) {
+					EcucIntegerParamDef ecucIntegerParamDef = (EcucIntegerParamDef) definition;
 
-			}
-
-			if (definition instanceof EcucFloatParamDef) {
-
-				Double value = Double.valueOf(valueVarPoint.getMixedText());
-				EcucFloatParamDef ecucFloatParamDef = (EcucFloatParamDef) definition;
-
-				FloatValueVariationPoint minVarPoint = ecucFloatParamDef.getMin();
-				if (minVarPoint != null) {
-					String mixed = minVarPoint.getMixedText();
-					if (mixed != null) {
-						try {
-							Double min = Double.valueOf(mixed);
+					UnlimitedIntegerValueVariationPoint minVarPoint = ecucIntegerParamDef.getMin();
+					if (minVarPoint != null) {
+						String mixed = minVarPoint.getMixedText();
+						if (mixed != null) {
+							BigInteger min = new BigInteger(mixed);
 							if (value.compareTo(min) < 0) {
 								multiStatus.add(ctx.createFailureStatus(Messages.boundary_valueUnderMin));
 							}
-						} catch (NumberFormatException nfe) {
-							multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.boundary_MinValueException, nfe.getMessage())));
+
 						}
 					}
-				}
-
-				FloatValueVariationPoint maxVarPoint = ecucFloatParamDef.getMax();
-				if (maxVarPoint != null) {
-					String mixed = maxVarPoint.getMixedText();
-					if (mixed != null) {
-						try {
-							Double max = Double.valueOf(mixed);
+					UnlimitedIntegerValueVariationPoint maxVarPoint = ecucIntegerParamDef.getMax();
+					if (maxVarPoint != null) {
+						String mixed = maxVarPoint.getMixedText();
+						if (mixed != null) {
+							BigInteger max = new BigInteger(mixed);
 							if (value.compareTo(max) > 0) {
 								multiStatus.add(ctx.createFailureStatus(Messages.boundary_valueAboveMax));
 							}
-						} catch (NumberFormatException nfe) {
-							multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.boundary_MaxValueException, nfe.getMessage())));
+						}
+					}
+				}
+			}
+
+			if (definition instanceof EcucFloatParamDef) {
+				Double value = null;
+				try {
+					value = Double.valueOf(valueVarPoint.getMixedText());
+				} catch (NumberFormatException ex) {
+					multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.numericalParamValue_valueTypeDoesNotMatchDefType, mixedText)));
+				}
+				if (value != null) {
+					EcucFloatParamDef ecucFloatParamDef = (EcucFloatParamDef) definition;
+
+					FloatValueVariationPoint minVarPoint = ecucFloatParamDef.getMin();
+					if (minVarPoint != null) {
+						String mixed = minVarPoint.getMixedText();
+						if (mixed != null) {
+							try {
+								Double min = Double.valueOf(mixed);
+								if (value.compareTo(min) < 0) {
+									multiStatus.add(ctx.createFailureStatus(Messages.boundary_valueUnderMin));
+								}
+							} catch (NumberFormatException nfe) {
+								multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.boundary_MinValueException, nfe.getMessage())));
+							}
+						}
+					}
+
+					FloatValueVariationPoint maxVarPoint = ecucFloatParamDef.getMax();
+					if (maxVarPoint != null) {
+						String mixed = maxVarPoint.getMixedText();
+						if (mixed != null) {
+							try {
+								Double max = Double.valueOf(mixed);
+								if (value.compareTo(max) > 0) {
+									multiStatus.add(ctx.createFailureStatus(Messages.boundary_valueAboveMax));
+								}
+							} catch (NumberFormatException nfe) {
+								multiStatus.add(ctx.createFailureStatus(NLS.bind(Messages.boundary_MaxValueException, nfe.getMessage())));
+							}
 						}
 					}
 				}
@@ -167,5 +177,4 @@ public class EcucNumericalParamValueBasicConstraint extends AbstractGParameterVa
 		return true;
 
 	}
-
 }
