@@ -43,4 +43,9 @@ public class ModuleConfigurationSubContainerMultiplicityConstraintTests extends 
 		EObject validModel = loadInputFile("ecuc/Container/upperMultiplicityOfMultipleConfigSubContainerValid.arxml");
 		ValidationTestUtil.validateModel(validModel, validator, IStatus.OK);
 	}
+
+	public void testValidSubContainer_upperMultiplicityStar() throws Exception {
+		EObject validModel = loadInputFile("ecuc/ModuleConfiguration/upperMultiplicityStarOfSubContainerValid.arxml");
+		ValidationTestUtil.validateModel(validModel, validator, IStatus.OK);
+	}
 }

@@ -48,4 +48,9 @@ public class ContainerSubContainerMultiplicityConstraintTests extends AbstractAu
 		ValidationTestUtil.validateModel(validModel, validator, IStatus.OK);
 	}
 
+	public void testValidSubContainer_upperMultiplicityStar() throws Exception {
+		EObject validModel = loadInputFile("ecuc/Container/upperMultiplicityStarOfSubContainerValid.arxml");
+		ValidationTestUtil.validateModel(validModel, validator, IStatus.OK);
+	}
+
 }

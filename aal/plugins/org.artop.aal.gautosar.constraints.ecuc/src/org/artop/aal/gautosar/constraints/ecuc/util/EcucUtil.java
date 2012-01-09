@@ -843,7 +843,10 @@ public class EcucUtil {
 		}
 		BigInteger upperMultiplicity = convertMultiplicityAsBigInteger(gParamConfMultiplicity.gGetUpperMultiplicityAsString(), new BigInteger(
 				MULTIPLICITY_ONE, 10));
-		return numberOfObjects <= upperMultiplicity.intValue();
+		if (upperMultiplicity.compareTo(MULTIPLICITY_STAR_BIG_INTEGER) != 0) {
+			return numberOfObjects <= upperMultiplicity.intValue();
+		}
+		return true;
 	}
 
 	/**
