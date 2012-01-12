@@ -24,11 +24,17 @@ public class FloatParamDefDefaultValueConstraint extends AbstractGFloatParamDefD
 
 	@Override
 	protected Double getMin(GFloatParamDef floatParamDef) {
+		if (!((FloatParamDef) floatParamDef).isSetMin()) {
+			return null;
+		}
 		return ((FloatParamDef) floatParamDef).getMin();
 	}
 
 	@Override
 	protected Double getMax(GFloatParamDef floatParamDef) {
+		if (!((FloatParamDef) floatParamDef).isSetMax()) {
+			return null;
+		}
 		return ((FloatParamDef) floatParamDef).getMax();
 	}
 

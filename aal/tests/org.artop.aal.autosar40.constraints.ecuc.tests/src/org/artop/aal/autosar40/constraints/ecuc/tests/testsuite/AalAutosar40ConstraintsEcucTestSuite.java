@@ -22,6 +22,8 @@ import org.artop.aal.autosar40.constraints.ecuc.tests.BooleanValueConstraintTest
 import org.artop.aal.autosar40.constraints.ecuc.tests.ContainerParameterMultiplicityConstraintTests;
 import org.artop.aal.autosar40.constraints.ecuc.tests.ContainerReferenceMultiplicityConstraintTests;
 import org.artop.aal.autosar40.constraints.ecuc.tests.ContainerSubContainerMultiplicityConstraintTests;
+import org.artop.aal.autosar40.constraints.ecuc.tests.EcucFloatParamDefConstraintTests;
+import org.artop.aal.autosar40.constraints.ecuc.tests.EcucIntegerParamDefConstraintTests;
 import org.artop.aal.autosar40.constraints.ecuc.tests.EcucUtilTest;
 import org.artop.aal.autosar40.constraints.ecuc.tests.EnumerationValueConstraintTests;
 import org.artop.aal.autosar40.constraints.ecuc.tests.FloatValueConstraintTests;
@@ -66,6 +68,8 @@ public class AalAutosar40ConstraintsEcucTestSuite {
 		suite.addTestSuite(StringParamDefConstraintTests.class);
 		suite.addTestSuite(FunctionNameDefConstraintTests.class);
 		suite.addTestSuite(LinkerSymbolDefConstraintTests.class);
+		suite.addTestSuite(EcucFloatParamDefConstraintTests.class);
+		suite.addTestSuite(EcucIntegerParamDefConstraintTests.class);
 		//
 		// // structural integrity
 		// suite.addTestSuite(ConfigReferenceValueStructuralIntegrityConstraintTests.class);

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/3.2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/3.2.1 autosar_3-2-1.xsd">
+  <TOP-LEVEL-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>ARRoot</SHORT-NAME>
+      <ELEMENTS>
+        <MODULE-DEF>
+          <SHORT-NAME>ModuleDef</SHORT-NAME>
+          <CONTAINERS>
+            <PARAM-CONF-CONTAINER-DEF>
+              <SHORT-NAME>Container</SHORT-NAME>
+              <PARAMETERS>
+                <INTEGER-PARAM-DEF>
+                  <SHORT-NAME>IntegerDef</SHORT-NAME>
+                </INTEGER-PARAM-DEF>
+              </PARAMETERS>
+            </PARAM-CONF-CONTAINER-DEF>
+          </CONTAINERS>
+        </MODULE-DEF>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </TOP-LEVEL-PACKAGES>
+</AUTOSAR>
+

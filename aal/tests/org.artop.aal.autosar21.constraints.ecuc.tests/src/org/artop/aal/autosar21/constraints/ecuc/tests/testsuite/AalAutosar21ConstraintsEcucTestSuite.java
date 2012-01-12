@@ -19,10 +19,12 @@ import junit.framework.TestSuite;
 
 import org.artop.aal.autosar21.constraints.ecuc.tests.BooleanValueConstraintTests;
 import org.artop.aal.autosar21.constraints.ecuc.tests.EnumerationValueConstraintTests;
+import org.artop.aal.autosar21.constraints.ecuc.tests.FloatParamDefConstraintTests;
 import org.artop.aal.autosar21.constraints.ecuc.tests.FloatValueConstraintTests;
 import org.artop.aal.autosar21.constraints.ecuc.tests.FunctionNameDefConstraintTests;
 import org.artop.aal.autosar21.constraints.ecuc.tests.FunctionNameValueConstraintTests;
 import org.artop.aal.autosar21.constraints.ecuc.tests.InstanceReferenceValueConstraintTests;
+import org.artop.aal.autosar21.constraints.ecuc.tests.IntegerParamDefConstraintTests;
 import org.artop.aal.autosar21.constraints.ecuc.tests.IntegerValueConstraintTests;
 import org.artop.aal.autosar21.constraints.ecuc.tests.LinkerSymbolDefConstraintTests;
 import org.artop.aal.autosar21.constraints.ecuc.tests.LinkerSymbolValueConstraintTests;
@@ -57,6 +59,8 @@ public class AalAutosar21ConstraintsEcucTestSuite {
 		suite.addTestSuite(StringParamDefConstraintTests.class);
 		suite.addTestSuite(FunctionNameDefConstraintTests.class);
 		suite.addTestSuite(LinkerSymbolDefConstraintTests.class);
+		suite.addTestSuite(FloatParamDefConstraintTests.class);
+		suite.addTestSuite(IntegerParamDefConstraintTests.class);
 		//
 		// structural integrity
 		// suite.addTestSuite(ConfigReferenceValueStructuralIntegrityConstraintTests.class);

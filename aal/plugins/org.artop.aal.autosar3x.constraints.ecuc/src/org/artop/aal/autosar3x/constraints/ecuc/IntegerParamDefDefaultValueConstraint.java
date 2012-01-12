@@ -26,11 +26,17 @@ public class IntegerParamDefDefaultValueConstraint extends AbstractGIntegerParam
 
 	@Override
 	protected BigInteger getMin(GIntegerParamDef integerParamDef) {
+		if (!((IntegerParamDef) integerParamDef).isSetMin()) {
+			return null;
+		}
 		return ((IntegerParamDef) integerParamDef).getMin();
 	}
 
 	@Override
 	protected BigInteger getMax(GIntegerParamDef integerParamDef) {
+		if (!((IntegerParamDef) integerParamDef).isSetMax()) {
+			return null;
+		}
 		return ((IntegerParamDef) integerParamDef).getMax();
 	}
 
