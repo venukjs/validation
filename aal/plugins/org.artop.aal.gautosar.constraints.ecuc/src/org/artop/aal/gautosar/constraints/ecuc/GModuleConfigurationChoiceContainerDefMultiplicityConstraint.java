@@ -19,7 +19,6 @@ import gautosar.gecucdescription.GModuleConfiguration;
 import gautosar.gecucparameterdef.GChoiceContainerDef;
 import gautosar.gecucparameterdef.GContainerDef;
 import gautosar.gecucparameterdef.GModuleDef;
-import gautosar.gecucparameterdef.GParamConfContainerDef;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -67,11 +66,11 @@ public class GModuleConfigurationChoiceContainerDefMultiplicityConstraint extend
 			return status;
 		}
 
-		GParamConfContainerDef p = null;
+		GContainerDef p = null;
 		for (GChoiceContainerDef currentCCDef : mchCDefs.keySet()) {
 			int i = 0;
 			for (GContainer container : moduleConfiguration.gGetContainers()) {
-				p = (GParamConfContainerDef) container.gGetDefinition();
+				p = container.gGetDefinition();
 				if (p != null && currentCCDef.gGetChoices().contains(p)) {
 					i = mchCDefs.get(currentCCDef).intValue();
 					mchCDefs.put(currentCCDef, ++i);
