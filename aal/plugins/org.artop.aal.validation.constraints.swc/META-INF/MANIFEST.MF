@@ -5,7 +5,7 @@ Bundle-SymbolicName: org.artop.aal.validation.constraints.swc;singleton:=true
 Bundle-Version: 3.2.0.qualifier
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.core.runtime,
- com.google.collect,
+ com.google.guava,
  org.artop.aal.gautosar,
  org.artop.aal.gautosar.services,
  org.artop.aal.validation
