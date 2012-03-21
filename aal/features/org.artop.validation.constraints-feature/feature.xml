@@ -2,7 +2,7 @@
 <feature
       id="org.artop.validation.constraints"
       label="%featureName"
-      version="3.2.1.qualifier"
+      version="3.2.2.qualifier"
       provider-name="%providerName">
 
    <description>
@@ -18,7 +18,7 @@
    </license>
 
    <requires>
-      <import feature="org.artop.validation" version="3.2.1"/>
+      <import feature="org.artop.validation" version="3.2.2"/>
       <import feature="org.eclipse.emf.validation.ocl" version="1.5.0"/>
    </requires>
 
