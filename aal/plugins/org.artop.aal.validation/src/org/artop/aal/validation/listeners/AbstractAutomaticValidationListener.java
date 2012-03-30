@@ -308,7 +308,7 @@ public abstract class AbstractAutomaticValidationListener extends ResourceSetLis
 			wait = true; // If there are load jobs running, we wait for!
 		}
 		final boolean waitInJob = wait;
-		WorkspaceJob job = new WorkspaceJob("Automatic validation processing") { //$NON-NLS-1$
+		WorkspaceJob job = new WorkspaceJob("Automatic validation processing") {
 			@Override
 			public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
 				int max_err = Platform.getPreferencesService().getInt(org.eclipse.sphinx.emf.validation.Activator.PLUGIN_ID,
@@ -317,7 +317,7 @@ public abstract class AbstractAutomaticValidationListener extends ResourceSetLis
 				/*
 				 * Setup progress monitor : - Waiting for jobs to finish (6) - Automatic validation (94)
 				 */
-				monitor.beginTask("Automatic validation processing", 6 + targets.size()); //$NON-NLS-1$
+				monitor.beginTask("Automatic validation processing", 6 + targets.size());
 				try {
 					if (waitInJob) {
 						try {
