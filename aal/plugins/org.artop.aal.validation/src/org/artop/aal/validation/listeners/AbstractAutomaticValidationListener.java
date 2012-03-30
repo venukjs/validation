@@ -240,7 +240,7 @@ public abstract class AbstractAutomaticValidationListener extends ResourceSetLis
 				/*
 				 * Setup progress monitor : - Waiting for jobs to finish (10) - Automatic validation (90)
 				 */
-				monitor.beginTask("Validating...", totalWork); //$NON-NLS-1$
+				monitor.beginTask("Validating...", totalWork);
 				try {
 
 					for (EObject current : objects) {
