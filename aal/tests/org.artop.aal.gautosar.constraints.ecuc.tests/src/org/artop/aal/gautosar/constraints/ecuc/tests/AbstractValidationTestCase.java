@@ -17,6 +17,7 @@ package org.artop.aal.gautosar.constraints.ecuc.tests;
 
 import gautosar.ggenericstructure.ginfrastructure.GAUTOSAR;
 
+import java.io.File;
 import java.util.Map;
 
 import junit.framework.TestCase;
@@ -45,8 +46,7 @@ public abstract class AbstractValidationTestCase extends TestCase {
 	protected TestFileAccessor fFileAccessor;
 
 	public AbstractValidationTestCase() {
-		super();
-		fFileAccessor = new TestFileAccessor(getPlugin());
+		fFileAccessor = new TestFileAccessor(getPlugin(), new File("working-dir"));
 
 		validator = ModelValidationService.getInstance().newValidator(EvaluationMode.BATCH);
 		validator.setReportSuccesses(true);
