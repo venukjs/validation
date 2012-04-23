@@ -111,6 +111,44 @@ public abstract class AbstractGConfigReferenceValueConstraint extends AbstractMo
 	}
 
 	/**
+	 * Retrieves EClass name for a given <code>destinationTypeName</code> or null if the class does not exist.
+	 * <code>checkInstance</code> flag indicates whether checking whether <code>instance</code> matching of the
+	 * <code>destinationTypeName</code> will be taken into account
+	 * 
+	 * @param instance
+	 * @param destinationTypeName
+	 * @param checkInstance
+	 * @return
+	 */
+	protected String getEClassName(EObject instance, String destinationTypeName, boolean checkInstance) {
+		IMetaModelServiceProvider provider = new DefaultMetaModelServiceProvider();
+
+		IMetaModelUtilityService service = provider.getService(MetaModelDescriptorRegistry.INSTANCE.getDescriptor(instance),
+				IMetaModelUtilityService.class);
+		if (service == null) {
+			return null;
+		}
+
+		String multiplicity = ""; //$NON-NLS-1$
+		// get correct EClass classifier
+		if (destinationTypeName.endsWith("*")) { //$NON-NLS-1$
+			destinationTypeName = destinationTypeName.substring(0, destinationTypeName.length() - 1);
+			multiplicity = "*"; //$NON-NLS-1$
+		}
+		EClass destinationEClass = service.findEClass(destinationTypeName);
+
+		EClass metaClass = instance.eClass();
+		String metaClassName = metaClass.getName();
+
+		if (checkInstance && !(metaClassName.equals(destinationTypeName) || metaClass.equals(destinationEClass))) {
+			return null;
+		}
+
+		return destinationEClass != null ? destinationEClass.getName() + multiplicity : null;
+
+	}
+
+	/**
 	 * Checks whether the given <code>instance</code> is an instance of the destination with the given
 	 * <code>destinationTypeName</code>.
 	 * 

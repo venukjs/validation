@@ -64,7 +64,9 @@ public final class EcucConstraintMessages extends NLS {
 	public static String instanceref_targetNotSet;
 	public static String instanceref_targetNotResolved;
 	public static String instanceref_valueNotMatchDestContext;
+	public static String reference_invalidContext;
 	public static String instanceref_valueDestContextNotSet;
+	public static String reference_contextNotAvailable;
 
 	public static String choiceref_emptyDestination;
 	public static String choiceref_containerNotInTheDest;
@@ -72,6 +74,7 @@ public final class EcucConstraintMessages extends NLS {
 	public static String reference_destinationNotResolved;
 	public static String reference_destinationNotSet;
 	public static String reference_targetDestinationTypeNotAvailable;
+	public static String reference_contextDestinationTypeInvalid;
 	public static String reference_valueNotInstanceOfDestType;
 	public static String reference_valueNotOfType;
 	public static String reference_valueDefinitionNotSet;

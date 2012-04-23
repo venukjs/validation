@@ -18,6 +18,7 @@ import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.tests.util.ValidationTestUtil;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.osgi.util.NLS;
 
 @SuppressWarnings("nls")
 public class InstanceReferenceValueConstraintTests extends AbstractAutosar40ValidationTestCase {
@@ -47,4 +48,34 @@ public class InstanceReferenceValueConstraintTests extends AbstractAutosar40Vali
 		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/noDestinationType.arxml");
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.reference_targetDestinationTypeNotAvailable);
 	}
+
+	public void testInvalidInstanceReferenceValue_invalidContextDestinationType() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/invalidDestinationContext.arxml");
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(EcucConstraintMessages.reference_invalidContext, new String[] { "P-PORT-PROTOTYPE123" }));
+	}
+
+	public void testInvalidInstanceReferenceValue_wrongContextOrder() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/wrongContextOrder.arxml");
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(EcucConstraintMessages.instanceref_valueNotMatchDestContext, new String[] { "(PPortPrototype )(SwComponentPrototype )" }));
+	}
+
+	public void testInvalidInstanceReferenceValue_contextTypeNoContextValue() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/contextTypeNoContextValue.arxml");
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, NLS.bind(
+				EcucConstraintMessages.instanceref_valueNotMatchDestContext,
+				new String[] { "(SwComponentPrototype )*(PPortPrototype )(RootSwCompositionPrototype )" }));
+	}
+
+	public void testInvalidInstanceReferenceValue_contextTypeNoContextValueWithMultiplicity() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/contextTypeNoContextValueWithMultiplicity.arxml");
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.OK, null);
+	}
+
+	public void testInvalidInstanceReferenceValue_doubleDashContextType() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/doubleDashContextType.arxml");
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.OK, null);
+	}
+
 }

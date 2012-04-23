@@ -139,7 +139,7 @@ public abstract class AbstractGInstanceReferenceValueBasicConstraint extends Abs
 		// TODO: CAUTION this algorithm only works in case no inheritance is
 		// used
 
-		final IStatus status;
+		IStatus status = ctx.createSuccessStatus();
 		GInstanceReferenceDef referenceDef = (GInstanceReferenceDef) gInstanceReferenceValue.gGetDefinition();
 
 		// CHECK if context of InstanceReferenceValue_value is compatible to
@@ -148,21 +148,55 @@ public abstract class AbstractGInstanceReferenceValueBasicConstraint extends Abs
 		String destinationContext = referenceDef.gGetDestinationContext();
 		// CHECK if destinationContext available
 		if (null != destinationContext && 0 != destinationContext.length()) {
+
 			StringBuffer contextBuffer = new StringBuffer();
+			StringBuffer destContextBuffer = new StringBuffer();
 
 			// CHECK if value context available
 			if (contextList.size() > 0) {
-				// convert value context to a String, each item separated by a
-				// space
+
+				String[] splitContext = destinationContext.split(" "); //$NON-NLS-1$
+				String ctxClassName;
+
 				for (int i = 0; i < contextList.size(); i++) {
-					contextBuffer.append(contextList.get(i).eClass().getName());
+
+					String eClassName = contextList.get(i).eClass().getName();
+					// convert value context to a String, each item separated by a
+					// space
+					contextBuffer.append(eClassName);
 					contextBuffer.append(" "); //$NON-NLS-1$
+
+					for (String context : splitContext) {
+						ctxClassName = getEClassName(ctx.getTarget(), context, false);
+						if (ctxClassName != null) {
+							if (destContextBuffer.lastIndexOf(ctxClassName) < 0) {
+								destContextBuffer.append(ctxClassName);
+								destContextBuffer.append(" "); //$NON-NLS-1$
+							}
+
+							// CHECK is a certain context value is available for the context type
+							if (context.endsWith("*")) { //$NON-NLS-1$
+								context = context.substring(0, context.length() - 1);
+								if (ctxClassName.equals(eClassName) && getEClassName(ctx.getTarget(), context, true) == null) {
+									status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.reference_contextNotAvailable, context));
+								}
+							} else
+
+							if (ctxClassName.equals(eClassName) && !isInstanceOfDestinationType(contextList.get(i), context)) {
+								status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.reference_contextNotAvailable, context));
+							}
+						} else {
+							status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.reference_invalidContext, context));
+							return status;
+						}
+
+					}
 				}
 			}
 
 			// CHECK if value context String matches the definitionContext
 			// regular expression
-			String destinationContentRegex = getDestinationContextRegex(destinationContext);
+			String destinationContentRegex = getDestinationContextRegex(destContextBuffer.toString());
 			if (!contextBuffer.toString().matches(destinationContentRegex)) {
 				status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.instanceref_valueNotMatchDestContext, destinationContentRegex));
 			} else {
