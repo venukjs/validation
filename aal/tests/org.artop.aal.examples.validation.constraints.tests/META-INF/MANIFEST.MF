@@ -18,7 +18,6 @@ Require-Bundle: org.eclipse.emf.validation,
  org.artop.aal.autosar21.validation,
  org.artop.aal.autosar3x,
  org.artop.aal.autosar3x.services,
- org.artop.aal.autosar3x.validation,
  org.artop.aal.autosar40,
  org.artop.aal.autosar40.services,
  org.artop.aal.autosar40.validation

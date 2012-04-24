@@ -12,7 +12,7 @@
  * 
  * </copyright>
  */
-package org.artop.aal.autosar3x.validation.internal;
+package org.artop.aal.autosar321.validation.internal;
 
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.sphinx.emf.validation.evalidator.adapter.EValidatorRegistering;
@@ -24,7 +24,7 @@ import org.osgi.framework.BundleContext;
 public class Activator extends Plugin {
 
 	/** The plug-in ID */
-	public static final String PLUGIN_ID = "org.artop.aal.autosar3x.validation"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.artop.aal.autosar321.validation"; //$NON-NLS-1$
 
 	/** The shared instance */
 	private static Activator plugin;

@@ -12,7 +12,7 @@
  * 
  * </copyright>
  */
-package org.artop.aal.autosar3x.validation.listeners;
+package org.artop.aal.autosar315.validation.listeners;
 
 import org.artop.aal.validation.listeners.AbstractProblemMarkerIntegrityListener;
 import org.eclipse.emf.transaction.NotificationFilter;

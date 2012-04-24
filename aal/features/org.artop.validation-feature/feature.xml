@@ -51,13 +51,6 @@
          unpack="false"/>
 
    <plugin
-         id="org.artop.aal.autosar3x.validation"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="org.artop.aal.autosar3x.validation.ui"
          download-size="0"
          install-size="0"

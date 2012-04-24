@@ -12,10 +12,10 @@
  * 
  * </copyright>
  */
-package org.artop.aal.autosar3x.validation.internal;
+package org.artop.aal.autosar315.validation.internal;
 
-import org.artop.aal.autosar3x.validation.listeners.AutomaticValidation3xListener;
-import org.artop.aal.autosar3x.validation.listeners.ProblemMarkerIntegrity3xListener;
+import org.artop.aal.autosar315.validation.listeners.AutomaticValidation3xListener;
+import org.artop.aal.autosar315.validation.listeners.ProblemMarkerIntegrity3xListener;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.sphinx.emf.domain.factory.ITransactionalEditingDomainFactoryListener;
