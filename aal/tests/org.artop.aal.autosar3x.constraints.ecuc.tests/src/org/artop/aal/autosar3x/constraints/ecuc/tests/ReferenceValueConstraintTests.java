@@ -66,8 +66,12 @@ public class ReferenceValueConstraintTests extends AbstractAutosar3xValidationTe
 
 	public void testInvalidReferenceValue_choiceReferenceParamDefDifferentDef() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/ReferenceValue/choiceReferenceParamDefDifferentDef.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
-				NLS.bind(EcucConstraintMessages.choiceref_containerNotInTheDest, "OsScheduleTable", "OsScheduleTable_1,OsScheduleTable_2,"));
+		ValidationTestUtil.validateModel(
+				invalidModel,
+				validator,
+				IStatus.ERROR,
+				NLS.bind(EcucConstraintMessages.choiceref_containerNotInTheDest, new Object[] { "OS_OsScheduleTable", "/AUTOSAR/Os/OsScheduleTable",
+						"/AUTOSAR/Os/OsScheduleTable_1, /AUTOSAR/Os/OsScheduleTable_2" }));
 	}
 
 	public void testInvalidReferenceValue_referenceParamDefnotContainer() throws Exception {
@@ -154,4 +158,27 @@ public class ReferenceValueConstraintTests extends AbstractAutosar3xValidationTe
 		ValidationTestUtil.validateModel(validModel, validator, IStatus.OK);
 	}
 
+	/**
+	 * Checks that a reference value with a choice container definition, is not validated with respect to the possible
+	 * destinations, if the referred container does not exist. <br>
+	 * In such a case, container's definition cannot be retrieved, thus it does not make sense to validate the reference
+	 * value with respect to the choice container def's destinations. <br>
+	 * <b>NOTE:</b> This check should be updated when the native EMF constraint that checks for unresolved references
+	 * will be in place and the test will fail
+	 * 
+	 * @throws Exception
+	 */
+	public void testInvalidRefereceValue_valueNotResolved() throws Exception {
+		EObject validModel = loadInputFile("ecuc/ReferenceValue/referenceValue_ValueRefNotResolved.arxml");
+		ValidationTestUtil.validateModel(validModel, validator, IStatus.OK);
+	}
+
+	/**
+	 * Checks that a proper validation error is received if a reference value with unresolved definition is validated
+	 */
+	public void testInvalidReferenceValue_definitionOfReferredContainerNotResolved() throws Exception {
+		EObject validModel = loadInputFile("ecuc/ReferenceValue/referenceValue_DefinitionOfValueRefNotResolved.arxml");
+		ValidationTestUtil.validateModel(validModel, validator, IStatus.ERROR,
+				NLS.bind(EcucConstraintMessages.generic_validationNotPossible, "/AUTOSAR/myVendor_Module/TargetContainer"));
+	}
 }

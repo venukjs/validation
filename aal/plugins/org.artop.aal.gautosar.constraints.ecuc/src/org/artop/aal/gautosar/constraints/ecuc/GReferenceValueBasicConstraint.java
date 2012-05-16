@@ -20,15 +20,16 @@ import gautosar.gecucdescription.GContainer;
 import gautosar.gecucdescription.GReferenceValue;
 import gautosar.gecucparameterdef.GChoiceReferenceDef;
 import gautosar.gecucparameterdef.GConfigReference;
+import gautosar.gecucparameterdef.GContainerDef;
 import gautosar.gecucparameterdef.GForeignReferenceDef;
 import gautosar.gecucparameterdef.GParamConfContainerDef;
 import gautosar.gecucparameterdef.GReferenceDef;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
+import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -41,6 +42,8 @@ import org.eclipse.osgi.util.NLS;
  * Superclass for the constraints implementations on a reference value.
  */
 public class GReferenceValueBasicConstraint extends AbstractGConfigReferenceValueConstraint {
+
+	private static final String DELIMITER = ", "; //$NON-NLS-1$
 
 	@Override
 	protected boolean isApplicable(IValidationContext ctx) {
@@ -181,41 +184,117 @@ public class GReferenceValueBasicConstraint extends AbstractGConfigReferenceValu
 		if (!(valueObject instanceof GContainer)) {
 			status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.reference_valueNotOfType, "container")); //$NON-NLS-1$
 		} else {
+
+			if (valueObject.eIsProxy()) {
+
+				// it is not in the scope of this constraint to check for unresolved references
+				return status;
+			}
+
 			// CHECK if destination available
-			EList<GParamConfContainerDef> containerDefList = choiceReferenceDef.gGetDestinations();
-			if (null == containerDefList || 0 == containerDefList.size()) {
+			EList<GParamConfContainerDef> destinations = choiceReferenceDef.gGetDestinations();
+			if (null == destinations || 0 == destinations.size()) {
 				status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.generic_validationNotPossible,
 						AutosarURIFactory.getAbsoluteQualifiedName(choiceReferenceDef)));
 			} else {
-				// CHECK if the value GContainer is included in the destination
-				// of the reference parameter
-				// We only compare the shortnames since the DESTINATION-REF of
-				// Vendor Specific Module Definitions always points to destination
-				// as defined in the Standardized Module Definition [ecu_sws_6015]
-				GContainer gContainer = (GContainer) valueObject;
-				GParamConfContainerDef containerDefFromDestination = (GParamConfContainerDef) gContainer.gGetDefinition();
-				Set<String> containerDefListShortNames = new HashSet<String>();
-				String tmpStr = ""; //$NON-NLS-1$
-				String shortName;
-				for (int i = 0; i < containerDefList.size(); i++) {
-					shortName = containerDefList.get(i).gGetShortName();
-					if (null != shortName) {
-						tmpStr = tmpStr + shortName + ","; //$NON-NLS-1$
-						containerDefListShortNames.add(shortName);
-					}
-				}
-				if (containerDefFromDestination != null) {
-					if (false == containerDefListShortNames.contains(containerDefFromDestination.gGetShortName())) {
 
-						status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.choiceref_containerNotInTheDest,
-								containerDefFromDestination.gGetShortName(), tmpStr));
-					}
+				GContainer referredContainer = (GContainer) valueObject;
+				GParamConfContainerDef definitionOfReferredContaier = (GParamConfContainerDef) referredContainer.gGetDefinition();
+
+				if (definitionOfReferredContaier == null) {
+					status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.generic_validationNotPossible,
+							AutosarURIFactory.getAbsoluteQualifiedName(referredContainer)));
 				} else {
-					status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.choiceref_containerNotInTheDest, "", tmpStr)); //$NON-NLS-1$
+
+					if (definitionOfReferredContaier.eIsProxy()) {
+						status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.generic_validationNotPossible,
+								AutosarURIFactory.getAbsoluteQualifiedName(referredContainer)));
+
+					} else {
+
+						// definition of referred container resolved, it make sense to validate it against allowed
+						// destinations
+						boolean destinationAllowed = isDestinationAllowed(definitionOfReferredContaier, choiceReferenceDef);
+
+						if (!destinationAllowed) {
+							status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.choiceref_containerNotInTheDest, new Object[] {
+									referredContainer.gGetShortName(), AutosarURIFactory.getAbsoluteQualifiedName(definitionOfReferredContaier),
+									getDestinationsAsString(destinations) }));
+						}
+					}
+
+				}
+
+			}
+		}
+
+		return status;
+	}
+
+	/**
+	 * Returns whether the given <code>destinationToBeVerified</code> container definition conforms to the destinations
+	 * specified in the <code>choiceReferenceDef</code>
+	 * 
+	 * @param destinationToBeVerified
+	 * @param choiceReferenceDef
+	 * @return
+	 */
+	private boolean isDestinationAllowed(GParamConfContainerDef destinationToBeVerified, GChoiceReferenceDef choiceReferenceDef) {
+
+		EList<GParamConfContainerDef> allowedDestinations = choiceReferenceDef.gGetDestinations();
+
+		String qualifiedNameOfDestToBeVerified = AutosarURIFactory.getAbsoluteQualifiedName(destinationToBeVerified);
+
+		for (GParamConfContainerDef dest : choiceReferenceDef.gGetDestinations()) {
+
+			String qualifiedName = AutosarURIFactory.getAbsoluteQualifiedName(dest);
+			if (qualifiedName.equals(qualifiedNameOfDestToBeVerified)) {
+				return true;
+			}
+		}
+
+		// treat the case when choiceReferenceDef refines a standard reference definition and its possible destinations
+		// point towards container definitions from the refined module
+		GConfigReference refinedReference = EcucUtil.getFromRefined(choiceReferenceDef);
+		if (refinedReference != null) {
+
+			// obtain the corresponding container definition from the standard module
+			GContainerDef refinedContainerDef = EcucUtil.getContainerDefInRefinedModuleDef(destinationToBeVerified);
+
+			if (refinedContainerDef != null) {
+
+				for (GParamConfContainerDef allowedDest : allowedDestinations) {
+
+					if (allowedDest == refinedContainerDef) {
+						return true;
+					}
 				}
 			}
 		}
-		return status;
+
+		return false;
+	}
+
+	private String getDestinationsAsString(List<GParamConfContainerDef> destinations) {
+
+		String qualifiedName;
+		StringBuffer stringbuffer = new StringBuffer();
+
+		for (GParamConfContainerDef destination : destinations) {
+
+			qualifiedName = AutosarURIFactory.getAbsoluteQualifiedName(destination);
+			if (null != qualifiedName) {
+				stringbuffer.append(qualifiedName);
+				stringbuffer.append(DELIMITER);
+			}
+		}
+
+		int lastIndexOfComma = stringbuffer.lastIndexOf(DELIMITER);
+		if (lastIndexOfComma > 0) {
+			stringbuffer.delete(lastIndexOfComma, lastIndexOfComma + DELIMITER.length());
+		}
+
+		return stringbuffer.toString();
 	}
 
 	private IStatus validateReferenceValue_ForeignReference(IValidationContext ctx, GReferenceValue gReferenceValue) {

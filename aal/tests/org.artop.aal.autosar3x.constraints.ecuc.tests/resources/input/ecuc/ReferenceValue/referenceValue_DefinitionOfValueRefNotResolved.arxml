@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/3.2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/3.2.1 autosar_3-2-1.xsd">
+  <TOP-LEVEL-PACKAGES>
+    <AR-PACKAGE UUID="365f5c0a-4109-4374-9e70-3999be062432">
+      <SHORT-NAME>AUTOSAR</SHORT-NAME>
+      <ELEMENTS>
+        <MODULE-DEF UUID="138b51c2-35b0-436e-b045-fb58af85fb8a">
+          <SHORT-NAME>Vendor_Module</SHORT-NAME>
+          <CONTAINERS>
+            <PARAM-CONF-CONTAINER-DEF>
+              <SHORT-NAME>ContainerDef</SHORT-NAME>
+              <REFERENCES>
+                <CHOICE-REFERENCE-PARAM-DEF>
+                  <SHORT-NAME>ChoiceReferenceParamDef</SHORT-NAME>
+                  <DESTINATION-REFS>
+                    <DESTINATION-REF DEST="PARAM-CONF-CONTAINER-DEF">/AUTOSAR/Vendor_Module/TargetContainerDef</DESTINATION-REF>
+                  </DESTINATION-REFS>
+                </CHOICE-REFERENCE-PARAM-DEF>
+              </REFERENCES>
+            </PARAM-CONF-CONTAINER-DEF>
+          </CONTAINERS>
+        </MODULE-DEF>
+        <MODULE-CONFIGURATION UUID="33d13196-91dd-4267-ba65-f27d23ad1f3e">
+          <SHORT-NAME>myVendor_Module</SHORT-NAME>
+          <DEFINITION-REF DEST="MODULE-DEF">/AUTOSAR/Vendor_Module</DEFINITION-REF>
+          <CONTAINERS>
+            <CONTAINER UUID="a22a2179-fae8-47ec-8401-9409df165cc2">
+              <SHORT-NAME>Container</SHORT-NAME>
+              <DEFINITION-REF DEST="PARAM-CONF-CONTAINER-DEF">/AUTOSAR/Vendor_Module/ContainerDef</DEFINITION-REF>
+              <REFERENCE-VALUES>
+                <REFERENCE-VALUE>
+                  <DEFINITION-REF DEST="CHOICE-REFERENCE-PARAM-DEF">/AUTOSAR/Vendor_Module/ContainerDef/ChoiceReferenceParamDef</DEFINITION-REF>
+                  
+                  <!--reference towards a container with unresolved definition -->
+                  <VALUE-REF DEST="CONTAINER">/AUTOSAR/myVendor_Module/TargetContainer</VALUE-REF>
+                </REFERENCE-VALUE>
+              </REFERENCE-VALUES>
+            </CONTAINER>
+            <CONTAINER UUID="04114de8-b651-42fb-8c7d-0f27cdd627ec">
+              <SHORT-NAME>TargetContainer</SHORT-NAME>
+              
+              <!--unresolved definition-->
+              <DEFINITION-REF DEST="PARAM-CONF-CONTAINER-DEF">/AUTOSAR/Vendor_Module/TargetContainerDef</DEFINITION-REF>
+            </CONTAINER>
+          </CONTAINERS>
+        </MODULE-CONFIGURATION>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </TOP-LEVEL-PACKAGES>
+</AUTOSAR>
+

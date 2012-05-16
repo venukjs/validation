@@ -214,11 +214,21 @@ public class EcucUtil {
 		return refinedModuleDef;
 	}
 
-	public static GModuleDef getParentModuleDef(GConfigParameter configParameter) {
-		/* Configuration Parameter ancestors hierarchy. */
-		ArrayList<GContainerDef> ancestors = getAncestors(configParameter);
+	public static GModuleDef getParentModuleDef(GConfigParameter configAttr) {
+
+		return getParentModuleDef((GCommonConfigurationAttributes) configAttr);
+	}
+
+	public static GModuleDef getParentModuleDef(GConfigReference configAttr) {
+
+		return getParentModuleDef((GCommonConfigurationAttributes) configAttr);
+	}
+
+	private static GModuleDef getParentModuleDef(GCommonConfigurationAttributes configAttr) {
+		/* Configuration Attribute ancestors hierarchy. */
+		ArrayList<GContainerDef> ancestors = getAncestors(configAttr);
 		if (ancestors.isEmpty()) {
-			throw new RuntimeException(NLS.bind(EcucConstraintMessages.configParameter_ancestorEmptylist, configParameter.gGetShortName()));
+			throw new RuntimeException(NLS.bind(EcucConstraintMessages.configParameter_ancestorEmptylist, configAttr.gGetShortName()));
 		}
 		return (GModuleDef) ancestors.get(0).eContainer();
 	}
@@ -234,10 +244,20 @@ public class EcucUtil {
 		return null;
 	}
 
-	public static ArrayList<GContainerDef> getAncestors(GConfigParameter configParameter) {
+	public static ArrayList<GContainerDef> getAncestors(GConfigParameter configAttr) {
+
+		return getAncestors((GCommonConfigurationAttributes) configAttr);
+	}
+
+	public static ArrayList<GContainerDef> getAncestors(GConfigReference configAttr) {
+
+		return getAncestors((GCommonConfigurationAttributes) configAttr);
+	}
+
+	private static ArrayList<GContainerDef> getAncestors(GCommonConfigurationAttributes configAttr) {
 		ArrayList<GContainerDef> ancestors = new ArrayList<GContainerDef>();
 
-		EObject eContainer = configParameter.eContainer();
+		EObject eContainer = configAttr.eContainer();
 		while (eContainer != null && eContainer instanceof GContainerDef) {
 			ancestors.add(0, (GContainerDef) eContainer);
 			eContainer = eContainer.eContainer();
@@ -298,7 +318,16 @@ public class EcucUtil {
 		return ancestors;
 	}
 
+	public static GConfigReference getFromRefined(GConfigReference vSpecif) {
+		return (GConfigReference) getFromRefined((GCommonConfigurationAttributes) vSpecif);
+	}
+
 	public static GConfigParameter getFromRefined(GConfigParameter vSpecif) {
+		return (GConfigParameter) getFromRefined((GCommonConfigurationAttributes) vSpecif);
+	}
+
+	private static GCommonConfigurationAttributes getFromRefined(GCommonConfigurationAttributes vSpecif) {
+
 		/* The object form the Refined side to return. */
 		EObject refined = null;
 
@@ -358,7 +387,8 @@ public class EcucUtil {
 			// Does nothing more but return.
 			//
 		}
-		return (GConfigParameter) refined;
+		return (GCommonConfigurationAttributes) refined;
+
 	}
 
 	public static boolean validateLower(GParamConfMultiplicity refinedConfMultiplicity, GParamConfMultiplicity vSpecifConfMultiplicity) {
