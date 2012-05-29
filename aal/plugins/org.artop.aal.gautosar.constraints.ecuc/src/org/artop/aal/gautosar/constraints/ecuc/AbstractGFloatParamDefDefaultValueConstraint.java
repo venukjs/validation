@@ -60,10 +60,10 @@ public abstract class AbstractGFloatParamDefDefaultValueConstraint extends Abstr
 		if (min == null) {
 			valid = defaultValue.compareTo(max) <= 0;
 			minvalue = "~"; //$NON-NLS-1$
-			maxvalue = max.toString();
+			maxvalue = getDoubleAsString(max);
 		} else if (max == null) {
 			valid = defaultValue.compareTo(min) >= 0;
-			minvalue = min.toString();
+			minvalue = getDoubleAsString(min);
 			maxvalue = "~"; //$NON-NLS-1$
 		} else {
 			valid = defaultValue.compareTo(min) >= 0 && defaultValue.compareTo(max) <= 0;
@@ -73,10 +73,21 @@ public abstract class AbstractGFloatParamDefDefaultValueConstraint extends Abstr
 
 		if (!valid) {
 			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.floatParamDef_defaultValueIsOutOfRange,
-					new String[] { AutosarURIFactory.getAbsoluteQualifiedName(floatParamDef), defaultValue.toString(), minvalue, maxvalue }));
+					new String[] { AutosarURIFactory.getAbsoluteQualifiedName(floatParamDef), getDoubleAsString(defaultValue), minvalue, maxvalue }));
 		}
 
 		return ctx.createSuccessStatus();
+	}
+
+	/**
+	 * Returns the string representation of the given Double <code>value</code>
+	 * 
+	 * @param value
+	 * @return
+	 */
+	protected String getDoubleAsString(Double value) {
+
+		return value.toString();
 	}
 
 	/**

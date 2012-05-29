@@ -40,6 +40,12 @@ public class EcucUtil40 {
 	static final String MIN_VALUE = "min"; //$NON-NLS-1$
 	static final String MAX_VALUE = "max"; //$NON-NLS-1$
 
+	/** special value to be supported by Min Boundary of Float parameter definition and by Float parameter value */
+	static final String POSITIVE_INFINITY_AS_STRING = "INF"; //$NON-NLS-1$
+
+	/** special value to be supported by Max Boundary of Float parameter definition and by Float parameter value */
+	static final String NEGATIVE_INFINITY_AS_STRING = "-INF"; //$NON-NLS-1$
+
 	/**
 	 * Get default value of Ecuc Parameter Definition. Return value of defaultValue feature by default
 	 * 
@@ -126,7 +132,7 @@ public class EcucUtil40 {
 				String mixed = minVarPoint.getMixedText();
 				if (mixed != null) {
 					try {
-						Double min = new Double(mixed);
+						Double min = convertStringToDouble(mixed);
 						return min;
 					} catch (NumberFormatException ex) {
 						// Fail silent
@@ -167,7 +173,7 @@ public class EcucUtil40 {
 				String mixed = maxVarPoint.getMixedText();
 				if (mixed != null) {
 					try {
-						Double max = new Double(mixed);
+						Double max = convertStringToDouble(mixed);
 						return max;
 					} catch (NumberFormatException ex) {
 						// Fail silent
@@ -193,4 +199,50 @@ public class EcucUtil40 {
 		}
 		return org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil.getFeatureValue(eObject, MAX_VALUE);
 	}
+
+	/**
+	 * Returns a {@link Double} corresponding to the given string representation. The only difference from calling
+	 * <code> new Double(string)</code>, is that special values: <li><b>-INF</b></li> and <li><b>INF</b></li> <br>
+	 * are also accepted in order to obtain {@link Double#NEGATIVE_INFINITY}, respective
+	 * {@link Double#POSITIVE_INFINITY}
+	 * 
+	 * @param string
+	 *            string representation to be converted to a {@link Double}
+	 * @throws NumberFormatException
+	 *             exception in case conversion fails
+	 * @return a {@link Double}
+	 */
+
+	public static Double convertStringToDouble(String string) throws NumberFormatException {
+		if (string == null || string.equals("")) //$NON-NLS-1$
+		{
+			return null;
+		} else if (string.equalsIgnoreCase(NEGATIVE_INFINITY_AS_STRING)) {
+			return Double.NEGATIVE_INFINITY;
+		} else if (string.equalsIgnoreCase(POSITIVE_INFINITY_AS_STRING)) {
+			return Double.POSITIVE_INFINITY;
+		} else {
+			return new Double(string);
+		}
+	}
+
+	/**
+	 * Returns a string representation of the given Double <code>value</code>. The only difference towards the
+	 * {@link Double#toString()} implementation, is that for the special values: {@link Double#NEGATIVE_INFINITY} <br>
+	 * {@link Double#POSITIVE_INFINITY}, <b>-INF</b>, respectively <b>INF</b> is returned.
+	 * 
+	 * @param value
+	 *            Double value
+	 * @return a string representation of the given Double
+	 */
+	public static String convertDoubleToString(Double value) {
+		if (value == Double.NEGATIVE_INFINITY) {
+			return NEGATIVE_INFINITY_AS_STRING;
+		} else if (value == Double.POSITIVE_INFINITY) {
+			return POSITIVE_INFINITY_AS_STRING;
+		} else {
+			return String.valueOf(value);
+		}
+	}
+
 }

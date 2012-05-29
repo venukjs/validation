@@ -45,7 +45,10 @@ public class EcucFloatParamDefDefaultValueConstraint extends AbstractGFloatParam
 	@Override
 	protected Double getDefaultValue(GFloatParamDef floatParamDef) {
 		try {
-			return new Double(EcucUtil40.getDefaultValue(floatParamDef));
+
+			String defaultValueAsString = EcucUtil40.getDefaultValue(floatParamDef);
+			return EcucUtil40.convertStringToDouble(defaultValueAsString);
+
 		} catch (NumberFormatException ex) {
 		}
 		return null;
@@ -55,6 +58,12 @@ public class EcucFloatParamDefDefaultValueConstraint extends AbstractGFloatParam
 	protected boolean isDefaultValueSet(GFloatParamDef floatParamDef) {
 		FloatValueVariationPoint defaultValue = ((EcucFloatParamDef) floatParamDef).getDefaultValue();
 		return defaultValue != null && defaultValue.isSetMixed();
+	}
+
+	@Override
+	protected String getDoubleAsString(Double value) {
+
+		return EcucUtil40.convertDoubleToString(value);
 	}
 
 }

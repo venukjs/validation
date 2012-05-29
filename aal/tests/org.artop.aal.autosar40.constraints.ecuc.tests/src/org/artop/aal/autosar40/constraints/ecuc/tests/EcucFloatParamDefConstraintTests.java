@@ -88,4 +88,15 @@ public class EcucFloatParamDefConstraintTests extends AbstractAutosar40Validatio
 		ValidationTestUtil.validateModel(validModel, validator, IStatus.OK);
 	}
 
+	/**
+	 * Checks the successful validation of a Float parameter definition, which has the default value set on INF and the
+	 * boundaries between [-INF, INF]
+	 * 
+	 * @throws Exception
+	 */
+	public void testValidFloatParamDef_validDefValueInfinite() throws Exception {
+		EObject validModel = loadInputFile("ecuc/FloatParamDef/defValueInfinite.arxml");
+		ValidationTestUtil.validateModel(validModel, validator, IStatus.OK);
+	}
+
 }

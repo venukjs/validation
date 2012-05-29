@@ -20,6 +20,7 @@ import gautosar.gecucparameterdef.GConfigParameter;
 import java.math.BigInteger;
 
 import org.artop.aal.autosar40.constraints.ecuc.internal.Activator;
+import org.artop.aal.autosar40.constraints.ecuc.util.EcucUtil40;
 import org.artop.aal.gautosar.constraints.ecuc.AbstractGParameterValueConstraint;
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
@@ -105,7 +106,8 @@ public class EcucNumericalParamValueBasicConstraint extends AbstractGParameterVa
 						if (mixed != null) {
 							BigInteger min = new BigInteger(mixed);
 							if (value.compareTo(min) < 0) {
-								multiStatus.add(ctx.createFailureStatus(EcucConstraintMessages.boundary_valueUnderMin));
+								multiStatus.add(ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.boundary_valueUnderMin, new Object[] { value,
+										min })));
 							}
 
 						}
@@ -116,7 +118,8 @@ public class EcucNumericalParamValueBasicConstraint extends AbstractGParameterVa
 						if (mixed != null) {
 							BigInteger max = new BigInteger(mixed);
 							if (value.compareTo(max) > 0) {
-								multiStatus.add(ctx.createFailureStatus(EcucConstraintMessages.boundary_valueAboveMax));
+								multiStatus.add(ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.boundary_valueAboveMax, new Object[] { value,
+										max })));
 							}
 						}
 					}
@@ -126,7 +129,8 @@ public class EcucNumericalParamValueBasicConstraint extends AbstractGParameterVa
 			if (definition instanceof EcucFloatParamDef) {
 				Double value = null;
 				try {
-					value = Double.valueOf(valueVarPoint.getMixedText());
+					value = EcucUtil40.convertStringToDouble(valueVarPoint.getMixedText());
+
 				} catch (NumberFormatException ex) {
 					multiStatus.add(ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.numericalParamValue_valueTypeDoesNotMatchDefType,
 							mixedText)));
@@ -139,9 +143,14 @@ public class EcucNumericalParamValueBasicConstraint extends AbstractGParameterVa
 						String mixed = minVarPoint.getMixedText();
 						if (mixed != null) {
 							try {
-								Double min = Double.valueOf(mixed);
+								Double min = EcucUtil40.convertStringToDouble(mixed);
 								if (value.compareTo(min) < 0) {
-									multiStatus.add(ctx.createFailureStatus(EcucConstraintMessages.boundary_valueUnderMin));
+
+									String valueAsString = EcucUtil40.convertDoubleToString(value);
+									String minAsString = EcucUtil40.convertDoubleToString(min);
+
+									multiStatus.add(ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.boundary_valueUnderMin, new Object[] {
+											valueAsString, minAsString })));
 								}
 							} catch (NumberFormatException nfe) {
 								multiStatus
@@ -155,9 +164,13 @@ public class EcucNumericalParamValueBasicConstraint extends AbstractGParameterVa
 						String mixed = maxVarPoint.getMixedText();
 						if (mixed != null) {
 							try {
-								Double max = Double.valueOf(mixed);
+								Double max = EcucUtil40.convertStringToDouble(mixed);
 								if (value.compareTo(max) > 0) {
-									multiStatus.add(ctx.createFailureStatus(EcucConstraintMessages.boundary_valueAboveMax));
+
+									String valueAsString = EcucUtil40.convertDoubleToString(value);
+									String maxAsString = EcucUtil40.convertDoubleToString(max);
+									multiStatus.add(ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.boundary_valueAboveMax, new Object[] {
+											valueAsString, maxAsString })));
 								}
 							} catch (NumberFormatException nfe) {
 								multiStatus

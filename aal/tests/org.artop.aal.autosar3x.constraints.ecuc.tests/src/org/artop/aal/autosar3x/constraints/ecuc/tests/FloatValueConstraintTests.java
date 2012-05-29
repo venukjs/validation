@@ -59,12 +59,14 @@ public class FloatValueConstraintTests extends AbstractAutosar3xValidationTestCa
 	// test correctness
 	public void testInvalidFloatValue_valueLowerThanMin() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/FloatValue/valueLowerThanMin.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.boundary_valueUnderMin);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(EcucConstraintMessages.boundary_valueUnderMin, new Object[] { 13.666, 666 }));
 	}
 
 	public void testInvalidFloatValue_valueBiggerThanMax() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/FloatValue/valueBiggerThanMax.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.boundary_valueAboveMax);
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(EcucConstraintMessages.boundary_valueAboveMax, new Object[] { 13.666, 0 }));
 	}
 
 	// test valid

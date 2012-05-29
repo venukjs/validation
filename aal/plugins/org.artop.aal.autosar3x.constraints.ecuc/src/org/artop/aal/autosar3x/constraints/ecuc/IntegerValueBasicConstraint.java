@@ -25,6 +25,7 @@ import org.artop.aal.gautosar.constraints.ecuc.GIntegerValueBasicConstraint;
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
+import org.eclipse.osgi.util.NLS;
 
 import autosar3x.ecucdescription.IntegerValue;
 import autosar3x.ecucparameterdef.IntegerParamDef;
@@ -46,7 +47,7 @@ public class IntegerValueBasicConstraint extends GIntegerValueBasicConstraint {
 			if (true == definition.isSetMin()) {
 				BigInteger minLimit = definition.getMin();
 				if (value.compareTo(minLimit) < 0) {
-					status = ctx.createFailureStatus(EcucConstraintMessages.boundary_valueUnderMin);
+					status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.boundary_valueUnderMin, new Object[] { value, minLimit }));
 				}
 			}
 
@@ -54,7 +55,7 @@ public class IntegerValueBasicConstraint extends GIntegerValueBasicConstraint {
 			if (true == definition.isSetMax()) {
 				BigInteger maxLimit = definition.getMax();
 				if (value.compareTo(maxLimit) > 0) {
-					status = ctx.createFailureStatus(EcucConstraintMessages.boundary_valueAboveMax);
+					status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.boundary_valueAboveMax, new Object[] { value, maxLimit }));
 				}
 			}
 		}
