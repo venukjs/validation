@@ -14,6 +14,10 @@
  */
 package org.artop.aal.examples.autosar3x.constraints.tests.integration.constraints;
 
+import static org.artop.aal.testutils.integration.referenceworkspace.AutosarTestReferenceWorkspace.AR_FILE_NAME_3x_3xA_4;
+import static org.artop.aal.testutils.integration.referenceworkspace.AutosarTestReferenceWorkspace.AR_PROJECT_NAME_3x_A;
+import static org.eclipse.emf.common.util.Diagnostic.WARNING;
+
 import java.util.List;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
@@ -21,6 +25,7 @@ import org.artop.aal.examples.autosar3x.constraints.ARPackageSpecificNamingConve
 import org.artop.aal.testutils.integration.referenceworkspace.AbstractAutosarIntegrationTestCase;
 import org.artop.aal.testutils.integration.referenceworkspace.AutosarTestReferenceWorkspace;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
@@ -51,10 +56,14 @@ public class ExampleValidationConstraintsTest extends AbstractAutosarIntegration
 	private static String SHORTNAME_OF_IDENTIFIABLE_ELEMENTS_MUST_BE_UNIQUE_3x_CONSTRAINT_ID = "org.artop.aal.examples.autosar3x.constraints.ShortNameOfIdentifiableElementsMustBeUnique_3x";
 	private static int SHORTNAME_OF_IDENTIFIABLE_ELEMENTS_MUST_BE_UNIQUE_3x_CONSTRAINT_CODE = 104;
 
+	public ExampleValidationConstraintsTest() throws CoreException {
+		super(AR_PROJECT_NAME_3x_A);
+	}
+
 	@Override
 	protected String[] getProjectsToLoad() {
 
-		return new String[] { AutosarTestReferenceWorkspace.AR_PROJECT_NAME_3x_A };
+		return new String[] { AR_PROJECT_NAME_3x_A };
 	}
 
 	// TODO move this method to AutosarAbstractTestCase when this classes will be created (i.e after test framework
@@ -69,46 +78,34 @@ public class ExampleValidationConstraintsTest extends AbstractAutosarIntegration
 	 * Test method for {@link ARPackageSpecificNamingConvention3xConstraint#validate(IValidationContext)}
 	 */
 	public void testValidationConstraint_ARPackageSpecificNamingConvention3xConstraint() {
-		// we retrieve arFile3x_3xA_4.arxml file from arProject3x_A
-		IFile arProject3xAFile3x_4 = refWks.getReferenceFile(AutosarTestReferenceWorkspace.AR_PROJECT_NAME_3x_A,
-				AutosarTestReferenceWorkspace.AR_FILE_NAME_3x_3xA_4);
-		// ExtendedDiagnostician diagnostician = new ExtendedDiagnostician();
-		ExtendedDiagnostician diagnostician = new ExtendedDiagnostician();
-		// we retrieve ARPackage named badpackage
+		IFile arProject3xAFile3x_4 = refWks.getReferenceFile(AR_PROJECT_NAME_3x_A, AR_FILE_NAME_3x_3xA_4);
 		ARPackage badPackage = getArObject(arProject3xAFile3x_4.getFullPath(), "/badPackage", ARPackage.class); //$NON-NLS-1$
 		assertNotNull(badPackage);
-		// we ensure that retrieved Arpackage exist
 
-		Diagnostic diagnostic = diagnostician.validate(badPackage);
+		Diagnostic diagnostic = new ExtendedDiagnostician().validate(badPackage);
 		assertNotNull(diagnostic);
-		// we check that data point by root diagnostic is previously validated model object
+
 		List<?> data = diagnostic.getData();
-		assertNotNull(data);
 		assertFalse(data.isEmpty());
 		assertEquals(badPackage, data.get(0));
-		// We check that expected ERROR severity was correctly set to diagnostic object
-		assertEquals(Diagnostic.WARNING, diagnostic.getSeverity());
+
+		assertEquals(WARNING, diagnostic.getSeverity());
 		assertEquals(0, diagnostic.getCode());
 		List<Diagnostic> diagnosticChildren = diagnostic.getChildren();
-		for (Diagnostic diagnosticChild : diagnosticChildren) {
-			System.out.println(diagnosticChild.getMessage() + " (" + diagnosticChild.getSeverity() + ") ["
-					+ AutosarURIFactory.getAbsoluteQualifiedName(diagnosticChild.getData().get(0)) + "]");
-		}
+
 		assertEquals(1, diagnosticChildren.size());
 		Diagnostic childDiagnostic = diagnosticChildren.get(0);
 		assertTrue(childDiagnostic instanceof ExtendedDiagnostic);
-		assertNotNull(childDiagnostic);
 		assertTrue(childDiagnostic.getChildren().isEmpty());
 		// we ensure that child severity is the same as parent and as expected
-		assertEquals(Diagnostic.WARNING, childDiagnostic.getSeverity());
+		assertEquals(WARNING, childDiagnostic.getSeverity());
 		// we ensure that the violated rule is the expected one
 		assertEquals(ARPACKAGE_SPECIFIQUE_NAMING_CONVENTION_3x_CONSTRAINT_CODE, childDiagnostic.getCode());
 		assertEquals(ARPACKAGE_SPECIFIQUE_NAMING_CONVENTION_3x_CONSTRAINT_ID, ((ExtendedDiagnostic) childDiagnostic).getConstraintId());
 		// we ensure that data element stored is the expected element violating a rule
 		List<?> childData = childDiagnostic.getData();
-		assertNotNull(childData);
-		assertEquals(childData.get(0), badPackage);
-
+		assertFalse(data.isEmpty());
+		assertEquals(badPackage, childData.get(0));
 	}
 
 	public void testValidationConstraint_ModuleDefMultiplicityShouldBeTheSame3xConstraint() {
