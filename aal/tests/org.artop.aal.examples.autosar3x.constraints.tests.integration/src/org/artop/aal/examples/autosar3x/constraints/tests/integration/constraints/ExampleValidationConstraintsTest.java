@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) See4sys and others.
+ * Copyright (c) 4, 2012ee4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
@@ -60,25 +60,19 @@ public class ExampleValidationConstraintsTest extends AbstractAutosarIntegration
 		super(AR_PROJECT_NAME_3x_A);
 	}
 
-	@Override
-	protected String[] getProjectsToLoad() {
-
-		return new String[] { AR_PROJECT_NAME_3x_A };
-	}
-
 	// TODO move this method to AutosarAbstractTestCase when this classes will be created (i.e after test framework
 	// refactoring performed)
 	private <T extends ARObject> T getArObject(IPath modelFilePath, String absoluteQualifiedName, Class<T> modelElementType) {
 		URI modelFileURI = EcorePlatformUtil.createURI(modelFilePath);
 		String uriFragment = AutosarURIFactory.createURIFragment(absoluteQualifiedName, modelElementType.getSimpleName());
-		return modelElementType.cast(refWks.editingDomain3x.getResourceSet().getEObject(modelFileURI.appendFragment(uriFragment), false));
+		return modelElementType.cast(getRefWks().editingDomain3x.getResourceSet().getEObject(modelFileURI.appendFragment(uriFragment), false));
 	}
 
 	/**
 	 * Test method for {@link ARPackageSpecificNamingConvention3xConstraint#validate(IValidationContext)}
 	 */
 	public void testValidationConstraint_ARPackageSpecificNamingConvention3xConstraint() {
-		IFile arProject3xAFile3x_4 = refWks.getReferenceFile(AR_PROJECT_NAME_3x_A, AR_FILE_NAME_3x_3xA_4);
+		IFile arProject3xAFile3x_4 = getRefWks().getReferenceFile(AR_PROJECT_NAME_3x_A, AR_FILE_NAME_3x_3xA_4);
 		ARPackage badPackage = getArObject(arProject3xAFile3x_4.getFullPath(), "/badPackage", ARPackage.class); //$NON-NLS-1$
 		assertNotNull(badPackage);
 
@@ -110,7 +104,7 @@ public class ExampleValidationConstraintsTest extends AbstractAutosarIntegration
 
 	public void testValidationConstraint_ModuleDefMultiplicityShouldBeTheSame3xConstraint() {
 		// we retrieve arFile3x_3xA_4.arxml file from arProject3x_A
-		IFile arProject3xAFile3x_4 = refWks.getReferenceFile(AutosarTestReferenceWorkspace.AR_PROJECT_NAME_3x_A,
+		IFile arProject3xAFile3x_4 = getRefWks().getReferenceFile(AutosarTestReferenceWorkspace.AR_PROJECT_NAME_3x_A,
 				AutosarTestReferenceWorkspace.AR_FILE_NAME_3x_3xA_4);
 		// We retrieve ARPackage named arpackage3
 		ARPackage arPackage3 = getArObject(arProject3xAFile3x_4.getFullPath(), "/arpackage3", ARPackage.class); //$NON-NLS-1$
@@ -162,7 +156,7 @@ public class ExampleValidationConstraintsTest extends AbstractAutosarIntegration
 	 */
 	public void testValidationConstraint_IdentifiableElementsMustHaveAValidShortName_3x() {
 		// we retrieve arFile3x_3xA_4.arxml file from arProject3x_A
-		IFile arProject3xAFile3x_4 = refWks.getReferenceFile(AutosarTestReferenceWorkspace.AR_PROJECT_NAME_3x_A,
+		IFile arProject3xAFile3x_4 = getRefWks().getReferenceFile(AutosarTestReferenceWorkspace.AR_PROJECT_NAME_3x_A,
 				AutosarTestReferenceWorkspace.AR_FILE_NAME_3x_3xA_4);
 		// We retrieve ARPackage named arpackage1
 		ARPackage arPackage1 = getArObject(arProject3xAFile3x_4.getFullPath(), "/arpackage1", ARPackage.class); //$NON-NLS-1$
@@ -214,7 +208,7 @@ public class ExampleValidationConstraintsTest extends AbstractAutosarIntegration
 	 */
 	public void testValidationConstraint_ShortNameOfIdentifiableElementsMustBeUnique_3x() {
 		// we retrieve arFile3x_3xA_4.arxml file from arProject3x_A
-		IFile arProject3xAFile3x_4 = refWks.getReferenceFile(AutosarTestReferenceWorkspace.AR_PROJECT_NAME_3x_A,
+		IFile arProject3xAFile3x_4 = getRefWks().getReferenceFile(AutosarTestReferenceWorkspace.AR_PROJECT_NAME_3x_A,
 				AutosarTestReferenceWorkspace.AR_FILE_NAME_3x_3xA_4);
 
 		// We retrieve ARPackage named arpackage2
