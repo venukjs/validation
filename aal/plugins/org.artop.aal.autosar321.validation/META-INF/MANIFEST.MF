@@ -7,8 +7,6 @@ Bundle-Activator: org.artop.aal.autosar321.validation.internal.Activator
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Require-Bundle: org.artop.aal.validation;visibility:=reexport,
- org.artop.aal.autosar3x;visibility:=reexport
+ org.artop.aal.autosar321;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.artop.aal.autosar321.validation.internal;x-internal:=true,
- org.artop.aal.autosar321.validation.listeners

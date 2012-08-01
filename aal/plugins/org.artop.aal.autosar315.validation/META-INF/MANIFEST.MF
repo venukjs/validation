@@ -10,5 +10,3 @@ Require-Bundle: org.artop.aal.validation;visibility:=reexport,
  org.artop.aal.autosar315;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.artop.aal.autosar315.validation.internal;x-internal:=true,
- org.artop.aal.autosar315.validation.listeners
