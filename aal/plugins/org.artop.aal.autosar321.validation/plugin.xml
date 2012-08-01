@@ -29,22 +29,6 @@ Contributors:
       </model>
    </extension>
 
-   <extension point="org.eclipse.emf.validation.constraintBindings">
-        <clientContext id="autosar3x.ARObject.context">
-            <enablement>
-                <instanceof value="autosar3x.genericstructure.infrastructure.ARObject"/>
-            </enablement>
-        </clientContext>
-   </extension>
 
-   <extension
-         point="org.eclipse.sphinx.emf.editingDomainFactoryListeners">
-      <listener
-            id="org.artop.aal.autosar321.validation.internal.ValidationEditingDomainFactoryListener"
-            class="org.artop.aal.autosar321.validation.internal.ValidationEditingDomainFactoryListener">
-         <applicableFor
-               metaModelDescriptorIdPattern="org.artop.aal.autosar3x" />
-      </listener>
-   </extension>
 
 </plugin>
