@@ -14,6 +14,7 @@
  */
 package org.artop.aal.autosar40.constraints.ecuc.tests;
 
+import org.artop.aal.autosar40.gautosar40.ecucparameterdef.GEcucDefinitionElement40XAdapter;
 import org.artop.aal.autosar40.tests.AbstractAutosar40TestCase;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
 import org.eclipse.emf.common.util.EList;
@@ -24,9 +25,6 @@ import autosar40.ecucparameterdef.EcucParamConfContainerDef;
 import autosar40.ecucparameterdef.EcucparameterdefFactory;
 import autosar40.genericstructure.generaltemplateclasses.arpackage.ARPackage;
 import autosar40.genericstructure.generaltemplateclasses.arpackage.PackageableElement;
-import autosar40.genericstructure.varianthandling.BooleanValueVariationPoint;
-import autosar40.genericstructure.varianthandling.PositiveIntegerValueVariationPoint;
-import autosar40.genericstructure.varianthandling.VarianthandlingFactory;
 import autosar40.util.Autosar40Factory;
 
 public class EcucUtilTest extends AbstractAutosar40TestCase {
@@ -48,9 +46,7 @@ public class EcucUtilTest extends AbstractAutosar40TestCase {
 		EcucModuleDef moduleDef = EcucparameterdefFactory.eINSTANCE.createEcucModuleDef();
 		moduleDef.setShortName("VendorMD"); //$NON-NLS-1$
 
-		PositiveIntegerValueVariationPoint vp = VarianthandlingFactory.eINSTANCE.createPositiveIntegerValueVariationPoint();
-		vp.setMixedText("1"); //$NON-NLS-1$
-		moduleDef.setUpperMultiplicity(vp);
+		new GEcucDefinitionElement40XAdapter(moduleDef).setUpperMultiplicityValue("1"); //$NON-NLS-1$
 		arPackage.getElements().add(moduleDef);
 
 		EcucParamConfContainerDef containerDef1 = createEcucParamConfContainerDef("EcucParamConfContainerDef1", "1", "1", true); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
@@ -107,21 +103,12 @@ public class EcucUtilTest extends AbstractAutosar40TestCase {
 
 		containerDef1.setShortName(shortName);
 
-		PositiveIntegerValueVariationPoint vp = VarianthandlingFactory.eINSTANCE.createPositiveIntegerValueVariationPoint();
-		vp.setMixedText(lower);
+		GEcucDefinitionElement40XAdapter cDef = new GEcucDefinitionElement40XAdapter(containerDef1);
+		cDef.setLowerMultiplicityValue(lower);
 
-		containerDef1.setLowerMultiplicity(vp);
+		cDef.setUpperMultiplicityValue(upper);
 
-		vp = VarianthandlingFactory.eINSTANCE.createPositiveIntegerValueVariationPoint();
-		vp.setMixedText(upper);
-
-		containerDef1.setUpperMultiplicity(vp);
-
-		BooleanValueVariationPoint bvp = VarianthandlingFactory.eINSTANCE.createBooleanValueVariationPoint();
-		if (upperInfinite != null) {
-			bvp.setMixedText(upperInfinite.toString());
-			containerDef1.setUpperMultiplicityInfinite(bvp);
-		}
+		cDef.setUpperMultiplicityInfiniteValue(upperInfinite.toString());
 
 		return containerDef1;
 
