@@ -8,11 +8,11 @@ Bundle-Activator: org.artop.aal.autosar40.constraints.ecuc.internal.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.artop.aal.gautosar.constraints.ecuc,
  org.eclipse.sphinx.emf.validation,
- org.artop.aal.autosar40
+ org.artop.aal.autosar40,
+ org.artop.aal.gautosar.services
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
 Export-Package: org.artop.aal.autosar40.constraints.ecuc,
  org.artop.aal.autosar40.constraints.ecuc.internal;x-internal:=true,
- org.artop.aal.autosar40.constraints.ecuc.internal.messages;x-internal:=true,
- org.artop.aal.autosar40.constraints.ecuc.util
+ org.artop.aal.autosar40.constraints.ecuc.internal.messages;x-internal:=true

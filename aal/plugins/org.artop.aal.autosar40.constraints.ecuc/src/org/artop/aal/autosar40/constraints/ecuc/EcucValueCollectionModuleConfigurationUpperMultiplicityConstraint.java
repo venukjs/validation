@@ -31,7 +31,7 @@ import autosar40.ecucdescription.EcucModuleConfigurationValues;
 import autosar40.ecucdescription.EcucModuleConfigurationValuesRefConditional;
 import autosar40.ecucdescription.EcucValueCollection;
 import autosar40.ecucparameterdef.EcucModuleDef;
-import autosar40.genericstructure.varianthandling.PositiveIntegerValueVariationPoint;
+import autosar40.genericstructure.formulalanguage.FormulaExpression;
 
 /**
  * The class validate the constraint for EcucValueCollection. EcucModuleConfigurationValues reference in each
@@ -82,7 +82,7 @@ public class EcucValueCollectionModuleConfigurationUpperMultiplicityConstraint e
 			 * The upper multiplicity definition.
 			 */
 			String upperMultiplicity = new String();
-			PositiveIntegerValueVariationPoint upperVarPoint = ((EcucModuleDef) moduleDef).getUpperMultiplicity();
+			FormulaExpression upperVarPoint = ((EcucModuleDef) moduleDef).getUpperMultiplicity();
 			if (upperVarPoint != null) {
 				upperMultiplicity = upperVarPoint.getMixedText();
 			}

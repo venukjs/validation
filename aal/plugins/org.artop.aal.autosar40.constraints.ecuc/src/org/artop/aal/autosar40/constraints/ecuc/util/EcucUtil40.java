@@ -31,8 +31,7 @@ import autosar40.ecucparameterdef.EcucMultilineStringParamDef;
 import autosar40.ecucparameterdef.EcucMultilineStringParamDefConditional;
 import autosar40.ecucparameterdef.EcucStringParamDef;
 import autosar40.ecucparameterdef.EcucStringParamDefConditional;
-import autosar40.genericstructure.varianthandling.FloatValueVariationPoint;
-import autosar40.genericstructure.varianthandling.UnlimitedIntegerValueVariationPoint;
+import autosar40.genericstructure.formulalanguage.FormulaExpression;
 
 public class EcucUtil40 {
 
@@ -127,7 +126,7 @@ public class EcucUtil40 {
 	public static Object getMin(EObject eObject) {
 		// Get EcucFloatParamDef's Min value
 		if (eObject instanceof EcucFloatParamDef) {
-			FloatValueVariationPoint minVarPoint = ((EcucFloatParamDef) eObject).getMin();
+			FormulaExpression minVarPoint = ((EcucFloatParamDef) eObject).getMin();
 			if (minVarPoint != null) {
 				String mixed = minVarPoint.getMixedText();
 				if (mixed != null) {
@@ -142,7 +141,7 @@ public class EcucUtil40 {
 		}
 		// Get EcucIntegerParamDef's Min value
 		else if (eObject instanceof EcucIntegerParamDef) {
-			UnlimitedIntegerValueVariationPoint minVarPoint = ((EcucIntegerParamDef) eObject).getMin();
+			FormulaExpression minVarPoint = ((EcucIntegerParamDef) eObject).getMin();
 			if (minVarPoint != null) {
 				String mixed = minVarPoint.getMixedText();
 				if (mixed != null) {
@@ -168,7 +167,7 @@ public class EcucUtil40 {
 	public static Object getMax(EObject eObject) {
 		// Get EcucFloatParamDef's Max value
 		if (eObject instanceof EcucFloatParamDef) {
-			FloatValueVariationPoint maxVarPoint = ((EcucFloatParamDef) eObject).getMax();
+			FormulaExpression maxVarPoint = ((EcucFloatParamDef) eObject).getMax();
 			if (maxVarPoint != null) {
 				String mixed = maxVarPoint.getMixedText();
 				if (mixed != null) {
@@ -184,7 +183,7 @@ public class EcucUtil40 {
 		}
 		// Get EcucFloatParamDef's Max value
 		else if (eObject instanceof EcucIntegerParamDef) {
-			UnlimitedIntegerValueVariationPoint maxVarPoint = ((EcucIntegerParamDef) eObject).getMax();
+			FormulaExpression maxVarPoint = ((EcucIntegerParamDef) eObject).getMax();
 			if (maxVarPoint != null) {
 				String mixed = maxVarPoint.getMixedText();
 				if (mixed != null) {

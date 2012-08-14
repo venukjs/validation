@@ -22,7 +22,7 @@ import org.artop.aal.autosar40.constraints.ecuc.util.EcucUtil40;
 import org.artop.aal.gautosar.constraints.ecuc.AbstractGIntegerParamDefDefaultValueConstraint;
 
 import autosar40.ecucparameterdef.EcucIntegerParamDef;
-import autosar40.genericstructure.varianthandling.UnlimitedIntegerValueVariationPoint;
+import autosar40.genericstructure.formulalanguage.FormulaExpression;
 
 public class EcucIntegerParamDefDefaultValueConstraint extends AbstractGIntegerParamDefDefaultValueConstraint {
 
@@ -55,7 +55,7 @@ public class EcucIntegerParamDefDefaultValueConstraint extends AbstractGIntegerP
 
 	@Override
 	protected boolean isDefaultValueSet(GIntegerParamDef integerParamDef) {
-		UnlimitedIntegerValueVariationPoint defaultValue = ((EcucIntegerParamDef) integerParamDef).getDefaultValue();
+		FormulaExpression defaultValue = ((EcucIntegerParamDef) integerParamDef).getDefaultValue();
 		return defaultValue != null && defaultValue.isSetMixed();
 	}
 
