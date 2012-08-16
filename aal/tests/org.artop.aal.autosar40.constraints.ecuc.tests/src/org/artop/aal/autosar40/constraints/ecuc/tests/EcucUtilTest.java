@@ -108,7 +108,9 @@ public class EcucUtilTest extends AbstractAutosar40TestCase {
 
 		cDef.setUpperMultiplicityValue(upper);
 
-		cDef.setUpperMultiplicityInfiniteValue(upperInfinite.toString());
+		if (upperInfinite != null) {
+			cDef.setUpperMultiplicityInfiniteValue(upperInfinite.toString());
+		}
 
 		return containerDef1;
 
