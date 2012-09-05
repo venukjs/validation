@@ -111,6 +111,18 @@ public abstract class AbstractGConfigReferenceValueConstraint extends AbstractMo
 	}
 
 	/**
+	 * Returns the meta class name used for destination type and destination context. AUTOSAR 4.0 uses the XML name of
+	 * the meta class unlike AUTOSAR 3x which use directly the EClass name. This method should be override by AUTOSAR 40
+	 * constraints to return the XML name from the ExtendedMetaData
+	 * 
+	 * @param eObject
+	 * @return
+	 */
+	protected String getMetaClassName(EClass eClass) {
+		return eClass.getName();
+	}
+
+	/**
 	 * Checks whether the given <code>instance</code> is an instance of the destination with the given
 	 * <code>destinationTypeName</code>.
 	 * 
@@ -132,7 +144,7 @@ public abstract class AbstractGConfigReferenceValueConstraint extends AbstractMo
 		EClass destinationEClass = service.findEClass(destinationTypeName);
 
 		EClass metaClass = instance.eClass();
-		String metaClassName = metaClass.getName();
+		String metaClassName = getMetaClassName(metaClass);
 
 		if (metaClassName.equals(destinationTypeName) || metaClass.equals(destinationEClass)) {
 			isInstanceOfDestinationType = true;
@@ -142,7 +154,7 @@ public abstract class AbstractGConfigReferenceValueConstraint extends AbstractMo
 			// super type
 			for (EClass superType : metaClass.getESuperTypes()) {
 				// check if destination type is a super type of value class
-				if (superType.getName().equals(destinationTypeName) || superType.equals(destinationEClass)) {
+				if (getMetaClassName(superType).equals(destinationTypeName) || superType.equals(destinationEClass)) {
 					isInstanceOfDestinationType = true;
 					break;
 				}
