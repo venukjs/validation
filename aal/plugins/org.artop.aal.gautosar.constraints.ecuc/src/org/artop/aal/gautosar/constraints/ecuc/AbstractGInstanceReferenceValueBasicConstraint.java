@@ -158,9 +158,9 @@ public abstract class AbstractGInstanceReferenceValueBasicConstraint extends Abs
 				String[] splitContext = destinationContext.split(" "); //$NON-NLS-1$
 				String ctxClassName;
 
-				for (int i = 0; i < contextList.size(); i++) {
+				for (GIdentifiable identifiable : contextList) {
 
-					String eClassName = contextList.get(i).eClass().getName();
+					String eClassName = getMetaClassName(identifiable.eClass());
 					// convert value context to a String, each item separated by a
 					// space
 					contextBuffer.append(eClassName);
@@ -182,7 +182,7 @@ public abstract class AbstractGInstanceReferenceValueBasicConstraint extends Abs
 								}
 							} else
 
-							if (ctxClassName.equals(eClassName) && !isInstanceOfDestinationType(contextList.get(i), context)) {
+							if (ctxClassName.equals(eClassName) && !isInstanceOfDestinationType(identifiable, context)) {
 								status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.reference_contextNotAvailable, context));
 							}
 						} else {
