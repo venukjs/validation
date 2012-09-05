@@ -153,8 +153,8 @@ public abstract class AbstractGInstanceReferenceValueBasicConstraint extends Abs
 			if (contextList.size() > 0) {
 				// convert value context to a String, each item separated by a
 				// space
-				for (int i = 0; i < contextList.size(); i++) {
-					contextBuffer.append(contextList.get(i).eClass().getName());
+				for (GIdentifiable identifiable : contextList) {
+					contextBuffer.append(getMetaClassName(identifiable.eClass()));
 					contextBuffer.append(" "); //$NON-NLS-1$
 				}
 			}
