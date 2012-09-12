@@ -14,6 +14,8 @@
  */
 package org.artop.aal.autosar40.validation.listeners;
 
+import static autosar40.genericstructure.generaltemplateclasses.identifiable.IdentifiablePackage.Literals.REFERRABLE__SHORT_NAME;
+
 import java.util.List;
 
 import org.artop.aal.validation.listeners.AbstractAutomaticValidationListener;
@@ -47,7 +49,7 @@ public class AutomaticValidation40Listener extends AbstractAutomaticValidationLi
 			if (notification instanceof ENotificationImpl && notification.getNotifier() instanceof EObject) {
 				EClassifier ownerType = IdentifiablePackage.eINSTANCE.getIdentifiable();
 				return ownerType.isInstance(notification.getNotifier())
-						&& notification.getFeatureID(ownerType.getInstanceClass()) == IdentifiablePackage.IDENTIFIABLE__SHORT_NAME;
+						&& notification.getFeatureID(ownerType.getInstanceClass()) == REFERRABLE__SHORT_NAME.getFeatureID();
 			}
 		}
 

@@ -14,6 +14,8 @@
  */
 package org.artop.aal.autosar40.validation.listeners;
 
+import static autosar40.genericstructure.generaltemplateclasses.identifiable.IdentifiablePackage.Literals.REFERRABLE__SHORT_NAME;
+
 import org.artop.aal.validation.listeners.AbstractProblemMarkerIntegrityListener;
 import org.eclipse.emf.transaction.NotificationFilter;
 
@@ -32,7 +34,7 @@ public class ProblemMarkerIntegrity40Listener extends AbstractProblemMarkerInteg
 	 * the resource.
 	 */
 	private final static NotificationFilter filter = NotificationFilter.createFeatureFilter(IdentifiablePackage.eINSTANCE.getIdentifiable(),
-			IdentifiablePackage.IDENTIFIABLE__SHORT_NAME);
+			REFERRABLE__SHORT_NAME.getFeatureID());
 
 	/**
 	 * Constructor.
