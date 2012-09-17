@@ -57,15 +57,15 @@ public class InstanceReferenceValueConstraintTests extends AbstractAutosar40Vali
 
 	public void testInvalidInstanceReferenceValue_wrongContextOrder() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/wrongContextOrder.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
-				NLS.bind(EcucConstraintMessages.instanceref_valueNotMatchDestContext, new String[] { "(PPortPrototype )(SwComponentPrototype )" }));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, NLS.bind(
+				EcucConstraintMessages.instanceref_valueNotMatchDestContext, new String[] { "(P-PORT-PROTOTYPE )(SW-COMPONENT-PROTOTYPE )" }));
 	}
 
 	public void testInvalidInstanceReferenceValue_contextTypeNoContextValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/contextTypeNoContextValue.arxml");
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, NLS.bind(
 				EcucConstraintMessages.instanceref_valueNotMatchDestContext,
-				new String[] { "(SwComponentPrototype )*(PPortPrototype )(RootSwCompositionPrototype )" }));
+				new String[] { "(SW-COMPONENT-PROTOTYPE )*(P-PORT-PROTOTYPE )(ROOT-SW-COMPOSITION-PROTOTYPE )" }));
 	}
 
 	public void testInvalidInstanceReferenceValue_contextTypeNoContextValueWithMultiplicity() throws Exception {
