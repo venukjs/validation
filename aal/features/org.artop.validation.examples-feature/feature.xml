@@ -17,10 +17,6 @@
       %license
    </license>
 
-   <includes
-         id="org.artop.examples321"
-         version="0.0.0"/>
-
    <requires>
       <import feature="org.artop.validation" version="3.3.0"/>
       <import feature="org.artop.core.examples.demonstrator" version="3.3.0"/>
