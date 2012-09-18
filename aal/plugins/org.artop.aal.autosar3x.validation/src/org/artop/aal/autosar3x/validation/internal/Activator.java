@@ -14,7 +14,9 @@
  */
 package org.artop.aal.autosar3x.validation.internal;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Plugin;
+import org.eclipse.osgi.util.ManifestElement;
 import org.eclipse.sphinx.emf.validation.evalidator.adapter.EValidatorRegistering;
 import org.osgi.framework.BundleContext;
 
@@ -44,7 +46,15 @@ public class Activator extends Plugin {
 		plugin = this;
 
 		// Let's registering EValidator for each contribution to org.eclipse.sphinx.emf.validation.registration.
-		EValidatorRegistering.getSingleton().eValidatorSetAllContributions(Activator.PLUGIN_ID);
+		for (String requiredBundle : ManifestElement.getArrayFromList(getDefault().getBundle().getHeaders().get("Require-Bundle"))) { //$NON-NLS-1$
+			if (requiredBundle.matches("org\\.artop\\.aal\\.autosar\\d\\d\\d\\.validation.*")) { //$NON-NLS-1$
+				String validationBundleId = requiredBundle.substring(0, 35);
+				if (Platform.getBundle(validationBundleId) != null) {
+					EValidatorRegistering.getSingleton().eValidatorSetAllContributions(validationBundleId);
+				}
+			}
+		}
+
 	}
 
 	/*
