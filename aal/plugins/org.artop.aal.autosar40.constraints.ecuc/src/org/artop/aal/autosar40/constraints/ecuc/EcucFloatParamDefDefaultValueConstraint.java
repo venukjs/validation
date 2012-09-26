@@ -17,6 +17,7 @@ package org.artop.aal.autosar40.constraints.ecuc;
 import gautosar.gecucparameterdef.GFloatParamDef;
 
 import org.artop.aal.autosar40.constraints.ecuc.util.EcucUtil40;
+import org.artop.aal.autosar40.gautosar40.ecucparameterdef.GEcucFloatParamDef40XAdapter;
 import org.artop.aal.gautosar.constraints.ecuc.AbstractGFloatParamDefDefaultValueConstraint;
 
 import autosar40.ecucparameterdef.EcucFloatParamDef;
@@ -56,7 +57,7 @@ public class EcucFloatParamDefDefaultValueConstraint extends AbstractGFloatParam
 
 	@Override
 	protected boolean isDefaultValueSet(GFloatParamDef floatParamDef) {
-		FormulaExpression defaultValue = ((EcucFloatParamDef) floatParamDef).getDefaultValue();
+		FormulaExpression defaultValue = new GEcucFloatParamDef40XAdapter((EcucFloatParamDef) floatParamDef).getDefaultValue();
 		return defaultValue != null && defaultValue.isSetMixed();
 	}
 

@@ -21,6 +21,7 @@ import java.math.BigInteger;
 
 import org.artop.aal.autosar40.constraints.ecuc.internal.Activator;
 import org.artop.aal.autosar40.constraints.ecuc.util.EcucUtil40;
+import org.artop.aal.autosar40.gautosar40.ecucdescription.GEcucNumericalParamValue40XAdapter;
 import org.artop.aal.gautosar.constraints.ecuc.AbstractGParameterValueConstraint;
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
@@ -72,7 +73,7 @@ public class EcucNumericalParamValueBasicConstraint extends AbstractGParameterVa
 	protected IStatus validateValue(IValidationContext ctx, EcucNumericalParamValue ecucNumericalParamValue) {
 		MultiStatus multiStatus = new MultiStatus(Activator.PLUGIN_ID, 0, this.getClass().getName(), null);
 
-		FormulaExpression valueVarPoint = ecucNumericalParamValue.getValue();
+		FormulaExpression valueVarPoint = new GEcucNumericalParamValue40XAdapter(ecucNumericalParamValue).getValue();
 		GConfigParameter definition = ecucNumericalParamValue.gGetDefinition();
 
 		IStatus status = validateValueSet(ctx, ecucNumericalParamValue, valueVarPoint);
