@@ -15,6 +15,7 @@
 package org.artop.aal.autosar40.constraints.ecuc;
 
 import org.artop.aal.autosar40.constraints.ecuc.util.EcucUtil40;
+import org.artop.aal.autosar40.gautosar40.ecucparameterdef.GEcucFloatParamDef40XAdapter;
 import org.artop.aal.gautosar.constraints.ecuc.AbstractGFloatParamDefLowerLimitConstraint;
 import org.eclipse.emf.ecore.EObject;
 
@@ -30,7 +31,7 @@ public class EcucFloatParamDefLowerLimitConstraint extends AbstractGFloatParamDe
 	@Override
 	protected boolean isSetMin(EObject obj) {
 		if (obj instanceof EcucFloatParamDef) {
-			return ((EcucFloatParamDef) obj).getMin() != null;
+			return new GEcucFloatParamDef40XAdapter((EcucFloatParamDef) obj).getMin() != null;
 		}
 		return false;
 	}

@@ -17,6 +17,8 @@ package org.artop.aal.autosar40.constraints.ecuc.util;
 import java.math.BigInteger;
 import java.util.List;
 
+import org.artop.aal.autosar40.gautosar40.ecucparameterdef.GEcucFloatParamDef40XAdapter;
+import org.artop.aal.autosar40.gautosar40.ecucparameterdef.GEcucIntegerParamDef40XAdapter;
 import org.eclipse.emf.ecore.EObject;
 
 import autosar40.ecucparameterdef.EcucBooleanParamDef;
@@ -68,8 +70,9 @@ public class EcucUtil40 {
 		// Parameter is Float type
 		else if (eObject instanceof EcucFloatParamDef) {
 			EcucFloatParamDef pd = (EcucFloatParamDef) eObject;
-			if (pd.getDefaultValue() != null) {
-				return pd.getDefaultValue().getMixedText();
+			FormulaExpression defaultValue = new GEcucFloatParamDef40XAdapter(pd).getDefaultValue();
+			if (defaultValue != null) {
+				return defaultValue.getMixedText();
 			}
 
 		}
@@ -83,7 +86,7 @@ public class EcucUtil40 {
 		}
 		// Parameter is Integer type
 		else if (eObject instanceof EcucIntegerParamDef) {
-			EcucIntegerParamDef pd = (EcucIntegerParamDef) eObject;
+			GEcucIntegerParamDef40XAdapter pd = new GEcucIntegerParamDef40XAdapter((EcucIntegerParamDef) eObject);
 			if (pd.getDefaultValue() != null) {
 				return pd.getDefaultValue().getMixedText();
 			}
@@ -126,7 +129,7 @@ public class EcucUtil40 {
 	public static Object getMin(EObject eObject) {
 		// Get EcucFloatParamDef's Min value
 		if (eObject instanceof EcucFloatParamDef) {
-			FormulaExpression minVarPoint = ((EcucFloatParamDef) eObject).getMin();
+			FormulaExpression minVarPoint = new GEcucFloatParamDef40XAdapter((EcucFloatParamDef) eObject).getMin();
 			if (minVarPoint != null) {
 				String mixed = minVarPoint.getMixedText();
 				if (mixed != null) {
@@ -141,7 +144,7 @@ public class EcucUtil40 {
 		}
 		// Get EcucIntegerParamDef's Min value
 		else if (eObject instanceof EcucIntegerParamDef) {
-			FormulaExpression minVarPoint = ((EcucIntegerParamDef) eObject).getMin();
+			FormulaExpression minVarPoint = new GEcucIntegerParamDef40XAdapter((EcucIntegerParamDef) eObject).getMin();
 			if (minVarPoint != null) {
 				String mixed = minVarPoint.getMixedText();
 				if (mixed != null) {
@@ -167,7 +170,7 @@ public class EcucUtil40 {
 	public static Object getMax(EObject eObject) {
 		// Get EcucFloatParamDef's Max value
 		if (eObject instanceof EcucFloatParamDef) {
-			FormulaExpression maxVarPoint = ((EcucFloatParamDef) eObject).getMax();
+			FormulaExpression maxVarPoint = new GEcucFloatParamDef40XAdapter((EcucFloatParamDef) eObject).getMax();
 			if (maxVarPoint != null) {
 				String mixed = maxVarPoint.getMixedText();
 				if (mixed != null) {
@@ -183,7 +186,7 @@ public class EcucUtil40 {
 		}
 		// Get EcucFloatParamDef's Max value
 		else if (eObject instanceof EcucIntegerParamDef) {
-			FormulaExpression maxVarPoint = ((EcucIntegerParamDef) eObject).getMax();
+			FormulaExpression maxVarPoint = new GEcucIntegerParamDef40XAdapter((EcucIntegerParamDef) eObject).getMax();
 			if (maxVarPoint != null) {
 				String mixed = maxVarPoint.getMixedText();
 				if (mixed != null) {

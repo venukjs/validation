@@ -17,6 +17,7 @@ package org.artop.aal.autosar40.constraints.ecuc;
 import java.math.BigInteger;
 
 import org.artop.aal.autosar40.constraints.ecuc.util.EcucUtil40;
+import org.artop.aal.autosar40.gautosar40.ecucparameterdef.GEcucIntegerParamDef40XAdapter;
 import org.artop.aal.gautosar.constraints.ecuc.AbstractGIntegerParamDefUpperLimitConstraint;
 import org.eclipse.emf.ecore.EObject;
 
@@ -32,7 +33,7 @@ public class EcucIntegerParamDefUpperLimitConstraint extends AbstractGIntegerPar
 	@Override
 	protected boolean isSetMax(EObject obj) {
 		if (obj instanceof EcucIntegerParamDef) {
-			return ((EcucIntegerParamDef) obj).getMax() != null;
+			return new GEcucIntegerParamDef40XAdapter((EcucIntegerParamDef) obj).getMax() != null;
 		}
 		return false;
 	}

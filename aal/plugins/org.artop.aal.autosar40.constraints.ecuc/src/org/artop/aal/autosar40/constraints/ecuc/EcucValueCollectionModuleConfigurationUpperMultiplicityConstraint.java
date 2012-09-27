@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.artop.aal.autosar40.gautosar40.ecucparameterdef.GEcucDefinitionElement40XAdapter;
 import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.AbstractModelConstraintWithPrecondition;
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
@@ -82,7 +83,7 @@ public class EcucValueCollectionModuleConfigurationUpperMultiplicityConstraint e
 			 * The upper multiplicity definition.
 			 */
 			String upperMultiplicity = new String();
-			FormulaExpression upperVarPoint = ((EcucModuleDef) moduleDef).getUpperMultiplicity();
+			FormulaExpression upperVarPoint = new GEcucDefinitionElement40XAdapter((EcucModuleDef) moduleDef).getUpperMultiplicity();
 			if (upperVarPoint != null) {
 				upperMultiplicity = upperVarPoint.getMixedText();
 			}

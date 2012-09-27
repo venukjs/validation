@@ -15,6 +15,7 @@
 package org.artop.aal.autosar40.constraints.ecuc;
 
 import org.artop.aal.autosar40.constraints.ecuc.util.EcucUtil40;
+import org.artop.aal.autosar40.gautosar40.ecucparameterdef.GEcucFloatParamDef40XAdapter;
 import org.artop.aal.gautosar.constraints.ecuc.AbstractGFloatParamDefUpperLimitConstraint;
 import org.eclipse.emf.ecore.EObject;
 
@@ -30,7 +31,7 @@ public class EcucFloatParamDefUpperLimitConstraint extends AbstractGFloatParamDe
 	@Override
 	protected boolean isSetMax(EObject obj) {
 		if (obj instanceof EcucFloatParamDef) {
-			return ((EcucFloatParamDef) obj).getMax() != null;
+			return new GEcucFloatParamDef40XAdapter((EcucFloatParamDef) obj).getMax() != null;
 		}
 		return false;
 	}

@@ -22,6 +22,8 @@ import java.math.BigInteger;
 import org.artop.aal.autosar40.constraints.ecuc.internal.Activator;
 import org.artop.aal.autosar40.constraints.ecuc.util.EcucUtil40;
 import org.artop.aal.autosar40.gautosar40.ecucdescription.GEcucNumericalParamValue40XAdapter;
+import org.artop.aal.autosar40.gautosar40.ecucparameterdef.GEcucFloatParamDef40XAdapter;
+import org.artop.aal.autosar40.gautosar40.ecucparameterdef.GEcucIntegerParamDef40XAdapter;
 import org.artop.aal.gautosar.constraints.ecuc.AbstractGParameterValueConstraint;
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
@@ -99,7 +101,7 @@ public class EcucNumericalParamValueBasicConstraint extends AbstractGParameterVa
 				if (value != null) {
 					EcucIntegerParamDef ecucIntegerParamDef = (EcucIntegerParamDef) definition;
 
-					FormulaExpression minVarPoint = ecucIntegerParamDef.getMin();
+					FormulaExpression minVarPoint = new GEcucIntegerParamDef40XAdapter(ecucIntegerParamDef).getMin();
 					if (minVarPoint != null) {
 						String mixed = minVarPoint.getMixedText();
 						if (mixed != null) {
@@ -111,7 +113,7 @@ public class EcucNumericalParamValueBasicConstraint extends AbstractGParameterVa
 
 						}
 					}
-					FormulaExpression maxVarPoint = ecucIntegerParamDef.getMax();
+					FormulaExpression maxVarPoint = new GEcucIntegerParamDef40XAdapter(ecucIntegerParamDef).getMax();
 					if (maxVarPoint != null) {
 						String mixed = maxVarPoint.getMixedText();
 						if (mixed != null) {
@@ -137,7 +139,7 @@ public class EcucNumericalParamValueBasicConstraint extends AbstractGParameterVa
 				if (value != null) {
 					EcucFloatParamDef ecucFloatParamDef = (EcucFloatParamDef) definition;
 
-					FormulaExpression minVarPoint = ecucFloatParamDef.getMin();
+					FormulaExpression minVarPoint = new GEcucFloatParamDef40XAdapter(ecucFloatParamDef).getMin();
 					if (minVarPoint != null) {
 						String mixed = minVarPoint.getMixedText();
 						if (mixed != null) {
@@ -158,7 +160,7 @@ public class EcucNumericalParamValueBasicConstraint extends AbstractGParameterVa
 						}
 					}
 
-					FormulaExpression maxVarPoint = ecucFloatParamDef.getMax();
+					FormulaExpression maxVarPoint = new GEcucFloatParamDef40XAdapter(ecucFloatParamDef).getMax();
 					if (maxVarPoint != null) {
 						String mixed = maxVarPoint.getMixedText();
 						if (mixed != null) {

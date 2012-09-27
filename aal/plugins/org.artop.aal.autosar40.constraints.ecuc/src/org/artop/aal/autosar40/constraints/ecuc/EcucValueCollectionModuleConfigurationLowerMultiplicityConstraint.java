@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.artop.aal.autosar40.gautosar40.ecucparameterdef.GEcucDefinitionElement40XAdapter;
 import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.AbstractModelConstraintWithPrecondition;
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
@@ -102,7 +103,7 @@ public class EcucValueCollectionModuleConfigurationLowerMultiplicityConstraint e
 		List<EcucModuleDef> ecucModuleDefs = EObjectUtil.getAllInstancesOf(ecuConfiguration, EcucModuleDef.class, true);
 		for (EcucModuleDef ecucModuleDef : ecucModuleDefs) {
 			String lowerMultiplicity = new String();
-			FormulaExpression integerVarPoint = ecucModuleDef.getLowerMultiplicity();
+			FormulaExpression integerVarPoint = new GEcucDefinitionElement40XAdapter(ecucModuleDef).getLowerMultiplicity();
 			if (integerVarPoint != null) {
 				lowerMultiplicity = integerVarPoint.getMixedText();
 			}
