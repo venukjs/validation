@@ -14,6 +14,8 @@
  */
 package org.artop.aal.autosar40.constraints.ecuc.util;
 
+import gautosar.ggenericstructure.gvarianthandling.GAttributeValueVariationPoint;
+
 import java.math.BigInteger;
 import java.util.List;
 
@@ -33,7 +35,6 @@ import autosar40.ecucparameterdef.EcucMultilineStringParamDef;
 import autosar40.ecucparameterdef.EcucMultilineStringParamDefConditional;
 import autosar40.ecucparameterdef.EcucStringParamDef;
 import autosar40.ecucparameterdef.EcucStringParamDefConditional;
-import autosar40.genericstructure.formulalanguage.FormulaExpression;
 
 public class EcucUtil40 {
 
@@ -70,9 +71,9 @@ public class EcucUtil40 {
 		// Parameter is Float type
 		else if (eObject instanceof EcucFloatParamDef) {
 			EcucFloatParamDef pd = (EcucFloatParamDef) eObject;
-			FormulaExpression defaultValue = new GEcucFloatParamDef40XAdapter(pd).getDefaultValue();
+			GAttributeValueVariationPoint defaultValue = new GEcucFloatParamDef40XAdapter(pd).getDefaultValue();
 			if (defaultValue != null) {
-				return defaultValue.getMixedText();
+				return defaultValue.gGetMixedText();
 			}
 
 		}
@@ -88,7 +89,7 @@ public class EcucUtil40 {
 		else if (eObject instanceof EcucIntegerParamDef) {
 			GEcucIntegerParamDef40XAdapter pd = new GEcucIntegerParamDef40XAdapter((EcucIntegerParamDef) eObject);
 			if (pd.getDefaultValue() != null) {
-				return pd.getDefaultValue().getMixedText();
+				return pd.getDefaultValue().gGetMixedText();
 			}
 
 		}
@@ -129,9 +130,9 @@ public class EcucUtil40 {
 	public static Object getMin(EObject eObject) {
 		// Get EcucFloatParamDef's Min value
 		if (eObject instanceof EcucFloatParamDef) {
-			FormulaExpression minVarPoint = new GEcucFloatParamDef40XAdapter((EcucFloatParamDef) eObject).getMin();
+			GAttributeValueVariationPoint minVarPoint = new GEcucFloatParamDef40XAdapter((EcucFloatParamDef) eObject).getMin();
 			if (minVarPoint != null) {
-				String mixed = minVarPoint.getMixedText();
+				String mixed = minVarPoint.gGetMixedText();
 				if (mixed != null) {
 					try {
 						Double min = convertStringToDouble(mixed);
@@ -144,9 +145,9 @@ public class EcucUtil40 {
 		}
 		// Get EcucIntegerParamDef's Min value
 		else if (eObject instanceof EcucIntegerParamDef) {
-			FormulaExpression minVarPoint = new GEcucIntegerParamDef40XAdapter((EcucIntegerParamDef) eObject).getMin();
+			GAttributeValueVariationPoint minVarPoint = new GEcucIntegerParamDef40XAdapter((EcucIntegerParamDef) eObject).getMin();
 			if (minVarPoint != null) {
-				String mixed = minVarPoint.getMixedText();
+				String mixed = minVarPoint.gGetMixedText();
 				if (mixed != null) {
 					try {
 						BigInteger min = new BigInteger(mixed);
@@ -170,9 +171,9 @@ public class EcucUtil40 {
 	public static Object getMax(EObject eObject) {
 		// Get EcucFloatParamDef's Max value
 		if (eObject instanceof EcucFloatParamDef) {
-			FormulaExpression maxVarPoint = new GEcucFloatParamDef40XAdapter((EcucFloatParamDef) eObject).getMax();
+			GAttributeValueVariationPoint maxVarPoint = new GEcucFloatParamDef40XAdapter((EcucFloatParamDef) eObject).getMax();
 			if (maxVarPoint != null) {
-				String mixed = maxVarPoint.getMixedText();
+				String mixed = maxVarPoint.gGetMixedText();
 				if (mixed != null) {
 					try {
 						Double max = convertStringToDouble(mixed);
@@ -186,9 +187,9 @@ public class EcucUtil40 {
 		}
 		// Get EcucFloatParamDef's Max value
 		else if (eObject instanceof EcucIntegerParamDef) {
-			FormulaExpression maxVarPoint = new GEcucIntegerParamDef40XAdapter((EcucIntegerParamDef) eObject).getMax();
+			GAttributeValueVariationPoint maxVarPoint = new GEcucIntegerParamDef40XAdapter((EcucIntegerParamDef) eObject).getMax();
 			if (maxVarPoint != null) {
-				String mixed = maxVarPoint.getMixedText();
+				String mixed = maxVarPoint.gGetMixedText();
 				if (mixed != null) {
 					try {
 						BigInteger max = new BigInteger(mixed);

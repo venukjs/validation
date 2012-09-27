@@ -15,6 +15,7 @@
 package org.artop.aal.autosar40.constraints.ecuc;
 
 import gautosar.gecucparameterdef.GIntegerParamDef;
+import gautosar.ggenericstructure.gvarianthandling.GAttributeValueVariationPoint;
 
 import java.math.BigInteger;
 
@@ -23,7 +24,6 @@ import org.artop.aal.autosar40.gautosar40.ecucparameterdef.GEcucIntegerParamDef4
 import org.artop.aal.gautosar.constraints.ecuc.AbstractGIntegerParamDefDefaultValueConstraint;
 
 import autosar40.ecucparameterdef.EcucIntegerParamDef;
-import autosar40.genericstructure.formulalanguage.FormulaExpression;
 
 public class EcucIntegerParamDefDefaultValueConstraint extends AbstractGIntegerParamDefDefaultValueConstraint {
 
@@ -56,8 +56,8 @@ public class EcucIntegerParamDefDefaultValueConstraint extends AbstractGIntegerP
 
 	@Override
 	protected boolean isDefaultValueSet(GIntegerParamDef integerParamDef) {
-		FormulaExpression defaultValue = new GEcucIntegerParamDef40XAdapter((EcucIntegerParamDef) integerParamDef).getDefaultValue();
-		return defaultValue != null && defaultValue.isSetMixed();
+		GAttributeValueVariationPoint defaultValue = new GEcucIntegerParamDef40XAdapter((EcucIntegerParamDef) integerParamDef).getDefaultValue();
+		return defaultValue != null && defaultValue.gIsSetMixed();
 	}
 
 }

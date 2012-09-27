@@ -14,6 +14,8 @@
  */
 package org.artop.aal.autosar40.constraints.ecuc;
 
+import gautosar.ggenericstructure.gvarianthandling.GAttributeValueVariationPoint;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -33,7 +35,6 @@ import autosar40.ecucdescription.EcucModuleConfigurationValues;
 import autosar40.ecucdescription.EcucModuleConfigurationValuesRefConditional;
 import autosar40.ecucdescription.EcucValueCollection;
 import autosar40.ecucparameterdef.EcucModuleDef;
-import autosar40.genericstructure.formulalanguage.FormulaExpression;
 
 /**
  * The class validate the constraint for EcucValueCollection. EcucModuleConfigurationValues reference in each
@@ -103,9 +104,9 @@ public class EcucValueCollectionModuleConfigurationLowerMultiplicityConstraint e
 		List<EcucModuleDef> ecucModuleDefs = EObjectUtil.getAllInstancesOf(ecuConfiguration, EcucModuleDef.class, true);
 		for (EcucModuleDef ecucModuleDef : ecucModuleDefs) {
 			String lowerMultiplicity = new String();
-			FormulaExpression integerVarPoint = new GEcucDefinitionElement40XAdapter(ecucModuleDef).getLowerMultiplicity();
+			GAttributeValueVariationPoint integerVarPoint = new GEcucDefinitionElement40XAdapter(ecucModuleDef).getLowerMultiplicity();
 			if (integerVarPoint != null) {
-				lowerMultiplicity = integerVarPoint.getMixedText();
+				lowerMultiplicity = integerVarPoint.gGetMixedText();
 			}
 
 			if (lowerMultiplicity != null && !lowerMultiplicity.equals("0")) { //$NON-NLS-1$

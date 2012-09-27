@@ -16,6 +16,7 @@ package org.artop.aal.autosar40.constraints.ecuc;
 
 import gautosar.gecucdescription.GParameterValue;
 import gautosar.gecucparameterdef.GConfigParameter;
+import gautosar.ggenericstructure.gvarianthandling.GAttributeValueVariationPoint;
 
 import java.math.BigInteger;
 
@@ -35,7 +36,6 @@ import autosar40.ecucdescription.EcucNumericalParamValue;
 import autosar40.ecucparameterdef.EcucBooleanParamDef;
 import autosar40.ecucparameterdef.EcucFloatParamDef;
 import autosar40.ecucparameterdef.EcucIntegerParamDef;
-import autosar40.genericstructure.formulalanguage.FormulaExpression;
 
 public class EcucNumericalParamValueBasicConstraint extends AbstractGParameterValueConstraint {
 
@@ -75,7 +75,7 @@ public class EcucNumericalParamValueBasicConstraint extends AbstractGParameterVa
 	protected IStatus validateValue(IValidationContext ctx, EcucNumericalParamValue ecucNumericalParamValue) {
 		MultiStatus multiStatus = new MultiStatus(Activator.PLUGIN_ID, 0, this.getClass().getName(), null);
 
-		FormulaExpression valueVarPoint = new GEcucNumericalParamValue40XAdapter(ecucNumericalParamValue).getValue();
+		GAttributeValueVariationPoint valueVarPoint = new GEcucNumericalParamValue40XAdapter(ecucNumericalParamValue).getValue();
 		GConfigParameter definition = ecucNumericalParamValue.gGetDefinition();
 
 		IStatus status = validateValueSet(ctx, ecucNumericalParamValue, valueVarPoint);
@@ -83,7 +83,7 @@ public class EcucNumericalParamValueBasicConstraint extends AbstractGParameterVa
 			return status;
 		}
 
-		String mixedText = valueVarPoint.getMixedText();
+		String mixedText = valueVarPoint.gGetMixedText();
 		status = validateValueSet(ctx, ecucNumericalParamValue, mixedText);
 		if (!status.isOK()) {
 			return status;
@@ -101,9 +101,9 @@ public class EcucNumericalParamValueBasicConstraint extends AbstractGParameterVa
 				if (value != null) {
 					EcucIntegerParamDef ecucIntegerParamDef = (EcucIntegerParamDef) definition;
 
-					FormulaExpression minVarPoint = new GEcucIntegerParamDef40XAdapter(ecucIntegerParamDef).getMin();
+					GAttributeValueVariationPoint minVarPoint = new GEcucIntegerParamDef40XAdapter(ecucIntegerParamDef).getMin();
 					if (minVarPoint != null) {
-						String mixed = minVarPoint.getMixedText();
+						String mixed = minVarPoint.gGetMixedText();
 						if (mixed != null) {
 							BigInteger min = new BigInteger(mixed);
 							if (value.compareTo(min) < 0) {
@@ -113,9 +113,9 @@ public class EcucNumericalParamValueBasicConstraint extends AbstractGParameterVa
 
 						}
 					}
-					FormulaExpression maxVarPoint = new GEcucIntegerParamDef40XAdapter(ecucIntegerParamDef).getMax();
+					GAttributeValueVariationPoint maxVarPoint = new GEcucIntegerParamDef40XAdapter(ecucIntegerParamDef).getMax();
 					if (maxVarPoint != null) {
-						String mixed = maxVarPoint.getMixedText();
+						String mixed = maxVarPoint.gGetMixedText();
 						if (mixed != null) {
 							BigInteger max = new BigInteger(mixed);
 							if (value.compareTo(max) > 0) {
@@ -130,7 +130,7 @@ public class EcucNumericalParamValueBasicConstraint extends AbstractGParameterVa
 			if (definition instanceof EcucFloatParamDef) {
 				Double value = null;
 				try {
-					value = EcucUtil40.convertStringToDouble(valueVarPoint.getMixedText());
+					value = EcucUtil40.convertStringToDouble(valueVarPoint.gGetMixedText());
 
 				} catch (NumberFormatException ex) {
 					multiStatus.add(ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.numericalParamValue_valueTypeDoesNotMatchDefType,
@@ -139,9 +139,9 @@ public class EcucNumericalParamValueBasicConstraint extends AbstractGParameterVa
 				if (value != null) {
 					EcucFloatParamDef ecucFloatParamDef = (EcucFloatParamDef) definition;
 
-					FormulaExpression minVarPoint = new GEcucFloatParamDef40XAdapter(ecucFloatParamDef).getMin();
+					GAttributeValueVariationPoint minVarPoint = new GEcucFloatParamDef40XAdapter(ecucFloatParamDef).getMin();
 					if (minVarPoint != null) {
-						String mixed = minVarPoint.getMixedText();
+						String mixed = minVarPoint.gGetMixedText();
 						if (mixed != null) {
 							try {
 								Double min = EcucUtil40.convertStringToDouble(mixed);
@@ -160,9 +160,9 @@ public class EcucNumericalParamValueBasicConstraint extends AbstractGParameterVa
 						}
 					}
 
-					FormulaExpression maxVarPoint = new GEcucFloatParamDef40XAdapter(ecucFloatParamDef).getMax();
+					GAttributeValueVariationPoint maxVarPoint = new GEcucFloatParamDef40XAdapter(ecucFloatParamDef).getMax();
 					if (maxVarPoint != null) {
-						String mixed = maxVarPoint.getMixedText();
+						String mixed = maxVarPoint.gGetMixedText();
 						if (mixed != null) {
 							try {
 								Double max = EcucUtil40.convertStringToDouble(mixed);

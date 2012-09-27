@@ -14,6 +14,8 @@
  */
 package org.artop.aal.autosar40.constraints.ecuc;
 
+import gautosar.ggenericstructure.gvarianthandling.GAttributeValueVariationPoint;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,7 +34,6 @@ import autosar40.ecucdescription.EcucModuleConfigurationValues;
 import autosar40.ecucdescription.EcucModuleConfigurationValuesRefConditional;
 import autosar40.ecucdescription.EcucValueCollection;
 import autosar40.ecucparameterdef.EcucModuleDef;
-import autosar40.genericstructure.formulalanguage.FormulaExpression;
 
 /**
  * The class validate the constraint for EcucValueCollection. EcucModuleConfigurationValues reference in each
@@ -83,9 +84,9 @@ public class EcucValueCollectionModuleConfigurationUpperMultiplicityConstraint e
 			 * The upper multiplicity definition.
 			 */
 			String upperMultiplicity = new String();
-			FormulaExpression upperVarPoint = new GEcucDefinitionElement40XAdapter((EcucModuleDef) moduleDef).getUpperMultiplicity();
+			GAttributeValueVariationPoint upperVarPoint = new GEcucDefinitionElement40XAdapter((EcucModuleDef) moduleDef).getUpperMultiplicity();
 			if (upperVarPoint != null) {
-				upperMultiplicity = upperVarPoint.getMixedText();
+				upperMultiplicity = upperVarPoint.gGetMixedText();
 			}
 
 			if (upperMultiplicity != null && !upperMultiplicity.equals(MULTIPLICITY_INFINITY)) {
