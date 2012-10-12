@@ -16,6 +16,7 @@ package org.artop.aal.autosar40.constraints.ecuc;
 
 import gautosar.gecucdescription.GParameterValue;
 
+import org.artop.aal.autosar40.gautosar40.ecucdescription.GEcucNumericalParamValue40XAdapter;
 import org.artop.aal.gautosar.constraints.ecuc.AbstractGParameterValueBasicConstraint;
 
 import autosar40.ecucdescription.EcucAddInfoParamValue;
@@ -27,7 +28,7 @@ public class EcucParameterValueBasicConstraint extends AbstractGParameterValueBa
 	@Override
 	protected boolean isSetValue(GParameterValue parameterValue) {
 		if (parameterValue instanceof EcucNumericalParamValue) {
-			return ((EcucNumericalParamValue) parameterValue).getValue() != null;
+			return new GEcucNumericalParamValue40XAdapter((EcucNumericalParamValue) parameterValue).getValue() != null;
 		} else if (parameterValue instanceof EcucTextualParamValue) {
 			return ((EcucTextualParamValue) parameterValue).isSetValue();
 		} else if (parameterValue instanceof EcucAddInfoParamValue) {
