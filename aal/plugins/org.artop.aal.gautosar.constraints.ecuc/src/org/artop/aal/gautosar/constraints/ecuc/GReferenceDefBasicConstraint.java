@@ -16,7 +16,7 @@
 package org.artop.aal.gautosar.constraints.ecuc;
 
 import gautosar.gecucdescription.GParameterValue;
-import gautosar.gecucparameterdef.GParamConfContainerDef;
+import gautosar.gecucparameterdef.GContainerDef;
 import gautosar.gecucparameterdef.GReferenceDef;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
@@ -35,7 +35,7 @@ public class GReferenceDefBasicConstraint extends AbstractGParameterValueConstra
 	@Override
 	public IStatus doValidate(IValidationContext ctx) {
 		GReferenceDef gReferenceDef = (GReferenceDef) ctx.getTarget();
-		GParamConfContainerDef destination = gReferenceDef.gGetDestination();
+		GContainerDef destination = gReferenceDef.gGetRefDestination();
 
 		if (destination != null) {
 			if (destination.eIsProxy()) {

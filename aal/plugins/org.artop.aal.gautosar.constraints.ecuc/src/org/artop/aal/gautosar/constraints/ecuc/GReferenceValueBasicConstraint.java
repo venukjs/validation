@@ -121,7 +121,7 @@ public class GReferenceValueBasicConstraint extends AbstractGConfigReferenceValu
 		} else {
 
 			// CHECK if GParamConfContainerDef is available for destination
-			GParamConfContainerDef containerDefFromDestination = referenceDef.gGetDestination();
+			GContainerDef containerDefFromDestination = referenceDef.gGetRefDestination();
 			if (null == containerDefFromDestination || containerDefFromDestination.eIsProxy()) {
 				status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.generic_validationNotPossible,
 						AutosarURIFactory.getAbsoluteQualifiedName(containerDefFromDestination)));
