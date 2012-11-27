@@ -2,7 +2,7 @@
 <feature
       id="org.artop.validation"
       label="%featureName"
-      version="3.3.1.qualifier"
+      version="3.3.2.qualifier"
       provider-name="%providerName">
 
    <description>
@@ -19,7 +19,7 @@
 
    <requires>
       <import feature="org.eclipse.sphinx.emf.validation" version="0.7.0"/>
-      <import feature="org.artop.core.metamodels" version="3.3.1"/>
+      <import feature="org.artop.core.metamodels" version="3.3.2"/>
    </requires>
 
    <plugin
