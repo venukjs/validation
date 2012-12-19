@@ -21,11 +21,12 @@ Contributors:
    <extension
          point="org.eclipse.sphinx.emf.validation.registration">
       <model
-            id="autosar21"
-            filter="_21"
             Name="AUTOSAR 2.1"
             NsURI="http://autosar.org/2.1.5/autosar21/gs/i"
-            class="autosar21.genericstructure.infrastructure.ARObject">
+            class="autosar21.genericstructure.infrastructure.ARObject"
+            filter="_21"
+            id="autosar21"
+            validatorAdapterClass="org.artop.aal.validation.adapter.EAutosarValidatorAdapter">
       </model>
    </extension>
  
