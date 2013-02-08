@@ -60,6 +60,7 @@ Contributors:
             <constraint
                   class="org.artop.aal.examples.autosar3x.constraints.ARPackageSpecificNamingConvention3xConstraint"
                   id="ARPackageSpecificNamingConvention_3x"
+                  isEnabledByDefault="true"
                   lang="Java"
                   mode="Live"
                   name="%ARPackageSpecificNamingConvention_3x.name"
@@ -81,6 +82,7 @@ Contributors:
             <constraint
                   class="org.artop.aal.examples.autosar3x.constraints.ModuleDefMultiplicityShouldBeTheSame3xConstraint"
                   id="ModuleDefMultiplicityShouldBeTheSame_3x"
+                  isEnabledByDefault="true"
                   lang="Java"
                   mode="Live"
                   name="%ModuleDefMultiplicityShouldBeTheSame_3x.name"
@@ -99,13 +101,14 @@ Contributors:
                   </event>
                </target>
             </constraint>
-            
+
             <constraint
+                  id="IdentifiableElementsMustHaveAValidShortName_3x"
+                  isEnabledByDefault="true"
                   lang="OCL"
-                  severity="ERROR"
                   mode="Live"
                   name="Identifiable elements must have a valid shortName"
-                  id="IdentifiableElementsMustHaveAValidShortName_3x"
+                  severity="ERROR"
                   statusCode="103">
                <description>All Identifiable elements must have a shortName with at least one but no more than 32 characters.</description>
                <message>The Identifiable \"{0}\" has no shortName or a shortName which is longer than 32 characters.</message>
@@ -116,21 +119,22 @@ Contributors:
                   <event name="Unset">
                     <feature name="shortName" />
                   </event>
-               </target>
+               </target> 
          
                <!-- TUTO: Modify this constraint such that it checks if shortName length is greater than 0 but less than or equal to 32 -->
-               <![CDATA[
+              <![CDATA[
                   shortName.size() > 0 and shortName.size() <= 32
                ]]>
         
             </constraint>
             
             <constraint
+                  id="ShortNameOfIdentifiableElementsMustBeUnique_3x"
+                  isEnabledByDefault="true"
                   lang="OCL"
-                  severity="ERROR"
                   mode="Live"
                   name="The shortName of Identifiable elements must be unique"
-                  id="ShortNameOfIdentifiableElementsMustBeUnique_3x"
+                  severity="ERROR"
                   statusCode="104">
                <description>The shortNames of Identifiable elements within the same ARPackage must be unique.</description>
                <message>The Identifiable \"{0}\" has the same shortName as another Identifiable element within same ARPackage.</message>

@@ -17,11 +17,6 @@
       %license
    </license>
 
-   <requires>
-      <import feature="org.artop.validation" version="4.0.0"/>
-      <import feature="org.artop.core.examples.demonstrator" version="4.0.0"/>
-   </requires>
-
    <plugin
          id="org.artop.aal.examples.validation.ui"
          download-size="0"
@@ -38,6 +33,27 @@
 
    <plugin
          id="org.artop.aal.examples.validation.constraints"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+         
+         <plugin
+         id="org.artop.aal.examples.validation.ui.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.artop.aal.examples.autosar3x.constraints.source"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.artop.aal.examples.validation.constraints.source"
          download-size="0"
          install-size="0"
          version="0.0.0"

@@ -17,10 +17,6 @@
       %license
    </license>
 
-   <requires>
-      <import feature="org.artop.validation" version="4.0.0"/>
-   </requires>
-   
    <plugin
          id="org.artop.aal.autosar315.validation"
          download-size="0"

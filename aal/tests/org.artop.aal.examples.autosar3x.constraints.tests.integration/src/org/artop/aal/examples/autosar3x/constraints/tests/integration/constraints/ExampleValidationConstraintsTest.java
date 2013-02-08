@@ -1,7 +1,7 @@
 /**
  * <copyright>
  * 
- * Copyright (c) 4, 2012ee4sys and others.
+ * Copyright (c) See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
@@ -109,6 +109,7 @@ public class ExampleValidationConstraintsTest extends AbstractAutosarIntegration
 		assertNotNull(arPackage3);
 		// We create diagnostician instance and perform validation of model object
 		ExtendedDiagnostician diagnostician = new ExtendedDiagnostician();
+
 		Diagnostic diagnostic = diagnostician.validate(arPackage3);
 		assertNotNull(diagnostic);
 
@@ -121,7 +122,7 @@ public class ExampleValidationConstraintsTest extends AbstractAutosarIntegration
 		// We check that expected ERROR severity was correctly set to diagnostic object
 		assertEquals(Diagnostic.ERROR, diagnostic.getSeverity());
 
-		// We ensure that ERROR severity is not due to error on arpackage2 object itself
+		// We ensure that ERROR severity is not due to error on arpackage3 object itself
 		assertEquals(0, diagnostic.getCode());
 
 		// We retrieve Children Diagnostics and check that expected number have been created

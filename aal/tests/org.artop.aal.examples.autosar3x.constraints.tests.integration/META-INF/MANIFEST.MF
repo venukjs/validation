@@ -9,7 +9,32 @@ Bundle-Localization: plugin
 Require-Bundle: org.artop.aal.testutils.integration.referenceworkspace,
  org.eclipse.emf.common,
  org.eclipse.core.runtime,
- org.artop.aal.examples.autosar3x.constraints
+ org.artop.aal.examples.autosar3x.constraints,
+ org.artop.aal.autosar3x.validation,
+ org.artop.aal.autosar321.validation,
+ org.artop.aal.autosar21,
+ org.artop.aal.autosar21.services,
+ org.artop.aal.autosar215,
+ org.artop.aal.autosar321,
+ org.artop.aal.autosar321.services,
+ org.artop.aal.autosar3x,
+ org.artop.aal.autosar3x.services,
+ org.artop.aal.autosar40,
+ org.artop.aal.autosar40.services,
+ org.artop.aal.autosar40.services.common,
+ org.artop.aal.autosar403,
+ org.artop.aal.autosar403.services,
+ org.artop.aal.common,
+ org.artop.aal.examples.autosar3x.constraints,
+ org.artop.aal.gautosar,
+ org.artop.aal.gautosar.services,
+ org.artop.aal.serialization,
+ org.artop.aal.testutils,
+ org.artop.aal.validation,
+ org.artop.aal.workspace,
+ org.artop.eel.common,
+ org.artop.eel.serialization
 Bundle-Activator: org.artop.aal.examples.autosar3x.constraints.tests.integration.internal.Activator$Implementation
 Export-Package: org.artop.aal.examples.autosar3x.constraints.tests.integration.constraints,
  org.artop.aal.examples.autosar3x.constraints.tests.integration.internal;x-internal:=true
+Bundle-ActivationPolicy: lazy
