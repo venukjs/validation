@@ -20,19 +20,19 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
 @SuppressWarnings("nls")
-public class FunctionNameValueConstraintTests extends AbstractAutosar21ValidationTestCase {
+public class StringValueConstraintTest extends AbstractAutosar21ValidationTestCase {
 
-	public FunctionNameValueConstraintTests() {
+	public StringValueConstraintTest() {
 		super();
 	}
 
 	@Override
 	protected String getConstraintID() {
-		return "org.artop.aal.autosar21.constraints.ecuc.FunctionNameValueBasicConstraint_21";
+		return "org.artop.aal.autosar21.constraints.ecuc.StringValueBasicConstraint_21";
 	}
 
-	public void testInvalidFunctionNameValue_noValue() throws Exception {
-		EObject invalidModel = loadInputFile("ecuc/FunctionNameValue/noValue.arxml");
+	public void testInvalidStringValue_noValue() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/StringValue/noValue.arxml");
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.generic_valueNotSet);
 	}
 }

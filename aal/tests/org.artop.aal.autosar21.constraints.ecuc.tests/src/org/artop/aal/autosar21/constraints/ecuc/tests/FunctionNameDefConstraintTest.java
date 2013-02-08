@@ -21,9 +21,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
 
 @SuppressWarnings("nls")
-public class FunctionNameDefConstraintTests extends AbstractAutosar21ValidationTestCase {
+public class FunctionNameDefConstraintTest extends AbstractAutosar21ValidationTestCase {
 
-	public FunctionNameDefConstraintTests() {
+	public FunctionNameDefConstraintTest() {
 		super();
 	}
 

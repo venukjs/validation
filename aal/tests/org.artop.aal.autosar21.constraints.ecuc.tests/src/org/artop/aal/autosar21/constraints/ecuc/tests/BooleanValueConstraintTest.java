@@ -20,19 +20,21 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
 @SuppressWarnings("nls")
-public class EnumerationValueConstraintTests extends AbstractAutosar21ValidationTestCase {
+public class BooleanValueConstraintTest extends AbstractAutosar21ValidationTestCase {
 
-	public EnumerationValueConstraintTests() {
+	public BooleanValueConstraintTest() {
 		super();
 	}
 
 	@Override
 	protected String getConstraintID() {
-		return "org.artop.aal.autosar21.constraints.ecuc.EnumerationValueBasicConstraint_21";
+		return "org.artop.aal.autosar21.constraints.ecuc.BooleanValueBasicConstraint_21";
+
 	}
 
-	public void testInvalidEnumerationValue_noValue() throws Exception {
-		EObject invalidModel = loadInputFile("ecuc/EnumerationValue/noValue.arxml");
+	public void testInvalidBooleanValue_noValue() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/BooleanValue/noValue.arxml");
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.generic_valueNotSet);
 	}
+
 }

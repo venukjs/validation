@@ -21,9 +21,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
 
 @SuppressWarnings("nls")
-public class IntegerValueConstraintTests extends AbstractAutosar21ValidationTestCase {
+public class IntegerValueConstraintTest extends AbstractAutosar21ValidationTestCase {
 
-	public IntegerValueConstraintTests() {
+	public IntegerValueConstraintTest() {
 		super();
 	}
 

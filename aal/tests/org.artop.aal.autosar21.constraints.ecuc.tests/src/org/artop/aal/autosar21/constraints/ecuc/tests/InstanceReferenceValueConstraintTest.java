@@ -20,9 +20,9 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
 @SuppressWarnings("nls")
-public class InstanceReferenceValueConstraintTests extends AbstractAutosar21ValidationTestCase {
+public class InstanceReferenceValueConstraintTest extends AbstractAutosar21ValidationTestCase {
 
-	public InstanceReferenceValueConstraintTests() {
+	public InstanceReferenceValueConstraintTest() {
 		super();
 	}
 

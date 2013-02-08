@@ -20,21 +20,20 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 
 @SuppressWarnings("nls")
-public class BooleanValueConstraintTests extends AbstractAutosar21ValidationTestCase {
+public class LinkerSymbolValueConstraintTest extends AbstractAutosar21ValidationTestCase {
 
-	public BooleanValueConstraintTests() {
+	public LinkerSymbolValueConstraintTest() {
 		super();
 	}
 
 	@Override
 	protected String getConstraintID() {
-		return "org.artop.aal.autosar21.constraints.ecuc.BooleanValueBasicConstraint_21";
-
+		return "org.artop.aal.autosar21.constraints.ecuc.LinkerSymbolValueBasicConstraint_21";
 	}
 
-	public void testInvalidBooleanValue_noValue() throws Exception {
-		EObject invalidModel = loadInputFile("ecuc/BooleanValue/noValue.arxml");
+	// completeness
+	public void testInvalidLinkerSymbolValue_noValue() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/LinkerSymbolValue/noValue.arxml");
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, EcucConstraintMessages.generic_valueNotSet);
 	}
-
 }
