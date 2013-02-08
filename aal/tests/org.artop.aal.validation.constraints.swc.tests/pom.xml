@@ -6,7 +6,7 @@
 		<groupId>org.artop.releng</groupId>
 		<artifactId>org.artop.releng.parent</artifactId>
 		<version>4.0.0-SNAPSHOT</version>
-		<relativePath>../org.artop.releng.builds/parent/pom.xml</relativePath>
+		<relativePath>../../releng/org.artop.releng.builds/parent/pom.xml</relativePath>
 	</parent>
 	<groupId>org.artop.tests</groupId>
 	<artifactId>org.artop.aal.validation.constraints.swc.tests</artifactId>
