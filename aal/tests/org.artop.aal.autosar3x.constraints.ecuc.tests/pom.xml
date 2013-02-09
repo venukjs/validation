@@ -6,7 +6,7 @@
 		<groupId>org.artop.releng</groupId>
 		<artifactId>org.artop.releng.parent</artifactId>
 		<version>4.0.0-SNAPSHOT</version>
-		<relativePath>../../releng/org.artop.releng.builds/parent/pom.xml</relativePath>
+		<relativePath>../../../../core/tools/org.artop.releng.builds/parent/pom.xml</relativePath>
 	</parent>
 	<groupId>org.artop.tests</groupId>
 	<artifactId>org.artop.aal.autosar3x.constraints.ecuc.tests</artifactId>
