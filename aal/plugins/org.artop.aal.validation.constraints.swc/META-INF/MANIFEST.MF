@@ -2,10 +2,10 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.artop.aal.validation.constraints.swc;singleton:=true
-Bundle-Version: 3.2.2.qualifier
+Bundle-Version: 3.2.3.qualifier
 Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.core.runtime,
- com.google.collect,
+ com.google.guava,
  org.artop.aal.gautosar,
  org.artop.aal.gautosar.services,
  org.artop.aal.validation

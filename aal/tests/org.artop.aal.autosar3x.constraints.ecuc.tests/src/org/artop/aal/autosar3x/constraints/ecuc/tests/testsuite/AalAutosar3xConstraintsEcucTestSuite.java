@@ -18,27 +18,27 @@ package org.artop.aal.autosar3x.constraints.ecuc.tests.testsuite;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import org.artop.aal.autosar3x.constraints.ecuc.tests.BooleanValueConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.ChoiceReferenceParamDefBasicConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerParameterValueMultiplicityConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerReferenceValueMultiplicityConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerSubContainerMultiplicityConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.EnumerationValueConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.FloatValueConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.FunctionNameDefConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.FunctionNameValueConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.InstanceReferenceValueConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.IntegerValueConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.LinkerSymbolDefConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.LinkerSymbolValueConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.ModuleConfigurationConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.ModuleConfigurationSubContainerMultiplicityConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.ParamConfMultiplicityBasicConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.ReferenceParamDefBasicConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.ReferenceValueConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.StringParamDefConstraintTests;
-import org.artop.aal.autosar3x.constraints.ecuc.tests.StringValueConstraintTests;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.BooleanValueConstraintTest;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.ChoiceReferenceParamDefBasicConstraintTest;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerConstraintTest;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerParameterValueMultiplicityConstraintTest;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerReferenceValueMultiplicityConstraintTest;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.ContainerSubContainerMultiplicityConstraintTest;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.EnumerationValueConstraintTest;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.FloatValueConstraintTest;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.FunctionNameDefConstraintTest;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.FunctionNameValueConstraintTest;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.InstanceReferenceValueConstraintTest;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.IntegerValueConstraintTest;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.LinkerSymbolDefConstraintTest;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.LinkerSymbolValueConstraintTest;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.ModuleConfigurationConstraintTest;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.ModuleConfigurationSubContainerMultiplicityConstraintTest;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.ParamConfMultiplicityBasicConstraintTest;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.ReferenceParamDefBasicConstraintTest;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.ReferenceValueConstraintTest;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.StringParamDefConstraintTest;
+import org.artop.aal.autosar3x.constraints.ecuc.tests.StringValueConstraintTest;
 
 public class AalAutosar3xConstraintsEcucTestSuite {
 	/**
@@ -50,29 +50,29 @@ public class AalAutosar3xConstraintsEcucTestSuite {
 		TestSuite suite = new TestSuite("Tests for ecuc validation constraints for Autosar 3.x"); //$NON-NLS-1$
 
 		// basic attributes and definition
-		suite.addTestSuite(IntegerValueConstraintTests.class);
-		suite.addTestSuite(StringValueConstraintTests.class);
-		suite.addTestSuite(BooleanValueConstraintTests.class);
-		suite.addTestSuite(FloatValueConstraintTests.class);
-		suite.addTestSuite(EnumerationValueConstraintTests.class);
-		suite.addTestSuite(ReferenceValueConstraintTests.class);
-		suite.addTestSuite(InstanceReferenceValueConstraintTests.class);
-		suite.addTestSuite(ModuleConfigurationConstraintTests.class);
-		suite.addTestSuite(ContainerConstraintTests.class);
-		suite.addTestSuite(LinkerSymbolValueConstraintTests.class);
-		suite.addTestSuite(FunctionNameValueConstraintTests.class);
-		suite.addTestSuite(ParamConfMultiplicityBasicConstraintTests.class);
-		suite.addTestSuite(ChoiceReferenceParamDefBasicConstraintTests.class);
-		suite.addTestSuite(ReferenceParamDefBasicConstraintTests.class);
-		suite.addTestSuite(StringParamDefConstraintTests.class);
-		suite.addTestSuite(FunctionNameDefConstraintTests.class);
-		suite.addTestSuite(LinkerSymbolDefConstraintTests.class);
+		suite.addTestSuite(IntegerValueConstraintTest.class);
+		suite.addTestSuite(StringValueConstraintTest.class);
+		suite.addTestSuite(BooleanValueConstraintTest.class);
+		suite.addTestSuite(FloatValueConstraintTest.class);
+		suite.addTestSuite(EnumerationValueConstraintTest.class);
+		suite.addTestSuite(ReferenceValueConstraintTest.class);
+		suite.addTestSuite(InstanceReferenceValueConstraintTest.class);
+		suite.addTestSuite(ModuleConfigurationConstraintTest.class);
+		suite.addTestSuite(ContainerConstraintTest.class);
+		suite.addTestSuite(LinkerSymbolValueConstraintTest.class);
+		suite.addTestSuite(FunctionNameValueConstraintTest.class);
+		suite.addTestSuite(ParamConfMultiplicityBasicConstraintTest.class);
+		suite.addTestSuite(ChoiceReferenceParamDefBasicConstraintTest.class);
+		suite.addTestSuite(ReferenceParamDefBasicConstraintTest.class);
+		suite.addTestSuite(StringParamDefConstraintTest.class);
+		suite.addTestSuite(FunctionNameDefConstraintTest.class);
+		suite.addTestSuite(LinkerSymbolDefConstraintTest.class);
 
 		// structural integrity
-		suite.addTestSuite(ContainerSubContainerMultiplicityConstraintTests.class);
-		suite.addTestSuite(ContainerParameterValueMultiplicityConstraintTests.class);
-		suite.addTestSuite(ContainerReferenceValueMultiplicityConstraintTests.class);
-		suite.addTestSuite(ModuleConfigurationSubContainerMultiplicityConstraintTests.class);
+		suite.addTestSuite(ContainerSubContainerMultiplicityConstraintTest.class);
+		suite.addTestSuite(ContainerParameterValueMultiplicityConstraintTest.class);
+		suite.addTestSuite(ContainerReferenceValueMultiplicityConstraintTest.class);
+		suite.addTestSuite(ModuleConfigurationSubContainerMultiplicityConstraintTest.class);
 
 		return suite;
 	}
