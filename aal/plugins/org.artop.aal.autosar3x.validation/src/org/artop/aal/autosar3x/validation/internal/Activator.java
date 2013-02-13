@@ -16,17 +16,21 @@ package org.artop.aal.autosar3x.validation.internal;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Plugin;
-import org.eclipse.osgi.util.ManifestElement;
+import org.eclipse.osgi.framework.adaptor.BundleClassLoader;
 import org.eclipse.sphinx.emf.validation.evalidator.adapter.EValidatorRegistering;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
+
+import autosar3x.genericstructure.infrastructure.autosar.AUTOSAR;
 
 /**
  * The activator class controls the plug-in life cycle
  */
+@SuppressWarnings("restriction")
 public class Activator extends Plugin {
 
 	/** The plug-in ID */
-	public static final String PLUGIN_ID = "org.artop.aal.autosar321.validation"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.artop.aal.autosar3x.validation"; //$NON-NLS-1$
 
 	/** The shared instance */
 	private static Activator plugin;
@@ -45,16 +49,17 @@ public class Activator extends Plugin {
 		super.start(context);
 		plugin = this;
 
-		// Let's registering EValidator for each contribution to org.eclipse.sphinx.emf.validation.registration.
-		for (String requiredBundle : ManifestElement.getArrayFromList(getDefault().getBundle().getHeaders().get("Require-Bundle"))) { //$NON-NLS-1$
-			if (requiredBundle.matches("org\\.artop\\.aal\\.autosar\\d\\d\\d\\.validation.*")) { //$NON-NLS-1$
-				String validationBundleId = requiredBundle.substring(0, 35);
-				if (Platform.getBundle(validationBundleId) != null) {
-					EValidatorRegistering.getSingleton().eValidatorSetAllContributions(validationBundleId);
-				}
-			}
+		String autosarValidationBundleId = null;
+		ClassLoader classLoader = AUTOSAR.class.getClassLoader();
+		if (classLoader instanceof BundleClassLoader) {
+			Bundle bundle = ((BundleClassLoader) classLoader).getBundle();
+			autosarValidationBundleId = bundle.getSymbolicName().concat(".validation"); //$NON-NLS-1$
 		}
 
+		// Let's registering EValidator for each contribution to org.eclipse.sphinx.emf.validation.registration.
+		if (autosarValidationBundleId != null && Platform.getBundle(autosarValidationBundleId) != null) {
+			EValidatorRegistering.getSingleton().eValidatorSetAllContributions(autosarValidationBundleId);
+		}
 	}
 
 	/*

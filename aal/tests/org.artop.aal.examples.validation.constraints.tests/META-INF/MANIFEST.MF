@@ -8,6 +8,7 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.emf.validation,
  org.artop.aal.validation.constraints.swc,
+ org.artop.aal.examples.validation.constraints,
  org.eclipse.core.runtime,
  org.artop.aal.gautosar.services,
  org.artop.aal.gautosar,
@@ -17,8 +18,13 @@ Require-Bundle: org.eclipse.emf.validation,
  org.artop.aal.autosar21.services,
  org.artop.aal.autosar21.validation,
  org.artop.aal.autosar3x,
+ org.artop.aal.autosar321,
  org.artop.aal.autosar3x.services,
+ org.artop.aal.autosar321.services,
+ org.artop.aal.autosar3x.validation,
  org.artop.aal.autosar40,
+ org.artop.aal.autosar403,
  org.artop.aal.autosar40.services,
+ org.artop.aal.autosar403.services,
  org.artop.aal.autosar40.validation
 Bundle-ActivationPolicy: lazy
