@@ -14,13 +14,19 @@
  */
 package org.artop.aal.autosar3x.validation.internal;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Plugin;
+import org.eclipse.osgi.framework.adaptor.BundleClassLoader;
 import org.eclipse.sphinx.emf.validation.evalidator.adapter.EValidatorRegistering;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
+
+import autosar3x.genericstructure.infrastructure.autosar.AUTOSAR;
 
 /**
  * The activator class controls the plug-in life cycle
  */
+@SuppressWarnings("restriction")
 public class Activator extends Plugin {
 
 	/** The plug-in ID */
@@ -43,8 +49,17 @@ public class Activator extends Plugin {
 		super.start(context);
 		plugin = this;
 
+		String autosarValidationBundleId = null;
+		ClassLoader classLoader = AUTOSAR.class.getClassLoader();
+		if (classLoader instanceof BundleClassLoader) {
+			Bundle bundle = ((BundleClassLoader) classLoader).getBundle();
+			autosarValidationBundleId = bundle.getSymbolicName().concat(".validation"); //$NON-NLS-1$
+		}
+
 		// Let's registering EValidator for each contribution to org.eclipse.sphinx.emf.validation.registration.
-		EValidatorRegistering.getSingleton().eValidatorSetAllContributions(Activator.PLUGIN_ID);
+		if (autosarValidationBundleId != null && Platform.getBundle(autosarValidationBundleId) != null) {
+			EValidatorRegistering.getSingleton().eValidatorSetAllContributions(autosarValidationBundleId);
+		}
 	}
 
 	/*

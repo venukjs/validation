@@ -15,3 +15,4 @@ Bundle-Activator: org.artop.aal.examples.autosar3x.constraints.tests.integration
 Export-Package: org.artop.aal.examples.autosar3x.constraints.tests.integration.constraints,
  org.artop.aal.examples.autosar3x.constraints.tests.integration.internal;x-internal:=true,
  org.artop.aal.examples.autosar3x.constraints.tests.integration.testsuite
+Bundle-ActivationPolicy: lazy

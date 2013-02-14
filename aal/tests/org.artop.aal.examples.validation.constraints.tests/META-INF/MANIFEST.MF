@@ -8,6 +8,7 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Require-Bundle: org.eclipse.emf.validation,
  org.artop.aal.validation.constraints.swc,
+ org.artop.aal.examples.validation.constraints,
  org.eclipse.core.runtime,
  org.artop.aal.gautosar.services,
  org.artop.aal.gautosar,

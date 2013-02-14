@@ -46,6 +46,7 @@
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.ModuleConfigurationBasicConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.ModuleConfigurationBasicConstraint_3x"
+                  isEnabledByDefault="true"
                   lang="JAVA"
                   mode="Batch"
                   name="ModuleConfiguration"
@@ -64,6 +65,7 @@
             <constraint
                   class="org.artop.aal.gautosar.constraints.ecuc.GContainerBasicConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.ContainerBasicConstraint_3x"
+                  isEnabledByDefault="true"
                   lang="JAVA"
                   mode="Batch"
                   name="Container"
@@ -80,13 +82,14 @@
                </target>
             </constraint>
              <constraint
-                  class="org.artop.aal.gautosar.constraints.ecuc.GParamConfMultiplicityBasicConstraint"
-                  id="org.artop.aal.autosar3x.constraints.ecuc.ParamConfMultiplicityBasicConstraint_3x"
-                  lang="JAVA"
-                  mode="Batch"
-                  name="ParamConfMultiplicityBasicConstraint"
-                  severity="ERROR"
-                  statusCode="0010001">
+                   class="org.artop.aal.gautosar.constraints.ecuc.GParamConfMultiplicityBasicConstraint"
+                   id="org.artop.aal.autosar3x.constraints.ecuc.ParamConfMultiplicityBasicConstraint_3x"
+                   isEnabledByDefault="true"
+                   lang="JAVA"
+                   mode="Batch"
+                   name="ParamConfMultiplicityBasicConstraint"
+                   severity="ERROR"
+                   statusCode="0010001">
                <message>
                   {0}
                </message>
@@ -102,6 +105,7 @@
              <constraint
                    class="org.artop.aal.autosar3x.constraints.ecuc.BooleanValueBasicConstraint"
                    id="org.artop.aal.autosar3x.constraints.ecuc.BooleanValueBasicConstraint_3x"
+                   isEnabledByDefault="true"
                    lang="JAVA"
                    mode="Batch"
                    name="BooleanValue"
@@ -120,6 +124,7 @@
              <constraint
                    class="org.artop.aal.autosar3x.constraints.ecuc.IntegerValueBasicConstraint"
                    id="org.artop.aal.autosar3x.constraints.ecuc.IntegerValueBasicConstraint_3x"
+                   isEnabledByDefault="true"
                    lang="JAVA"
                    mode="Batch"
                    name="IntegerValue"
@@ -138,6 +143,7 @@
              <constraint
                    class="org.artop.aal.autosar3x.constraints.ecuc.FloatValueBasicConstraint"
                    id="org.artop.aal.autosar3x.constraints.ecuc.FloatValueBasicConstraint_3x"
+                   isEnabledByDefault="true"
                    lang="JAVA"
                    mode="Batch"
                    name="FloatValue"
@@ -156,6 +162,7 @@
              <constraint
                    class="org.artop.aal.autosar3x.constraints.ecuc.StringValueBasicConstraint"
                    id="org.artop.aal.autosar3x.constraints.ecuc.StringValueBasicConstraint_3x"
+                   isEnabledByDefault="true"
                    lang="JAVA"
                    mode="Batch"
                    name="StringValue"
@@ -174,6 +181,7 @@
              <constraint
                    class="org.artop.aal.autosar3x.constraints.ecuc.FunctionNameValueBasicConstraint"
                    id="org.artop.aal.autosar3x.constraints.ecuc.FunctionNameValueBasicConstraint_3x"
+                   isEnabledByDefault="true"
                    lang="JAVA"
                    mode="Batch"
                    name="FunctionNameValue"
@@ -192,6 +200,7 @@
              <constraint
                    class="org.artop.aal.autosar3x.constraints.ecuc.LinkerSymbolValueBasicConstraint"
                    id="org.artop.aal.autosar3x.constraints.ecuc.LinkerSymbolValueBasicConstraint_3x"
+                   isEnabledByDefault="true"
                    lang="JAVA"
                    mode="Batch"
                    name="LinkerSymbolValue"
@@ -210,6 +219,7 @@
              <constraint
                    class="org.artop.aal.autosar3x.constraints.ecuc.EnumerationValueBasicConstraint"
                    id="org.artop.aal.autosar3x.constraints.ecuc.EnumerationValueBasicConstraint_3x"
+                   isEnabledByDefault="true"
                    lang="JAVA"
                    mode="Batch"
                    name="EnumerationValue"
@@ -228,6 +238,7 @@
              <constraint
                    class="org.artop.aal.gautosar.constraints.ecuc.GReferenceValueBasicConstraint"
                    id="org.artop.aal.autosar3x.constraints.ecuc.ReferenceValueBasicConstraint_3x"
+                   isEnabledByDefault="true"
                    lang="JAVA"
                    mode="Batch"
                    name="ReferenceValue"
@@ -246,6 +257,7 @@
              <constraint
                    class="org.artop.aal.autosar3x.constraints.ecuc.InstanceReferenceValueBasicConstraint"
                    id="org.artop.aal.autosar3x.constraints.ecuc.InstanceReferenceValueBasicConstraint_3x"
+                   isEnabledByDefault="true"
                    lang="JAVA"
                    mode="Batch"
                    name="InstanceReferenceValue"
@@ -263,13 +275,14 @@
              </constraint>
             
               <constraint
-                  class="org.artop.aal.gautosar.constraints.ecuc.GReferenceDefBasicConstraint"
-                  id="org.artop.aal.autosar3x.constraints.ecuc.ReferenceParamDefBasicConstraint_3x"
-                  lang="JAVA"
-                  mode="Batch"
-                  name="ReferenceParamDefBasicConstraint"
-                  severity="ERROR"
-                  statusCode="0010002">
+                    class="org.artop.aal.gautosar.constraints.ecuc.GReferenceDefBasicConstraint"
+                    id="org.artop.aal.autosar3x.constraints.ecuc.ReferenceParamDefBasicConstraint_3x"
+                    isEnabledByDefault="true"
+                    lang="JAVA"
+                    mode="Batch"
+                    name="ReferenceParamDefBasicConstraint"
+                    severity="ERROR"
+                    statusCode="0010002">
                <message>
                   {0}
                </message>
@@ -285,6 +298,7 @@
             <constraint
                   class="org.artop.aal.gautosar.constraints.ecuc.GChoiceReferenceDefBasicConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.ChoiceReferenceParamDefBasicConstraint_3x"
+                  isEnabledByDefault="true"
                   lang="JAVA"
                   mode="Batch"
                   name="ChoiceReferenceParamDefBasicConstraint"
@@ -304,6 +318,7 @@
             <constraint
                   class="org.artop.aal.gautosar.constraints.ecuc.GConfigParameterDefaultValueConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.ConfigParameterDefaultValueConstraint_3x"
+                  isEnabledByDefault="true"
                   lang="JAVA"
                   mode="Batch"
                   name="ConfigParameterDefaultValueConstraint"
@@ -322,6 +337,7 @@
             <constraint
                   class="org.artop.aal.gautosar.constraints.ecuc.GModuleDefContainerDefinitionMissingConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.ModuleDefContainerDefinitionMissingConstraint_3x"
+                  isEnabledByDefault="true"
                   lang="JAVA"
                   mode="Batch"
                   name="ModuleDefContainerDefinitionMissingConstraint"
@@ -340,6 +356,7 @@
             <constraint
                   class="org.artop.aal.gautosar.constraints.ecuc.GParamConfContainerDefConfigParameterMissingConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.ParamConfContainerDefConfigParameterMissingConstraint_3x"
+                  isEnabledByDefault="true"
                   lang="JAVA"
                   mode="Batch"
                   name="ParamConfContainerDefConfigParameterMissingConstraint"
@@ -358,6 +375,7 @@
             <constraint
                   class="org.artop.aal.gautosar.constraints.ecuc.GParamConfContainerDefConfigReferenceMissingConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.ParamConfContainerDefConfigReferenceMissingConstraint_3x"
+                  isEnabledByDefault="true"
                   lang="JAVA"
                   mode="Batch"
                   name="ParamConfContainerDefConfigReferenceMissingConstraint"
@@ -376,6 +394,7 @@
             <constraint
                   class="org.artop.aal.gautosar.constraints.ecuc.GEnumerationParamDefEnumerationLiteralConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.EnumerationParamDefEnumerationLiteralConstraint_3x"
+                  isEnabledByDefault="true"
                   lang="JAVA"
                   mode="Batch"
                   name="EnumerationParamDefEnumerationLiteralConstraint"
@@ -394,6 +413,7 @@
             <constraint
                   class="org.artop.aal.gautosar.constraints.ecuc.GConfigParameterSymbolicNameValueConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.ConfigParameterSymbolicNameValueConstraint_3x"
+                  isEnabledByDefault="true"
                   lang="JAVA"
                   mode="Batch"
                   name="ConfigParameterSymbolicNameValueConstraint"
@@ -412,6 +432,7 @@
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.StringParamDefDefaultValueConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.StringParamDefDefaultValueConstraint_3x"
+                  isEnabledByDefault="true"
                   lang="JAVA"
                   mode="Batch"
                   name="StringParamDefDefaultValueConstraint"
@@ -430,6 +451,7 @@
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.LinkerSymbolDefDefaultValueConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.LinkerSymbolDefDefaultValueConstraint_3x"
+                  isEnabledByDefault="true"
                   lang="JAVA"
                   mode="Batch"
                   name="LinkerSymbolDefDefaultValueConstraint"
@@ -448,6 +470,7 @@
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.FunctionNameDefDefaultValueConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.FunctionNamelDefDefaultValueConstraint_3x"
+                  isEnabledByDefault="true"
                   lang="JAVA"
                   mode="Batch"
                   name="FunctionNameDefDefaultValueConstraint"
@@ -466,6 +489,7 @@
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.IntegerParamDefDefaultValueConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.IntegerParamDefDefaultValueConstraint_3x"
+                  isEnabledByDefault="true"
                   lang="JAVA"
                   mode="Batch"
                   name="IntegerParamDefDefaultValueConstraint"
@@ -484,6 +508,7 @@
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.FloatParamDefDefaultValueConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.FloatParamDefDefaultValueConstraint_3x"
+                  isEnabledByDefault="true"
                   lang="JAVA"
                   mode="Batch"
                   name="FloatParamDefDefaultValueConstraint"
@@ -502,6 +527,7 @@
             <constraint
                   class="org.artop.aal.gautosar.constraints.ecuc.GEnumerationParamDefDefaultValueConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.EnumerationParamDefDefaultValueConstraint_3x"
+                  isEnabledByDefault="true"
                   lang="JAVA"
                   mode="Batch"
                   name="EnumerationParamDefDefaultValueConstraint"
@@ -520,6 +546,7 @@
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.ImplementationConfigClassPreCompileConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.ImplementationConfigClassPreCompileConstraint_3x"
+                  isEnabledByDefault="true"
                   lang="JAVA"
                   mode="Batch"
                   name="ImplementationConfigClassPreCompileConstraint"
@@ -538,6 +565,7 @@
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.ImplementationConfigClassLinkTimeConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.ImplementationConfigClassLinkTimeConstraint_3x"
+                  isEnabledByDefault="true"
                   lang="JAVA"
                   mode="Batch"
                   name="ImplementationConfigClassLinkTimeConstraint"
@@ -556,6 +584,7 @@
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.ConfigReferenceValueBasicConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.ConfigReferenceValueBasicConstraint_3x"
+                  isEnabledByDefault="true"
                   lang="JAVA"
                   mode="Batch"
                   name="ConfigReferenceValueBasicConstraint"
@@ -574,6 +603,7 @@
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.ParameterValueBasicConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.ParameterValueBasicConstraint_3x"
+                  isEnabledByDefault="true"
                   lang="JAVA"
                   mode="Batch"
                   name="ParameterValueBasicConstraint"
@@ -592,6 +622,7 @@
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.ConfigParameterImplConfigClassConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.ConfigParameterImplConfigClassConstraint_3x"
+                  isEnabledByDefault="true"
                   lang="JAVA"
                   mode="Batch"
                   name="ConfigParameterImplConfigClassConstraint"
@@ -610,6 +641,7 @@
             <constraint
                   class="org.artop.aal.gautosar.constraints.ecuc.GContainerDefContainerDefinitionMissingConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.ContainerDefContainerDefinitionMissingConstraint_3x"
+                  isEnabledByDefault="true"
                   lang="JAVA"
                   mode="Batch"
                   name="ContainerDefContainerDefinitionMissingConstraint"
@@ -628,6 +660,7 @@
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.FloatParamDefLowerLimitConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.FloatParamDefLowerLimitConstraint_3x"
+                  isEnabledByDefault="true"
                   lang="JAVA"
                   mode="Batch"
                   name="FloatParamDefLowerLimitConstraint"
@@ -644,13 +677,14 @@
                </target>
             </constraint>
             <constraint
-               class="org.artop.aal.autosar3x.constraints.ecuc.FloatParamDefUpperLimitConstraint"
-               id="org.artop.aal.autosar3x.constraints.ecuc.FloatParamDefUpperLimitConstraint_3x"
-               lang="JAVA"
-               mode="Batch"
-               name="FloatParamDefUpperLimitConstraint"
-               severity="WARNING"
-               statusCode="0000000">
+                  class="org.artop.aal.autosar3x.constraints.ecuc.FloatParamDefUpperLimitConstraint"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.FloatParamDefUpperLimitConstraint_3x"
+                  isEnabledByDefault="true"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="FloatParamDefUpperLimitConstraint"
+                  severity="WARNING"
+                  statusCode="0000000">
             <message>
                {0}
             </message>
@@ -664,6 +698,7 @@
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.IntegerParamDefLowerLimitConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.IntegerParamDefLowerLimitConstraint_3x"
+                  isEnabledByDefault="true"
                   lang="JAVA"
                   mode="Batch"
                   name="IntegerParamDefLowerLimitConstraint"
@@ -680,13 +715,14 @@
                </target>
             </constraint>
             <constraint
-               class="org.artop.aal.autosar3x.constraints.ecuc.IntegerParamDefUpperLimitConstraint"
-               id="org.artop.aal.autosar3x.constraints.ecuc.IntegerParamDefUpperLimitConstraint_3x"
-               lang="JAVA"
-               mode="Batch"
-               name="IntegerParamDefUpperLimitConstraint"
-               severity="WARNING"
-               statusCode="0000000">
+                  class="org.artop.aal.autosar3x.constraints.ecuc.IntegerParamDefUpperLimitConstraint"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.IntegerParamDefUpperLimitConstraint_3x"
+                  isEnabledByDefault="true"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="IntegerParamDefUpperLimitConstraint"
+                  severity="WARNING"
+                  statusCode="0000000">
             <message>
                {0}
             </message>
@@ -698,13 +734,14 @@
             </target>
          </constraint>
          <constraint
-                  class="org.artop.aal.autosar3x.constraints.ecuc.ParamConfContainerDefMultipleConfigurationModifyConstraint"
-                  id="org.artop.aal.autosar3x.constraints.ecuc.ParamConfContainerDefMultipleConfigurationModifyConstraint_3x"
-                  lang="JAVA"
-                  mode="Batch"
-                  name="ParamConfContainerDefMultipleConfigurationModifyConstraint"
-                  severity="WARNING"
-                  statusCode="0000000">
+               class="org.artop.aal.autosar3x.constraints.ecuc.ParamConfContainerDefMultipleConfigurationModifyConstraint"
+               id="org.artop.aal.autosar3x.constraints.ecuc.ParamConfContainerDefMultipleConfigurationModifyConstraint_3x"
+               isEnabledByDefault="true"
+               lang="JAVA"
+               mode="Batch"
+               name="ParamConfContainerDefMultipleConfigurationModifyConstraint"
+               severity="WARNING"
+               statusCode="0000000">
                <message>
                   {0}
                </message>
@@ -718,6 +755,7 @@
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.ContainerDefPostBuildChangeableModifyConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.ContainerDefPostBuildChangeableModifyConstraint_3x"
+                  isEnabledByDefault="true"
                   lang="JAVA"
                   mode="Batch"
                   name="ContainerDefPostBuildChangeableModifyConstraint"
@@ -736,6 +774,7 @@
             <constraint
                   class="org.artop.aal.autosar3x.constraints.ecuc.ConfigParameterSymbolicNameValueModifyConstraint"
                   id="org.artop.aal.autosar3x.constraints.ecuc.ConfigParameterSymbolicNameValueModifyConstraint_3x"
+                  isEnabledByDefault="true"
                   lang="JAVA"
                   mode="Batch"
                   name="ConfigParameterSymbolicNameValueModifyConstraint"
@@ -752,13 +791,14 @@
                </target>
             </constraint>
             <constraint
-               class="org.artop.aal.autosar3x.constraints.ecuc.EcuConfigurationModuleConfigurationLowerMultiplicityConstraint"
-               id="org.artop.aal.autosar3x.constraints.ecuc.EcuConfigurationModuleConfigurationLowerMultiplicityConstraint_3x"
-               lang="JAVA"
-               mode="Batch"
-               name="EcuConfigurationModuleConfigurationLowerMultiplicityConstraint"
-               severity="ERROR"
-               statusCode="0000000">
+                  class="org.artop.aal.autosar3x.constraints.ecuc.EcuConfigurationModuleConfigurationLowerMultiplicityConstraint"
+                  id="org.artop.aal.autosar3x.constraints.ecuc.EcuConfigurationModuleConfigurationLowerMultiplicityConstraint_3x"
+                  isEnabledByDefault="true"
+                  lang="JAVA"
+                  mode="Batch"
+                  name="EcuConfigurationModuleConfigurationLowerMultiplicityConstraint"
+                  severity="ERROR"
+                  statusCode="0000000">
             <message>
                {0}
             </message>
@@ -770,13 +810,14 @@
             </target>
          </constraint>
 		<constraint
-               class="org.artop.aal.autosar3x.constraints.ecuc.EcuConfigurationModuleConfigurationUpperMultiplicityConstraint"
-               id="org.artop.aal.autosar3x.constraints.ecuc.EcuConfigurationModuleConfigurationUpperMultiplicityConstraint_3x"
-               lang="JAVA"
-               mode="Batch"
-               name="EcuConfigurationModuleConfigurationUpperMultiplicityConstraint"
-               severity="ERROR"
-               statusCode="0000000">
+        class="org.artop.aal.autosar3x.constraints.ecuc.EcuConfigurationModuleConfigurationUpperMultiplicityConstraint"
+        id="org.artop.aal.autosar3x.constraints.ecuc.EcuConfigurationModuleConfigurationUpperMultiplicityConstraint_3x"
+        isEnabledByDefault="true"
+        lang="JAVA"
+        mode="Batch"
+        name="EcuConfigurationModuleConfigurationUpperMultiplicityConstraint"
+        severity="ERROR"
+        statusCode="0000000">
             <message>
                {0}
             </message>
@@ -792,6 +833,7 @@
          <constraint
                class="org.artop.aal.autosar3x.constraints.ecuc.ModuleConfigurationSubContainerMultiplicityConstraint"
                id="org.artop.aal.autosar3x.constraints.ecuc.ModuleConfigurationSubContainerMultiplicityConstraint_3x"
+               isEnabledByDefault="true"
                lang="JAVA"
                mode="Batch"
                name="ModuleConfigurationSubContainerMultiplicityConstraint"
@@ -810,6 +852,7 @@
          <constraint
                class="org.artop.aal.autosar3x.constraints.ecuc.ContainerSubContainerMultiplicityConstraint"
                id="org.artop.aal.autosar3x.constraints.ecuc.ContainerSubContainerMultiplicityConstraint_3x"
+               isEnabledByDefault="true"
                lang="JAVA"
                mode="Batch"
                name="ContainerSubContainerMultiplicityConstraint"
@@ -828,6 +871,7 @@
          <constraint
                class="org.artop.aal.gautosar.constraints.ecuc.GContainerParameterValueMultiplicityConstraint"
                id="org.artop.aal.autosar3x.constraints.ecuc.ContainerParameterValueMultiplicityConstraint_3x"
+               isEnabledByDefault="true"
                lang="JAVA"
                mode="Batch"
                name="ContainerParameterValueMultiplicityConstraint"
@@ -846,6 +890,7 @@
          <constraint
                class="org.artop.aal.gautosar.constraints.ecuc.GContainerReferenceValueMultiplicityConstraint"
                id="org.artop.aal.autosar3x.constraints.ecuc.ContainerReferenceValueMultiplicityConstraint_3x"
+               isEnabledByDefault="true"
                lang="JAVA"
                mode="Batch"
                name="ContainerReferenceValueMultiplicityConstraint"
@@ -864,6 +909,7 @@
          <constraint
                class="org.artop.aal.gautosar.constraints.ecuc.GConfigParameterLowerMultiplicityConstraint"
                id="org.artop.aal.autosar3x.constraints.ecuc.ConfigParameterLowerMultiplicityConstraint_3x"
+               isEnabledByDefault="true"
                lang="JAVA"
                mode="Batch"
                name="ConfigParameterLowerMultiplicityConstraint"
@@ -882,6 +928,7 @@
          <constraint
                class="org.artop.aal.gautosar.constraints.ecuc.GConfigParameterUpperMultiplicityConstraint"
                id="org.artop.aal.autosar3x.constraints.ecuc.ConfigParameterUpperMultiplicityConstraint_3x"
+               isEnabledByDefault="true"
                lang="JAVA"
                mode="Batch"
                name="ConfigParameterUpperMultiplicityConstraint"
@@ -900,6 +947,7 @@
          <constraint
                class="org.artop.aal.gautosar.constraints.ecuc.GConfigReferenceLowerMultiplicityConstraint"
                id="org.artop.aal.autosar3x.constraints.ecuc.ConfigReferenceLowerMultiplicityConstraint_3x"
+               isEnabledByDefault="true"
                lang="JAVA"
                mode="Batch"
                name="ConfigReferenceLowerMultiplicityConstraint"
@@ -918,6 +966,7 @@
          <constraint
                class="org.artop.aal.gautosar.constraints.ecuc.GConfigReferenceUpperMultiplicityConstraint"
                id="org.artop.aal.autosar3x.constraints.ecuc.ConfigReferenceUpperMultiplicityConstraint_3x"
+               isEnabledByDefault="true"
                lang="JAVA"
                mode="Batch"
                name="ConfigReferenceUpperMultiplicityConstraint"
@@ -936,6 +985,7 @@
          <constraint
                class="org.artop.aal.gautosar.constraints.ecuc.GParamConfContainerDefInChoiceContainerDefMultiplicityConstraint"
                id="org.artop.aal.autosar3x.constraints.ecuc.ParamConfContainerDefInChoiceContainerDefMultiplicityConstraint_3x"
+               isEnabledByDefault="true"
                lang="JAVA"
                mode="Batch"
                name="ParamConfContainerDefInChoiceContainerDefMultiplicityConstraint"
@@ -954,6 +1004,7 @@
          <constraint
                class="org.artop.aal.gautosar.constraints.ecuc.GParamConfMultiplicityConsistencyConstraint"
                id="org.artop.aal.autosar3x.constraints.ecuc.ParamConfMultiplicityConsistencyConstraint_3x"
+               isEnabledByDefault="true"
                lang="JAVA"
                mode="Batch"
                name="ParamConfMultiplicityConsistencyConstraint"
@@ -972,6 +1023,7 @@
          <constraint
                class="org.artop.aal.gautosar.constraints.ecuc.GModuleConfigurationChoiceContainerDefMultiplicityConstraint"
                id="org.artop.aal.autosar3x.constraints.ecuc.ModuleConfigurationChoiceContainerDefMultiplicityConstraint_3x"
+               isEnabledByDefault="true"
                lang="JAVA"
                mode="Batch"
                name="ModuleConfigurationChoiceContainerDefMultiplicityConstraint"
@@ -988,13 +1040,14 @@
             </target>
          </constraint>
          <constraint
-                  class="org.artop.aal.gautosar.constraints.ecuc.GContainerDefLowerMultiplicityConstraint"
-                  id="org.artop.aal.autosar3x.constraints.ecuc.ContainerDefLowerMultiplicityConstraint_3x"
-                  lang="JAVA"
-                  mode="Batch"
-                  name="ContainerDefLowerMultiplicityConstraint"
-                  severity="ERROR"
-                  statusCode="0000000">
+               class="org.artop.aal.gautosar.constraints.ecuc.GContainerDefLowerMultiplicityConstraint"
+               id="org.artop.aal.autosar3x.constraints.ecuc.ContainerDefLowerMultiplicityConstraint_3x"
+               isEnabledByDefault="true"
+               lang="JAVA"
+               mode="Batch"
+               name="ContainerDefLowerMultiplicityConstraint"
+               severity="ERROR"
+               statusCode="0000000">
                <message>
                   {0}
                </message>
@@ -1008,6 +1061,7 @@
          <constraint
                class="org.artop.aal.gautosar.constraints.ecuc.GContainerDefUpperMultiplicityConstraint"
                id="org.artop.aal.autosar3x.constraints.ecuc.ContainerDefUpperMultiplicityConstraint_3x"
+               isEnabledByDefault="true"
                lang="JAVA"
                mode="Batch"
                name="ContainerDefUpperMultiplicityConstraint"

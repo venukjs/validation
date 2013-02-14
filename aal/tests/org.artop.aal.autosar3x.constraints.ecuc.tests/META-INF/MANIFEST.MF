@@ -8,9 +8,11 @@ Bundle-Activator: org.artop.aal.autosar3x.constraints.ecuc.tests.internal.Activa
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.artop.aal.autosar3x,
- org.artop.aal.gautosar.constraints.ecuc,
  org.artop.aal.gautosar.constraints.ecuc.tests,
+ org.artop.aal.gautosar.constraints.ecuc,
  org.artop.aal.autosar3x.constraints.ecuc,
+ org.artop.aal.autosar3x.validation,
+ org.artop.aal.autosar3x.tests,
  org.artop.aal.testutils
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
