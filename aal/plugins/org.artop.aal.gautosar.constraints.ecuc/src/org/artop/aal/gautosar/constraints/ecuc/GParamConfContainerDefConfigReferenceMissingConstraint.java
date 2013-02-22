@@ -85,7 +85,7 @@ public class GParamConfContainerDefConfigReferenceMissingConstraint extends Abst
 						tmp2 = " are"; //$NON-NLS-1$
 					}
 					return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.paramConfigContainerDef_configReferenceMissing, new Object[] {
-							tmp1, invalidConfigReferences, tmp2, AutosarURIFactory.getAbsoluteQualifiedName(vSpecifModuleDef) }));
+							tmp1, invalidConfigReferences, tmp2, AutosarURIFactory.getAbsoluteQualifiedName(containerDef) }));
 				}
 			} else {
 				//

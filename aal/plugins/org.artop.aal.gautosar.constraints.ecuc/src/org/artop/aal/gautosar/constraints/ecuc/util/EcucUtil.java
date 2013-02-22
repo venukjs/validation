@@ -58,7 +58,7 @@ public class EcucUtil {
 	/**
 	 * The constant used to represent a multiplicity with "1" as value.
 	 */
-	static final String MULTIPLICITY_ONE = "1"; //$NON-NLS-1$
+	public static final String MULTIPLICITY_ONE = "1"; //$NON-NLS-1$
 
 	/**
 	 * The constant used to represent an infinite multiplicity with "*" as value.
@@ -81,6 +81,8 @@ public class EcucUtil {
 		if (featureValue == null) {
 			return null;
 		}
+		
+		
 		return featureValue.toString();
 	}
 
@@ -692,7 +694,25 @@ public class EcucUtil {
 			}
 		}
 
-		return containerDefRetrieved;
+		//fix - instead of retrieving the ancestor, retrieve the GContainerDef if there is a match (null otherwise)
+		if( containerDefRetrieved!=null){
+			if(containerDefRetrieved.gGetShortName().equals(containerDef.gGetShortName())){
+				return containerDefRetrieved;
+			}else
+			{
+			 EList<EObject> tContents = containerDefRetrieved.eContents();
+			 if(tContents!=null){
+				for (EObject eObject : tContents) {
+					if(eObject instanceof GIdentifiable && ((GIdentifiable)eObject).gGetShortName().equals(containerDef.gGetShortName()) ){
+						return (GContainerDef)eObject;
+					}
+				}
+			 }
+		    }
+		} else{
+			return null;
+		}
+		return null;
 	}
 
 	public static EObject find(String shortName, EObject[] eObjects) {
@@ -711,6 +731,12 @@ public class EcucUtil {
 		/* List of invalid config parameters */
 		List<String> failures = new ArrayList<String>();
 
+		/*
+		 *[ecuc_sws_6007] Elements defined in the StMD must be present in the VSMD
+		 *and must not be omitted...
+		 */
+		checkRefinedVendorDiffs(refinedContainers, vSpecifContainers, failures);
+		
 		for (GContainerDef refinedContainerDef : refinedContainers) {
 			/* Retrieves the Container Definition with the specified short name from the Vendor Specific side. */
 			EObject vSpecifContainerDef = find(refinedContainerDef.gGetShortName(), vSpecifContainers.toArray(new EObject[0]));
@@ -735,6 +761,35 @@ public class EcucUtil {
 		}
 
 		return failures.toArray(new String[0]);
+	}
+
+	/**
+	 * @param refinedContainers
+	 * @param vSpecifContainers
+	 * @param failures
+	 */
+	private static void checkRefinedVendorDiffs(
+			EList<GContainerDef> refinedContainers,
+			EList<GContainerDef> vSpecifContainers, List<String> failures) {
+		if(vSpecifContainers.size()<refinedContainers.size()){
+			List<GContainerDef> deltaList = new ArrayList<GContainerDef>(); 
+			for (GContainerDef rContainerDef : refinedContainers) {
+				boolean isInList = false;
+				for(GContainerDef vContainerDef : vSpecifContainers){
+					if(rContainerDef.gGetShortName().equals(vContainerDef.gGetShortName())){
+						isInList = true;
+					}				
+				}
+				 if(!isInList){
+					 deltaList.add(rContainerDef);
+				 }
+			}
+			if(!deltaList.isEmpty()){
+				for (GContainerDef gContainerDef : deltaList) {
+					failures.add(gContainerDef.gGetShortName());
+				}
+			}
+		}
 	}
 
 	public static String[] inspectContainersChoice(EList<GParamConfContainerDef> refinedContainers, EList<GParamConfContainerDef> vSpecifContainers) {
@@ -773,6 +828,31 @@ public class EcucUtil {
 		/* List of invalid config parameters */
 		List<String> failures = new ArrayList<String>();
 
+		
+		/*
+		 *[ecuc_sws_6007] Elements defined in the StMD must be present in the VSMD
+		 *and must not be omitted...
+		 */
+		if(vSpecifCommonConfigurationAttributes.size()<refinedCommonConfigurationAttributes.size()){
+			List<GConfigParameter> deltaList = new ArrayList<GConfigParameter>(); 
+			for (GConfigParameter rContainerDef : refinedCommonConfigurationAttributes) {
+				boolean isInList = false;
+				for(GConfigParameter vContainerDef : vSpecifCommonConfigurationAttributes){
+					if(rContainerDef.gGetShortName().equals(vContainerDef.gGetShortName())){
+						isInList = true;
+					}
+				 }
+				 if(!isInList){
+					 deltaList.add(rContainerDef);
+				}
+			}
+			if(!deltaList.isEmpty()){
+				for (GConfigParameter gContainerDef : deltaList) {
+					failures.add(gContainerDef.gGetShortName());
+				}
+			}
+		}
+		
 		for (GConfigParameter refinedCommonConfAtt : refinedCommonConfigurationAttributes) {
 			if (GCommonConfigurationAttributes.class.isInstance(refinedCommonConfAtt)) {
 				/*
@@ -782,17 +862,26 @@ public class EcucUtil {
 				GConfigParameter vSpecifCommonConfAtt = (GConfigParameter) find(refinedCommonConfAtt.gGetShortName(),
 						vSpecifCommonConfigurationAttributes.toArray(new EObject[0]));
 
+				/*
+				 * [ecuc_sws_6007] Elements defined in the StMD must be present in the VSMD
+				 * and must not be omitted, even if the upperMultiplicity of an element in the
+				 * VSMD is set to 0
+				 * - loosen up the initial implementation
+				 */
 				if (vSpecifCommonConfAtt == null) {
+					
+					String commonConfAttShortName = refinedCommonConfAtt.gGetShortName();
+					failures.add(commonConfAttShortName);
+					
 					/*
 					 * 'Common Configuration Attributes' not found in 'Vendor Specific'. If the current 'Refined Common
 					 * Configuration Attributes' has a non-zero lower multiplicity, the current 'Vendor Specific Common
 					 * Configuration Attributes' is marked as missing in 'Vendor Specific Module Definition'.
-					 */
-					String lowerMultiplicity = refinedCommonConfAtt.gGetLowerMultiplicityAsString();
-					if (lowerMultiplicity != null && !"".equals(lowerMultiplicity) && !"0".equals(lowerMultiplicity)) { //$NON-NLS-1$ //$NON-NLS-2$
-						String commonConfAttShortName = refinedCommonConfAtt.gGetShortName();
-						failures.add(commonConfAttShortName);
-					}
+					 * String lowerMultiplicity = refinedCommonConfAtt.gGetLowerMultiplicityAsString();
+					 * if (lowerMultiplicity != null && !"".equals(lowerMultiplicity) && !"0".equals(lowerMultiplicity)) { //$NON-NLS-1$ //$NON-NLS-2$
+					 *	String commonConfAttShortName = refinedCommonConfAtt.gGetShortName();
+					 *	failures.add(commonConfAttShortName);
+					}*/
 				} else {
 					// Common Configuration Attributes has been found in the Vendor Specific side. Does nothing more.
 				}
@@ -806,6 +895,32 @@ public class EcucUtil {
 		/* List of invalid config parameters */
 		List<String> failures = new ArrayList<String>();
 
+		
+		/*
+		 *[ecuc_sws_6007] Elements defined in the StMD must be present in the VSMD
+		 *and must not be omitted...
+		 */
+		if(vSpecifCommonConfigurationAttributes.size()<refinedCommonConfigurationAttributes.size()){
+			List<GConfigReference> deltaList = new ArrayList<GConfigReference>(); 
+			for (GConfigReference rContainerDef : refinedCommonConfigurationAttributes) {
+				boolean isInList = false;
+				for(GConfigReference vContainerDef : vSpecifCommonConfigurationAttributes){
+					if(rContainerDef.gGetShortName().equals(vContainerDef.gGetShortName())){
+						isInList = true;
+					}
+				 }
+				 if(!isInList){
+					 deltaList.add(rContainerDef);
+				}
+			}
+			if(!deltaList.isEmpty()){
+				for (GConfigReference gContainerDef : deltaList) {
+					failures.add(gContainerDef.gGetShortName());
+				}
+			}
+		}
+		
+		
 		for (GConfigReference refinedCommonConfAtt : refinedCommonConfigurationAttributes) {
 			if (GCommonConfigurationAttributes.class.isInstance(refinedCommonConfAtt)) {
 				/*

@@ -25,7 +25,7 @@ public class EcucFloatParamDefLowerLimitConstraint extends AbstractGFloatParamDe
 
 	@Override
 	protected Double getMin(EObject obj) {
-		return (Double) EcucUtil40.getMax(obj);
+		return (Double) EcucUtil40.getMin(obj);
 	}
 
 	@Override

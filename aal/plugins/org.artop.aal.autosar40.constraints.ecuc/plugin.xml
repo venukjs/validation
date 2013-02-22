@@ -213,7 +213,7 @@
                </target>
             </constraint>
             <constraint
-                  class="org.artop.aal.gautosar.constraints.ecuc.GConfigParameterDefaultValueConstraint"
+                  class="org.artop.aal.autosar40.constraints.ecuc.EcucConfigParameterDefaultValueConstraint"
                   id="org.artop.aal.autosar40.constraints.ecuc.EcucParameterDefDefaultValueConstraint_40"
                   lang="JAVA"
                   mode="Batch"
@@ -542,7 +542,7 @@
                   lang="JAVA"
                   mode="Batch"
                   name="EcucFloatParamDefLowerLimitConstraint"
-                  severity="WARNING"
+                  severity="ERROR"
                   statusCode="0000000">
                <message>
                   {0}
@@ -560,7 +560,7 @@
 	               lang="JAVA"
 	               mode="Batch"
 	               name="EcucFloatParamDefUpperLimitConstraint"
-	               severity="WARNING"
+	               severity="ERROR"
 	               statusCode="0000000">
 	            <message>
 	               {0}
@@ -578,7 +578,7 @@
                   lang="JAVA"
                   mode="Batch"
                   name="EcucIntegerParamDefLowerLimitConstraint"
-                  severity="WARNING"
+                  severity="ERROR"
                   statusCode="0000000">
                <message>
                   {0}
@@ -596,7 +596,7 @@
 	               lang="JAVA"
 	               mode="Batch"
 	               name="EcucIntegerParamDefUpperLimitConstraint"
-	               severity="WARNING"
+	               severity="ERROR"
 	               statusCode="0000000">
 	            <message>
 	               {0}

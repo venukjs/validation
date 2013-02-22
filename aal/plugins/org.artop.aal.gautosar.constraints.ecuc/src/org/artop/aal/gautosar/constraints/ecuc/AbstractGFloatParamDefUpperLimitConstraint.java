@@ -61,9 +61,17 @@ public abstract class AbstractGFloatParamDefUpperLimitConstraint extends Abstrac
 				Double vSpecifMaxLimit = getMax(floatParamDef);
 
 				/*
-				 * A warning is raised if upper limit has been modified in the Vendor Specific ModuleDef.
+				 * An error is raised if upper limit in the Vendor Specific ModuleDef is bigger than Refined ModuleDef
 				 */
-				valid = refinedMaxLimit.equals(vSpecifMaxLimit);
+				if(refinedMaxLimit.isInfinite() ){
+					valid = true;
+				}else{
+					if(vSpecifMaxLimit.isInfinite()){
+						valid = false;
+					}else{
+						valid = vSpecifMaxLimit.compareTo(refinedMaxLimit)<=0 ? true : false;
+					}
+				}
 			}
 
 			if (!valid) {
@@ -71,7 +79,7 @@ public abstract class AbstractGFloatParamDefUpperLimitConstraint extends Abstrac
 				EObject refinedModuleDef = EcucUtil.getParentModuleDefForContainerDef(parent);
 
 				return ctx.createFailureStatus(NLS.bind(
-						EcucConstraintMessages.floatParamDef_upperLimitChanged,
+						EcucConstraintMessages.floatParamDef_UpperLimitBiggerInVendorSpecificModuleDefinition,
 						new Object[] { AutosarURIFactory.getAbsoluteQualifiedName(floatParamDef),
 								AutosarURIFactory.getAbsoluteQualifiedName(refinedModuleDef) }));
 			}

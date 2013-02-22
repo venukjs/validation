@@ -58,16 +58,24 @@ public abstract class AbstractGFloatParamDefLowerLimitConstraint extends Abstrac
 				Double vSpecifMinLimit = getMin(floatParamDef);
 
 				/*
-				 * A warning is raised if lower limit has been modified in the Vendor Specific ModuleDef.
+				 * An error is raised if lower limit in the Vendor Specific ModuleDef smaller than corresponding one in the Refined ModuleDef
 				 */
-				valid = refinedMinLimit.equals(vSpecifMinLimit);
+				if(refinedMinLimit.isInfinite()){
+					valid = true;
+				}else{
+					if(vSpecifMinLimit.isInfinite()){
+					 valid = false;	
+					}else{
+					 valid = vSpecifMinLimit.compareTo(refinedMinLimit)>=0 ? true : false;
+					}
+				}
 			}
 
 			if (!valid) {
 				GParamConfContainerDef parent = (GParamConfContainerDef) refinedFloatParamDef.eContainer();
 				EObject refineModuleDef = EcucUtil.getParentModuleDefForContainerDef(parent);
 
-				return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.floatParamDef_LowerLimitChangedInVendorSpecificModuleDefinition,
+				return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.floatParamDef_LowerLimitSmallerInVendorSpecificModuleDefinition,
 						AutosarURIFactory.getAbsoluteQualifiedName(floatParamDef), AutosarURIFactory.getAbsoluteQualifiedName(refineModuleDef)));
 			}
 		} else {

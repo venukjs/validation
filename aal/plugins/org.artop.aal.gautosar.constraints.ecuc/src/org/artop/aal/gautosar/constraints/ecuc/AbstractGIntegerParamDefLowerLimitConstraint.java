@@ -60,16 +60,16 @@ public abstract class AbstractGIntegerParamDefLowerLimitConstraint extends Abstr
 				BigInteger vSpecifMinLimit = getMin(integerParamDef);
 
 				/*
-				 * A warning is raised if lower limit has been modified in the Vendor Specific ModuleDef.
+				 * An error is raised if lower limit in the Vendor Specific ModuleDef is bigger than corresponding in the Refined ModuleDef
 				 */
-				valid = refinedMinLimit.equals(vSpecifMinLimit);
+				valid = refinedMinLimit.compareTo(vSpecifMinLimit)==1 ? false : true ;
 			}
 
 			if (!valid) {
 				GParamConfContainerDef parent = (GParamConfContainerDef) refinedIntegerParamDef.eContainer();
 				EObject refineModuleDef = EcucUtil.getParentModuleDefForContainerDef(parent);
 
-				return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.integerParamDef_LowerLimitChangedInVendorSpecificModuleDefinition,
+				return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.integerParamDef_LowerLimitSmallerInVendorSpecificModuleDefinition,
 						AutosarURIFactory.getAbsoluteQualifiedName(integerParamDef), AutosarURIFactory.getAbsoluteQualifiedName(refineModuleDef)));
 			}
 		} else {

@@ -135,7 +135,13 @@ public final class EcucConstraintMessages extends NLS {
 
 	public static String modulesConfiguration_moduleDefTooMuch;
 	public static String modulesConfiguration_moduleDefMissing;
+	
+	public static String integerParamDef_LowerLimitSmallerInVendorSpecificModuleDefinition;
+	public static String integerParamDef_UpperLimitBiggerInVendorSpecificModuleDefinition;
 
+	public static String floatParamDef_LowerLimitSmallerInVendorSpecificModuleDefinition;
+	public static String floatParamDef_UpperLimitBiggerInVendorSpecificModuleDefinition;
+	
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, EcucConstraintMessages.class);

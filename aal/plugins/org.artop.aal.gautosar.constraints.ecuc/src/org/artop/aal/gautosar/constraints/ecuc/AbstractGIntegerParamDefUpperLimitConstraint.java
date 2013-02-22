@@ -63,9 +63,9 @@ public abstract class AbstractGIntegerParamDefUpperLimitConstraint extends Abstr
 				BigInteger vSpecifMinLimit = getMax(integerParamDef);
 
 				/*
-				 * A warning is raised if Upper limit has been modified in the Vendor Specific ModuleDef.
+				 * An error is raised if Upper limit in the Vendor Specific ModuleDef is bigger than correspongin one in the Refined ModuleDef
 				 */
-				valid = vSpecifMinLimit.equals(refinedMaxLimit);
+				valid = vSpecifMinLimit.compareTo(refinedMaxLimit)==1 ? false : true;
 			}
 
 			if (!valid) {
@@ -73,7 +73,7 @@ public abstract class AbstractGIntegerParamDefUpperLimitConstraint extends Abstr
 				EObject refineModuleDef = EcucUtil.getParentModuleDefForContainerDef(parent);
 
 				return ctx.createFailureStatus(NLS.bind(
-						EcucConstraintMessages.integerParamDef_upperLimitChanged,
+						EcucConstraintMessages.integerParamDef_UpperLimitBiggerInVendorSpecificModuleDefinition,
 						new Object[] { AutosarURIFactory.getAbsoluteQualifiedName(integerParamDef),
 								AutosarURIFactory.getAbsoluteQualifiedName(refineModuleDef) }));
 			}
