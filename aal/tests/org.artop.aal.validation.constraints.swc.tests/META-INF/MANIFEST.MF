@@ -9,9 +9,7 @@ Bundle-Localization: fragment
 Require-Bundle: org.artop.aal.validation.testutils,
  org.artop.aal.testutils,
  org.artop.aal.autosar40,
- org.artop.aal.autosar403, 
- org.artop.aal.autosar40.services,
- org.artop.aal.autosar403.services 
+ org.artop.aal.autosar40.services
 Bundle-ActivationPolicy: lazy
 Fragment-Host: 
  org.artop.aal.validation.constraints.swc
