@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %fragmentName
+Bundle-SymbolicName: org.artop.aal.validation.constraints.swc.tests;singleton:=true
+Bundle-Version: 3.3.3.qualifier
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %providerName
+Bundle-Localization: fragment
+Require-Bundle: org.artop.aal.validation.testutils,
+ org.artop.aal.testutils,
+ org.artop.aal.autosar40,
+ org.artop.aal.autosar403, 
+ org.artop.aal.autosar40.services,
+ org.artop.aal.autosar403.services 
+Bundle-ActivationPolicy: lazy
+Fragment-Host: 
+ org.artop.aal.validation.constraints.swc

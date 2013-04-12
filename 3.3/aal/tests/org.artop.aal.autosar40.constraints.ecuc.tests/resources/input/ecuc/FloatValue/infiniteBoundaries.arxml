@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 autosar_4-0-3.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE UUID="c4e604c8-9125-47c2-9854-8c9a9dbefb20">
+      <SHORT-NAME>AUTOSAR</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE UUID="1bada261-0be3-4369-b3df-fae26ee502d4">
+          <SHORT-NAME>EcucDefs</SHORT-NAME>
+          <ELEMENTS>
+            <ECUC-MODULE-DEF UUID="9e4651cd-8f65-4eb0-bfa6-a77f709ae936">
+              <SHORT-NAME>Vendor_Module</SHORT-NAME>
+              <CONTAINERS>
+                <ECUC-PARAM-CONF-CONTAINER-DEF>
+                  <SHORT-NAME>EcucParamConfContainerDef</SHORT-NAME>
+                  <PARAMETERS>
+                    <ECUC-FLOAT-PARAM-DEF>
+                      <SHORT-NAME>EcucFloatParamDef</SHORT-NAME>
+                      
+                      <!--Valid Default value (within the range) -->
+                      <DEFAULT-VALUE>100.0</DEFAULT-VALUE>
+                      
+                      <!--Usage of special values: -INF and INF -->
+                      <MAX>INF</MAX>
+                      <MIN>-INF</MIN>
+                      
+                    </ECUC-FLOAT-PARAM-DEF>
+                  </PARAMETERS>
+                </ECUC-PARAM-CONF-CONTAINER-DEF>
+              </CONTAINERS>
+            </ECUC-MODULE-DEF>
+            <ECUC-MODULE-CONFIGURATION-VALUES UUID="9eed1f37-d9e0-4888-90a0-a1d6a44715f8">
+              <SHORT-NAME>myVendor_Module</SHORT-NAME>
+              <DEFINITION-REF DEST="ECUC-MODULE-DEF">/AUTOSAR/EcucDefs/Vendor_Module</DEFINITION-REF>
+              <CONTAINERS>
+                <ECUC-CONTAINER-VALUE UUID="8975b7e1-3c0e-45d4-8285-535fc046c9bb">
+                  <SHORT-NAME>EcucParamConfContainerDef</SHORT-NAME>
+                  <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/AUTOSAR/EcucDefs/Vendor_Module/EcucParamConfContainerDef</DEFINITION-REF>
+                  <PARAMETER-VALUES>
+                    <ECUC-NUMERICAL-PARAM-VALUE>
+                      <DEFINITION-REF DEST="ECUC-FLOAT-PARAM-DEF">/AUTOSAR/EcucDefs/Vendor_Module/EcucParamConfContainerDef/EcucFloatParamDef</DEFINITION-REF>
+                     
+                     <!--value in range -->
+                      <VALUE>12.0</VALUE>
+                      
+                    </ECUC-NUMERICAL-PARAM-VALUE>
+                  </PARAMETER-VALUES>
+                </ECUC-CONTAINER-VALUE>
+              </CONTAINERS>
+            </ECUC-MODULE-CONFIGURATION-VALUES>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

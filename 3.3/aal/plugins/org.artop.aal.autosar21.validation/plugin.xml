@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+
+<!--
+<copyright>
+
+Copyright (c) See4sys and others.
+All rights reserved. This program and the accompanying materials are made
+available under the terms of the Artop Software License Based on AUTOSAR
+Released Material (ASLR) which accompanies this distribution, and is
+available at http://www.artop.org/aslr.html
+ 
+Contributors: 
+    See4sys - Initial API and implementation
+
+</copyright>
+-->
+
+<plugin>
+
+   <extension
+         point="org.eclipse.sphinx.emf.validation.registration">
+      <model
+            Name="AUTOSAR 2.1"
+            NsURI="http://autosar.org/2.1.5/autosar21/gs/i"
+            class="autosar21.genericstructure.infrastructure.ARObject"
+            filter="_21"
+            id="autosar21"
+            validatorAdapterClass="org.artop.aal.validation.adapter.EAutosarValidatorAdapter">
+      </model>
+   </extension>
+ 
+    <extension point="org.eclipse.emf.validation.constraintBindings">
+        <clientContext id="autosar21.ARObject.context">
+            <enablement>
+                <instanceof value="autosar21.genericstructure.infrastructure.ARObject"/>
+            </enablement>
+        </clientContext>
+   </extension>
+
+   <extension
+         point="org.eclipse.sphinx.emf.editingDomainFactoryListeners">
+      <listener
+            id="org.artop.aal.autosar21.validation.internal.ValidationEditingDomainFactoryListener"
+            class="org.artop.aal.autosar21.validation.internal.ValidationEditingDomainFactoryListener">
+         <applicableFor
+               metaModelDescriptorIdPattern="org.artop.aal.autosar21" />
+      </listener>
+   </extension>
+
+</plugin>
