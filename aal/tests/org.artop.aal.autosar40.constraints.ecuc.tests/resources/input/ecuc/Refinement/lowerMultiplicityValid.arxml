@@ -1,0 +1,1218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 autosar_4-0-3.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>TS_T2D13M4I0R57</SHORT-NAME>
+      <ELEMENTS>
+        <ECUC-DEFINITION-COLLECTION>
+          <SHORT-NAME>myEcuParameterDefinition</SHORT-NAME>
+          <MODULE-REFS>
+            <MODULE-REF DEST="ECUC-MODULE-DEF">/TS_T2D13M4I0R57/Os</MODULE-REF>
+          </MODULE-REFS>
+        </ECUC-DEFINITION-COLLECTION>
+        <ECUC-MODULE-DEF UUID="7547ed65-bbff-4fa9-964d-b3e9641fba78">
+          <SHORT-NAME>Os</SHORT-NAME>
+          <DESC>
+            <L-2 L="EN">Configuration of the Os (Operating System) module.</L-2>
+          </DESC>
+          <ADMIN-DATA>
+            <DOC-REVISIONS>
+              <DOC-REVISION>
+                <REVISION-LABEL>4.2.0</REVISION-LABEL>
+                <ISSUED-BY>AUTOSAR</ISSUED-BY>
+                <DATE>2011-11-09</DATE>
+              </DOC-REVISION>
+            </DOC-REVISIONS>
+          </ADMIN-DATA>
+          <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+          <REFINED-MODULE-DEF-REF DEST="ECUC-MODULE-DEF">/AUTOSAR/EcucDefs/Os</REFINED-MODULE-DEF-REF>
+          <SUPPORTED-CONFIG-VARIANTS>
+            <SUPPORTED-CONFIG-VARIANT>VARIANT-PRE-COMPILE</SUPPORTED-CONFIG-VARIANT>
+          </SUPPORTED-CONFIG-VARIANTS>
+          <CONTAINERS>
+            <ECUC-PARAM-CONF-CONTAINER-DEF UUID="2cb2efec-c7ae-48e0-993a-9bb0640f936f">
+              <SHORT-NAME>OsOS</SHORT-NAME>
+              <DESC>
+                <L-2 L="EN">OS is the object used to define OSEK OS properties for an OSEK application.</L-2>
+              </DESC>
+              <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+              <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+              <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+              <PARAMETERS>
+                <ECUC-INTEGER-PARAM-DEF UUID="9dc2fc6d-4778-4fe3-84ea-e3d61e6b37bd">
+                  <SHORT-NAME>OsNumberOfCores</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Maximum number of cores that are controlled by the OS.</L-2>
+                  </DESC>
+                  <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                  <IMPLEMENTATION-CONFIG-CLASSES>
+                    <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                      <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                    </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                  </IMPLEMENTATION-CONFIG-CLASSES>
+                  <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                  <MAX>65535</MAX>
+                  <MIN>1</MIN>
+                </ECUC-INTEGER-PARAM-DEF>
+                <ECUC-ENUMERATION-PARAM-DEF UUID="b91e6a6c-a545-4200-9b1d-75c5e2d04fea">
+                  <SHORT-NAME>OsScalabilityClass</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">A scalability class for each System Object "OS" has to be selected. In order to customize the operating system to the needs of the user and to take full advantage of the processor features the operating system can be scaled according to the scalability classes.</L-2>
+                  </DESC>
+                  <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                  <IMPLEMENTATION-CONFIG-CLASSES>
+                    <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                      <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                    </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                  </IMPLEMENTATION-CONFIG-CLASSES>
+                  <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                  <LITERALS>
+                    <ECUC-ENUMERATION-LITERAL-DEF UUID="54ce841e-f73d-448b-9a1d-9a3619beee7e">
+                      <SHORT-NAME>SC1</SHORT-NAME>
+                      <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                    </ECUC-ENUMERATION-LITERAL-DEF>
+                    <ECUC-ENUMERATION-LITERAL-DEF UUID="137117d3-4200-4862-9d41-7d9b62a67a2f">
+                      <SHORT-NAME>SC2</SHORT-NAME>
+                      <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                    </ECUC-ENUMERATION-LITERAL-DEF>
+                    <ECUC-ENUMERATION-LITERAL-DEF UUID="feca4717-84e9-40a1-95c1-1e3ca3927850">
+                      <SHORT-NAME>SC3</SHORT-NAME>
+                      <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                    </ECUC-ENUMERATION-LITERAL-DEF>
+                    <ECUC-ENUMERATION-LITERAL-DEF UUID="27708665-6427-4b71-ba20-6c2f680205c4">
+                      <SHORT-NAME>SC4</SHORT-NAME>
+                      <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                    </ECUC-ENUMERATION-LITERAL-DEF>
+                  </LITERALS>
+                </ECUC-ENUMERATION-PARAM-DEF>
+                <ECUC-BOOLEAN-PARAM-DEF UUID="ca744d8b-146d-4a81-a838-cec1954daa52">
+                  <SHORT-NAME>OsStackMonitoring</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Select stack monitoring of Tasks/Category 2 ISRs</L-2>
+                  </DESC>
+                  <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                  <IMPLEMENTATION-CONFIG-CLASSES>
+                    <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                      <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                    </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                  </IMPLEMENTATION-CONFIG-CLASSES>
+                  <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                </ECUC-BOOLEAN-PARAM-DEF>
+                <ECUC-ENUMERATION-PARAM-DEF UUID="8c4dfb42-ed86-45c3-b1c6-43646b0e86e9">
+                  <SHORT-NAME>OsStatus</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">The Status attribute specifies whether a system with standard or extended status has to be used. Automatic assigment is not supported for this attribute.</L-2>
+                  </DESC>
+                  <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                  <IMPLEMENTATION-CONFIG-CLASSES>
+                    <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                      <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                    </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                  </IMPLEMENTATION-CONFIG-CLASSES>
+                  <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                  <LITERALS>
+                    <ECUC-ENUMERATION-LITERAL-DEF UUID="089e9bf8-aebc-4976-8ba3-0e8d2123b357">
+                      <SHORT-NAME>EXTENDED</SHORT-NAME>
+                      <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                    </ECUC-ENUMERATION-LITERAL-DEF>
+                    <ECUC-ENUMERATION-LITERAL-DEF UUID="d983d898-9e4e-4d28-8e05-5efd975fbae7">
+                      <SHORT-NAME>STANDARD</SHORT-NAME>
+                      <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                    </ECUC-ENUMERATION-LITERAL-DEF>
+                  </LITERALS>
+                </ECUC-ENUMERATION-PARAM-DEF>
+                <ECUC-BOOLEAN-PARAM-DEF UUID="4cc90539-edfe-4896-b52b-4f49c8e2a2dc">
+                  <SHORT-NAME>OsUseGetServiceId</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">As defined by OSEK</L-2>
+                  </DESC>
+                  <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                  <IMPLEMENTATION-CONFIG-CLASSES>
+                    <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                      <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                    </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                  </IMPLEMENTATION-CONFIG-CLASSES>
+                  <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                </ECUC-BOOLEAN-PARAM-DEF>
+                <ECUC-BOOLEAN-PARAM-DEF UUID="ff243d56-231d-4654-a586-f158755ffeb9">
+                  <SHORT-NAME>OsUseParameterAccess</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">As defined by OSEK</L-2>
+                  </DESC>
+                  <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                  <IMPLEMENTATION-CONFIG-CLASSES>
+                    <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                      <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                    </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                  </IMPLEMENTATION-CONFIG-CLASSES>
+                  <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                </ECUC-BOOLEAN-PARAM-DEF>
+                <ECUC-BOOLEAN-PARAM-DEF UUID="ca35a2ca-4c1d-44c6-9e2f-016f11f53810">
+                  <SHORT-NAME>OsUseResScheduler</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">The OsUseResScheduler attribute defines whether the resource RES_SCHEDULER is used within the application.</L-2>
+                  </DESC>
+                  <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                  <IMPLEMENTATION-CONFIG-CLASSES>
+                    <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                      <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                    </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                  </IMPLEMENTATION-CONFIG-CLASSES>
+                  <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                  <DEFAULT-VALUE>true</DEFAULT-VALUE>
+                </ECUC-BOOLEAN-PARAM-DEF>
+                <ECUC-ENUMERATION-PARAM-DEF UUID="c938170b-86bc-42f9-aaea-2cee96a253aa">
+                  <SHORT-NAME>OsCC</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Freescale vendor specific: Defines the conformance class of OS (/OS/CC)</L-2>
+                  </DESC>
+                  <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                  <IMPLEMENTATION-CONFIG-CLASSES>
+                    <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                      <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                    </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                  </IMPLEMENTATION-CONFIG-CLASSES>
+                  <ORIGIN>FREESCALE</ORIGIN>
+                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                  <DEFAULT-VALUE>AUTO</DEFAULT-VALUE>
+                  <LITERALS>
+                    <ECUC-ENUMERATION-LITERAL-DEF UUID="962ae3d8-946f-4a0f-8a86-d00bdbf74b40">
+                      <SHORT-NAME>BCC1</SHORT-NAME>
+                      <ORIGIN>FREESCALE</ORIGIN>
+                    </ECUC-ENUMERATION-LITERAL-DEF>
+                    <ECUC-ENUMERATION-LITERAL-DEF UUID="e465f407-2c39-4486-a719-7322f014442b">
+                      <SHORT-NAME>ECC1</SHORT-NAME>
+                      <ORIGIN>FREESCALE</ORIGIN>
+                    </ECUC-ENUMERATION-LITERAL-DEF>
+                    <ECUC-ENUMERATION-LITERAL-DEF UUID="3636ace5-a61f-4b27-9667-4f8562740bb1">
+                      <SHORT-NAME>AUTO</SHORT-NAME>
+                      <ORIGIN>FREESCALE</ORIGIN>
+                    </ECUC-ENUMERATION-LITERAL-DEF>
+                  </LITERALS>
+                </ECUC-ENUMERATION-PARAM-DEF>
+                <ECUC-INTEGER-PARAM-DEF UUID="423df458-8f2c-4dfd-905d-5f48c738866b">
+                  <SHORT-NAME>OsCommonStackSize</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Freescale vendor specific: Specifies the common stack size for basic tasks in bytes (/OS/CommonStackSize)</L-2>
+                  </DESC>
+                  <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                  <IMPLEMENTATION-CONFIG-CLASSES>
+                    <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                      <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                    </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                  </IMPLEMENTATION-CONFIG-CLASSES>
+                  <ORIGIN>FREESCALE</ORIGIN>
+                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                  <MAX>4294967295</MAX>
+                  <MIN>128</MIN>
+                </ECUC-INTEGER-PARAM-DEF>
+                <ECUC-INTEGER-PARAM-DEF UUID="dbed4143-b52d-4f0e-960d-7dbb59c9a03f">
+                  <SHORT-NAME>OsDebugLevel</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Freescale vendor specific: Specifies the ORTI support in OS (/OS/DEBUG_LEVEL)</L-2>
+                  </DESC>
+                  <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                  <IMPLEMENTATION-CONFIG-CLASSES>
+                    <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                      <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                    </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                  </IMPLEMENTATION-CONFIG-CLASSES>
+                  <ORIGIN>FREESCALE</ORIGIN>
+                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                  <DEFAULT-VALUE>0</DEFAULT-VALUE>
+                  <MAX>4</MAX>
+                  <MIN>0</MIN>
+                </ECUC-INTEGER-PARAM-DEF>
+                <ECUC-BOOLEAN-PARAM-DEF UUID="60f9cabe-183a-4cab-ab09-b5e17aca944c">
+                  <SHORT-NAME>OsIsrHooks</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Freescale vendor specific: Defines whether or not IsrHook is called before and after ISR (/OS/IsrHooks)</L-2>
+                  </DESC>
+                  <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                  <IMPLEMENTATION-CONFIG-CLASSES>
+                    <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                      <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                    </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                  </IMPLEMENTATION-CONFIG-CLASSES>
+                  <ORIGIN>FREESCALE</ORIGIN>
+                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                  <DEFAULT-VALUE>false</DEFAULT-VALUE>
+                </ECUC-BOOLEAN-PARAM-DEF>
+                <ECUC-INTEGER-PARAM-DEF UUID="720d3f34-58e3-4663-a842-0bf8b39b47cc">
+                  <SHORT-NAME>OsIsrStackSize</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Freescale vendor specific: Specifies the ISR stack size in bytes (/OS/IsrStackSize)</L-2>
+                  </DESC>
+                  <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                  <IMPLEMENTATION-CONFIG-CLASSES>
+                    <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                      <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                    </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                  </IMPLEMENTATION-CONFIG-CLASSES>
+                  <ORIGIN>FREESCALE</ORIGIN>
+                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                  <MAX>4294967295</MAX>
+                  <MIN>64</MIN>
+                </ECUC-INTEGER-PARAM-DEF>
+                <ECUC-INTEGER-PARAM-DEF UUID="2caffa5c-29ba-475b-ac0c-291cada5e7c2">
+                  <SHORT-NAME>OsPattern</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Freescale vendor specific: Specifies a 8-bit pattern to fill stack; Freescale AUTOSAR OS specific attribute (/OS/STACKMONITORING/TRUE/Pattern)</L-2>
+                  </DESC>
+                  <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                  <IMPLEMENTATION-CONFIG-CLASSES>
+                    <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                      <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                    </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                  </IMPLEMENTATION-CONFIG-CLASSES>
+                  <ORIGIN>FREESCALE</ORIGIN>
+                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                  <DEFAULT-VALUE>1431655765</DEFAULT-VALUE>
+                  <MAX>4294967295</MAX>
+                  <MIN>0</MIN>
+                </ECUC-INTEGER-PARAM-DEF>
+                <ECUC-ENUMERATION-PARAM-DEF UUID="6b0c768e-643e-412b-9960-865f63a086b4">
+                  <SHORT-NAME>OsPatternSize</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Freescale vendor specific: PatternSize defines the size of area to be checked, in bytes for OS/S12X(E) and 32 in bit words for OS/MPC. Freescale AUTOSAR OS specific attribute (/OS/STACKMONITORING/TRUE/PatternSize)</L-2>
+                  </DESC>
+                  <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                  <IMPLEMENTATION-CONFIG-CLASSES>
+                    <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                      <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                    </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                  </IMPLEMENTATION-CONFIG-CLASSES>
+                  <ORIGIN>FREESCALE</ORIGIN>
+                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                  <DEFAULT-VALUE>ONE</DEFAULT-VALUE>
+                  <LITERALS>
+                    <ECUC-ENUMERATION-LITERAL-DEF UUID="be4d2e4a-5d30-4233-860b-30a082eef53f">
+                      <SHORT-NAME>ONE</SHORT-NAME>
+                      <ORIGIN>FREESCALE</ORIGIN>
+                    </ECUC-ENUMERATION-LITERAL-DEF>
+                    <ECUC-ENUMERATION-LITERAL-DEF UUID="ced49ce2-c89e-4eab-b677-0265e6b2577e">
+                      <SHORT-NAME>TWO</SHORT-NAME>
+                      <ORIGIN>FREESCALE</ORIGIN>
+                    </ECUC-ENUMERATION-LITERAL-DEF>
+                    <ECUC-ENUMERATION-LITERAL-DEF UUID="c21be2c3-4f71-4ecc-9245-c1341cb15a47">
+                      <SHORT-NAME>FOUR</SHORT-NAME>
+                      <ORIGIN>FREESCALE</ORIGIN>
+                    </ECUC-ENUMERATION-LITERAL-DEF>
+                  </LITERALS>
+                </ECUC-ENUMERATION-PARAM-DEF>
+              </PARAMETERS>
+              <SUB-CONTAINERS>
+                <ECUC-PARAM-CONF-CONTAINER-DEF UUID="7ab3955f-4786-483d-b43a-cddbf32b9c4b">
+                  <SHORT-NAME>OsHooks</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Container to structure all hooks belonging to the OS</L-2>
+                  </DESC>
+                  <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                  <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+                  <PARAMETERS>
+                    <ECUC-BOOLEAN-PARAM-DEF UUID="f5387595-38f6-4fe3-b407-4392726beb29">
+                      <SHORT-NAME>OsErrorHook</SHORT-NAME>
+                      <DESC>
+                        <L-2 L="EN">Error hook as defined by OSEK</L-2>
+                      </DESC>
+                      <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                      <IMPLEMENTATION-CONFIG-CLASSES>
+                        <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                          <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                          <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                        </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      </IMPLEMENTATION-CONFIG-CLASSES>
+                      <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                      <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                    </ECUC-BOOLEAN-PARAM-DEF>
+                    <ECUC-BOOLEAN-PARAM-DEF UUID="15531208-3363-414e-900d-eef298feb8d5">
+                      <SHORT-NAME>OsPostTaskHook</SHORT-NAME>
+                      <DESC>
+                        <L-2 L="EN">Post-task hook as defined by OSEK</L-2>
+                      </DESC>
+                      <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                      <IMPLEMENTATION-CONFIG-CLASSES>
+                        <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                          <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                          <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                        </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      </IMPLEMENTATION-CONFIG-CLASSES>
+                      <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                      <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                    </ECUC-BOOLEAN-PARAM-DEF>
+                    <ECUC-BOOLEAN-PARAM-DEF UUID="9fa119cc-9fbf-446e-994e-cf05f2d92a5d">
+                      <SHORT-NAME>OsPreTaskHook</SHORT-NAME>
+                      <DESC>
+                        <L-2 L="EN">Pre-task hook as defined by OSEK</L-2>
+                      </DESC>
+                      <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                      <IMPLEMENTATION-CONFIG-CLASSES>
+                        <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                          <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                          <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                        </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      </IMPLEMENTATION-CONFIG-CLASSES>
+                      <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                      <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                    </ECUC-BOOLEAN-PARAM-DEF>
+                    <ECUC-BOOLEAN-PARAM-DEF UUID="c93c5fad-1d3e-415f-9080-0b96443e9d37">
+                      <SHORT-NAME>OsProtectionHook</SHORT-NAME>
+                      <DESC>
+                        <L-2 L="EN">Switch to enable/disable the call to the (user supplied) protection hook.</L-2>
+                      </DESC>
+                      <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                      <IMPLEMENTATION-CONFIG-CLASSES>
+                        <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                          <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                          <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                        </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      </IMPLEMENTATION-CONFIG-CLASSES>
+                      <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                      <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                    </ECUC-BOOLEAN-PARAM-DEF>
+                    <ECUC-BOOLEAN-PARAM-DEF UUID="395aa1b6-1226-455e-af3c-f4fdb7b0fcbb">
+                      <SHORT-NAME>OsShutdownHook</SHORT-NAME>
+                      <DESC>
+                        <L-2 L="EN">Shutdown hook as defined by OSEK</L-2>
+                      </DESC>
+                      <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                      <IMPLEMENTATION-CONFIG-CLASSES>
+                        <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                          <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                          <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                        </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      </IMPLEMENTATION-CONFIG-CLASSES>
+                      <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                      <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                    </ECUC-BOOLEAN-PARAM-DEF>
+                    <ECUC-BOOLEAN-PARAM-DEF UUID="f1398a49-82e5-44cb-a19a-25024d7cc048">
+                      <SHORT-NAME>OsStartupHook</SHORT-NAME>
+                      <DESC>
+                        <L-2 L="EN">Startup hook as defined by OSEK</L-2>
+                      </DESC>
+                      <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                      <IMPLEMENTATION-CONFIG-CLASSES>
+                        <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                          <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                          <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                        </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      </IMPLEMENTATION-CONFIG-CLASSES>
+                      <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                      <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                    </ECUC-BOOLEAN-PARAM-DEF>
+                  </PARAMETERS>
+                </ECUC-PARAM-CONF-CONTAINER-DEF>
+                <ECUC-CHOICE-CONTAINER-DEF UUID="e81a4eb3-b41e-4ed1-ad46-c73a6308bbf2">
+                  <SHORT-NAME>OsTargetMCU</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">Freescale vendor specific: Specifies MCU platform (/OS/TargetMCU)</L-2>
+                  </DESC>
+                  <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                  <CHOICES>
+                    <ECUC-PARAM-CONF-CONTAINER-DEF UUID="56eda82c-f8bc-474d-982f-17994c49a6cb">
+                      <SHORT-NAME>MPC5607B</SHORT-NAME>
+                      <DESC>
+                        <L-2 L="EN">Freescale vendor specific:  (/OS/TargetMCU/MPC5607B)</L-2>
+                      </DESC>
+                      <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                      <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+                      <PARAMETERS>
+                        <ECUC-INTEGER-PARAM-DEF UUID="682fc4a6-809e-441d-9a55-fc24936fa58a">
+                          <SHORT-NAME>OsClockDivider</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN">Freescale vendor specific: Specifies hardware independent clock frequency divider for calculating input timer frequency (/OS/TargetMCU/MPC5607B/ClockDivider)</L-2>
+                          </DESC>
+                          <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                          <IMPLEMENTATION-CONFIG-CLASSES>
+                            <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                              <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                              <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                            </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                          </IMPLEMENTATION-CONFIG-CLASSES>
+                          <ORIGIN>FREESCALE</ORIGIN>
+                          <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                          <DEFAULT-VALUE>1</DEFAULT-VALUE>
+                          <MAX>4294967295</MAX>
+                          <MIN>1</MIN>
+                        </ECUC-INTEGER-PARAM-DEF>
+                        <ECUC-INTEGER-PARAM-DEF UUID="e305c698-4c9e-451b-b79b-34f46ee18903">
+                          <SHORT-NAME>OsClockFrequency</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN">Freescale vendor specific: Specifies MCU frequency source in kHz for calculating prescaler value and timer modulo value (/OS/TargetMCU/MPC5607B/ClockFrequency)</L-2>
+                          </DESC>
+                          <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                          <IMPLEMENTATION-CONFIG-CLASSES>
+                            <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                              <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                              <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                            </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                          </IMPLEMENTATION-CONFIG-CLASSES>
+                          <ORIGIN>FREESCALE</ORIGIN>
+                          <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                          <DEFAULT-VALUE>8000</DEFAULT-VALUE>
+                          <MAX>100000</MAX>
+                          <MIN>1000</MIN>
+                        </ECUC-INTEGER-PARAM-DEF>
+                        <ECUC-INTEGER-PARAM-DEF UUID="593403b3-4165-4097-b38b-d68a1ac41f16">
+                          <SHORT-NAME>OsClockMultiplier</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN">Freescale vendor specific: Specifies hardware independent clock frequency multiplier for calculating input timer frequency (/OS/TargetMCU/MPC5607B/ClockMultiplier)</L-2>
+                          </DESC>
+                          <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                          <IMPLEMENTATION-CONFIG-CLASSES>
+                            <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                              <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                              <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                            </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                          </IMPLEMENTATION-CONFIG-CLASSES>
+                          <ORIGIN>FREESCALE</ORIGIN>
+                          <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                          <DEFAULT-VALUE>1</DEFAULT-VALUE>
+                          <MAX>4294967295</MAX>
+                          <MIN>1</MIN>
+                        </ECUC-INTEGER-PARAM-DEF>
+                      </PARAMETERS>
+                      <SUB-CONTAINERS>
+                        <ECUC-CHOICE-CONTAINER-DEF UUID="989f4ad3-504a-4986-8e9a-08ff3a5c2a24">
+                          <SHORT-NAME>OsExternalROM</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN">Freescale vendor specific:  (/OS/TargetMCU/MPC5607B/ExternalROM)</L-2>
+                          </DESC>
+                          <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                          <CHOICES>
+                            <ECUC-PARAM-CONF-CONTAINER-DEF UUID="5fd21aa4-b70c-42ae-a455-e382b7163002">
+                              <SHORT-NAME>FALSE</SHORT-NAME>
+                              <DESC>
+                                <L-2 L="EN">Freescale vendor specific:  (/OS/TargetMCU/MPC5607B/ExternalROM/FALSE)</L-2>
+                              </DESC>
+                              <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                              <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                              <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+                            </ECUC-PARAM-CONF-CONTAINER-DEF>
+                            <ECUC-PARAM-CONF-CONTAINER-DEF UUID="0c8534e4-66bd-4395-85e7-cb101a8ae0f4">
+                              <SHORT-NAME>TRUE</SHORT-NAME>
+                              <DESC>
+                                <L-2 L="EN">Freescale vendor specific:  (/OS/TargetMCU/MPC5607B/ExternalROM/TRUE)</L-2>
+                              </DESC>
+                              <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                              <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                              <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+                              <PARAMETERS>
+                                <ECUC-INTEGER-PARAM-DEF UUID="4bc4564f-d4ab-42a6-a477-680b6ca1a50a">
+                                  <SHORT-NAME>Address</SHORT-NAME>
+                                  <DESC>
+                                    <L-2 L="EN">Freescale vendor specific: Section address (/OS/TargetMCU/MPC5607B/ExternalROM/TRUE/Address)</L-2>
+                                  </DESC>
+                                  <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                  <IMPLEMENTATION-CONFIG-CLASSES>
+                                    <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                      <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                      <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                                    </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                  </IMPLEMENTATION-CONFIG-CLASSES>
+                                  <ORIGIN>FREESCALE</ORIGIN>
+                                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                                  <MAX>4294967295</MAX>
+                                  <MIN>0</MIN>
+                                </ECUC-INTEGER-PARAM-DEF>
+                                <ECUC-INTEGER-PARAM-DEF UUID="0f046176-1dc3-4d6c-8a57-0f940ee5788a">
+                                  <SHORT-NAME>Size</SHORT-NAME>
+                                  <DESC>
+                                    <L-2 L="EN">Freescale vendor specific: Section size (/OS/TargetMCU/MPC5607B/ExternalROM/TRUE/Size)</L-2>
+                                  </DESC>
+                                  <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                  <IMPLEMENTATION-CONFIG-CLASSES>
+                                    <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                      <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                      <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                                    </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                  </IMPLEMENTATION-CONFIG-CLASSES>
+                                  <ORIGIN>FREESCALE</ORIGIN>
+                                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                                  <MAX>4294967295</MAX>
+                                  <MIN>0</MIN>
+                                </ECUC-INTEGER-PARAM-DEF>
+                              </PARAMETERS>
+                            </ECUC-PARAM-CONF-CONTAINER-DEF>
+                          </CHOICES>
+                        </ECUC-CHOICE-CONTAINER-DEF>
+                        <ECUC-CHOICE-CONTAINER-DEF UUID="f81188fa-ed94-4315-81cb-06daebe737f8">
+                          <SHORT-NAME>OsInternalRAM</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN">Freescale vendor specific:  (/OS/TargetMCU/MPC5607B/InternalRAM)</L-2>
+                          </DESC>
+                          <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                          <CHOICES>
+                            <ECUC-PARAM-CONF-CONTAINER-DEF UUID="e2f663eb-c6b3-4288-b9b4-d97777ad2d1f">
+                              <SHORT-NAME>FALSE</SHORT-NAME>
+                              <DESC>
+                                <L-2 L="EN">Freescale vendor specific:  (/OS/TargetMCU/MPC5607B/InternalRAM/FALSE)</L-2>
+                              </DESC>
+                              <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                              <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                              <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+                            </ECUC-PARAM-CONF-CONTAINER-DEF>
+                            <ECUC-PARAM-CONF-CONTAINER-DEF UUID="ecd9de40-7819-4034-b663-589d95359023">
+                              <SHORT-NAME>TRUE</SHORT-NAME>
+                              <DESC>
+                                <L-2 L="EN">Freescale vendor specific:  (/OS/TargetMCU/MPC5607B/InternalRAM/TRUE)</L-2>
+                              </DESC>
+                              <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                              <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                              <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+                              <PARAMETERS>
+                                <ECUC-INTEGER-PARAM-DEF UUID="da5bc579-b852-4105-ba38-66cef642e2bf">
+                                  <SHORT-NAME>Address</SHORT-NAME>
+                                  <DESC>
+                                    <L-2 L="EN">Freescale vendor specific: Section address (/OS/TargetMCU/MPC5607B/InternalRAM/TRUE/Address)</L-2>
+                                  </DESC>
+                                  <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                  <IMPLEMENTATION-CONFIG-CLASSES>
+                                    <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                      <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                      <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                                    </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                  </IMPLEMENTATION-CONFIG-CLASSES>
+                                  <ORIGIN>FREESCALE</ORIGIN>
+                                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                                  <DEFAULT-VALUE>1073741824</DEFAULT-VALUE>
+                                  <MAX>4294967295</MAX>
+                                  <MIN>0</MIN>
+                                </ECUC-INTEGER-PARAM-DEF>
+                                <ECUC-INTEGER-PARAM-DEF UUID="74c898a3-8053-4d1d-bf44-53811805ac6a">
+                                  <SHORT-NAME>Size</SHORT-NAME>
+                                  <DESC>
+                                    <L-2 L="EN">Freescale vendor specific: Section size (/OS/TargetMCU/MPC5607B/InternalRAM/TRUE/Size)</L-2>
+                                  </DESC>
+                                  <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                  <IMPLEMENTATION-CONFIG-CLASSES>
+                                    <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                      <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                      <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                                    </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                  </IMPLEMENTATION-CONFIG-CLASSES>
+                                  <ORIGIN>FREESCALE</ORIGIN>
+                                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                                  <DEFAULT-VALUE>98304</DEFAULT-VALUE>
+                                  <MAX>4294967295</MAX>
+                                  <MIN>0</MIN>
+                                </ECUC-INTEGER-PARAM-DEF>
+                              </PARAMETERS>
+                            </ECUC-PARAM-CONF-CONTAINER-DEF>
+                          </CHOICES>
+                        </ECUC-CHOICE-CONTAINER-DEF>
+                        <ECUC-CHOICE-CONTAINER-DEF UUID="b3c1d29d-fa3e-4eb7-86c4-18e19d675e89">
+                          <SHORT-NAME>OsInternalROM</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN">Freescale vendor specific:  (/OS/TargetMCU/MPC5607B/InternalROM)</L-2>
+                          </DESC>
+                          <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                          <CHOICES>
+                            <ECUC-PARAM-CONF-CONTAINER-DEF UUID="1abf4d42-d77c-4b7e-88a6-5cfbb1afc32c">
+                              <SHORT-NAME>FALSE</SHORT-NAME>
+                              <DESC>
+                                <L-2 L="EN">Freescale vendor specific:  (/OS/TargetMCU/MPC5607B/InternalROM/FALSE)</L-2>
+                              </DESC>
+                              <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                              <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                              <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+                            </ECUC-PARAM-CONF-CONTAINER-DEF>
+                            <ECUC-PARAM-CONF-CONTAINER-DEF UUID="1616298b-607a-4900-a438-f2f9699df159">
+                              <SHORT-NAME>TRUE</SHORT-NAME>
+                              <DESC>
+                                <L-2 L="EN">Freescale vendor specific:  (/OS/TargetMCU/MPC5607B/InternalROM/TRUE)</L-2>
+                              </DESC>
+                              <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                              <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                              <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+                              <PARAMETERS>
+                                <ECUC-INTEGER-PARAM-DEF UUID="24be2fb1-b015-4ebb-a11b-238ac45fdfc9">
+                                  <SHORT-NAME>Address</SHORT-NAME>
+                                  <DESC>
+                                    <L-2 L="EN">Freescale vendor specific: Section address (/OS/TargetMCU/MPC5607B/InternalROM/TRUE/Address)</L-2>
+                                  </DESC>
+                                  <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                  <IMPLEMENTATION-CONFIG-CLASSES>
+                                    <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                      <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                      <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                                    </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                  </IMPLEMENTATION-CONFIG-CLASSES>
+                                  <ORIGIN>FREESCALE</ORIGIN>
+                                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                                  <DEFAULT-VALUE>0</DEFAULT-VALUE>
+                                  <MAX>4294967295</MAX>
+                                  <MIN>0</MIN>
+                                </ECUC-INTEGER-PARAM-DEF>
+                                <ECUC-INTEGER-PARAM-DEF UUID="2bb6e897-c4c9-41ca-b20c-f61f67a1663a">
+                                  <SHORT-NAME>Size</SHORT-NAME>
+                                  <DESC>
+                                    <L-2 L="EN">Freescale vendor specific: Section size (/OS/TargetMCU/MPC5607B/InternalROM/TRUE/Size)</L-2>
+                                  </DESC>
+                                  <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                  <IMPLEMENTATION-CONFIG-CLASSES>
+                                    <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                      <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                      <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                                    </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                  </IMPLEMENTATION-CONFIG-CLASSES>
+                                  <ORIGIN>FREESCALE</ORIGIN>
+                                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                                  <DEFAULT-VALUE>1572864</DEFAULT-VALUE>
+                                  <MAX>4294967295</MAX>
+                                  <MIN>0</MIN>
+                                </ECUC-INTEGER-PARAM-DEF>
+                              </PARAMETERS>
+                            </ECUC-PARAM-CONF-CONTAINER-DEF>
+                          </CHOICES>
+                        </ECUC-CHOICE-CONTAINER-DEF>
+                        <ECUC-CHOICE-CONTAINER-DEF UUID="40a24060-fa61-4602-806c-c599a256540f">
+                          <SHORT-NAME>OsTPTimer</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN">Freescale vendor specific: Specifies whether Timing Protection shall be initialized during OS startup (/OS/TargetMCU/MPC5607B/TPTimer)</L-2>
+                          </DESC>
+                          <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                          <CHOICES>
+                            <ECUC-PARAM-CONF-CONTAINER-DEF UUID="f0eab18b-aa7d-4a26-83a1-804c21a11411">
+                              <SHORT-NAME>FALSE</SHORT-NAME>
+                              <DESC>
+                                <L-2 L="EN">Freescale vendor specific:  (/OS/TargetMCU/MPC5607B/TPTimer/FALSE)</L-2>
+                              </DESC>
+                              <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                              <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                              <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+                            </ECUC-PARAM-CONF-CONTAINER-DEF>
+                            <ECUC-PARAM-CONF-CONTAINER-DEF UUID="851d634e-06db-4b6e-97b6-5cd6dfadb0ca">
+                              <SHORT-NAME>TRUE</SHORT-NAME>
+                              <DESC>
+                                <L-2 L="EN">Freescale vendor specific:  (/OS/TargetMCU/MPC5607B/TPTimer/TRUE)</L-2>
+                              </DESC>
+                              <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                              <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                              <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+                              <PARAMETERS>
+                                <ECUC-INTEGER-PARAM-DEF UUID="64567097-47f9-4399-8548-e532f6cb7c56">
+                                  <SHORT-NAME>OsPeriod</SHORT-NAME>
+                                  <DESC>
+                                    <L-2 L="EN">Freescale vendor specific: Specifies period of a tick of the Timing Protection counter (in nanoseconds) (/OS/TargetMCU/MPC5607B/TPTimer/TRUE/Period)</L-2>
+                                  </DESC>
+                                  <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                  <IMPLEMENTATION-CONFIG-CLASSES>
+                                    <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                      <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                      <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                                    </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                  </IMPLEMENTATION-CONFIG-CLASSES>
+                                  <ORIGIN>FREESCALE</ORIGIN>
+                                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                                  <MAX>4294967295</MAX>
+                                  <MIN>0</MIN>
+                                </ECUC-INTEGER-PARAM-DEF>
+                              </PARAMETERS>
+                              <SUB-CONTAINERS>
+                                <ECUC-CHOICE-CONTAINER-DEF UUID="ae431907-2661-4baf-8eed-7d0fb71965b7">
+                                  <SHORT-NAME>OsTimerHardware</SHORT-NAME>
+                                  <DESC>
+                                    <L-2 L="EN">Freescale vendor specific: Specifies hardware interrupt source for the counter (/OS/TargetMCU/MPC5607B/TPTimer/TRUE/TimerHardware)</L-2>
+                                  </DESC>
+                                  <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                  <CHOICES>
+                                    <ECUC-PARAM-CONF-CONTAINER-DEF UUID="5de5f1ad-7cbc-412e-b9d2-9f82cbb95fd8">
+                                      <SHORT-NAME>STM</SHORT-NAME>
+                                      <DESC>
+                                        <L-2 L="EN">Freescale vendor specific:  (/OS/TargetMCU/MPC5607B/TPTimer/TRUE/TimerHardware/STM)</L-2>
+                                      </DESC>
+                                      <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                      <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+                                      <PARAMETERS>
+                                        <ECUC-BOOLEAN-PARAM-DEF UUID="b3e0581d-4f95-4825-aeee-53ba81413eb8">
+                                          <SHORT-NAME>OsFreeze</SHORT-NAME>
+                                          <DESC>
+                                            <L-2 L="EN">Freescale vendor specific: Specifies timer freeze bit value (/OS/TargetMCU/MPC5607B/TPTimer/TRUE/TimerHardware/STM/Freeze)</L-2>
+                                          </DESC>
+                                          <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                                          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                          <IMPLEMENTATION-CONFIG-CLASSES>
+                                            <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                              <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                              <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                                            </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                          </IMPLEMENTATION-CONFIG-CLASSES>
+                                          <ORIGIN>FREESCALE</ORIGIN>
+                                          <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                                          <DEFAULT-VALUE>false</DEFAULT-VALUE>
+                                        </ECUC-BOOLEAN-PARAM-DEF>
+                                      </PARAMETERS>
+                                      <SUB-CONTAINERS>
+                                        <ECUC-CHOICE-CONTAINER-DEF UUID="1916a814-37fe-4852-a2b4-dbff85dbf21b">
+                                          <SHORT-NAME>OsPrescaler</SHORT-NAME>
+                                          <DESC>
+                                            <L-2 L="EN">Freescale vendor specific: Specifies either USER or OS prescaler shall be initialized during OS startup (/OS/TargetMCU/MPC5607B/TPTimer/TRUE/TimerHardware/STM/Prescaler)</L-2>
+                                          </DESC>
+                                          <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                                          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                          <CHOICES>
+                                            <ECUC-PARAM-CONF-CONTAINER-DEF UUID="1fc16905-988d-4bbe-bef0-c42b3fb33359">
+                                              <SHORT-NAME>OS</SHORT-NAME>
+                                              <DESC>
+                                                <L-2 L="EN">Freescale vendor specific:  (/OS/TargetMCU/MPC5607B/TPTimer/TRUE/TimerHardware/STM/Prescaler/OS)</L-2>
+                                              </DESC>
+                                              <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                                              <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                              <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+                                              <PARAMETERS>
+                                                <ECUC-INTEGER-PARAM-DEF UUID="aef6d187-f5d7-4633-8b8f-bf9e91b4f2c7">
+                                                  <SHORT-NAME>OsValue</SHORT-NAME>
+                                                  <DESC>
+                                                    <L-2 L="EN">Freescale vendor specific: Specifies OS initial prescaler value (/OS/TargetMCU/MPC5607B/TPTimer/TRUE/TimerHardware/STM/Prescaler/OS/Value)</L-2>
+                                                  </DESC>
+                                                  <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                                                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                                                  <IMPLEMENTATION-CONFIG-CLASSES>
+                                                    <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                                      <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                                                      <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                                                    </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                                                  </IMPLEMENTATION-CONFIG-CLASSES>
+                                                  <ORIGIN>FREESCALE</ORIGIN>
+                                                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                                                  <MAX>255</MAX>
+                                                  <MIN>0</MIN>
+                                                </ECUC-INTEGER-PARAM-DEF>
+                                              </PARAMETERS>
+                                            </ECUC-PARAM-CONF-CONTAINER-DEF>
+                                          </CHOICES>
+                                        </ECUC-CHOICE-CONTAINER-DEF>
+                                      </SUB-CONTAINERS>
+                                    </ECUC-PARAM-CONF-CONTAINER-DEF>
+                                  </CHOICES>
+                                </ECUC-CHOICE-CONTAINER-DEF>
+                              </SUB-CONTAINERS>
+                            </ECUC-PARAM-CONF-CONTAINER-DEF>
+                          </CHOICES>
+                        </ECUC-CHOICE-CONTAINER-DEF>
+                      </SUB-CONTAINERS>
+                    </ECUC-PARAM-CONF-CONTAINER-DEF>
+                  </CHOICES>
+                </ECUC-CHOICE-CONTAINER-DEF>
+              </SUB-CONTAINERS>
+            </ECUC-PARAM-CONF-CONTAINER-DEF>
+          </CONTAINERS>
+        </ECUC-MODULE-DEF>
+      </ELEMENTS>
+    </AR-PACKAGE>
+    <AR-PACKAGE UUID="a115b51d-87c7-45fd-84e9-ce0c86c28862">
+      <SHORT-NAME>AUTOSAR</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE UUID="f331bddf-af03-45b0-9a17-05ede1212e83">
+          <SHORT-NAME>EcucDefs</SHORT-NAME>
+          <ELEMENTS>
+            <ECUC-MODULE-DEF UUID="ECUC:8f6994a0-a4c8-58b9-bede-db9a5b9c2474">
+              <SHORT-NAME>Os</SHORT-NAME>
+              <DESC>
+                <L-2 L="EN">Configuration of the Os (Operating System) module.</L-2>
+              </DESC>
+              <ADMIN-DATA>
+                <DOC-REVISIONS>
+                  <DOC-REVISION>
+                    <REVISION-LABEL>4.2.0</REVISION-LABEL>
+                    <ISSUED-BY>AUTOSAR</ISSUED-BY>
+                    <DATE>2011-11-09</DATE>
+                  </DOC-REVISION>
+                </DOC-REVISIONS>
+              </ADMIN-DATA>
+              <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+              <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+              <SUPPORTED-CONFIG-VARIANTS>
+                <SUPPORTED-CONFIG-VARIANT>VARIANT-PRE-COMPILE</SUPPORTED-CONFIG-VARIANT>
+              </SUPPORTED-CONFIG-VARIANTS>
+              <CONTAINERS>
+                <ECUC-PARAM-CONF-CONTAINER-DEF UUID="ECUC:037fee7c-9826-5ab9-9067-69b24b57fe12">
+                  <SHORT-NAME>OsOS</SHORT-NAME>
+                  <DESC>
+                    <L-2 L="EN">OS is the object used to define OSEK OS properties for an OSEK application.</L-2>
+                  </DESC>
+                  <INTRODUCTION>
+                    <P>
+                      <L-1 L="EN">Per CPU exactly one OS object has to be defined.</L-1>
+                    </P>
+                  </INTRODUCTION>
+                  <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                  <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+                  <PARAMETERS>
+                    <ECUC-INTEGER-PARAM-DEF UUID="ECUC:1369dbe1-88b9-5ff5-83d3-a62c5cf4106a">
+                      <SHORT-NAME>OsNumberOfCores</SHORT-NAME>
+                      <DESC>
+                        <L-2 L="EN">Maximum number of cores that are controlled by the OS.</L-2>
+                      </DESC>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">The OS uses the value internally. It depends on the ECU HW.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                      <IMPLEMENTATION-CONFIG-CLASSES>
+                        <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                          <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                          <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                        </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      </IMPLEMENTATION-CONFIG-CLASSES>
+                      <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                      <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                      <MAX>65535</MAX>
+                      <MIN>1</MIN>
+                    </ECUC-INTEGER-PARAM-DEF>
+                    <ECUC-ENUMERATION-PARAM-DEF UUID="ECUC:a4c62701-41c5-517c-8b66-16c90d6d111f">
+                      <SHORT-NAME>OsScalabilityClass</SHORT-NAME>
+                      <DESC>
+                        <L-2 L="EN">A scalability class for each System Object "OS" has to be selected. In order to customize the operating system to the needs of the user and to take full advantage of the processor features the operating system can be scaled according to the scalability classes.</L-2>
+                      </DESC>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">If the scalability class is omitted this translates to the OIL AUTO mechanism.</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                      <IMPLEMENTATION-CONFIG-CLASSES>
+                        <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                          <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                          <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                        </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      </IMPLEMENTATION-CONFIG-CLASSES>
+                      <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                      <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                      <LITERALS>
+                        <ECUC-ENUMERATION-LITERAL-DEF UUID="ECUC:ce27c590-e408-58ea-42a2-bc1746a0c2cb">
+                          <SHORT-NAME>SC1</SHORT-NAME>
+                          <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                        </ECUC-ENUMERATION-LITERAL-DEF>
+                        <ECUC-ENUMERATION-LITERAL-DEF UUID="ECUC:070246b2-500e-5def-4157-ade4cbb0c048">
+                          <SHORT-NAME>SC2</SHORT-NAME>
+                          <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                        </ECUC-ENUMERATION-LITERAL-DEF>
+                        <ECUC-ENUMERATION-LITERAL-DEF UUID="ECUC:38bafefe-a5d1-5974-2581-505f9bc27e21">
+                          <SHORT-NAME>SC3</SHORT-NAME>
+                          <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                        </ECUC-ENUMERATION-LITERAL-DEF>
+                        <ECUC-ENUMERATION-LITERAL-DEF UUID="ECUC:09b92f6c-de62-570b-3305-226efbeff18e">
+                          <SHORT-NAME>SC4</SHORT-NAME>
+                          <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                        </ECUC-ENUMERATION-LITERAL-DEF>
+                      </LITERALS>
+                    </ECUC-ENUMERATION-PARAM-DEF>
+                    <ECUC-BOOLEAN-PARAM-DEF UUID="ECUC:5e09948e-f8cb-54c6-9e7a-3595c1a2a6c4">
+                      <SHORT-NAME>OsStackMonitoring</SHORT-NAME>
+                      <DESC>
+                        <L-2 L="EN">Select stack monitoring of Tasks/Category 2 ISRs</L-2>
+                      </DESC>
+                      <INTRODUCTION>
+                        <P>
+                          <L-1 L="EN">true: Stacks are monitored
+                                        false: Stacks are not monitored</L-1>
+                        </P>
+                      </INTRODUCTION>
+                      <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                      <IMPLEMENTATION-CONFIG-CLASSES>
+                        <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                          <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                          <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                        </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      </IMPLEMENTATION-CONFIG-CLASSES>
+                      <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                      <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                    </ECUC-BOOLEAN-PARAM-DEF>
+                    <ECUC-ENUMERATION-PARAM-DEF UUID="ECUC:75a1986f-1458-59fb-9feb-b84c6e58956e">
+                      <SHORT-NAME>OsStatus</SHORT-NAME>
+                      <DESC>
+                        <L-2 L="EN">The Status attribute specifies whether a system with standard or extended status has to be used. Automatic assigment is not supported for this attribute.</L-2>
+                      </DESC>
+                      <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                      <IMPLEMENTATION-CONFIG-CLASSES>
+                        <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                          <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                          <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                        </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      </IMPLEMENTATION-CONFIG-CLASSES>
+                      <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                      <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                      <LITERALS>
+                        <ECUC-ENUMERATION-LITERAL-DEF UUID="ECUC:d080f403-c709-5d73-5041-5bb10c8e5012">
+                          <SHORT-NAME>EXTENDED</SHORT-NAME>
+                          <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                        </ECUC-ENUMERATION-LITERAL-DEF>
+                        <ECUC-ENUMERATION-LITERAL-DEF UUID="ECUC:459f6974-a636-513e-2f29-4a7081d99e3c">
+                          <SHORT-NAME>STANDARD</SHORT-NAME>
+                          <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                        </ECUC-ENUMERATION-LITERAL-DEF>
+                      </LITERALS>
+                    </ECUC-ENUMERATION-PARAM-DEF>
+                    <ECUC-BOOLEAN-PARAM-DEF UUID="ECUC:412bc048-fac1-532d-af87-1267b11f565b">
+                      <SHORT-NAME>OsUseGetServiceId</SHORT-NAME>
+                      <DESC>
+                        <L-2 L="EN">As defined by OSEK</L-2>
+                      </DESC>
+                      <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                      <IMPLEMENTATION-CONFIG-CLASSES>
+                        <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                          <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                          <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                        </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      </IMPLEMENTATION-CONFIG-CLASSES>
+                      <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                      <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                    </ECUC-BOOLEAN-PARAM-DEF>
+                    <ECUC-BOOLEAN-PARAM-DEF UUID="ECUC:742e833a-68cd-531e-94d8-2321a014481d">
+                      <SHORT-NAME>OsUseParameterAccess</SHORT-NAME>
+                      <DESC>
+                        <L-2 L="EN">As defined by OSEK</L-2>
+                      </DESC>
+                      <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                      <IMPLEMENTATION-CONFIG-CLASSES>
+                        <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                          <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                          <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                        </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      </IMPLEMENTATION-CONFIG-CLASSES>
+                      <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                      <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                    </ECUC-BOOLEAN-PARAM-DEF>
+                    <ECUC-BOOLEAN-PARAM-DEF UUID="ECUC:ca31f39a-5057-584b-8408-ca0d0ed82a46">
+                      <SHORT-NAME>OsUseResScheduler</SHORT-NAME>
+                      <DESC>
+                        <L-2 L="EN">The OsUseResScheduler attribute defines whether the resource RES_SCHEDULER is used within the application.</L-2>
+                      </DESC>
+                      <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                      <IMPLEMENTATION-CONFIG-CLASSES>
+                        <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                          <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                          <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                        </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                      </IMPLEMENTATION-CONFIG-CLASSES>
+                      <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                      <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                      <DEFAULT-VALUE>true</DEFAULT-VALUE>
+                    </ECUC-BOOLEAN-PARAM-DEF>
+                  </PARAMETERS>
+                  <SUB-CONTAINERS>
+                    <ECUC-PARAM-CONF-CONTAINER-DEF UUID="ECUC:e03dab8e-c227-54c9-bf9b-38f0564bd4df">
+                      <SHORT-NAME>OsHooks</SHORT-NAME>
+                      <DESC>
+                        <L-2 L="EN">Container to structure all hooks belonging to the OS</L-2>
+                      </DESC>
+                      <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                      <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                      <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+                      <PARAMETERS>
+                        <ECUC-BOOLEAN-PARAM-DEF UUID="ECUC:825a1254-49f2-5f16-aa94-d9eedd045480">
+                          <SHORT-NAME>OsErrorHook</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN">Error hook as defined by OSEK</L-2>
+                          </DESC>
+                          <INTRODUCTION>
+                            <P>
+                              <L-1 L="EN">true: Hook is called
+                                                false: Hook is not called</L-1>
+                            </P>
+                          </INTRODUCTION>
+                          <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                          <IMPLEMENTATION-CONFIG-CLASSES>
+                            <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                              <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                              <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                            </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                          </IMPLEMENTATION-CONFIG-CLASSES>
+                          <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                          <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                        </ECUC-BOOLEAN-PARAM-DEF>
+                        <ECUC-BOOLEAN-PARAM-DEF UUID="ECUC:67f9db57-53e9-5e0e-8e47-23cc534733b5">
+                          <SHORT-NAME>OsPostTaskHook</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN">Post-task hook as defined by OSEK</L-2>
+                          </DESC>
+                          <INTRODUCTION>
+                            <P>
+                              <L-1 L="EN">true: Hook is called
+                                                false: Hook is not called</L-1>
+                            </P>
+                          </INTRODUCTION>
+                          <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                          <IMPLEMENTATION-CONFIG-CLASSES>
+                            <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                              <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                              <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                            </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                          </IMPLEMENTATION-CONFIG-CLASSES>
+                          <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                          <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                        </ECUC-BOOLEAN-PARAM-DEF>
+                        <ECUC-BOOLEAN-PARAM-DEF UUID="ECUC:fbfe7932-0338-561a-b87d-58af3a85bbcb">
+                          <SHORT-NAME>OsPreTaskHook</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN">Pre-task hook as defined by OSEK</L-2>
+                          </DESC>
+                          <INTRODUCTION>
+                            <P>
+                              <L-1 L="EN">true: Hook is called
+                                                false: Hook is not called</L-1>
+                            </P>
+                          </INTRODUCTION>
+                          <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                          <IMPLEMENTATION-CONFIG-CLASSES>
+                            <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                              <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                              <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                            </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                          </IMPLEMENTATION-CONFIG-CLASSES>
+                          <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                          <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                        </ECUC-BOOLEAN-PARAM-DEF>
+                        <ECUC-BOOLEAN-PARAM-DEF UUID="ECUC:bafbef31-9d83-5b29-b534-300490f20f1f">
+                          <SHORT-NAME>OsProtectionHook</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN">Switch to enable/disable the call to the (user supplied) protection hook.</L-2>
+                          </DESC>
+                          <INTRODUCTION>
+                            <P>
+                              <L-1 L="EN">true: Protection hook is called on protection error
+                                                false: Protection hook is not called</L-1>
+                            </P>
+                          </INTRODUCTION>
+                          <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                          <IMPLEMENTATION-CONFIG-CLASSES>
+                            <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                              <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                              <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                            </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                          </IMPLEMENTATION-CONFIG-CLASSES>
+                          <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                          <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                        </ECUC-BOOLEAN-PARAM-DEF>
+                        <ECUC-BOOLEAN-PARAM-DEF UUID="ECUC:69032d37-2751-520e-9b13-75625e8f3e9f">
+                          <SHORT-NAME>OsShutdownHook</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN">Shutdown hook as defined by OSEK</L-2>
+                          </DESC>
+                          <INTRODUCTION>
+                            <P>
+                              <L-1 L="EN">true: Hook is called
+                                                false: Hook is not called</L-1>
+                            </P>
+                          </INTRODUCTION>
+                          <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                          <IMPLEMENTATION-CONFIG-CLASSES>
+                            <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                              <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                              <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                            </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                          </IMPLEMENTATION-CONFIG-CLASSES>
+                          <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                          <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                        </ECUC-BOOLEAN-PARAM-DEF>
+                        <ECUC-BOOLEAN-PARAM-DEF UUID="ECUC:591b0fc5-9552-5b15-99d8-74b85ac249bd">
+                          <SHORT-NAME>OsStartupHook</SHORT-NAME>
+                          <DESC>
+                            <L-2 L="EN">Startup hook as defined by OSEK</L-2>
+                          </DESC>
+                          <INTRODUCTION>
+                            <P>
+                              <L-1 L="EN">true: Hook is called
+                                                false: Hook is not called</L-1>
+                            </P>
+                          </INTRODUCTION>
+                          <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                          <IMPLEMENTATION-CONFIG-CLASSES>
+                            <ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                              <CONFIG-CLASS>PRE-COMPILE</CONFIG-CLASS>
+                              <CONFIG-VARIANT>VARIANT-PRE-COMPILE</CONFIG-VARIANT>
+                            </ECUC-IMPLEMENTATION-CONFIGURATION-CLASS>
+                          </IMPLEMENTATION-CONFIG-CLASSES>
+                          <ORIGIN>AUTOSAR_ECUC</ORIGIN>
+                          <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                        </ECUC-BOOLEAN-PARAM-DEF>
+                      </PARAMETERS>
+                    </ECUC-PARAM-CONF-CONTAINER-DEF>
+                  </SUB-CONTAINERS>
+                </ECUC-PARAM-CONF-CONTAINER-DEF>
+              </CONTAINERS>
+            </ECUC-MODULE-DEF>
+          </ELEMENTS>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

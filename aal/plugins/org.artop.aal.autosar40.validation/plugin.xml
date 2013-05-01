@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+
+<!--
+<copyright>
+
+Copyright (c) See4sys and others.
+All rights reserved. This program and the accompanying materials are made
+available under the terms of the Artop Software License Based on AUTOSAR
+Released Material (ASLR) which accompanies this distribution, and is
+available at http://www.artop.org/aslr.html
+ 
+Contributors: 
+    See4sys - Updates according to latest changes in AUTOSAR 4.0.0 rev. 0001 release
+
+</copyright>
+-->
+
+<plugin>
+
+   <extension
+         point="org.eclipse.sphinx.emf.validation.registration">
+      <model
+            Name="AUTOSAR 4.0"
+            NsURI="http://autosar.org/schema/r4.0/autosar40/gs/gtc/ao"
+            class="autosar40.genericstructure.generaltemplateclasses.arobject.ARObject"
+            filter="_40"
+            id="autosar40"
+            validatorAdapterClass="org.artop.aal.validation.adapter.EAutosarValidatorAdapter">
+      </model>
+   </extension>
+
+   <extension point="org.eclipse.emf.validation.constraintBindings">
+        <clientContext id="autosar40.ARObject.context">
+            <enablement>
+                <instanceof value="autosar40.genericstructure.generaltemplateclasses.arobject.ARObject"/>
+            </enablement>
+        </clientContext>
+   </extension>
+
+   <extension
+         point="org.eclipse.sphinx.emf.editingDomainFactoryListeners">
+      <listener
+            id="org.artop.aal.autosar40.validation.internal.ValidationEditingDomainFactoryListener"
+            class="org.artop.aal.autosar40.validation.internal.ValidationEditingDomainFactoryListener">
+         <applicableFor
+               metaModelDescriptorIdPattern="org.artop.aal.autosar40" />
+      </listener>
+   </extension>
+
+</plugin>
