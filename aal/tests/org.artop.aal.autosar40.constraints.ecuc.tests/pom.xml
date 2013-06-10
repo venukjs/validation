@@ -4,9 +4,9 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.artop.releng</groupId>
-		<artifactId>org.artop.releng.parent</artifactId>
+		<artifactId>org.artop.releng.rev-agnostic-test-parent</artifactId>
 		<version>4.0.0-SNAPSHOT</version>
-		<relativePath>../../../../core/tools/org.artop.releng.builds/parent/pom.xml</relativePath>
+		<relativePath>../../../../core/tools/org.artop.releng.builds/rev-agnostic-test-parent/pom.xml</relativePath>
 	</parent>
 	<groupId>org.artop.tests</groupId>
 	<artifactId>org.artop.aal.autosar40.constraints.ecuc.tests</artifactId>
