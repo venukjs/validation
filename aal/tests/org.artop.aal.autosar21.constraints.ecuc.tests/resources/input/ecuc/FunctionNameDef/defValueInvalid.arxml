@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/2.1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/2.1.5 autosar_2-1-5.xsd">
+  <TOP-LEVEL-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>TEST</SHORT-NAME>
+      <ELEMENTS>
+        <MODULE-DEF S="">
+          <SHORT-NAME>ModuleDef</SHORT-NAME>
+          <CONTAINERS>
+            <PARAM-CONF-CONTAINER-DEF>
+              <SHORT-NAME>Functions</SHORT-NAME>
+              <PARAMETERS>
+                <FUNCTION-NAME-DEF>
+                  <SHORT-NAME>Function0</SHORT-NAME>
+                  <ORIGIN />
+                  <DEFAULT-VALUE>9//</DEFAULT-VALUE>
+                </FUNCTION-NAME-DEF>
+              </PARAMETERS>
+            </PARAM-CONF-CONTAINER-DEF>
+          </CONTAINERS>
+        </MODULE-DEF>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </TOP-LEVEL-PACKAGES>
+</AUTOSAR>
+

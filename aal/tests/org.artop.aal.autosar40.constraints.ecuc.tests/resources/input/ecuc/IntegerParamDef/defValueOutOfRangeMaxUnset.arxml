@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://autosar.org/schema/r4.0" xsi:schemaLocation="http://autosar.org/schema/r4.0 autosar_4-0-3.xsd"><AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>ARRoot</SHORT-NAME>
+      <ELEMENTS>
+        <ECUC-MODULE-DEF>
+          <SHORT-NAME>ModuleDef</SHORT-NAME>
+          <CONTAINERS>
+            <ECUC-PARAM-CONF-CONTAINER-DEF>
+              <SHORT-NAME>Container</SHORT-NAME>
+              <PARAMETERS>
+                <ECUC-INTEGER-PARAM-DEF>
+                   <SHORT-NAME>IntegerDef</SHORT-NAME>
+                  <DEFAULT-VALUE>1</DEFAULT-VALUE>
+                  <MIN>5</MIN>
+                </ECUC-INTEGER-PARAM-DEF>
+              </PARAMETERS>
+            </ECUC-PARAM-CONF-CONTAINER-DEF>
+          </CONTAINERS>
+        </ECUC-MODULE-DEF>
+      </ELEMENTS>
+    </AR-PACKAGE>
+         </AR-PACKAGES>
+</AUTOSAR>
+
