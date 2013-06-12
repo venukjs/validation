@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://autosar.org/schema/r4.0" xsi:schemaLocation="http://autosar.org/schema/r4.0 autosar_4-0-2.xsd"><AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>TEST</SHORT-NAME>
+      <ELEMENTS>
+        <ECUC-MODULE-DEF S="">
+          <SHORT-NAME>ModuleDef</SHORT-NAME>
+          <CONTAINERS>
+            <ECUC-PARAM-CONF-CONTAINER-DEF>
+              <SHORT-NAME>Linkers</SHORT-NAME>
+              <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+              <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+              <PARAMETERS>
+                <ECUC-LINKER-SYMBOL-DEF>
+                  <SHORT-NAME>Linker1</SHORT-NAME>
+                  <LOWER-MULTIPLICITY>1</LOWER-MULTIPLICITY>
+                  <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+                  <ORIGIN></ORIGIN>
+                  <ECUC-LINKER-SYMBOL-DEF-VARIANTS>
+                    <ECUC-LINKER-SYMBOL-DEF-CONDITIONAL>
+                      <DEFAULT-VALUE>default</DEFAULT-VALUE>
+                    </ECUC-LINKER-SYMBOL-DEF-CONDITIONAL>
+                  </ECUC-LINKER-SYMBOL-DEF-VARIANTS>
+                </ECUC-LINKER-SYMBOL-DEF>
+              </PARAMETERS>
+            </ECUC-PARAM-CONF-CONTAINER-DEF>
+          </CONTAINERS>
+        </ECUC-MODULE-DEF>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES></AUTOSAR>

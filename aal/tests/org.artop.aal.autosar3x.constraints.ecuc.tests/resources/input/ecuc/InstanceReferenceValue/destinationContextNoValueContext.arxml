@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/3.1.1">
+  <TOP-LEVEL-PACKAGES>
+    <AR-PACKAGE>
+     <SHORT-NAME>OS_Package1</SHORT-NAME>
+       <ELEMENTS>
+        <COMPOSITION-TYPE>
+         <SHORT-NAME>OS_Composition</SHORT-NAME>
+         <COMPONENTS>
+          <COMPONENT-PROTOTYPE>
+           <SHORT-NAME>OS_ComponentPrototype</SHORT-NAME>
+           <TYPE-TREF DEST="APPLICATION-SOFTWARE-COMPONENT-TYPE">/OS_Package2/OS_ApplicationSoftwareComponentType</TYPE-TREF>
+          </COMPONENT-PROTOTYPE>
+         </COMPONENTS>
+        </COMPOSITION-TYPE>
+       </ELEMENTS>
+    </AR-PACKAGE>
+    
+    <AR-PACKAGE>
+      <SHORT-NAME>OS_Package2</SHORT-NAME>
+      <ELEMENTS>
+        <APPLICATION-SOFTWARE-COMPONENT-TYPE>
+          <SHORT-NAME>OS_ApplicationSoftwareComponentType</SHORT-NAME>
+            <PORTS>
+              <P-PORT-PROTOTYPE>
+                <SHORT-NAME>OS_PPortPrototype</SHORT-NAME>
+              </P-PORT-PROTOTYPE>
+            </PORTS>
+        </APPLICATION-SOFTWARE-COMPONENT-TYPE>
+      </ELEMENTS>
+    </AR-PACKAGE>
+        
+    <AR-PACKAGE>
+      <SHORT-NAME>OS_Package3</SHORT-NAME>
+      <ELEMENTS>
+        <MODULE-CONFIGURATION>
+          <SHORT-NAME>OS_ModuleConfiguration</SHORT-NAME>
+          <DEFINITION-REF DEST="MODULE-DEF">/OS_Package4/OS_ModuleDefinition</DEFINITION-REF>
+          <IMPLEMENTATION-CONFIG-VARIANT>VARIANT-PRE-COMPILE</IMPLEMENTATION-CONFIG-VARIANT>
+          <CONTAINERS>
+            <CONTAINER>
+              <SHORT-NAME>OS_Container</SHORT-NAME>
+              <DEFINITION-REF DEST="PARAM-CONF-CONTAINER-DEF">/OS_Package4/OS_ModuleDefinition/OS_ParamConfContainerDef</DEFINITION-REF>
+              <REFERENCE-VALUES>
+                <INSTANCE-REFERENCE-VALUE>
+                <DEFINITION-REF DEST="INSTANCE-REFERENCE-PARAM-DEF">/OS_Package4/OS_ModuleDefinition/OS_ParamConfContainerDef/OS_InstanceReferenceParamDef</DEFINITION-REF>
+                  <VALUE-IREF>
+                    <!-- Value context empty here -->
+                    <CONTEXT-REF DEST="COMPONENT-PROTOTYPE">/OS_Package1/OS_Composition/OS_ComponentPrototype</CONTEXT-REF>
+                    <VALUE-REF DEST="P-PORT-PROTOTYPE">/OS_Package2/OS_ApplicationSoftwareComponentType/OS_PPortPrototype</VALUE-REF>
+                  </VALUE-IREF>
+                </INSTANCE-REFERENCE-VALUE>
+              </REFERENCE-VALUES>
+            </CONTAINER>
+          </CONTAINERS>
+        </MODULE-CONFIGURATION>
+        </ELEMENTS>
+    </AR-PACKAGE>
+    
+    <AR-PACKAGE>
+      <SHORT-NAME>OS_Package4</SHORT-NAME>
+      <ELEMENTS>
+        <MODULE-DEF>
+          <SHORT-NAME>OS_ModuleDefinition</SHORT-NAME>
+          <CONTAINERS>
+            <PARAM-CONF-CONTAINER-DEF>
+              <SHORT-NAME>OS_ParamConfContainerDef</SHORT-NAME>
+              <REFERENCES>
+                <INSTANCE-REFERENCE-PARAM-DEF>
+                  <SHORT-NAME>OS_InstanceReferenceParamDef</SHORT-NAME>
+                  <DESTINATION-CONTEXT>PPortPrototype</DESTINATION-CONTEXT>
+                  <DESTINATION-TYPE>PPortPrototype</DESTINATION-TYPE>
+                </INSTANCE-REFERENCE-PARAM-DEF>
+              </REFERENCES>
+            </PARAM-CONF-CONTAINER-DEF>
+          </CONTAINERS>
+        </MODULE-DEF>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </TOP-LEVEL-PACKAGES>
+</AUTOSAR>
