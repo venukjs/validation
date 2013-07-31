@@ -39,9 +39,15 @@
       <constraintProvider
             cache="true"
             mode="Batch">
+         <package
+               namespaceUri="http://autosar.org/3.2.2/autosar3x/ecucd">
+         </package>
          <package namespaceUri="http://autosar.org/3.2.1/autosar3x/ecucd"/>
          <package
                namespaceUri="http://autosar.org/3.1.5/autosar3x/ecucd">
+         </package>
+         <package
+               namespaceUri="http://autosar.org/3.2.2/autosar3x/ecucpd">
          </package>
          <package namespaceUri="http://autosar.org/3.2.1/autosar3x/ecucpd"/>
          <package
