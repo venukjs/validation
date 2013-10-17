@@ -5,11 +5,11 @@
 	<parent>
 		<groupId>org.artop.releng</groupId>
 		<artifactId>org.artop.releng.rev-agnostic-test-parent</artifactId>
-		<version>4.0.2-SNAPSHOT</version>
+		<version>4.0.3-SNAPSHOT</version>
 		<relativePath>../../../../core/tools/org.artop.releng.builds/rev-agnostic-test-parent/pom.xml</relativePath>
 	</parent>
 	<groupId>org.artop.tests</groupId>
 	<artifactId>org.artop.aal.autosar21.constraints.ecuc.tests</artifactId>
-	<version>4.0.2-SNAPSHOT</version>
+	<version>4.0.3-SNAPSHOT</version>
 	<packaging>eclipse-test-plugin</packaging>
 </project>
