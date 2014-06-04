@@ -9,7 +9,7 @@
  * 
  * Contributors: 
  *     See4sys - Initial API and implementation
- * 
+ *     Continental AG - Mark class as Splitable aware.
  * </copyright>
  */
 package org.artop.aal.gautosar.constraints.ecuc;
@@ -20,6 +20,7 @@ import gautosar.gecucparameterdef.GModuleDef;
 import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
+import org.artop.aal.validation.constraints.AbstractSplitModelConstraintWithPrecondition;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.validation.IValidationContext;
@@ -28,7 +29,7 @@ import org.eclipse.osgi.util.NLS;
 /**
  * 
  */
-public class GModuleDefContainerDefinitionMissingConstraint extends AbstractModelConstraintWithPrecondition {
+public class GModuleDefContainerDefinitionMissingConstraint extends AbstractSplitModelConstraintWithPrecondition {
 
 	@Override
 	protected boolean isApplicable(IValidationContext ctx) {

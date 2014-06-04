@@ -1,15 +1,15 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) OpenSynergy and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     OpenSynergy - Initial API and implementation
- * 
+ *
  * </copyright>
  */
 package org.artop.aal.gautosar.constraints.ecuc.internal.index;
@@ -21,9 +21,12 @@ import gautosar.gecucdescription.GParameterValue;
 import gautosar.ggenericstructure.ginfrastructure.GARObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.artop.aal.gautosar.services.splitting.Splitable;
 
 /**
  * An index that allows fast access to structural information of ECUC descriptions that are split up over several
@@ -38,12 +41,13 @@ public class EcucValidationIndex {
 	}
 
 	/**
-	 * Gets all instances within the full model that have the same short name path and type.
+	 * Gets all instances within the full model that have the same short name path and type or an empty list if no
+	 * instance is found.
 	 * 
 	 * @param <T>
 	 * @param instance
 	 * @param type
-	 * @return
+	 * @return the list of equivalent instances or an empty one
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> List<T> getAllEquivalentInstancesOf(GARObject instance, Class<T> type) {
@@ -54,7 +58,12 @@ public class EcucValidationIndex {
 			classToEquivalentInstancesCache.put(type, cache);
 		}
 
-		return cache.getEquivalentInstances(instance);
+		List<T> equivalentInstances = cache.getEquivalentInstances(instance);
+		if (equivalentInstances != null) {
+			return equivalentInstances;
+		} else {
+			return Collections.emptyList();
+		}
 	}
 
 	/**
@@ -79,6 +88,7 @@ public class EcucValidationIndex {
 	 * directly nested GParameterValues.
 	 * 
 	 * @param gContainer
+	 *            either an actual {@link GContainer} or a {@link Splitable}
 	 * @return list of directly nested GParameterValues of all GContainers in the model that have the same short name
 	 *         path as the give gContainer
 	 */
@@ -96,6 +106,7 @@ public class EcucValidationIndex {
 	 * directly nested GConfigReferenceValues.
 	 * 
 	 * @param gContainer
+	 *            either an actual {@link GContainer} or a {@link Splitable}
 	 * @return list of directly nested GConfigReferenceValues of all GContainers in the model that have the same short
 	 *         name path as the give gContainer
 	 */

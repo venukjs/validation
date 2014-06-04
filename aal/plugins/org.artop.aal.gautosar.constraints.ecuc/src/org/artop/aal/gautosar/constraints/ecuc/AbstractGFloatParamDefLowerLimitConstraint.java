@@ -9,7 +9,7 @@
  * 
  * Contributors: 
  *     See4sys - Initial API and implementation
- * 
+ *     Continental AG - Mark class as Splitable aware.
  * </copyright>
  */
 package org.artop.aal.gautosar.constraints.ecuc;
@@ -21,12 +21,13 @@ import gautosar.gecucparameterdef.GParamConfContainerDef;
 import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
+import org.artop.aal.validation.constraints.AbstractSplitModelConstraintWithPrecondition;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
 
-public abstract class AbstractGFloatParamDefLowerLimitConstraint extends AbstractModelConstraintWithPrecondition {
+public abstract class AbstractGFloatParamDefLowerLimitConstraint extends AbstractSplitModelConstraintWithPrecondition {
 
 	@Override
 	protected boolean isApplicable(IValidationContext ctx) {
@@ -58,15 +59,16 @@ public abstract class AbstractGFloatParamDefLowerLimitConstraint extends Abstrac
 				Double vSpecifMinLimit = getMin(floatParamDef);
 
 				/*
-				 * An error is raised if lower limit in the Vendor Specific ModuleDef smaller than corresponding one in the Refined ModuleDef
+				 * An error is raised if lower limit in the Vendor Specific ModuleDef smaller than corresponding one in
+				 * the Refined ModuleDef
 				 */
-				if(refinedMinLimit.isInfinite()){
+				if (refinedMinLimit.isInfinite()) {
 					valid = true;
-				}else{
-					if(vSpecifMinLimit.isInfinite()){
-					 valid = false;	
-					}else{
-					 valid = vSpecifMinLimit.compareTo(refinedMinLimit)>=0 ? true : false;
+				} else {
+					if (vSpecifMinLimit.isInfinite()) {
+						valid = false;
+					} else {
+						valid = vSpecifMinLimit.compareTo(refinedMinLimit) >= 0 ? true : false;
 					}
 				}
 			}

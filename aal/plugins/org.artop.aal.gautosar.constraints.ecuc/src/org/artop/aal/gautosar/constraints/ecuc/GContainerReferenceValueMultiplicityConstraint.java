@@ -10,7 +10,7 @@
  * Contributors: 
  *     OpenSynergy - Initial API and implementation for AUTOSAR 3.x
  *     Continental Engineering Services - migration to gautosar
- * 
+ *     Continental AG - Mark class as Splitable aware.
  * </copyright>
  */
 package org.artop.aal.gautosar.constraints.ecuc;
@@ -35,7 +35,7 @@ import org.eclipse.osgi.util.NLS;
 /**
  * Superclass for the constraints implementations on the multiplicity of reference values of a container.
  */
-public class GContainerReferenceValueMultiplicityConstraint extends AbstractModelConstraintWithPreconditionAndIndex {
+public class GContainerReferenceValueMultiplicityConstraint extends AbstractSplitModelConstraintWithPreconditionAndIndex {
 	@Override
 	protected boolean isApplicable(IValidationContext ctx) {
 		boolean isApplicable = false;

@@ -9,7 +9,7 @@
  * 
  * Contributors: 
  *     See4sys - Initial API and implementation
- * 
+ *     Continental AG - Mark class as Splitable aware.
  * </copyright>
  */
 package org.artop.aal.gautosar.constraints.ecuc;
@@ -20,6 +20,7 @@ import gautosar.gecucparameterdef.GLinkerSymbolDef;
 import gautosar.gecucparameterdef.GStringParamDef;
 
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
+import org.artop.aal.validation.constraints.AbstractSplitModelConstraintWithPrecondition;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
@@ -27,7 +28,7 @@ import org.eclipse.osgi.util.NLS;
 /**
  * The class validate the constraints implementations on an <em>StringParamDef</em>'s default value
  */
-public abstract class AbstractGStringParamDefDefaultValueConstraint extends AbstractModelConstraintWithPrecondition {
+public abstract class AbstractGStringParamDefDefaultValueConstraint extends AbstractSplitModelConstraintWithPrecondition {
 
 	final String BASIC_STRING_REGEX = "^[a-zA-Z][\\w]+"; //$NON-NLS-1$
 

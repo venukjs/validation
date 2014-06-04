@@ -9,7 +9,7 @@
  * 
  * Contributors: 
  *     BMW Car IT - Initial API and implementation
- * 
+ *     Continental AG - Minor refactoring.
  * </copyright>
  */
 package org.artop.aal.validation.constraints.swc.portinterface;
@@ -23,9 +23,9 @@ import org.artop.aal.gautosar.services.predicates.ExplainablePredicate;
 import org.artop.aal.gautosar.services.predicates.PortInterfacePredicates;
 import org.artop.aal.gautosar.services.predicates.swc.portinterface.HasUniqueErrorCodes.DuplicateErrorCodes;
 import org.artop.aal.gautosar.services.predicates.swc.portinterface.HasUniqueErrorCodes.DuplicateErrorCodes.MultiplyAssignedErrorCodeValue;
+import org.artop.aal.validation.constraints.AbstractSplitModelConstraintWithPrecondition;
 import org.artop.aal.validation.constraints.swc.internal.portinterface.messages.Messages;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.emf.validation.model.ConstraintStatus;
 import org.eclipse.osgi.util.NLS;
@@ -34,15 +34,17 @@ import org.eclipse.osgi.util.NLS;
  * A Constraint which validates that all defined possible errors within a client server interface have unique values.
  * The constraint will create a failure message for each error code which is not unique.
  */
-public class UniqueApplicationErrorCodesConstraint extends AbstractModelConstraint {
+public class UniqueApplicationErrorCodesConstraint extends AbstractSplitModelConstraintWithPrecondition {
 
 	private static final String MSG_NAME = "uniqueApplicationErrorCodes_Msg"; //$NON-NLS-1$
 
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
-	public IStatus validate(IValidationContext ctx) {
+	protected boolean isApplicable(IValidationContext ctx) {
+		return ctx.getTarget() instanceof GClientServerInterface;
+	}
+
+	@Override
+	protected IStatus doValidate(IValidationContext ctx) {
 		GClientServerInterface csInterface = (GClientServerInterface) ctx.getTarget();
 		ExplainablePredicate<GPortInterface> hasUniqueErrorCodes = PortInterfacePredicates.hasUniqueErrorCodes();
 		if (!hasUniqueErrorCodes.apply(csInterface)) {

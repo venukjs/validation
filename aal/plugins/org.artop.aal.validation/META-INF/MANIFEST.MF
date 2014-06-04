@@ -13,11 +13,6 @@ Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.artop.aal.validation,
  org.artop.aal.validation.adapter,
- org.artop.aal.validation.constraints;
-  x-friends:="org.artop.aal.validation.constraints.swc,
-   org.artop.aal.validation.constraints.gst,
-   org.artop.aal.validation.testutils,
-   org.artop.aal.validation.constraints.swc.tests,
-   org.artop.aal.validation.constraints.gst.tests",
+ org.artop.aal.validation.constraints,
  org.artop.aal.validation.listeners,
  org.artop.aal.validation.util

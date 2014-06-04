@@ -1,16 +1,16 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) OpenSynergy, Continental Engineering Services and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     OpenSynergy - Initial API and implementation for AUTOSAR 3.x
  *     Continental Engineering Services - migration to gautosar
- * 
+ *     Continental AG - Mark class as Splitable aware.
  * </copyright>
  */
 package org.artop.aal.gautosar.constraints.ecuc;
@@ -36,14 +36,14 @@ import org.eclipse.osgi.util.NLS;
 /**
  * Superclass for the constraints implementations on the subcontainers of a container.
  */
-public abstract class AbstractGContainerSubContainerMultiplicityConstraint extends AbstractModelConstraintWithPreconditionAndIndex {
+public abstract class AbstractGContainerSubContainerMultiplicityConstraint extends AbstractSplitModelConstraintWithPreconditionAndIndex {
 	@Override
 	protected boolean isApplicable(IValidationContext ctx) {
 		boolean isApplicable = false;
 		if (ctx.getTarget() instanceof GContainer) {
 			GContainer gContainer = (GContainer) ctx.getTarget();
 			GContainerDef gContainerDef = gContainer.gGetDefinition();
-			isApplicable = null != gContainerDef && false == gContainerDef.eIsProxy();
+			isApplicable = null != gContainerDef && !gContainerDef.eIsProxy();
 		}
 		return isApplicable;
 	}
@@ -58,7 +58,7 @@ public abstract class AbstractGContainerSubContainerMultiplicityConstraint exten
 		GContainerDef gContainerDef = gContainer.gGetDefinition();
 
 		if (gContainerDef instanceof GChoiceContainerDef) {
-			status = validateChoiceContainer(ctx, gContainer, (GChoiceContainerDef) gContainerDef);
+			status = validateChoiceContainer(ctx, gContainer);
 		} else {
 			status = validateParamConfContainer(ctx, gContainer, (GParamConfContainerDef) gContainerDef);
 		}
@@ -66,10 +66,10 @@ public abstract class AbstractGContainerSubContainerMultiplicityConstraint exten
 		return status;
 	}
 
-	private IStatus validateChoiceContainer(IValidationContext ctx, GContainer GContainer, GChoiceContainerDef gChoiceContainerDef) {
+	private IStatus validateChoiceContainer(IValidationContext ctx, GContainer gContainer) {
 		final IStatus status;
 
-		List<GContainer> allSubContainers = getEcucValidationIndex(ctx).getAllSubContainersOf(GContainer);
+		List<GContainer> allSubContainers = getEcucValidationIndex(ctx).getAllSubContainersOf(gContainer);
 
 		List<GIdentifiable> gIdentifiables = new ArrayList<GIdentifiable>();
 		gIdentifiables.addAll(allSubContainers);
@@ -77,7 +77,8 @@ public abstract class AbstractGContainerSubContainerMultiplicityConstraint exten
 
 		// choice GContainer may only contain a single subcontainer
 		if (1 != numberOfUniqueShortNames) {
-			status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.multiplicity_subContainersExpected, "choice container")); //$NON-NLS-1$
+			status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.multiplicity_subContainersExpected,
+					AutosarURIFactory.getAbsoluteQualifiedName(gContainer) + "choice container")); //$NON-NLS-1$
 			ctx.addResults(allSubContainers);
 		} else {
 			status = ctx.createSuccessStatus();
@@ -89,7 +90,7 @@ public abstract class AbstractGContainerSubContainerMultiplicityConstraint exten
 	/**
 	 * Returns whether the <code>multipleConfigurationContainer</code> flag for the given <code>containerDef</code> is
 	 * set to true.
-	 * 
+	 *
 	 * @param containerDef
 	 * @return
 	 */
@@ -100,7 +101,7 @@ public abstract class AbstractGContainerSubContainerMultiplicityConstraint exten
 	 * <code>lowerMultiplicity</code> and <= <code>upperMultiplicity</code>. If one subcontainer has the
 	 * <code>multipleConfigurationContainer</code> set to true, then the <code>upperMultiplicity</code> is considered
 	 * <code>*</code>.
-	 * 
+	 *
 	 * @param ctx
 	 * @param gContainer
 	 * @param gParamConfContainerDef

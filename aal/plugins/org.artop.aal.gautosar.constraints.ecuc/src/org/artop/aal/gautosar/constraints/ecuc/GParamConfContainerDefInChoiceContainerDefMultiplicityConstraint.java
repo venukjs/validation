@@ -9,7 +9,7 @@
  * 
  * Contributors: 
  *     See4sys - Initial API and implementation
- * 
+ *     Continental AG - Mark class as Splitable aware.
  * </copyright>
  */
 package org.artop.aal.gautosar.constraints.ecuc;
@@ -19,6 +19,7 @@ import gautosar.gecucparameterdef.GParamConfContainerDef;
 import gautosar.ggenericstructure.ginfrastructure.GIdentifiable;
 
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
+import org.artop.aal.validation.constraints.AbstractSplitModelConstraintWithPrecondition;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
@@ -27,7 +28,7 @@ import org.eclipse.osgi.util.NLS;
  * The class validate the constraints implementations on an <em>GParamConfContainerDef</em>'s lowerMultiplicity and
  * upperMultiplicity
  */
-public class GParamConfContainerDefInChoiceContainerDefMultiplicityConstraint extends AbstractModelConstraintWithPrecondition {
+public class GParamConfContainerDefInChoiceContainerDefMultiplicityConstraint extends AbstractSplitModelConstraintWithPrecondition {
 
 	String MULTIPLICITY_LOWERBOUND = "0"; //$NON-NLS-1$
 	String MULTIPLICITY_UPPERBOUND = "1"; //$NON-NLS-1$

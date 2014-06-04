@@ -9,7 +9,7 @@
  * 
  * Contributors: 
  *     See4sys - Initial API and implementation
- * 
+ *     Continental AG - Mark class as Splitable aware.
  * </copyright>
  */
 package org.artop.aal.gautosar.constraints.ecuc;
@@ -23,6 +23,7 @@ import java.math.BigInteger;
 import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
+import org.artop.aal.validation.constraints.AbstractSplitModelConstraintWithPrecondition;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.IValidationContext;
@@ -31,7 +32,7 @@ import org.eclipse.osgi.util.NLS;
 /**
  * Superclass for the constraints implementations on a IntegerParamDef upper limit.
  */
-public abstract class AbstractGIntegerParamDefUpperLimitConstraint extends AbstractModelConstraintWithPrecondition {
+public abstract class AbstractGIntegerParamDefUpperLimitConstraint extends AbstractSplitModelConstraintWithPrecondition {
 
 	@Override
 	protected boolean isApplicable(IValidationContext ctx) {
@@ -63,9 +64,10 @@ public abstract class AbstractGIntegerParamDefUpperLimitConstraint extends Abstr
 				BigInteger vSpecifMinLimit = getMax(integerParamDef);
 
 				/*
-				 * An error is raised if Upper limit in the Vendor Specific ModuleDef is bigger than correspongin one in the Refined ModuleDef
+				 * An error is raised if Upper limit in the Vendor Specific ModuleDef is bigger than correspongin one in
+				 * the Refined ModuleDef
 				 */
-				valid = vSpecifMinLimit.compareTo(refinedMaxLimit)==1 ? false : true;
+				valid = vSpecifMinLimit.compareTo(refinedMaxLimit) == 1 ? false : true;
 			}
 
 			if (!valid) {

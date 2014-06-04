@@ -14,15 +14,15 @@
  */
 package org.artop.aal.examples.autosar3x.constraints;
 
+import org.artop.aal.validation.constraints.AbstractSplitModelConstraintWithPrecondition;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 
 import autosar3x.genericstructure.infrastructure.autosar.ARPackage;
 
-public class ARPackageSpecificNamingConvention3xConstraint extends AbstractModelConstraint {
+public class ARPackageSpecificNamingConvention3xConstraint extends AbstractSplitModelConstraintWithPrecondition {
 
 	public static final String ARPACKAGE_PREFIX = "arp"; //$NON-NLS-1$
 
@@ -30,27 +30,9 @@ public class ARPackageSpecificNamingConvention3xConstraint extends AbstractModel
 	}
 
 	@Override
-	public IStatus validate(IValidationContext ctx) {
-		// Retrieve target object and see if we have to do anything with it
-		EObject targetObject = ctx.getTarget();
-		if (isApplicable(targetObject)) {
-			ARPackage targetARPackage = (ARPackage) targetObject;
-			if (!isOK(targetARPackage)) {
-				return ctx.createFailureStatus(new Object[] { targetARPackage.getShortName() });
-			}
-		}
+	protected boolean isApplicable(IValidationContext ctx) {
+		EObject eObject = ctx.getTarget();
 
-		return ctx.createSuccessStatus();
-	}
-
-	/**
-	 * Tests if given {@link EObject} is applicable to this constraint.
-	 * 
-	 * @param eObject
-	 *            The target {@link EObject}.
-	 * @return true if given {@link EObject} is applicable to this constraint, false otherwise.
-	 */
-	private boolean isApplicable(EObject eObject) {
 		// The EObject object must be an ARPackage
 		if (!(eObject instanceof ARPackage)) {
 			return false;
@@ -65,6 +47,17 @@ public class ARPackageSpecificNamingConvention3xConstraint extends AbstractModel
 		return true;
 	}
 
+	@Override
+	protected IStatus doValidate(IValidationContext ctx) {
+		ARPackage targetARPackage = (ARPackage) ctx.getTarget();
+
+		if (!isOK(targetARPackage)) {
+			return ctx.createFailureStatus(new Object[] { targetARPackage.getShortName() });
+		}
+
+		return ctx.createSuccessStatus();
+	}
+
 	/**
 	 * The constraint itself.
 	 * 
@@ -77,4 +70,5 @@ public class ARPackageSpecificNamingConvention3xConstraint extends AbstractModel
 
 		return arPackage.getShortName().startsWith(ARPACKAGE_PREFIX);
 	}
+
 }
