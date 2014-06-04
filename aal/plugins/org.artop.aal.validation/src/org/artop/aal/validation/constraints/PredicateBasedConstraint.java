@@ -9,16 +9,15 @@
  * 
  * Contributors: 
  *     BMW Car IT - Initial API and implementation
- * 
+ *     Continental AG - Minor refactoring.
  * </copyright>
  */
 package org.artop.aal.validation.constraints;
 
 import org.artop.aal.gautosar.services.DefaultMetaModelServiceProvider;
 import org.artop.aal.gautosar.services.IMetaModelServiceProvider;
-import org.eclipse.emf.validation.AbstractModelConstraint;
 
-public abstract class PredicateBasedConstraint extends AbstractModelConstraint {
+public abstract class PredicateBasedConstraint extends AbstractSplitModelConstraintWithPrecondition {
 
 	private IMetaModelServiceProvider fServiceProvider = new DefaultMetaModelServiceProvider();
 

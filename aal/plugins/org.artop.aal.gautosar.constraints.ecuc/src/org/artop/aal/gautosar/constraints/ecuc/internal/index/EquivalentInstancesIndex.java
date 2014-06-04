@@ -1,15 +1,15 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) OpenSynergy and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     OpenSynergy - Initial API and implementation
- * 
+ *
  * </copyright>
  */
 package org.artop.aal.gautosar.constraints.ecuc.internal.index;
@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
+import org.artop.aal.gautosar.services.splitting.Splitable;
 import org.eclipse.sphinx.emf.util.EObjectUtil;
 
 /**
@@ -51,9 +52,18 @@ public class EquivalentInstancesIndex<T> {
 	 *            - The type to create this index for.
 	 */
 	public EquivalentInstancesIndex(GARObject instance, Class<T> type) {
-		List<T> allInstances = EObjectUtil.getAllInstancesOf(instance, type, false);
-		for (T element : allInstances) {
-			register(element);
+		List<T> allInstances = null;
+
+		if (instance instanceof Splitable) {
+			allInstances = EObjectUtil.getAllInstancesOf(((Splitable) instance).wrappedElement(), type, false);
+		} else {
+			allInstances = EObjectUtil.getAllInstancesOf(instance, type, false);
+		}
+
+		if (allInstances != null) {
+			for (T element : allInstances) {
+				register(element);
+			}
 		}
 	}
 
@@ -64,6 +74,9 @@ public class EquivalentInstancesIndex<T> {
 	 * @return list of instances that have the same short name path and type as the given instance
 	 */
 	public List<T> getEquivalentInstances(GARObject instance) {
+		if (instance instanceof Splitable) {
+			return instanceToEquivalentInstancesMap.get(((Splitable) instance).wrappedElement());
+		}
 		return instanceToEquivalentInstancesMap.get(instance);
 	}
 

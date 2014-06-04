@@ -1,16 +1,16 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) OpenSynergy, Continental Engineering Services and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     OpenSynergy - Initial API and implementation for AUTOSAR 3.x
  *     Continental Engineering Services - migration to gautosar
- * 
+ *     Continental AG - Mark class as Splitable aware.
  * </copyright>
  */
 package org.artop.aal.gautosar.constraints.ecuc;
@@ -23,6 +23,7 @@ import gautosar.gecucparameterdef.GContainerDef;
 import gautosar.gecucparameterdef.GParamConfContainerDef;
 
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
+import org.artop.aal.validation.constraints.AbstractSplitModelConstraintWithPrecondition;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.IValidationContext;
@@ -31,11 +32,11 @@ import org.eclipse.osgi.util.NLS;
 /**
  * Abstract superclass for the constraints implementations on a parameter value.
  */
-public abstract class AbstractGParameterValueConstraint extends AbstractModelConstraintWithPrecondition {
+public abstract class AbstractGParameterValueConstraint extends AbstractSplitModelConstraintWithPrecondition {
 
 	/**
 	 * Performs the validation on the definition of the given <code>gParameterValue</code>.
-	 * 
+	 *
 	 * @param ctx
 	 *            the validation context that provides access to the current constraint evaluation environment
 	 * @param gParameterValue
@@ -60,7 +61,7 @@ public abstract class AbstractGParameterValueConstraint extends AbstractModelCon
 
 	/**
 	 * Performs the validation on the structure of the given <code>gParameterValue</code>.
-	 * 
+	 *
 	 * @param ctx
 	 *            the validation context that provides access to the current constraint evaluation environment
 	 * @param gParameterValue
@@ -111,7 +112,7 @@ public abstract class AbstractGParameterValueConstraint extends AbstractModelCon
 
 	/**
 	 * Returns whether the value of the given <code>gParameterValue</code> is set.
-	 * 
+	 *
 	 * @param ctx
 	 * @param gParameterValue
 	 * @return
@@ -120,7 +121,7 @@ public abstract class AbstractGParameterValueConstraint extends AbstractModelCon
 
 	/**
 	 * Performs the validation on the value of the given <code>gParameterValue</code>.
-	 * 
+	 *
 	 * @param ctx
 	 *            the validation context that provides access to the current constraint evaluation environment
 	 * @param gParameterValue

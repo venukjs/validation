@@ -9,14 +9,19 @@
  * 
  * Contributors: 
  *     See4sys - Initial API and implementation
+ *     Continental AG - refactoring
  * 
  * </copyright>
  */
 package org.artop.aal.autosar40.constraints.ecuc;
 
-import org.artop.aal.gautosar.constraints.ecuc.AbstractModelConstraintWithPrecondition;
+import gautosar.gecucparameterdef.GConfigParameter;
+
+import org.artop.aal.gautosar.constraints.ecuc.AbstractImplConfigClassAndVariantConstraint;
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
 
@@ -25,7 +30,7 @@ import autosar40.ecucparameterdef.EcucConfigurationVariantEnum;
 import autosar40.ecucparameterdef.EcucImplementationConfigurationClass;
 import autosar40.ecucparameterdef.EcucParameterDef;
 
-public class EcucImplementationConfigurationClassPreCompileConstraint extends AbstractModelConstraintWithPrecondition {
+public class EcucImplementationConfigurationClassPreCompileConstraint extends AbstractImplConfigClassAndVariantConstraint {
 
 	@Override
 	protected boolean isApplicable(IValidationContext ctx) {
@@ -33,10 +38,42 @@ public class EcucImplementationConfigurationClassPreCompileConstraint extends Ab
 	}
 
 	@Override
+	protected String getConfigParameterName(EObject target) {
+		EcucImplementationConfigurationClass implementationConfigClass = (EcucImplementationConfigurationClass) target;
+		GConfigParameter cp = (GConfigParameter) implementationConfigClass.eContainer();
+		if (cp != null) {
+			return cp.gGetShortName();
+		}
+
+		return ""; //$NON-NLS-1$
+
+	}
+
+	@Override
+	protected Enumerator getConfigClassEnum(EObject target) {
+		EcucImplementationConfigurationClass implementationConfigClass = (EcucImplementationConfigurationClass) target;
+		return implementationConfigClass.getConfigClass();
+
+	}
+
+	@Override
+	protected boolean isExpectedConfigVariant(EObject target) {
+		EcucImplementationConfigurationClass implementationConfigClass = (EcucImplementationConfigurationClass) target;
+
+		if (!(implementationConfigClass.eContainer() instanceof GConfigParameter)) {
+			return false;
+		}
+
+		EcucConfigurationVariantEnum cv = implementationConfigClass.getConfigVariant();
+
+		return cv == EcucConfigurationVariantEnum.VARIANT_PRE_COMPILE;
+	}
+
+	@Override
 	protected IStatus doValidate(IValidationContext ctx) {
 		EcucImplementationConfigurationClass implementationConfigClass = (EcucImplementationConfigurationClass) ctx.getTarget();
 
-		if (!(implementationConfigClass.eContainer() instanceof EcucParameterDef)) {
+		if (!(implementationConfigClass.eContainer() instanceof GConfigParameter)) {
 			return ctx.createSuccessStatus();
 		}
 
@@ -53,6 +90,11 @@ public class EcucImplementationConfigurationClassPreCompileConstraint extends Ab
 		}
 
 		return ctx.createSuccessStatus();
+	}
+
+	@Override
+	protected Enumerator[] getAllowedConfigClassEnum(EObject target) {
+		return new Enumerator[] { EcucConfigurationClassEnum.PRE_COMPILE, EcucConfigurationClassEnum.PUBLISHED_INFORMATION };
 	}
 
 }

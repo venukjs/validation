@@ -10,7 +10,7 @@
  * Contributors: 
  *     OpenSynergy - Initial API and implementation for AUTOSAR 3.x
  *     Continental Engineering Services - migration to gautosar
- * 
+ *     Continental AG - Mark class as Splitable aware.
  * </copyright>
  */
 package org.artop.aal.gautosar.constraints.ecuc;
@@ -19,6 +19,7 @@ import gautosar.gecucparameterdef.GParamConfMultiplicity;
 
 import org.artop.aal.gautosar.constraints.ecuc.internal.Activator;
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
+import org.artop.aal.validation.constraints.AbstractSplitModelConstraintWithPrecondition;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.emf.validation.IValidationContext;
@@ -28,7 +29,7 @@ import org.eclipse.osgi.util.NLS;
  * Superclass for the constraints implementations on the lower and upper multiplicity of a param conf multiplicity
  * object.
  */
-public class GParamConfMultiplicityBasicConstraint extends AbstractModelConstraintWithPrecondition {
+public class GParamConfMultiplicityBasicConstraint extends AbstractSplitModelConstraintWithPrecondition {
 
 	@Override
 	protected boolean isApplicable(IValidationContext ctx) {

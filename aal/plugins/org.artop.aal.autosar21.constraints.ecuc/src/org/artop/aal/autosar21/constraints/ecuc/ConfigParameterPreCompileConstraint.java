@@ -9,23 +9,24 @@
  * 
  * Contributors: 
  *     See4sys - Initial API and implementation
+ *     Continental AG - refactoring
+ *     
  * 
  * </copyright>
  */
 package org.artop.aal.autosar21.constraints.ecuc;
 
-import org.artop.aal.gautosar.constraints.ecuc.AbstractModelConstraintWithPrecondition;
-import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
+import org.artop.aal.gautosar.constraints.ecuc.AbstractImplConfigClassAndVariantConstraint;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
-import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.IValidationContext;
-import org.eclipse.osgi.util.NLS;
 
 import autosar21.ecucparameterdef.ConfigParameter;
 import autosar21.ecucparameterdef.ConfigurationClass;
 import autosar21.ecucparameterdef.ModuleDef;
 
-public class ConfigParameterPreCompileConstraint extends AbstractModelConstraintWithPrecondition {
+public class ConfigParameterPreCompileConstraint extends AbstractImplConfigClassAndVariantConstraint {
 
 	@Override
 	protected boolean isApplicable(IValidationContext ctx) {
@@ -33,32 +34,48 @@ public class ConfigParameterPreCompileConstraint extends AbstractModelConstraint
 	}
 
 	@Override
-	protected IStatus doValidate(IValidationContext ctx) {
-		IStatus status = ctx.createSuccessStatus();
+	protected String getConfigParameterName(EObject target) {
+		ConfigParameter cp = (ConfigParameter) target;
 
-		ConfigParameter cp = (ConfigParameter) ctx.getTarget();
+		if (cp != null) {
+			return cp.gGetShortName();
+		}
+
+		return ""; //$NON-NLS-1$
+
+	}
+
+	@Override
+	protected Enumerator getConfigClassEnum(EObject target) {
+		ConfigParameter cp = (ConfigParameter) target;
+
+		return cp.getImplementationConfigClass();
+
+	}
+
+	@Override
+	protected boolean isExpectedConfigVariant(EObject target) {
+
+		ConfigParameter cp = (ConfigParameter) target;
 
 		// Let's obtain the parent ModulDef
-		ModuleDef md = (ModuleDef) EcucUtil.getModuleDef(cp);
+		ModuleDef md = (ModuleDef) EcucUtil.getParentModuleDef(cp);
 
 		if (md == null) {
-			return status;
+			return false;
 		}
 
 		String configVariant = md.getImplementationConfigVariant();
 		if (!md.isSetImplementationConfigVariant()) {
-			return status;
-		}
-		if (configVariant.equals("VARIANT-PRE-COMPILE")) { //$NON-NLS-1$
-			if (cp.getImplementationConfigClass() != ConfigurationClass.PRE_COMPILE
-					&& cp.getImplementationConfigClass() != ConfigurationClass.PUBLISHED_INFORMATION) {
-				return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.configParameter_configurationVariantRespectAsPreCompileOrPublished,
-						cp.getShortName()));
-			}
-
+			return false;
 		}
 
-		return status;
+		return configVariant.equals("VARIANT-PRE-COMPILE"); //$NON-NLS-1$
+	}
+
+	@Override
+	protected Enumerator[] getAllowedConfigClassEnum(EObject target) {
+		return new Enumerator[] { ConfigurationClass.PRE_COMPILE, ConfigurationClass.PUBLISHED_INFORMATION };
 	}
 
 }

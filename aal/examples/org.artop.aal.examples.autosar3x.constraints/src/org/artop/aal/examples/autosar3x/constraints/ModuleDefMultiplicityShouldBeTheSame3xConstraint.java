@@ -14,43 +14,25 @@
  */
 package org.artop.aal.examples.autosar3x.constraints;
 
+import org.artop.aal.validation.constraints.AbstractSplitModelConstraintWithPrecondition;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.IValidationContext;
 
 import autosar3x.ecucparameterdef.ModuleDef;
 import autosar3x.genericstructure.infrastructure.autosar.ARPackage;
 import autosar3x.genericstructure.infrastructure.identifiable.PackageableElement;
 
-public class ModuleDefMultiplicityShouldBeTheSame3xConstraint extends AbstractModelConstraint {
+public class ModuleDefMultiplicityShouldBeTheSame3xConstraint extends AbstractSplitModelConstraintWithPrecondition {
 
 	public ModuleDefMultiplicityShouldBeTheSame3xConstraint() {
 	}
 
 	@Override
-	public IStatus validate(IValidationContext ctx) {
-		// Retrieve target object and see if we have to do anything with it
-		EObject targetObject = ctx.getTarget();
-		if (isApplicable(targetObject)) {
-			ModuleDef targetModuleDef = (ModuleDef) targetObject;
-			if (!isOK(targetModuleDef)) {
-				return ctx.createFailureStatus(new Object[] { targetModuleDef.getARPackage().getShortName(), targetModuleDef.getShortName() });
-			}
-		}
+	protected boolean isApplicable(IValidationContext ctx) {
 
-		return ctx.createSuccessStatus();
-	}
-
-	/**
-	 * Tests if given {@link EObject} is applicable to this constraint.
-	 * 
-	 * @param eObject
-	 *            The target {@link EObject}.
-	 * @return true if given {@link EObject} is applicable to this constraint, false otherwise.
-	 */
-	private boolean isApplicable(EObject eObject) {
+		EObject eObject = ctx.getTarget();
 		Assert.isNotNull(eObject);
 
 		// The EObject must be a ModuleDef
@@ -64,6 +46,19 @@ public class ModuleDefMultiplicityShouldBeTheSame3xConstraint extends AbstractMo
 		}
 
 		return true;
+	}
+
+	@Override
+	protected IStatus doValidate(IValidationContext ctx) {
+		// Retrieve target object and see if we have to do anything with it
+		ModuleDef targetModuleDef = (ModuleDef) ctx.getTarget();
+
+		if (!isOK(targetModuleDef)) {
+			return ctx.createFailureStatus(new Object[] { targetModuleDef.getARPackage().getShortName(), targetModuleDef.getShortName() });
+
+		}
+
+		return ctx.createSuccessStatus();
 	}
 
 	/**
@@ -98,4 +93,5 @@ public class ModuleDefMultiplicityShouldBeTheSame3xConstraint extends AbstractMo
 
 		return true;
 	}
+
 }

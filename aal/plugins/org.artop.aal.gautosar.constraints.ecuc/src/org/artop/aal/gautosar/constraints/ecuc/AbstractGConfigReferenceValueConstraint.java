@@ -1,16 +1,16 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) OpenSynergy, Continental Engineering Services and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     OpenSynergy - Initial API and implementation for AUTOSAR 3.x
  *     Continental Engineering Services - migration to gautosar
- * 
+ *     Continental AG - Mark class as Splitable aware.
  * </copyright>
  */
 package org.artop.aal.gautosar.constraints.ecuc;
@@ -26,6 +26,7 @@ import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.services.DefaultMetaModelServiceProvider;
 import org.artop.aal.gautosar.services.IMetaModelServiceProvider;
 import org.artop.aal.gautosar.services.ecuc.IMetaModelUtilityService;
+import org.artop.aal.validation.constraints.AbstractSplitModelConstraintWithPrecondition;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -36,7 +37,7 @@ import org.eclipse.sphinx.emf.metamodel.MetaModelDescriptorRegistry;
 /**
  * Abstract superclass for the constraints implementations on a config reference value.
  */
-public abstract class AbstractGConfigReferenceValueConstraint extends AbstractModelConstraintWithPrecondition {
+public abstract class AbstractGConfigReferenceValueConstraint extends AbstractSplitModelConstraintWithPrecondition {
 
 	/**
 	 * Performs the validation on the definition of the given <code>gConfigReferenceValue</code>.

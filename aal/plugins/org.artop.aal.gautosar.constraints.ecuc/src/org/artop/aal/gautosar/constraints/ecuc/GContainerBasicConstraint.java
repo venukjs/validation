@@ -10,7 +10,7 @@
  * Contributors: 
  *     OpenSynergy - Initial API and implementation for AUTOSAR 3.x
  *     Continental Engineering Services - migration to gautosar
- * 
+ *     Continental AG - Mark as Splitable aware.
  * </copyright>
  */
 package org.artop.aal.gautosar.constraints.ecuc;
@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
+import org.artop.aal.validation.constraints.AbstractSplitModelConstraintWithPrecondition;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.IValidationContext;
@@ -35,7 +36,7 @@ import org.eclipse.osgi.util.NLS;
  * Superclass for the constraints implementations on container.
  */
 
-public class GContainerBasicConstraint extends AbstractModelConstraintWithPrecondition {
+public class GContainerBasicConstraint extends AbstractSplitModelConstraintWithPrecondition {
 	@Override
 	protected boolean isApplicable(IValidationContext ctx) {
 		return ctx.getTarget() instanceof GContainer;

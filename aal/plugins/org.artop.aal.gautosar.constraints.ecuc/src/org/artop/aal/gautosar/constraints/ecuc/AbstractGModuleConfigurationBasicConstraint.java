@@ -1,16 +1,16 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) OpenSynergy, Continental Engineering Services and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     OpenSynergy - Initial API and implementation for AUTOSAR 3.x
  *     Continental Engineering Services - migration to gautosar
- * 
+ *     Continental AG - Mark class as Splitable aware.
  * </copyright>
  */
 package org.artop.aal.gautosar.constraints.ecuc;
@@ -19,13 +19,14 @@ import gautosar.gecucdescription.GModuleConfiguration;
 import gautosar.gecucparameterdef.GModuleDef;
 
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
+import org.artop.aal.validation.constraints.AbstractSplitModelConstraintWithPrecondition;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 
 /**
  * Abstract superclass for the constraints implementations on a module configuration.
  */
-public abstract class AbstractGModuleConfigurationBasicConstraint extends AbstractModelConstraintWithPrecondition {
+public abstract class AbstractGModuleConfigurationBasicConstraint extends AbstractSplitModelConstraintWithPrecondition {
 
 	@Override
 	protected boolean isApplicable(IValidationContext ctx) {
@@ -46,11 +47,11 @@ public abstract class AbstractGModuleConfigurationBasicConstraint extends Abstra
 	}
 
 	/**
-	 * Performs the validation on the definition of the given <code>gLinkerSymbolValue</code>.
-	 * 
+	 * Performs the validation on the definition of the given {@link gModuleConfiguration}.
+	 *
 	 * @param ctx
 	 *            the validation context that provides access to the current constraint evaluation environment
-	 * @param gLinkerSymbolValue
+	 * @param gModuleConfiguration
 	 *            the element on which the validation is performed.
 	 * @return a status object describing the result of the validation.
 	 */
@@ -72,7 +73,7 @@ public abstract class AbstractGModuleConfigurationBasicConstraint extends Abstra
 	/**
 	 * Performs the validation on the <code>implementationConfigVariant</code> of the given
 	 * <code>gModuleConfiguration</code>.
-	 * 
+	 *
 	 * @param ctx
 	 *            the validation context that provides access to the current constraint evaluation environment
 	 * @param gModuleConfiguration
