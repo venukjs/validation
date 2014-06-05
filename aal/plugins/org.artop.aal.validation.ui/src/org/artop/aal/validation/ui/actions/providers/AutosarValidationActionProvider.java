@@ -1,24 +1,30 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) BMW Car IT, See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     See4sys - Initial API and implementation
- * 
+ *     Continental AG - Contribute merged AUTOSAR model validation.
  * </copyright>
  */
 package org.artop.aal.validation.ui.actions.providers;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 import org.artop.aal.validation.ui.actions.FixUuidConflictsAction;
+import org.artop.aal.validation.ui.actions.MergedAutosarValidationAction;
 import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.sphinx.emf.validation.ui.actions.providers.BasicValidationActionProvider;
+import org.eclipse.ui.actions.BaseSelectionListenerAction;
 
 /**
  * Implementation of {@linkplain BasicValidationActionProvider validation action provider} dedicated to actions related
@@ -33,9 +39,19 @@ import org.eclipse.sphinx.emf.validation.ui.actions.providers.BasicValidationAct
 public class AutosarValidationActionProvider extends BasicValidationActionProvider {
 
 	/**
+	 * Actions to be contributed.
+	 */
+	protected Set<BaseSelectionListenerAction> actions;
+
+	/**
 	 * Action responsible for fixing UUID conflicts on Identifiable objects.
 	 */
 	protected FixUuidConflictsAction fixUuidConflictsAction;
+
+	/**
+	 * Action responsible for merged AUTOSAR model validation.
+	 */
+	protected MergedAutosarValidationAction mergedValidationAction;
 
 	/*
 	 * @see org.eclipse.sphinx.emf.validation.ui.actions.providers.BasicValidationActionProvider#doInit()
@@ -43,7 +59,8 @@ public class AutosarValidationActionProvider extends BasicValidationActionProvid
 	@Override
 	public void doInit() {
 		super.doInit();
-		fixUuidConflictsAction = createFixUuidConflictsAction();
+		actions = new HashSet<BaseSelectionListenerAction>(Arrays.asList(fixUuidConflictsAction = createFixUuidConflictsAction(),
+				mergedValidationAction = createMergedValidationAction()));
 	}
 
 	/**
@@ -51,6 +68,13 @@ public class AutosarValidationActionProvider extends BasicValidationActionProvid
 	 */
 	protected FixUuidConflictsAction createFixUuidConflictsAction() {
 		return new FixUuidConflictsAction();
+	}
+
+	/**
+	 * @return The merged AUTOSAR model validation action to contribute to the "Validate" menu item.
+	 */
+	protected MergedAutosarValidationAction createMergedValidationAction() {
+		return new MergedAutosarValidationAction();
 	}
 
 	/*
@@ -62,10 +86,12 @@ public class AutosarValidationActionProvider extends BasicValidationActionProvid
 	protected void populateActions(IMenuManager menu, IStructuredSelection selection, boolean enabled) {
 		super.populateActions(menu, selection, enabled);
 
-		if (fixUuidConflictsAction != null) {
-			fixUuidConflictsAction.selectionChanged(selection);
-			fixUuidConflictsAction.setEnabled(enabled);
-			menu.add(new ActionContributionItem(fixUuidConflictsAction));
+		for (BaseSelectionListenerAction action : actions) {
+			if (action != null) {
+				action.selectionChanged(selection);
+				action.setEnabled(enabled);
+				menu.add(new ActionContributionItem(action));
+			}
 		}
 	}
 }
