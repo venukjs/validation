@@ -191,7 +191,7 @@ public abstract class AbstractGConfigReferenceValueConstraint extends AbstractSp
 			// get all super types of the metaClass and check if destination
 			// type is a
 			// super type
-			for (EClass superType : metaClass.getESuperTypes()) {
+			for (EClass superType : metaClass.getEAllSuperTypes()) {
 				// check if destination type is a super type of value class
 				if (getMetaClassName(superType).equals(destinationTypeName) || superType.equals(destinationEClass)) {
 					isInstanceOfDestinationType = true;
