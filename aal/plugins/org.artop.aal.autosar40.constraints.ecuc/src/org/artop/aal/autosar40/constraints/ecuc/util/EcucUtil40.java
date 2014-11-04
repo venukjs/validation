@@ -1,15 +1,16 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     See4sys - Initial API and implementation
- * 
+ *     Conti - various bug fixes
+ *
  * </copyright>
  */
 package org.artop.aal.autosar40.constraints.ecuc.util;
@@ -19,6 +20,7 @@ import gautosar.ggenericstructure.gvarianthandling.GAttributeValueVariationPoint
 import java.math.BigInteger;
 import java.util.List;
 
+import org.artop.aal.autosar40.gautosar40.ecucparameterdef.GEcucBooleanParamDef40XAdapter;
 import org.artop.aal.autosar40.gautosar40.ecucparameterdef.GEcucFloatParamDef40XAdapter;
 import org.artop.aal.autosar40.gautosar40.ecucparameterdef.GEcucIntegerParamDef40XAdapter;
 import org.eclipse.emf.ecore.EObject;
@@ -50,7 +52,7 @@ public class EcucUtil40 {
 
 	/**
 	 * Get default value of Ecuc Parameter Definition. Return value of defaultValue feature by default
-	 * 
+	 *
 	 * @param eObject
 	 *            The EObject contain defaultValue to be get
 	 * @return defaultValue
@@ -59,8 +61,9 @@ public class EcucUtil40 {
 		// Parameter is Boolean type
 		if (eObject instanceof EcucBooleanParamDef) {
 			EcucBooleanParamDef pd = (EcucBooleanParamDef) eObject;
-			if (pd.getDefaultValue() != null) {
-				return pd.getDefaultValue().getMixedText();
+			GAttributeValueVariationPoint defaultValue = new GEcucBooleanParamDef40XAdapter(pd).getDefaultValue();
+			if (defaultValue != null) {
+				return defaultValue.gGetMixedText();
 			}
 		}
 		// Parameter is Enumeration type
@@ -122,7 +125,7 @@ public class EcucUtil40 {
 
 	/**
 	 * Get Ecuc Parameter Defintion Min's value
-	 * 
+	 *
 	 * @param eObject
 	 *            The EObject contain Min value to be get
 	 * @return value of Min
@@ -163,7 +166,7 @@ public class EcucUtil40 {
 
 	/**
 	 * Get Ecuc Parameter Defintion Max's value
-	 * 
+	 *
 	 * @param eObject
 	 *            The EObject contain Max value to be get
 	 * @return value of Max
@@ -208,7 +211,7 @@ public class EcucUtil40 {
 	 * <code> new Double(string)</code>, is that special values: <li><b>-INF</b></li> and <li><b>INF</b></li> <br>
 	 * are also accepted in order to obtain {@link Double#NEGATIVE_INFINITY}, respective
 	 * {@link Double#POSITIVE_INFINITY}
-	 * 
+	 *
 	 * @param string
 	 *            string representation to be converted to a {@link Double}
 	 * @throws NumberFormatException
@@ -233,7 +236,7 @@ public class EcucUtil40 {
 	 * Returns a string representation of the given Double <code>value</code>. The only difference towards the
 	 * {@link Double#toString()} implementation, is that for the special values: {@link Double#NEGATIVE_INFINITY} <br>
 	 * {@link Double#POSITIVE_INFINITY}, <b>-INF</b>, respectively <b>INF</b> is returned.
-	 * 
+	 *
 	 * @param value
 	 *            Double value
 	 * @return a string representation of the given Double
