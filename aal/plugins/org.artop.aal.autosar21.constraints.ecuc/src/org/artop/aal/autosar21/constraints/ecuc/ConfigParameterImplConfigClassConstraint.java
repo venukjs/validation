@@ -33,22 +33,24 @@ public class ConfigParameterImplConfigClassConstraint extends AbstractGConfigPar
 		ConfigParameter paramdef2 = (ConfigParameter) cfParam2;
 
 		/*
-		 * ImplConfigClass of the Parameter Definition 1
+		 * List of ImplConfigClass of the Parameter Definition 1
 		 */
 		ConfigurationClass configClass1 = paramdef1.getImplementationConfigClass();
 
 		/*
-		 * ImplConfigClass of the Parameter Definition 2
+		 * List of ImplConfigClass of the Parameter Definition 2
 		 */
 		ConfigurationClass configClass2 = paramdef2.getImplementationConfigClass();
 
 		/*
-		 * A warning is raised if ImplConfigClass of ParamDef1 is different with ParamDef2's
+		 * A warning is raised if list of ImplConfigClass of ParamDef1 is different with ParamDef2's
 		 */
 		if (configClass1 == null) {
 			valid = configClass2 == null;
 		} else {
-			valid = configClass1.equals(configClass2);
+			if (valid && configClass1 != null && configClass2 != null) {
+				valid = configClass1.equals(configClass2);
+			}
 		}
 
 		return valid;

@@ -20,6 +20,8 @@ import org.artop.aal.gautosar.constraints.ecuc.AbstractGConfigParameterImplConfi
 import org.eclipse.emf.common.util.EList;
 
 import autosar3x.ecucparameterdef.ConfigParameter;
+import autosar3x.ecucparameterdef.ConfigurationClass;
+import autosar3x.ecucparameterdef.ConfigurationVariant;
 import autosar3x.ecucparameterdef.ImplementationConfigClass;
 
 /**
@@ -51,22 +53,40 @@ public class ConfigParameterImplConfigClassConstraint extends AbstractGConfigPar
 		} else {
 			valid = configClassList1.size() == configClassList2.size();
 			if (valid) {
-				for (int i = 0; i < configClassList1.size(); i++) {
-					ImplementationConfigClass cfClass1 = configClassList1.get(i);
-					ImplementationConfigClass cfClass2 = configClassList2.get(i);
-					if (cfClass1 == null) {
-						valid = cfClass2 == null;
-					} else {
-						valid = cfClass1.equals(cfClass2);
-					}
-					if (valid == false) {
-						break;
-					}
-				}
+				valid = compareEcucImplementationConfigClass(configClassList1, configClassList2);
 			}
 		}
 
 		return valid;
 	}
 
+	private boolean compareEcucImplementationConfigClass(EList<ImplementationConfigClass> configClassList1,
+			EList<ImplementationConfigClass> configClassList2) {
+		boolean elementIsValid = false;
+		for (int i = 0; i < configClassList1.size(); i++) {
+			ImplementationConfigClass cfClass1 = configClassList1.get(i);
+			ImplementationConfigClass cfClass2 = configClassList2.get(i);
+			if (cfClass1 == null) {
+				elementIsValid = cfClass2 == null;
+			} else {
+				ConfigurationClass configClass1 = cfClass1.getConfigClass();
+				ConfigurationClass configClass2 = cfClass2.getConfigClass();
+				if (configClass1 != null && configClass2 != null) {
+					elementIsValid = configClass1.equals(configClass2);
+					if (elementIsValid) {
+						ConfigurationVariant configVariant1 = cfClass1.getConfigVariant();
+						ConfigurationVariant configVariant2 = cfClass1.getConfigVariant();
+						if (configVariant1 != null && configVariant2 != null) {
+							elementIsValid = configVariant1.equals(configVariant2);
+						}
+					}
+				}
+
+			}
+			if (elementIsValid == false) {
+				break;
+			}
+		}
+		return elementIsValid;
+	}
 }
