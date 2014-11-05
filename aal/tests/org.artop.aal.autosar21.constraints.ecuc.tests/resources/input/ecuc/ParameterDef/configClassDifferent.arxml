@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- AUTOSAR ECU Configuration Parameter Definition --><!--
+    Document Owner: AUTOSAR
+    Document Responsibility: AUTOSAR
+    Document Identification No: 289
+    Document Classification: Standard
+    Document Version: 4.1.0
+    Document Status: Final
+    Part of Release: 4.0 (2010-12-03)
+    Revision: 2
+    --><!-- Generated on Fri Dec 03 16:04:45 CET 2010 --><!-- MMT:        2.6.3 --><!-- Meta-Model: https://svn3.autosar.org/repos2/work/24_Sources/branches/R4.0/MMOD_MetaModel_059/master/AUTOSAR_MetaModel_Master.EAP@86565 --><!--
+    Disclaimer
+
+    This specification and the material contained in it, as released by AUTOSAR, 
+    is for the purpose of information only. AUTOSAR and the companies that have 
+    contributed to it shall not be liable for any use of the specification.
+
+    The material contained in this specification is protected by copyright and 
+    other types of Intellectual Property Rights. The commercial exploitation of 
+    the material contained in this specification requires a license to such 
+    Intellectual Property Rights.
+
+    This specification may be utilized or reproduced without any modification, in 
+    any form or by any means, for informational purposes only.
+    For any other purpose, no part of the specification may be utilized or 
+    reproduced, in any form or by any means, without permission in writing from 
+    the publisher.
+
+    The AUTOSAR specifications have been developed for automotive applications 
+    only. They have neither been developed, nor tested for non-automotive 
+    applications.
+
+    The word AUTOSAR and the AUTOSAR logo are registered trademarks.
+
+
+
+    Advice for users
+
+    AUTOSAR specifications may contain exemplary items (exemplary reference models,
+    "use cases", and/or references to exemplary technical solutions, devices, 
+    processes or software).
+
+    Any such exemplary items are contained in the specifications for illustration 
+    purposes only, and they themselves are not part of the AUTOSAR Standard. 
+    Neither their presence in such specifications, nor any later documentation of 
+    AUTOSAR conformance of products actually implementing such exemplary items, 
+    imply that intellectual property rights covering such exemplary items are 
+    licensed under the same rules as applicable to the AUTOSAR Standard.
+
+    --><!-- AR-Package: AUTOSAR --><AUTOSAR xmlns="http://autosar.org/2.1.5" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/2.1.5 autosar_2-1-5.xsd">
+<ADMIN-DATA>
+    <DOC-REVISIONS>
+      <DOC-REVISION />
+    </DOC-REVISIONS>
+  </ADMIN-DATA>
+  <TOP-LEVEL-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>ARPackage3</SHORT-NAME>
+      <ELEMENTS>
+        <MODULE-DEF UUID="ECUC:aa31b7a8-b524-5c87-be84-43fca3822c12">
+          <SHORT-NAME>MemMap</SHORT-NAME>
+          <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+          <CONTAINERS>
+            <PARAM-CONF-CONTAINER-DEF UUID="ECUC:b9a29699-350e-5955-b78e-47f569142ad4">
+              <SHORT-NAME>MemMapAddressingModeSet</SHORT-NAME>
+              <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+              <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+              <PARAMETERS>
+                <STRING-PARAM-DEF UUID="ECUC:6d1ca67a-194a-5573-9f95-2fb64da2384c">
+                  <SHORT-NAME>MemMapSupportedAddressingMethodOption</SHORT-NAME>
+                  <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                  <IMPLEMENTATION-CONFIG-CLASS>PRE-COMPILE</IMPLEMENTATION-CONFIG-CLASS>
+                  <ORIGIN>AUTOSAR</ORIGIN>
+                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                </STRING-PARAM-DEF>
+              </PARAMETERS>
+            </PARAM-CONF-CONTAINER-DEF>
+          </CONTAINERS>
+        </MODULE-DEF>
+      </ELEMENTS>
+    </AR-PACKAGE>
+    <AR-PACKAGE>
+      <SHORT-NAME>ARPackage4</SHORT-NAME>
+      <ELEMENTS>
+        <MODULE-DEF UUID="ECUC:aa31b7a8-b524-5c87-be84-43fca3822c12">
+          <SHORT-NAME>MemMap</SHORT-NAME>
+          <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+          <UPPER-MULTIPLICITY>1</UPPER-MULTIPLICITY>
+          <REFINED-MODULE-DEF-REF DEST="MODULE-DEF">/ARPackage3/MemMap</REFINED-MODULE-DEF-REF>
+          <CONTAINERS>
+            <PARAM-CONF-CONTAINER-DEF>
+              <SHORT-NAME>MemMapAddressingModeSet</SHORT-NAME>
+              <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+              <MULTIPLE-CONFIGURATION-CONTAINER>false</MULTIPLE-CONFIGURATION-CONTAINER>
+              <PARAMETERS>
+                <STRING-PARAM-DEF>
+                  <SHORT-NAME>MemMapSupportedAddressingMethodOption</SHORT-NAME>
+                  <LOWER-MULTIPLICITY>0</LOWER-MULTIPLICITY>
+                  <IMPLEMENTATION-CONFIG-CLASS>PUBLISHED-INFORMATION</IMPLEMENTATION-CONFIG-CLASS>
+                  <ORIGIN>AUTOSAR</ORIGIN>
+                  <SYMBOLIC-NAME-VALUE>false</SYMBOLIC-NAME-VALUE>
+                </STRING-PARAM-DEF>
+              </PARAMETERS>
+            </PARAM-CONF-CONTAINER-DEF>
+          </CONTAINERS>
+          <SUPPORTED-CONFIG-VARIANTS>
+            <SUPPORTED-CONFIG-VARIANT>VARIANT-PRE-COMPILE</SUPPORTED-CONFIG-VARIANT>
+          </SUPPORTED-CONFIG-VARIANTS>
+        </MODULE-DEF>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </TOP-LEVEL-PACKAGES>
+</AUTOSAR>
