@@ -1,0 +1,14 @@
+.DS_Store
+/.metadata
+aal/docs/*/target
+aal/examples/*/xtend-gen
+aal/examples/*/bin
+aal/examples/*/target
+aal/features/*/target
+aal/plugins/*/xtend-gen
+aal/plugins/*/bin
+aal/plugins/*/target
+aal/tests/*/bin
+aal/tests/*/target
+aal/tests/*/working-dir
+aal/tools/*/bin
