@@ -1,22 +1,28 @@
 /**
  * <copyright>
- * 
- * Copyright (c) See4sys and others.
+ *
+ * Copyright (c) See4sys, itemis and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     See4sys - Initial API and implementation
- * 
+ *     itemis - [2090] - Usage of BundleClassLoader in bundle activator of org.artop.aal.autosar3x.validation breaks compilation under Luna
+ *
  * </copyright>
  */
 package org.artop.aal.autosar40.validation.internal;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.sphinx.emf.validation.evalidator.adapter.EValidatorRegistering;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.FrameworkUtil;
+
+import autosar40.autosartoplevelstructure.AUTOSAR;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -43,8 +49,14 @@ public class Activator extends Plugin {
 		super.start(context);
 		plugin = this;
 
+		// Compute id of revision-specific AUTOSAR validation bundle
+		Bundle bundle = FrameworkUtil.getBundle(AUTOSAR.class);
+		String autosarValidationBundleId = bundle.getSymbolicName().concat(".validation"); //$NON-NLS-1$
+
 		// Let's registering EValidator for each contribution to org.eclipse.sphinx.emf.validation.registration.
-		EValidatorRegistering.getSingleton().eValidatorSetAllContributions(Activator.PLUGIN_ID);
+		if (autosarValidationBundleId != null && Platform.getBundle(autosarValidationBundleId) != null) {
+			EValidatorRegistering.getSingleton().eValidatorSetAllContributions(autosarValidationBundleId);
+		}
 	}
 
 	/*
@@ -58,7 +70,7 @@ public class Activator extends Plugin {
 
 	/**
 	 * Returns the shared instance
-	 * 
+	 *
 	 * @return the shared instance
 	 */
 	public static Activator getDefault() {
