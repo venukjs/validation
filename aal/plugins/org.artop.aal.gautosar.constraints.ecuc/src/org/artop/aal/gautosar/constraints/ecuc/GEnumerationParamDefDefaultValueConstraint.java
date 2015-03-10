@@ -1,13 +1,13 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     See4sys - Initial API and implementation
  *     Continental AG - Mark class as Splitable aware.
  * </copyright>
@@ -20,7 +20,6 @@ import gautosar.gecucparameterdef.GEnumerationParamDef;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.validation.constraints.AbstractSplitModelConstraintWithPrecondition;
 import org.eclipse.core.runtime.IStatus;
@@ -58,8 +57,8 @@ public class GEnumerationParamDefDefaultValueConstraint extends AbstractSplitMod
 			// Perform the comparison between the default value and the declared literals.
 			//
 			if (!literals.contains(defaultValue)) {
-				return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.enumerationParamDef_defaultValueUndeclaredInLiterals, new String[] {
-						defaultValue, AutosarURIFactory.getAbsoluteQualifiedName(enumerationParamDef) }));
+				return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.enumerationParamDef_defaultValueUndeclaredInLiterals,
+						new String[] { defaultValue /* , AutosarURIFactory.getAbsoluteQualifiedName(enumerationParamDef) */}));
 			}
 		}
 

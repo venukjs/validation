@@ -1,13 +1,13 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     See4sys - Initial API and implementation
  *     Continental AG - Mark class as Splitable aware.
  * </copyright>
@@ -74,10 +74,9 @@ public abstract class AbstractGIntegerParamDefUpperLimitConstraint extends Abstr
 				GParamConfContainerDef parent = (GParamConfContainerDef) refinedIntegerParamDef.eContainer();
 				EObject refineModuleDef = EcucUtil.getParentModuleDefForContainerDef(parent);
 
-				return ctx.createFailureStatus(NLS.bind(
-						EcucConstraintMessages.integerParamDef_UpperLimitBiggerInVendorSpecificModuleDefinition,
-						new Object[] { AutosarURIFactory.getAbsoluteQualifiedName(integerParamDef),
-								AutosarURIFactory.getAbsoluteQualifiedName(refineModuleDef) }));
+				return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.integerParamDef_UpperLimitBiggerInVendorSpecificModuleDefinition,
+						new Object[] {/* AutosarURIFactory.getAbsoluteQualifiedName(integerParamDef), */
+						AutosarURIFactory.getAbsoluteQualifiedName(refineModuleDef) }));
 			}
 		} else {
 			//

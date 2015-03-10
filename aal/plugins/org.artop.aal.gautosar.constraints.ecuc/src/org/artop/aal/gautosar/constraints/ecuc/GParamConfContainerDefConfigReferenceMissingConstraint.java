@@ -1,13 +1,13 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     See4sys - Initial API and implementation
  *     Continental AG - Mark class as Splitable aware.
  * </copyright>
@@ -18,7 +18,6 @@ import gautosar.gecucparameterdef.GConfigReference;
 import gautosar.gecucparameterdef.GModuleDef;
 import gautosar.gecucparameterdef.GParamConfContainerDef;
 
-import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
 import org.artop.aal.validation.constraints.AbstractSplitModelConstraintWithPrecondition;
@@ -28,7 +27,7 @@ import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
 
 /**
- * 
+ *
  */
 public class GParamConfContainerDefConfigReferenceMissingConstraint extends AbstractSplitModelConstraintWithPrecondition {
 
@@ -86,7 +85,7 @@ public class GParamConfContainerDefConfigReferenceMissingConstraint extends Abst
 						tmp2 = " are"; //$NON-NLS-1$
 					}
 					return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.paramConfigContainerDef_configReferenceMissing, new Object[] {
-							tmp1, invalidConfigReferences, tmp2, AutosarURIFactory.getAbsoluteQualifiedName(containerDef) }));
+							tmp1, invalidConfigReferences, tmp2 }));
 				}
 			} else {
 				//

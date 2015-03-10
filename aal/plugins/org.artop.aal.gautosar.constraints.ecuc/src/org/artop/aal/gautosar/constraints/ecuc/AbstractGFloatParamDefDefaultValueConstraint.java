@@ -1,13 +1,13 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     See4sys - Initial API and implementation
  *     Continental AG - Mark class as Splitable aware.
  * </copyright>
@@ -16,7 +16,6 @@ package org.artop.aal.gautosar.constraints.ecuc;
 
 import gautosar.gecucparameterdef.GFloatParamDef;
 
-import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.validation.constraints.AbstractSplitModelConstraintWithPrecondition;
 import org.eclipse.core.runtime.IStatus;
@@ -46,8 +45,7 @@ public abstract class AbstractGFloatParamDefDefaultValueConstraint extends Abstr
 		Double defaultValue = getDefaultValue(floatParamDef);
 		if (defaultValue == null) {
 			// default value is set with wrong Float format
-			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.floatParamDef_defaultValueIsNotFloat,
-					AutosarURIFactory.getAbsoluteQualifiedName(floatParamDef)));
+			return ctx.createFailureStatus(EcucConstraintMessages.floatParamDef_defaultValueIsNotFloat);
 		}
 
 		Double min = getMin(floatParamDef);
@@ -73,8 +71,8 @@ public abstract class AbstractGFloatParamDefDefaultValueConstraint extends Abstr
 		}
 
 		if (!valid) {
-			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.floatParamDef_defaultValueIsOutOfRange,
-					new String[] { AutosarURIFactory.getAbsoluteQualifiedName(floatParamDef), getDoubleAsString(defaultValue), minvalue, maxvalue }));
+			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.floatParamDef_defaultValueIsOutOfRange, new String[] {
+					getDoubleAsString(defaultValue), minvalue, maxvalue }));
 		}
 
 		return ctx.createSuccessStatus();
@@ -82,7 +80,7 @@ public abstract class AbstractGFloatParamDefDefaultValueConstraint extends Abstr
 
 	/**
 	 * Returns the string representation of the given Double <code>value</code>
-	 * 
+	 *
 	 * @param value
 	 * @return
 	 */
@@ -93,7 +91,7 @@ public abstract class AbstractGFloatParamDefDefaultValueConstraint extends Abstr
 
 	/**
 	 * Get Min value of <em>GFloatParamDef</em>
-	 * 
+	 *
 	 * @param floatParamDef
 	 *            The GFloatParamDef
 	 * @return Min value
@@ -102,7 +100,7 @@ public abstract class AbstractGFloatParamDefDefaultValueConstraint extends Abstr
 
 	/**
 	 * Get Max value of <em>GFloatParamDef</em>
-	 * 
+	 *
 	 * @param floatParamDef
 	 *            The GFloatParamDef
 	 * @return Max value
@@ -111,7 +109,7 @@ public abstract class AbstractGFloatParamDefDefaultValueConstraint extends Abstr
 
 	/**
 	 * Get default value of <em>GFloatParamDef</em>
-	 * 
+	 *
 	 * @param floatParamDef
 	 *            The GFloatParamDef
 	 * @return default value
@@ -120,7 +118,7 @@ public abstract class AbstractGFloatParamDefDefaultValueConstraint extends Abstr
 
 	/**
 	 * Check default value is set or not
-	 * 
+	 *
 	 * @param floatParamDef
 	 *            The GFloatParamDef
 	 * @return boolean value to show that default value is set or not

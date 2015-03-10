@@ -16,12 +16,8 @@ public class EcucRefinementParamBoundaryTest extends AbstractAutosar40Validation
 	public void testDefLowerLimitBoundaryConstraintInvalid() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/Refinement/invalidParamBoundary.arxml");
 
-		ValidationTestUtil.validateModel(
-				invalidModel,
-				validator,
-				IStatus.ERROR,
-				NLS.bind(EcucConstraintMessages.integerParamDef_LowerLimitSmallerInVendorSpecificModuleDefinition, new Object[] {
-						"/TS_T2D13M4I0R57/Os/OsTask/OsTaskActivation", "/AUTOSAR/EcucDefs/Os" }));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, NLS.bind(
+				EcucConstraintMessages.integerParamDef_LowerLimitSmallerInVendorSpecificModuleDefinition, new Object[] { "/AUTOSAR/EcucDefs/Os" }));
 
 	}
 

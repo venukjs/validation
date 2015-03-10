@@ -1,15 +1,15 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) Continental Engineering Services and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     Continental Engineering Services - Initial API and implementation
- * 
+ *
  * </copyright>
  */
 package org.artop.aal.autosar3x.constraints.ecuc.tests;
@@ -39,32 +39,30 @@ public class FloatParamDefConstraintTest extends AbstractAutosar3xValidationTest
 
 	public void testInvalidFloatParamDef_invalidDefValueOutOfRange() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/FloatParamDef/defValueOutOfRange.arxml");
-		ValidationTestUtil.validateModel(
-				invalidModel,
-				validator,
-				IStatus.ERROR,
-				NLS.bind(EcucConstraintMessages.floatParamDef_defaultValueIsOutOfRange, new Object[] { "/ARRoot/ModuleDef/Container/FloatDef", "5.0",
-						"10.0", "15.0" }));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(EcucConstraintMessages.floatParamDef_defaultValueIsOutOfRange, new Object[] { /*
+																										 * "/ARRoot/ModuleDef/Container/FloatDef"
+																										 * ,
+																										 */"5.0", "10.0", "15.0" }));
 	}
 
 	public void testInvalidFloatParamDef_invalidDefValueOutOfRangeMinUnset() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/FloatParamDef/defValueOutOfRangeMinUnset.arxml");
-		ValidationTestUtil.validateModel(
-				invalidModel,
-				validator,
-				IStatus.ERROR,
-				NLS.bind(EcucConstraintMessages.floatParamDef_defaultValueIsOutOfRange, new Object[] { "/ARRoot/ModuleDef/Container/FloatDef",
-						"10.0", "~", "5.0" }));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(EcucConstraintMessages.floatParamDef_defaultValueIsOutOfRange, new Object[] {/*
+																									 * "/ARRoot/ModuleDef/Container/FloatDef"
+																									 * ,
+																									 */
+				"10.0", "~", "5.0" }));
 	}
 
 	public void testInvalidFloatParamDef_invalidDefValueOutOfRangeMaxUnset() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/FloatParamDef/defValueOutOfRangeMaxUnset.arxml");
-		ValidationTestUtil.validateModel(
-				invalidModel,
-				validator,
-				IStatus.ERROR,
-				NLS.bind(EcucConstraintMessages.floatParamDef_defaultValueIsOutOfRange, new Object[] { "/ARRoot/ModuleDef/Container/FloatDef", "1.0",
-						"5.0", "~" }));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(EcucConstraintMessages.floatParamDef_defaultValueIsOutOfRange, new Object[] {/*
+																									 * "/ARRoot/ModuleDef/Container/FloatDef"
+																									 * ,
+																									 */"1.0", "5.0", "~" }));
 	}
 
 	// valid

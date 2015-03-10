@@ -1,13 +1,13 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     See4sys - Initial API and implementation
  *     Continental AG - Mark class as Splitable aware.
  * </copyright>
@@ -85,10 +85,8 @@ public class GContainerDefUpperMultiplicityConstraint extends AbstractSplitModel
 				}
 
 				if (!valid) {
-					return ctx.createFailureStatus(NLS.bind(
-							EcucConstraintMessages.containerDef_upperMultiplicityChanged,
-							new Object[] { AutosarURIFactory.getAbsoluteQualifiedName(vSpecifContainerDef),
-									AutosarURIFactory.getAbsoluteQualifiedName(refinedContainerDef) }));
+					return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.containerDef_upperMultiplicityChanged,
+							new Object[] { AutosarURIFactory.getAbsoluteQualifiedName(refinedContainerDef) }));
 				}
 			} else {
 				//

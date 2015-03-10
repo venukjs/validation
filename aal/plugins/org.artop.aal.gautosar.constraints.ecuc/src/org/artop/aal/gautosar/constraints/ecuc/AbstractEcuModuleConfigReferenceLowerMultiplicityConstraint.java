@@ -1,16 +1,16 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     See4sys - Initial API and implementation
  *     Continental AG - abstractization and refactoring
- * 
+ *
  * </copyright>
  */
 package org.artop.aal.gautosar.constraints.ecuc;
@@ -23,7 +23,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
 import org.artop.aal.validation.constraints.AbstractSplitModelConstraintWithPrecondition;
@@ -69,8 +68,8 @@ public abstract class AbstractEcuModuleConfigReferenceLowerMultiplicityConstrain
 			if (invalidModuleDefs.length() != 0) {
 				// Remove redundant ", " at the end
 				invalidModuleDefs = invalidModuleDefs.substring(0, invalidModuleDefs.length() - SEPARATOR.length());
-				return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.modulesConfiguration_moduleDefMissing, new Object[] {
-						invalidModuleDefs, AutosarURIFactory.getAbsoluteQualifiedName(target) }));
+				return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.modulesConfiguration_moduleDefMissing,
+						new Object[] { invalidModuleDefs /* , AutosarURIFactory.getAbsoluteQualifiedName(target) */}));
 			}
 		}
 
@@ -79,7 +78,7 @@ public abstract class AbstractEcuModuleConfigReferenceLowerMultiplicityConstrain
 
 	/**
 	 * Find mandatory GModuleDef in the model which have the lower multiplicity was set
-	 * 
+	 *
 	 * @param <T>
 	 * @param ecuConfiguration
 	 *            The EcucValueCollection
@@ -129,7 +128,7 @@ public abstract class AbstractEcuModuleConfigReferenceLowerMultiplicityConstrain
 
 	/**
 	 * Get Module Configurations which have the given Module Definition as definition
-	 * 
+	 *
 	 * @param ecuConfiguration
 	 *            The ECU Configuration whose Module Configurations having the given Module Definition as definition
 	 *            must be returned.

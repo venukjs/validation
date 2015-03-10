@@ -1,16 +1,16 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     See4sys - Initial API and implementation
  *     Continental AG - abstractization and refactoring
- * 
+ *
  * </copyright>
  */
 package org.artop.aal.gautosar.constraints.ecuc;
@@ -39,8 +39,11 @@ public abstract class AbstractImplConfigClassAndVariantConstraint extends Abstra
 					}
 				}
 				String name = getConfigParameterName(ctx.getTarget());
-				return ctx.createFailureStatus(NLS.bind(
-						EcucConstraintMessages.configParameter_configurationVariantRespectAsPreCompilePublishedOrLink, name));
+				return ctx.createFailureStatus(/*
+												 * NLS.bind(/* EcucConstraintMessages.
+												 * configParameter_configurationVariantRespectAsPreCompilePublishedOrLink
+												 * /*, name)
+												 */);
 			}
 
 		}

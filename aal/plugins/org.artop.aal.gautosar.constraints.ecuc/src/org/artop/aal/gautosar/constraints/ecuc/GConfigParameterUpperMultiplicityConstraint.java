@@ -1,13 +1,13 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     See4sys - Initial API and implementation
  *     Continental AG - Mark class as Splitable aware.
  * </copyright>
@@ -37,8 +37,7 @@ public class GConfigParameterUpperMultiplicityConstraint extends AbstractSplitMo
 		GConfigParameter configParameter = (GConfigParameter) ctx.getTarget();
 		String[] result = EcucUtil.vendorSpecificCommonConfigurationAttributesUpperMultiplicity(configParameter);
 		if (result != null) {
-			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.configParameter_upperMultiplicityChanged, new Object[] { result[0],
-					result[1] }));
+			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.configParameter_upperMultiplicityChanged, new Object[] { result[1] }));
 		}
 
 		return status;

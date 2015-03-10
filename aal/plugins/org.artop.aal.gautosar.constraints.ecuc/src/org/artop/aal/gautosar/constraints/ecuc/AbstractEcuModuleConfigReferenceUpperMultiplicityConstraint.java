@@ -1,15 +1,15 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) Continental AG and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     Continental AG - Initial API and implementation
- * 
+ *
  * </copyright>
  */
 package org.artop.aal.gautosar.constraints.ecuc;
@@ -20,7 +20,6 @@ import gautosar.gecucparameterdef.GModuleDef;
 import java.util.List;
 import java.util.Map;
 
-import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.validation.constraints.AbstractSplitModelConstraintWithPrecondition;
 import org.eclipse.core.runtime.IStatus;
@@ -76,7 +75,7 @@ public abstract class AbstractEcuModuleConfigReferenceUpperMultiplicityConstrain
 			invalidmoduleConf = invalidmoduleConf.substring(0, invalidmoduleConf.length() - SEPARATOR.length());
 
 			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.modulesConfiguration_moduleDefTooMuch, new Object[] { invalidModuleDefs,
-					AutosarURIFactory.getAbsoluteQualifiedName(target), invalidmoduleConf }));
+					invalidmoduleConf }));
 		}
 
 		return status;
@@ -86,7 +85,7 @@ public abstract class AbstractEcuModuleConfigReferenceUpperMultiplicityConstrain
 
 	/**
 	 * Get the similar ModuleConfigurations which have the same definition with the given moduleConfiguration.
-	 * 
+	 *
 	 * @param ecuConfiguration
 	 *            The EcucValueCollection
 	 * @param moduleConfiguration

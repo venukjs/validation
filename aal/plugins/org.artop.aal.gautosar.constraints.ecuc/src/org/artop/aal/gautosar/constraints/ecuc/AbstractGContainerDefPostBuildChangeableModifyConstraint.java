@@ -1,13 +1,13 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     See4sys - Initial API and implementation
  *     Continental AG - Mark class as Splitable aware.
  * </copyright>
@@ -69,8 +69,8 @@ public abstract class AbstractGContainerDefPostBuildChangeableModifyConstraint e
 
 		if (!valid) {
 			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.containerDef_postBuildChangeableModified,
-					AutosarURIFactory.getAbsoluteQualifiedName(containerDef),
-					AutosarURIFactory.getAbsoluteQualifiedName(EcucUtil.getParentModuleDefForContainerDef(refinedContainerDef))));
+			/* AutosarURIFactory.getAbsoluteQualifiedName(containerDef), */
+			AutosarURIFactory.getAbsoluteQualifiedName(EcucUtil.getParentModuleDefForContainerDef(refinedContainerDef))));
 		}
 
 		return ctx.createSuccessStatus();

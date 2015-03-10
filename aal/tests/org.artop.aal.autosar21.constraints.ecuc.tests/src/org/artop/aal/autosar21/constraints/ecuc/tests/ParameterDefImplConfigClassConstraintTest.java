@@ -19,7 +19,7 @@ public class ParameterDefImplConfigClassConstraintTest extends AbstractAutosar21
 
 	/**
 	 * Tests that the implementationConfigurationClass is the same in a Module Def vs the refined Module Def.
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	public void testSameConfigClass() throws Exception {
@@ -31,19 +31,15 @@ public class ParameterDefImplConfigClassConstraintTest extends AbstractAutosar21
 
 	/**
 	 * Tests that the implementationConfigurationClass is different in a Module Def vs the refined Module Def.
-	 * 
+	 *
 	 * @throws Exception
 	 */
 	public void testDifferentConfigClass() throws Exception {
 
 		EObject invalidModel = loadInputFile("ecuc/ParameterDef/configClassDifferent.arxml"); //$NON-NLS-1$
 
-		ValidationTestUtil.validateModel(
-				invalidModel,
-				validator,
-				IStatus.WARNING,
-				NLS.bind(EcucConstraintMessages.configParameter_implConfigClassChanged, new Object[] {
-						"/ARPackage4/MemMap/MemMapAddressingModeSet/MemMapSupportedAddressingMethodOption", "/ARPackage3/MemMap" })); //$NON-NLS-1$ //$NON-NLS-2$
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.WARNING,
+				NLS.bind(EcucConstraintMessages.configParameter_implConfigClassChanged, new Object[] { /*"/ARPackage4/MemMap/MemMapAddressingModeSet/MemMapSupportedAddressingMethodOption", */"/ARPackage3/MemMap" })); //$NON-NLS-1$
 
 	}
 }

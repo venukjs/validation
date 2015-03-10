@@ -1,13 +1,13 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     See4sys - Initial API and implementation
  *     Continental AG - Mark class as Splitable aware.
  * </copyright>
@@ -18,7 +18,6 @@ import gautosar.gecucparameterdef.GIntegerParamDef;
 
 import java.math.BigInteger;
 
-import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.validation.constraints.AbstractSplitModelConstraintWithPrecondition;
 import org.eclipse.core.runtime.IStatus;
@@ -52,8 +51,7 @@ public abstract class AbstractGIntegerParamDefDefaultValueConstraint extends Abs
 		BigInteger defaultValue = getDefaultValue(integerParamDef);
 		if (defaultValue == null) {
 			// default value is set with wrong Integer format
-			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.integerParamDef_defaultValueIsNotInteger,
-					AutosarURIFactory.getAbsoluteQualifiedName(integerParamDef)));
+			return ctx.createFailureStatus(EcucConstraintMessages.integerParamDef_defaultValueIsNotInteger);
 		}
 
 		BigInteger min = getMin(integerParamDef);
@@ -78,8 +76,8 @@ public abstract class AbstractGIntegerParamDefDefaultValueConstraint extends Abs
 			// invalid min and max value-> ignore
 		} else {
 			if (defaultValue.compareTo(min) < 0 || defaultValue.compareTo(max) > 0) {
-				return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.integerParamDef_defaultValueIsOutOfRange, new String[] {
-						AutosarURIFactory.getAbsoluteQualifiedName(integerParamDef), defaultValue.toString(), min.toString(), max.toString() }));
+				return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.integerParamDef_defaultValueIsOutOfRange,
+						new String[] { defaultValue.toString(), min.toString(), max.toString() }));
 			}
 		}
 
@@ -88,7 +86,7 @@ public abstract class AbstractGIntegerParamDefDefaultValueConstraint extends Abs
 
 	/**
 	 * Get Min value of <em>GIntegerParamDef</em>
-	 * 
+	 *
 	 * @param integerParamDef
 	 *            The GIntegerParamDef
 	 * @return Min value
@@ -97,7 +95,7 @@ public abstract class AbstractGIntegerParamDefDefaultValueConstraint extends Abs
 
 	/**
 	 * Get Max value of <em>GIntegerParamDef</em>
-	 * 
+	 *
 	 * @param integerParamDef
 	 *            The GIntegerParamDef
 	 * @return Max value
@@ -106,7 +104,7 @@ public abstract class AbstractGIntegerParamDefDefaultValueConstraint extends Abs
 
 	/**
 	 * Get default value of <em>GIntegerParamDef</em>
-	 * 
+	 *
 	 * @param integerParamDef
 	 *            The GIntegerParamDef
 	 * @return default value
@@ -115,7 +113,7 @@ public abstract class AbstractGIntegerParamDefDefaultValueConstraint extends Abs
 
 	/**
 	 * Check default value is set or not
-	 * 
+	 *
 	 * @param integerParamDef
 	 *            The GIntegerParamDef
 	 * @return boolean value to show that default value is set or not

@@ -1,13 +1,13 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     See4sys - Initial API and implementation
  *     Continental AG - Mark class as Splitable aware.
  * </copyright>
@@ -23,7 +23,6 @@ import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.validation.constraints.AbstractSplitModelConstraintWithPrecondition;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * The class validate the constraints implementations on an <em>StringParamDef</em>'s default value
@@ -53,7 +52,7 @@ public abstract class AbstractGStringParamDefDefaultValueConstraint extends Abst
 
 	/**
 	 * Performs the validation on the value of the given <code>gStringParamDef</code>.
-	 * 
+	 *
 	 * @param ctx
 	 *            the validation context that provides access to the current constraint evaluation environment
 	 * @param gStringParamDef
@@ -74,7 +73,7 @@ public abstract class AbstractGStringParamDefDefaultValueConstraint extends Abst
 
 		String value = getDefaultValue(gStringParamDef);
 		if (false == value.matches(BASIC_STRING_REGEX)) {
-			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.paramDef_defaultValueNoIdentifier, gStringParamDef.gGetShortName()));
+			return ctx.createFailureStatus(EcucConstraintMessages.paramDef_defaultValueNoIdentifier);
 		}
 
 		return ctx.createSuccessStatus();
@@ -101,7 +100,7 @@ public abstract class AbstractGStringParamDefDefaultValueConstraint extends Abst
 
 	/**
 	 * Check if the default value is set on the given parameter definition.
-	 * 
+	 *
 	 * @param stringParamDef
 	 *            the given parameter def
 	 * @return <code>true</code> if the default value is set, <code>false</code> otherwise
@@ -113,7 +112,7 @@ public abstract class AbstractGStringParamDefDefaultValueConstraint extends Abst
 
 	/**
 	 * Returns the default value of the given parameter definition.
-	 * 
+	 *
 	 * @param stringParamDef
 	 *            the given parameter def
 	 * @return the default value

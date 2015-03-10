@@ -1,13 +1,13 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     See4sys - Initial API and implementation
  *     Continental AG - Mark class as Splitable aware.
  * </copyright>
@@ -17,13 +17,11 @@ package org.artop.aal.gautosar.constraints.ecuc;
 import gautosar.gecucparameterdef.GConfigParameter;
 import gautosar.gecucparameterdef.GParamConfContainerDef;
 
-import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.validation.constraints.AbstractSplitModelConstraintWithPrecondition;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.IValidationContext;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * The class validate the constraints implementations on an <em>ConfigParameter</em>'s SymbolicNameValue
@@ -62,8 +60,16 @@ public class GConfigParameterSymbolicNameValueConstraint extends AbstractSplitMo
 						 * Constraint can not be validated if more that one Configuration Parameter has a 'Symbolic Name
 						 * Value' set to "true".
 						 */
-						return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.configParameter_symbolicNameValueIsMultiDeclared,
-								AutosarURIFactory.getAbsoluteQualifiedName(configParameter)));
+						return ctx.createFailureStatus(/* NLS.bind( */EcucConstraintMessages.configParameter_symbolicNameValueIsMultiDeclared/*
+																																			 * ,
+																																			 * AutosarURIFactory
+																																			 * .
+																																			 * getAbsoluteQualifiedName
+																																			 * (
+																																			 * configParameter
+																																			 * )
+																																			 * )
+																																			 */);
 					}
 				}
 			}
@@ -75,5 +81,4 @@ public class GConfigParameterSymbolicNameValueConstraint extends AbstractSplitMo
 
 		return ctx.createSuccessStatus();
 	}
-
 }

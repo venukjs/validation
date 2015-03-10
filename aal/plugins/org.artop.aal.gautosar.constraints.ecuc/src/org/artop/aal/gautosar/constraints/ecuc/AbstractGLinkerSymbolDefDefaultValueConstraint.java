@@ -1,15 +1,15 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     See4sys - Initial API and implementation
- * 
+ *
  * </copyright>
  */
 package org.artop.aal.gautosar.constraints.ecuc;
@@ -21,7 +21,6 @@ import gautosar.gecucparameterdef.GLinkerSymbolDef;
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * The class validate the constraints implementations on an <em>LinkerSymbolDef</em>'s default value
@@ -51,7 +50,15 @@ public abstract class AbstractGLinkerSymbolDefDefaultValueConstraint extends Abs
 
 		String value = getDefaultValue(gLinkerSymbolDef);
 		if (false == value.matches(LINKER_STRING_REGEX)) {
-			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.paramDef_defaultValueNoIdentifier, gLinkerSymbolDef.gGetShortName()));
+			return ctx.createFailureStatus(/* NLS.bind( */EcucConstraintMessages.paramDef_defaultValueNoIdentifier/*
+																													 * ,
+																													 * gLinkerSymbolDef
+																													 * .
+																													 * gGetShortName
+																													 * (
+																													 * )
+																													 * )
+																													 */);
 		}
 
 		return ctx.createSuccessStatus();
