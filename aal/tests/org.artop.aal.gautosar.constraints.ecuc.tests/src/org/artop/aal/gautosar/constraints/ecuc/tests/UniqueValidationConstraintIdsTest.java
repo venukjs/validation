@@ -32,6 +32,20 @@ public class UniqueValidationConstraintIdsTest {
 	 */
 	private final String vendorSpecificConstraintIdPart = "_artop_"; //$NON-NLS-1$
 	private List<String> modelFilters = Arrays.asList("_21", "_3x", "_40"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+
+	// ids that represent the same rule and it's ok to have the same id
+
+	private static List<String> exceptionConstraints = new ArrayList<String>();
+	static {
+
+		exceptionConstraints.add("org.artop.aal.autosar21.constraints.ecuc.IntegerValueBasicConstraint_21"); //$NON-NLS-1$
+		exceptionConstraints.add("org.artop.aal.autosar21.constraints.ecuc.BooleanValueBasicConstraint_21"); //$NON-NLS-1$
+		exceptionConstraints.add("org.artop.aal.autosar21.constraints.ecuc.FloatValueBasicConstraint_21"); //$NON-NLS-1$
+		exceptionConstraints.add("org.artop.aal.autosar40.constraints.ecuc.EcucNumericalParamValueBasicConstraint_40"); //$NON-NLS-1$
+		exceptionConstraints.add("org.artop.aal.autosar3x.constraints.ecuc.BooleanValueBasicConstraint_3x"); //$NON-NLS-1$
+		exceptionConstraints.add("org.artop.aal.autosar3x.constraints.ecuc.FloatValueBasicConstraint_3x"); //$NON-NLS-1$
+	}
+
 	/**
 	 * Map containing the constraint ids for each constraint
 	 */
@@ -42,6 +56,9 @@ public class UniqueValidationConstraintIdsTest {
 	}
 
 	@Test
+	/**
+	 * Test that the constraints have unique id.
+	 */
 	public void testUniqueConstraints() {
 		ModelValidationService.getInstance().loadXmlConstraintDeclarations();
 		Map<String, List<IConstraintDescriptor>> duplicateConstraintIdsMap = new HashMap<String, List<IConstraintDescriptor>>();
@@ -62,6 +79,13 @@ public class UniqueValidationConstraintIdsTest {
 					if (existingDescriptorFiltered.equals(descriptorFiltered)) {
 						continue;
 					}
+
+					// check for similarities in the name, msg or description
+					if (areConstraintsSimilar(existingConstraintDescriptor, constraint)) {
+						continue;
+					}
+
+					// else put as duplicate
 					List<IConstraintDescriptor> duplicateConstraintDescriptorsList = duplicateConstraintIdsMap.get(constraintIdValue);
 					if (duplicateConstraintDescriptorsList == null) {
 						duplicateConstraintDescriptorsList = new ArrayList<IConstraintDescriptor>();
@@ -86,6 +110,36 @@ public class UniqueValidationConstraintIdsTest {
 			}
 		}
 		assertEquals(message, 0, duplicateConstraintIdsMap.size());
+	}
+
+	/**
+	 * Check if the constraints have similarities in the name or description or if they are exception constraints that
+	 * shall have the same ids in the same model and across models.
+	 * 
+	 * @param existingConstraintDescriptor
+	 * @param constraintDescriptor
+	 * @return
+	 */
+	private boolean areConstraintsSimilar(IConstraintDescriptor existingConstraintDescriptor, IConstraintDescriptor constraintDescriptor) {
+		String name1 = existingConstraintDescriptor.getName();
+		String name2 = constraintDescriptor.getName();
+
+		if (name1.contains(name2) || name2.contains(name1)) {
+			return true;
+		}
+
+		String description1 = existingConstraintDescriptor.getDescription();
+		String description2 = constraintDescriptor.getDescription();
+		if (description1.equals(description2)) {
+			return true;
+		}
+
+		String id1 = existingConstraintDescriptor.getId();
+		String id2 = constraintDescriptor.getId();
+		if (exceptionConstraints.contains(id1) && exceptionConstraints.contains(id2)) {
+			return true;
+		}
+		return false;
 	}
 
 	/**
