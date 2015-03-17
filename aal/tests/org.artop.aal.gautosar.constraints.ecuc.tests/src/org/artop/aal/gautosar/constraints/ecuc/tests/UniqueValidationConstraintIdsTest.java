@@ -40,6 +40,7 @@ public class UniqueValidationConstraintIdsTest {
 
 		exceptionConstraints.add("org.artop.aal.autosar21.constraints.ecuc.IntegerValueBasicConstraint_21"); //$NON-NLS-1$
 		exceptionConstraints.add("org.artop.aal.autosar21.constraints.ecuc.BooleanValueBasicConstraint_21"); //$NON-NLS-1$
+		exceptionConstraints.add("org.artop.aal.autosar3x.constraints.ecuc.IntegerValueBasicConstraint_3x"); //$NON-NLS-1$
 		exceptionConstraints.add("org.artop.aal.autosar21.constraints.ecuc.FloatValueBasicConstraint_21"); //$NON-NLS-1$
 		exceptionConstraints.add("org.artop.aal.autosar40.constraints.ecuc.EcucNumericalParamValueBasicConstraint_40"); //$NON-NLS-1$
 		exceptionConstraints.add("org.artop.aal.autosar3x.constraints.ecuc.BooleanValueBasicConstraint_3x"); //$NON-NLS-1$
