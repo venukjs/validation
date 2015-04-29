@@ -22,6 +22,7 @@ import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
 import org.artop.aal.validation.constraints.AbstractSplitModelConstraintWithPrecondition;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
+import org.eclipse.osgi.util.NLS;
 
 /**
  *
@@ -39,7 +40,7 @@ public class GConfigParameterLowerMultiplicityConstraint extends AbstractSplitMo
 
 		String[] result = EcucUtil.vendorSpecificCommonConfigurationAttributesLowerMultiplicity(current);
 		if (result != null) {
-			return ctx.createFailureStatus(EcucConstraintMessages.configParameter_lowerMultiplicityChanged, new Object[] { result[1] });
+			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.configParameter_lowerMultiplicityChanged, new Object[] { result[1] }));
 		}
 		return ctx.createSuccessStatus();
 	}

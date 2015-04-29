@@ -1,33 +1,30 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     See4sys - Initial API and implementation
  *     Continental AG - Mark class as Splitable aware.
  * </copyright>
  */
 package org.artop.aal.gautosar.constraints.ecuc;
 
-import gautosar.gecucdescription.GContainer;
 import gautosar.gecucdescription.GModuleConfiguration;
 import gautosar.gecucparameterdef.GChoiceContainerDef;
 import gautosar.gecucparameterdef.GContainerDef;
 import gautosar.gecucparameterdef.GModuleDef;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import org.artop.aal.gautosar.constraints.ecuc.internal.Activator;
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
+import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
 import org.artop.aal.validation.constraints.AbstractSplitModelConstraintWithPrecondition;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
 
@@ -43,7 +40,9 @@ public class GModuleConfigurationChoiceContainerDefMultiplicityConstraint extend
 
 	@Override
 	protected IStatus doValidate(IValidationContext ctx) {
-		IStatus status = ctx.createSuccessStatus();
+
+		MultiStatus multiStatus = new MultiStatus(Activator.PLUGIN_ID, 0, this.getClass().getName(), null);
+
 		GModuleConfiguration moduleConfiguration = (GModuleConfiguration) ctx.getTarget();
 
 		GModuleDef moduleDef = null;
@@ -51,64 +50,27 @@ public class GModuleConfigurationChoiceContainerDefMultiplicityConstraint extend
 
 		// Check if we have a definition linked to this configuration
 		if (moduleDef == null) { // Nothing to do
-			return status;
+			return multiStatus;
 		}
-
-		// Let's obtain all the ChoiceContainerDef
-		Map<GChoiceContainerDef, Integer> mchCDefs = new HashMap<GChoiceContainerDef, Integer>();
 
 		for (GContainerDef current : moduleDef.gGetContainers()) {
 			if (current instanceof GChoiceContainerDef) {
-				mchCDefs.put((GChoiceContainerDef) current, Integer.valueOf(0));
-			}
-		}
 
-		if (mchCDefs.keySet().size() < 1) { // Nothing to check
-			return status;
-		}
-
-		GContainerDef p = null;
-		for (GChoiceContainerDef currentCCDef : mchCDefs.keySet()) {
-			int i = 0;
-			for (GContainer container : moduleConfiguration.gGetContainers()) {
-				p = container.gGetDefinition();
-				if (p != null && currentCCDef.gGetChoices().contains(p)) {
-					i = mchCDefs.get(currentCCDef).intValue();
-					mchCDefs.put(currentCCDef, ++i);
+				int numberOfChoiceContainers = EcucUtil.filterChoiceContainersByDefinition((GChoiceContainerDef) current, moduleConfiguration).size();
+				if (!EcucUtil.isValidLowerMultiplicity(numberOfChoiceContainers, current)) {
+					multiStatus
+							.add(ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.choiceContainerDef_multiplicityNotRespected, new Object[] {
+									current.gGetShortName(), " is", "min", EcucUtil.getLowerMultiplicity(current), numberOfChoiceContainers }))); //$NON-NLS-1$ //$NON-NLS-2$
+				}
+				if (!EcucUtil.isValidUpperMultiplicity(numberOfChoiceContainers, current)) {
+					multiStatus
+							.add(ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.choiceContainerDef_multiplicityNotRespected, new Object[] {
+									current.gGetShortName(), " is", "max", EcucUtil.getUpperMultiplicity(current), numberOfChoiceContainers }))); //$NON-NLS-1$ //$NON-NLS-2$
 				}
 			}
 		}
 
-		// Let's iterate on all choiceContainer found to check if
-		// the multiplicity is respected.
-		List<String> ccPb = new ArrayList<String>();
-		for (GChoiceContainerDef currentCCDef : mchCDefs.keySet()) {
-			try {
-				if (mchCDefs.get(currentCCDef).compareTo(Integer.valueOf(currentCCDef.gGetLowerMultiplicityAsString())) < 0
-						|| mchCDefs.get(currentCCDef).compareTo(Integer.valueOf(currentCCDef.gGetUpperMultiplicityAsString())) > 0) {
-					ccPb.add(currentCCDef.gGetShortName());
-				}
-			} catch (NumberFormatException e) {
-				// ignore this choice container def
-			}
-		}
-
-		switch (ccPb.size()) {
-		case 0: // No error
-			break;
-		case 1:
-			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.choiceContainerDef_multiplicityNotRespected, new Object[] { ccPb.get(0),
-					" is" })); //$NON-NLS-1$
-		default: // size>1
-			String l = new String();
-			for (String str : ccPb) {
-				l = l + str + ", "; //$NON-NLS-1$
-			}
-			return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.choiceContainerDef_multiplicityNotRespected, new Object[] { ccPb.get(0),
-					" are" })); //$NON-NLS-1$
-		}
-
-		return status;
+		return multiStatus;
 	}
 
 }

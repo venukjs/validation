@@ -1,23 +1,24 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) OpenSynergy, Continental Engineering Services, See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     OpenSynergy - Initial API and implementation
  *     Continental Engineering Services - migration to gautosar
- *     See4sys -  
- * 
+ *     See4sys -
+ *
  * </copyright>
  */
 package org.artop.aal.gautosar.constraints.ecuc.util;
 
 import gautosar.gecucdescription.GConfigReferenceValue;
 import gautosar.gecucdescription.GContainer;
+import gautosar.gecucdescription.GModuleConfiguration;
 import gautosar.gecucdescription.GParameterValue;
 import gautosar.gecucparameterdef.GChoiceContainerDef;
 import gautosar.gecucparameterdef.GCommonConfigurationAttributes;
@@ -81,8 +82,7 @@ public class EcucUtil {
 		if (featureValue == null) {
 			return null;
 		}
-		
-		
+
 		return featureValue.toString();
 	}
 
@@ -581,7 +581,7 @@ public class EcucUtil {
 	/**
 	 * Validate the upper multiplicity consistency for the given Parameter Configuration Multiplicity. In the Vendor
 	 * Specific side, upper multiplicity must be smaller or equal to upper multiplicity from the Refined side.
-	 * 
+	 *
 	 * @param refinedConfMultiplicity
 	 *            The Refined one.
 	 * @param vSpecifConfMultiplicity
@@ -652,6 +652,26 @@ public class EcucUtil {
 		return filteredConfigReferenceValues;
 	}
 
+	public static List<GContainer> filterChoiceContainersByDefinition(GChoiceContainerDef choiceContainerDef, GModuleConfiguration moduleConfiguration) {
+		List<GContainer> choiceContainers = new ArrayList<GContainer>();
+
+		for (GContainer containerConf : moduleConfiguration.gGetContainers()) {
+			GContainerDef containerDef = containerConf.gGetDefinition();
+			if (containerDef != null) {
+				if (containerDef instanceof GChoiceContainerDef) {
+					for (GContainer containerChoice : containerConf.gGetSubContainers()) {
+						if (choiceContainerDef.gGetChoices().contains(containerChoice.gGetDefinition())) {
+							choiceContainers.add(containerChoice);
+						}
+					}
+				} else if (choiceContainerDef.gGetChoices().contains(containerDef)) {
+					choiceContainers.add(containerConf);
+				}
+			}
+		}
+		return choiceContainers;
+	}
+
 	public static ArrayList<GContainerDef> getContainerDefAncestors(GContainerDef containerDef) {
 		ArrayList<GContainerDef> ancestors = new ArrayList<GContainerDef>();
 		ancestors.add(containerDef);
@@ -694,22 +714,21 @@ public class EcucUtil {
 			}
 		}
 
-		//fix - instead of retrieving the ancestor, retrieve the GContainerDef if there is a match (null otherwise)
-		if( containerDefRetrieved!=null){
-			if(containerDefRetrieved.gGetShortName().equals(containerDef.gGetShortName())){
+		// fix - instead of retrieving the ancestor, retrieve the GContainerDef if there is a match (null otherwise)
+		if (containerDefRetrieved != null) {
+			if (containerDefRetrieved.gGetShortName().equals(containerDef.gGetShortName())) {
 				return containerDefRetrieved;
-			}else
-			{
-			 EList<EObject> tContents = containerDefRetrieved.eContents();
-			 if(tContents!=null){
-				for (EObject eObject : tContents) {
-					if(eObject instanceof GIdentifiable && ((GIdentifiable)eObject).gGetShortName().equals(containerDef.gGetShortName()) ){
-						return (GContainerDef)eObject;
+			} else {
+				EList<EObject> tContents = containerDefRetrieved.eContents();
+				if (tContents != null) {
+					for (EObject eObject : tContents) {
+						if (eObject instanceof GIdentifiable && ((GIdentifiable) eObject).gGetShortName().equals(containerDef.gGetShortName())) {
+							return (GContainerDef) eObject;
+						}
 					}
 				}
-			 }
-		    }
-		} else{
+			}
+		} else {
 			return null;
 		}
 		return null;
@@ -732,11 +751,10 @@ public class EcucUtil {
 		List<String> failures = new ArrayList<String>();
 
 		/*
-		 *[ecuc_sws_6007] Elements defined in the StMD must be present in the VSMD
-		 *and must not be omitted...
+		 * [ecuc_sws_6007] Elements defined in the StMD must be present in the VSMDand must not be omitted...
 		 */
 		checkRefinedVendorDiffs(refinedContainers, vSpecifContainers, failures);
-		
+
 		for (GContainerDef refinedContainerDef : refinedContainers) {
 			/* Retrieves the Container Definition with the specified short name from the Vendor Specific side. */
 			EObject vSpecifContainerDef = find(refinedContainerDef.gGetShortName(), vSpecifContainers.toArray(new EObject[0]));
@@ -768,23 +786,21 @@ public class EcucUtil {
 	 * @param vSpecifContainers
 	 * @param failures
 	 */
-	private static void checkRefinedVendorDiffs(
-			EList<GContainerDef> refinedContainers,
-			EList<GContainerDef> vSpecifContainers, List<String> failures) {
-		if(vSpecifContainers.size()<refinedContainers.size()){
-			List<GContainerDef> deltaList = new ArrayList<GContainerDef>(); 
+	private static void checkRefinedVendorDiffs(EList<GContainerDef> refinedContainers, EList<GContainerDef> vSpecifContainers, List<String> failures) {
+		if (vSpecifContainers.size() < refinedContainers.size()) {
+			List<GContainerDef> deltaList = new ArrayList<GContainerDef>();
 			for (GContainerDef rContainerDef : refinedContainers) {
 				boolean isInList = false;
-				for(GContainerDef vContainerDef : vSpecifContainers){
-					if(rContainerDef.gGetShortName().equals(vContainerDef.gGetShortName())){
+				for (GContainerDef vContainerDef : vSpecifContainers) {
+					if (rContainerDef.gGetShortName().equals(vContainerDef.gGetShortName())) {
 						isInList = true;
-					}				
+					}
 				}
-				 if(!isInList){
-					 deltaList.add(rContainerDef);
-				 }
+				if (!isInList) {
+					deltaList.add(rContainerDef);
+				}
 			}
-			if(!deltaList.isEmpty()){
+			if (!deltaList.isEmpty()) {
 				for (GContainerDef gContainerDef : deltaList) {
 					failures.add(gContainerDef.gGetShortName());
 				}
@@ -796,6 +812,11 @@ public class EcucUtil {
 		/* List of invalid config parameters */
 		List<String> failures = new ArrayList<String>();
 
+		/*
+		 * [ecuc_sws_6007] Elements defined in the StMD must be present in the VSMD and must not be omitted, even if the
+		 * upperMultiplicity of an element in the VSMD is set to 0 - loosen up the initial implementation
+		 */
+
 		for (GContainerDef refinedContainerDef : refinedContainers) {
 
 			/* Retrieves the Container Definition with the specified short name from the Vendor Specific side. */
@@ -803,20 +824,8 @@ public class EcucUtil {
 
 			if (vSpecifContainerDef == null) {
 
-				/*
-				 * 'Container Definition' not found in 'Vendor Specific'. If the current 'Refined Container Definition'
-				 * has a non-zero lower multiplicity, the current 'Vendor Specific Container Definition' is marked as
-				 * missing in 'Vendor Specific Module Definition'.
-				 */
-				String lowerMultiplicity = refinedContainerDef.gGetLowerMultiplicityAsString();
-				if (lowerMultiplicity != null && !"".equals(lowerMultiplicity) && !"0".equals(lowerMultiplicity)) { //$NON-NLS-1$ //$NON-NLS-2$
-					String commonConfAttShortName = refinedContainerDef.gGetShortName();
-					failures.add(commonConfAttShortName);
-				}
-			} else {
-				// Container Definition has been found in the Vendor Specific side. Just verifies it is really an
-				// instance of ContainerDef and continue.
-				// apiContainerDef.assertInstanceOfContainerDef(vSpecifContainerDef);
+				String commonConfAttShortName = refinedContainerDef.gGetShortName();
+				failures.add(commonConfAttShortName);
 			}
 		}
 
@@ -828,31 +837,11 @@ public class EcucUtil {
 		/* List of invalid config parameters */
 		List<String> failures = new ArrayList<String>();
 
-		
 		/*
-		 *[ecuc_sws_6007] Elements defined in the StMD must be present in the VSMD
-		 *and must not be omitted...
+		 * [ecuc_sws_6007] Elements defined in the StMD must be present in the VSMD and must not be omitted, even if the
+		 * upperMultiplicity of an element in the VSMD is set to 0 - loosen up the initial implementation
 		 */
-		if(vSpecifCommonConfigurationAttributes.size()<refinedCommonConfigurationAttributes.size()){
-			List<GConfigParameter> deltaList = new ArrayList<GConfigParameter>(); 
-			for (GConfigParameter rContainerDef : refinedCommonConfigurationAttributes) {
-				boolean isInList = false;
-				for(GConfigParameter vContainerDef : vSpecifCommonConfigurationAttributes){
-					if(rContainerDef.gGetShortName().equals(vContainerDef.gGetShortName())){
-						isInList = true;
-					}
-				 }
-				 if(!isInList){
-					 deltaList.add(rContainerDef);
-				}
-			}
-			if(!deltaList.isEmpty()){
-				for (GConfigParameter gContainerDef : deltaList) {
-					failures.add(gContainerDef.gGetShortName());
-				}
-			}
-		}
-		
+
 		for (GConfigParameter refinedCommonConfAtt : refinedCommonConfigurationAttributes) {
 			if (GCommonConfigurationAttributes.class.isInstance(refinedCommonConfAtt)) {
 				/*
@@ -862,28 +851,9 @@ public class EcucUtil {
 				GConfigParameter vSpecifCommonConfAtt = (GConfigParameter) find(refinedCommonConfAtt.gGetShortName(),
 						vSpecifCommonConfigurationAttributes.toArray(new EObject[0]));
 
-				/*
-				 * [ecuc_sws_6007] Elements defined in the StMD must be present in the VSMD
-				 * and must not be omitted, even if the upperMultiplicity of an element in the
-				 * VSMD is set to 0
-				 * - loosen up the initial implementation
-				 */
 				if (vSpecifCommonConfAtt == null) {
-					
 					String commonConfAttShortName = refinedCommonConfAtt.gGetShortName();
 					failures.add(commonConfAttShortName);
-					
-					/*
-					 * 'Common Configuration Attributes' not found in 'Vendor Specific'. If the current 'Refined Common
-					 * Configuration Attributes' has a non-zero lower multiplicity, the current 'Vendor Specific Common
-					 * Configuration Attributes' is marked as missing in 'Vendor Specific Module Definition'.
-					 * String lowerMultiplicity = refinedCommonConfAtt.gGetLowerMultiplicityAsString();
-					 * if (lowerMultiplicity != null && !"".equals(lowerMultiplicity) && !"0".equals(lowerMultiplicity)) { //$NON-NLS-1$ //$NON-NLS-2$
-					 *	String commonConfAttShortName = refinedCommonConfAtt.gGetShortName();
-					 *	failures.add(commonConfAttShortName);
-					}*/
-				} else {
-					// Common Configuration Attributes has been found in the Vendor Specific side. Does nothing more.
 				}
 			}
 		}
@@ -895,32 +865,10 @@ public class EcucUtil {
 		/* List of invalid config parameters */
 		List<String> failures = new ArrayList<String>();
 
-		
 		/*
-		 *[ecuc_sws_6007] Elements defined in the StMD must be present in the VSMD
-		 *and must not be omitted...
+		 * [ecuc_sws_6007] Elements defined in the StMD must be present in the VSMD and must not be omitted, even if the
+		 * upperMultiplicity of an element in the VSMD is set to 0 - loosen up the initial implementation
 		 */
-		if(vSpecifCommonConfigurationAttributes.size()<refinedCommonConfigurationAttributes.size()){
-			List<GConfigReference> deltaList = new ArrayList<GConfigReference>(); 
-			for (GConfigReference rContainerDef : refinedCommonConfigurationAttributes) {
-				boolean isInList = false;
-				for(GConfigReference vContainerDef : vSpecifCommonConfigurationAttributes){
-					if(rContainerDef.gGetShortName().equals(vContainerDef.gGetShortName())){
-						isInList = true;
-					}
-				 }
-				 if(!isInList){
-					 deltaList.add(rContainerDef);
-				}
-			}
-			if(!deltaList.isEmpty()){
-				for (GConfigReference gContainerDef : deltaList) {
-					failures.add(gContainerDef.gGetShortName());
-				}
-			}
-		}
-		
-		
 		for (GConfigReference refinedCommonConfAtt : refinedCommonConfigurationAttributes) {
 			if (GCommonConfigurationAttributes.class.isInstance(refinedCommonConfAtt)) {
 				/*
@@ -932,18 +880,8 @@ public class EcucUtil {
 
 				if (vSpecifCommonConfAtt == null) {
 
-					/*
-					 * 'Common Configuration Attributes' not found in 'Vendor Specific'. If the current 'Refined Common
-					 * Configuration Attributes' has a non-zero lower multiplicity, the current 'Vendor Specific Common
-					 * Configuration Attributes' is marked as missing in 'Vendor Specific Module Definition'.
-					 */
-					String lowerMultiplicity = refinedCommonConfAtt.gGetLowerMultiplicityAsString();
-					if (lowerMultiplicity != null && !"".equals(lowerMultiplicity) && !"0".equals(lowerMultiplicity)) { //$NON-NLS-1$ //$NON-NLS-2$
-						String commonConfAttShortName = refinedCommonConfAtt.gGetShortName();
-						failures.add(commonConfAttShortName);
-					}
-				} else {
-					// Common Configuration Attributes has been found in the Vendor Specific side. Does nothing more.
+					String commonConfAttShortName = refinedCommonConfAtt.gGetShortName();
+					failures.add(commonConfAttShortName);
 				}
 			}
 		}
@@ -952,10 +890,12 @@ public class EcucUtil {
 
 	public static String getLowerMultiplicity(GParamConfMultiplicity gParamConfMultiplicity) {
 		final String lowerMultiplicity;
-		if (gParamConfMultiplicity.gGetLowerMultiplicityAsString() != null) {
-			lowerMultiplicity = gParamConfMultiplicity.gGetLowerMultiplicityAsString();
-		} else {
+		final String lowerMultiplicityAsString = gParamConfMultiplicity.gGetLowerMultiplicityAsString();
+
+		if (lowerMultiplicityAsString == null || lowerMultiplicityAsString.equals("")) { //$NON-NLS-1$
 			lowerMultiplicity = MULTIPLICITY_ONE;
+		} else {
+			lowerMultiplicity = gParamConfMultiplicity.gGetLowerMultiplicityAsString();
 		}
 		return lowerMultiplicity;
 	}
@@ -997,7 +937,7 @@ public class EcucUtil {
 	/**
 	 * Converts from the String representation of a BigInteger into a BigInteger. If <code>multiplicity</code> is
 	 * <code>null</code> or cannot be converted, the given <code>defaultValue</code> is returned.
-	 * 
+	 *
 	 * @param multiplicity
 	 *            String representation of a BigInteger
 	 * @param defaultValue
@@ -1053,7 +993,7 @@ public class EcucUtil {
 	/**
 	 * This utility method return the first container of type className for a given EObject. We do not test the given
 	 * EObject itself.
-	 * 
+	 *
 	 * @param eObject
 	 * @param className
 	 * @return the corresponding EObject, if it exists, null otherwise
@@ -1074,7 +1014,7 @@ public class EcucUtil {
 
 	/**
 	 * Return the {@link GModuleDef} which aggregate the {@link GConfigParameter} cp
-	 * 
+	 *
 	 * @param cp
 	 *            a GConfigParameter
 	 * @return the reached {@link GModuleDef} if this one exists, null otherwise
