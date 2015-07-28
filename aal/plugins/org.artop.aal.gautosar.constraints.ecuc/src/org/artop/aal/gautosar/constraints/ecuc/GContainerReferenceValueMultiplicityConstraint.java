@@ -1,13 +1,13 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) OpenSynergy, Continental Engineering Services and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     OpenSynergy - Initial API and implementation for AUTOSAR 3.x
  *     Continental Engineering Services - migration to gautosar
  *     Continental AG - Mark class as Splitable aware.
@@ -54,6 +54,15 @@ public class GContainerReferenceValueMultiplicityConstraint extends AbstractSpli
 		GParamConfContainerDef gParamConfContainerDef = (GParamConfContainerDef) gContainer.gGetDefinition();
 
 		MultiStatus multiStatus = new MultiStatus(Activator.PLUGIN_ID, 0, this.getClass().getName(), null);
+
+		if (gParamConfContainerDef != null) {
+			// if the container has the multiplicity 0 then the references shall not be validated anymore
+			if (gParamConfContainerDef.gGetUpperMultiplicityAsString() != null && "0".equals(gParamConfContainerDef.gGetUpperMultiplicityAsString())) //$NON-NLS-1$
+			{
+				multiStatus.add(ctx.createSuccessStatus());
+				return multiStatus;
+			}
+		}
 
 		List<GConfigReferenceValue> allGConfigReferenceValues = getEcucValidationIndex(ctx).getAllReferenceValuesOf(gContainer);
 		List<GConfigReference> gConfigReferences = gParamConfContainerDef.gGetReferences();

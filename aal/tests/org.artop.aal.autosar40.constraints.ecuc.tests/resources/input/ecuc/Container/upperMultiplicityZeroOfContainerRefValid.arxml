@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 autosar_4-0-3.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE UUID="b7ab3de3-62b4-40cb-ae2b-79d12b051493">
+      <SHORT-NAME>ARRoot</SHORT-NAME>
+      <ELEMENTS>
+        <ECUC-MODULE-DEF>
+          <SHORT-NAME>EcucModuleDef</SHORT-NAME>
+          <CONTAINERS>
+            <ECUC-PARAM-CONF-CONTAINER-DEF>
+              <SHORT-NAME>TestContainer</SHORT-NAME>
+              <UPPER-MULTIPLICITY>0</UPPER-MULTIPLICITY>
+              <REFERENCES>
+                <ECUC-CHOICE-REFERENCE-DEF>
+                  <SHORT-NAME>TestRef</SHORT-NAME>
+                  <UPPER-MULTIPLICITY>5</UPPER-MULTIPLICITY>
+                </ECUC-CHOICE-REFERENCE-DEF>
+              </REFERENCES>
+            </ECUC-PARAM-CONF-CONTAINER-DEF>
+          </CONTAINERS>
+        </ECUC-MODULE-DEF>
+        <ECUC-MODULE-CONFIGURATION-VALUES>
+          <SHORT-NAME>EcucModuleConfigurationValues</SHORT-NAME>
+          <DEFINITION-REF DEST="ECUC-MODULE-DEF">/ARRoot/EcucModuleDef</DEFINITION-REF>
+          <CONTAINERS>
+            <ECUC-CONTAINER-VALUE UUID="d9fc1ecc-360a-4023-a8f2-3eaa2c456419">
+              <SHORT-NAME>TestContainer</SHORT-NAME>
+              <DEFINITION-REF DEST="ECUC-PARAM-CONF-CONTAINER-DEF">/ARRoot/EcucModuleDef/TestContainer</DEFINITION-REF>
+            </ECUC-CONTAINER-VALUE>
+          </CONTAINERS>
+        </ECUC-MODULE-CONFIGURATION-VALUES>
+      </ELEMENTS>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>
