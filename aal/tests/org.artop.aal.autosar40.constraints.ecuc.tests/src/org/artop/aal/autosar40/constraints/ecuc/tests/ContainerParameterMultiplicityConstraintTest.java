@@ -14,11 +14,9 @@
  */
 package org.artop.aal.autosar40.constraints.ecuc.tests;
 
-import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.tests.util.ValidationTestUtil;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.osgi.util.NLS;
 
 @SuppressWarnings("nls")
 public class ContainerParameterMultiplicityConstraintTest extends AbstractAutosar40ValidationTestCase {
@@ -46,18 +44,7 @@ public class ContainerParameterMultiplicityConstraintTest extends AbstractAutosa
 	 */
 	public void testValidParameter_containerUpperMultiplicityZero() throws Exception {
 		EObject validModel = loadInputFile("ecuc/Container/upperMultiplicityZeroOfContainerParamValid.arxml");
+		ValidationTestUtil.validateModel(validModel, validator, IStatus.OK);
 
-		IStatus status = validator.validate(validModel);
-		assertFalse(status.isOK());
-
-		// this message shall exist as the container is created when its multiplicity is 0
-		assertTrue(status.getMessage().contains(
-				NLS.bind(EcucConstraintMessages.multiplicity_maxElementsExpected, new String[] { "0", "subcontainers",
-						"/ARRoot/EcucModuleDef/TestContainer", "1" })));
-
-		// this message shall not exist when the container of the given parameter has the multiplicity 0
-		assertTrue(!status.getMessage().contains(
-				NLS.bind(EcucConstraintMessages.multiplicity_maxElementsExpected, new String[] { "1", "parameter values",
-						"/ARRoot/EcucModuleDef/TestContainer/TestParam", "0" })));
 	}
 }
