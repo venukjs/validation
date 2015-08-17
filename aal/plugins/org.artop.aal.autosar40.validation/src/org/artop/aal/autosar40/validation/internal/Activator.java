@@ -57,6 +57,13 @@ public class Activator extends Plugin {
 		if (autosarValidationBundleId != null && Platform.getBundle(autosarValidationBundleId) != null) {
 			EValidatorRegistering.getSingleton().eValidatorSetAllContributions(autosarValidationBundleId);
 		}
+
+		// Bug 2122
+		else {
+			EValidatorRegistering.getSingleton().eValidatorSetAllContributions(Activator.PLUGIN_ID);
+
+		}
+
 	}
 
 	/*
