@@ -1,15 +1,15 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) Continental Engineering Services and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     Continental Engineering Services - Initial API and implementation
- * 
+ *
  * </copyright>
  */
 package org.artop.aal.autosar40.constraints.ecuc;
@@ -25,6 +25,7 @@ import org.artop.aal.autosar40.constraints.ecuc.util.EcucUtil40;
 import org.artop.aal.autosar40.gautosar40.ecucdescription.GEcucNumericalParamValue40XAdapter;
 import org.artop.aal.autosar40.gautosar40.ecucparameterdef.GEcucFloatParamDef40XAdapter;
 import org.artop.aal.autosar40.gautosar40.ecucparameterdef.GEcucIntegerParamDef40XAdapter;
+import org.artop.aal.common.datatypes.UnlimitedIntegerDatatype;
 import org.artop.aal.gautosar.constraints.ecuc.AbstractGParameterValueConstraint;
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.eclipse.core.runtime.IStatus;
@@ -91,9 +92,11 @@ public class EcucNumericalParamValueBasicConstraint extends AbstractGParameterVa
 
 		if (mixedText != null) {
 			if (definition instanceof EcucIntegerParamDef) {
+
 				BigInteger value = null;
 				try {
-					value = new BigInteger(mixedText);
+					UnlimitedIntegerDatatype unlimitedIntegerDatatype = new UnlimitedIntegerDatatype(mixedText);
+					value = unlimitedIntegerDatatype.getValue();
 				} catch (NumberFormatException ex) {
 					multiStatus.add(ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.numericalParamValue_valueTypeDoesNotMatchDefType,
 							mixedText)));
