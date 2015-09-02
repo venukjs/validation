@@ -15,7 +15,7 @@
                 <ECUC-INSTANCE-REFERENCE-DEF S="" UUID="ECUC:a3bba751-daa5-5367-93ae-e131fca20545">
                   <SHORT-NAME>DbgDataElementInstanceRef</SHORT-NAME>
                   <ORIGIN>AUTOSAR_ECUC</ORIGIN>
-                  <DESTINATION-CONTEXT>SW-COMPONENT-PROTOTYPE P-PORT-PROTOTYPE</DESTINATION-CONTEXT>
+                  <DESTINATION-CONTEXT>SW-COMPONENT-PROTOTYPE P-PORT-PROTOTYPE*</DESTINATION-CONTEXT>
                   <DESTINATION-TYPE>VARIABLE-DATA-PROTOTYPE</DESTINATION-TYPE>
                 </ECUC-INSTANCE-REFERENCE-DEF>
               </REFERENCES>
@@ -35,6 +35,7 @@
                   <VALUE-IREF>
                     <CONTEXT-ELEMENT-REF DEST="SW-COMPONENT-PROTOTYPE">/OS_Package2/CompositionType1/ComponentPrototype1</CONTEXT-ELEMENT-REF>
                     <CONTEXT-ELEMENT-REF DEST="P-PORT-PROTOTYPE">/OS_Package2/CompositionType2/PPortProtoype3</CONTEXT-ELEMENT-REF>
+					<CONTEXT-ELEMENT-REF DEST="P-PORT-PROTOTYPE">/OS_Package2/CompositionType1/PPortProtoype2</CONTEXT-ELEMENT-REF>
                     <TARGET-REF DEST="VARIABLE-DATA-PROTOTYPE">/OS_Package2/SenderReceiverInterface1/DataElementPrototype1</TARGET-REF>
                   </VALUE-IREF>
                 </ECUC-INSTANCE-REFERENCE-VALUE>

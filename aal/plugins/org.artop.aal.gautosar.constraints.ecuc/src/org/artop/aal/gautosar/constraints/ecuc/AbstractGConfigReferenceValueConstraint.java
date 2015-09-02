@@ -28,8 +28,11 @@ import org.artop.aal.gautosar.services.IMetaModelServiceProvider;
 import org.artop.aal.gautosar.services.ecuc.IMetaModelUtilityService;
 import org.artop.aal.validation.constraints.AbstractSplitModelConstraintWithPrecondition;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.util.EMap;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.ExtendedMetaData;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.sphinx.emf.metamodel.MetaModelDescriptorRegistry;
@@ -41,7 +44,7 @@ public abstract class AbstractGConfigReferenceValueConstraint extends AbstractSp
 
 	/**
 	 * Performs the validation on the definition of the given <code>gConfigReferenceValue</code>.
-	 * 
+	 *
 	 * @param ctx
 	 *            the validation context that provides access to the current constraint evaluation environment
 	 * @param gConfigReferenceValue
@@ -63,7 +66,7 @@ public abstract class AbstractGConfigReferenceValueConstraint extends AbstractSp
 
 	/**
 	 * Performs the validation on the structure of the given <code>gConfigReferenceValue</code>.
-	 * 
+	 *
 	 * @param ctx
 	 *            the validation context that provides access to the current constraint evaluation environment
 	 * @param gConfigReferenceValue
@@ -115,7 +118,7 @@ public abstract class AbstractGConfigReferenceValueConstraint extends AbstractSp
 	 * Retrieves EClass name for a given <code>destinationTypeName</code> or null if the class does not exist.
 	 * <code>checkInstance</code> flag indicates whether checking whether <code>instance</code> matching of the
 	 * <code>destinationTypeName</code> will be taken into account
-	 * 
+	 *
 	 * @param instance
 	 * @param destinationTypeName
 	 * @param checkInstance
@@ -153,7 +156,7 @@ public abstract class AbstractGConfigReferenceValueConstraint extends AbstractSp
 	 * Returns the meta class name used for destination type and destination context. AUTOSAR 4.0 uses the XML name of
 	 * the meta class unlike AUTOSAR 3x which use directly the EClass name. This method should be override by AUTOSAR 40
 	 * constraints to return the XML name from the ExtendedMetaData
-	 * 
+	 *
 	 * @param eObject
 	 * @return
 	 */
@@ -164,7 +167,7 @@ public abstract class AbstractGConfigReferenceValueConstraint extends AbstractSp
 	/**
 	 * Checks whether the given <code>instance</code> is an instance of the destination with the given
 	 * <code>destinationTypeName</code>.
-	 * 
+	 *
 	 * @param instance
 	 * @param destinationTypeName
 	 * @return
@@ -203,8 +206,74 @@ public abstract class AbstractGConfigReferenceValueConstraint extends AbstractSp
 	}
 
 	/**
-	 * Performs the validation on the value of the given <code>gConfigReferenceValue</code>.
+	 * Checks whether the given <code>instance</code> is an instance of the destination with the given
+	 * <code>destinationTypeName</code> and returns the Superclass that fits <code>destinationTypeName</code>.
+	 *
+	 * @param instance
+	 * @param destinationTypeName
+	 * @return Superclass of <code>destinationTypeName</code> which matches <code>instance</code> (otherwise
+	 *         <code>null</code>)
+	 */
+	protected EClass getSuperTypeOfDestinationType(EObject instance, String destinationTypeName) {
+		IMetaModelServiceProvider provider = new DefaultMetaModelServiceProvider();
+
+		IMetaModelUtilityService service = provider.getService(MetaModelDescriptorRegistry.INSTANCE.getDescriptor(instance),
+				IMetaModelUtilityService.class);
+		if (service == null) {
+			return null;
+		}
+
+		// get correct EClass classifier
+		EClass destinationEClass = service.findEClass(destinationTypeName);
+
+		EClass metaClass = instance.eClass();
+		String metaClassName = getMetaClassName(metaClass);
+
+		if (metaClassName.equals(destinationTypeName) || metaClass.equals(destinationEClass)) {
+			return metaClass;
+		} else {
+			// get all super types of the metaClass and check if destination
+			// type is a
+			// super type
+			for (EClass superType : metaClass.getEAllSuperTypes()) {
+				// check if destination type is a super type of value class
+				if (getMetaClassName(superType).equals(destinationTypeName) || superType.equals(destinationEClass)) {
+					return superType;
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Finds classname name from Metadata of an Artop class (e.G. SW-DATA-DEF-PROPS)
 	 * 
+	 * @param eClass
+	 * @return <code>null</code> or resolved name
+	 */
+	protected String getExtMdName(EClass eClass) {
+		if (eClass != null) {
+			// if it has an ExtendedMetaData annotation
+			EAnnotation extMD = eClass.getEAnnotation(ExtendedMetaData.ANNOTATION_URI);
+			if (extMD != null) {
+				// if it has any details
+				EMap<String, String> extMDDetails = extMD.getDetails();
+				if (extMDDetails != null) {
+					// if if has a detail named "name"
+					String extMDName = extMDDetails.get("name"); //$NON-NLS-1$
+					if (extMDName != null) {
+						return extMDName;
+
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Performs the validation on the value of the given <code>gConfigReferenceValue</code>.
+	 *
 	 * @param ctx
 	 *            the validation context that provides access to the current constraint evaluation environment
 	 * @param gConfigReferenceValue

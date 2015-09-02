@@ -1,15 +1,15 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) Continental Engineering Services and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     Continental Engineering Services - Initial API and implementation
- * 
+ *
  * </copyright>
  */
 package org.artop.aal.autosar40.constraints.ecuc.tests;
@@ -57,25 +57,39 @@ public class InstanceReferenceValueConstraintTest extends AbstractAutosar40Valid
 
 	public void testInvalidInstanceReferenceValue_wrongContextOrder() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/wrongContextOrder.arxml");
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, NLS.bind(
-				EcucConstraintMessages.instanceref_valueNotMatchDestContext, new String[] { "(P-PORT-PROTOTYPE )(SW-COMPONENT-PROTOTYPE )" }));
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
+				NLS.bind(EcucConstraintMessages.instanceref_valueNotMatchDestContext, new String[] { "P-PORT-PROTOTYPE SW-COMPONENT-PROTOTYPE" }));
 	}
 
 	public void testInvalidInstanceReferenceValue_contextTypeNoContextValue() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/contextTypeNoContextValue.arxml");
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR, NLS.bind(
 				EcucConstraintMessages.instanceref_valueNotMatchDestContext,
-				new String[] { "(SW-COMPONENT-PROTOTYPE )*(P-PORT-PROTOTYPE )(ROOT-SW-COMPOSITION-PROTOTYPE )" }));
+				new String[] { "SW-COMPONENT-PROTOTYPE* P-PORT-PROTOTYPE ROOT-SW-COMPOSITION-PROTOTYPE" }));
 	}
 
-	public void testInvalidInstanceReferenceValue_contextTypeNoContextValueWithMultiplicity() throws Exception {
+	public void testValidInstanceReferenceValue_contextTypeNoContextValueWithMultiplicity() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/contextTypeNoContextValueWithMultiplicity.arxml");
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.OK, null);
 	}
 
-	public void testInvalidInstanceReferenceValue_doubleDashContextType() throws Exception {
+	public void testValidInstanceReferenceValue_doubleDashContextType() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/doubleDashContextType.arxml");
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.OK, null);
 	}
 
+	public void testValidInstanceReferenceValue_Inheritance() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/validInheritance.arxml");
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.OK, null);
+	}
+
+	public void testValidInstanceReferenceValue_Multiplicity() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/validMultiplicity.arxml");
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.OK, null);
+	}
+
+	public void testValidInstanceReferenceValue() throws Exception {
+		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/valid.arxml");
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.OK, null);
+	}
 }

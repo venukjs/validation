@@ -1,16 +1,16 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) OpenSynergy, Continental Engineering Services and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     OpenSynergy - Initial API and implementation for AUTOSAR 3.x
  *     Continental Engineering Services - migration to gautosar
- * 
+ *
  * </copyright>
  */
 package org.artop.aal.autosar3x.constraints.ecuc.tests;
@@ -70,13 +70,13 @@ public class InstanceReferenceValueConstraintTest extends AbstractAutosar3xValid
 	public void testInvalidInstanceReferenceValue_destinationContextNoValueContext() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/destinationContextNoValueContext.arxml");
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
-				NLS.bind(EcucConstraintMessages.instanceref_valueNotMatchDestContext, "(PPortPrototype )"));
+				NLS.bind(EcucConstraintMessages.instanceref_valueNotMatchDestContext, "PPortPrototype"));
 	}
 
 	public void testInvalidInstanceReferenceValue_contextNotMatchWithDestinationContext() throws Exception {
 		EObject invalidModel = loadInputFile("ecuc/InstanceReferenceValue/contextNotMatchWithDestinationContext.arxml");
 		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.ERROR,
-				NLS.bind(EcucConstraintMessages.instanceref_valueNotMatchDestContext, "(ComponentPrototype )"));
+				NLS.bind(EcucConstraintMessages.instanceref_valueNotMatchDestContext, "ComponentPrototype"));
 	}
 
 	public void testInvalidInstanceReferenceValue_noDestinationType() throws Exception {

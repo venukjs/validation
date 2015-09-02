@@ -1,16 +1,16 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) OpenSynergy, Continental Engineering Services and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     OpenSynergy - Initial API and implementation for AUTOSAR 3.x
  *     Continental Engineering Services - migration to gautosar
- * 
+ *
  * </copyright>
  */
 package org.artop.aal.gautosar.constraints.ecuc;
@@ -20,6 +20,8 @@ import gautosar.gecucdescription.GInstanceReferenceValue;
 import gautosar.gecucparameterdef.GConfigReference;
 import gautosar.gecucparameterdef.GInstanceReferenceDef;
 import gautosar.ggenericstructure.ginfrastructure.GIdentifiable;
+
+import java.util.ListIterator;
 
 import org.artop.aal.gautosar.constraints.ecuc.internal.Activator;
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
@@ -68,7 +70,7 @@ public abstract class AbstractGInstanceReferenceValueBasicConstraint extends Abs
 
 	/**
 	 * Performs the validation on the value of the given <code>gInstanceReferenceValue</code>.
-	 * 
+	 *
 	 * @param ctx
 	 *            the validation context that provides access to the current constraint evaluation environment
 	 * @param gInstanceReferenceValue
@@ -96,7 +98,7 @@ public abstract class AbstractGInstanceReferenceValueBasicConstraint extends Abs
 
 	/**
 	 * Performs the validation on the target destination of the given <code>gInstanceReferenceValue</code>.
-	 * 
+	 *
 	 * @param ctx
 	 *            the validation context that provides access to the current constraint evaluation environment
 	 * @param gInstanceReferenceValue
@@ -128,7 +130,7 @@ public abstract class AbstractGInstanceReferenceValueBasicConstraint extends Abs
 
 	/**
 	 * Performs the validation on the context destination of the given <code>gInstanceReferenceValue</code>.
-	 * 
+	 *
 	 * @param ctx
 	 *            the validation context that provides access to the current constraint evaluation environment
 	 * @param gInstanceReferenceValue
@@ -149,63 +151,76 @@ public abstract class AbstractGInstanceReferenceValueBasicConstraint extends Abs
 		// CHECK if destinationContext available
 		if (null != destinationContext && 0 != destinationContext.length()) {
 
-			StringBuffer contextBuffer = new StringBuffer();
-			StringBuffer destContextBuffer = new StringBuffer();
+			ListIterator<? extends GIdentifiable> ctxElementIterator = contextList.listIterator();
 
-			// CHECK if value context available
-			if (contextList.size() > 0) {
+			// for every element in destinationContext, check existence of ctxElement(s)
+			for (String destinationSpec : destinationContext.split(" ")) { //$NON-NLS-1$
 
-				String[] splitContext = destinationContext.split(" "); //$NON-NLS-1$
-				String ctxClassName;
+				// determine destinationClassName
+				String destinationClassName = null;
+				boolean multiplicity = false;
 
-				for (GIdentifiable identifiable : contextList) {
+				if (destinationSpec.endsWith("*")) { //$NON-NLS-1$
+					destinationClassName = destinationSpec.substring(0, destinationSpec.length() - 1);
+					multiplicity = true;
+				} else {
+					destinationClassName = destinationSpec;
+				}
 
-					String eClassName = getMetaClassName(identifiable.eClass());
-					// convert value context to a String, each item separated by a
-					// space
-					contextBuffer.append(eClassName);
-					contextBuffer.append(" "); //$NON-NLS-1$
+				if (getEClassName(ctx.getTarget(), destinationClassName, false) == null) {
+					// destinationContext is invalid (e.g. not a metamodel class)
+					status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.reference_invalidContext, destinationClassName));
+					return status;
+				}
 
-					for (String context : splitContext) {
-						ctxClassName = getEClassName(ctx.getTarget(), context, false);
-						if (ctxClassName != null) {
-							if (destContextBuffer.lastIndexOf(ctxClassName) < 0) {
-								destContextBuffer.append(ctxClassName);
-								destContextBuffer.append(" "); //$NON-NLS-1$
-							}
+				int occurancesOfContext = 0;
+				boolean nextEquals;
 
-							// CHECK is a certain context value is available for the context type
-							if (context.endsWith("*")) { //$NON-NLS-1$
-								context = context.substring(0, context.length() - 1);
-								if (ctxClassName.equals(eClassName) && getEClassName(ctx.getTarget(), context, true) == null) {
-									status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.reference_contextNotAvailable, context));
-								}
-							} else
+				do {
+					nextEquals = false;
+					GIdentifiable ctxElement = null;
 
-							if (ctxClassName.equals(eClassName) && !isInstanceOfDestinationType(identifiable, context)) {
-								status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.reference_contextNotAvailable, context));
-							}
-						} else {
-							status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.reference_invalidContext, context));
+					if (ctxElementIterator.hasNext()) {
+						ctxElement = ctxElementIterator.next();
+						String contextClassName = getExtMdName(ctxElement.eClass());
+						boolean isTypeOrSubtype = isInstanceOfDestinationType(ctxElement, destinationClassName);
+						if (isTypeOrSubtype) {
+							occurancesOfContext++;
+						}
+					} else {
+
+						// does match destinationContext
+						if (!multiplicity) {
+							status = ctx.createFailureStatus(NLS
+									.bind(EcucConstraintMessages.instanceref_valueNotMatchDestContext, destinationContext));
 							return status;
 						}
-
 					}
-				}
-			}
 
-			// CHECK if value context String matches the definitionContext
-			// regular expression
-			String destinationContentRegex = getDestinationContextRegex(destContextBuffer.toString());
-			if (!contextBuffer.toString().matches(destinationContentRegex)) {
-				status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.instanceref_valueNotMatchDestContext, destinationContentRegex));
-			} else {
-				status = ctx.createSuccessStatus();
+					if (ctxElementIterator.hasNext()) {
+						GIdentifiable nextCtxElement = ctxElementIterator.next();
+						ctxElementIterator.previous(); // go back
+						if (nextCtxElement.eClass().equals(ctxElement.eClass())) {
+							nextEquals = true;
+						}
+					}
+
+				} while (multiplicity && nextEquals);
+
+				if (!multiplicity && occurancesOfContext != 1) {
+
+					// does match destinationContext
+					status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.instanceref_valueNotMatchDestContext, destinationContext));
+					return status;
+				}
+
 			}
 
 		} else if (0 != contextList.size()) {
+			// destinationContext is empty but contextList is not empty
 			status = ctx.createFailureStatus(EcucConstraintMessages.instanceref_valueDestContextNotSet);
 		} else {
+			// contextList AND destinationContext are empty
 			status = ctx.createSuccessStatus();
 		}
 
@@ -214,7 +229,7 @@ public abstract class AbstractGInstanceReferenceValueBasicConstraint extends Abs
 
 	/**
 	 * Returns the target destination of the given <code>gInstanceReferenceValue</code>.
-	 * 
+	 *
 	 * @param gInstanceReferenceValue
 	 * @return
 	 */
@@ -222,7 +237,7 @@ public abstract class AbstractGInstanceReferenceValueBasicConstraint extends Abs
 
 	/**
 	 * Returns the list with the target contexts of the given <code>gInstanceReferenceValue</code>.
-	 * 
+	 *
 	 * @param gInstanceReferenceValue
 	 * @return
 	 */
