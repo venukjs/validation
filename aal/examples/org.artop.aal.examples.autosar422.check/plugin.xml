@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.sphinx.emf.check.checkvalidators">
+      <validator
+            catalog="platform:/plugin/org.artop.aal.examples.autosar422.check/model/SystemTemplate.checkcatalog"
+            class="org.artop.aal.examples.autosar422.check.SystemTemplateValidator">
+      </validator>
+   </extension>
+   <extension
+         point="org.eclipse.sphinx.emf.check.checkvalidators">
+      <validator
+            catalog="platform:/plugin/org.artop.aal.examples.autosar422.check/model/Basic.checkcatalog"
+            class="org.artop.aal.examples.autosar422.check.SWACheckValidator">
+      </validator>
+   </extension>
+	<extension
+         point="org.eclipse.sphinx.emf.check.checkvalidators">
+      <validator
+            catalog="platform:/plugin/org.artop.aal.examples.autosar422.check/model/SoftwareComponentTemplate.checkcatalog"
+            class="org.artop.aal.examples.autosar422.check.SoftwareComponentTemplateValidator">
+      </validator>
+   </extension>
+</plugin>

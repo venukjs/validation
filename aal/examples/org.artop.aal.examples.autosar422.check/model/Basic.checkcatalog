@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkcatalog:Catalog
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:checkcatalog="http://www.eclipse.org/sphinx/check/catalog">
+  <categories
+      id="Basic"
+      label="Basic"/>
+  <categories
+      id="Strict"
+      label="Strict"/>
+  <constraints
+      id="NAMENOTUNIQUE"
+      label="Name must be unique in namespace"
+      message="The shortName {0} is not unique in {1} of {2}"
+      categories="Basic"/>
+  <constraints
+      id="NAMEFORMAT"
+      label="Name does not comply to format"
+      message="The shortName {0} has invalid format"
+      categories="Strict"
+      comment=""/>
+  <constraints
+      id="AUTOSARDUMMY"/>
+</checkcatalog:Catalog>
