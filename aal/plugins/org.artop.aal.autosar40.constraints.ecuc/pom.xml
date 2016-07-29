@@ -12,4 +12,5 @@
 	<artifactId>org.artop.aal.autosar40.constraints.ecuc</artifactId>
 	<version>4.6.0-SNAPSHOT</version>
 	<packaging>eclipse-plugin</packaging>
+	<name>org.artop.aal.autosar40.constraints.ecuc</name>
 </project>

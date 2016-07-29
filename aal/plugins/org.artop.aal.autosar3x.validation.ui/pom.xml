@@ -12,4 +12,5 @@
 	<artifactId>org.artop.aal.autosar3x.validation.ui</artifactId>
 	<version>4.6.0-SNAPSHOT</version>
 	<packaging>eclipse-plugin</packaging>
+	<name>org.artop.aal.autosar3x.validation.ui</name>
 </project>
