@@ -13,4 +13,9 @@
 	<version>4.6.0-SNAPSHOT</version>
 	<packaging>eclipse-plugin</packaging>
 	<name>org.artop.aal.autosar321.validation</name>
+	<properties>
+        <findbugs.skip>true</findbugs.skip>
+		<checkstyle.skip>true</checkstyle.skip>
+		<pmd.skip>true</pmd.skip>
+	</properties>
 </project>
