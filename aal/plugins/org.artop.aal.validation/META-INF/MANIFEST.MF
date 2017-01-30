@@ -10,7 +10,7 @@ Require-Bundle: org.eclipse.sphinx.emf.validation;visibility:=reexport,
  org.artop.aal.common;visibility:=reexport,
  org.artop.aal.gautosar.services;visibility:=reexport
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: org.artop.aal.validation,
  org.artop.aal.validation.adapter,
  org.artop.aal.validation.constraints,

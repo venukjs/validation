@@ -6,7 +6,7 @@ Bundle-Version: 4.6.0.qualifier
 Bundle-Activator: org.artop.aal.examples.autosar422.check.internal.Activator$Implementation
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: org.artop.aal.examples.autosar422.check,
  org.artop.aal.examples.autosar422.check.internal;x-internal:=true
 Bundle-Localization: plugin

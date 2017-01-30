@@ -12,4 +12,4 @@ Require-Bundle: org.artop.aal.validation;visibility:=reexport,
 Bundle-ActivationPolicy: lazy
 Export-Package: org.artop.aal.examples.autosar3x.constraints,
  org.artop.aal.examples.autosar3x.constraints.internal;x-internal:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

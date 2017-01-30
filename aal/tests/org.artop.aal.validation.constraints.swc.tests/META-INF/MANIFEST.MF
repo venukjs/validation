@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %fragmentName
 Bundle-SymbolicName: org.artop.aal.validation.constraints.swc.tests;singleton:=true
 Bundle-Version: 4.6.0.qualifier
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-Vendor: %providerName
 Bundle-Localization: fragment
 Require-Bundle: org.artop.aal.validation.testutils,

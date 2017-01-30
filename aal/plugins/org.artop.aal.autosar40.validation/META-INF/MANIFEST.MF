@@ -9,6 +9,6 @@ Bundle-Localization: plugin
 Require-Bundle: org.artop.aal.validation;visibility:=reexport,
  org.artop.aal.autosar40;visibility:=reexport
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: org.artop.aal.autosar40.validation.internal;x-internal:=true,
  org.artop.aal.autosar40.validation.listeners

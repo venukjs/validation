@@ -7,4 +7,4 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Require-Bundle: org.artop.aal.validation;visibility:=reexport,
  org.artop.aal.autosar315;visibility:=reexport
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

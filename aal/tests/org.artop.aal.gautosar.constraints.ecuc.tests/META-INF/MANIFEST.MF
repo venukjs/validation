@@ -13,7 +13,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.artop.aal.common,
  org.eclipse.sphinx.testutils
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-Vendor: %providerName
 Export-Package: org.artop.aal.gautosar.constraints.ecuc.tests,
  org.artop.aal.gautosar.constraints.ecuc.tests.internal;x-internal:=true,

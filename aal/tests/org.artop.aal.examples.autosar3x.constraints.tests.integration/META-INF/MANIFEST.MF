@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.artop.aal.examples.autosar3x.constraints.tests.integration;singleton:=true
 Bundle-Version: 4.6.0.qualifier
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Require-Bundle: org.artop.aal.testutils.integration.referenceworkspace,
