@@ -94,7 +94,7 @@ class SystemTemplateValidator extends AbstractAutosarCheckValidator {
 		val current = getState().get()
 		val constraint = current.constraint
 		val catalog = CheckValidatorRegistry.INSTANCE.getCheckCatalog(this)
-		if (catalog == null)
+		if (catalog === null)
 			return
 
 		val severityMessage = MessageFormat.format(constraint + " - " + catalog.getMessage(constraint), arguments)
@@ -158,7 +158,7 @@ class SystemTemplateValidator extends AbstractAutosarCheckValidator {
 	@Check(constraint="constr_1198", categories=#["SystemTemplate"])
 	def void constr_1198(TriggerToSignalMapping triggerToSignalMapping) {
 		val systemSignal = triggerToSignalMapping.getSystemSignal()
-		if (systemSignal != null) {
+		if (systemSignal !== null) {
 			val references = getCrossReferenceAdapter(systemSignal).getInverseReferences(systemSignal)
 			val filteredReferences = references.filter[it.getEObject() instanceof ISignal && (it.getEObject() as ISignal).getLength() == 0]
 			if (!filteredReferences.iterator().hasNext())
@@ -1280,7 +1280,7 @@ class SystemTemplateValidator extends AbstractAutosarCheckValidator {
 	 */
 	@Check(constraint="constr_3051", categories=#["SystemTemplate"])
 	def void constr_3051(ISignalMapping signalMapping) {
-		if (signalMapping.getSourceSignal().getISignal() != null && signalMapping.getTargetSignal().getISignal() == null)
+		if (signalMapping.getSourceSignal().getISignal() !== null && signalMapping.getTargetSignal().getISignal() === null)
 			issue(signalMapping, Fibex4multiplatformPackage.Literals.ISIGNAL_MAPPING__TARGET_SIGNAL)
 	}
 
@@ -1533,7 +1533,7 @@ class SystemTemplateValidator extends AbstractAutosarCheckValidator {
 	 */
 	@Check(constraint="constr_3067", categories=#["SystemTemplate"])
 	def void constr_3067(ISignal signal) {
-		if (signal.getInitValue() != null && !(signal.getInitValue() instanceof NumericalValueSpecification ||
+		if (signal.getInitValue() !== null && !(signal.getInitValue() instanceof NumericalValueSpecification ||
 			signal.getInitValue() instanceof TextValueSpecification))
 			issue(signal, CorecommunicationPackage.Literals.ISIGNAL__INIT_VALUE)
 	}
@@ -1935,7 +1935,7 @@ class SystemTemplateValidator extends AbstractAutosarCheckValidator {
 	 */
 	@Check(constraint="constr_3095", categories=#["SystemTemplate"])
 	def void constr_3095(AbstractCanCommunicationControllerAttributes attributes) {
-		if (attributes.getCanControllerFdAttributes() != null && attributes.getCanControllerFdRequirements() != null)
+		if (attributes.getCanControllerFdAttributes() !== null && attributes.getCanControllerFdRequirements() !== null)
 			issue(attributes, CantopologyPackage.Literals.ABSTRACT_CAN_COMMUNICATION_CONTROLLER_ATTRIBUTES__CAN_CONTROLLER_FD_ATTRIBUTES)
 	}
 
@@ -2223,7 +2223,7 @@ class SystemTemplateValidator extends AbstractAutosarCheckValidator {
 	 */
 	@Check(constraint="constr_3111", categories=#["SystemTemplate"])
 	def void constr_3111(ClientServerToSignalMapping mapping) {
-		if (mapping.getReturnSignal() == null)
+		if (mapping.getReturnSignal() === null)
 			issue(mapping, DatamappingPackage.Literals.CLIENT_SERVER_TO_SIGNAL_MAPPING__RETURN_SIGNAL)
 	}
 
@@ -2833,7 +2833,7 @@ class SystemTemplateValidator extends AbstractAutosarCheckValidator {
 	@Check(constraint="constr_3144", categories=#["SystemTemplate"])
 	def void constr_3144(ContainerIPdu containerIPdu) {
 		issuePred(containerIPdu.getContainedPduTriggerings(),
-			[PduTriggering x|(x.getIPdu() instanceof IPdu && ((x.getIPdu() as IPdu).getContainedIPduProps() == null))],
+			[PduTriggering x|(x.getIPdu() instanceof IPdu && ((x.getIPdu() as IPdu).getContainedIPduProps() === null))],
 			CorecommunicationPackage.Literals.CONTAINER_IPDU__CONTAINED_PDU_TRIGGERINGS)
 	}
 

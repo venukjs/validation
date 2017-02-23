@@ -179,7 +179,7 @@ class SoftwareComponentTemplateValidator extends AbstractAutosarCheckValidator {
 	 */
 	@Check(constraint = "constr_1011")
 	def void constr_1011(SwBaseType swBaseType) {
-		if (swBaseType.getCategory() != null && !(swBaseType.getCategory().equals("FIXED_LENGTH") || swBaseType.getCategory().equals("VARIABLE_LENGTH")))
+		if (swBaseType.getCategory() !== null && !(swBaseType.getCategory().equals("FIXED_LENGTH") || swBaseType.getCategory().equals("VARIABLE_LENGTH")))
 			issue(swBaseType, null)
 	}
 
@@ -190,7 +190,7 @@ class SoftwareComponentTemplateValidator extends AbstractAutosarCheckValidator {
 	 */
 	// @Check(constraint="constr_1012")
 	// def void constr_1012( SwBaseType o ) {
-	// if(o.getCategory() != null && o.getCategory().equals("FIXED_LENGTH") ) {
+	// if(o.getCategory() !== null && o.getCategory().equals("FIXED_LENGTH") ) {
 	//
 	// }
 	// }
@@ -1040,8 +1040,8 @@ class SoftwareComponentTemplateValidator extends AbstractAutosarCheckValidator {
 	def void constr_1093(ApplicationPrimitiveDataType applicationPrimitiveDataType) {
 		if (applicationPrimitiveDataType.getCategory().equals("STRING")) {
 			issuePred(applicationPrimitiveDataType.getSwDataDefProps().getSwDataDefPropsVariants(),
-				[SwDataDefPropsConditional x | x.getSwTextProps() == null || x.getSwTextProps().getArraySizeSemantics() == null
-					|| x.getSwTextProps().getSwMaxTextSize() == null
+				[SwDataDefPropsConditional x | x.getSwTextProps() === null || x.getSwTextProps().getArraySizeSemantics() === null
+					|| x.getSwTextProps().getSwMaxTextSize() === null
 				], null)
 		}
 	}
@@ -1250,7 +1250,7 @@ class SoftwareComponentTemplateValidator extends AbstractAutosarCheckValidator {
 	@Check(constraint = "constr_1113")
 	def void constr_1113(EndToEndDescription description) {
 		if (description.getCategory().equals(PROFILE_01)) {
-			if (description.getDataLength() == null || description.getDataIds().isEmpty())
+			if (description.getDataLength() === null || description.getDataIds().isEmpty())
 				issue(description, EndtoendprotectionPackage.Literals.END_TO_END_DESCRIPTION__DATA_IDS, null)
 		}
 	}
@@ -4807,7 +4807,7 @@ class SoftwareComponentTemplateValidator extends AbstractAutosarCheckValidator {
 
 	@Check(constraint = "constr_4010")
 	def void constr_4010(PortPrototype portPrototype) {
-		if (portPrototype.getDelegatedPortAnnotation() != null && !(portPrototype.getSwComponentType() instanceof CompositionSwComponentType))
+		if (portPrototype.getDelegatedPortAnnotation() !== null && !(portPrototype.getSwComponentType() instanceof CompositionSwComponentType))
 			issue(portPrototype, ComponentsPackage.Literals.PORT_PROTOTYPE__DELEGATED_PORT_ANNOTATION)
 	}
 
