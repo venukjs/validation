@@ -1477,7 +1477,7 @@ class SystemTemplateValidator extends AbstractAutosarCheckValidator {
 	@Check(constraint="constr_3063", categories=#["SystemTemplate"])
 	def void constr_3063(TpPort tpPort) {
 		if (tpPort.isSetPortNumber() && tpPort.isSetDynamicallyAssigned())
-			issue(tpPort, EthernettopologyPackage.Literals.TP_PORT__DYNAMICALLY_ASSIGNED)
+			issue(tpPort, EthernettopologyPackage.eINSTANCE.tpPort_DynamicallyAssigned)
 	}
 
 	/**
