@@ -12,4 +12,22 @@
 	<version>4.7.0-SNAPSHOT</version>
 	<packaging>eclipse-feature</packaging>
 	<name>org.artop.validation322-feature</name>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho.extras</groupId>
+				<artifactId>tycho-source-feature-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>source-feature</id>
+						<configuration>
+							<excludes>
+								<plugin id="org.artop.aal.autosar322.validation" />
+							</excludes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>
