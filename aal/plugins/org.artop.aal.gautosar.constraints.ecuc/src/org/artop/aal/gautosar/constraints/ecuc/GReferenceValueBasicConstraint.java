@@ -192,7 +192,7 @@ public class GReferenceValueBasicConstraint extends AbstractGConfigReferenceValu
 			}
 
 			// CHECK if destination available
-			EList<GContainerDef> destinations = choiceReferenceDef.gGetDestinations();
+			EList<? extends GContainerDef> destinations = choiceReferenceDef.gGetDestinations();
 			if (null == destinations || 0 == destinations.size()) {
 				status = ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.generic_validationNotPossible,
 						AutosarURIFactory.getAbsoluteQualifiedName(choiceReferenceDef)));
@@ -242,7 +242,7 @@ public class GReferenceValueBasicConstraint extends AbstractGConfigReferenceValu
 	 */
 	private boolean isDestinationAllowed(GContainerDef destinationToBeVerified, GChoiceReferenceDef choiceReferenceDef) {
 
-		EList<GContainerDef> allowedDestinations = choiceReferenceDef.gGetDestinations();
+		EList<? extends GContainerDef> allowedDestinations = choiceReferenceDef.gGetDestinations();
 
 		String qualifiedNameOfDestToBeVerified = AutosarURIFactory.getAbsoluteQualifiedName(destinationToBeVerified);
 
@@ -276,7 +276,7 @@ public class GReferenceValueBasicConstraint extends AbstractGConfigReferenceValu
 		return false;
 	}
 
-	private String getDestinationsAsString(List<GContainerDef> destinations) {
+	private String getDestinationsAsString(List<? extends GContainerDef> destinations) {
 
 		String qualifiedName;
 		StringBuffer stringbuffer = new StringBuffer();
