@@ -12,7 +12,7 @@
  *
  * </copyright>
  */
-package org.artop.aal.examples.autosar431.check;
+package org.artop.aal.examples.autosar442.check;
 
 import autosar40.autosartoplevelstructure.AUTOSAR
 import autosar40.genericstructure.generaltemplateclasses.arpackage.ARPackage

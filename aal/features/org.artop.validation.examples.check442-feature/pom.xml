@@ -8,10 +8,10 @@
 		<relativePath>../../../../core/tools/org.artop.releng.builds/parent/pom.xml</relativePath>
 	</parent>
 	<groupId>org.artop.features</groupId>
-	<artifactId>org.artop.validation.examples.check431</artifactId>
+	<artifactId>org.artop.validation.examples.check442</artifactId>
 	<version>4.7.0-SNAPSHOT</version>
 	<packaging>eclipse-feature</packaging>
-	<name>org.artop.validation.examples.check431-feature</name>
+	<name>org.artop.validation.examples.check442-feature</name>
 	<build>
 		<plugins>
 			<plugin>

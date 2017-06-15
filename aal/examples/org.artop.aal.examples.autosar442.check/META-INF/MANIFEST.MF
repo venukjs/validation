@@ -1,19 +1,19 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.artop.aal.examples.autosar431.check;singleton:=true
+Bundle-SymbolicName: org.artop.aal.examples.autosar442.check;singleton:=true
 Bundle-Version: 4.7.0.qualifier
-Bundle-Activator: org.artop.aal.examples.autosar431.check.internal.Activator$Implementation
+Bundle-Activator: org.artop.aal.examples.autosar442.check.internal.Activator$Implementation
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: org.artop.aal.examples.autosar431.check,
- org.artop.aal.examples.autosar431.check.internal;x-internal:=true
+Export-Package: org.artop.aal.examples.autosar442.check,
+ org.artop.aal.examples.autosar442.check.internal;x-internal:=true
 Bundle-Localization: plugin
 Require-Bundle: com.google.guava,
  org.eclipse.xtend.lib,
  org.eclipse.xtext.xbase.lib,
  org.eclipse.sphinx.emf.check,
  org.eclipse.sphinx.emf.check.catalog,
- org.artop.aal.autosar431,
+ org.artop.aal.autosar442,
  org.artop.aal.autosar40.services

@@ -12,7 +12,7 @@
  *
  * </copyright>
  */
-package org.artop.aal.examples.autosar431.check;
+package org.artop.aal.examples.autosar442.check;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.sphinx.emf.check.Check;

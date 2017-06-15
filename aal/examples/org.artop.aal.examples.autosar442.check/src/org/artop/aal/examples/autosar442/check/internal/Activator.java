@@ -12,7 +12,7 @@
  *
  * </copyright>
  */
-package org.artop.aal.examples.autosar431.check.internal;
+package org.artop.aal.examples.autosar442.check.internal;
 
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
