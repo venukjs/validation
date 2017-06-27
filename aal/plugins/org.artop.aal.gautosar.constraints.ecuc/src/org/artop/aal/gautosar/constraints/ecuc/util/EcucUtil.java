@@ -16,20 +16,6 @@
  */
 package org.artop.aal.gautosar.constraints.ecuc.util;
 
-import gautosar.gecucdescription.GConfigReferenceValue;
-import gautosar.gecucdescription.GContainer;
-import gautosar.gecucdescription.GModuleConfiguration;
-import gautosar.gecucdescription.GParameterValue;
-import gautosar.gecucparameterdef.GChoiceContainerDef;
-import gautosar.gecucparameterdef.GCommonConfigurationAttributes;
-import gautosar.gecucparameterdef.GConfigParameter;
-import gautosar.gecucparameterdef.GConfigReference;
-import gautosar.gecucparameterdef.GContainerDef;
-import gautosar.gecucparameterdef.GModuleDef;
-import gautosar.gecucparameterdef.GParamConfContainerDef;
-import gautosar.gecucparameterdef.GParamConfMultiplicity;
-import gautosar.ggenericstructure.ginfrastructure.GIdentifiable;
-
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -49,6 +35,20 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.sphinx.platform.util.PlatformLogUtil;
 import org.eclipse.sphinx.platform.util.RadixConverter;
+
+import gautosar.gecucdescription.GConfigReferenceValue;
+import gautosar.gecucdescription.GContainer;
+import gautosar.gecucdescription.GModuleConfiguration;
+import gautosar.gecucdescription.GParameterValue;
+import gautosar.gecucparameterdef.GChoiceContainerDef;
+import gautosar.gecucparameterdef.GCommonConfigurationAttributes;
+import gautosar.gecucparameterdef.GConfigParameter;
+import gautosar.gecucparameterdef.GConfigReference;
+import gautosar.gecucparameterdef.GContainerDef;
+import gautosar.gecucparameterdef.GModuleDef;
+import gautosar.gecucparameterdef.GParamConfContainerDef;
+import gautosar.gecucparameterdef.GParamConfMultiplicity;
+import gautosar.ggenericstructure.ginfrastructure.GIdentifiable;
 
 public class EcucUtil {
 	/**
@@ -182,12 +182,15 @@ public class EcucUtil {
 		/*
 		 * The Module Definition which is refined by the current Module Definition.
 		 */
-		GModuleDef refinedModuleDef = moduleDef.gGetRefinedModuleDef();
+		GModuleDef refinedModuleDef = null;
+		if (moduleDef != null) {
+			refinedModuleDef = moduleDef.gGetRefinedModuleDef();
+		}
 
 		/*
 		 * Log a warning if the Refined Module Definition is the Module Definition itself.
 		 */
-		if (moduleDef.equals(refinedModuleDef)) {
+		if (moduleDef != null && moduleDef.equals(refinedModuleDef)) {
 			String m = "ModuleDef \"" + AutosarURIFactory.getAbsoluteQualifiedName(moduleDef) + "\" references itself as 'Refined Module Definition'"; //$NON-NLS-1$ //$NON-NLS-2$
 			PlatformLogUtil.logAsWarning(Activator.getDefault(), m);
 		}
@@ -204,12 +207,15 @@ public class EcucUtil {
 		/*
 		 * The Module Definition which is refined by the current Module Definition.
 		 */
-		GModuleDef refinedModuleDef = moduleDef.gGetRefinedModuleDef();
+		GModuleDef refinedModuleDef = null;
+		if (moduleDef != null) {
+			moduleDef.gGetRefinedModuleDef();
+		}
 
 		/*
 		 * Log a warning if the Refined Module Definition is the Module Definition itself.
 		 */
-		if (moduleDef.equals(refinedModuleDef)) {
+		if (moduleDef != null && moduleDef.equals(refinedModuleDef)) {
 			PlatformLogUtil.logAsWarning(Activator.getDefault(), NLS.bind(EcucConstraintMessages.moduleDef_selfReference, moduleDef.gGetShortName()));
 		}
 
@@ -232,7 +238,11 @@ public class EcucUtil {
 		if (ancestors.isEmpty()) {
 			throw new RuntimeException(NLS.bind(EcucConstraintMessages.configParameter_ancestorEmptylist, configAttr.gGetShortName()));
 		}
-		return (GModuleDef) ancestors.get(0).eContainer();
+		EObject eContainer = ancestors.get(0).eContainer();
+		if (eContainer instanceof GModuleDef) {
+			return (GModuleDef) eContainer;
+		}
+		return null;
 	}
 
 	public static GModuleDef getParentModuleDefForContainerDef(GContainerDef containerDef) {
@@ -337,7 +347,10 @@ public class EcucUtil {
 		GModuleDef vSpecifModuleDef = getParentModuleDef(vSpecif);
 
 		/* The Refined Module Definition. */
-		GModuleDef refinedModuleDef = vSpecifModuleDef.gGetRefinedModuleDef();
+		GModuleDef refinedModuleDef = null;
+		if (vSpecifModuleDef != null) {
+			refinedModuleDef = vSpecifModuleDef.gGetRefinedModuleDef();
+		}
 
 		if (refinedModuleDef != null) {
 			/* Initializes cache with the Container Definition objects contained in the Refined Module Definition. */
@@ -439,7 +452,10 @@ public class EcucUtil {
 		GModuleDef vSpecifModuleDef = getParentModuleDefForContainerDef(vSpecifParentParamConfContainerDef);
 
 		/* Try to get the Refined Module Definition. */
-		GModuleDef refinedModuleDef = vSpecifModuleDef.gGetRefinedModuleDef();
+		GModuleDef refinedModuleDef = null;
+		if (vSpecifModuleDef != null) {
+			refinedModuleDef = vSpecifModuleDef.gGetRefinedModuleDef();
+		}
 
 		/*
 		 * If Refined Module Definition is not null, the target is a Common Configuration Attribute from the Vendor
@@ -519,7 +535,10 @@ public class EcucUtil {
 		GModuleDef vSpecifModuleDef = EcucUtil.getParentModuleDefForContainerDef(vSpecifParentParamConfContainerDef);
 
 		/* Try to get the Refined Module Definition. */
-		GModuleDef refinedModuleDef = vSpecifModuleDef.gGetRefinedModuleDef();
+		GModuleDef refinedModuleDef = null;
+		if (vSpecifModuleDef != null) {
+			refinedModuleDef = vSpecifModuleDef.gGetRefinedModuleDef();
+		}
 
 		/*
 		 * If Refined Module Definition is not null, the target is a Common Configuration Attribute from the Vendor
@@ -551,8 +570,8 @@ public class EcucUtil {
 					return null;
 				}
 
-				GCommonConfigurationAttributes refinedCommonConfigAtt = (GCommonConfigurationAttributes) EcucUtil.find(
-						configAttributes.gGetShortName(), refinedCommonConfigurationAttributes);
+				GCommonConfigurationAttributes refinedCommonConfigAtt = (GCommonConfigurationAttributes) EcucUtil
+						.find(configAttributes.gGetShortName(), refinedCommonConfigurationAttributes);
 
 				if (refinedCommonConfigAtt != null) {
 					//
@@ -586,7 +605,8 @@ public class EcucUtil {
 	 *            The Refined one.
 	 * @param vSpecifConfMultiplicity
 	 *            The Vendor Specific one.
-	 * @return <ul>
+	 * @return
+	 *         <ul>
 	 *         <li><b><tt>true&nbsp;&nbsp;</tt></b> if upper multiplicity from the Vendor Specific side is not greater
 	 *         than one in Refined side;</li>
 	 *         <li><b><tt>false&nbsp;</tt></b> otherwise.</li>
@@ -652,7 +672,8 @@ public class EcucUtil {
 		return filteredConfigReferenceValues;
 	}
 
-	public static List<GContainer> filterChoiceContainersByDefinition(GChoiceContainerDef choiceContainerDef, GModuleConfiguration moduleConfiguration) {
+	public static List<GContainer> filterChoiceContainersByDefinition(GChoiceContainerDef choiceContainerDef,
+			GModuleConfiguration moduleConfiguration) {
 		List<GContainer> choiceContainers = new ArrayList<GContainer>();
 
 		for (GContainer containerConf : moduleConfiguration.gGetContainers()) {
@@ -786,7 +807,8 @@ public class EcucUtil {
 	 * @param vSpecifContainers
 	 * @param failures
 	 */
-	private static void checkRefinedVendorDiffs(EList<GContainerDef> refinedContainers, EList<GContainerDef> vSpecifContainers, List<String> failures) {
+	private static void checkRefinedVendorDiffs(EList<GContainerDef> refinedContainers, EList<GContainerDef> vSpecifContainers,
+			List<String> failures) {
 		if (vSpecifContainers.size() < refinedContainers.size()) {
 			List<GContainerDef> deltaList = new ArrayList<GContainerDef>();
 			for (GContainerDef rContainerDef : refinedContainers) {
@@ -906,8 +928,8 @@ public class EcucUtil {
 		if (gParamConfMultiplicity.gGetUpperMultiplicityInfinite()) {
 			return MULTIPLICITY_INFINITY;
 		} else {
-			BigInteger upperMultiplicity = convertMultiplicityAsBigInteger(gParamConfMultiplicity.gGetUpperMultiplicityAsString(), new BigInteger(
-					MULTIPLICITY_ONE, 10));
+			BigInteger upperMultiplicity = convertMultiplicityAsBigInteger(gParamConfMultiplicity.gGetUpperMultiplicityAsString(),
+					new BigInteger(MULTIPLICITY_ONE, 10));
 			return upperMultiplicity.toString(10);
 		}
 	}
@@ -915,8 +937,8 @@ public class EcucUtil {
 	public static boolean isValidLowerMultiplicity(int numberOfObjects, GParamConfMultiplicity gParamConfMultiplicity) {
 		Assert.isNotNull(gParamConfMultiplicity);
 
-		BigInteger lowerMultiplicity = convertMultiplicityAsBigInteger(gParamConfMultiplicity.gGetLowerMultiplicityAsString(), new BigInteger(
-				MULTIPLICITY_ONE, 10));
+		BigInteger lowerMultiplicity = convertMultiplicityAsBigInteger(gParamConfMultiplicity.gGetLowerMultiplicityAsString(),
+				new BigInteger(MULTIPLICITY_ONE, 10));
 		return numberOfObjects >= lowerMultiplicity.intValue();
 	}
 
@@ -926,8 +948,8 @@ public class EcucUtil {
 		if (gParamConfMultiplicity.gGetUpperMultiplicityInfinite()) {
 			return true;
 		}
-		BigInteger upperMultiplicity = convertMultiplicityAsBigInteger(gParamConfMultiplicity.gGetUpperMultiplicityAsString(), new BigInteger(
-				MULTIPLICITY_ONE, 10));
+		BigInteger upperMultiplicity = convertMultiplicityAsBigInteger(gParamConfMultiplicity.gGetUpperMultiplicityAsString(),
+				new BigInteger(MULTIPLICITY_ONE, 10));
 		if (upperMultiplicity.compareTo(MULTIPLICITY_STAR_BIG_INTEGER) != 0) {
 			return numberOfObjects <= upperMultiplicity.intValue();
 		}

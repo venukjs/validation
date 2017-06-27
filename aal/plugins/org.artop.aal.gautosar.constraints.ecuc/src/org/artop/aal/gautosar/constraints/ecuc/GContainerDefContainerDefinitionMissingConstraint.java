@@ -1,23 +1,18 @@
 /**
  * <copyright>
- * 
+ *
  * Copyright (c) See4sys and others.
  * All rights reserved. This program and the accompanying materials are made
  * available under the terms of the Artop Software License Based on AUTOSAR
  * Released Material (ASLR) which accompanies this distribution, and is
  * available at http://www.artop.org/aslr.html
- * 
- * Contributors: 
+ *
+ * Contributors:
  *     See4sys - Initial API and implementation
  *     Continental AG - Mark as Splitable aware.
  * </copyright>
  */
 package org.artop.aal.gautosar.constraints.ecuc;
-
-import gautosar.gecucparameterdef.GChoiceContainerDef;
-import gautosar.gecucparameterdef.GContainerDef;
-import gautosar.gecucparameterdef.GModuleDef;
-import gautosar.gecucparameterdef.GParamConfContainerDef;
 
 import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
@@ -28,8 +23,13 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
 
+import gautosar.gecucparameterdef.GChoiceContainerDef;
+import gautosar.gecucparameterdef.GContainerDef;
+import gautosar.gecucparameterdef.GModuleDef;
+import gautosar.gecucparameterdef.GParamConfContainerDef;
+
 /**
- * 
+ *
  */
 public class GContainerDefContainerDefinitionMissingConstraint extends AbstractSplitModelConstraintWithPrecondition {
 
@@ -46,7 +46,10 @@ public class GContainerDefContainerDefinitionMissingConstraint extends AbstractS
 		GModuleDef vSpecifModuleDef = EcucUtil.getParentModuleDefForContainerDef(containerDef);
 
 		/* Try to get the Refined Module Definition. */
-		GModuleDef refinedModuleDef = vSpecifModuleDef.gGetRefinedModuleDef();
+		GModuleDef refinedModuleDef = null;
+		if (vSpecifModuleDef != null) {
+			vSpecifModuleDef.gGetRefinedModuleDef();
+		}
 
 		/*
 		 * If Refined Module Definition is not null, the target is a Container Definition from the Vendor Specific side.
@@ -96,8 +99,8 @@ public class GContainerDefContainerDefinitionMissingConstraint extends AbstractS
 				}
 
 				if (invalidConfigParameters.length() > 0) {
-					return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.containerDef_containerDefMissing, new Object[] {
-							invalidConfigParameters, AutosarURIFactory.getAbsoluteQualifiedName(containerDef) }));
+					return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.containerDef_containerDefMissing,
+							new Object[] { invalidConfigParameters, AutosarURIFactory.getAbsoluteQualifiedName(containerDef) }));
 				}
 			}
 		} else {

@@ -14,10 +14,6 @@
  */
 package org.artop.aal.gautosar.constraints.ecuc;
 
-import gautosar.gecucparameterdef.GConfigReference;
-import gautosar.gecucparameterdef.GModuleDef;
-import gautosar.gecucparameterdef.GParamConfContainerDef;
-
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
 import org.artop.aal.validation.constraints.AbstractSplitModelConstraintWithPrecondition;
@@ -25,6 +21,10 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
+
+import gautosar.gecucparameterdef.GConfigReference;
+import gautosar.gecucparameterdef.GModuleDef;
+import gautosar.gecucparameterdef.GParamConfContainerDef;
 
 /**
  *
@@ -44,7 +44,10 @@ public class GParamConfContainerDefConfigReferenceMissingConstraint extends Abst
 		GModuleDef vSpecifModuleDef = EcucUtil.getParentModuleDefForContainerDef(containerDef);
 
 		/* Try to get the Refined Module Definition. */
-		GModuleDef refinedModuleDef = vSpecifModuleDef.gGetRefinedModuleDef();
+		GModuleDef refinedModuleDef = null;
+		if (vSpecifModuleDef != null) {
+			refinedModuleDef = vSpecifModuleDef.gGetRefinedModuleDef();
+		}
 
 		/*
 		 * If Refined Module Definition is not null, the target is a Container Definition from the Vendor Specific side.
@@ -84,8 +87,8 @@ public class GParamConfContainerDefConfigReferenceMissingConstraint extends Abst
 						tmp1 = "s "; //$NON-NLS-1$
 						tmp2 = " are"; //$NON-NLS-1$
 					}
-					return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.paramConfigContainerDef_configReferenceMissing, new Object[] {
-							tmp1, invalidConfigReferences, tmp2 }));
+					return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.paramConfigContainerDef_configReferenceMissing,
+							new Object[] { tmp1, invalidConfigReferences, tmp2 }));
 				}
 			} else {
 				//

@@ -14,9 +14,6 @@
  */
 package org.artop.aal.gautosar.constraints.ecuc;
 
-import gautosar.gecucparameterdef.GContainerDef;
-import gautosar.gecucparameterdef.GModuleDef;
-
 import org.artop.aal.common.resource.AutosarURIFactory;
 import org.artop.aal.gautosar.constraints.ecuc.messages.EcucConstraintMessages;
 import org.artop.aal.gautosar.constraints.ecuc.util.EcucUtil;
@@ -24,6 +21,9 @@ import org.artop.aal.validation.constraints.AbstractSplitModelConstraintWithPrec
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.osgi.util.NLS;
+
+import gautosar.gecucparameterdef.GContainerDef;
+import gautosar.gecucparameterdef.GModuleDef;
 
 public class GContainerDefLowerMultiplicityConstraint extends AbstractSplitModelConstraintWithPrecondition {
 
@@ -42,8 +42,10 @@ public class GContainerDefLowerMultiplicityConstraint extends AbstractSplitModel
 		GModuleDef vSpecifModuleDef = EcucUtil.getParentModuleDefForContainerDef(containerDef);
 
 		/* Try to get the Refined Module Definition. */
-		GModuleDef refinedModuleDef = vSpecifModuleDef.gGetRefinedModuleDef();
-
+		GModuleDef refinedModuleDef = null;
+		if (vSpecifModuleDef != null) {
+			refinedModuleDef = vSpecifModuleDef.gGetRefinedModuleDef();
+		}
 		/*
 		 * If Refined Module Definition is not null, the target is a Container Definition from the Vendor Specific side.
 		 */
@@ -86,7 +88,7 @@ public class GContainerDefLowerMultiplicityConstraint extends AbstractSplitModel
 				if (!valid) {
 					return ctx.createFailureStatus(NLS.bind(EcucConstraintMessages.containerDef_lowerMultiplicityMismatching,
 
-					AutosarURIFactory.getAbsoluteQualifiedName(refinedContainerDef)));
+							AutosarURIFactory.getAbsoluteQualifiedName(refinedContainerDef)));
 				}
 			} else {
 				//
