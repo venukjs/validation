@@ -19,7 +19,7 @@ public class EcucRefinementParameterDefaultValueConstraintTest extends AbstractA
 		ValidationTestUtil.validateModel(
 				invalidModel,
 				validator,
-				IStatus.WARNING,
+				IStatus.OK,
 				NLS.bind(EcucConstraintMessages.configParameter_defaultValueChanged, new Object[] { "/TS_T2D13M4I0R57/Os/OsTask/OsTaskPriority",
 						"/AUTOSAR/EcucDefs/Os" }));
 
@@ -27,7 +27,7 @@ public class EcucRefinementParameterDefaultValueConstraintTest extends AbstractA
 
 	public void testRefinementParameterDefaultValueConstraintValid() throws Exception {
 		EObject validModel = loadInputFile("ecuc/Refinement/defaultValueInvalid.arxml");
-		ValidationTestUtil.validateModel(validModel, validator, IStatus.WARNING);
+		ValidationTestUtil.validateModel(validModel, validator, IStatus.OK);
 
 	}
 

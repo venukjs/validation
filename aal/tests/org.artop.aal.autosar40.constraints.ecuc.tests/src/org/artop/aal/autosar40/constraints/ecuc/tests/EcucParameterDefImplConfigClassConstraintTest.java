@@ -38,7 +38,7 @@ public class EcucParameterDefImplConfigClassConstraintTest extends AbstractAutos
 
 		EObject invalidModel = loadInputFile("ecuc/ParameterDef/configClassDifferent.arxml"); //$NON-NLS-1$
 
-		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.WARNING,
+		ValidationTestUtil.validateModel(invalidModel, validator, IStatus.OK,
 				NLS.bind(EcucConstraintMessages.configParameter_implConfigClassChanged, new Object[] { /*"/ARPackage4/MemMap/MemMapAddressingModeSet/MemMapSupportedAddressingMethodOption", */"/ARPackage3/MemMap" })); //$NON-NLS-1$
 
 	}
