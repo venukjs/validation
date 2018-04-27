@@ -4,12 +4,12 @@
 	<parent>
 		<groupId>org.artop.releng</groupId>
 		<artifactId>org.artop.releng.parent</artifactId>
-		<version>4.10.0-SNAPSHOT</version>
+		<version>4.11.0-SNAPSHOT</version>
 		<relativePath>../../../../core/tools/org.artop.releng.builds/parent/pom.xml</relativePath>
 	</parent>
 	<groupId>org.artop.features</groupId>
 	<artifactId>org.artop.validation</artifactId>
-	<version>4.10.0-SNAPSHOT</version>
+	<version>4.11.0-SNAPSHOT</version>
 	<packaging>eclipse-feature</packaging>
 	<name>org.artop.validation-feature</name>
 </project>
