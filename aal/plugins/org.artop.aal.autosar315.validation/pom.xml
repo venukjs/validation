@@ -5,12 +5,12 @@
 	<parent>
 		<groupId>org.artop.releng</groupId>
 		<artifactId>org.artop.releng.parent</artifactId>
-		<version>4.11.1-SNAPSHOT</version>
+		<version>4.11.2-SNAPSHOT</version>
 		<relativePath>../../../../core/tools/org.artop.releng.builds/parent/pom.xml</relativePath>
 	</parent>
 	<groupId>org.artop.plugins</groupId>
 	<artifactId>org.artop.aal.autosar315.validation</artifactId>
-	<version>4.11.1-SNAPSHOT</version>
+	<version>4.11.2-SNAPSHOT</version>
 	<packaging>eclipse-plugin</packaging>
 	<name>org.artop.aal.autosar315.validation</name>
 	<properties>

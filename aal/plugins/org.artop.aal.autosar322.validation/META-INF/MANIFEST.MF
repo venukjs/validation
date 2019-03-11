@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.artop.aal.autosar322.validation;singleton:=true
-Bundle-Version: 4.11.1.qualifier
+Bundle-Version: 4.11.2.qualifier
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Require-Bundle: org.artop.aal.validation;visibility:=reexport,
